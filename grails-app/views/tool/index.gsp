@@ -178,6 +178,36 @@
 						  <a href="#" class="btn btn-primary">Econômicos</a>
 						  <a href="#" class="btn btn-primary">Sociais</a>
 						</div>
+									    
+				    <table class="table table-striped table-hover ">
+						  <thead>
+						    <tr class="text-primary">
+						      
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	<tr>
+						  		<td class="text-primary">#</td>
+						      <td>1</td>
+						    </tr>
+						    <tr>
+						      <td class="text-primary">Nombre</td>
+						      <td>Quantidade de vinhaça/área aplicada com relação ao Potássio (K) e Nitrogênio (N)</td>
+						    </tr>
+						    <tr>
+						      <td class="text-primary">Descrição</td>
+						      <td>A concentração máxima de potássio no solo não poderá exceder 5% da Capacidade de Troca Catiônica – CTC. Quando esse limite for atingido, a aplicação de vinhaça ficará restrita à reposição desse nutriente em função da extração média pela cultura, que é de 185 kg de K 2 O por hectare por corte (PIRES; FERREIRA, 2008). Quanto aos nutrientes extraídos (requeridos) pela cultura de cana-de-açúcar, o nitrogênio é o mais importante. No plantio da cana é necessário aplicar 30 kg/ha de nitrogênio; já na adubação da cana-soca, a quantidade recomendada para a cultura é de 60 kg/ha (SOUZA; LOBATO, 2004).</td>
+						    </tr>
+						    <tr>
+						  		<td class="text-primary">Valor</td>
+						      <td><input type="text" class="form-control" id="idicador_1"></td>
+						    </tr>
+						    <tr>
+						    	<td class="text-primary">Unidades</td>
+                  <td>vinhaça/área</td>
+						    </tr>
+						  </tbody>
+						</table>
 						
 						<table class="table table-striped table-hover ">
 						  <thead>
@@ -190,41 +220,6 @@
 						    </tr>
 						  </thead>
 						  <tbody>
-						    <tr>
-						      <td>1</td>
-						      <td>Indicador 1</td>
-						      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</td>
-						      <td><input type="text" class="form-control" id="idicador_1"></td>
-                  <td>Lorem Ipsum</td>
-						    </tr>
-						    <tr>
-						      <td>2</td>
-						      <td>Indicador 2</td>
-						      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</td>
-						      <td><input type="text" class="form-control"  id="idicador_2"></td>
-                  <td>Lorem Ipsum</td>
-						    </tr>
-						    <tr>
-						      <td>3</td>
-						      <td>Indicador 3</td>
-						      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</td>
-						      <td><input type="text" class="form-control"  id="idicador_3"></td>
-                  <td>Lorem Ipsum</td>
-						    </tr>
-						    <tr>
-						      <td>4</td>
-						      <td>Indicador 4</td>
-						      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</td>
-						      <td><input type="text" class="form-control"  id="idicador_4"></td>
-                  <td>Lorem Ipsum</td>
-						    </tr>
-						    <tr>
-						      <td>5</td>
-						      <td>Indicador 5</td>
-						      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</td>
-						      <td><input type="text" class="form-control"  id="idicador_5"></td>
-                  <td>Lorem Ipsum</td>
-						    </tr>
 						    <tr>
 						      <td>6</td>
 						      <td><input type="text" class="form-control"  id="idicador_5"></td>
@@ -251,28 +246,34 @@
 						    <tr class="text-primary">
 						      <th>#</th>
 						      <th>Descrição</th>
+						      <th>Importância</th>
 						    </tr>
 						  </thead>
 						  <tbody>
 						    <tr>
 						      <td>1</td>
 						      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</td>
+						      <td>Baixa</td>
 						    </tr>
-						    <tr>
+						    <tr class="warning">
 						      <td>2</td>
 						      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</td>
+						      <td>Meia</td>
 						    </tr>
-						    <tr>
+						    <tr class="danger">
 						      <td>3</td>
 						      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</td>
+						      <td>Alta</td>
 						    </tr>
-						    <tr>
+						    <tr class="warning">
 						      <td>4</td>
 						      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</td>
+						      <td>Meia</td>
 						    </tr>
 						    <tr>
 						      <td>5</td>
 						      <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</td>
+						      <td>Baixa</td>
 						    </tr>
 						  </tbody>
 						</table> 

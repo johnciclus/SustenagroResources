@@ -31,7 +31,7 @@ body {
 	padding-left: 0px;
 	padding-right: 0px;
 	
-	background-color: rgba(255, 255, 255, 0.90);
+	background-color: rgba(255, 255, 255, 0.95);
 	border: 1px solid #dddddd;
 }
 
@@ -47,7 +47,7 @@ body {
   margin: 0px;
   text-align: center;  
   
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.4);
 	border-top: 1px solid #dddddd;
 }
 
@@ -65,12 +65,16 @@ body {
 }
 
 .content, .left-content, .right-content{
-	background-color: rgba(255, 255, 255, 0.3);
+	background-color: rgba(255, 255, 255, 0.4);
 	text-align: justify;
 }
 
 .content h5, .left-content h5, .right-content h5{
 	font-weight: normal;
+}
+
+.left-content ul, .left-content ol, .right-content ul, .right-content ol{
+	margin-left: 20px;
 }
 
 .img-centered{
