@@ -98,6 +98,10 @@ body {
 	border: 1px solid #dddddd;
 }
 
+#toolContent .btn-group{
+	margin-bottom: 20px; 
+}
+
 .input-xs {
 	height: 22px;
 	padding: 5px 5px;
