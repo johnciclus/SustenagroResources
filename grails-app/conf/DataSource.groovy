@@ -1,8 +1,8 @@
 dataSource {
     pooled = true
     jmxExport = true
-    driverClassName = ""
-    username = ""
+    driverClassName = "org.h2.Driver"
+    username = "sa"
     password = ""
 }
 hibernate {
