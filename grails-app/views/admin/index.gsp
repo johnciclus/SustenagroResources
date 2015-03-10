@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta name="layout" content="main"/>
 		<title>SustenAgro - Admin</title>
@@ -16,11 +16,23 @@
 					<input type="submit" class="btn btn-primary" value="generate" />
 				</form>
 				
+				<h5 class="text-primary page-header">Result</h5>
+				<div id='result'>
+					
+				</div>
+				
 				<script type="application/javascript">
+					
+					var fd = new FormData();    
+					fd.append( 'code', $("#code").val() );
+					
 					$( "#dsl_form" ).submit(function( event ) {
 					  $.post(
-					  	$(this).attr('action'),
-					  	{code: $("#code").val()}
+					  	$("#dsl_form").attr('action'),
+					  	{'code':  $("#code").val() },
+					  	function( data ) {
+						  $('#result').html(data);
+						}
 					  );
 					  event.preventDefault();
 					});
