@@ -10,7 +10,6 @@
 				<h5 class="text-primary page-header">DSL Code</h5>				
 				<form id="dsl_form" action="/sustenagro/admin/dslCreate" method="post">
 					<div class="form-group">
-						<label for="code" class="control-label">Code:</label>
 						<textarea id="code" name="code" class="form-control"></textarea>
 					</div>
 					<input type="submit" class="btn btn-primary" value="generate" />
