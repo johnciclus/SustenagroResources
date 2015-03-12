@@ -11,8 +11,8 @@ class AdminController {
     def dslCreate() {
     	//"Language prototype = 
     	/*
-    		div (class: "well")   {
-			    p (class: "lead")    {
+    		div (class= "well")   {
+			    p (class= "lead")    {
 			         "hola mundo"
 			    }
 			}
@@ -20,21 +20,48 @@ class AdminController {
     	   	
     	def writer = new StringWriter() 
     	def markup = new MarkupBuilder(writer)
+    	def parent = null
     	def code   = params["code"]
-    	def parts  = code.tokenize('{}')
     	
-    	def head      = parts[0]
-    	def headparts = head.tokenize('()')
-   		def tag		  = headparts[0].trim()
-   		def attrs     = ["class": "well"]
-    	def content   = parts[1].replace('"', '').trim()
+    	def el	= analyze(code)
+    	def node= markup.createNode(el.tag)
+    	    	
+    	struct(el, node, markup)
     	
-    	//headparts[1].trim()
-    	
-    	def node      = markup.createNode(tag, attrs, content)
     	markup.nodeCompleted(null, node)
     	
     	render writer.toString()
+    }
+    
+    def struct(el, node, markup){
+    	if(el.content.contains("{")){
+    		el		= analyze(el.content)
+    		def parent  = node
+	    	if(el.content.contains("{")){
+	    		node    = markup.createNode(el.tag)
+	    		struct(el, parent, markup)
+	    	}
+	    	else{
+	    		node    = markup.createNode(el.tag, el.content)
+	    	}
+	    	markup.nodeCompleted(parent, node)
+    	}
+    	else{
+    		node.setValue(el.content)
+    	}
+    }
+    
+    def analyze(code){
+    	
+    	def ini      = code.indexOf('{')
+    	def fin      = code.lastIndexOf('}')
+    	
+    	def head     = code.substring(0, ini)
+    	def content  = code.substring(ini + 1, fin).trim()
+    	
+    	def tag      = head.substring(0, head.indexOf('(')).trim()
+		def params   = head.substring(head.indexOf('(') + 1, head.lastIndexOf(')')).trim()
+    	return [tag: tag, params: params, content: content]
     }
     
     def dslEdit() {
