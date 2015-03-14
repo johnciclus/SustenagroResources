@@ -102,6 +102,14 @@ body {
 	margin-bottom: 20px; 
 }
 
+#editor { 
+    height: 300px;
+    border: 1px solid #DDD;
+    border-radius: 4px;
+    border-bottom-right-radius: 0px;
+    margin-top: 5px;
+}
+
 .input-xs {
 	height: 22px;
 	padding: 5px 5px;
