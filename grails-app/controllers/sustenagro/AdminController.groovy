@@ -1,14 +1,63 @@
 package sustenagro
 
 import groovy.xml.MarkupBuilder
-import groovy.util.logging.Log4j
+import org.codehaus.groovy.control.CompilerConfiguration
+
+// Log method println
+
+class Dsl {
+
+    String toText
+    String fromText
+    String body
+    def sections = []
+
+    def static make(closure) {
+        Dsl dsl = new Dsl()
+        closure.delegate = dsl
+        closure()
+    }
+
+    def body(String bodyText) {
+        this.body = bodyText
+    }
+
+    def getHtml() {
+        doHtml(this)
+    }
+
+    def doHtml(Dsl dsl) {
+        def writer = new StringWriter()
+        def markup = new MarkupBuilder(writer)
+
+        def node = markup.createNode("h1", "hello world")
+        markup.nodeCompleted(null, node)
+
+        writer.toString()
+    }
+}
 
 class AdminController {
 
     def index() { 
-    	
+    
     }
     
+    def GroovyArchitecture(){
+    	
+        /*Script dslScript = new GroovyShell(this.class.classLoader).parse(params["code"])
+
+        dslScript.run()
+
+    	render dslScript.println()*/
+
+        render Dsl.make {
+            body "How are things? We are doing well. Take care"
+            html
+        }
+    }
+
+  
     def dslCreate() {
     	//"Language prototype = 
     	/*
@@ -88,7 +137,8 @@ class AdminController {
 		
     	*/
     	
-    	   	
+    	Script dslScript = new GroovyShell().parse(params["code"])
+    	
     	def writer = new StringWriter() 
     	def markup = new MarkupBuilder(writer)
     	

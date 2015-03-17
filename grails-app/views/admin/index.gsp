@@ -13,7 +13,15 @@
 				<pre id="editor" class="ace_editor ace-tm"></pre>
 
 				<form id="dsl_form" action="/sustenagro/admin/dslCreate" method="post">
-					<input type="submit" class="btn btn-primary" value="generate" />
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary" value="Generate" />
+					</div>
+				</form>
+
+				<form id="example_form" action="/sustenagro/admin/GroovyArchitecture" method="post">
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary" value="Example" />
+					</div>
 				</form>
 				
 				<h5 class="text-primary page-header">Result</h5>
@@ -29,9 +37,9 @@
 				    editor.setOption("showPrintMargin", false)
 				    document.getElementById('editor').style.fontSize='14px';
 					
-					$( "#dsl_form" ).submit(function( event ) {
+					$( "#dsl_form, #example_form" ).submit(function( event ) {
 					  $.post(
-					  	$("#dsl_form").attr('action'),
+					  	$(this).attr('action'),
 					  	{'code':  editor.getValue() },
 					  	function( data ) {
 						  $('#result').html(data);
