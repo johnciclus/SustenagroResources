@@ -83,7 +83,7 @@ class AdminController {
 			}
 		div (class:"form-group"){
 		    label (for:"exampleInputEmail1"){ Email address }
-		    input (type:"email" class:"form-control" id:"exampleInputEmail1" placeholder:"Enter email"){}
+		    input (type: "email", class:"form-control", id:"exampleInputEmail1['hola']", placeholder:"Enter email"){}
 		}
 		
     	*/
@@ -176,15 +176,22 @@ class AdminController {
     
     
     def genMap(params){
-    	def map  = [:]
-    	def list = params.tokenize(',')
+    	/*
+		def map = [:]
+		def list = params.tokenize(',')
     	def elems
-    	
+
     	list.each{ item ->
     		elems = item.tokenize(':')
     		map.put(elems[0].trim(), elems[1].replaceAll("\"|\'","").trim())
-    	}    	
-   		return map
+    	}
+		return map
+    	*/
+    	    	
+   		return params.tokenize(',').inject([:]) { map, token ->
+			token.trim().tokenize(':').with { map[it[0].trim()] = it[1].replaceAll("\"|\'","").trim() }
+			map
+		}
     }
     
     def dslEdit() {

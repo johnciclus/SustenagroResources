@@ -26,6 +26,7 @@
 					var editor = ace.edit("editor");
 				    editor.setTheme("ace/theme/chrome");
 				    editor.getSession().setMode("ace/mode/groovy");
+				    editor.setOption("showPrintMargin", false)
 				    document.getElementById('editor').style.fontSize='14px';
 					
 					$( "#dsl_form" ).submit(function( event ) {
