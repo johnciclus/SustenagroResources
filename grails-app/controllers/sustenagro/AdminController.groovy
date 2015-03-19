@@ -1,40 +1,49 @@
 package sustenagro
 
 import groovy.xml.MarkupBuilder
-import org.codehaus.groovy.control.CompilerConfiguration
-
-// Log method println
 
 class Dsl {
 
-    String toText
-    String fromText
-    String body
-    def sections = []
+    def writer
+    def markup
+    def missing = [:]
+    
 
-    def static make(closure) {
-        Dsl dsl = new Dsl()
-        closure.delegate = dsl
+    def make(Closure closure) {
+        println "Start of the analyze "
+
+        this.writer = new StringWriter()
+        this.markup = new MarkupBuilder(this.writer)
+
+        closure.setDelegate(this)
+        closure.setResolveStrategy(Closure.DELEGATE_ONLY)
         closure()
+
+        return this.writer.toString()
     }
 
-    def body(String bodyText) {
-        this.body = bodyText
+    /*def methodMissing(String methodName, args) {
+        missing.put(methodName, args[0])
+    }*/
+
+    def nodeMarkup = { mark, text ->
+        def node = this.markup.createNode(mark, text)
+        this.markup.nodeCompleted(null, node)
     }
 
-    def getHtml() {
-        doHtml(this)
+    def params = {
+        
     }
 
-    def doHtml(Dsl dsl) {
-        def writer = new StringWriter()
-        def markup = new MarkupBuilder(writer)
+    def p(String text){ nodeMarkup("p", text) }
 
-        def node = markup.createNode("h1", "hello world")
-        markup.nodeCompleted(null, node)
+    def h1(String text){ nodeMarkup("h1", text) }
 
-        writer.toString()
-    }
+    def mark(String text){ nodeMarkup("mark", text) }
+
+    def del(String text){ nodeMarkup("del", text) }
+
+    def small(String text){ nodeMarkup("small", text) }
 }
 
 class AdminController {
@@ -44,17 +53,14 @@ class AdminController {
     }
     
     def GroovyArchitecture(){
-    	
-        /*Script dslScript = new GroovyShell(this.class.classLoader).parse(params["code"])
-
-        dslScript.run()
-
-    	render dslScript.println()*/
-
-        render Dsl.make {
-            body "How are things? We are doing well. Take care"
-            html
-        }
+        
+        Binding binding = new Binding()
+        Dsl dsl = new Dsl()
+        binding.setVariable("dsl", dsl)
+        
+        GroovyShell shell = new GroovyShell(binding)
+        Script script = shell.parse("dsl.make({" + params["code"] + "})")
+        render script.run()
     }
 
   
@@ -62,13 +68,13 @@ class AdminController {
     	//"Language prototype = 
     	/*
 
-		h1 { bootstrap }
+		h1 "bootstrap"
 		
-		mark { bootstrap }
+		mark "bootstrap"
 		
-		del { bootstrap }
+		del "bootstrap"
 		
-		small { hola mundo }
+		small "hola mundo"
 		
 		p (class: 'lead') { bootstrap }
 		
@@ -143,7 +149,6 @@ class AdminController {
     	def markup = new MarkupBuilder(writer)
     	
     	def elms   = analyze(params["code"])
-    	log.debug("Elements Quantity")
     	
     	for( e in elms){	
     		struct(e, null, markup)
@@ -222,9 +227,7 @@ class AdminController {
     			
     	return [tag: tag, params: params, content: content]
     }
-    
-    
-    
+        
     def genMap(params){
     	/*
 		def map = [:]
