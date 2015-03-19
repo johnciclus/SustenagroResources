@@ -7,7 +7,16 @@ class Dsl {
     def writer
     def markup
     def missing = [:]
-    
+    def dynamicMethods = ['p', 'mark', 'del', 'small', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+
+    public Dsl(){
+        def method = this.dynamicMethods.each({
+            Dsl.metaClass."$it" = { text -> 
+                def node = this.markup.createNode(it, text)
+                this.markup.nodeCompleted(null, node) 
+            }
+        })
+    }
 
     def make(Closure closure) {
         println "Start of the analyze "
@@ -22,28 +31,19 @@ class Dsl {
         return this.writer.toString()
     }
 
-    /*def methodMissing(String methodName, args) {
-        missing.put(methodName, args[0])
-    }*/
-
-    def nodeMarkup = { mark, text ->
-        def node = this.markup.createNode(mark, text)
-        this.markup.nodeCompleted(null, node)
-    }
-
-    def params = {
+    /*def methodMissing(String mark, args) {
+        def method = this.dynamicMethods.each({ it == mark })
         
-    }
+        println "method missing way"
 
-    def p(String text){ nodeMarkup("p", text) }
-
-    def h1(String text){ nodeMarkup("h1", text) }
-
-    def mark(String text){ nodeMarkup("mark", text) }
-
-    def del(String text){ nodeMarkup("del", text) }
-
-    def small(String text){ nodeMarkup("small", text) }
+        if(method){
+            this."$mark"(mark, args[0])
+            this.p("p", args[0])
+        }
+        else{
+            missing.put(methodName, args[0])    
+        }
+    }*/
 }
 
 class AdminController {
