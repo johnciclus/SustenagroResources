@@ -7,25 +7,45 @@ class Dsl {
     def writer
     def markup
     def missing = [:]
-    def dynamicMethods = ['p', 'mark', 'del', 'small', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div']
+    def dynamicMethods = ['p', 'b', 'mark', 'del', 'small', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div']
+    def currentParent = null
 
     public Dsl(){
         def method = this.dynamicMethods.each({
-            Dsl.metaClass."$it" = { args ->
-                if(args.metaClass.respondsTo(args, "call")){
-                    println args()
+            Dsl.metaClass."$it" = { map = [:], content ->
+                
+                if(content.metaClass.respondsTo(content, "call")){
+                    println "closure"
+
+                    def node   = markup.createNode(it, map)
+                    this.currentParent = node
+                                        
+                    def result = content()
+                    if (result != null ){
+                        //println markup
+                        //println "$it result: " + result
+                    }
+                    
+                    this.currentParent = null
+                    this.markup.nodeCompleted(this.currentParent, node)
                 }
-                else if (args.class.simpleName == "String"){
-                    def node = this.markup.createNode(it, args)
-                    this.markup.nodeCompleted(null, node) 
+                else if (content.class.simpleName == "String"){
+                    println "string"
+                    def node = this.markup.createNode(it, map, content)
+                    this.markup.nodeCompleted(this.currentParent, node)
+
+                    println "node: " + node
                 }
-                return it
             }
         })
     }
 
+    def markAttr = {
+
+    }
+
     def make(Closure closure) {
-        println "Start of the analyze "
+        println "\nStart of the analyze "
 
         this.writer = new StringWriter()
         this.markup = new MarkupBuilder(this.writer)
@@ -82,7 +102,7 @@ class AdminController {
 		
 		small "hola mundo"
 		
-		p (class: 'lead') { bootstrap }
+		p (class: 'lead') { "bootstrap" }
 		
 		blockquote{  p { Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. }}
 		
