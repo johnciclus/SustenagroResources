@@ -7,13 +7,19 @@ class Dsl {
     def writer
     def markup
     def missing = [:]
-    def dynamicMethods = ['p', 'mark', 'del', 'small', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+    def dynamicMethods = ['p', 'mark', 'del', 'small', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div']
 
     public Dsl(){
         def method = this.dynamicMethods.each({
-            Dsl.metaClass."$it" = { text -> 
-                def node = this.markup.createNode(it, text)
-                this.markup.nodeCompleted(null, node) 
+            Dsl.metaClass."$it" = { args ->
+                if(args.metaClass.respondsTo(args, "call")){
+                    println args()
+                }
+                else if (args.class.simpleName == "String"){
+                    def node = this.markup.createNode(it, args)
+                    this.markup.nodeCompleted(null, node) 
+                }
+                return it
             }
         })
     }
