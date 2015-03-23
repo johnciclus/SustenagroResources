@@ -10,6 +10,7 @@
 	    
 		<title><g:layoutTitle default="SustenAgro"/></title>
 		
+		<asset:stylesheet href="normalize.css"/>
 		<asset:stylesheet href="bootstrap-readable.min.css"/>
 		<asset:stylesheet href="style.css"/>
 		<asset:javascript src="jquery-1.11.1.min.js"/>
