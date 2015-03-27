@@ -6,7 +6,7 @@ import com.hp.hpl.jena.query.QueryExecution
 import com.hp.hpl.jena.query.QueryExecutionFactory
 import com.hp.hpl.jena.query.QueryFactory
 import com.hp.hpl.jena.query.ResultSet
-import com.hp.hpl.jena.query.ResultSetFormatter
+import com.hp.hpl.jena.rdf.model.ModelFactory
 import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP
 
 class Dsl {
@@ -14,7 +14,7 @@ class Dsl {
     def writer
     def markup
     def missing     = [:]
-    def elems       = [ 'a', 'p', 'b', 'i', 'mark', 'del', 's', 'ins', 'u', 'small', 'strong', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'abbr', 'footer', 'cite', 'dl', 'dt', 'dd', 'code', 'pre', 'var', 'samp', 'span']
+    //def elems       = [ 'a', 'p', 'b', 'i', 'mark', 'del', 's', 'ins', 'u', 'small', 'strong', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'abbr', 'footer', 'cite', 'dl', 'dt', 'dd', 'code', 'pre', 'var', 'samp', 'span']
     def containers  = [ 'div', 'blockquote', 'address', 'form' ]                    //containers
     def lists       = [ 'ul', 'ol', 'li']                                           //lists
     def tables      = [ 'table', 'thead', 'tbody', 'tr', 'th', 'td']                //tables
@@ -22,26 +22,14 @@ class Dsl {
     def imgs        = [ 'img' ]
 
     def currentParent   = null
-
-    public Dsl(){
+ 
+    public Dsl(elems){
         elems.each({baseFunction(it)})
         containers.each({baseFunction(it)})
         lists.each({baseFunction(it)})
         tables.each({baseFunction(it)})
         forms.each({baseFunction(it)})
         imgs.each({baseFunction(it)})
-
-        String queryStr = "select distinct ?Concept where {[] a ?Concept} LIMIT 10";
-        
-        Query query = QueryFactory.create(queryStr);
-
-        QueryExecution qexec = QueryExecutionFactory.sparqlService("http://bio.icmc.usp.br:8080/openrdf-sesame/repositories/Test", query);
-
-        ((QueryEngineHTTP)qexec).addParam("timeout", "10000") ;
-
-        ResultSet rs = qexec.execSelect();
-
-        ResultSetFormatter.out(System.out, rs, query);
     }   
 
     def baseFunction = { it ->
@@ -82,21 +70,38 @@ class Dsl {
         return writer.toString()
     }
 }
-
+ 
 class AdminController {
 
+    def elems = []
+
     def AdminController(){
-        println "Constructor....."
+        String queryStr =   "PREFIX ui_ontology: <http://bio.icmc.usp.br:8888/sustenagro/ui_ontology#>" +
+                            "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
+                                "select distinct ?name where {" +
+                                    "?s rdf:type ui_ontology:Tag ." +
+                                    "?s ui_ontology:name ?name" +
+                                "}"
+
+        Query query = QueryFactory.create(queryStr)
+        QueryExecution qexec = QueryExecutionFactory.sparqlService("http://bio.icmc.usp.br:8888/openrdf-workbench/repositories/SustenAgro/query", query)
+        
+        ((QueryEngineHTTP)qexec).addParam("timeout", "10000")
+
+        ResultSet rs = qexec.execSelect()
+
+        while(rs.hasNext()){
+            elems += rs.next().get("name")
+        }
     }
 
     def index() {
-    
     }
     
     def GroovyArchitecture(){
         
         Binding binding = new Binding()
-        Dsl dsl = new Dsl()
+        Dsl dsl = new Dsl(elems)
         binding.setVariable("dsl", dsl)
         
         GroovyShell shell = new GroovyShell(binding)
