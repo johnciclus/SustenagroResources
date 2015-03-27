@@ -47,10 +47,7 @@
 					  );
 					  event.preventDefault();
 					});
-
-					
 				</script>
-				
 			</div>
 		</div>
 	</body>

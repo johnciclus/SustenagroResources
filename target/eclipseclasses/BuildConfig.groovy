@@ -50,17 +50,18 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         // runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
-        test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
+        // test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
     }
 
     plugins {
         // plugins for the build system only
         build ":tomcat:7.0.55"
-
+        
         // plugins for the compile step
         compile ":scaffolding:2.1.2"
         compile ':cache:1.1.8'
         compile ":asset-pipeline:1.9.9"
+        compile ":neo4j:2.0.0-M02"
 
         // plugins needed at runtime but not for compilation
         //runtime ":hibernate4:4.3.6.1" // or ":hibernate:3.6.10.18"
