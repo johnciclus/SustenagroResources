@@ -8,12 +8,15 @@ import com.hp.hpl.jena.query.QueryFactory
 import com.hp.hpl.jena.query.ResultSet
 import com.hp.hpl.jena.rdf.model.ModelFactory
 import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP
+import groovy.json.JsonSlurper
 
 class Dsl {
 
     def writer
     def markup
     def missing     = [:]
+    def properties
+
     //def elems       = [ 'a', 'p', 'b', 'i', 'mark', 'del', 's', 'ins', 'u', 'small', 'strong', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'abbr', 'footer', 'cite', 'dl', 'dt', 'dd', 'code', 'pre', 'var', 'samp', 'span']
     def containers  = [ 'div', 'blockquote', 'address', 'form' ]                    //containers
     def lists       = [ 'ul', 'ol', 'li']                                           //lists
@@ -24,13 +27,13 @@ class Dsl {
     def currentParent   = null
  
     public Dsl(elems){
-        elems.each({baseFunction(it)})
+        elems.each({func(it)})
         containers.each({baseFunction(it)})
         lists.each({baseFunction(it)})
         tables.each({baseFunction(it)})
         forms.each({baseFunction(it)})
         imgs.each({baseFunction(it)})
-    }   
+    }
 
     def baseFunction = { it ->
         Dsl.metaClass."$it" = { Map map = [:], content ->
@@ -57,6 +60,25 @@ class Dsl {
         }
     }
 
+    void properties(Map map) { println "properties"}
+
+    def func = { it ->
+        Dsl.metaClass."$it" = { Closure cl ->
+            def map     = [:]
+            def node    = markup.createNode(it, map)
+            currentParent = node
+
+            def text = cl()
+            if (text != null ){
+                markup.getMkp().yield(text)
+            }
+            currentParent = null
+            markup.nodeCompleted(currentParent, node)
+
+            println "Success"
+        }
+    }
+
     def make(Closure closure) {
         println "\nStart of the analyze "
 
@@ -70,12 +92,28 @@ class Dsl {
         return writer.toString()
     }
 }
- 
+
+class EmailSpec {
+    void from(String from) { println "From: $from"}
+    void to(String to) { println "To: $to"}
+    void subject(String subject) { println "Subject: $subject"}
+    void body(Closure body) {
+        def bodySpec = new BodySpec()
+        def code = body.rehydrate(bodySpec, this, this)
+        code.resolveStrategy = Closure.DELEGATE_ONLY
+        code()
+    }
+}
+
+class BodySpec {
+    void content(String from) { println "From: $from"}
+}
+
 class AdminController {
 
     def elems = []
 
-    def AdminController(){
+    /*def AdminController(){
         String queryStr =   "PREFIX ui_ontology: <http://bio.icmc.usp.br:8888/sustenagro/ui_ontology#>" +
                             "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
                                 "select distinct ?name where {" +
@@ -93,11 +131,21 @@ class AdminController {
         while(rs.hasNext()){
             elems += rs.next().get("name")
         }
-    }
+    }*/
 
     def index() {
     }
     
+    def readDSL(){
+        String code = params["code"]
+        println code
+
+        def jsonSlurper = new JsonSlurper()
+        def obj = jsonSlurper.parseText(code)
+
+        render obj.name
+    }
+
     def GroovyArchitecture(){
         
         Binding binding = new Binding()
