@@ -18,7 +18,7 @@
 					</div>
 				</form>
 
-				<form id="example_form" action="/sustenagro/admin/readDSL" method="post">
+				<form id="example_form" action="/sustenagro/admin/GroovyArchitecture" method="post">
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="Example" />
 					</div>

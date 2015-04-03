@@ -27,7 +27,7 @@ class Dsl {
     def currentParent   = null
  
     public Dsl(elems){
-        elems.each({func(it)})
+        elems.each({baseFunction(it)})
         containers.each({baseFunction(it)})
         lists.each({baseFunction(it)})
         tables.each({baseFunction(it)})
@@ -62,23 +62,6 @@ class Dsl {
 
     void properties(Map map) { println "properties"}
 
-    def func = { it ->
-        Dsl.metaClass."$it" = { Closure cl ->
-            def map     = [:]
-            def node    = markup.createNode(it, map)
-            currentParent = node
-
-            def text = cl()
-            if (text != null ){
-                markup.getMkp().yield(text)
-            }
-            currentParent = null
-            markup.nodeCompleted(currentParent, node)
-
-            println "Success"
-        }
-    }
-
     def make(Closure closure) {
         println "\nStart of the analyze "
 
@@ -93,27 +76,15 @@ class Dsl {
     }
 }
 
-class EmailSpec {
-    void from(String from) { println "From: $from"}
-    void to(String to) { println "To: $to"}
-    void subject(String subject) { println "Subject: $subject"}
-    void body(Closure body) {
-        def bodySpec = new BodySpec()
-        def code = body.rehydrate(bodySpec, this, this)
-        code.resolveStrategy = Closure.DELEGATE_ONLY
-        code()
-    }
-}
-
-class BodySpec {
-    void content(String from) { println "From: $from"}
-}
-
 class AdminController {
+
+    def index(){
+        
+    }
 
     def elems = []
 
-    /*def AdminController(){
+    def AdminController(){
         String queryStr =   "PREFIX ui_ontology: <http://bio.icmc.usp.br:8888/sustenagro/ui_ontology#>" +
                             "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
                                 "select distinct ?name where {" +
@@ -131,30 +102,20 @@ class AdminController {
         while(rs.hasNext()){
             elems += rs.next().get("name")
         }
-    }*/
-
-    def index() {
-    }
-    
-    def readDSL(){
-        String code = params["code"]
-        println code
-
-        def jsonSlurper = new JsonSlurper()
-        def obj = jsonSlurper.parseText(code)
-
-        render obj.name
     }
 
     def GroovyArchitecture(){
         
-        Binding binding = new Binding()
-        Dsl dsl = new Dsl(elems)
-        binding.setVariable("dsl", dsl)
+        //Binding binding = new Binding([dsl: new Dsl(elems)])
+        //Dsl dsl = new Dsl(elems)
+        //binding.setVariable("dsl", dsl)
         
-        GroovyShell shell = new GroovyShell(binding)
-        Script script = shell.parse("dsl.make({" + params["code"] + "})")
-        render script.run()
+        GroovyShell shell = new GroovyShell(new Binding([dsl: new Dsl(elems)]))
+
+        //Script script = shell.parse("dsl.make({" + params["code"] + "})")
+        //render script.run()
+
+        render shell.evaluate("dsl.make({" + params["code"] + "})")
 
         /*String sparqlQueryString= "select distinct ?Concept where {[] a ?Concept} LIMIT 100"
 
@@ -165,76 +126,6 @@ class AdminController {
         println results       
 
         qexec.close();*/
-    }
-
- 
-    def analyze(code){
-    	
-    	def ini, mid, end = -1
-    	def elms = []
-    	def count
-    	 
-    	while(end != (code.length()-1)){
-	    	ini = end+1
-	    	mid  = code.indexOf('{', ini)
-	    	count = 0
-	    	
-	    	if(mid != -1){
-	    		count++
-	    		
-	    		for(int i = mid+1; i<code.length(); i++){
-	    			if(code.charAt(i) == '{')
-	    				count++
-	    			else if(code.charAt(i) == '}')
-	    				count--
-	    			if(count == 0){
-	    				end = i
-	    				break
-	    			}
-	    		}
-	    		
-	    		elms.add(createEl(code.substring(ini, end), mid-ini))
-	    	}
-    	}
-    	
-    	return elms
-    }
-    
-    def createEl(code, mid){
-    	def end		= code.length()
-    	def head    = code.substring(0, mid)
-    	def content = code.substring(mid + 1, end).trim()
-    	
-    	def iniParm = head.indexOf('(')
-    	def endParm = head.lastIndexOf(')')
-    	
-    	def tag, params
-    	
-    	if(iniParm == -1 || endParm == -1){
-    		tag		= head.substring(0, mid).trim()
-    		params  = [:]
-    	}
-    	else{
-    		tag     = head.substring(0, iniParm).trim()
-    		params  = genMap(head.substring(iniParm + 1, endParm).trim())
-    	}
-    			
-    	return [tag: tag, params: params, content: content]
-    }
-        
-    def genMap(params){   	
-   		return params.tokenize(',').inject([:]) { map, token ->
-			token.trim().tokenize(':').with { map[it[0].trim()] = it[1].replaceAll("\"|\'","").trim() }
-			map
-		}
-    }
-    
-    def dslEdit() {
-    	
-    }
-    
-    def dslDelete() {
-    	
     }
 }
 
