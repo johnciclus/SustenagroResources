@@ -5,31 +5,84 @@ import com.hp.hpl.jena.query.Query
 import com.hp.hpl.jena.query.QueryExecution
 import com.hp.hpl.jena.query.QueryExecutionFactory
 import com.hp.hpl.jena.query.QueryFactory
+import com.hp.hpl.jena.query.QuerySolution
 import com.hp.hpl.jena.query.ResultSet
 import com.hp.hpl.jena.rdf.model.ModelFactory
 import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP
+
+class OntologyAdmin{
+    
+    String url_service  = "http://bio.icmc.usp.br:8888/openrdf-workbench/repositories/SustenAgro/query"
+
+    Map query_map       =   [   'tag_names':  "PREFIX ui_ontology: <http://bio.icmc.usp.br:8888/sustenagro/ui_ontology#>" +
+                                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
+                                    "select distinct ?name where {" +
+                                    "?s rdf:type ui_ontology:Tag ." +
+                                    "?s ui_ontology:name ?name" +
+                                "}"
+                            ]
+    Map params_map      = ["timeout": "10000"]
+
+    public OntologyAdmin(){
+        println "Make queries"
+
+        println execQuery(query_map["tag_names"])
+    }
+
+    public execQuery(String query){
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(url_service, QueryFactory.create(query))
+        
+        ((QueryEngineHTTP)qexec).addParam('timeout', params_map['timeout'])
+
+        ResultSet rs = qexec.execSelect()
+        
+        String[] names = rs.getResultVars()
+
+        Map[] result = []
+        Map object
+        QuerySolution element 
+        
+
+        while(rs.hasNext()){
+            element = rs.next()
+            object = [:]
+            names.each{ key ->
+                object[key] = element.get(key)
+            }
+            result += object
+        }
+        result
+    }
+}
 
 class Html {
 
     def writer
     def markup
-    def missing     = [:]
+    def missing         = [:]
 
-    def elements    = [ 'a', 'p', 'b', 'i', 'mark', 'del', 's', 'ins', 'u', 'small', 'strong', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'abbr', 'footer', 'cite', 'dl', 'dt', 'dd', 'code', 'pre', 'var', 'samp', 'span']
-    def containers  = [ 'div', 'blockquote', 'address', 'form']                    //containers
-    def lists       = [ 'ul', 'ol', 'li']                                           //lists
-    def tables      = [ 'table', 'thead', 'tbody', 'tr', 'th', 'td']                //tables
-    def forms       = [ 'label', 'input', 'textarea', 'select', 'option', 'button'] //forms
-    def imgs        = [ 'img' ]
+    def elements        = [ 'a', 'p', 'b', 'i', 'mark', 'del', 's', 'ins', 'u', 'small', 'strong', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'abbr', 'footer', 'cite', 'dl', 'dt', 'dd', 'code', 'pre', 'var', 'samp', 'span']
+    def containers      = [ 'div', 'blockquote', 'address']                             //containers
+    def lists           = [ 'ul', 'ol', 'li']                                           //lists
+    def table           = [ 'table' ]                                                   //
+    def table_parts     = [ 'thead', 'tbody' ]                                          //table parts
+    def table_elems     = [ 'tr', 'th', 'td']                                           //table elems
+    def form            = [ 'form' ]                                                    //form
+    def form_elems      = [ 'label', 'input', 'textarea', 'select', 'option', 'button'] //forms elements
+    def imgs            = [ 'img' ]
 
     def current   = null
  
     public Html(){
+        OntologyAdmin ui_onto_admin = new OntologyAdmin()
+
         elements.each({baseFunction(it)})
         containers.each({baseFunction(it)})
         lists.each({baseFunction(it)})
-        tables.each({baseFunction(it)})
-        forms.each({baseFunction(it)})
+        table.each({baseFunction(it)})
+        table_elems.each({baseFunction(it)})
+        form.each({baseFunction(it)})
+        form_elems.each({baseFunction(it)})
         imgs.each({baseFunction(it)})
     }
 
@@ -40,23 +93,20 @@ class Html {
             //code.resolveStrategy = Closure.DELEGATE_ONLY
 
             def node      = markup.createNode(it, map)
-            def parent    = this.current
-            this.current  = node
+            //def parent    = this.current
+            //this.current  = node
 
             def text      = cl()
 
-            /*if (text != null ){
+            if (text != null ){
                 markup.getMkp().yield(text)
-            }*/
-            
-            //this.currentParent = null
-            markup.nodeCompleted(parent, node)
+            }
+
+            markup.nodeCompleted(null, node)
         }
     }
 
     def make(Closure closure) {
-        println "\nStart of the analyze "
-
         writer = new StringWriter()
         markup = new MarkupBuilder(writer)
 
@@ -70,28 +120,14 @@ class Html {
 
 class AdminController {
 
+    def html
+    
     def index(){
         
     }
 
     def AdminController(){
-        /*String queryStr =   "PREFIX ui_ontology: <http://bio.icmc.usp.br:8888/sustenagro/ui_ontology#>" +
-                            "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
-                                "select distinct ?name where {" +
-                                    "?s rdf:type ui_ontology:Tag ." +
-                                    "?s ui_ontology:name ?name" +
-                                "}"
-
-        Query query = QueryFactory.create(queryStr)
-        QueryExecution qexec = QueryExecutionFactory.sparqlService("http://bio.icmc.usp.br:8888/openrdf-workbench/repositories/SustenAgro/query", query)
-        
-        ((QueryEngineHTTP)qexec).addParam("timeout", "10000")
-
-        ResultSet rs = qexec.execSelect()
-
-        while(rs.hasNext()){
-            elements += rs.next().get("name")
-        }*/
+        html = new Html()
     }
 
     def GroovyArchitecture(){
@@ -100,12 +136,17 @@ class AdminController {
         //Html html = new Html(elements)
         //binding.setVariable("html", html)
         
-        GroovyShell shell = new GroovyShell(new Binding([html: new Html()]))
+        //GroovyShell shell = new GroovyShell(new Binding([html: new Html()]))
 
         //Script script = shell.parse("html.make({" + params["code"] + "})")
         //render script.run()
 
+        Binding binding   = new Binding()
+        binding.setVariable("html", html)
+        GroovyShell shell = new GroovyShell(binding)
+
         render shell.evaluate("html.make({" + params["code"] + "})")
+
 
         /*String sparqlQueryString= "select distinct ?Concept where {[] a ?Concept} LIMIT 100"
 
