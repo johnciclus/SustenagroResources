@@ -9,24 +9,23 @@ import com.hp.hpl.jena.query.ResultSet
 import com.hp.hpl.jena.rdf.model.ModelFactory
 import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP
 
-class Dsl {
+class Html {
 
     def writer
     def markup
     def missing     = [:]
-    def properties
 
-    def elems       = [ 'a', 'p', 'b', 'i', 'mark', 'del', 's', 'ins', 'u', 'small', 'strong', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'abbr', 'footer', 'cite', 'dl', 'dt', 'dd', 'code', 'pre', 'var', 'samp', 'span']
-    def containers  = [ 'div', 'blockquote', 'address', 'form' ]                    //containers
+    def elements    = [ 'a', 'p', 'b', 'i', 'mark', 'del', 's', 'ins', 'u', 'small', 'strong', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'abbr', 'footer', 'cite', 'dl', 'dt', 'dd', 'code', 'pre', 'var', 'samp', 'span']
+    def containers  = [ 'div', 'blockquote', 'address', 'form']                    //containers
     def lists       = [ 'ul', 'ol', 'li']                                           //lists
     def tables      = [ 'table', 'thead', 'tbody', 'tr', 'th', 'td']                //tables
     def forms       = [ 'label', 'input', 'textarea', 'select', 'option', 'button'] //forms
     def imgs        = [ 'img' ]
 
-    def currentParent   = null
+    def current   = null
  
-    public Dsl(){
-        elems.each({baseFunction(it)})
+    public Html(){
+        elements.each({baseFunction(it)})
         containers.each({baseFunction(it)})
         lists.each({baseFunction(it)})
         tables.each({baseFunction(it)})
@@ -34,63 +33,24 @@ class Dsl {
         imgs.each({baseFunction(it)})
     }
 
-    def oldFunction = { it ->
-        Dsl.metaClass."$it" = { Map map = [:], content ->
-            
-            if(content.metaClass.respondsTo(content, "call")){
-                println "closure"
-
-                def node   = markup.createNode(it, map)
-                currentParent = node
-                                    
-                def text = content()
-                if (text != null ){
-                    markup.getMkp().yield(text)
-                }
-                
-                currentParent = null
-                markup.nodeCompleted(currentParent, node)
-            }
-            else if (content.class.simpleName == "String"){
-                println "string"
-                def node = markup.createNode(it, map, content)
-                markup.nodeCompleted(currentParent, node)
-            }
-        }
-    }
-
     def baseFunction = { it ->
-        Dsl.metaClass."$it" = { Closure cl ->
-            def tag       = new Tag(this)
-            def code      = cl.rehydrate(tag, this, this)
-            code.resolveStrategy = Closure.DELEGATE_ONLY
+        Html.metaClass."$it" = {  Map map = [:], Closure cl ->
+            //def tag       = new Tag(this)
+            //def code      = cl.rehydrate(tag, this, this)
+            //code.resolveStrategy = Closure.DELEGATE_ONLY
 
-            print 'base Delegate'
-            println code.getDelegate()
-            print 'base Owner'
-            println code.getOwner()
-            print 'base ThisObject'
-            println code.getThisObject() 
-            print 'base getDirective'
-            println code.getDirective()
+            def node      = markup.createNode(it, map)
+            def parent    = this.current
+            this.current  = node
 
-            //def node      = markup.createNode(it, tag.properties, tag.content)
-            def node      = markup.createNode(it)
-            this.currentParent = node
+            def text      = cl()
 
-            def text      = code()
-            println markup.getMkp()
-
-            if (text != null ){
+            /*if (text != null ){
                 markup.getMkp().yield(text)
-            }
-            else{
-                println tag.properties.getClass()
-                markup.getMkp().yield(tag.content)
-            }
+            }*/
             
-            this.currentParent = null
-            markup.nodeCompleted(this.currentParent, node)
+            //this.currentParent = null
+            markup.nodeCompleted(parent, node)
         }
     }
 
@@ -108,59 +68,11 @@ class Dsl {
     }
 }
 
-class Tag {
-
-    Map properties
-    String content
-    Dsl currentParent
-
-    public Tag(){
-        this.content = ''
-        this.properties = [:]
-        println "construct basic"
-    }
-
-    public Tag(Dsl parent){
-        this.content = ''
-        this.properties = [:]
-        currentParent = parent
-    }
-
-    public content( content ){
-        if(content.metaClass.respondsTo(content, "call")){
-            def tag = new Tag(this.currentParent)
-            def code = content.rehydrate(this.currentParent, this, this)
-            code.resolveStrategy = Closure.DELEGATE_ONLY
-            
-            print 'closure Delegate'
-            println code.getDelegate()
-            print 'closure Owner'
-            println code.getOwner()
-            print 'closure ThisObject'
-            println code.getThisObject()
-            print 'closure getDirective'
-            println code.getDirective()
-
-            code()
-        }
-        else if (content.class.simpleName == "String"){
-            this.content = content
-            println "String method"
-        }
-    }
-
-    public properties( Map properties ){
-        this.properties = properties
-    }
-}
-
 class AdminController {
 
     def index(){
         
     }
-
-    def elems = []
 
     def AdminController(){
         /*String queryStr =   "PREFIX ui_ontology: <http://bio.icmc.usp.br:8888/sustenagro/ui_ontology#>" +
@@ -178,22 +90,22 @@ class AdminController {
         ResultSet rs = qexec.execSelect()
 
         while(rs.hasNext()){
-            elems += rs.next().get("name")
+            elements += rs.next().get("name")
         }*/
     }
 
     def GroovyArchitecture(){
         
-        //Binding binding = new Binding([dsl: new Dsl(elems)])
-        //Dsl dsl = new Dsl(elems)
-        //binding.setVariable("dsl", dsl)
+        //Binding binding = new Binding([html: new Html(elements)])
+        //Html html = new Html(elements)
+        //binding.setVariable("html", html)
         
-        GroovyShell shell = new GroovyShell(new Binding([dsl: new Dsl()]))
+        GroovyShell shell = new GroovyShell(new Binding([html: new Html()]))
 
-        //Script script = shell.parse("dsl.make({" + params["code"] + "})")
+        //Script script = shell.parse("html.make({" + params["code"] + "})")
         //render script.run()
 
-        render shell.evaluate("dsl.make({" + params["code"] + "})")
+        render shell.evaluate("html.make({" + params["code"] + "})")
 
         /*String sparqlQueryString= "select distinct ?Concept where {[] a ?Concept} LIMIT 100"
 
