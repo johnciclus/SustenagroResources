@@ -61,29 +61,42 @@ class Html {
     def markup
     def missing         = [:]
 
-    def elements        = [ 'a', 'p', 'b', 'i', 'mark', 'del', 's', 'ins', 'u', 'small', 'strong', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'abbr', 'footer', 'cite', 'dl', 'dt', 'dd', 'code', 'pre', 'var', 'samp', 'span']
-    def containers      = [ 'div', 'blockquote', 'address']                             //containers
-    def lists           = [ 'ul', 'ol', 'li']                                           //lists
-    def table           = [ 'table' ]                                                   //
-    def table_parts     = [ 'thead', 'tbody' ]                                          //table parts
-    def table_elems     = [ 'tr', 'th', 'td']                                           //table elems
-    def form            = [ 'form' ]                                                    //form
-    def form_elems      = [ 'label', 'input', 'textarea', 'select', 'option', 'button'] //forms elements
-    def imgs            = [ 'img' ]
+    def audio_video     = [ 'audio', 'source', 'track', 'video' ]
+    def basic           = [ 'br', 'hr', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ]
+    def containers      = [ 'address', 'article', 'aside', 'details', 'dialog', 'blockquote', 'div', 'footer', 'header', 'main', 'section', 'summary' ]                             //containers
+    def format          = [ 'abbr', 'b', 'bdi', 'bdo', 'cite', 'code', 'del', 'dfn', 'em', 'i', 'ins', 'kbd', 'mark', 'meter', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'small', 'strong', 'sub', 'sup', 'time', 'u', 'var', 'wbr' ]
+    def form            = [ 'form' ]                                                                                                                                                //form
+    def form_elems      = [ 'button', 'datalist', 'fieldset', 'input', 'keygen', 'label', 'legend', 'optgroup', 'option', 'output', 'select', 'textarea']                           //forms elements
+    def frames          = [ 'iframe' ]
+    def images          = [ 'img', 'map', 'area', 'canvas', 'figcaption', 'figure' ]
+    def links           = [ 'a', 'link', 'nav']
+    def lists           = [ 'ul', 'ol', 'li', 'dl', 'dt', 'dd']                                                                                                                     //lists
+    def style           = [ 'span', 'style' ]
+    def table           = [ 'table' ]                                                                                                                                               //
+    def table_parts     = [ 'caption', 'thead', 'tbody', 'tfoot', 'colgroup', 'col' ]                                                                                               //table parts
+    def table_elems     = [ 'td', 'th', 'tr']                                                                                                                                       //table elems
+    
+    
 
     def current   = null
  
     public Html(){
         OntologyAdmin ui_onto_admin = new OntologyAdmin()
 
-        elements.each({baseFunction(it)})
+        audio_video.each({baseFunction(it)})
+        basic.each({baseFunction(it)})
         containers.each({baseFunction(it)})
-        lists.each({baseFunction(it)})
-        table.each({baseFunction(it)})
-        table_elems.each({baseFunction(it)})
+        format.each({baseFunction(it)})
         form.each({baseFunction(it)})
         form_elems.each({baseFunction(it)})
-        imgs.each({baseFunction(it)})
+        frames.each({baseFunction(it)})
+        images.each({baseFunction(it)})
+        links.each({baseFunction(it)})
+        lists.each({baseFunction(it)})
+        style.each({baseFunction(it)})
+        table.each({baseFunction(it)})
+        table_parts.each({baseFunction(it)})
+        table_elems.each({baseFunction(it)})
     }
 
     def baseFunction = { it ->
@@ -163,15 +176,15 @@ class AdminController {
 //"Language prototype = 
 /*
 
-h1 "bootstrap"
+h1 {"bootstrap"}
 
-mark "bootstrap"
+mark {"bootstrap"}
 
-del "bootstrap"
+del {"bootstrap"}
 
-small "hola mundo"
+small {"hola mundo"
 
-p 'class': 'lead', "bootstrap"
+p 'class': 'lead', {"bootstrap"}
 
 div 'class':'container-fluid', { p 'class': 'lead', "bootstrap" }
 
