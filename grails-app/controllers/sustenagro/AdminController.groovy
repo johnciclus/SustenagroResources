@@ -99,6 +99,12 @@ class Html {
         table_elems.each({baseFunction(it)})
     }
 
+    def indicator(Closure cl){
+        def code      = cl.rehydrate(new Indicator(), this, this)
+        code.resolveStrategy = Closure.DELEGATE_ONLY
+        code()
+    }
+
     def baseFunction = { it ->
         Html.metaClass."$it" = {  Map map = [:], Closure cl ->
             //def tag       = new Tag(this)
@@ -128,6 +134,43 @@ class Html {
         closure()
 
         return writer.toString()
+    }
+}
+
+class Indicator{
+    def title
+    def description
+    def threshold
+    def management_measure
+    def justification
+
+    def Indicator(){
+        println "Indicator constructor"
+    }
+
+    def title(String title_arg){
+        this.title = title_arg
+        println this.title
+    }
+
+    def description(String desc_arg){
+        this.description = desc_arg
+        println this.description
+    }
+
+    def threshold(String thre_arg){
+        this.threshold = thre_arg
+        println this.threshold
+    }
+
+    def management_measure(String meas_arg){
+        this.management_measure = meas_arg
+        println this.management_measure
+    }
+
+    def justification(String just_arg){
+        this.justification = just_arg
+        println this.justification   
     }
 }
 
