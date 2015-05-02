@@ -81,7 +81,7 @@ class Html {
     def current   = null
  
     public Html(){
-        OntologyAdmin ui_onto_admin = new OntologyAdmin()
+        //OntologyAdmin ui_onto_admin = new OntologyAdmin()
 
         audio_video.each({baseFunction(it)})
         basic.each({baseFunction(it)})

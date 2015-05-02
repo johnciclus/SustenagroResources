@@ -3,6 +3,7 @@
 	<head>
 		<meta name="layout" content="main"/>
 		<title>SustenAgro - Tool</title>
+		<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>		
 	</head>
 	<body>
 		<div class="row main">
@@ -13,6 +14,8 @@
 				  <li class="">					<a href="#characterization" data-toggle="tab">	2. Caracterização</a></li>
 				  <li class="">					<a href="#indicators" data-toggle="tab">				3. Indicadores</a></li>
 				  <li class="">					<a href="#recomendations" data-toggle="tab">		4. Recomendações</a></li>
+				  <li class="">					<a href="#graphics" data-toggle="tab">		5. Graficos
+				  </a></li>
 				</ul>
 				<div id="toolContent" class="tab-content">
 				  <div class="tab-pane fade active in" id="description">
@@ -780,6 +783,7 @@
 							<a href="#" class="btn btn-primary">Seguinte</a>	
 						</div>
 				  </div>
+
 				  <div class="tab-pane fade" id="recomendations">
 				    <div class="btn-group btn-group-justified">
 						  <a href="#" class="btn btn-primary">Ambientais</a>
@@ -824,7 +828,45 @@
 						  </tbody>
 						</table> 
 				  </div>
+
+				  <div class="tab-pane fade" id="graphics">
+				  	
+
+
+				  </div>
+
 				</div>
+				<script type="text/javascript"> 
+					 
+					var w = 960,
+					    h = 960;
+					 
+					var svg = d3.select("#graphics").append("svg:svg")
+					    .attr("width", w)
+					    .attr("height", h);
+					 
+					svg.append("svg:circle")
+					    .attr("cx", w/3)
+					    .attr("cy", h/3)
+					    .attr("r", 250)
+					    .style("fill", "green")
+					    .style("fill-opacity", ".5");
+					 
+					svg.append("svg:circle")
+					    .attr("cx", w*2/3)
+					    .attr("cy", h/3)
+					    .attr("r", 250)
+					    .style("fill", "steelblue")
+					    .style("fill-opacity", ".5");
+					 
+					svg.append("svg:circle")
+					    .attr("cx", w/2)
+					    .attr("cy", h*2/3)
+					    .attr("r", 250)
+					    .style("fill", "darkred")
+					    .style("fill-opacity", ".5");
+					 
+			    </script> 
 			</div>
 		</div>
 	</body>
