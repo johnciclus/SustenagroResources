@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sustenagro.AdminControllerSpec" tests="1" skipped="0" failures="1" errors="0" timestamp="2015-05-06T20:18:04" hostname="passion" time="0.522">
+  <properties/>
+  <testcase name="test something" classname="sustenagro.AdminControllerSpec" time="0.522">
+    <failure message="Condition not satisfied:&#10;&#10;true == false&#10;     |&#10;     false&#10;" type="org.spockframework.runtime.SpockComparisonFailure">Condition not satisfied:
+
+true == false
+     |
+     false
+
+	at sustenagro.AdminControllerSpec.test something(AdminControllerSpec.groovy:20)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

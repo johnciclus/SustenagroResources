@@ -1,6 +1,6 @@
 package sustenagro
 
-import groovy.xml.MarkupBuilder
+/*import groovy.xml.MarkupBuilder
 import com.hp.hpl.jena.query.Query
 import com.hp.hpl.jena.query.QueryExecution
 import com.hp.hpl.jena.query.QueryExecutionFactory
@@ -12,13 +12,15 @@ import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP
 
 class OntologyAdmin{
     
-    String url_service  = "http://bio.icmc.usp.br:8888/openrdf-workbench/repositories/SustenAgro/query"
-
-    Map query_map       =   [   'tag_names':  "PREFIX ui_ontology: <http://bio.icmc.usp.br:8888/sustenagro/ui_ontology#>" +
-                                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" +
-                                    "select distinct ?name where {" +
-                                    "?s rdf:type ui_ontology:Tag ." +
-                                    "?s ui_ontology:name ?name" +
+    String url_service  =  "http://bio.icmc.usp.br:9999/bigdata/namespace/ui_ontology/sparql"
+                        // "http://bio.icmc.usp.br:8888/openrdf-workbench/repositories/SustenAgro/query"
+                        // http://bio.icmc.usp.br:9999/bigdata/namespace/wine/sparql
+    Map query_map       =   [   'tag_names':  "PREFIX ui_ontology: <http://bio.icmc.usp.br:8888/sustenagro/ui_ontology#> " +
+                                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+                                
+                                "select distinct ?name where { " +
+                                    "?s rdf:type ui_ontology:Tag . " +
+                                    "?s ui_ontology:name ?name " +
                                 "}"
                             ]
     Map params_map      = ["timeout": "10000"]
@@ -81,7 +83,7 @@ class Html {
     def current   = null
  
     public Html(){
-        //OntologyAdmin ui_onto_admin = new OntologyAdmin()
+        OntologyAdmin ui_onto_admin = new OntologyAdmin()
 
         audio_video.each({baseFunction(it)})
         basic.each({baseFunction(it)})
@@ -173,7 +175,7 @@ class Indicator{
         println this.justification   
     }
 }
-
+*/
 class AdminController {
 
     def html
@@ -182,9 +184,9 @@ class AdminController {
         
     }
 
-    def AdminController(){
+    /*def AdminController(){
         html = new Html()
-    }
+    }*/
 
     def GroovyArchitecture(){
         

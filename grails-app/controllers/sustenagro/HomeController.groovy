@@ -3,6 +3,6 @@ package sustenagro
 class HomeController {
 
     def index() { 
-    	render "hello World"
+    	render "Hello World"
     }
 }
