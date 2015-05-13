@@ -1,0 +1,27 @@
+{
+  "sustenagro": {
+    "name": "sustenagro",
+    "title": "SustenAgro",
+    "description": "##### Avaliação da sustentabilidade em agricultura\\nO processo de avaliação da sustentabilidade esta composto pelas seguintes etapas:\\n1. Localização da laovura\\n2. Caracterização da cultura, tecnologia e tipo de sistema produtivo\\n3. Definição dos indicadores\\n4. Recomendações de sustentabilidade",
+    "dimensions": {
+      "environmental": {
+        "attributes": {
+          "soil": {
+            "indicators": {
+              
+            }
+          },
+          "hidric": {},
+          "climatic": {}
+        }
+      },
+      "economic": {},
+      "social": {}
+    },
+    "features": [
+      "crop",
+      "technology",
+      "productionUnity"
+    ]
+  }
+}

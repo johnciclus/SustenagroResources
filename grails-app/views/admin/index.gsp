@@ -9,20 +9,23 @@
 		<div class="row main">
 			<div class="col-sm-10 col-sm-offset-1 content">
 				<h5 class="text-primary page-header">DSL Code</h5>
+				<a href="/home" target="_blank" >Exemplos</a>
 
 				<pre id="editor" class="ace_editor ace-tm"></pre>
 
-				<form id="dsl_form" action="/sustenagro/admin/dslCreate" method="post">
+				<form id="dsl_form" action="/admin/query" method="post">
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="Generate" />
 					</div>
 				</form>
 
-				<form id="example_form" action="/sustenagro/admin/GroovyArchitecture" method="post">
+				<!--
+				<form id="example_form" action="/sustenagro/admin/dslCreate" method="post">
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="Example" />
 					</div>
 				</form>
+				-->
 				
 				<h5 class="text-primary page-header">Result</h5>
 				<div id='result'>

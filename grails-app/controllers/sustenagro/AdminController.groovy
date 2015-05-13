@@ -1,7 +1,7 @@
 package sustenagro
 
-/*import groovy.xml.MarkupBuilder
-import com.hp.hpl.jena.query.Query
+import groovy.xml.MarkupBuilder
+/*import com.hp.hpl.jena.query.Query
 import com.hp.hpl.jena.query.QueryExecution
 import com.hp.hpl.jena.query.QueryExecutionFactory
 import com.hp.hpl.jena.query.QueryFactory
@@ -56,6 +56,7 @@ class OntologyAdmin{
         result
     }
 }
+*/
 
 class Html {
 
@@ -83,7 +84,7 @@ class Html {
     def current   = null
  
     public Html(){
-        OntologyAdmin ui_onto_admin = new OntologyAdmin()
+        //OntologyAdmin ui_onto_admin = new OntologyAdmin()
 
         audio_video.each({baseFunction(it)})
         basic.each({baseFunction(it)})
@@ -138,7 +139,7 @@ class Html {
         return writer.toString()
     }
 }
-
+/*
 class Indicator{
     def title
     def description
@@ -188,10 +189,11 @@ class AdminController {
         html = new Html()
     }*/
 
-    def GroovyArchitecture(){
-        
+    def query(){
+        println "query"
+
         //Binding binding = new Binding([html: new Html(elements)])
-        //Html html = new Html(elements)
+        Html html = new Html()
         //binding.setVariable("html", html)
         
         //GroovyShell shell = new GroovyShell(new Binding([html: new Html()]))

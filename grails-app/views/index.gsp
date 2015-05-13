@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="layout" content="main"/>
-        <title>SustenAgro - Contact</title>
+        <title>SustenAgro - Home</title>
     </head>
     <body>
         <div class="row main">          
