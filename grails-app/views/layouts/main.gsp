@@ -74,16 +74,15 @@
             
             <div class="row footer">
                 <div class="col-sm-4">
-                    <g:img dir='images' file='embrapa.jpg' class="img-centered" width="150" />
+                    <g:img dir='images' file='embrapa-ma.jpg' class="img-centered" height="75" />
                 </div>
                 <div class="col-sm-4">
-                    <g:img dir='images' file='icmc.png' class="img-centered" width="150" />
+                    <g:img dir='images' file='logo-icmc.jpg' class="img-centered" height="75" />
                 </div>
                 <div class="col-sm-4">
-                    <g:img dir='images' file='ufscar.png' class="img-centered" width="150" />
+                    <g:img dir='images' file='intermidia.png' class="img-centered" height="75" />
                 </div>
             </div>
         </div> <!-- /container -->
-        
     </body>
 </html>

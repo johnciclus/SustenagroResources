@@ -1,61 +1,24 @@
 package sustenagro
 
 import groovy.xml.MarkupBuilder
-/*import com.hp.hpl.jena.query.Query
-import com.hp.hpl.jena.query.QueryExecution
-import com.hp.hpl.jena.query.QueryExecutionFactory
-import com.hp.hpl.jena.query.QueryFactory
-import com.hp.hpl.jena.query.QuerySolution
-import com.hp.hpl.jena.query.ResultSet
-import com.hp.hpl.jena.rdf.model.ModelFactory
-import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP
+/*import org.springframework.data.neo4j.annotation.NodeEntity
+import org.springframework.data.neo4j.annotation.GraphId
+import org.springframework.data.neo4j.annotation.Indexed
+import org.springframework.data.neo4j.annotation.Query*/
+import org.neo4j.graphdb.factory.GraphDatabaseFactory
+import org.neo4j.graphdb.GraphDatabaseService
+import org.neo4j.graphdb.Relationship
+import org.neo4j.graphdb.RelationshipType
+import groovy.json.*
 
-class OntologyAdmin{
-    
-    String url_service  =  "http://bio.icmc.usp.br:9999/bigdata/namespace/ui_ontology/sparql"
-                        // "http://bio.icmc.usp.br:8888/openrdf-workbench/repositories/SustenAgro/query"
-                        // http://bio.icmc.usp.br:9999/bigdata/namespace/wine/sparql
-    Map query_map       =   [   'tag_names':  "PREFIX ui_ontology: <http://bio.icmc.usp.br:8888/sustenagro/ui_ontology#> " +
-                                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
-                                
-                                "select distinct ?name where { " +
-                                    "?s rdf:type ui_ontology:Tag . " +
-                                    "?s ui_ontology:name ?name " +
-                                "}"
-                            ]
-    Map params_map      = ["timeout": "10000"]
-
-    public OntologyAdmin(){
-        println "Make queries"
-
-        println execQuery(query_map["tag_names"])
-    }
-
-    public execQuery(String query){
-        QueryExecution qexec = QueryExecutionFactory.sparqlService(url_service, QueryFactory.create(query))
-        
-        ((QueryEngineHTTP)qexec).addParam('timeout', params_map['timeout'])
-
-        ResultSet rs = qexec.execSelect()
-        
-        String[] names = rs.getResultVars()
-
-        Map[] result = []
-        Map object
-        QuerySolution element 
-        
-
-        while(rs.hasNext()){
-            element = rs.next()
-            object = [:]
-            names.each{ key ->
-                object[key] = element.get(key)
-            }
-            result += object
-        }
-        result
-    }
-}
+/*
+import org.neo4j.graphdb.Direction
+import org.neo4j.graphdb.Node
+import org.neo4j.graphdb.Transaction
+import org.neo4j.graphdb.GraphDatabaseService
+import org.neo4j.cypher.javacompat.ExecutionEngine
+import org.neo4j.cypher.javacompat.ExecutionResult
+import org.neo4j.io.fs.FileUtils
 */
 
 class Html {
@@ -139,6 +102,230 @@ class Html {
         return writer.toString()
     }
 }
+
+class AdminController {
+
+    def html
+    GraphDatabaseService graphDb
+    private static final String DB_PATH = "data/graph.db"
+
+    def index(){
+        
+    }
+
+    def query(){
+        
+        def url = "https://api.github.com/users/xwiki/repos".toURL().text
+        def root = new JsonSlurper().parseText(url)
+
+        println "|=Project|=Description|=Use Wiki?|=Use Issues?"
+        root.each() { repo ->
+            println "|[[${repo.name}>>http://github.com/xwiki/${repo.name}]]|${repo.description}|${repo.has_wiki}|${repo.has_issues}"
+        }
+
+        //EmbeddedNeo4j hello = new EmbeddedNeo4j()
+        //hello.createDb()
+        //hello.removeData()
+        //hello.shutDown()
+
+        render "ok!"
+    }
+
+    def dsl(){
+        println "query"
+
+        //FileUtils.deleteRecursively( new File( DB_PATH ) )
+
+        //Binding binding = new Binding([html: new Html(elements)])
+        Html html = new Html()
+        //binding.setVariable("html", html)
+        
+        //GroovyShell shell = new GroovyShell(new Binding([html: new Html()]))
+
+        //Script script = shell.parse("html.make({" + params["code"] + "})")
+        //render script.run()
+
+        Binding binding   = new Binding()
+        binding.setVariable("html", html)
+        GroovyShell shell = new GroovyShell(binding)
+
+        render shell.evaluate("html.make({" + params["code"] + "})")
+
+
+        /*String sparqlQueryString= "select distinct ?Concept where {[] a ?Concept} LIMIT 100"
+
+        Query query = QueryFactory.create(sparqlQueryString)
+        QueryExecution qexec = QueryExecutionFactory.sparqlService("http://dbpedia.org/sparql", query)
+
+        ResultSet results = qexec.execSelect()
+        println results       
+
+        qexec.close()*/
+    }
+}
+
+enum RelationshipTypes implements RelationshipType { ACTS_IN }
+
+/*class EmbeddedNeo4j{
+
+    private static final String DB_PATH = "data/graph.db"
+
+    // START SNIPPET: vars
+    GraphDatabaseService graphDb
+    Node firstNode
+    Node secondNode
+    Relationship relationship
+    // END SNIPPET: vars
+
+    // START SNIPPET: createReltype
+    private static enum RelTypes implements RelationshipType
+    {
+        KNOWS
+    }
+    // END SNIPPET: createReltype
+
+    void createDb() throws IOException
+    {
+        //FileUtils.deleteRecursively( new File( DB_PATH ) )
+
+        // START SNIPPET: startDb
+        graphDb = new GraphDatabaseFactory().newEmbeddedDatabase( DB_PATH )
+        
+        registerShutdownHook( graphDb )
+        // END SNIPPET: startDb
+
+        // START SNIPPET: transaction
+        Transaction tx = graphDb.beginTx()
+        
+        // Database operations go here
+        // END SNIPPET: transaction
+        // START SNIPPET: addData
+        firstNode = graphDb.createNode()
+        firstNode.setProperty( "message", "Hello, " )
+        secondNode = graphDb.createNode()
+        secondNode.setProperty( "message", "World!" )
+
+        relationship = firstNode.createRelationshipTo( secondNode, RelTypes.KNOWS )
+        relationship.setProperty( "message", "brave Neo4j " )
+        // END SNIPPET: addData
+
+        // START SNIPPET: readData
+        print( firstNode.getProperty( "message" ) )
+        print( relationship.getProperty( "message" ) )
+        print( secondNode.getProperty( "message" ) )
+        // END SNIPPET: readData
+
+        ExecutionEngine execEngine = new ExecutionEngine(graphDb)
+        ExecutionResult execResult = execEngine.execute("MATCH n RETURN n LIMIT 25")
+        
+        String results = execResult.dumpToString()
+        println(results)
+
+        // START SNIPPET: transaction
+        tx.success()
+        
+        // END SNIPPET: transaction
+    }
+
+    void removeData()
+    {
+        Transaction tx = graphDb.beginTx()
+        
+        // START SNIPPET: removingData
+        // let's remove the data
+        firstNode.getSingleRelationship( RelTypes.KNOWS, Direction.OUTGOING ).delete()
+        firstNode.delete()
+        secondNode.delete()
+        // END SNIPPET: removingData
+
+        tx.success()
+        
+    }
+
+    void shutDown()
+    {
+        println()
+        println( "Shutting down database ..." )
+        // START SNIPPET: shutdownServer
+        graphDb.shutdown()
+        // END SNIPPET: shutdownServer
+    }
+
+    // START SNIPPET: shutdownHook
+    private static void registerShutdownHook( final GraphDatabaseService graphDb )
+    {
+        // Registers a shutdown hook for the Neo4j instance so that it
+        // shuts down nicely when the VM exits (even if you "Ctrl-C" the
+        // running application).
+        Runtime.getRuntime().addShutdownHook( new Thread()
+        {
+            @Override
+            public void run()
+            {
+                graphDb.shutdown()
+            }
+        } )
+    }
+    // END SNIPPET: shutdownHook
+}*/
+
+/*import com.hp.hpl.jena.query.Query
+import com.hp.hpl.jena.query.QueryExecution
+import com.hp.hpl.jena.query.QueryExecutionFactory
+import com.hp.hpl.jena.query.QueryFactory
+import com.hp.hpl.jena.query.QuerySolution
+import com.hp.hpl.jena.query.ResultSet
+import com.hp.hpl.jena.rdf.model.ModelFactory
+import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP
+
+class OntologyAdmin{
+    
+    String url_service  =  "http://bio.icmc.usp.br:9999/bigdata/namespace/ui_ontology/sparql"
+                        // "http://bio.icmc.usp.br:8888/openrdf-workbench/repositories/SustenAgro/query"
+                        // http://bio.icmc.usp.br:9999/bigdata/namespace/wine/sparql
+    Map query_map       =   [   'tag_names':  "PREFIX ui_ontology: <http://bio.icmc.usp.br:8888/sustenagro/ui_ontology#> " +
+                                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> " +
+                                
+                                "select distinct ?name where { " +
+                                    "?s rdf:type ui_ontology:Tag . " +
+                                    "?s ui_ontology:name ?name " +
+                                "}"
+                            ]
+    Map params_map      = ["timeout": "10000"]
+
+    public OntologyAdmin(){
+        println "Make queries"
+
+        println execQuery(query_map["tag_names"])
+    }
+
+    public execQuery(String query){
+        QueryExecution qexec = QueryExecutionFactory.sparqlService(url_service, QueryFactory.create(query))
+        
+        ((QueryEngineHTTP)qexec).addParam('timeout', params_map['timeout'])
+
+        ResultSet rs = qexec.execSelect()
+        
+        String[] names = rs.getResultVars()
+
+        Map[] result = []
+        Map object
+        QuerySolution element 
+        
+
+        while(rs.hasNext()){
+            element = rs.next()
+            object = [:]
+            names.each{ key ->
+                object[key] = element.get(key)
+            }
+            result += object
+        }
+        result
+    }
+}
+*/
+
 /*
 class Indicator{
     def title
@@ -177,48 +364,6 @@ class Indicator{
     }
 }
 */
-class AdminController {
-
-    def html
-    
-    def index(){
-        
-    }
-
-    /*def AdminController(){
-        html = new Html()
-    }*/
-
-    def query(){
-        println "query"
-
-        //Binding binding = new Binding([html: new Html(elements)])
-        Html html = new Html()
-        //binding.setVariable("html", html)
-        
-        //GroovyShell shell = new GroovyShell(new Binding([html: new Html()]))
-
-        //Script script = shell.parse("html.make({" + params["code"] + "})")
-        //render script.run()
-
-        Binding binding   = new Binding()
-        binding.setVariable("html", html)
-        GroovyShell shell = new GroovyShell(binding)
-
-        render shell.evaluate("html.make({" + params["code"] + "})")
-
-
-        /*String sparqlQueryString= "select distinct ?Concept where {[] a ?Concept} LIMIT 100"
-
-        Query query = QueryFactory.create(sparqlQueryString);
-        QueryExecution qexec = QueryExecutionFactory.sparqlService("http://dbpedia.org/sparql", query);
-
-        ResultSet results = qexec.execSelect();
-        println results       
-
-        qexec.close();*/
-    }
-}
 
 //"Language prototype = 
 /*

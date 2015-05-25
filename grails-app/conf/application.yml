@@ -69,12 +69,19 @@ grails:
                 staticparts: none
 
 ---
+grails:
+    neo4j:
+        type: "rest"
+        location: http://sustenagro.sb05.stations.graphenedb.com:24789/db/data/
+        username: "neo4j"
+        password: "Inn1102"
+---
 dataSource:
     pooled: true
     jmxExport: true
     driverClassName: org.h2.Driver
-    username: sa
-    password:
+    username: "neo4j"
+    password: "Inn1102"
 
 environments:
     development:
