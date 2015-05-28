@@ -1,2 +1,26 @@
-/bin/
-/build/
+# Ignore temporary Emacs files
+*~
+.class*
+
+/bin
+
+#Ignore Eclipse directories
+.settings
+.project
+.classpath
+
+#Ignore Intellij files
+*.iml
+.idea
+
+# Exclude build directory
+target
+build
+.gradle
+gradle
+
+*.DS_Store
+
+*.log
+*.log.lck
+
