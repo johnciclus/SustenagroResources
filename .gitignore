@@ -16,6 +16,7 @@
 # Exclude build directory
 target
 build
+out
 .gradle
 gradle
 
