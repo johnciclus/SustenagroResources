@@ -4,14 +4,13 @@ import groovy.xml.MarkupBuilder
 /*import org.springframework.data.neo4j.annotation.NodeEntity
 import org.springframework.data.neo4j.annotation.GraphId
 import org.springframework.data.neo4j.annotation.Indexed
-import org.springframework.data.neo4j.annotation.Query*/
+import org.springframework.data.neo4j.annotation.Query
 import org.neo4j.graphdb.factory.GraphDatabaseFactory
 import org.neo4j.graphdb.GraphDatabaseService
 import org.neo4j.graphdb.Relationship
 import org.neo4j.graphdb.RelationshipType
 import groovy.json.*
 
-/*
 import org.neo4j.graphdb.Direction
 import org.neo4j.graphdb.Node
 import org.neo4j.graphdb.Transaction
@@ -106,27 +105,11 @@ class Html {
 class AdminController {
 
     def html
-    GraphDatabaseService graphDb
-    private static final String DB_PATH = "data/graph.db"
-
     def index(){
         
     }
 
     def query(){
-        
-        def url = "https://api.github.com/users/xwiki/repos".toURL().text
-        def root = new JsonSlurper().parseText(url)
-
-        println "|=Project|=Description|=Use Wiki?|=Use Issues?"
-        root.each() { repo ->
-            println "|[[${repo.name}>>http://github.com/xwiki/${repo.name}]]|${repo.description}|${repo.has_wiki}|${repo.has_issues}"
-        }
-
-        //EmbeddedNeo4j hello = new EmbeddedNeo4j()
-        //hello.createDb()
-        //hello.removeData()
-        //hello.shutDown()
 
         render "ok!"
     }
@@ -163,8 +146,6 @@ class AdminController {
         qexec.close()*/
     }
 }
-
-enum RelationshipTypes implements RelationshipType { ACTS_IN }
 
 /*class EmbeddedNeo4j{
 
