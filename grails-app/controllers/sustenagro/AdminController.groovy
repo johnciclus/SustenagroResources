@@ -106,7 +106,8 @@ class AdminController {
 
     def html
     def index(){
-        
+        def indicator = new Indicator(title: "Co2 Emission")
+        indicator.save()
     }
 
     def query(){
