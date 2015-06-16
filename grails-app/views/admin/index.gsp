@@ -13,7 +13,7 @@
 
 				<pre id="editor" class="ace_editor ace-tm"></pre>
 
-				<form id="dsl_form" action="/admin/query" method="post">
+				<form id="dsl_form" action="/admin/dsl" method="post">
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="Generate" />
 					</div>
