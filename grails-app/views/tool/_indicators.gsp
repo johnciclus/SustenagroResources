@@ -615,7 +615,3 @@
     </tr>
     </tbody>
 </table>
-
-<div class="text-center">
-    <a href="#" class="btn btn-primary">Seguinte</a>
-</div>
