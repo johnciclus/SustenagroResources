@@ -1,14 +1,11 @@
 package sustenagro
 
-class ToolController {
-    /*static {
-        Gremlin.load()
-    }*/
+import com.tinkerpop.blueprints.impls.sail.impls.MemoryStoreSailGraph
 
+class ToolController {
 
     def index() {
-
-        /*def g = new MemoryStoreSailGraph()
+        def g = new MemoryStoreSailGraph()
         g.addNamespace('tg','http://tinkerpop.com#')
 
         g.loadRDF(new FileInputStream('/www/graph-example-1.ntriple'), 'http://tinkerpop.com#', 'n-triples', null)
@@ -28,7 +25,7 @@ class ToolController {
         g.v('tg:1').out('http://kjhkjh.com/jhgjh').id.each{println it}
 
         g.saveRDF(new FileOutputStream('lixo.ntriple'), 'n-triples')
-        */
+
 
         /*def production_units = ProductionUnit.findAll()
         [production_units: production_units]*/

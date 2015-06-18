@@ -61,9 +61,10 @@ dependencies {
     //compile "org.grails.plugins:hibernate"
     compile "org.grails.plugins:cache"
     //compile "org.hibernate:hibernate-ehcache"
-    //compile 'com.tinkerpop.blueprints:blueprints-sail-graph:2.5.0'
-    //compile 'com.tinkerpop.gremlin:gremlin-groovy:2.5.0'
-    //compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile 'org.codehaus.groovy:groovy-all:2.4.3'
+    compile 'com.tinkerpop.blueprints:blueprints-core:2.6.0'
+    compile 'com.tinkerpop.blueprints:blueprints-sail-graph:2.6.0'
+    compile 'com.tinkerpop.gremlin:gremlin-groovy:2.6.0'
     //compile "org.neo4j:neo4j:2.2.1"
 
     //runtime "org.postgresql:postgresql:9.4-1201-jdbc41" 
