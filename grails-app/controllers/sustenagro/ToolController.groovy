@@ -6,15 +6,20 @@ class ToolController {
 
     def index() {
         def g = new MemoryStoreSailGraph()
-        g.addNamespace('tg','http://tinkerpop.com#')
+        g.addNamespace('sustenagro','http://www.biomac.icmc.usp.br:8080/sustenagro#')
 
-        g.loadRDF(new FileInputStream('/www/graph-example-1.ntriple'), 'http://tinkerpop.com#', 'n-triples', null)
+        g.loadRDF(new FileInputStream('ontology/SustenAgroOntology.rdf'), 'http://www.biomac.icmc.usp.br:8080/sustenagro#', 'rdf-xml', null)
         def results = []
 
         println(' 1 -> ')
-        g.v('tg:1').outE.id.each{println it}
+        g.v('sustenagro:IndicatorComponent').inE.id.each{println it}
 
-        def v = g.addVertex('"lixo"^^<http://www.w3.org/2001/XMLSchema#string>');
+        println("*** SustenAgroIndividuals ***")
+        g.saveRDF(new FileOutputStream('ontology/SustenAgroIndividuals.rdf'), 'rdf-xml')
+        println("*** SustenAgroIndividuals ***")
+
+
+        /*def v = g.addVertex('"lixo"^^<http://www.w3.org/2001/XMLSchema#string>');
         g.addEdge(g.v('tg:1'), v, 'http://kjhkjh.com/jhgjh')
 
         println(' 1 -> ')
@@ -24,10 +29,9 @@ class ToolController {
         g.v('tg:1').out('http://kjhkjh.com/jhgjh').kind.each{println it}
         g.v('tg:1').out('http://kjhkjh.com/jhgjh').id.each{println it}
 
-        g.saveRDF(new FileOutputStream('lixo.ntriple'), 'n-triples')
 
 
-        /*def production_units = ProductionUnit.findAll()
+        def production_units = ProductionUnit.findAll()
         [production_units: production_units]*/
     }
 
