@@ -77,6 +77,10 @@ body {
 	margin-left: 20px;
 }
 
+.content ul, .content ol{
+	margin-left: 22px;
+}
+
 .img-centered{
 	display: block;
 	margin: 0 auto;
@@ -116,4 +120,10 @@ body {
 	font-size: 12px;
 	line-height: 1.5;
 	border-radius: 3px;
+}
+
+#map-canvas {
+	height: 600px;
+	margin: 0;
+	padding: 0;
 }

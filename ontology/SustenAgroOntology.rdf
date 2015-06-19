@@ -1,0 +1,1758 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY sustenagro "http://www.biomac.icmc.usp.br:8080/sustenagro/" >
+]>
+
+
+<rdf:RDF xmlns="http://www.biomac.icmc.usp.br:8080/sustenagro/"
+     xml:base="http://www.biomac.icmc.usp.br:8080/sustenagro/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:sustenagro="http://www.biomac.icmc.usp.br:8080/sustenagro/">
+    <owl:Ontology rdf:about="http://www.biomac.icmc.usp.br:8080/sustenagro/"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/applies -->
+
+    <owl:ObjectProperty rdf:about="&sustenagro;applies"/>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/considers -->
+
+    <owl:ObjectProperty rdf:about="&sustenagro;considers"/>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/contains -->
+
+    <owl:ObjectProperty rdf:about="&sustenagro;contains"/>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/formalizes -->
+
+    <owl:ObjectProperty rdf:about="&sustenagro;formalizes"/>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/generates -->
+
+    <owl:ObjectProperty rdf:about="&sustenagro;generates"/>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/has -->
+
+    <owl:ObjectProperty rdf:about="&sustenagro;has">
+        <rdfs:domain rdf:resource="&sustenagro;Indicator"/>
+        <rdfs:range rdf:resource="&sustenagro;Interval"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/is_a -->
+
+    <owl:ObjectProperty rdf:about="&sustenagro;is_a"/>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/quantifies -->
+
+    <owl:ObjectProperty rdf:about="&sustenagro;quantifies">
+        <rdfs:range rdf:resource="&sustenagro;Indicator"/>
+        <rdfs:domain rdf:resource="&sustenagro;Interval"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/utilizes -->
+
+    <owl:ObjectProperty rdf:about="&sustenagro;utilizes"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/CreateAt -->
+
+    <owl:DatatypeProperty rdf:about="&sustenagro;CreateAt"/>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Description -->
+
+    <owl:DatatypeProperty rdf:about="&sustenagro;Description">
+        <rdfs:domain rdf:resource="&sustenagro;Indicator"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Identificator -->
+
+    <owl:DatatypeProperty rdf:about="&sustenagro;Identificator">
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/LowerBound -->
+
+    <owl:DatatypeProperty rdf:about="&sustenagro;LowerBound">
+        <rdfs:domain rdf:resource="&sustenagro;Interval"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Title -->
+
+    <owl:DatatypeProperty rdf:about="&sustenagro;Title">
+        <rdfs:domain rdf:resource="&sustenagro;Indicator"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/UpdateAt -->
+
+    <owl:DatatypeProperty rdf:about="&sustenagro;UpdateAt"/>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/UpperBound -->
+
+    <owl:DatatypeProperty rdf:about="&sustenagro;UpperBound">
+        <rdfs:domain rdf:resource="&sustenagro;Interval"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Valuation -->
+
+    <owl:DatatypeProperty rdf:about="&sustenagro;Valuation">
+        <rdfs:domain rdf:resource="&sustenagro;Indicator"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Adoption -->
+
+    <owl:Class rdf:about="&sustenagro;Adoption">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/AdoptionOfDirectPlanting -->
+
+    <owl:Class rdf:about="&sustenagro;AdoptionOfDirectPlanting">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/AdoptionOfFlex_FuelTechnologyByOtherCountries -->
+
+    <owl:Class rdf:about="&sustenagro;AdoptionOfFlex_FuelTechnologyByOtherCountries">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/AgriculturalProductionSystem -->
+
+    <owl:Class rdf:about="&sustenagro;AgriculturalProductionSystem">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;has"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;Evaluation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;applies"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;ProductionUnit"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Agro_ClimaticAptitude -->
+
+    <owl:Class rdf:about="&sustenagro;Agro_ClimaticAptitude">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;GeographicalLocationOfCultureInRelationToClimateAndSoilAptitude"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/AmountOfTraining -->
+
+    <owl:Class rdf:about="&sustenagro;AmountOfTraining">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/AmountOf_WaterUptake -->
+
+    <owl:Class rdf:about="&sustenagro;AmountOf_WaterUptake">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/AmountSpentPerTonOfDiesel -->
+
+    <owl:Class rdf:about="&sustenagro;AmountSpentPerTonOfDiesel">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/AmountofHAWithLessThan12PercentSlope -->
+
+    <owl:Class rdf:about="&sustenagro;AmountofHAWithLessThan12PercentSlope">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/AnalysisToChoiceOfTheProduction -->
+
+    <owl:Class rdf:about="&sustenagro;AnalysisToChoiceOfTheProduction">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/AnnexationOfDocuments -->
+
+    <owl:Class rdf:about="&sustenagro;AnnexationOfDocuments">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;ConfirmationOfRegistrationOfTheLegalReserveArea"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/AnnualWaterDeficiency -->
+
+    <owl:Class rdf:about="&sustenagro;AnnualWaterDeficiency">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;GeographicLocationOfCultureInRelativeClimaticAptitude"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/AnthropicFactorOrConservationPractices -->
+
+    <owl:Class rdf:about="&sustenagro;AnthropicFactorOrConservationPractices">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;QuantificationOfErosionPotentialAccordingToTheUniversalEquationOfSoilLoss"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Attribute -->
+
+    <owl:Class rdf:about="&sustenagro;Attribute"/>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Autonomy -->
+
+    <owl:Class rdf:about="&sustenagro;Autonomy">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Criteria"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/AverageAnnualTemperature -->
+
+    <owl:Class rdf:about="&sustenagro;AverageAnnualTemperature">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;GeographicLocationOfCultureInRelativeClimaticAptitude"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/BiologicalControl -->
+
+    <owl:Class rdf:about="&sustenagro;BiologicalControl">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/BurningLocal -->
+
+    <owl:Class rdf:about="&sustenagro;BurningLocal">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;OccurrenceOfBurntStrawOnTheCountryside"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/CapabilityToProvideBioelectricity -->
+
+    <owl:Class rdf:about="&sustenagro;CapabilityToProvideBioelectricity">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/ClimaticFactorOrFactorOfRaiFallErosivity -->
+
+    <owl:Class rdf:about="&sustenagro;ClimaticFactorOrFactorOfRaiFallErosivity">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;QuantificationOfErosionPotentialAccordingToTheUniversalEquationOfSoilLoss"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/ComplianceWithTheTermsOfCommitmentToEnvironmentalRecovery -->
+
+    <owl:Class rdf:about="&sustenagro;ComplianceWithTheTermsOfCommitmentToEnvironmentalRecovery">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnviromentalIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/ComplyWithRegulatoryStandardNR_31 -->
+
+    <owl:Class rdf:about="&sustenagro;ComplyWithRegulatoryStandardNR_31">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/ConfirmationOfRegistrationOfTheLegalReserveArea -->
+
+    <owl:Class rdf:about="&sustenagro;ConfirmationOfRegistrationOfTheLegalReserveArea">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnviromentalIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/ConservedArea -->
+
+    <owl:Class rdf:about="&sustenagro;ConservedArea">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;PermanentPreservationAreasRecovered_Preserved"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/CostAttribute -->
+
+    <owl:Class rdf:about="&sustenagro;CostAttribute">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Attribute"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Criteria -->
+
+    <owl:Class rdf:about="&sustenagro;Criteria"/>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/CropRotationEvery2Years -->
+
+    <owl:Class rdf:about="&sustenagro;CropRotationEvery2Years">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/CropRotationSoybean -->
+
+    <owl:Class rdf:about="&sustenagro;CropRotationSoybean">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Depth -->
+
+    <owl:Class rdf:about="&sustenagro;Depth">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;GeographicalLocationOfCultureInEdaphicRelation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/DevelopmentOfMoreResistantYeastToHighConcentrationsOfAlcohol -->
+
+    <owl:Class rdf:about="&sustenagro;DevelopmentOfMoreResistantYeastToHighConcentrationsOfAlcohol">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/DieselConsumption -->
+
+    <owl:Class rdf:about="&sustenagro;DieselConsumption">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Dimension -->
+
+    <owl:Class rdf:about="&sustenagro;Dimension"/>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/DirectPlanting -->
+
+    <owl:Class rdf:about="&sustenagro;DirectPlanting">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Distance -->
+
+    <owl:Class rdf:about="&sustenagro;Distance">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/DistancePowerPlant_SugarcaneProduction -->
+
+    <owl:Class rdf:about="&sustenagro;DistancePowerPlant_SugarcaneProduction">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/EconomicDimension -->
+
+    <owl:Class rdf:about="&sustenagro;EconomicDimension">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Dimension"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/EconomicIndicator -->
+
+    <owl:Class rdf:about="&sustenagro;EconomicIndicator">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Indicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/EdaphicAptitude -->
+
+    <owl:Class rdf:about="&sustenagro;EdaphicAptitude">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;GeographicalLocationOfCultureInRelationToClimateAndSoilAptitude"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/EmissionAndSuspensionOfMicroparticles -->
+
+    <owl:Class rdf:about="&sustenagro;EmissionAndSuspensionOfMicroparticles">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnviromentalIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/EmployeeType -->
+
+    <owl:Class rdf:about="&sustenagro;EmployeeType">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;PurchasingPowerOfTheWorker"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/EmploymentAndIncomeAttribute -->
+
+    <owl:Class rdf:about="&sustenagro;EmploymentAndIncomeAttribute">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Attribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;SocialDimension"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:onClass rdf:resource="&sustenagro;RateOfFormalEmployment"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:onClass rdf:resource="&sustenagro;PurchasingPowerOfTheWorker"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/EnviromentalDimension -->
+
+    <owl:Class rdf:about="&sustenagro;EnviromentalDimension">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Dimension"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/EnviromentalIndicator -->
+
+    <owl:Class rdf:about="&sustenagro;EnviromentalIndicator">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Indicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/EnvironmentalLiabilities -->
+
+    <owl:Class rdf:about="&sustenagro;EnvironmentalLiabilities">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;ComplianceWithTheTermsOfCommitmentToEnvironmentalRecovery"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Equity -->
+
+    <owl:Class rdf:about="&sustenagro;Equity">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Criteria"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Evaluation -->
+
+    <owl:Class rdf:about="&sustenagro;Evaluation">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;applies"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;AgriculturalProductionSystem"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;has"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;Method"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Exists -->
+
+    <owl:Class rdf:about="&sustenagro;Exists">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/FactorOfDeclivityOfTheHill -->
+
+    <owl:Class rdf:about="&sustenagro;FactorOfDeclivityOfTheHill">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;QuantificationOfErosionPotentialAccordingToTheUniversalEquationOfSoilLoss"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Farm -->
+
+    <owl:Class rdf:about="&sustenagro;Farm">
+        <rdfs:subClassOf rdf:resource="&sustenagro;ProductionUnit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/FavorableConditionsForMechanization -->
+
+    <owl:Class rdf:about="&sustenagro;FavorableConditionsForMechanization">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/GeographicLocationOfCultureInRelativeClimaticAptitude -->
+
+    <owl:Class rdf:about="&sustenagro;GeographicLocationOfCultureInRelativeClimaticAptitude">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnviromentalIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/GeographicalLocationOfCultureInEdaphicRelation -->
+
+    <owl:Class rdf:about="&sustenagro;GeographicalLocationOfCultureInEdaphicRelation">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnviromentalIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/GeographicalLocationOfCultureInRelationToClimateAndSoilAptitude -->
+
+    <owl:Class rdf:about="&sustenagro;GeographicalLocationOfCultureInRelationToClimateAndSoilAptitude">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnviromentalIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/GovernmentInitiativesWithTheProtectOfTheEnvironment -->
+
+    <owl:Class rdf:about="&sustenagro;GovernmentInitiativesWithTheProtectOfTheEnvironment">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/HarvestedArea -->
+
+    <owl:Class rdf:about="&sustenagro;HarvestedArea">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/HealthAttribute -->
+
+    <owl:Class rdf:about="&sustenagro;HealthAttribute">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Attribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;SocialDimension"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:onClass rdf:resource="&sustenagro;RateOfHospitalizationsDueToRespiratoryProblems"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/HydricIndex -->
+
+    <owl:Class rdf:about="&sustenagro;HydricIndex">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;GeographicLocationOfCultureInRelativeClimaticAptitude"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/ImplantationOfBiorefineries -->
+
+    <owl:Class rdf:about="&sustenagro;ImplantationOfBiorefineries">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/ImplantedBiorefinery -->
+
+    <owl:Class rdf:about="&sustenagro;ImplantedBiorefinery">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/ImprovedVarietiesForSpecificEco_RegionalConditions -->
+
+    <owl:Class rdf:about="&sustenagro;ImprovedVarietiesForSpecificEco_RegionalConditions">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Inclusion -->
+
+    <owl:Class rdf:about="&sustenagro;Inclusion">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/InclusionOfEthanolAsACommodity -->
+
+    <owl:Class rdf:about="&sustenagro;InclusionOfEthanolAsACommodity">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Indicator -->
+
+    <owl:Class rdf:about="&sustenagro;Indicator">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;has"/>
+                <owl:onClass rdf:resource="&sustenagro;ManagementRecommendation"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;has"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;Interval"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorComponent"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;has"/>
+                <owl:onClass rdf:resource="&sustenagro;Reference"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/IndicatorComponent -->
+
+    <owl:Class rdf:about="&sustenagro;IndicatorComponent"/>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/IndustrialAttribute -->
+
+    <owl:Class rdf:about="&sustenagro;IndustrialAttribute">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Attribute"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/InfrastructureForTheProductionOfBiofuels2ndAnd3rdGenerations -->
+
+    <owl:Class rdf:about="&sustenagro;InfrastructureForTheProductionOfBiofuels2ndAnd3rdGenerations">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Interval -->
+
+    <owl:Class rdf:about="&sustenagro;Interval">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;has"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;IntervalType"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;quantifies"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;Indicator"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/IntervalType -->
+
+    <owl:Class rdf:about="&sustenagro;IntervalType"/>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/InvestmentInModernization -->
+
+    <owl:Class rdf:about="&sustenagro;InvestmentInModernization">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/LengthOfTheHill -->
+
+    <owl:Class rdf:about="&sustenagro;LengthOfTheHill">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;QuantificationOfErosionPotentialAccordingToTheUniversalEquationOfSoilLoss"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/LongevityOfTheCane -->
+
+    <owl:Class rdf:about="&sustenagro;LongevityOfTheCane">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/ManagementRecommendation -->
+
+    <owl:Class rdf:about="&sustenagro;ManagementRecommendation">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;applies"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;Indicator"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/ManualBurningCane -->
+
+    <owl:Class rdf:about="&sustenagro;ManualBurningCane">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/MedianMonthlyIncome -->
+
+    <owl:Class rdf:about="&sustenagro;MedianMonthlyIncome">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;PurchasingPowerOfTheWorker"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Method -->
+
+    <owl:Class rdf:about="&sustenagro;Method">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;generates"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;Evaluation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;utilizes"/>
+                <owl:onClass rdf:resource="&sustenagro;Indicator"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Microregion -->
+
+    <owl:Class rdf:about="&sustenagro;Microregion">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Region"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;has"/>
+                <owl:onClass rdf:resource="&sustenagro;ProductionUnit"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/NaturalFertility -->
+
+    <owl:Class rdf:about="&sustenagro;NaturalFertility">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;GeographicalLocationOfCultureInEdaphicRelation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/NumberOfContractToSupplyBioelectricity -->
+
+    <owl:Class rdf:about="&sustenagro;NumberOfContractToSupplyBioelectricity">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/NumberOfHospitalizations -->
+
+    <owl:Class rdf:about="&sustenagro;NumberOfHospitalizations">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/OccurrenceOfBurntStrawOnTheCountryside -->
+
+    <owl:Class rdf:about="&sustenagro;OccurrenceOfBurntStrawOnTheCountryside">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnviromentalIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/OccurrenceOfReuseOfHydricResource -->
+
+    <owl:Class rdf:about="&sustenagro;OccurrenceOfReuseOfHydricResource">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/OpenNegotiation -->
+
+    <owl:Class rdf:about="&sustenagro;OpenNegotiation">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/OptimizationOfSugarcaneTransportation -->
+
+    <owl:Class rdf:about="&sustenagro;OptimizationOfSugarcaneTransportation">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/PartialIndexOfEducation -->
+
+    <owl:Class rdf:about="&sustenagro;PartialIndexOfEducation">
+        <rdfs:subClassOf rdf:resource="&sustenagro;SocialIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/ParticulateMatter -->
+
+    <owl:Class rdf:about="&sustenagro;ParticulateMatter">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;EmissionAndSuspensionOfMicroparticles"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/PermanentEmployment -->
+
+    <owl:Class rdf:about="&sustenagro;PermanentEmployment">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;RateOfFormalEmployment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/PermanentPreservationAreasRecovered_Preserved -->
+
+    <owl:Class rdf:about="&sustenagro;PermanentPreservationAreasRecovered_Preserved">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnviromentalIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/PestsControlAdvantagedByNon_Burn -->
+
+    <owl:Class rdf:about="&sustenagro;PestsControlAdvantagedByNon_Burn">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/PlantedArea -->
+
+    <owl:Class rdf:about="&sustenagro;PlantedArea">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/PlantedArea_HarvestedArea -->
+
+    <owl:Class rdf:about="&sustenagro;PlantedArea_HarvestedArea">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/PowerPlant -->
+
+    <owl:Class rdf:about="&sustenagro;PowerPlant">
+        <rdfs:subClassOf rdf:resource="&sustenagro;ProductionUnit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/PredominanceOfConversionOfPastureToSugarcaneThanOtherFieldCrops_ForestsForSugarcane -->
+
+    <owl:Class rdf:about="&sustenagro;PredominanceOfConversionOfPastureToSugarcaneThanOtherFieldCrops_ForestsForSugarcane">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/PricePerLiterOfEthanol -->
+
+    <owl:Class rdf:about="&sustenagro;PricePerLiterOfEthanol">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/PricePerLiterOfGasoline -->
+
+    <owl:Class rdf:about="&sustenagro;PricePerLiterOfGasoline">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/PriceRatioGasoline_Ethanol -->
+
+    <owl:Class rdf:about="&sustenagro;PriceRatioGasoline_Ethanol">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/ProductionUnit -->
+
+    <owl:Class rdf:about="&sustenagro;ProductionUnit">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;has"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;Resource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;has"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;AgriculturalProductionSystem"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;has"/>
+                <owl:onClass rdf:resource="&sustenagro;SystemProductionAttribute"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Productivity -->
+
+    <owl:Class rdf:about="&sustenagro;Productivity">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Criteria"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/ProductivityAttribute -->
+
+    <owl:Class rdf:about="&sustenagro;ProductivityAttribute">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Attribute"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/PurchasingPowerOfTheWorker -->
+
+    <owl:Class rdf:about="&sustenagro;PurchasingPowerOfTheWorker">
+        <rdfs:subClassOf rdf:resource="&sustenagro;SocialIndicator"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;applies"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;EmploymentAndIncomeAttribute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/QuantificationOfErosionPotentialAccordingToTheUniversalEquationOfSoilLoss -->
+
+    <owl:Class rdf:about="&sustenagro;QuantificationOfErosionPotentialAccordingToTheUniversalEquationOfSoilLoss">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnviromentalIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/QuantityOfConversion -->
+
+    <owl:Class rdf:about="&sustenagro;QuantityOfConversion">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/QuantityOfResistanceByGL -->
+
+    <owl:Class rdf:about="&sustenagro;QuantityOfResistanceByGL">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/RateOfFormalEmployment -->
+
+    <owl:Class rdf:about="&sustenagro;RateOfFormalEmployment">
+        <rdfs:subClassOf rdf:resource="&sustenagro;SocialIndicator"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;applies"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;EmploymentAndIncomeAttribute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/RateOfHospitalizationsDueToRespiratoryProblems -->
+
+    <owl:Class rdf:about="&sustenagro;RateOfHospitalizationsDueToRespiratoryProblems">
+        <rdfs:subClassOf rdf:resource="&sustenagro;SocialIndicator"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;applies"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;HealthAttribute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/RecordWorkoutsTrainingOrRetrainingOfWorkers -->
+
+    <owl:Class rdf:about="&sustenagro;RecordWorkoutsTrainingOrRetrainingOfWorkers">
+        <rdfs:subClassOf rdf:resource="&sustenagro;SocialIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/RecoveredArea -->
+
+    <owl:Class rdf:about="&sustenagro;RecoveredArea">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;PermanentPreservationAreasRecovered_Preserved"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/RecoveredAreaAttribute -->
+
+    <owl:Class rdf:about="&sustenagro;RecoveredAreaAttribute">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Attribute"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Reference -->
+
+    <owl:Class rdf:about="&sustenagro;Reference">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;formalizes"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;Indicator"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Region -->
+
+    <owl:Class rdf:about="&sustenagro;Region"/>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/RegulationOfCommerceOfDistribution -->
+
+    <owl:Class rdf:about="&sustenagro;RegulationOfCommerceOfDistribution">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Resilience -->
+
+    <owl:Class rdf:about="&sustenagro;Resilience">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Criteria"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Resource -->
+
+    <owl:Class rdf:about="&sustenagro;Resource"/>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/RootPenetrationResistance -->
+
+    <owl:Class rdf:about="&sustenagro;RootPenetrationResistance">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;SoilCompaction"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/SizeOfPlots -->
+
+    <owl:Class rdf:about="&sustenagro;SizeOfPlots">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/SocialDimension -->
+
+    <owl:Class rdf:about="&sustenagro;SocialDimension">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Dimension"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/SocialIndicator -->
+
+    <owl:Class rdf:about="&sustenagro;SocialIndicator">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Indicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/SoilAttribute -->
+
+    <owl:Class rdf:about="&sustenagro;SoilAttribute">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Attribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:onClass rdf:resource="&sustenagro;ConfirmationOfRegistrationOfTheLegalReserveArea"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:onClass rdf:resource="&sustenagro;ComplianceWithTheTermsOfCommitmentToEnvironmentalRecovery"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:onClass rdf:resource="&sustenagro;GeographicalLocationOfCultureInRelationToClimateAndSoilAptitude"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:onClass rdf:resource="&sustenagro;QuantificationOfErosionPotentialAccordingToTheUniversalEquationOfSoilLoss"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:onClass rdf:resource="&sustenagro;GeographicalLocationOfCultureInEdaphicRelation"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:onClass rdf:resource="&sustenagro;SoilCompaction"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:onClass rdf:resource="&sustenagro;PermanentPreservationAreasRecovered_Preserved"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;EnviromentalDimension"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/SoilCompaction -->
+
+    <owl:Class rdf:about="&sustenagro;SoilCompaction">
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnviromentalIndicator"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;RootPenetrationResistance"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/SoilErodibilityFactor -->
+
+    <owl:Class rdf:about="&sustenagro;SoilErodibilityFactor">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;QuantificationOfErosionPotentialAccordingToTheUniversalEquationOfSoilLoss"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Stability -->
+
+    <owl:Class rdf:about="&sustenagro;Stability">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Criteria"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Stoniness -->
+
+    <owl:Class rdf:about="&sustenagro;Stoniness">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;GeographicalLocationOfCultureInEdaphicRelation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/SugarcaneProductionSystem -->
+
+    <owl:Class rdf:about="&sustenagro;SugarcaneProductionSystem">
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalProductionSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/SystemProductionAttribute -->
+
+    <owl:Class rdf:about="&sustenagro;SystemProductionAttribute">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;applies"/>
+                <owl:onClass rdf:resource="&sustenagro;ProductionUnit"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/TemporaryEmployment -->
+
+    <owl:Class rdf:about="&sustenagro;TemporaryEmployment">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;RateOfFormalEmployment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/TimeOfDurationOfTheSugarcane -->
+
+    <owl:Class rdf:about="&sustenagro;TimeOfDurationOfTheSugarcane">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/TrainingAttribute -->
+
+    <owl:Class rdf:about="&sustenagro;TrainingAttribute">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Attribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;SocialDimension"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Treatment -->
+
+    <owl:Class rdf:about="&sustenagro;Treatment">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/TypeOfTransport -->
+
+    <owl:Class rdf:about="&sustenagro;TypeOfTransport">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/UseOfTheBurning -->
+
+    <owl:Class rdf:about="&sustenagro;UseOfTheBurning">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Variable -->
+
+    <owl:Class rdf:about="&sustenagro;Variable">
+        <rdfs:subClassOf rdf:resource="&sustenagro;SystemProductionAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:onClass rdf:resource="&sustenagro;VariableComponent"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/VariableComponent -->
+
+    <owl:Class rdf:about="&sustenagro;VariableComponent">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;applies"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;Variable"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/VegetationCoverOrUseFactorAndSoilManagement -->
+
+    <owl:Class rdf:about="&sustenagro;VegetationCoverOrUseFactorAndSoilManagement">
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndicatorComponent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;considers"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;QuantificationOfErosionPotentialAccordingToTheUniversalEquationOfSoilLoss"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/WeatherAttribute -->
+
+    <owl:Class rdf:about="&sustenagro;WeatherAttribute">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Attribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;EnviromentalDimension"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:onClass rdf:resource="&sustenagro;OccurrenceOfBurntStrawOnTheCountryside"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:onClass rdf:resource="&sustenagro;GeographicLocationOfCultureInRelativeClimaticAptitude"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;contains"/>
+                <owl:onClass rdf:resource="&sustenagro;EmissionAndSuspensionOfMicroparticles"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Boolean -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Boolean">
+        <rdf:type rdf:resource="&sustenagro;IntervalType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/DateTime -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;DateTime">
+        <rdf:type rdf:resource="&sustenagro;IntervalType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Double -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Double">
+        <rdf:type rdf:resource="&sustenagro;IntervalType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Integer -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Integer">
+        <rdf:type rdf:resource="&sustenagro;IntervalType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Literal -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Literal">
+        <rdf:type rdf:resource="&sustenagro;IntervalType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/MedidaDeManejoSoilCompactation -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;MedidaDeManejoSoilCompactation">
+        <Description rdf:datatype="&xsd;string">sgfdgvfhjgnb dsfnkdm</Description>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Megapascal -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Megapascal">
+        <rdf:type rdf:resource="&sustenagro;IntervalType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/SoilCompactation_Interval -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;SoilCompactation_Interval">
+        <rdf:type rdf:resource="&sustenagro;Interval"/>
+        <LowerBound rdf:datatype="&xsd;integer">0</LowerBound>
+        <UpperBound rdf:datatype="&xsd;double">2.5</UpperBound>
+        <is_a rdf:resource="&sustenagro;Megapascal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Soil_Compactation -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Soil_Compactation">
+        <rdf:type rdf:resource="&sustenagro;SoilCompaction"/>
+        <Title rdf:datatype="&xsd;string">Compactação do Solo</Title>
+        <Description rdf:datatype="&xsd;string">aIHSJFASJBFASÇ~LKJB,GHFLSNDX KCNXZBXZLNMC ,MJDFX,MVNBGKNCJBGV N,.NB</Description>
+        <has rdf:resource="&sustenagro;SoilCompactation_Interval"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/String -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;String">
+        <rdf:type rdf:resource="&sustenagro;IntervalType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/Uri -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Uri">
+        <rdf:type rdf:resource="&sustenagro;IntervalType"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+

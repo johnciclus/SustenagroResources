@@ -52,7 +52,7 @@
         <td>Baixa eficiência tecnológica</td>
         <td>Semimecanizado no plantio</td>
         <td>
-            <input type="radio" name="techSelection" id="cropSelection1" value="option1" >
+            <input type="radio" name="techSelection" id="techSelection1" value="option1" >
         </td>
     </tr>
     <tr>
@@ -60,7 +60,7 @@
         <td>Media eficiência tecnológica</td>
         <td>Mecanização agrícola no plantio e não na colheita</td>
         <td>
-            <input type="radio" name="techSelection" id="cropSelection2" value="option2" >
+            <input type="radio" name="techSelection" id="techSelection2" value="option2" >
         </td>
     </tr>
     <tr>
@@ -68,7 +68,7 @@
         <td>Alta eficiência tecnológica</td>
         <td>Mecanização no plantio e colheita</td>
         <td>
-            <input type="radio" name="techSelection" id="cropSelection3" value="option3" checked="">
+            <input type="radio" name="techSelection" id="techSelection3" value="option3" checked="">
         </td>
     </tr>
     </tbody>
@@ -90,14 +90,14 @@
         <td>1</td>
         <td>Fornecedor</td>
         <td>
-            <input type="radio" name="chaSelection" id="cropSelection1" value="option1" checked="">
+            <input type="radio" name="chaSelection" id="typeSelection1" value="option1" checked="">
         </td>
     </tr>
     <tr>
         <td>2</td>
         <td>Usina</td>
         <td>
-            <input type="radio" name="chaSelection" id="cropSelection2" value="option2" >
+            <input type="radio" name="chaSelection" id="typeSelection2" value="option2" >
         </td>
     </tr>
     </tbody>
@@ -110,7 +110,3 @@
 <p>A tecnologia seleccionada é: <a href="#">Alta tecnologia</a></p>
 
 <p>A caracterização seleccionada é: <a href="#">Fornecedor</a></p>
-
-<div class="text-center">
-    <a href="#" class="btn btn-primary">Seguinte</a>
-</div>
