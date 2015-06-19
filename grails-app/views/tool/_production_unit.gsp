@@ -1,10 +1,7 @@
-<h5 class="text-primary page-header">Selecionar unidade produtiva</h5>
+<!--<h5 class="text-primary page-header">Selecionar unidade produtiva</h5>
 
 <select class="form-control">
-    <g:each in="${production_units}">
-        <option>${it.name}</option>
-    </g:each>
-</select>
+</select>-->
 
 <h5 class="text-primary page-header">Cadastrar nova unidade produtiva</h5>
 
@@ -17,14 +14,14 @@
         <label for="production_unit_microregion">Microrregião da unidade produtiva</label>
         <input id="production_unit_microregion" name="production_unit_microregion" type="text" class="form-control" placeholder="Microrregião">
     </div>
-    <div class="form-group">
+    <!--<div class="form-group">
         <label for="production_unit_location">Endereço da unidade produtiva</label>
         <input id="production_unit_location" name="production_unit_location" type="text" class="form-control" placeholder="Localização" readonly>
     </div>
     <div class="form-group">
         <p>Por favor identifique a localização da sua lavoura no seguinte mapa:</p>
         <div id="map-canvas"></div>
-    </div>
+    </div>-->
 
     <div class="form-group">
         <input type="submit" class="btn btn-primary" value="Cadastrar" />
@@ -44,10 +41,12 @@
     });
 
     function initialize() {
+        /*
         var mapOptions = {
             center: { lat: -23.54547, lng: -46.64340},
             zoom: 8
         };
+
 
         var map = new google.maps.Map(document.getElementById('map-canvas'),
                 mapOptions);
@@ -60,7 +59,7 @@
         google.maps.event.addListener(map, 'click', function(e) {
             marker.setPosition(e.latLng);
             $("#production_unit_location").val(e.latLng);
-        });
+        });*/
     }
-    google.maps.event.addDomListener(window, 'load', initialize);
+    //google.maps.event.addDomListener(window, 'load', initialize);
 </script>

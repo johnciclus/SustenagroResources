@@ -3,19 +3,21 @@ package sustenagro
 import com.tinkerpop.blueprints.impls.sail.impls.MemoryStoreSailGraph
 
 class ToolController {
-
+    def memStore
     def index() {
-        def g = new MemoryStoreSailGraph()
-        g.addNamespace('sustenagro','http://www.biomac.icmc.usp.br:8080/sustenagro#')
+        println "*** Tool index point"
+        println memStore
 
-        g.loadRDF(new FileInputStream('ontology/SustenAgroOntology.rdf'), 'http://www.biomac.icmc.usp.br:8080/sustenagro#', 'rdf-xml', null)
+        //MemoryStoreSailGraph g = new MemoryStoreSailGraph()
+        //memStore.addNamespace('sustenagro','http://www.biomac.icmc.usp.br:8080/sustenagro#')
+        //memStore.loadRDF(new FileInputStream('ontology/SustenAgroOntology.rdf'), 'http://www.biomac.icmc.usp.br:8080/sustenagro#', 'rdf-xml', null)
         def results = []
 
         println(' 1 -> ')
-        g.v('sustenagro:IndicatorComponent').inE.id.each{println it}
+        memStore.v('sustenagro:IndicatorComponent').inE.id.each{println it}
 
         println("*** SustenAgroIndividuals ***")
-        g.saveRDF(new FileOutputStream('ontology/SustenAgroIndividuals.rdf'), 'rdf-xml')
+        memStore.saveRDF(new FileOutputStream('ontology/SustenAgroIndividuals.rdf'), 'rdf-xml')
         println("*** SustenAgroIndividuals ***")
 
 
