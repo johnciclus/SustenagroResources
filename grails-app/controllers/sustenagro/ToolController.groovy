@@ -5,14 +5,22 @@ import com.tinkerpop.blueprints.impls.sail.impls.MemoryStoreSailGraph
 class ToolController {
     def memStore
     def index() {
+
         println "*** Tool index point"
         println memStore
 
         //MemoryStoreSailGraph g = new MemoryStoreSailGraph()
         //memStore.addNamespace('sustenagro','http://www.biomac.icmc.usp.br:8080/sustenagro#')
         //memStore.loadRDF(new FileInputStream('ontology/SustenAgroOntology.rdf'), 'http://www.biomac.icmc.usp.br:8080/sustenagro#', 'rdf-xml', null)
+
+        //def g = new MemoryStoreSailGraph()
+        //g.addNamespace('sustenagro','http://www.biomac.icmc.usp.br:8080/sustenagro#')
+
+        //g.loadRDF(new FileInputStream('ontology/SustenAgroOntology.rdf'), 'http://www.biomac.icmc.usp.br:8080/sustenagro#', 'rdf-xml', null)
+
         def results = []
 
+        def g = Store.g
         println(' 1 -> ')
         memStore.v('sustenagro:IndicatorComponent').inE.id.each{println it}
 
