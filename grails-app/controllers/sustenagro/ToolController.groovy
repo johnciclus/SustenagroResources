@@ -1,26 +1,25 @@
 package sustenagro
 
-import com.tinkerpop.blueprints.impls.sail.impls.MemoryStoreSailGraph
-
 class ToolController {
     def memStore
     def index() {
-        def results = []
+        ArrayList microregion_names = []
+        ArrayList culture_names = []
+        ArrayList technologies = []
+        ArrayList production_units = []
 
-        println 'dbpedia:MicroRegion'
-        memStore.v('dbpedia:MicroRegion').in("w3:type").id.each{println it}
+        memStore.v('dbpedia:MicroRegion').in("rdf:type").out('sustenagro:name').value.fill(microregion_names)
+        memStore.v('sustenagro:SugarcaneProductionSystem').in("rdf:type").out('sustenagro:name').value.fill(culture_names)
+        memStore.v('sustenagro:AgriculturalTechnology').in("rdf:type").each{ technologies.push( ['id': it.id, 'name': it.out('sustenagro:name').next().value, 'description': it.out('sustenagro:description').next().value]) }
+        memStore.v('sustenagro:ProductionUnit').in("rdfs:subClassOf").out('rdfs:label').has('lang','pt').value.fill(production_units)
 
-        render(view: "index")
+        println technologies
 
-        /*def v = g.addVertex('"lixo"^^<http://www.w3.org/2001/XMLSchema#string>');
-        g.addEdge(g.v('tg:1'), v, 'http://kjhkjh.com/jhgjh')
-        println(' 1 -> ')
-        g.v('tg:1').out.map.each{println it}
-        println(' 2 -> ')
-        g.v('tg:1').out('http://kjhkjh.com/jhgjh').kind.each{println it}
-        g.v('tg:1').out('http://kjhkjh.com/jhgjh').id.each{println it}
-        def production_units = ProductionUnit.findAll()
-        [production_units: production_units]*/
+        render(view: "index", model:    [microregion_names: microregion_names,
+                                         culture_names: culture_names,
+                                         technologies: technologies,
+                                         production_units: production_units
+                                        ])
     }
 
     def location() {

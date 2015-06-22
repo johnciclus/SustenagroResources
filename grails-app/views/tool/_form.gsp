@@ -5,18 +5,14 @@
         <div class="navbar-inner">
             <div class="container">
                 <ul class="nav nav-pills">
-                    <li><a href="#characterization" data-toggle="tab">1. Caracterização</a></li>
-                    <li><a href="#indicators" data-toggle="tab">2. Indicadores</a></li>
-                    <li><a href="#recomendations" data-toggle="tab">3. Recomendações</a></li>
-                    <li><a href="#graphics" data-toggle="tab">4. Gráficos</a></li>
+                    <li><a href="#indicators" data-toggle="tab">1. Indicadores</a></li>
+                    <li><a href="#recomendations" data-toggle="tab">2. Recomendações</a></li>
+                    <li><a href="#graphics" data-toggle="tab">3. Gráficos</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="tab-content">
-        <div class="tab-pane" id="characterization">
-            <g:render template="characterization" />
-        </div>
         <div class="tab-pane" id="indicators">
             <g:render template="indicators" />
         </div>

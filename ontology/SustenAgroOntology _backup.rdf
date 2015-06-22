@@ -2,26 +2,24 @@
 
 
 <!DOCTYPE rdf:RDF [
-    <!ENTITY terms "http://purl.org/dc/terms/" >
+    <!ENTITY terms "http://purl.org/dc/terms#" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY sustenagro "http://www.biomac.icmc.usp.br/sustenagro#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY sustenagro "http://www.biomac.icmc.usp.br:8080/sustenagro/" >
 ]>
 
 
-<rdf:RDF xmlns="http://www.biomac.icmc.usp.br:8080/sustenagro/"
-     xml:base="http://www.biomac.icmc.usp.br:8080/sustenagro/"
+<rdf:RDF xmlns="http://biomac.icmc.usp.br/sustenagro#"
+     xml:base="http://biomac.icmc.usp.br/sustenagro#"
+     xmlns:sustenagro="http://www.biomac.icmc.usp.br/sustenagro#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:terms="http://purl.org/dc/terms#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:sustenagro="http://www.biomac.icmc.usp.br:8080/sustenagro/">
-    <owl:Ontology rdf:about="http://dilvan.icmc.usp.br/sustenagro/"/>
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://biomac.icmc.usp.br/sustenagro/"/>
     
 
 
@@ -89,6 +87,15 @@
     
 
 
+    <!-- http://biomac.icmc.usp.br/sustenagro/name -->
+
+    <owl:DatatypeProperty rdf:about="&sustenagro;name">
+        <rdfs:domain rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.biomac.icmc.usp.br:8080/sustenagro/dataValue -->
 
     <owl:DatatypeProperty rdf:about="&sustenagro;dataValue">
@@ -137,6 +144,24 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/JobFormalityRate -->
+
+    <owl:Class rdf:about="&sustenagro;JobFormalityRate">
+        <rdfs:label xml:lang="en">Job formality rate</rdfs:label>
+        <rdfs:label xml:lang="pt">Taxa de formalidade de emprego</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;JobsIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/JobFormalityRateCategory -->
+
+    <owl:Class rdf:about="&sustenagro;JobFormalityRateCategory">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
     
 
 
@@ -206,24 +231,6 @@
 
     <owl:Class rdf:about="http://dbpedia.org/resource/Power_station">
         <rdfs:subClassOf rdf:resource="&sustenagro;ProductionUnit"/>
-    </owl:Class>
-    
-
-
-    <!-- http://dilvan.icmc.usp.br/sustenagro/JobFormalityRate -->
-
-    <owl:Class rdf:about="http://dilvan.icmc.usp.br/sustenagro/JobFormalityRate">
-        <rdfs:label xml:lang="en">Job formality rate</rdfs:label>
-        <rdfs:label xml:lang="pt">Taxa de formalidade de emprego</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&sustenagro;JobsIndicator"/>
-    </owl:Class>
-    
-
-
-    <!-- http://dilvan.icmc.usp.br/sustenagro/JobFormalityRateCategory -->
-
-    <owl:Class rdf:about="http://dilvan.icmc.usp.br/sustenagro/JobFormalityRateCategory">
-        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
     </owl:Class>
     
 
@@ -936,35 +943,547 @@
     
 
 
-    <!-- http://dilvan.icmc.usp.br/sustenagro/Gt80 -->
+    <!-- http://biomac.icmc.usp.br/sustenagro/Adamantina -->
 
-    <owl:NamedIndividual rdf:about="http://dilvan.icmc.usp.br/sustenagro/Gt80">
-        <rdf:type rdf:resource="http://dilvan.icmc.usp.br/sustenagro/JobFormalityRateCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;Adamantina">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <name rdf:datatype="&xsd;string">Adamantina</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Amparo -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Amparo">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Andradina -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Andradina">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Araraquara -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Araraquara">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Araçatuba -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Araçatuba">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Assis -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Assis">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Auriflama -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Auriflama">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Avaré -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Avaré">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Bananal -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Bananal">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Barretos -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Barretos">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Batatais -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Batatais">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Bauru -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Bauru">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Birigüi -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Birigüi">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Botucatu -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Botucatu">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Bragança_Paulista -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Bragança_Paulista">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Campinas -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Campinas">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Campos_do_Jordão -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Campos_do_Jordão">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Capão_Bonito -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Capão_Bonito">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Caraguatatuba -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Caraguatatuba">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Catanduva -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Catanduva">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Dracena -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Dracena">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Fernandópolis -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Fernandópolis">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Franca -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Franca">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Franco_da_Rocha -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Franco_da_Rocha">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Gt80 -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Gt80">
+        <rdf:type rdf:resource="&sustenagro;JobFormalityRateCategory"/>
         <rdfs:label xml:lang="en">&gt; 80%</rdfs:label>
         <rdfs:label xml:lang="pt">&gt; 80%</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">1.0</threshold>
+        <sustenagro:threshold rdf:datatype="&xsd;double">1.0</sustenagro:threshold>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://dilvan.icmc.usp.br/sustenagro/Lt80 -->
+    <!-- http://biomac.icmc.usp.br/sustenagro/Guaratinguetá -->
 
-    <owl:NamedIndividual rdf:about="http://dilvan.icmc.usp.br/sustenagro/Lt80">
-        <rdf:type rdf:resource="http://dilvan.icmc.usp.br/sustenagro/JobFormalityRateCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;Guaratinguetá">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Guarulhos -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Guarulhos">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Itanhaém -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Itanhaém">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Itapecerica_da_Serra -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Itapecerica_da_Serra">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Itapetininga -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Itapetininga">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Itapeva -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Itapeva">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Ituverava -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Ituverava">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Jaboticabal -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Jaboticabal">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Jales -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Jales">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Jaú -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Jaú">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Jundiaí -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Jundiaí">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Limeira -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Limeira">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Lins -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Lins">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Lt80 -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Lt80">
+        <rdf:type rdf:resource="&sustenagro;JobFormalityRateCategory"/>
         <rdfs:label xml:lang="en">&lt; 80%</rdfs:label>
         <rdfs:label xml:lang="pt">&lt; 80%</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-1.0</threshold>
+        <sustenagro:threshold rdf:datatype="&xsd;double">-1.0</sustenagro:threshold>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://dilvan.icmc.usp.br/sustenagro/interval80-90 -->
+    <!-- http://biomac.icmc.usp.br/sustenagro/Marília -->
 
-    <owl:NamedIndividual rdf:about="http://dilvan.icmc.usp.br/sustenagro/interval80-90">
-        <rdf:type rdf:resource="http://dilvan.icmc.usp.br/sustenagro/JobFormalityRateCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;Marília">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Mogi_das_Cruzes -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Mogi_das_Cruzes">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Moji_Mirim -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Moji_Mirim">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Nhandeara -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Nhandeara">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Novo_Horizonte -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Novo_Horizonte">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Osasco -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Osasco">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Ourinhos -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Ourinhos">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Paulínia -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Paulínia">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Piedade -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Piedade">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Piracicaba -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Piracicaba">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Pirassununga -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Pirassununga">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Presidente_Prudente -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Presidente_Prudente">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Registro -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Registro">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Ribeirão_Preto -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Ribeirão_Preto">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Rio_Claro -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Rio_Claro">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Santos -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Santos">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Sorocaba -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Sorocaba">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/São_Carlos -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;São_Carlos">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/São_Joaquim_da_Barra -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;São_Joaquim_da_Barra">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/São_José_do_Rio_Preto -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;São_José_do_Rio_Preto">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/São_José_dos_Campos -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;São_José_dos_Campos">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/São_João_da_Boa_Vista -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;São_João_da_Boa_Vista">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/São_Paulo -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;São_Paulo">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Tatuí -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Tatuí">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Tupã -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Tupã">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Votuporanga -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Votuporanga">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/interval80-90 -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;interval80-90">
+        <rdf:type rdf:resource="&sustenagro;JobFormalityRateCategory"/>
         <rdfs:label xml:lang="en">80% - 90%</rdfs:label>
         <rdfs:label xml:lang="pt">80% - 90%</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">0.0</threshold>
+        <sustenagro:threshold rdf:datatype="&xsd;double">0.0</sustenagro:threshold>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://biomac.icmc.usp.br/sustenagro/Paraibuna/Paraitinga -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Paraibuna/Paraitinga">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
     </owl:NamedIndividual>
     
 
@@ -991,7 +1510,7 @@
         <rdf:type rdf:resource="&sustenagro;ExistNo"/>
         <rdfs:label xml:lang="en">Doesn&apos;t Exist</rdfs:label>
         <rdfs:label xml:lang="pt">Não Existe</rdfs:label>
-        <dataValue rdf:datatype="&xsd;boolean">false</dataValue>
+        <sustenagro:dataValue rdf:datatype="&xsd;boolean">false</sustenagro:dataValue>
     </owl:NamedIndividual>
     
 
@@ -1002,7 +1521,7 @@
         <rdf:type rdf:resource="&sustenagro;AccidentsIncidence"/>
         <rdfs:label xml:lang="en">= 15.83</rdfs:label>
         <rdfs:label xml:lang="pt">= 15,83</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">0.0</threshold>
+        <sustenagro:threshold rdf:datatype="&xsd;double">0.0</sustenagro:threshold>
     </owl:NamedIndividual>
     
 
@@ -1013,7 +1532,7 @@
         <rdf:type rdf:resource="&sustenagro;ExistNo"/>
         <rdfs:label xml:lang="en">Exist</rdfs:label>
         <rdfs:label xml:lang="pt">Existe</rdfs:label>
-        <dataValue rdf:datatype="&xsd;boolean">true</dataValue>
+        <sustenagro:dataValue rdf:datatype="&xsd;boolean">true</sustenagro:dataValue>
     </owl:NamedIndividual>
     
 
@@ -1024,7 +1543,7 @@
         <rdf:type rdf:resource="&sustenagro;TrueFalse"/>
         <rdfs:label xml:lang="en">False</rdfs:label>
         <rdfs:label xml:lang="pt">Falso</rdfs:label>
-        <dataValue rdf:datatype="&xsd;boolean">false</dataValue>
+        <sustenagro:dataValue rdf:datatype="&xsd;boolean">false</sustenagro:dataValue>
     </owl:NamedIndividual>
     
 
@@ -1035,7 +1554,7 @@
         <rdf:type rdf:resource="&sustenagro;AccidentsIncidence"/>
         <rdfs:label xml:lang="en">&gt; 15.83</rdfs:label>
         <rdfs:label xml:lang="pt">&gt; 15,83</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-1.0</threshold>
+        <sustenagro:threshold rdf:datatype="&xsd;double">-1.0</sustenagro:threshold>
     </owl:NamedIndividual>
     
 
@@ -1062,7 +1581,7 @@
         <rdf:type rdf:resource="&sustenagro;AccidentsIncidence"/>
         <rdfs:label xml:lang="en">&lt; 15.83</rdfs:label>
         <rdfs:label xml:lang="pt">&lt; 15,83</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">1.0</threshold>
+        <sustenagro:threshold rdf:datatype="&xsd;double">1.0</sustenagro:threshold>
     </owl:NamedIndividual>
     
 
@@ -1081,7 +1600,7 @@
         <rdf:type rdf:resource="&sustenagro;YesNo"/>
         <rdfs:label xml:lang="en">No</rdfs:label>
         <rdfs:label xml:lang="pt">Não</rdfs:label>
-        <dataValue rdf:datatype="&xsd;boolean">false</dataValue>
+        <sustenagro:dataValue rdf:datatype="&xsd;boolean">false</sustenagro:dataValue>
     </owl:NamedIndividual>
     
 
@@ -1092,7 +1611,7 @@
         <rdf:type rdf:resource="&sustenagro;TrueFalse"/>
         <rdfs:label xml:lang="en">True</rdfs:label>
         <rdfs:label xml:lang="pt">Verdadeiro</rdfs:label>
-        <dataValue rdf:datatype="&xsd;boolean">true</dataValue>
+        <sustenagro:dataValue rdf:datatype="&xsd;boolean">true</sustenagro:dataValue>
     </owl:NamedIndividual>
     
 
@@ -1103,7 +1622,7 @@
         <rdf:type rdf:resource="&sustenagro;YesNo"/>
         <rdfs:label xml:lang="en">Yes</rdfs:label>
         <rdfs:label xml:lang="pt">Sim</rdfs:label>
-        <dataValue rdf:datatype="&xsd;boolean">true</dataValue>
+        <sustenagro:dataValue rdf:datatype="&xsd;boolean">true</sustenagro:dataValue>
     </owl:NamedIndividual>
 </rdf:RDF>
 

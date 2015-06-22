@@ -12,7 +12,82 @@
     </div>
     <div class="form-group">
         <label for="production_unit_microregion">Microrregião da unidade produtiva</label>
-        <input id="production_unit_microregion" name="production_unit_microregion" type="text" class="form-control" placeholder="Microrregião">
+        <select id="production_unit_microregion" name="production_unit_microregion" class="form-control">
+            <g:each in="${microregion_names}">
+                <option value="${it}">${it}</option>
+            </g:each>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Culturas disponiveis</label>
+        <p>Temos disponíveis as seguintes culturas para analisar os indicadores de sustentabilidade:</p>
+
+        <table class="table table-striped table-hover ">
+            <thead>
+            <tr>
+                <th>Cultura</th>
+                <th>Seleção</th>
+            </tr>
+            </thead>
+            <tbody>
+            <g:each in="${culture_names}">
+                <tr>
+                    <td>${it}</td>
+                    <td>
+                        <input type="radio" name="production_unit_culture" value="${it}">
+                    </td>
+                </tr>
+            </g:each>
+            </tbody>
+        </table>
+    </div>
+    <div class="form-group">
+        <label>Tecnologias disponiveis</label>
+        <p>Temos disponíveis as seguintes tecnologias para caracterizar os sistemas de produção de cana-deaçúcar no Centro-Sul do Brasil:</p>
+
+        <table class="table table-striped table-hover ">
+            <thead>
+            <tr>
+                <th>Tecnologia</th>
+                <th>Descrição</th>
+                <th>Seleção</th>
+            </tr>
+            </thead>
+            <tbody>
+            <g:each in="${technologies}">
+            <tr>
+                <td>${it.name}</td>
+                <td>${it.description}</td>
+                <td>
+                    <input type="radio" name="production_unit_technology" value="${it.id}" >
+                </td>
+            </tr>
+            </g:each>
+            </tbody>
+        </table>
+    </div>
+    <div class="form-group">
+        <label>Caracterização dos sistemas produtivos no Centro-Sul</label>
+        <p>Temos disponíveis as seguintes caraterizações:</p>
+
+        <table class="table table-striped table-hover ">
+            <thead>
+            <tr>
+                <th>Caracterização</th>
+                <th>Seleção</th>
+            </tr>
+            </thead>
+            <tbody>
+            <g:each in="${production_units}">
+            <tr>
+                <td>${it}</td>
+                <td>
+                    <input type="radio" name="production_unit_type_${it}" id="production_unit_type_${it}" value="${it}">
+                </td>
+            </tr>
+            </g:each>
+            </tbody>
+        </table>
     </div>
     <!--<div class="form-group">
         <label for="production_unit_location">Endereço da unidade produtiva</label>

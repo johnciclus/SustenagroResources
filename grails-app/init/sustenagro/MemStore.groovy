@@ -10,9 +10,9 @@ class MemStore extends MemoryStoreSailGraph{
 
     public MemStore(){
         super()
-        this.addNamespace('sustenagro','http://www.biomac.icmc.usp.br:8080/sustenagro#')
-        this.addNamespace('w3','http://www.w3.org/1999/02/22-rdf-syntax-ns#')
+        this.addNamespace('sustenagro','http://www.biomac.icmc.usp.br/sustenagro#')
+        this.addNamespace('rdf','http://www.w3.org/1999/02/22-rdf-syntax-ns#')
         this.addNamespace('dbpedia','http://dbpedia.org/ontology/')
-        this.loadRDF(new FileInputStream('ontology/SustenAgroOntology.rdf'), 'http://www.biomac.icmc.usp.br:8080/sustenagro#', 'rdf-xml', null)
+        this.loadRDF(new FileInputStream('ontology/SustenAgroOntology.rdf'), 'http://www.biomac.icmc.usp.br/sustenagro#', 'rdf-xml', null)
     }
 }
