@@ -5,7 +5,7 @@
 
 <h5 class="text-primary page-header">Cadastrar nova unidade produtiva</h5>
 
-<form id="location_form" action="/tool/location" method="post">
+<form id="location_form" action="/tool/production_unit_create" method="post">
     <div class="form-group">
         <label for="production_unit_name">Nome da unidade produtiva que será avaliada</label>
         <input id="production_unit_name" name="production_unit_name" type="text" class="form-control" placeholder="Nome">
@@ -13,8 +13,8 @@
     <div class="form-group">
         <label for="production_unit_microregion">Microrregião da unidade produtiva</label>
         <select id="production_unit_microregion" name="production_unit_microregion" class="form-control">
-            <g:each in="${microregion_names}">
-                <option value="${it}">${it}</option>
+            <g:each in="${microregions}">
+                <option value="${it.id}">${it.name}</option>
             </g:each>
         </select>
     </div>
@@ -30,11 +30,11 @@
             </tr>
             </thead>
             <tbody>
-            <g:each in="${culture_names}">
+            <g:each in="${cultures}">
                 <tr>
-                    <td>${it}</td>
+                    <td>${it.name}</td>
                     <td>
-                        <input type="radio" name="production_unit_culture" value="${it}">
+                        <input type="radio" name="production_unit_culture" value="${it.id}">
                     </td>
                 </tr>
             </g:each>
@@ -78,11 +78,11 @@
             </tr>
             </thead>
             <tbody>
-            <g:each in="${production_units}">
+            <g:each in="${production_unit_types}">
             <tr>
-                <td>${it}</td>
+                <td>${it.name}</td>
                 <td>
-                    <input type="radio" name="production_unit_type_${it}" id="production_unit_type_${it}" value="${it}">
+                    <input type="radio" name="production_unit_type" value="${it.id}">
                 </td>
             </tr>
             </g:each>
