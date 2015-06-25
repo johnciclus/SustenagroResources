@@ -104,16 +104,7 @@
 </form>
 
 <script type="application/javascript">
-    $( "#location_form" ).submit(function( event ) {
-        $.post(
-            $(this).attr('action'),
-            $(this).serialize(),
-            function( data ) {
-                $('#content').html(data);
-            }
-        );
-        event.preventDefault();
-    });
+
 
     function initialize() {
         /*

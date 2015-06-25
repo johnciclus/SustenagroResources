@@ -1,56 +1,49 @@
-<div class="alert alert-dismissable alert-info">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>Indicadores!</strong> Por favor preencher as três dimensões dos indicadores, ambiental, econômica e social.
+<ul id="indicator_tabs" class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#environmental_indicators">Ambientais</a></li>
+    <li role="presentation"><a href="#economic_indicators">Econômicos</a></li>
+    <li role="presentation"><a href="#social_indicators">Sociais</a></li>
+</ul>
+<div id="tabs_content" class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="environmental_indicators">
+        <g:each in="${environmental_indicators}">
+            <table class="table table-striped table-hover ">
+                <tbody>
+                <tr>
+                    <td class="text-primary">Nome</td>
+                    <td><b>${it.title}</b></td>
+                </tr>
+                <tr>
+                    <td class="text-primary">Descrição</td>
+                    <td>${it.description}</td>
+                </tr>
+                <tr>
+                    <td class="text-primary">Pergunta de avaliação</td>
+                    <td>${it.assessmentQuestion}</td>
+                </tr>
+                <tr>
+                    <td class="text-primary">Valor</td>
+                    <td><input type="text" class="form-control" id="idicador_1"></td>
+                </tr>
+                <tr>
+                    <td class="text-primary">Unidades</td>
+                    <td>Units</td>
+                </tr>
+                </tbody>
+            </table>
+        </g:each>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="economic_indicators">
+        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="social_indicators">
+        <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
+    </div>
 </div>
 
-<div class="btn-group btn-group-justified">
-    <a href="#" class="btn btn-primary">Ambientais</a>
-    <a href="#" class="btn btn-default">Econômicos</a>
-    <a href="#" class="btn btn-default">Sociais</a>
-</div>
 
-<table class="table table-striped table-hover ">
-    <thead>
-    <tr class="text-primary">
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td class="text-primary">#</td>
-        <td>1</td>
-    </tr>
-    <tr>
-        <td class="text-primary">Nome</td>
-        <td>Quantidade de vinhaça/área aplicada com relação ao Potássio (K) e Nitrogênio (N)</td>
-    </tr>
-    <tr>
-        <td class="text-primary">Descrição</td>
-        <td>A concentração máxima de potássio no solo não poderá exceder 5% da Capacidade de Troca Catiônica – CTC. Quando esse limite for atingido, a aplicação de vinhaça ficará restrita à reposição desse nutriente em função da extração média pela cultura, que é de 185 kg de K 2 O por hectare por corte (PIRES; FERREIRA, 2008). Quanto aos nutrientes extraídos (requeridos) pela cultura de cana-de-açúcar, o nitrogênio é o mais importante. No plantio da cana é necessário aplicar 30 kg/ha de nitrogênio; já na adubação da cana-soca, a quantidade recomendada para a cultura é de 60 kg/ha (SOUZA; LOBATO, 2004).</td>
-    </tr>
-    <tr>
-        <td class="text-primary">Valor</td>
-        <td><input type="text" class="form-control" id="idicador_1"></td>
-    </tr>
-    <tr>
-        <td class="text-primary">Unidades</td>
-        <td>vinhaça/área</td>
-    </tr>
-    </tbody>
-</table>
-
-<div class="text-center">
-    <ul class="pagination">
-        <li class="disabled"><a href="#">«</a></li>
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">»</a></li>
-    </ul>
-</div>
 <!--
+vinhaça/área
 
 <table class="table table-striped table-hover ">
   <thead>
@@ -615,3 +608,10 @@
     </tr>
     </tbody>
 </table>
+
+<script type="text/javascript">
+    $('#indicator_tabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+</script>
