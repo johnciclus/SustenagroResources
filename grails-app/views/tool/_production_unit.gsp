@@ -5,7 +5,7 @@
 
 <h5 class="text-primary page-header">Cadastrar nova unidade produtiva</h5>
 
-<form id="location_form" action="/tool/production_unit_create" method="post">
+<form id="location_form" action="/tool/productionUnitCreate" method="post">
     <div class="form-group">
         <label for="production_unit_name">Nome da unidade produtiva que será avaliada</label>
         <input id="production_unit_name" name="production_unit_name" type="text" class="form-control" placeholder="Nome">

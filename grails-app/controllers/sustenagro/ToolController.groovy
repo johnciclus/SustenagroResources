@@ -6,10 +6,10 @@ class ToolController {
     def memStore
 
     def index() {
-        ArrayList microregions = []
-        ArrayList cultures = []
-        ArrayList technologies = []
-        ArrayList production_unit_types = []
+        def microregions = []
+        def cultures = []
+        def technologies = []
+        def production_unit_types = []
 
         memStore.v('dbpedia:MicroRegion').in("rdf:type").each{ microregions.push(id: it.id, name: it.out('sustenagro:name').next().value) }
         memStore.v('sustenagro:SugarcaneProductionSystem').in("rdf:type").each{ cultures.push(id: it.id, name: it.out('sustenagro:name').next().value) }
@@ -23,10 +23,10 @@ class ToolController {
                                         ])
     }
 
-    def production_unit_create() {
+    def productionUnitCreate() {
         Slugify slug = new Slugify()
 
-        String production_unit_id = slug.slugify(params["production_unit_name"])
+        def production_unit_id = slug.slugify(params["production_unit_name"])
 
         def v_production_unit = memStore.addVertex("sustenagro:"+production_unit_id) //Add Microregion to id
         memStore.addEdge(v_production_unit, memStore.v(params["production_unit_type"]), 'rdf:type')
@@ -44,7 +44,7 @@ class ToolController {
 
     def assessment() {
 
-        ArrayList environmental_indicators = []
+        def environmental_indicators = []
 
         memStore.v('sustenagro:EnvironmentalIndicator').in("rdfs:subClassOf").each{ environmental_indicators.push(  id: it.id, title: it.out('terms:title').has('lang','pt').next().value, description: it.out('terms:description').has('lang','pt').next().value, assessmentQuestion: it.out('sustenagro:assessmentQuestion').has('lang','pt').next().value) }
 
