@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1434635246621" name="http://www.biomac.icmc.usp.br:8080/sustenagro/" uri="SustenAgroOntology.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1435632781372" name="http://biomac.icmc.usp.br/sustenagro" uri="SustenAgroOntology.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1435632781372" name="http://biomac.icmc.usp.br/sustenagro#" uri="SustenAgroOntology_Dilvan.rdf"/>
     </group>
 </catalog>

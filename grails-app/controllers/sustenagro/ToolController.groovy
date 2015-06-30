@@ -1,55 +1,58 @@
 package sustenagro
 
-import com.tinkerpop.blueprints.impls.sail.impls.MemoryStoreSailGraph
+import com.github.slugify.Slugify
 
 class ToolController {
-    def memStore
+    def g
+
     def index() {
-        println "*** Tool index point"
-        println memStore
+        def microregions = []
+        def cultures = []
+        def technologies = []
+        def production_unit_types = []
 
-        //MemoryStoreSailGraph g = new MemoryStoreSailGraph()
-        //memStore.addNamespace('sustenagro','http://www.biomac.icmc.usp.br:8080/sustenagro#')
-        //memStore.loadRDF(new FileInputStream('ontology/SustenAgroOntology.rdf'), 'http://www.biomac.icmc.usp.br:8080/sustenagro#', 'rdf-xml', null)
-        def results = []
+        g.v('dbpedia:MicroRegion').in("rdf:type").each{ microregions.push(id: it.id, name: it.out('sustenagro:name').next().value) }
+        g.v('sustenagro:SugarcaneProductionSystem').in("rdf:type").each{ cultures.push(id: it.id, name: it.out('sustenagro:name').next().value) }
+        g.v('sustenagro:AgriculturalTechnology').in("rdf:type").each{ technologies.push(id: it.id, name: it.out('sustenagro:name').next().value, 'description': it.out('sustenagro:description').next().value) }
+        g.v('sustenagro:ProductionUnit').in("rdfs:subClassOf").each{ production_unit_types.push(id: it.id, name: it.out('rdfs:label').has('lang','pt').next().value) }
 
-        println(' 1 -> ')
-        memStore.v('sustenagro:IndicatorComponent').inE.id.each{println it}
-
-        println("*** SustenAgroIndividuals ***")
-        memStore.saveRDF(new FileOutputStream('ontology/SustenAgroIndividuals.rdf'), 'rdf-xml')
-        println("*** SustenAgroIndividuals ***")
-
-
-        /*def v = g.addVertex('"lixo"^^<http://www.w3.org/2001/XMLSchema#string>');
-        g.addEdge(g.v('tg:1'), v, 'http://kjhkjh.com/jhgjh')
-
-        println(' 1 -> ')
-        g.v('tg:1').out.map.each{println it} 
-
-        println(' 2 -> ')
-        g.v('tg:1').out('http://kjhkjh.com/jhgjh').kind.each{println it}
-        g.v('tg:1').out('http://kjhkjh.com/jhgjh').id.each{println it}
-
-
-
-        def production_units = ProductionUnit.findAll()
-        [production_units: production_units]*/
+        render(view: "index", model:    [microregions: microregions,
+                                         cultures: cultures,
+                                         technologies: technologies,
+                                         production_unit_types: production_unit_types
+                                        ])
     }
 
-    def location() {
-        render(template: 'form')
-        /*def production_unit = new ProductionUnit(name: params["production_unit_name"], location: params["production_unit_location"], microregion: params["production_unit_microregion"])
-        
-        if (production_unit.save()) {
-            render(template: 'form', model: [production_unit: production_unit])
-		}
-        else{
-            production_unit.errors.each {
-                println it
-            }
-        }*/
+    def productionUnitCreate() {
+        Slugify slug = new Slugify()
 
+        def production_unit_id = slug.slugify(params["production_unit_name"])
+
+        def v_production_unit = g.addVertex("sustenagro:"+production_unit_id) //Add Microregion to id
+        g.addEdge(v_production_unit, g.v(params["production_unit_type"]), 'rdf:type')
+
+        def name = g.addVertex('"'+params["production_unit_name"]+'"^^<http://www.w3.org/2001/XMLSchema#string>')
+        g.addEdge(v_production_unit, name, 'sustenagro:name')
+        g.addEdge(v_production_unit, g.v(params["production_unit_microregion"]), 'sustenagro:microregion')
+        g.addEdge(v_production_unit, g.v(params["production_unit_culture"]), 'sustenagro:culture')
+        g.addEdge(v_production_unit, g.v(params["production_unit_technology"]), 'sustenagro:technology')
+
+        g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
+
+        redirect(action: "assessment", id: production_unit_id)
+    }
+
+    def assessment() {
+
+        def environmental_indicators = []
+
+        g.v('sustenagro:EnvironmentalIndicator').in("rdfs:subClassOf").each{ environmental_indicators.push(  id: it.id, title: it.out('terms:title').has('lang','pt').next().value, description: it.out('terms:description').has('lang','pt').next().value, assessmentQuestion: it.out('sustenagro:assessmentQuestion').has('lang','pt').next().value) }
+
+        String name = g.v('sustenagro:'+params.id).out('sustenagro:name').next().value
+
+        render(view: "assessment", model: [production_unit_id: params.id,
+                                           production_unit_name: name,
+                                           environmental_indicators: environmental_indicators ])
     }
 
 }

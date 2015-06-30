@@ -66,8 +66,8 @@
                       <li class="active"><a href="./">Inicie sessão</a></li>
                       <li><a href="../navbar-static-top/">Cadastre-se</a></li>
                     </ul>
-                  </div><!--/.nav-collapse -->
-                </div><!--/.container-fluid -->
+                  </div>
+                </div>
             </div>
             
             <g:layoutBody/>
@@ -83,6 +83,6 @@
                     <g:img dir='images' file='intermidia.png' class="img-centered" height="75" />
                 </div>
             </div>
-        </div> <!-- /container -->
+        </div>
     </body>
 </html>

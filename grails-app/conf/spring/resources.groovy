@@ -1,8 +1,7 @@
-import sustenagro.SustenAgroMemStore
+import sustenagro.MemStore
 
 // Place your Spring DSL code here
 beans = {
-    memStore(SustenAgroMemStore){
+    g(MemStore){
     }
-    println memStore
 }
