@@ -1,11 +1,13 @@
 Prefix: : <http://dilvan.icmc.usp.br/sustenagro/>
+Prefix: db: <<http://dbpedia.org/ontology/>
+Prefix: dc: <http://purl.org/dc/terms/>
 Prefix: owl: <http://www.w3.org/2002/07/owl#>
 Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 Prefix: xml: <http://www.w3.org/XML/1998/namespace>
 Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
 Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-Prefix: dc:  <http://purl.org/dc/terms/>
-Prefix: db: <<http://dbpedia.org/ontology/>
+
+
 
 Ontology: <http://dilvan.icmc.usp.br/sustenagro/>
 
@@ -61,22 +63,6 @@ ObjectProperty: value
     Annotations: 
         rdfs:label "valor"@pt,
         rdfs:label "value"@en
-
-    
-DataProperty: upperBound
-
-    
-DataProperty: lowerBound
-
-    
-DataProperty: dataValue
-
-    Annotations: 
-        rdfs:label "valor do dado"@pt,
-        rdfs:label "data value"@en
-    
-    Characteristics: 
-        Functional
     
     
 DataProperty: threshold
@@ -92,10 +78,694 @@ DataProperty: threshold
         (xsd:double or xsd:integer)
     
     
-Class: SafetyIndicator
+DataProperty: dataValue
+
+    Annotations: 
+        rdfs:label "valor do dado"@pt,
+        rdfs:label "data value"@en
+    
+    Characteristics: 
+        Functional
+    
+    
+Class: db:PopulatedPlace
 
     SubClassOf: 
+        db:Place
+    
+    
+Class: AgriculturalProductionSystem
+
+    
+Class: SafetyIndicator
+
+    Annotations: 
+        rdfs:label "Safety indicator"@en,
+        rdfs:label "Indicador de segurança"@pt
+    
+    SubClassOf: 
         SocialIndicator
+    
+    
+Class: InvestmentRatioMachinesVersusProductionReturnOnAssets
+
+    Annotations: 
+        rdfs:label "Relação entre investimento de máquinas versus produção de cana e retorno do imobilizado"@pt,
+        rdfs:label "Investment relationship between machines versus sugarcane production and return on assets"@en
+    
+    SubClassOf: 
+        CostIndicator,
+        value exactly 1 Real
+    
+    
+Class: TrainingIncentive
+
+    Annotations: 
+        rdfs:label "Incentives for employee training"@en,
+        rdfs:label "Incentivos a capacitação dos funcionários"@pt
+    
+    SubClassOf: 
+        value exactly 1 ExistNo,
+        Training
+    
+    
+Class: SugarcaneProductivityPerHectareCategory
+
+    Annotations: 
+        rdfs:label "Categoria produtividade de cana por hectare"@pt,
+        rdfs:label "Sugarcane productivity per hectare category"@en
+    
+    SubClassOf: 
+        Categorical
+    
+    
+Class: BiofuelInfrastructure
+
+    Annotations: 
+        rdfs:label "Infrastructure for producing second and third generation biofuels"@en,
+        rdfs:label "Infraestrutura para produção de biocombustíveis de segunda e terceira geração"@pt
+    
+    SubClassOf: 
+        value exactly 1 YesNo,
+        IndustrialUnityIndicator
+    
+    
+Class: ProductivityIndicator
+
+    Annotations: 
+        rdfs:label "Indicador de Produtividade"@pt,
+        rdfs:label "Productivity Indicator"@en
+    
+    SubClassOf: 
+        EconomicIndicator
+    
+    
+Class: TrueFalse
+
+    Annotations: 
+        rdfs:label "Verdadeiro/Falso"@pt,
+        rdfs:label "True/False"@en
+    
+    SubClassOf: 
+        Boolean
+    
+    
+Class: Boolean
+
+    Annotations: 
+        rdfs:label "Boleana"@pt,
+        rdfs:label "Boolean"@en
+    
+    EquivalentTo: 
+        dataValue exactly 1 xsd:boolean
+    
+    SubClassOf: 
+        Categorical
+    
+    
+Class: Indicator
+
+    Annotations: 
+        rdfs:label "Indicador"@pt,
+        rdfs:label "Indicator"@en
+    
+    SubClassOf: 
+        value some Value
+    
+    
+Class: db:AdministrativeRegion
+
+    SubClassOf: 
+        db:Region
+    
+    
+Class: AccidentsIncidenceCategory
+
+    Annotations: 
+        rdfs:label "Categoria incidência de acidentes"@pt,
+        rdfs:label "Accidents incidence category"@en
+    
+    SubClassOf: 
+        Categorical
+    
+    
+Class: OperationalEfficiencyCategory
+
+    Annotations: 
+        rdfs:label "Categoria eficiência operacional"@pt,
+        rdfs:label "Operational efficiency category"@en
+    
+    SubClassOf: 
+        Categorical
+    
+    
+Class: AverageSalaryCategory
+
+    Annotations: 
+        rdfs:label "Average salary category"@en,
+        rdfs:label "Categoria salário médio"@pt
+    
+    SubClassOf: 
+        Categorical
+    
+    
+Class: BioelectricityDestination
+
+    Annotations: 
+        rdfs:label "Bioelectricity destination"@en,
+        rdfs:label "Destino da bioeletricidade"@pt
+    
+    SubClassOf: 
+        EnergyIndicator,
+        value exactly 1 BioelectricityDestinationCategory
+    
+    
+Class: BoilerEfficiencyCategory
+
+    Annotations: 
+        rdfs:label "Boiller efficiency category"@en,
+        rdfs:label "Categoria eficiência das caldeiras"@pt
+    
+    SubClassOf: 
+        Categorical
+    
+    
+Class: VinasseAndEthanolRelationCategory
+
+    Annotations: 
+        rdfs:label "Categoria relação entre vinhaça e etanol"@pt,
+        rdfs:label "Vinasse and ethanol relation category"@en
+    
+    SubClassOf: 
+        Categorical
+    
+    
+Class: CropPlanning
+
+    Annotations: 
+        rdfs:label "Planejamento de safra"@pt,
+        rdfs:label "Crop Planning"@en
+    
+    SubClassOf: 
+        value exactly 1 YesNo,
+        ProductivityIndicator
+    
+    
+Class: BioelectricityProduction
+
+    Annotations: 
+        rdfs:label "Produção de bioeletricidade"@pt,
+        rdfs:label "Bioelectricity production"@en
+    
+    SubClassOf: 
+        EnergyIndicator,
+        value exactly 1 BioelectricityProductionCategory
+    
+    
+Class: ExistNo
+
+    Annotations: 
+        rdfs:label "Exist/No exist"@en,
+        rdfs:label "Existe/Não existe"@pt
+    
+    SubClassOf: 
+        Boolean
+    
+    
+Class: AverageMonthlyIncomeIndustry
+
+    Annotations: 
+        rdfs:label "Average monthly income of active employees in the industrial area"@en,
+        rdfs:label "Rendimento médio mensal dos empregados ativos na área industrial"@pt
+    
+    SubClassOf: 
+        JobsIndicator,
+        value exactly 1 Real
+    
+    
+Class: SalaryPaidYearSeason
+
+    Annotations: 
+        rdfs:label "Remuneração paga aos trabalhadores ano/safra"@pt,
+        rdfs:label "Compensation paid to workers year/harvest"@en
+    
+    SubClassOf: 
+        IncomeIndicator,
+        value exactly 1 Real
+    
+    
+Class: db:Place
+
+    
+Class: JobFormalityRate
+
+    Annotations: 
+        rdfs:label "Taxa de formalidade de emprego"@pt,
+        rdfs:label "Job formality rate"@en
+    
+    SubClassOf: 
+        JobsIndicator,
+        value exactly 1 JobFormalityRateCategory
+    
+    
+Class: AverageSalary
+
+    Annotations: 
+        rdfs:label "Salário médio do trabalhador"@pt,
+        rdfs:label "Average worker salary"@en
+    
+    SubClassOf: 
+        IncomeIndicator,
+        value exactly 1 AverageSalaryCategory
+    
+    
+Class: db:MicroRegion
+
+    SubClassOf: 
+        db:GovernmentalAdministrativeRegion
+    
+    
+Class: Evaluation
+
+    
+Class: SafetyProgram
+
+    Annotations: 
+        rdfs:label "Programa de prevenção e segurança do trabalho"@pt,
+        rdfs:label "Accident prevention and safety program"@en
+    
+    SubClassOf: 
+        value exactly 1 ExistNo,
+        HealthIndicator
+    
+    
+Class: ProductionUnit
+
+    
+Class: SocialIndicator
+
+    Annotations: 
+        rdfs:label "Social Indicator"@en,
+        rdfs:label "Indicador Social"@pt
+    
+    SubClassOf: 
+        Indicator
+    
+    
+Class: UseEffciencyForReducedDieselConsumptionAndEngineReplacementPlan
+
+    Annotations: 
+        rdfs:label "Use efficiency for reduced diesel consumption and engine replacement plan "@en,
+        rdfs:label "Eficiência no uso para diminuição do consumo de diesel e plano de substituição de motores."@pt
+    
+    SubClassOf: 
+        EnergyIndicator,
+        value exactly 1 YesNo
+    
+    
+Class: db:Country
+
+    SubClassOf: 
+        db:PopulatedPlace
+    
+    
+Class: Real
+
+    Annotations: 
+        rdfs:label "Real"@pt,
+        rdfs:label "Real"@en
+    
+    EquivalentTo: 
+        dataValue exactly 1 (xsd:double or xsd:integer or owl:real)
+    
+    SubClassOf: 
+        Value
+    
+    
+Class: EnergyIndicator
+
+    Annotations: 
+        rdfs:label "Energy indicator"@en,
+        rdfs:label "Indicador de energia"@pt
+    
+    SubClassOf: 
+        EconomicIndicator
+    
+    
+Class: db:Prefecture
+
+    SubClassOf: 
+        db:PopulatedPlace
+    
+    
+Class: db:Power_station
+
+    SubClassOf: 
+        ProductionUnit
+    
+    
+Class: AverageMonthlyIncomeAgriculture
+
+    Annotations: 
+        rdfs:label "Average monthly income of active employees in agriculture"@en,
+        rdfs:label "Rendimento médio mensal dos empregados ativos na área agrícola"@pt
+    
+    SubClassOf: 
+        JobsIndicator,
+        value exactly 1 Real
+    
+    
+Class: AccidentsInWorkplace
+
+    Annotations: 
+        rdfs:label "Incidência de acidentes e fatalidades no local de trabalho"@pt,
+        rdfs:label "Incidence of accidents and fatalities in the workplace"@en
+    
+    SubClassOf: 
+        value exactly 1 AccidentsIncidenceCategory,
+        SafetyIndicator
+    
+    
+Class: SugarcaneProductionSystem
+
+    SubClassOf: 
+        AgriculturalProductionSystem
+    
+    
+Class: PlantingIndicator
+
+    Annotations: 
+        rdfs:label "Planting indicator"@en,
+        rdfs:label "Indicador de Plantio"@pt
+    
+    SubClassOf: 
+        EnvironmentalIndicator
+    
+    
+Class: VinasseAndEthanolRelation
+
+    Annotations: 
+        rdfs:label "Relação entre a produção de vinhaça e etanol (litros de vinhaça/litros de etanol)."@pt,
+        rdfs:label "Relationship between the production of vinasse and ethanol ( liters of vinasse / liters of ethanol)."@en
+    
+    SubClassOf: 
+        value exactly 1 VinasseAndEthanolRelationCategory,
+        GeneralIndicator
+    
+    
+Class: AgriculturalActivityPlanning
+
+    Annotations: 
+        rdfs:label "Planning of agricultural activities according to the market strategy of the plant"@en,
+        rdfs:label "Planejamento das atividades agrícolas de acordo com a estratégia de mercado da usina"@pt
+    
+    SubClassOf: 
+        EnergyIndicator,
+        value exactly 1 YesNo
+    
+    
+Class: JobFormalityRateCategory
+
+    Annotations: 
+        rdfs:label "Categoria taxa de empregos formais"@pt,
+        rdfs:label "Job formality rate category"@en
+    
+    SubClassOf: 
+        Categorical
+    
+    
+Class: YesNo
+
+    Annotations: 
+        rdfs:label "Yes/No"@en,
+        rdfs:label "Sim/Não"@pt
+    
+    SubClassOf: 
+        Boolean
+    
+    
+Class: ComplianceLaborLaws
+
+    Annotations: 
+        rdfs:label "Compliance with labor laws"@en,
+        rdfs:label "Cumprimento das leis trabalhistas"@pt
+    
+    SubClassOf: 
+        value exactly 1 YesNo,
+        LegalIndicator
+    
+    
+Class: Categorical
+
+    SubClassOf: 
+        Value
+    
+    
+Class: StandardAerialSpraying
+
+    Annotations: 
+        rdfs:label "Adequação a Instrução Normativa Conjunta 1/2012//DAS/MAPA de pulverização aérea."@pt,
+        rdfs:label "Adequacy to the Joint Regulatory Standard 1/2012//DAS/MAP for aerial spraying."@en
+    
+    SubClassOf: 
+        value exactly 1 YesNo,
+        GeneralIndicator
+    
+    
+Class: LegalIndicator
+
+    Annotations: 
+        rdfs:label "Legal indicator"@en,
+        rdfs:label "Indicador legal"@pt
+    
+    SubClassOf: 
+        SocialIndicator
+    
+    
+Class: db:Region
+
+    SubClassOf: 
+        db:PopulatedPlace
+    
+    
+Class: EconomicIndicator
+
+    Annotations: 
+        rdfs:label "Economic Indicator"@en,
+        rdfs:label "Indicador Econômico"@pt
+    
+    SubClassOf: 
+        Indicator
+    
+    
+Class: Training
+
+    Annotations: 
+        rdfs:label "Training Indicator"@en,
+        rdfs:label "Indicador de Treinamento"@pt
+    
+    SubClassOf: 
+        SocialIndicator
+    
+    
+Class: BiologicalPestControl
+
+    Annotations: 
+        rdfs:label "Controle biológico de pragas"@pt,
+        rdfs:label "Biological pest control"@en
+    
+    SubClassOf: 
+        value exactly 1 YesNo,
+        GeneralIndicator
+    
+    
+Class: BioelectricityDestinationCategory
+
+    Annotations: 
+        rdfs:label "Categoria destinação da bioeletricidade"@pt,
+        rdfs:label "Bioelectricity destination category"@en
+    
+    SubClassOf: 
+        Categorical
+    
+    
+Class: IncomeIndicator
+
+    Annotations: 
+        rdfs:label "Income indicator"@en,
+        rdfs:label "Indicador de renda"@pt
+    
+    SubClassOf: 
+        SocialIndicator
+    
+    
+Class: GeneratingJobs
+
+    Annotations: 
+        rdfs:label "Generating capacity of direct and indirect jobs"@en,
+        dc:description "Capacidade de geração de empregos diretos e indiretos por Número/safra"@pt,
+        rdfs:label "Capacidade de geração de empregos diretos e indiretos"@pt
+    
+    SubClassOf: 
+        JobsIndicator,
+        value exactly 1 Real
+    
+    
+Class: InvestmentsSocialResponsibility
+
+    Annotations: 
+        rdfs:label "Investimentos em responsabilidade social"@pt,
+        rdfs:label "Investments in social responsibility"@en
+    
+    SubClassOf: 
+        value exactly 1 YesNo,
+        LegalIndicator
+    
+    
+Class: MigrationRate
+
+    Annotations: 
+        rdfs:label "Migration rate"@en,
+        rdfs:label "Taxa migratória"@pt
+    
+    SubClassOf: 
+        JobsIndicator,
+        value exactly 1 Real
+    
+    
+Class: EnvironmentalIndicator
+
+    Annotations: 
+        rdfs:label "Indicador Ambiental"@pt,
+        rdfs:label "Environmental Indicator"@en
+    
+    SubClassOf: 
+        Indicator
+    
+    
+Class: db:GovernmentalAdministrativeRegion
+
+    SubClassOf: 
+        db:AdministrativeRegion
+    
+    
+Class: Norm31
+
+    Annotations: 
+        rdfs:label "Fulfilling Regulatory Norm 31"@en,
+        rdfs:label "Cumprimento a Norma Regulamentadora 31"@pt
+    
+    SubClassOf: 
+        value exactly 1 YesNo,
+        HealthIndicator
+    
+    
+Class: BioelectricityProductionCategory
+
+    Annotations: 
+        rdfs:label "Bioelectricity production category"@en,
+        rdfs:label "Categoria produção de bioeletricidade"@pt
+    
+    SubClassOf: 
+        Categorical
+    
+    
+Class: AnnualRateUnemploymentByMechanization
+
+    Annotations: 
+        rdfs:label "Taxa anual de desemprego causado pela mecanização"@pt,
+        rdfs:label "Annual rate of unemployment caused by mechanization"@en
+    
+    SubClassOf: 
+        JobsIndicator,
+        value exactly 1 Real
+    
+    
+Class: HealthIndicator
+
+    Annotations: 
+        rdfs:label "Indicador de Saúde"@pt,
+        rdfs:label "Health Indicator"@en
+    
+    SubClassOf: 
+        SocialIndicator
+    
+    
+Class: OperationalEfficiencyPlant
+
+    Annotations: 
+        rdfs:label "Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)"@pt,
+        rdfs:label "Operational efficiency of the plant (vertical plant growth, recovery and development)"@en
+    
+    SubClassOf: 
+        value exactly 1 OperationalEfficiencyCategory,
+        ProductivityIndicator
+    
+    
+Class: IntensityCategory
+
+    Annotations: 
+        rdfs:label "Intensity category"@en,
+        rdfs:label "Categoria intensidade"@pt
+    
+    SubClassOf: 
+        Categorical
+    
+    
+Class: SugarcaneProductivityPerHectare
+
+    Annotations: 
+        rdfs:label "Produtividade de cana por hectare"@pt,
+        rdfs:label "Sugarcane productivity per hectare"@en
+    
+    SubClassOf: 
+        value exactly 1 SugarcaneProductivityPerHectareCategory,
+        ProductivityIndicator
+    
+    
+Class: GeneralIndicator
+
+    Annotations: 
+        rdfs:label "General Indicator"@en,
+        rdfs:label "Indicador Geral"@pt
+    
+    SubClassOf: 
+        EnvironmentalIndicator
+    
+    
+Class: EnergyEfficiencyOfBoilersForCogeneration
+
+    Annotations: 
+        rdfs:label "Eficiência energética das caldeiras para cogeração de energia"@pt,
+        rdfs:label "Energy eficiency of boilers for cogeneration"@en
+    
+    SubClassOf: 
+        value exactly 1 BoilerEfficiencyCategory,
+        EnergyIndicator
+    
+    
+Class: PlanningSystematicPlanting
+
+    Annotations: 
+        rdfs:label "Planejamento e sistematização do plantio "@pt,
+        rdfs:label "Planning and systematic planting"@en
+    
+    SubClassOf: 
+        PlantingIndicator,
+        value exactly 1 YesNo
+    
+    
+Class: Integer
+
+    Annotations: 
+        rdfs:label "Inteiro"@pt,
+        rdfs:label "Integer"@en
+    
+    EquivalentTo: 
+        dataValue exactly 1 xsd:integer
+    
+    SubClassOf: 
+        Real
     
     
 Class: db:State
@@ -104,8 +774,50 @@ Class: db:State
         db:PopulatedPlace
     
     
-Class: LegalIndicator
+Class: CostIndicator
 
+    Annotations: 
+        rdfs:label "Cost Indicator"@en,
+        rdfs:label "Indicador de custo"@pt
+    
+    SubClassOf: 
+        EconomicIndicator
+    
+    
+Class: db:Farm
+
+    SubClassOf: 
+        ProductionUnit
+    
+    
+Class: BufferStocks
+
+    Annotations: 
+        rdfs:label "Buffer stocks"@en,
+        rdfs:label "Estoques reguladores"@pt
+    
+    SubClassOf: 
+        CostIndicator,
+        value exactly 1 YesNo
+    
+    
+Class: JobsGeneratedPerHectare
+
+    Annotations: 
+        rdfs:label "Jobs generated per hectare (year/harvest)"@en,
+        rdfs:label "Empregos gerados por hectare (ano/safra)"@pt
+    
+    SubClassOf: 
+        JobsIndicator,
+        value exactly 1 Real
+    
+    
+Class: JobsIndicator
+
+    Annotations: 
+        rdfs:label "Indicador de trabalho"@pt,
+        rdfs:label "Jobs indicator"@en
+    
     SubClassOf: 
         SocialIndicator
     
@@ -121,622 +833,85 @@ Class: Norm24
         HealthIndicator
     
     
-Class: EconomicIndicator
+Class: ResistantYeast
 
     Annotations: 
-        rdfs:label "Economic Indicator"@en,
-        rdfs:label "Indicador Econômico"@pt
-    
-    SubClassOf: 
-        Indicator
-    
-    
-Class: EnvironmentalIndicator
-
-    Annotations: 
-        rdfs:label "Indicador Ambiental"@pt,
-        rdfs:label "Environmental Indicator"@en
-    
-    SubClassOf: 
-        Indicator
-    
-    
-Class: SocialIndicator
-
-    Annotations: 
-        rdfs:label "Social Indicator"@en,
-        rdfs:label "Indicador Social"@pt
-    
-    SubClassOf: 
-        Indicator
-    
-    
-Class: Real
-
-    EquivalentTo: 
-        dataValue exactly 1 (xsd:double or xsd:integer or owl:real)
-    
-    SubClassOf: 
-        Value
-    
-    
-Class: db:Prefecture
-
-    SubClassOf: 
-        db:PopulatedPlace
-    
-    
-Class: InvestmentsSocialResponsibility
-
-    Annotations: 
-        rdfs:label "Investimentos em responsabilidade social"@pt,
-        rdfs:label "Investments in social responsibility"@en
+        rdfs:label "Uses or invests in more resistant yeast"@en,
+        rdfs:label "Utiliza ou investe em leveduras mais resistentes"@pt
     
     SubClassOf: 
         value exactly 1 YesNo,
-        LegalIndicator
+        IndustrialUnityIndicator
     
     
-Class: Categorical
-
-    SubClassOf: 
-        Value
-    
-    
-Class: ProductionUnit
-
-    
-Class: db:PopulatedPlace
-
-    SubClassOf: 
-        db:Place
-    
-    
-Class: AccidentsIncidenceCategory
-
-    SubClassOf: 
-        Categorical
-    
-    
-Class: JobFormalityRate
+Class: SugarcaneTransportOptimization
 
     Annotations: 
-        rdfs:label "Taxa de formalidade de emprego"@pt,
-        rdfs:label "Job formality rate"@en
+        rdfs:label "Sugarcane transport optimization"@en,
+        rdfs:label "Otimização do transporte da cana"@pt
     
     SubClassOf: 
-        value exactly 1 JobFormalityRateCategory,
-        JobsIndicator
-    
-    
-Class: db:MicroRegion
-
-    SubClassOf: 
-        db:GovernmentalAdministrativeRegion
-    
-    
-Class: TrueFalse
-
-    SubClassOf: 
-        Boolean
-    
-    
-Class: AgriculturalProductionSystem
-
-    
-Class: Norm31
-
-    Annotations: 
-        rdfs:label "Fulfilling Regulatory Norm 31"@en,
-        rdfs:label "Cumprimento a Norma Regulamentadora 31"@pt
-    
-    SubClassOf: 
-        value exactly 1 YesNo,
-        HealthIndicator
+        CostIndicator,
+        value exactly 1 YesNo
     
     
 Class: Value
 
     
-Class: db:Region
+Class: IndustrialUnityIndicator
 
+    Annotations: 
+        rdfs:label "Industrial unity indicator"@en,
+        rdfs:label "Indicador unidade industrial"@pt
+    
     SubClassOf: 
-        db:PopulatedPlace
-     
-Class:  IncomeIndicator
+        EconomicIndicator
+    
+    
+Individual: Below10
 
-    SubClassOf:
-        SocialIndicator
-        
-Class:  AnnualRateUnemploymentByMechanization 
+    Annotations: 
+        rdfs:label "Abaixo de 10"@pt,
+        rdfs:label "Below 10"@en
+    
+    Types: 
+        VinasseAndEthanolRelationCategory
+    
+    Facts:  
+     threshold  1.0
+    
+    
+Individual: UpperHighEfficiency
 
-    SubClassOf:
-        value exactly 1 Real,
-        JobsIndicator
+    Types: 
+        BoilerEfficiencyCategory
+    
+    Facts:  
+     threshold  1.0
+    
+    
+Individual: Lt64ton
 
-Class:  AverageMonthlyIncomeAgriculture 
-
-    SubClassOf:
-        value exactly 1 Real,
-        JobsIndicator
-
-Class:  AverageMonthlyIncomeIndustry 
-
-    SubClassOf:
-        value exactly 1 Real,
-        JobsIndicator
-
-Class:  AverageSalary 
-
-    SubClassOf:
-        value exactly 1 AverageSalaryCategory,
-        IncomeIndicator
-
-Class:  AverageSalaryCategory 
-
-    SubClassOf:
-        Categorical
-        
-        
+    Types: 
+        SugarcaneProductivityPerHectareCategory
+    
+    Facts:  
+     threshold  -2.0
+    
+    
 Individual: Gt1001
-    Types:
-        AverageSalaryCategory
-        
-    Facts:
-        threshold 2.0
-        
-Individual: Lt724
-    Types:
-        AverageSalaryCategory
-        
-    Facts:
-        threshold -1.0
-        
 
-Individual: interval724-890
-    Types:
-        AverageSalaryCategory
-        
-    Facts:
-        threshold 0.0
-
-
-Individual: interval891-1000
-    Types:
-        AverageSalaryCategory
-        
-    Facts:
-        threshold 1.0
-
-Class:  BioelectricityDestination
-    SubClassOf:
-        EnergyIndicator
-
-Class:  BioelectricityDestinationCategory
-    SubClassOf:
-        Categorical 
-
-Individual:  Export
-    Annotations: 
-        rdfs:label "Export"@en,
-        rdfs:label "Exportação"@pt
-    Types:
-        BioelectricityDestinationCategory
-
-Individual:  SelfConsumption
-    Annotations: 
-        rdfs:label "Self Consumption"@en,
-        rdfs:label "Auto Consumo"@pt
-    Types:
-        BioelectricityDestinationCategory
-
-Class:   BioelectricityProduction
-    SubClassOf:
-        value exactly 1 BioelectricityProductionCategory,
-        EnergyIndicator
-
-Class:  BioelectricityProductionCategory
-    SubClassOf:
-        Categorical 
-
-Individual:  NoOrPartialSupply
-    Types:
-        BioelectricityProductionCategory
-
-Individual:  SuppliesAllSellSurplus
-    Types:
-        BioelectricityProductionCategory
-
-Individual:  SupplyAll
-    Types:
-        BioelectricityProductionCategory
-
-Class:  BoilerEfficiencyCategory 
-    SubClassOf:
-        Categorical
-        
-Individual:  HighEfficiency 
-    Types:
-        BoilerEfficiencyCategory
-    Facts:
-        threshold 0.0
-        
-Individual:  LowEfficiency 
-    Types:
-        BoilerEfficiencyCategory
-    Facts:
-        threshold -3.0
-        
-Individual:  MediumEfficiency 
-    Types:
-        BoilerEfficiencyCategory
-    Facts:
-        threshold -1.0
-        
-Individual:  UpperHighEfficiency
-    Types:
-        BoilerEfficiencyCategory
-    Facts:
-        threshold 1.0
-        
-Individual:  UpperLowEfficiency
-    Types:
-        BoilerEfficiencyCategory
-    Facts:
-        threshold -2.0
-
-Class:  BufferStocks
-    SubClassOf:
-        value exactly 1 YesNo,
-        CostIndicator
-
-Class:  CostIndicator
-    SubClassOf:
-        EconomicIndicator
-
-Class:   ProductivityIndicator
-    SubClassOf:
-        EconomicIndicator
-        
-Class:    CropPlanning 
-    SubClassOf: ProductivityIndicator
-
-Class:  EnergyEfficiencyOfBoilersForCogeneration 
-    SubClassOf:
-        value exactly 1 BoilerEfficiencyCategory,
-        EnergyIndicator
-
-Class:  InvestmentRatioMachinesVersusProductionReturnOnAssets
-    SubClassOf:
-        value exactly 1 Real,
-        CostIndicator 
-
-Class:    JobsGeneratedPerHectare
-    SubClassOf:
-        value exactly 1 Real,
-        JobsIndicator
-        
-Class:    MigrationRate
-    SubClassOf:
-        value exactly 1 Real,
-        JobsIndicator 
-
-Class:    OperationalEfficiencyCategory
-    SubClassOf:
-        Categorical
-        
-Individual: Gt2.5Mtons 
-    Types:
-        OperationalEfficiencyCategory
-
-Individual: Interval1.0-2.5Mtons 
-    Types:
-        OperationalEfficiencyCategory
-
-Individual: Lt1Mtons  
     Types: 
-        OperationalEfficiencyCategory
-        
-Class:  OperationalEfficiencyPlant
-    SubClassOf:  ProductivityIndicator
-    
-Class:  ResistantYeast
-    SubClassOf:
-        value exactly 1 YesNo,
-        IndustrialIndicator
-
-Class:  SalaryPaidYearSeason
-    SubClassOf:
-        value exactly 1 Real,
-        IncomeIndicator    
-
-Class:  SugarcaneProductivityPerHectare 
-    SubClassOf:
-        value exactly 1 SugarcaneProductivityPerHectareCategory,
-        ProductivityIndicator
-        
-Class:  SugarcaneProductivityPerHectareCategory 
-    SubClassOf:  Categorical 
-
-Individual: Gt85ton 
-    Types: SugarcaneProductivityPerHectareCategory
-    Facts: threshold 2.0
-
-Individual: Lt64ton 
-    Types: SugarcaneProductivityPerHectareCategory
-    Facts: threshold -2.0
-
-Individual: interval64-74ton 
-    Types: SugarcaneProductivityPerHectareCategory
-    Facts: threshold -1.0
-
-Individual: interval724-890 
-    Types: SugarcaneProductivityPerHectareCategory
-    Facts: threshold 0.0
-
-Individual: interval82-85ton 
-    Types: SugarcaneProductivityPerHectareCategory
-    Facts: threshold 1.0
-
-Class:  SugarcaneTransportOptimization
-    SubClassOf:
-        value exactly 1 YesNo,
-        CostIndicator
-        
-Class:  UseEffciencyForReducedDieselConsumptionAndEngineReplacementPlan
-    SubClassOf:
-        value exactly 1 YesNo,
-        EnergyIndicator
-        
-Class:  BiofuelInfrastructure 
-    SubClassOf: 
-        value exactly 1 YesNo,
-        IndustrialIndicator
-
-Class:  IndustrialIndicator 
-    SubClassOf:
-        EconomicIndicator 
-
-Class: EnergyIndicator
-
-    SubClassOf:
-        EconomicIndicator
-    
-Class: AgriculturalActivityPlanning
-
-    SubClassOf:
-        value exactly 1 YesNo,
-        EnergyIndicator
-    
-Class: SafetyProgram
-
-    Annotations: 
-        rdfs:label "Programa de prevenção e segurança do trabalho"@pt,
-        rdfs:label "Accident prevention and safety program"@en
-    
-    SubClassOf: 
-        value exactly 1 ExistNo,
-        HealthIndicator
-    
-    
-Class: JobFormalityRateCategory
-
-    SubClassOf: 
-        Categorical
-    
-    
-Class: GeneratingJobs
-
-    Annotations: 
-        rdfs:label "Generating capacity of direct and indirect jobs"@en,
-        dc:description "Capacidade de geração de empregos diretos e indiretos por Número/safra"@pt,
-        rdfs:label "Capacidade de geração de empregos diretos e indiretos"@pt
-    
-    SubClassOf: 
-        value exactly 1 Real,
-        JobsIndicator
-    
-    
-Class: db:Farm
-
-    SubClassOf: 
-        ProductionUnit
-    
-    
-Class: Integer
-
-    EquivalentTo: 
-        dataValue exactly 1 xsd:integer
-    
-    SubClassOf: 
-        Real
-    
-    
-Class: db:Power_station
-
-    SubClassOf: 
-        ProductionUnit
-    
-    
-Class: SugarcaneProductionSystem
-
-    SubClassOf: 
-        AgriculturalProductionSystem
-    
-    
-Class: HealthIndicator
-
-    Annotations: 
-        rdfs:label "Indicador de Saúde"@pt,
-        rdfs:label "Health Indicator"@en
-    
-    SubClassOf: 
-        SocialIndicator
-    
-    
-Class: AccidentsInWorkplace
-
-    Annotations: 
-        rdfs:label "Incidência de acidentes e fatalidades no local de trabalho"@pt,
-        rdfs:label "Incidence of accidents and fatalities in the workplace"@en
-    
-    SubClassOf: 
-        value exactly 1 AccidentsIncidenceCategory,
-        SafetyIndicator
-    
-    
-Class: Training
-
-    Annotations: 
-        rdfs:label "Training Indicator"@en,
-        rdfs:label "Indicador de Treinamento"@pt
-    
-    SubClassOf: 
-        SocialIndicator
-    
-    
-Class: db:GovernmentalAdministrativeRegion
-
-    SubClassOf: 
-        db:AdministrativeRegion
-    
-     
-Class: db:Place
-
-    
-Class: IntensityCategory
-
-    SubClassOf: 
-        Categorical
-    
-    
-Class: YesNo
-
-    SubClassOf: 
-        Boolean
-    
-    
-Class: JobsIndicator
-
-    SubClassOf: 
-        SocialIndicator
-    
-    
-Class: ComplianceLaborLaws
-
-    Annotations: 
-        rdfs:label "Compliance with labor laws"@en,
-        rdfs:label "Cumprimento das leis trabalhistas"@pt
-    
-    SubClassOf: 
-        value exactly 1 YesNo,
-        LegalIndicator
-    
-    
-Class: Indicator
-
-    Annotations: 
-        rdfs:label "Indicador"@pt,
-        rdfs:label "Indicator"@en
-    
-    SubClassOf: 
-        value some Value
-    
-    
-Class: ExistNo
-
-    SubClassOf: 
-        Boolean
-    
-    
-Class: db:AdministrativeRegion
-
-    SubClassOf: 
-        db:Region
-    
-    
-Class: TrainingIncentive
-
-    Annotations: 
-        rdfs:label "Incentives for employee training"@en,
-        rdfs:label "Incentivos a capacitação dos funcionários"@pt
-    
-    SubClassOf: 
-        value exactly 1 ExistNo,
-        Training
-    
-    
-Class: db:Country
-
-    SubClassOf: 
-        db:PopulatedPlace
-    
-    
-Class: Evaluation
-
-    
-Class: Boolean
-
-    EquivalentTo: 
-        dataValue exactly 1 xsd:boolean
-    
-    SubClassOf: 
-        Categorical
-    
-    
-Individual: DontExist
-
-    Annotations: 
-        rdfs:label "Doesn't Exist"@en,
-        rdfs:label "Não Existe"@pt
-    
-    Types: 
-        ExistNo
+        AverageSalaryCategory
     
     Facts:  
-     dataValue  false
+     threshold  2.0
     
     
-Individual: False
-
-    Annotations: 
-        rdfs:label "False"@en,
-        rdfs:label "Falso"@pt
-    
-    Types: 
-        TrueFalse
-    
-    Facts:  
-     dataValue  false
-    
-    
-Individual: Yes
-
-    Annotations: 
-        rdfs:label "Yes"@en,
-        rdfs:label "Sim"@pt
-    
-    Types: 
-        YesNo
-    
-    Facts:  
-     dataValue  true
-    
-    
-Individual: Medium
+Individual: interval64-74ton
 
     Types: 
-        IntensityCategory
-    
-    
-Individual: Lt80
-
-    Annotations: 
-        rdfs:label "< 80%"@en,
-        rdfs:label "< 80%"@pt
-    
-    Types: 
-        JobFormalityRateCategory
+        SugarcaneProductivityPerHectareCategory
     
     Facts:  
      threshold  -1.0
@@ -755,6 +930,62 @@ Individual: No
      dataValue  false
     
     
+Individual: Export
+
+    Annotations: 
+        rdfs:label "Export"@en,
+        rdfs:label "Exportação"@pt
+    
+    Types: 
+        BioelectricityDestinationCategory
+    
+    
+Individual: interval891-1000
+
+    Types: 
+        AverageSalaryCategory
+    
+    Facts:  
+     threshold  1.0
+    
+    
+Individual: LowEfficiency
+
+    Types: 
+        BoilerEfficiencyCategory
+    
+    Facts:  
+     threshold  -3.0
+    
+    
+Individual: Gt85ton
+
+    Types: 
+        SugarcaneProductivityPerHectareCategory
+    
+    Facts:  
+     threshold  2.0
+    
+    
+Individual: High
+
+    Types: 
+        IntensityCategory
+    
+    
+Individual: Yes
+
+    Annotations: 
+        rdfs:label "Yes"@en,
+        rdfs:label "Sim"@pt
+    
+    Types: 
+        YesNo
+    
+    Facts:  
+     dataValue  true
+    
+    
 Individual: True
 
     Annotations: 
@@ -766,6 +997,64 @@ Individual: True
     
     Facts:  
      dataValue  true
+    
+    
+Individual: SupplyAll
+
+    Types: 
+        BioelectricityProductionCategory
+    
+    
+Individual: Lt724
+
+    Types: 
+        AverageSalaryCategory
+    
+    Facts:  
+     threshold  -1.0
+    
+    
+Individual: False
+
+    Annotations: 
+        rdfs:label "False"@en,
+        rdfs:label "Falso"@pt
+    
+    Types: 
+        TrueFalse
+    
+    Facts:  
+     dataValue  false
+    
+    
+Individual: SuppliesAllSellSurplus
+
+    Types: 
+        BioelectricityProductionCategory
+    
+    
+Individual: Low
+
+    Types: 
+        IntensityCategory
+    
+    
+Individual: Between10-18
+
+    Types: 
+        VinasseAndEthanolRelationCategory
+    
+    Facts:  
+     threshold  0.0
+    
+    
+Individual: UpperLowEfficiency
+
+    Types: 
+        BoilerEfficiencyCategory
+    
+    Facts:  
+     threshold  -2.0
     
     
 Individual: Exist
@@ -781,17 +1070,27 @@ Individual: Exist
      dataValue  true
     
     
-Individual: Gt90
+Individual: Lt80
 
     Annotations: 
-        rdfs:label "> 90%"@en,
-        rdfs:label "> 90%"@pt
+        rdfs:label "< 80%"@en,
+        rdfs:label "< 80%"@pt
     
     Types: 
         JobFormalityRateCategory
     
     Facts:  
-     threshold  1.0
+     threshold  -1.0
+    
+    
+Individual: Gt2.5Mtons
+
+    Annotations: 
+        rdfs:label "Capacidade de moagem superior a 2,5 milhões de ton/safra"@pt,
+        rdfs:label "Grinding capacity higher than 2.5 million tons/harvest"@en
+    
+    Types: 
+        OperationalEfficiencyCategory
     
     
 Individual: Eq15.83
@@ -807,12 +1106,6 @@ Individual: Eq15.83
      threshold  0.0
     
     
-Individual: High
-
-    Types: 
-        IntensityCategory
-    
-    
 Individual: Lt15.83
 
     Annotations: 
@@ -826,10 +1119,42 @@ Individual: Lt15.83
      threshold  1.0
     
     
-Individual: Low
+Individual: NoOrPartialSupply
+
+    Types: 
+        BioelectricityProductionCategory
+    
+    
+Individual: Gt90
+
+    Annotations: 
+        rdfs:label "> 90%"@en,
+        rdfs:label "> 90%"@pt
+    
+    Types: 
+        JobFormalityRateCategory
+    
+    Facts:  
+     threshold  1.0
+    
+    
+Individual: Medium
 
     Types: 
         IntensityCategory
+    
+    
+Individual: DontExist
+
+    Annotations: 
+        rdfs:label "Doesn't Exist"@en,
+        rdfs:label "Não Existe"@pt
+    
+    Types: 
+        ExistNo
+    
+    Facts:  
+     dataValue  false
     
     
 Individual: Gt15.83
@@ -843,6 +1168,86 @@ Individual: Gt15.83
     
     Facts:  
      threshold  -1.0
+    
+    
+Individual: Lt1Mtons
+
+    Annotations: 
+        rdfs:label "Grinding capacity lower than 1.0 million tons/harvest"@en,
+        rdfs:label "Capacidade de Moagem inferior a 1 milhão de toneladas/safra"@pt
+    
+    Types: 
+        OperationalEfficiencyCategory
+    
+    
+Individual: Above18
+
+    Annotations: 
+        rdfs:label "Acima de 18"@pt,
+        rdfs:label "Above 18"@en
+    
+    Types: 
+        VinasseAndEthanolRelationCategory
+    
+    Facts:  
+     threshold  -1.0
+    
+    
+Individual: interval82-85ton
+
+    Types: 
+        SugarcaneProductivityPerHectareCategory
+    
+    Facts:  
+     threshold  1.0
+    
+    
+Individual: interval724-890
+
+    Types: 
+        AverageSalaryCategory,
+        SugarcaneProductivityPerHectareCategory
+    
+    Facts:  
+     threshold  0.0
+    
+    
+Individual: Interval1.0-2.5Mtons
+
+    Annotations: 
+        rdfs:label "Grinding capacity between 1.0 and 2.5 million tons/harvest"@en,
+        rdfs:label "Capacidade de moagem entre 1,0 e 2,5 milhões de toneladas/safra"@pt
+    
+    Types: 
+        OperationalEfficiencyCategory
+    
+    
+Individual: MediumEfficiency
+
+    Types: 
+        BoilerEfficiencyCategory
+    
+    Facts:  
+     threshold  -1.0
+    
+    
+Individual: SelfConsumption
+
+    Annotations: 
+        rdfs:label "Auto Consumo"@pt,
+        rdfs:label "Self Consumption"@en
+    
+    Types: 
+        BioelectricityDestinationCategory
+    
+    
+Individual: HighEfficiency
+
+    Types: 
+        BoilerEfficiencyCategory
+    
+    Facts:  
+     threshold  0.0
     
     
 Individual: interval80-90
