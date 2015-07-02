@@ -255,7 +255,7 @@ Class: BoilerEfficiencyCategory
     SubClassOf: 
         Categorical
     
-    
+     
 Class: VinasseAndEthanolRelationCategory
 
     Annotations: 
