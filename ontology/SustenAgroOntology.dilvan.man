@@ -398,8 +398,11 @@ Class: UseEffciencyForReducedDieselConsumptionAndEngineReplacementPlan
 Class: Real
 
     Annotations: 
-        rdfs:label "Real"@pt,
-        rdfs:label "Real"@en
+        rdfs:label "Real"@en,
+        rdfs:label "Real"@pt
+    
+    EquivalentTo: 
+        dataValue exactly 1 (xsd:double or xsd:integer or owl:real)
     
     SubClassOf: 
         Value
