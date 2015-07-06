@@ -45,14 +45,23 @@ class ToolController {
     def assessment() {
 
         def environmental_indicators = []
+        def economic_indicators = []
+        def social_indicators = []
 
-        g.v('sustenagro:EnvironmentalIndicator').in("rdfs:subClassOf").each{ environmental_indicators.push(  id: it.id, title: it.out('terms:title').has('lang','pt').next().value, description: it.out('terms:description').has('lang','pt').next().value, assessmentQuestion: it.out('sustenagro:assessmentQuestion').has('lang','pt').next().value) }
+        //g.v('sustenagro:EnvironmentalIndicator').in("rdfs:subClassOf").each{ environmental_indicators.push(  id: it.id, title: it.out('terms:title').has('lang','pt').next().value, description: it.out('terms:description').has('lang','pt').next().value, assessmentQuestion: it.out('sustenagro:assessmentQuestion').has('lang','pt').next().value) }
+        g.v('sustenagro:EnvironmentalIndicator').in("rdfs:subClassOf").in("rdfs:subClassOf").each{ environmental_indicators.push(id: it.id, title: it.out('rdfs:label').has('lang','pt').next().value) }
+        g.v('sustenagro:EconomicIndicator').in("rdfs:subClassOf").in("rdfs:subClassOf").each{ economic_indicators.push(id: it.id, title: it.out('rdfs:label').has('lang','pt').next().value) }
+        g.v('sustenagro:SocialIndicator').in("rdfs:subClassOf").in("rdfs:subClassOf").each{ social_indicators.push(id: it.id, title: it.out('rdfs:label').has('lang','pt').next().value) }
+
+        g.v('sustenagro:EnvironmentalIndicator').in("rdfs:subClassOf").in("rdfs:subClassOf").out("rdfs:subClassOf").each{ println it.id }
 
         String name = g.v('sustenagro:'+params.id).out('sustenagro:name').next().value
 
         render(view: "assessment", model: [production_unit_id: params.id,
                                            production_unit_name: name,
-                                           environmental_indicators: environmental_indicators ])
+                                           environmental_indicators: environmental_indicators,
+                                           economic_indicators: economic_indicators,
+                                           social_indicators: social_indicators])
     }
 
 }
