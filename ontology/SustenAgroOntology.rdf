@@ -6,6 +6,7 @@
     <!ENTITY db "http://dbpedia.org/ontology/" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
 ]>
@@ -15,6 +16,7 @@
      xml:base="http://biomac.icmc.usp.br/sustenagro"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:db="http://dbpedia.org/ontology/"
@@ -2289,8 +2291,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Eq15.83">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
-        <rdfs:label xml:lang="en">= 15.83</rdfs:label>
-        <rdfs:label xml:lang="pt">= 15,83</rdfs:label>
+        <rdfs:label xml:lang="en">Equal 15.83</rdfs:label>
+        <rdfs:label xml:lang="pt">Igual 15,83</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">0.0</threshold>
     </owl:NamedIndividual>
     
@@ -2359,8 +2361,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Gt1001">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
-        <rdfs:label xml:lang="en">Gt 1001</rdfs:label>
-        <rdfs:label xml:lang="pt">Gt 1001</rdfs:label>
+        <rdfs:label xml:lang="en">Greater 1001</rdfs:label>
+        <rdfs:label xml:lang="pt">Maior 1001</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">2.0</threshold>
     </owl:NamedIndividual>
     
@@ -2370,8 +2372,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Gt15.83">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
-        <rdfs:label xml:lang="en">&gt; 15.83</rdfs:label>
-        <rdfs:label xml:lang="pt">&gt; 15,83</rdfs:label>
+        <rdfs:label xml:lang="en">Greater 15.83</rdfs:label>
+        <rdfs:label xml:lang="pt">Maior 15,83</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">-1.0</threshold>
     </owl:NamedIndividual>
     
@@ -2391,6 +2393,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Gt85ton">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
+        <rdfs:label xml:lang="en">Greater 85 tons</rdfs:label>
+        <rdfs:label xml:lang="pt">Maior 85 toneladas</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">2.0</threshold>
     </owl:NamedIndividual>
     
@@ -2400,8 +2404,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Gt90">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
-        <rdfs:label xml:lang="en">&gt; 90%</rdfs:label>
-        <rdfs:label xml:lang="pt">&gt; 90%</rdfs:label>
+        <rdfs:label xml:lang="en">Greater 90%</rdfs:label>
+        <rdfs:label xml:lang="pt">Maior 90%</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">1.0</threshold>
     </owl:NamedIndividual>
     
@@ -2429,6 +2433,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#High">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#IntensityCategory"/>
+        <rdfs:label xml:lang="en">High</rdfs:label>
+        <rdfs:label xml:lang="pt">Alta</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2437,6 +2443,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#HighEfficiency">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
+        <rdfs:label xml:lang="en">High efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Alta eficiência</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">0.0</threshold>
     </owl:NamedIndividual>
     
@@ -2555,6 +2563,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Low">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#IntensityCategory"/>
+        <rdfs:label xml:lang="en">Low</rdfs:label>
+        <rdfs:label xml:lang="pt">Baixa</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2563,6 +2573,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#LowEfficiency">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
+        <rdfs:label xml:lang="en">Low efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Baixa eficiência</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">-3.0</threshold>
     </owl:NamedIndividual>
     
@@ -2572,8 +2584,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Lt15.83">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
-        <rdfs:label xml:lang="en">&lt; 15.83</rdfs:label>
-        <rdfs:label xml:lang="pt">&lt; 15,83</rdfs:label>
+        <rdfs:label xml:lang="en">Less 15.83</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor 15,83</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">1.0</threshold>
     </owl:NamedIndividual>
     
@@ -2593,6 +2605,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Lt64ton">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
+        <rdfs:label xml:lang="en">Less 64 tons</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor 64 toneladas</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">-2.0</threshold>
     </owl:NamedIndividual>
     
@@ -2602,8 +2616,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Lt724">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
-        <rdfs:label xml:lang="en">Lt 724</rdfs:label>
-        <rdfs:label xml:lang="pt">Lt 724</rdfs:label>
+        <rdfs:label xml:lang="en">Less 724</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor 724</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">-1.0</threshold>
     </owl:NamedIndividual>
     
@@ -2613,8 +2627,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Lt80">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
-        <rdfs:label xml:lang="en">&lt; 80%</rdfs:label>
-        <rdfs:label xml:lang="pt">&lt; 80%</rdfs:label>
+        <rdfs:label xml:lang="en">Less 80%</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor 80%</rdfs:label>
         <threshold rdf:datatype="&xsd;double">-1.0</threshold>
     </owl:NamedIndividual>
     
@@ -2633,6 +2647,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Medium">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#IntensityCategory"/>
+        <rdfs:label xml:lang="en">Medium</rdfs:label>
+        <rdfs:label xml:lang="pt">Média</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2641,6 +2657,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#MediumEfficiency">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
+        <rdfs:label xml:lang="en">Medium efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Média eficiência</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">-1.0</threshold>
     </owl:NamedIndividual>
     
@@ -2688,6 +2706,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#NoOrPartialSupply">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
+        <rdfs:label xml:lang="en">No or partial Supply</rdfs:label>
+        <rdfs:label xml:lang="pt">Não ou fornecimento parcial</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2841,6 +2861,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#SuppliesAllSellSurplus">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
+        <rdfs:label xml:lang="en">Supplies all sell surplus</rdfs:label>
+        <rdfs:label xml:lang="pt">Fornecimento de todos excedentes para venda</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2849,6 +2871,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#SupplyAll">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
+        <rdfs:label xml:lang="en">Supply all</rdfs:label>
+        <rdfs:label xml:lang="pt">Fornecimento de todo</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2940,6 +2964,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#UpperHighEfficiency">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
+        <rdfs:label xml:lang="en">Upper high efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Alta eficiência superior</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">1.0</threshold>
     </owl:NamedIndividual>
     
@@ -2949,6 +2975,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#UpperLowEfficiency">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
+        <rdfs:label xml:lang="en">Upper low efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Baixa eficiência superior</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">-2.0</threshold>
     </owl:NamedIndividual>
     
@@ -3000,6 +3028,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#interval64-74ton">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
+        <rdfs:label xml:lang="en">Interval 64-74</rdfs:label>
+        <rdfs:label xml:lang="pt">Intervalo 64-74</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">-1.0</threshold>
     </owl:NamedIndividual>
     
@@ -3010,8 +3040,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#interval724-890">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
-        <rdfs:label xml:lang="en">Interval 724 890</rdfs:label>
-        <rdfs:label xml:lang="pt">Interval 724 890</rdfs:label>
+        <rdfs:label xml:lang="en">Interval 74-82</rdfs:label>
+        <rdfs:label xml:lang="pt">Intervalo 74-82</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">0.0</threshold>
     </owl:NamedIndividual>
     
@@ -3021,8 +3051,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#interval80-90">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
-        <rdfs:label xml:lang="en">80% - 90%</rdfs:label>
-        <rdfs:label xml:lang="pt">80% - 90%</rdfs:label>
+        <rdfs:label xml:lang="en">Between 80% - 90%</rdfs:label>
+        <rdfs:label xml:lang="pt">Entre 80% - 90%</rdfs:label>
         <threshold rdf:datatype="&xsd;double">0.0</threshold>
     </owl:NamedIndividual>
     
@@ -3032,6 +3062,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#interval82-85ton">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
+        <rdfs:label xml:lang="en">Interval 82-85</rdfs:label>
+        <rdfs:label xml:lang="pt">Intervalo 82-85</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">1.0</threshold>
     </owl:NamedIndividual>
     
@@ -3041,8 +3073,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#interval891-1000">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
-        <rdfs:label xml:lang="en">Interval 891 1000</rdfs:label>
-        <rdfs:label xml:lang="pt">Interval 891 1000</rdfs:label>
+        <rdfs:label xml:lang="en">Interval 891-1000</rdfs:label>
+        <rdfs:label xml:lang="pt">Intervalo 891-1000</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">1.0</threshold>
     </owl:NamedIndividual>
     
