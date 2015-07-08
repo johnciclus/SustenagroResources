@@ -22,41 +22,37 @@
         </g:each>
     </div>
     <div role="tabpanel" class="tab-pane indicators" id="economic_indicators">
-        <g:each in="${economic_indicators}">
+        <g:each var="indicator" in="${economic_indicators}">
             <div class="page-header">
-                <b>${it.title}</b>
+                <b>${indicator.title}</b>
             </div>
-            <div>
-                <label for="${it.id}" >Valor</label>
-                <input type="text" class="form-control" id="${it.id}">
-            </div>
-            <table class="table table-striped table-hover ">
-                <tbody>
-                <tr>
-                    <td class="text-primary">Unidades</td>
-                    <td>Units</td>
-                </tr>
-                </tbody>
-            </table>
+
+            <g:if test="${indicator.valueType =='http://biomac.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://biomac.icmc.usp.br/sustenagro#Categorical'}">
+                <g:each var="category" in="${categorical[indicator.class]}">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="<%= indicator.class %>" value="<%= category.id %>"> <%= category.title %>
+                        </label>
+                    </div>
+                </g:each>
+            </g:if>
         </g:each>
     </div>
     <div role="tabpanel" class="tab-pane indicators" id="social_indicators">
-        <g:each in="${social_indicators}">
+        <g:each var="indicator" in="${social_indicators}">
             <div class="page-header">
-                <b>${it.title}</b>
+                <b>${indicator.title}</b>
             </div>
-            <div>
-                <label for="${it.id}" >Valor</label>
-                <input type="text" class="form-control" id="${it.id}">
-            </div>
-            <table class="table table-striped table-hover ">
-                <tbody>
-                <tr>
-                    <td class="text-primary">Unidades</td>
-                    <td>Units</td>
-                </tr>
-                </tbody>
-            </table>
+
+            <g:if test="${indicator.valueType =='http://biomac.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://biomac.icmc.usp.br/sustenagro#Categorical'}">
+                <g:each var="category" in="${categorical[indicator.class]}">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="<%= indicator.class %>" value="<%= category.id %>"> <%= category.title %>
+                        </label>
+                    </div>
+                </g:each>
+            </g:if>
         </g:each>
     </div>
 </div>

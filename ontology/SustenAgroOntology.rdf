@@ -6,7 +6,6 @@
     <!ENTITY db "http://dbpedia.org/ontology/" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
 ]>
@@ -16,7 +15,6 @@
      xml:base="http://biomac.icmc.usp.br/sustenagro"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:db="http://dbpedia.org/ontology/"
@@ -2361,6 +2359,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Gt1001">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
+        <rdfs:label xml:lang="en">Gt 1001</rdfs:label>
+        <rdfs:label xml:lang="pt">Gt 1001</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">2.0</threshold>
     </owl:NamedIndividual>
     
@@ -2602,6 +2602,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Lt724">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
+        <rdfs:label xml:lang="en">Lt 724</rdfs:label>
+        <rdfs:label xml:lang="pt">Lt 724</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">-1.0</threshold>
     </owl:NamedIndividual>
     
@@ -3008,6 +3010,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#interval724-890">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
+        <rdfs:label xml:lang="en">Interval 724 890</rdfs:label>
+        <rdfs:label xml:lang="pt">Interval 724 890</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">0.0</threshold>
     </owl:NamedIndividual>
     
@@ -3037,6 +3041,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#interval891-1000">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
+        <rdfs:label xml:lang="en">Interval 891 1000</rdfs:label>
+        <rdfs:label xml:lang="pt">Interval 891 1000</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">1.0</threshold>
     </owl:NamedIndividual>
     

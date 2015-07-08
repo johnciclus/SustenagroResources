@@ -171,7 +171,7 @@ class GEdge extends GGraph {
 
 class SlurpRDF {
     MemoryStoreSailGraph g
-    static String lang = 'en'
+    static String lang = 'pt'
 
     SlurpRDF(MemoryStoreSailGraph g){
         this.g = g
@@ -198,7 +198,7 @@ class SlurpRDF {
         new GNode(g, node._())
     }
 
-    static N(Map node) {node}
+    static N(Map node) { node }
     static N(String uri, Map node) {
         [uri, node]
     }
