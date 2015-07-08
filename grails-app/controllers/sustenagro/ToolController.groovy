@@ -21,6 +21,8 @@ class ToolController {
                                          technologies: technologies,
                                          production_unit_types: production_unit_types
                                         ])
+
+
     }
 
     def productionUnitCreate() {
@@ -47,21 +49,32 @@ class ToolController {
         def environmental_indicators = []
         def economic_indicators = []
         def social_indicators = []
+        def categorical = [:]
 
         //g.v('sustenagro:EnvironmentalIndicator').in("rdfs:subClassOf").each{ environmental_indicators.push(  id: it.id, title: it.out('terms:title').has('lang','pt').next().value, description: it.out('terms:description').has('lang','pt').next().value, assessmentQuestion: it.out('sustenagro:assessmentQuestion').has('lang','pt').next().value) }
-        g.v('sustenagro:EnvironmentalIndicator').in("rdfs:subClassOf").in("rdfs:subClassOf").each{ environmental_indicators.push(id: it.id, title: it.out('rdfs:label').has('lang','pt').next().value) }
-        g.v('sustenagro:EconomicIndicator').in("rdfs:subClassOf").in("rdfs:subClassOf").each{ economic_indicators.push(id: it.id, title: it.out('rdfs:label').has('lang','pt').next().value) }
-        g.v('sustenagro:SocialIndicator').in("rdfs:subClassOf").in("rdfs:subClassOf").each{ social_indicators.push(id: it.id, title: it.out('rdfs:label').has('lang','pt').next().value) }
+        g.v('sustenagro:EnvironmentalIndicator').in("rdfs:subClassOf").in("rdfs:subClassOf").each{ environmental_indicators.push(id: it.id, title: it.out('rdfs:label').has('lang','pt').next().value, 'class': it.out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").next().id, 'valueType': it.out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").out("rdfs:subClassOf").next().id) }
+        g.v('sustenagro:EconomicIndicator').in("rdfs:subClassOf").in("rdfs:subClassOf").each{ economic_indicators.push(id: it.id, title: it.out('rdfs:label').has('lang','pt').next().value, 'class': it.out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").next().id) }
+        g.v('sustenagro:SocialIndicator').in("rdfs:subClassOf").in("rdfs:subClassOf").each{ social_indicators.push(id: it.id, title: it.out('rdfs:label').has('lang','pt').next().value, 'class': it.out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").next().id) }
 
-        g.v('sustenagro:EnvironmentalIndicator').in("rdfs:subClassOf").in("rdfs:subClassOf").out("rdfs:subClassOf").each{ println it.id }
+        environmental_indicators.each{ g.v(it.id).out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").each{ categorical[it.id] = [] } }
+        //economic_indicators.each{ g.v(it.id).out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").each{ categorical[it.id] = [] } }
+        //social_indicators.each{ g.v(it.id).out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").each{ categorical[it.id] = [] } }
+
+        println categorical
+
+        categorical.each{ k, v -> g.v(k).in('rdf:type').each{ v.push(id: it.id, title: it.out('rdfs:label').has('lang','pt').next().value)} }
+
+
 
         String name = g.v('sustenagro:'+params.id).out('sustenagro:name').next().value
 
-        render(view: "assessment", model: [production_unit_id: params.id,
+        render(view: "assessment", model: [sustenagro: "http://biomac.icmc.usp.br/sustenagro#",
+                                           production_unit_id: params.id,
                                            production_unit_name: name,
                                            environmental_indicators: environmental_indicators,
                                            economic_indicators: economic_indicators,
-                                           social_indicators: social_indicators])
+                                           social_indicators: social_indicators,
+                                           categorical: categorical ])
     }
 
 }

@@ -262,6 +262,10 @@ class GraphTest {
 
         s.'1'.knows.name.value.each{println it}
 
+        //def s = new SlurpRDF(g)
+
+        //s.'EnvironmentalIndicator'.'rdf:type'.each{ indicators.push('name': it.id, 'name': it.title) }
+
 //        g =loll( ui: lakll( k: 'lkj',
 //                            lk: 'ghf',
 //                            gh:  B( mk: 'loiiu',
@@ -349,7 +353,6 @@ class GraphTest {
         def g = new SparqlRepositorySailGraph("http://dbpedia.org/sparql")
         def v = g.v('http://dbpedia.org/resource/Grateful_Dead')
         v.outE.label.dedup.each{println it}
-
     }
 
 //    def met() {

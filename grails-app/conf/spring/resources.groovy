@@ -4,4 +4,5 @@ import sustenagro.MemStore
 beans = {
     g(MemStore){
     }
+
 }

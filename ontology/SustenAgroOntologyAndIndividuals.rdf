@@ -133,20 +133,20 @@
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">threshold</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">limiar</label>
-	<range xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx1"/>
+	<range xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax1"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx1">
+<rdf:Description rdf:nodeID="node19phthd8ax1">
 	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-	<unionOf xmlns="http://www.w3.org/2002/07/owl#" rdf:nodeID="node19pd97pltx2"/>
+	<unionOf xmlns="http://www.w3.org/2002/07/owl#" rdf:nodeID="node19phthd8ax2"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx2">
+<rdf:Description rdf:nodeID="node19phthd8ax2">
 	<rdf:first rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-	<rdf:rest rdf:nodeID="node19pd97pltx3"/>
+	<rdf:rest rdf:nodeID="node19phthd8ax3"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx3">
+<rdf:Description rdf:nodeID="node19phthd8ax3">
 	<rdf:first rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
 	<rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
 </rdf:Description>
@@ -164,10 +164,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Incidence of accidents and fatalities in the workplace</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Incidência de acidentes e fatalidades no local de trabalho</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#SafetyIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx4"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax4"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx4">
+<rdf:Description rdf:nodeID="node19phthd8ax4">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
@@ -196,10 +196,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Direct Planting Adoption</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Adoção de Plantio Direto</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Others_Indicators"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx5"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax5"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx5">
+<rdf:Description rdf:nodeID="node19phthd8ax5">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Boolean"/>
@@ -224,10 +224,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Planning of agricultural activities according to the market strategy of the plant</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Planejamento das atividades agrícolas de acordo com a estratégia de mercado da usina</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#EnergyIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx6"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax6"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx6">
+<rdf:Description rdf:nodeID="node19phthd8ax6">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
@@ -282,10 +282,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Annual rate of unemployment caused by mechanization</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Taxa anual de desemprego causado pela mecanização</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobsIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx7"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax7"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx7">
+<rdf:Description rdf:nodeID="node19phthd8ax7">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Real"/>
@@ -317,10 +317,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Average monthly income of active employees in agriculture</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Rendimento médio mensal dos empregados ativos na área agrícola</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobsIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx8"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax8"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx8">
+<rdf:Description rdf:nodeID="node19phthd8ax8">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Real"/>
@@ -332,10 +332,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Average monthly income of active employees in the industrial area</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Rendimento médio mensal dos empregados ativos na área industrial</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobsIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx9"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax9"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx9">
+<rdf:Description rdf:nodeID="node19phthd8ax9">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Real"/>
@@ -347,10 +347,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Average worker salary</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Salário médio do trabalhador</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#IncomeIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx10"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax10"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx10">
+<rdf:Description rdf:nodeID="node19phthd8ax10">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
@@ -369,10 +369,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Bioelectricity destination</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Destino da bioeletricidade</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#EnergyIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx11"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax11"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx11">
+<rdf:Description rdf:nodeID="node19phthd8ax11">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#BioelectricityDestinationCategory"/>
@@ -391,10 +391,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Bioelectricity production</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Produção de bioeletricidade</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#EnergyIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx12"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax12"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx12">
+<rdf:Description rdf:nodeID="node19phthd8ax12">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
@@ -413,10 +413,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Infrastructure for producing second and third generation biofuels</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Infraestrutura para produção de biocombustíveis de segunda e terceira geração</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#IndustrialUnityIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx13"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax13"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx13">
+<rdf:Description rdf:nodeID="node19phthd8ax13">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
@@ -433,10 +433,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Biological pest control</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Controle biológico de pragas</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#GeneralIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx14"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax14"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx14">
+<rdf:Description rdf:nodeID="node19phthd8ax14">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
@@ -454,10 +454,10 @@
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Boolean</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Boleana</label>
-	<equivalentClass xmlns="http://www.w3.org/2002/07/owl#" rdf:nodeID="node19pd97pltx15"/>
+	<equivalentClass xmlns="http://www.w3.org/2002/07/owl#" rdf:nodeID="node19phthd8ax15"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx15">
+<rdf:Description rdf:nodeID="node19phthd8ax15">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#dataValue"/>
 	<qualifiedCardinality xmlns="http://www.w3.org/2002/07/owl#" rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
@@ -473,10 +473,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Buffer stocks</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Estoques reguladores</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#CostIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx16"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax16"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx16">
+<rdf:Description rdf:nodeID="node19phthd8ax16">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
@@ -508,10 +508,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Compliance with labor laws</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Cumprimento das leis trabalhistas</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#LegalIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx17"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax17"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx17">
+<rdf:Description rdf:nodeID="node19phthd8ax17">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
@@ -549,10 +549,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Crop Planning</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Planejamento de safra</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#ProductivityIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx18"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax18"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx18">
+<rdf:Description rdf:nodeID="node19phthd8ax18">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
@@ -587,10 +587,10 @@
 <rdf:Description rdf:about="http://biomac.icmc.usp.br/sustenagro#DieselConsumption">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Others_Indicators"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx19"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax19"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx19">
+<rdf:Description rdf:nodeID="node19phthd8ax19">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#IntensityCategory"/>
@@ -632,10 +632,10 @@
 <rdf:Description rdf:about="http://biomac.icmc.usp.br/sustenagro#EmissionAndSuspensionOfMicroparticles">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Others_Indicators"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx20"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax20"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx20">
+<rdf:Description rdf:nodeID="node19phthd8ax20">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#IntensityCategory"/>
@@ -657,10 +657,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Energy eficiency of boilers for cogeneration</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Eficiência energética das caldeiras para cogeração de energia</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#EnergyIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx21"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax21"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx21">
+<rdf:Description rdf:nodeID="node19phthd8ax21">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
@@ -729,10 +729,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Generating capacity of direct and indirect jobs</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Capacidade de geração de empregos diretos e indiretos</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobsIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx22"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax22"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx22">
+<rdf:Description rdf:nodeID="node19phthd8ax22">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Real"/>
@@ -816,10 +816,10 @@
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Indicator</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Indicador</label>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx23"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax23"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx23">
+<rdf:Description rdf:nodeID="node19phthd8ax23">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<someValuesFrom xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Value"/>
@@ -845,10 +845,10 @@
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Integer</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Inteiro</label>
-	<equivalentClass xmlns="http://www.w3.org/2002/07/owl#" rdf:nodeID="node19pd97pltx24"/>
+	<equivalentClass xmlns="http://www.w3.org/2002/07/owl#" rdf:nodeID="node19phthd8ax24"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx24">
+<rdf:Description rdf:nodeID="node19phthd8ax24">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#dataValue"/>
 	<qualifiedCardinality xmlns="http://www.w3.org/2002/07/owl#" rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
@@ -871,10 +871,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Investment relationship between machines versus sugarcane production and return on assets</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Relação entre investimento de máquinas versus produção de cana e retorno do imobilizado</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#CostIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx25"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax25"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx25">
+<rdf:Description rdf:nodeID="node19phthd8ax25">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Real"/>
@@ -886,10 +886,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Investments in social responsibility</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Investimentos em responsabilidade social</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#LegalIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx26"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax26"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx26">
+<rdf:Description rdf:nodeID="node19phthd8ax26">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
@@ -901,10 +901,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Job formality rate</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Taxa de formalidade de emprego</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobsIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx27"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax27"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx27">
+<rdf:Description rdf:nodeID="node19phthd8ax27">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
@@ -923,10 +923,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Jobs generated per hectare (year/harvest)</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Empregos gerados por hectare (ano/safra)</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobsIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx28"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax28"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx28">
+<rdf:Description rdf:nodeID="node19phthd8ax28">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Real"/>
@@ -952,10 +952,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Legal Reserve Area Registration Confirmation</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Confirmação do Registro da Área de Reserva Legal</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Others_Indicators"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx29"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax29"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx29">
+<rdf:Description rdf:nodeID="node19phthd8ax29">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Boolean"/>
@@ -976,10 +976,10 @@
 <rdf:Description rdf:about="http://biomac.icmc.usp.br/sustenagro#LongevityOfTheCane">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Others_Indicators"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx30"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax30"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx30">
+<rdf:Description rdf:nodeID="node19phthd8ax30">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Real"/>
@@ -1001,10 +1001,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Migration rate</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Taxa migratória</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobsIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx31"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax31"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx31">
+<rdf:Description rdf:nodeID="node19phthd8ax31">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Real"/>
@@ -1016,10 +1016,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Fulfilling Regulatory Norm 24</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Cumprimento a Norma Regulamentadora 24</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#HealthIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx32"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax32"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx32">
+<rdf:Description rdf:nodeID="node19phthd8ax32">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
@@ -1031,10 +1031,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Fulfilling Regulatory Norm 31</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Cumprimento a Norma Regulamentadora 31</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#HealthIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx33"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax33"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx33">
+<rdf:Description rdf:nodeID="node19phthd8ax33">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
@@ -1068,10 +1068,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Operational efficiency of the plant (vertical plant growth, recovery and development)</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#ProductivityIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx34"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax34"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx34">
+<rdf:Description rdf:nodeID="node19phthd8ax34">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
@@ -1103,10 +1103,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Planning and systematic planting</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Planejamento e sistematização do plantio</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#PlantingIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx35"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax35"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx35">
+<rdf:Description rdf:nodeID="node19phthd8ax35">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
@@ -1169,32 +1169,32 @@
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Real</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Real</label>
-	<equivalentClass xmlns="http://www.w3.org/2002/07/owl#" rdf:nodeID="node19pd97pltx36"/>
+	<equivalentClass xmlns="http://www.w3.org/2002/07/owl#" rdf:nodeID="node19phthd8ax36"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx36">
+<rdf:Description rdf:nodeID="node19phthd8ax36">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#dataValue"/>
 	<qualifiedCardinality xmlns="http://www.w3.org/2002/07/owl#" rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
-	<onDataRange xmlns="http://www.w3.org/2002/07/owl#" rdf:nodeID="node19pd97pltx37"/>
+	<onDataRange xmlns="http://www.w3.org/2002/07/owl#" rdf:nodeID="node19phthd8ax37"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx37">
+<rdf:Description rdf:nodeID="node19phthd8ax37">
 	<rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
-	<unionOf xmlns="http://www.w3.org/2002/07/owl#" rdf:nodeID="node19pd97pltx38"/>
+	<unionOf xmlns="http://www.w3.org/2002/07/owl#" rdf:nodeID="node19phthd8ax38"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx38">
+<rdf:Description rdf:nodeID="node19phthd8ax38">
 	<rdf:first rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
-	<rdf:rest rdf:nodeID="node19pd97pltx39"/>
+	<rdf:rest rdf:nodeID="node19phthd8ax39"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx39">
+<rdf:Description rdf:nodeID="node19phthd8ax39">
 	<rdf:first rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-	<rdf:rest rdf:nodeID="node19pd97pltx40"/>
+	<rdf:rest rdf:nodeID="node19phthd8ax40"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx40">
+<rdf:Description rdf:nodeID="node19phthd8ax40">
 	<rdf:first rdf:resource="http://www.w3.org/2002/07/owl#real"/>
 	<rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
 </rdf:Description>
@@ -1218,10 +1218,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Uses or invests in more resistant yeast</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Utiliza ou investe em leveduras mais resistentes</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#IndustrialUnityIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx41"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax41"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx41">
+<rdf:Description rdf:nodeID="node19phthd8ax41">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
@@ -1240,10 +1240,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Accident prevention and safety program</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Programa de prevenção e segurança do trabalho</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#HealthIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx42"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax42"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx42">
+<rdf:Description rdf:nodeID="node19phthd8ax42">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#ExistNo"/>
@@ -1255,10 +1255,10 @@
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Compensation paid to workers year/harvest</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Remuneração paga aos trabalhadores ano/safra</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#IncomeIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx43"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax43"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx43">
+<rdf:Description rdf:nodeID="node19phthd8ax43">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Real"/>
@@ -1275,10 +1275,10 @@
 <rdf:Description rdf:about="http://biomac.icmc.usp.br/sustenagro#SoilCompaction">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Others_Indicators"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx44"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax44"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx44">
+<rdf:Description rdf:nodeID="node19phthd8ax44">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Real"/>
@@ -1333,10 +1333,10 @@ Plantio direto ou utilização de maquinário que cause menor compactação do s
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Adequacy to the Joint Regulatory Standard 1/2012//DAS/MAP for aerial spraying.</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Adequação a Instrução Normativa Conjunta 1/2012//DAS/MAPA de pulverização aérea.</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#GeneralIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx45"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax45"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx45">
+<rdf:Description rdf:nodeID="node19phthd8ax45">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
@@ -1353,10 +1353,10 @@ Plantio direto ou utilização de maquinário que cause menor compactação do s
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Sugarcane productivity per hectare</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Produtividade de cana por hectare</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#ProductivityIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx46"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax46"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx46">
+<rdf:Description rdf:nodeID="node19phthd8ax46">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
@@ -1375,10 +1375,10 @@ Plantio direto ou utilização de maquinário que cause menor compactação do s
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Sugarcane transport optimization</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Otimização do transporte da cana</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#CostIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx47"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax47"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx47">
+<rdf:Description rdf:nodeID="node19phthd8ax47">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
@@ -1397,10 +1397,10 @@ Plantio direto ou utilização de maquinário que cause menor compactação do s
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Incentives for employee training</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Incentivos a capacitação dos funcionários</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Training"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx48"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax48"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx48">
+<rdf:Description rdf:nodeID="node19phthd8ax48">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#ExistNo"/>
@@ -1419,10 +1419,10 @@ Plantio direto ou utilização de maquinário que cause menor compactação do s
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Use efficiency for reduced diesel consumption and engine replacement plan</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Eficiência no uso para diminuição do consumo de diesel e plano de substituição de motores.</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#EnergyIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx49"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax49"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx49">
+<rdf:Description rdf:nodeID="node19phthd8ax49">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
@@ -1438,10 +1438,10 @@ Plantio direto ou utilização de maquinário que cause menor compactação do s
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="en">Relationship between the production of vinasse and ethanol ( liters of vinasse / liters of ethanol).</label>
 	<label xmlns="http://www.w3.org/2000/01/rdf-schema#" xml:lang="pt">Relação entre a produção de vinhaça e etanol (litros de vinhaça/litros de etanol).</label>
 	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#GeneralIndicator"/>
-	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19pd97pltx50"/>
+	<subClassOf xmlns="http://www.w3.org/2000/01/rdf-schema#" rdf:nodeID="node19phthd8ax50"/>
 </rdf:Description>
 
-<rdf:Description rdf:nodeID="node19pd97pltx50">
+<rdf:Description rdf:nodeID="node19phthd8ax50">
 	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
 	<onProperty xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
 	<onClass xmlns="http://www.w3.org/2002/07/owl#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
@@ -2222,8 +2222,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 </rdf:Description>
 
 <rdf:Description rdf:about="http://biomac.icmc.usp.br/sustenagro#fazenda-santa-maria">
-	<rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#ProcessingPlant"/>
-	<microregion xmlns="http://biomac.icmc.usp.br/sustenagro#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Jaú"/>
+	<microregion xmlns="http://biomac.icmc.usp.br/sustenagro#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#Adamantina"/>
 	<technology xmlns="http://biomac.icmc.usp.br/sustenagro#" rdf:resource="http://biomac.icmc.usp.br/sustenagro#low_technological_efficiency"/>
 </rdf:Description>
 

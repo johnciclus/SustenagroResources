@@ -15,8 +15,8 @@ Ontology: <http://biomac.icmc.usp.br/sustenagro#>
 AnnotationProperty: dc:title
 
     Annotations: 
-        rdfs:label "título"@pt,
-        rdfs:label "title"@en
+        rdfs:label "title"@en,
+        rdfs:label "título"@pt
     
     Annotations: 
         rdfs:label "title"@en,
@@ -56,8 +56,8 @@ AnnotationProperty: assessmentQuestion
 AnnotationProperty: dc:description
 
     Annotations: 
-        rdfs:label "descrição"@pt,
-        rdfs:label "description"@en
+        rdfs:label "description"@en,
+        rdfs:label "descrição"@pt
     
     Annotations: 
         rdfs:label "description"@en,
@@ -199,8 +199,8 @@ Class: ResistantYeast
 Class: PlanningSystematicPlanting
 
     Annotations: 
-        rdfs:label "Planning and systematic planting"@en,
-        rdfs:label "Planejamento e sistematização do plantio "@pt
+        rdfs:label "Planejamento e sistematização do plantio "@pt,
+        rdfs:label "Planning and systematic planting"@en
     
     SubClassOf: 
         value exactly 1 YesNo,
@@ -239,16 +239,6 @@ Class: PredominanceOfConversionOfPastureToSugarcaneThanOtherFieldCrops_ForestsFo
 
     SubClassOf: 
         Others_Indicators
-    
-    
-Class: EnergyIndicator
-
-    Annotations: 
-        rdfs:label "Energy indicator"@en,
-        rdfs:label "Indicador de energia"@pt
-    
-    SubClassOf: 
-        EconomicIndicator
     
     
 Class: AverageMonthlyIncomeAgriculture
@@ -324,18 +314,7 @@ Class: ComplianceWithThedcOfCommitmentToEnvironmentalRecovery
         Others_Indicators
     
     
-Class: EnergyEfficiencyOfBoilersForCogeneration
-
-    Annotations: 
-        rdfs:label "Eficiência energética das caldeiras para cogeração de energia"@pt,
-        rdfs:label "Energy eficiency of boilers for cogeneration"@en
-    
-    SubClassOf: 
-        EnergyIndicator,
-        value exactly 1 BoilerEfficiencyCategory
-    
-    
-Class: PermanentPreservationAreasRecovered_Preserved
+Class: PlantedArea_HarvestedArea
 
     SubClassOf: 
         Others_Indicators
@@ -383,6 +362,16 @@ Class: Stability
 Class: AgriculturalTechnology
 
     
+Class: GeneralIndicator
+
+    Annotations: 
+        rdfs:label "General Indicator"@en,
+        rdfs:label "Indicador Geral"@pt
+    
+    SubClassOf: 
+        EnvironmentalIndicator
+    
+    
 Class: JobFormalityRate
 
     Annotations: 
@@ -410,6 +399,12 @@ Class: CostIndicator
         EconomicIndicator
     
     
+Class: CapabilityToProvideBioelectricity
+
+    SubClassOf: 
+        IndicatorComponent
+    
+    
 Class: ClimaticFactorOrFactorOfRaiFallErosivity
 
     SubClassOf: 
@@ -432,13 +427,6 @@ Class: ProcessingPlant
         ProductionUnit
     
     
-Class: ProductionUnit
-
-    Annotations: 
-        rdfs:label "Production Unit"@en,
-        rdfs:label "Unidade produtiva"@pt
-    
-    
 Class: InvestmentsSocialResponsibility
 
     Annotations: 
@@ -450,6 +438,17 @@ Class: InvestmentsSocialResponsibility
         LegalIndicator
     
     
+Class: AgriculturalActivityPlanning
+
+    Annotations: 
+        rdfs:label "Planning of agricultural activities according to the market strategy of the plant"@en,
+        rdfs:label "Planejamento das atividades agrícolas de acordo com a estratégia de mercado da usina"@pt
+    
+    SubClassOf: 
+        value exactly 1 YesNo,
+        EnergyIndicator
+    
+    
 Class: AverageSalary
 
     Annotations: 
@@ -457,8 +456,8 @@ Class: AverageSalary
         rdfs:label "Average worker salary"@en
     
     SubClassOf: 
-        IncomeIndicator,
-        value exactly 1 AverageSalaryCategory
+        value exactly 1 AverageSalaryCategory,
+        IncomeIndicator
     
     
 Class: db:Region
@@ -604,17 +603,17 @@ Class: MigrationRate
 Class: SocialIndicator
 
     Annotations: 
-        rdfs:label "Indicador Social"@pt,
-        rdfs:label "Social Indicator"@en
+        rdfs:label "Social Indicator"@en,
+        rdfs:label "Indicador Social"@pt
     
     SubClassOf: 
         Indicator
     
     
-Class: InclusionOfEthanolAsACommodity
+Class: AnalysisToChoiceOfTheProduction
 
     SubClassOf: 
-        Others_Indicators
+        IndicatorComponent
     
     
 Class: SugarcaneTransportOptimization
@@ -631,8 +630,8 @@ Class: SugarcaneTransportOptimization
 Class: LegalReserveAreaRegistrationConfirmation
 
     Annotations: 
-        dc:title "Confirmação do Registro da Área de Reserva Legal"@pt,
         rdfs:label "Confirmação do Registro da Área de Reserva Legal"@pt,
+        dc:title "Confirmação do Registro da Área de Reserva Legal"@pt,
         dc:title "Legal Reserve Area Registration Confirmation"@en,
         rdfs:label "Legal Reserve Area Registration Confirmation"@en,
         dc:description "Confirmação do Registro da Área de Reserva Legal"@pt
@@ -726,15 +725,14 @@ Class: DistancePowerPlant_SugarcaneProduction
         Others_Indicators
     
     
-Class: CropPlanning
+Class: JobFormalityRateCategory
 
     Annotations: 
-        rdfs:label "Planejamento de safra"@pt,
-        rdfs:label "Crop Planning"@en
+        rdfs:label "Job formality rate category"@en,
+        rdfs:label "Categoria taxa de empregos formais"@pt
     
     SubClassOf: 
-        ProductivityIndicator,
-        value exactly 1 YesNo
+        Categorical
     
     
 Class: DirectPlanting
@@ -760,21 +758,21 @@ Class: PermanentPreservationAreasRecoveredPreserved
         Others_Indicators
     
     
-Class: YesNo
+Class: LegalIndicator
 
     Annotations: 
-        rdfs:label "Sim/Não"@pt,
-        rdfs:label "Yes/No"@en
+        rdfs:label "Indicador legal"@pt,
+        rdfs:label "Legal indicator"@en
     
     SubClassOf: 
-        Boolean
+        SocialIndicator
     
     
 Class: EconomicIndicator
 
     Annotations: 
-        rdfs:label "Indicador Econômico"@pt,
-        rdfs:label "Economic Indicator"@en
+        rdfs:label "Economic Indicator"@en,
+        rdfs:label "Indicador Econômico"@pt
     
     SubClassOf: 
         Indicator
@@ -814,17 +812,15 @@ Class: GeographicLocationOfCultureInRelativeClimaticAptitude
         Others_Indicators
     
     
-Class: Integer
+Class: EnergyEfficiencyOfBoilersForCogeneration
 
     Annotations: 
-        rdfs:label "Integer"@en,
-        rdfs:label "Inteiro"@pt
-    
-    EquivalentTo: 
-        dataValue exactly 1 xsd:integer
+        rdfs:label "Eficiência energética das caldeiras para cogeração de energia"@pt,
+        rdfs:label "Energy eficiency of boilers for cogeneration"@en
     
     SubClassOf: 
-        Real
+        EnergyIndicator,
+        value exactly 1 BoilerEfficiencyCategory
     
     
 Class: AmountOfTraining
@@ -840,12 +836,6 @@ Class: AnnualWaterDeficiency
 
     SubClassOf: 
         IndicatorComponent
-    
-    
-Class: PlantedArea_HarvestedArea
-
-    SubClassOf: 
-        Others_Indicators
     
     
 Class: BurningLocal
@@ -871,14 +861,14 @@ Class: JobsGeneratedPerHectare
         value exactly 1 Real
     
     
-Class: LegalIndicator
+Class: ProductivityIndicator
 
     Annotations: 
-        rdfs:label "Indicador legal"@pt,
-        rdfs:label "Legal indicator"@en
+        rdfs:label "Indicador de Produtividade"@pt,
+        rdfs:label "Productivity Indicator"@en
     
     SubClassOf: 
-        SocialIndicator
+        EconomicIndicator
     
     
 Class: <http://www.dbpedia.org/resource/Farm>
@@ -936,14 +926,21 @@ Class: Adoption
         IndicatorComponent
     
     
-Class: JobFormalityRateCategory
+Class: CropPlanning
 
     Annotations: 
-        rdfs:label "Job formality rate category"@en,
-        rdfs:label "Categoria taxa de empregos formais"@pt
+        rdfs:label "Planejamento de safra"@pt,
+        rdfs:label "Crop Planning"@en
     
     SubClassOf: 
-        Categorical
+        ProductivityIndicator,
+        value exactly 1 YesNo
+    
+    
+Class: OccurrenceOfBurntStrawOnTheCountryside
+
+    SubClassOf: 
+        Others_Indicators
     
     
 Class: GeographicalLocationOfCultureInEdaphicRelation
@@ -997,22 +994,6 @@ Class: Norm24
     SubClassOf: 
         HealthIndicator,
         value exactly 1 YesNo
-    
-    
-Class: ProductivityIndicator
-
-    Annotations: 
-        rdfs:label "Indicador de Produtividade"@pt,
-        rdfs:label "Productivity Indicator"@en
-    
-    SubClassOf: 
-        EconomicIndicator
-    
-    
-Class: OccurrenceOfBurntStrawOnTheCountryside
-
-    SubClassOf: 
-        Others_Indicators
     
     
 Class: FavorableConditionsForMechanization
@@ -1103,16 +1084,14 @@ Class: FactorOfDeclivityOfTheHill
         IndicatorComponent
     
     
-Class: AnalysisToChoiceOfTheProduction
+Class: EnergyIndicator
 
-    SubClassOf: 
-        IndicatorComponent
+    Annotations: 
+        rdfs:label "Energy indicator"@en,
+        rdfs:label "Indicador de energia"@pt
     
-    
-Class: HydricIndex
-
     SubClassOf: 
-        IndicatorComponent
+        EconomicIndicator
     
     
 Class: Autonomy
@@ -1181,15 +1160,10 @@ necessário aplicar 30 kg/ha de nitrogênio; já na adubação da cana-soca, a q
         Others_Indicators
     
     
-Class: AgriculturalActivityPlanning
+Class: InclusionOfEthanolAsACommodity
 
-    Annotations: 
-        rdfs:label "Planning of agricultural activities according to the market strategy of the plant"@en,
-        rdfs:label "Planejamento das atividades agrícolas de acordo com a estratégia de mercado da usina"@pt
-    
     SubClassOf: 
-        value exactly 1 YesNo,
-        EnergyIndicator
+        Others_Indicators
     
     
 Class: AnthropicFactorOrConservationPractices
@@ -1208,6 +1182,12 @@ Class: BoilerEfficiencyCategory
         Categorical
     
     
+Class: PermanentPreservationAreasRecovered_Preserved
+
+    SubClassOf: 
+        Others_Indicators
+    
+    
 Class: PriceRatioGasoline_Ethanol
 
     SubClassOf: 
@@ -1217,21 +1197,18 @@ Class: PriceRatioGasoline_Ethanol
 Class: SugarcaneProductivityPerHectareCategory
 
     Annotations: 
-        rdfs:label "Sugarcane productivity per hectare category"@en,
-        rdfs:label "Categoria produtividade de cana por hectare"@pt
+        rdfs:label "Categoria produtividade de cana por hectare"@pt,
+        rdfs:label "Sugarcane productivity per hectare category"@en
     
     SubClassOf: 
         Categorical
     
     
-Class: IncomeIndicator
+Class: ProductionUnit
 
     Annotations: 
-        rdfs:label "Income indicator"@en,
-        rdfs:label "Indicador de renda"@pt
-    
-    SubClassOf: 
-        SocialIndicator
+        rdfs:label "Production Unit"@en,
+        rdfs:label "Unidade produtiva"@pt
     
     
 Class: Categorical
@@ -1301,15 +1278,14 @@ Class: Training
         SocialIndicator
     
     
-Class: SalaryPaidYearSeason
+Class: IncomeIndicator
 
     Annotations: 
-        rdfs:label "Compensation paid to workers year/harvest"@en,
-        rdfs:label "Remuneração paga aos trabalhadores ano/safra"@pt
+        rdfs:label "Income indicator"@en,
+        rdfs:label "Indicador de renda"@pt
     
     SubClassOf: 
-        value exactly 1 Real,
-        IncomeIndicator
+        SocialIndicator
     
     
 Class: OperationalEfficiencyPlant
@@ -1350,6 +1326,17 @@ Class: TrainingIncentive
         Training
     
     
+Class: SalaryPaidYearSeason
+
+    Annotations: 
+        rdfs:label "Compensation paid to workers year/harvest"@en,
+        rdfs:label "Remuneração paga aos trabalhadores ano/safra"@pt
+    
+    SubClassOf: 
+        value exactly 1 Real,
+        IncomeIndicator
+    
+    
 Class: AdoptionOfFlex_FuelTechnologyByOtherCountries
 
     Annotations: 
@@ -1363,6 +1350,19 @@ Class: AdoptionOfFlex_FuelTechnologyByOtherCountries
     
 Class: IndicatorComponent
 
+    
+Class: Integer
+
+    Annotations: 
+        rdfs:label "Integer"@en,
+        rdfs:label "Inteiro"@pt
+    
+    EquivalentTo: 
+        dataValue exactly 1 xsd:integer
+    
+    SubClassOf: 
+        Real
+    
     
 Class: Criteria
 
@@ -1391,8 +1391,8 @@ Class: DieselConsumption
 Class: BioelectricityDestination
 
     Annotations: 
-        rdfs:label "Bioelectricity destination"@en,
-        rdfs:label "Destino da bioeletricidade"@pt
+        rdfs:label "Destino da bioeletricidade"@pt,
+        rdfs:label "Bioelectricity destination"@en
     
     SubClassOf: 
         value exactly 1 BioelectricityDestinationCategory,
@@ -1441,14 +1441,10 @@ Class: InfrastructureForTheProductionOfBiofuels2ndAnd3rdGenerations
         Others_Indicators
     
     
-Class: GeneralIndicator
+Class: HydricIndex
 
-    Annotations: 
-        rdfs:label "General Indicator"@en,
-        rdfs:label "Indicador Geral"@pt
-    
     SubClassOf: 
-        EnvironmentalIndicator
+        IndicatorComponent
     
     
 Class: Real
@@ -1486,10 +1482,14 @@ Class: GeneratingJobs
         value exactly 1 Real
     
     
-Class: CapabilityToProvideBioelectricity
+Class: YesNo
 
+    Annotations: 
+        rdfs:label "Sim/Não"@pt,
+        rdfs:label "Yes/No"@en
+    
     SubClassOf: 
-        IndicatorComponent
+        Boolean
     
     
 Class: BioelectricityProductionCategory
@@ -1502,13 +1502,13 @@ Class: BioelectricityProductionCategory
         Categorical
     
     
-Individual: Guaratinguetá
+Individual: São_Paulo
 
     Types: 
         db:MicroRegion
     
     Facts:  
-     name  "Guaratinguetá"^^xsd:string
+     name  "São Paulo"^^xsd:string
     
     
 Individual: Caraguatatuba
@@ -1590,6 +1590,15 @@ Individual: Franco_da_Rocha
      name  "Franco da Rocha"^^xsd:string
     
     
+Individual: Bragança_Paulista
+
+    Types: 
+        db:MicroRegion
+    
+    Facts:  
+     name  "Bragança Paulista"^^xsd:string
+    
+    
 Individual: LowEfficiency
 
     Types: 
@@ -1597,16 +1606,6 @@ Individual: LowEfficiency
     
     Facts:  
      threshold  -3.0
-    
-    
-Individual: Interval1.0-2.5Mtons
-
-    Annotations: 
-        rdfs:label "Grinding capacity between 1.0 and 2.5 million tons/harvest"@en,
-        rdfs:label "Capacidade de moagem entre 1,0 e 2,5 milhões de toneladas/safra"@pt
-    
-    Types: 
-        OperationalEfficiencyCategory
     
     
 Individual: Jales
@@ -1656,6 +1655,10 @@ Individual: Lins
     
 Individual: Between10-18
 
+    Annotations: 
+        rdfs:label "Between 10-18"@en,
+        rdfs:label "Entre 10-18"@pt
+    
     Types: 
         VinasseAndEthanolRelationCategory
     
@@ -1671,15 +1674,6 @@ Individual: Export
     
     Types: 
         BioelectricityDestinationCategory
-    
-    
-Individual: Tatuí
-
-    Types: 
-        db:MicroRegion
-    
-    Facts:  
-     name  "Tatuí"^^xsd:string
     
     
 Individual: Batatais
@@ -1706,26 +1700,22 @@ Individual: Nhandeara
      name  "Nhandeara"^^xsd:string
     
     
-Individual: UpperLowEfficiency
+Individual: Jaboticabal
 
     Types: 
-        BoilerEfficiencyCategory
+        db:MicroRegion
     
     Facts:  
-     threshold  -2.0
+     name  "Jaboticabal"^^xsd:string
     
     
-Individual: Below10
+Individual: Araraquara
 
-    Annotations: 
-        rdfs:label "Below 10"@en,
-        rdfs:label "Abaixo de 10"@pt
-    
     Types: 
-        VinasseAndEthanolRelationCategory
+        db:MicroRegion
     
     Facts:  
-     threshold  1.0
+     name  "Araraquara"^^xsd:string
     
     
 Individual: São_João_da_Boa_Vista
@@ -1768,13 +1758,13 @@ Individual: Gt90
      threshold  1.0
     
     
-Individual: Itapecerica_da_Serra
+Individual: Itanhaém
 
     Types: 
         db:MicroRegion
     
     Facts:  
-     name  "Itapecerica da Serra"^^xsd:string
+     name  "Itanhaém"^^xsd:string
     
     
 Individual: Dracena
@@ -1873,13 +1863,13 @@ Individual: No
      dataValue  false
     
     
-Individual: Piedade
+Individual: Assis
 
     Types: 
         db:MicroRegion
     
     Facts:  
-     name  "Piedade"^^xsd:string
+     name  "Assis"^^xsd:string
     
     
 Individual: Limeira
@@ -1954,15 +1944,6 @@ Individual: False
      dataValue  false
     
     
-Individual: Piracicaba
-
-    Types: 
-        db:MicroRegion
-    
-    Facts:  
-     name  "Piracicaba"^^xsd:string
-    
-    
 Individual: interval82-85ton
 
     Types: 
@@ -1972,10 +1953,13 @@ Individual: interval82-85ton
      threshold  1.0
     
     
-Individual: <http://pt.dbpedia.org/page/São_Paulo_(estado)>
+Individual: UpperLowEfficiency
 
     Types: 
-        db:State
+        BoilerEfficiencyCategory
+    
+    Facts:  
+     threshold  -2.0
     
     
 Individual: Votuporanga
@@ -1987,13 +1971,19 @@ Individual: Votuporanga
      name  "Votuporanga"^^xsd:string
     
     
-Individual: Amparo
+Individual: Tatuí
 
     Types: 
         db:MicroRegion
     
     Facts:  
-     name  "Amparo"^^xsd:string
+     name  "Tatuí"^^xsd:string
+    
+    
+Individual: <http://pt.dbpedia.org/page/São_Paulo_(estado)>
+
+    Types: 
+        db:State
     
     
 Individual: Barretos
@@ -2003,6 +1993,15 @@ Individual: Barretos
     
     Facts:  
      name  "Barretos"^^xsd:string
+    
+    
+Individual: Amparo
+
+    Types: 
+        db:MicroRegion
+    
+    Facts:  
+     name  "Amparo"^^xsd:string
     
     
 Individual: São_José_do_Rio_Preto
@@ -2023,6 +2022,19 @@ Individual: São_Joaquim_da_Barra
      name  "São Joaquim da Barra"^^xsd:string
     
     
+Individual: Below10
+
+    Annotations: 
+        rdfs:label "Below 10"@en,
+        rdfs:label "Abaixo de 10"@pt
+    
+    Types: 
+        VinasseAndEthanolRelationCategory
+    
+    Facts:  
+     threshold  1.0
+    
+    
 Individual: Avaré
 
     Types: 
@@ -2032,26 +2044,13 @@ Individual: Avaré
      name  "Avaré"^^xsd:string
     
     
-Individual: Exist
-
-    Annotations: 
-        rdfs:label "Exist"@en,
-        rdfs:label "Existe"@pt
-    
-    Types: 
-        ExistNo
-    
-    Facts:  
-     dataValue  true
-    
-    
-Individual: Birigüi
+Individual: Botucatu
 
     Types: 
         db:MicroRegion
     
     Facts:  
-     name  "Birigüi"^^xsd:string
+     name  "Botucatu"^^xsd:string
     
     
 Individual: low_technological_efficiency
@@ -2064,15 +2063,6 @@ Individual: low_technological_efficiency
      name  "Baixa eficiência tecnológica"^^xsd:string
     
     
-Individual: Araraquara
-
-    Types: 
-        db:MicroRegion
-    
-    Facts:  
-     name  "Araraquara"^^xsd:string
-    
-    
 Individual: Guarulhos
 
     Types: 
@@ -2082,23 +2072,13 @@ Individual: Guarulhos
      name  "Guarulhos"^^xsd:string
     
     
-Individual: Bragança_Paulista
+Individual: Registro
 
     Types: 
         db:MicroRegion
     
     Facts:  
-     name  "Bragança Paulista"^^xsd:string
-    
-    
-Individual: high_technological_efficiency
-
-    Types: 
-        AgriculturalTechnology
-    
-    Facts:  
-     name  "Alta eficiência tecnológica"^^xsd:string,
-     description  "Mecanização no plantio e colheita"^^xsd:string
+     name  "Registro"^^xsd:string
     
     
 Individual: Capão_Bonito
@@ -2110,13 +2090,14 @@ Individual: Capão_Bonito
      name  "Capão Bonito"^^xsd:string
     
     
-Individual: Assis
+Individual: Interval1.0-2.5Mtons
 
-    Types: 
-        db:MicroRegion
+    Annotations: 
+        rdfs:label "Grinding capacity between 1.0 and 2.5 million tons/harvest"@en,
+        rdfs:label "Capacidade de moagem entre 1,0 e 2,5 milhões de toneladas/safra"@pt
     
-    Facts:  
-     name  "Assis"^^xsd:string
+    Types: 
+        OperationalEfficiencyCategory
     
     
 Individual: Yes
@@ -2206,13 +2187,14 @@ Individual: interval64-74ton
      threshold  -1.0
     
     
-Individual: Botucatu
+Individual: high_technological_efficiency
 
     Types: 
-        db:MicroRegion
+        AgriculturalTechnology
     
     Facts:  
-     name  "Botucatu"^^xsd:string
+     name  "Alta eficiência tecnológica"^^xsd:string,
+     description  "Mecanização no plantio e colheita"^^xsd:string
     
     
 Individual: Lt724
@@ -2233,13 +2215,13 @@ Individual: Jundiaí
      name  "Jundiaí"^^xsd:string
     
     
-Individual: Adamantina
+Individual: Guaratinguetá
 
     Types: 
         db:MicroRegion
     
     Facts:  
-     name  "Adamantina"^^xsd:string
+     name  "Guaratinguetá"^^xsd:string
     
     
 Individual: Jaú
@@ -2261,15 +2243,6 @@ Individual: SuppliesAllSellSurplus
 
     Types: 
         BioelectricityProductionCategory
-    
-    
-Individual: São_Paulo
-
-    Types: 
-        db:MicroRegion
-    
-    Facts:  
-     name  "São Paulo"^^xsd:string
     
     
 Individual: Marília
@@ -2299,6 +2272,24 @@ Individual: Gt85ton
      threshold  2.0
     
     
+Individual: Piedade
+
+    Types: 
+        db:MicroRegion
+    
+    Facts:  
+     name  "Piedade"^^xsd:string
+    
+    
+Individual: Sugarcane
+
+    Types: 
+        SugarcaneProductionSystem
+    
+    Facts:  
+     name  "Cana-de-açúcar"^^xsd:string
+    
+    
 Individual: interval891-1000
 
     Types: 
@@ -2308,13 +2299,17 @@ Individual: interval891-1000
      threshold  1.0
     
     
-Individual: Registro
+Individual: Exist
 
+    Annotations: 
+        rdfs:label "Exist"@en,
+        rdfs:label "Existe"@pt
+    
     Types: 
-        db:MicroRegion
+        ExistNo
     
     Facts:  
-     name  "Registro"^^xsd:string
+     dataValue  true
     
     
 Individual: Rio_Claro
@@ -2324,6 +2319,15 @@ Individual: Rio_Claro
     
     Facts:  
      name  "Rio Claro"^^xsd:string
+    
+    
+Individual: Adamantina
+
+    Types: 
+        db:MicroRegion
+    
+    Facts:  
+     name  "Adamantina"^^xsd:string
     
     
 Individual: UpperHighEfficiency
@@ -2371,15 +2375,6 @@ Individual: Mogi_das_Cruzes
      name  "Mogi das Cruzes"^^xsd:string
     
     
-Individual: Itanhaém
-
-    Types: 
-        db:MicroRegion
-    
-    Facts:  
-     name  "Itanhaém"^^xsd:string
-    
-    
 Individual: Auriflama
 
     Types: 
@@ -2389,23 +2384,13 @@ Individual: Auriflama
      name  "Auriflama"^^xsd:string
     
     
-Individual: Gt2.5Mtons
-
-    Annotations: 
-        rdfs:label "Capacidade de moagem superior a 2,5 milhões de ton/safra"@pt,
-        rdfs:label "Grinding capacity higher than 2.5 million tons/harvest"@en
-    
-    Types: 
-        OperationalEfficiencyCategory
-    
-    
-Individual: Sugarcane
+Individual: Piracicaba
 
     Types: 
-        SugarcaneProductionSystem
+        db:MicroRegion
     
     Facts:  
-     name  "Cana-de-açúcar"^^xsd:string
+     name  "Piracicaba"^^xsd:string
     
     
 Individual: SelfConsumption
@@ -2416,6 +2401,15 @@ Individual: SelfConsumption
     
     Types: 
         BioelectricityDestinationCategory
+    
+    
+Individual: Birigüi
+
+    Types: 
+        db:MicroRegion
+    
+    Facts:  
+     name  "Birigüi"^^xsd:string
     
     
 Individual: Tupã
@@ -2468,6 +2462,15 @@ Individual: Gt1001
      threshold  2.0
     
     
+Individual: Itapecerica_da_Serra
+
+    Types: 
+        db:MicroRegion
+    
+    Facts:  
+     name  "Itapecerica da Serra"^^xsd:string
+    
+    
 Individual: DontExist
 
     Annotations: 
@@ -2499,13 +2502,14 @@ Individual: Sorocaba
      name  "Sorocaba"^^xsd:string
     
     
-Individual: Jaboticabal
+Individual: Gt2.5Mtons
 
-    Types: 
-        db:MicroRegion
+    Annotations: 
+        rdfs:label "Grinding capacity higher than 2.5 million tons/harvest"@en,
+        rdfs:label "Capacidade de moagem superior a 2,5 milhões de ton/safra"@pt
     
-    Facts:  
-     name  "Jaboticabal"^^xsd:string
+    Types: 
+        OperationalEfficiencyCategory
     
     
 Individual: Presidente_Prudente

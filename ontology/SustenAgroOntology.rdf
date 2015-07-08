@@ -2188,6 +2188,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Between10-18">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
+        <rdfs:label xml:lang="en">Between 10-18</rdfs:label>
+        <rdfs:label xml:lang="pt">Entre 10-18</rdfs:label>
         <threshold rdf:datatype="&xsd;decimal">0.0</threshold>
     </owl:NamedIndividual>
     
