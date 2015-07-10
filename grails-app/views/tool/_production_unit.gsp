@@ -14,7 +14,7 @@
         <label for="production_unit_microregion">Microrregião da unidade produtiva</label>
         <select id="production_unit_microregion" name="production_unit_microregion" class="form-control">
             <g:each in="${microregions}">
-                <option value="${it.id}">${it.name}</option>
+                <option value="${it.id.id}">${it.name.value}</option>
             </g:each>
         </select>
     </div>
@@ -32,9 +32,9 @@
             <tbody>
             <g:each in="${cultures}">
                 <tr>
-                    <td>${it.name}</td>
+                    <td>${it.name.value}</td>
                     <td>
-                        <input type="radio" name="production_unit_culture" value="${it.id}">
+                        <input type="radio" name="production_unit_culture" value="${it.id.id}">
                     </td>
                 </tr>
             </g:each>
@@ -56,10 +56,10 @@
             <tbody>
             <g:each in="${technologies}">
             <tr>
-                <td>${it.name}</td>
-                <td>${it.description}</td>
+                <td>${it.name.value}</td>
+                <td>${it.description?.value}</td>
                 <td>
-                    <input type="radio" name="production_unit_technology" value="${it.id}" >
+                    <input type="radio" name="production_unit_technology" value="${it.id.id}" >
                 </td>
             </tr>
             </g:each>
@@ -80,9 +80,9 @@
             <tbody>
             <g:each in="${production_unit_types}">
             <tr>
-                <td>${it.name}</td>
+                <td>${it.name.value}</td>
                 <td>
-                    <input type="radio" name="production_unit_type" value="${it.id}">
+                    <input type="radio" name="production_unit_type" value="${it.id.id}">
                 </td>
             </tr>
             </g:each>

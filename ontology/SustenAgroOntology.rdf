@@ -2,9 +2,11 @@
 
 
 <!DOCTYPE rdf:RDF [
-    <!ENTITY dc "http://purl.org/dc/dc#" >
+    <!ENTITY dc "http://purl.org/dc/terms/" >
+    <!ENTITY db "http://dbpedia.org/ontology/" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
 ]>
@@ -14,9 +16,11 @@
      xml:base="http://biomac.icmc.usp.br/sustenagro"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:dc="http://purl.org/dc/dc#">
+     xmlns:db="http://dbpedia.org/ontology/"
+     xmlns:dc="http://purl.org/dc/terms/">
     <owl:Ontology rdf:about="http://biomac.icmc.usp.br/sustenagro#"/>
     
 
@@ -64,7 +68,7 @@
     
 
 
-    <!-- http://purl.org/dc/dc#description -->
+    <!-- http://purl.org/dc/terms/description -->
 
     <owl:AnnotationProperty rdf:about="&dc;description">
         <rdfs:label xml:lang="en">description</rdfs:label>
@@ -73,13 +77,72 @@
     
 
 
-    <!-- http://purl.org/dc/dc#title -->
+    <!-- http://purl.org/dc/terms/title -->
 
     <owl:AnnotationProperty rdf:about="&dc;title">
         <rdfs:label xml:lang="en">title</rdfs:label>
         <rdfs:label xml:lang="pt">título</rdfs:label>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#label -->
+
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral -->
+
+    <rdfs:Datatype rdf:about="&rdf;PlainLiteral"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#boolean -->
+
+    <rdfs:Datatype rdf:about="&xsd;boolean"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#decimal -->
+
+    <rdfs:Datatype rdf:about="&xsd;decimal"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#double -->
+
+    <rdfs:Datatype rdf:about="&xsd;double"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#integer -->
+
+    <rdfs:Datatype rdf:about="&xsd;integer"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#string -->
+
+    <rdfs:Datatype rdf:about="&xsd;string"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#real -->
+
+    <rdfs:Datatype rdf:about="&owl;real"/>
     
 
 
@@ -108,7 +171,7 @@
 
     <owl:ObjectProperty rdf:about="http://biomac.icmc.usp.br/sustenagro#microregion">
         <rdfs:domain rdf:resource="http://biomac.icmc.usp.br/sustenagro#ProductionUnit"/>
-        <rdfs:range rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:range rdf:resource="&db;MicroRegion"/>
     </owl:ObjectProperty>
     
 
@@ -130,7 +193,13 @@
 
     <!-- http://dbpedia.org/ontology/country -->
 
-    <owl:ObjectProperty rdf:about="http://dbpedia.org/ontology/country"/>
+    <owl:ObjectProperty rdf:about="&db;country"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
+
+    <owl:ObjectProperty rdf:about="&owl;topObjectProperty"/>
     
 
 
@@ -176,7 +245,7 @@
     <owl:DatatypeProperty rdf:about="http://biomac.icmc.usp.br/sustenagro#name">
         <rdfs:domain rdf:resource="http://biomac.icmc.usp.br/sustenagro#AgriculturalTechnology"/>
         <rdfs:domain rdf:resource="http://biomac.icmc.usp.br/sustenagro#ProductionUnit"/>
-        <rdfs:domain rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:domain rdf:resource="&db;MicroRegion"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
@@ -206,6 +275,12 @@
     
 
 
+    <!-- http://www.w3.org/2002/07/owl#topDataProperty -->
+
+    <owl:DatatypeProperty rdf:about="&owl;topDataProperty"/>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -223,6 +298,13 @@
         <rdfs:label xml:lang="en">Incidence of accidents and fatalities in the workplace</rdfs:label>
         <rdfs:label xml:lang="pt">Incidência de acidentes e fatalidades no local de trabalho</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#SafetyIndicator"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
+                <owl:onClass rdf:resource="http://biomac.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -230,6 +312,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#AccidentsIncidenceCategory -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#AccidentsIncidenceCategory">
+        <rdfs:label xml:lang="en">Accidents incidence category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria incidência de acidentes</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Categorical"/>
     </owl:Class>
     
@@ -238,7 +322,7 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#AdministrativeRegion -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#AdministrativeRegion">
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Region"/>
+        <rdfs:subClassOf rdf:resource="&db;Region"/>
     </owl:Class>
     
 
@@ -284,6 +368,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#AgriculturalActivityPlanning -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#AgriculturalActivityPlanning">
+        <rdfs:label xml:lang="en">Planning of agricultural activities according to the market strategy of the plant</rdfs:label>
+        <rdfs:label xml:lang="pt">Planejamento das atividades agrícolas de acordo com a estratégia de mercado da usina</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#EnergyIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -367,6 +453,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#AnnualRateUnemploymentByMechanization -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#AnnualRateUnemploymentByMechanization">
+        <rdfs:label xml:lang="en">Annual rate of unemployment caused by mechanization</rdfs:label>
+        <rdfs:label xml:lang="pt">Taxa anual de desemprego causado pela mecanização</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobsIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -414,6 +502,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#AverageMonthlyIncomeAgriculture -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#AverageMonthlyIncomeAgriculture">
+        <rdfs:label xml:lang="en">Average monthly income of active employees in agriculture</rdfs:label>
+        <rdfs:label xml:lang="pt">Rendimento médio mensal dos empregados ativos na área agrícola</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobsIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -429,6 +519,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#AverageMonthlyIncomeIndustry -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#AverageMonthlyIncomeIndustry">
+        <rdfs:label xml:lang="en">Average monthly income of active employees in the industrial area</rdfs:label>
+        <rdfs:label xml:lang="pt">Rendimento médio mensal dos empregados ativos na área industrial</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobsIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -444,6 +536,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#AverageSalary -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#AverageSalary">
+        <rdfs:label xml:lang="en">Average worker salary</rdfs:label>
+        <rdfs:label xml:lang="pt">Salário médio do trabalhador</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#IncomeIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -459,6 +553,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#AverageSalaryCategory -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#AverageSalaryCategory">
+        <rdfs:label xml:lang="en">Average salary category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria salário médio</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Categorical"/>
     </owl:Class>
     
@@ -467,7 +563,16 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#BioelectricityDestination -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#BioelectricityDestination">
+        <rdfs:label xml:lang="en">Bioelectricity destination</rdfs:label>
+        <rdfs:label xml:lang="pt">Destino da bioeletricidade</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#EnergyIndicator"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
+                <owl:onClass rdf:resource="http://biomac.icmc.usp.br/sustenagro#BioelectricityDestinationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -475,6 +580,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#BioelectricityDestinationCategory -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#BioelectricityDestinationCategory">
+        <rdfs:label xml:lang="en">Bioelectricity destination category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria destinação da bioeletricidade</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Categorical"/>
     </owl:Class>
     
@@ -483,6 +590,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#BioelectricityProduction -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#BioelectricityProduction">
+        <rdfs:label xml:lang="en">Bioelectricity production</rdfs:label>
+        <rdfs:label xml:lang="pt">Produção de bioeletricidade</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#EnergyIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -498,6 +607,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#BioelectricityProductionCategory -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#BioelectricityProductionCategory">
+        <rdfs:label xml:lang="en">Bioelectricity production category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria produção de bioeletricidade</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Categorical"/>
     </owl:Class>
     
@@ -506,7 +617,9 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#BiofuelInfrastructure -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#BiofuelInfrastructure">
-        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#IndustrialIndicator"/>
+        <rdfs:label xml:lang="en">Infrastructure for producing second and third generation biofuels</rdfs:label>
+        <rdfs:label xml:lang="pt">Infraestrutura para produção de biocombustíveis de segunda e terceira geração</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#IndustrialUnityIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
@@ -526,9 +639,28 @@
     
 
 
+    <!-- http://biomac.icmc.usp.br/sustenagro#BiologicalPestControl -->
+
+    <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#BiologicalPestControl">
+        <rdfs:label xml:lang="en">Biological pest control</rdfs:label>
+        <rdfs:label xml:lang="pt">Controle biológico de pragas</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#GeneralIndicator"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
+                <owl:onClass rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- http://biomac.icmc.usp.br/sustenagro#BoilerEfficiencyCategory -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#BoilerEfficiencyCategory">
+        <rdfs:label xml:lang="en">Boiller efficiency category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria eficiência das caldeiras</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Categorical"/>
     </owl:Class>
     
@@ -537,6 +669,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#Boolean -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#Boolean">
+        <rdfs:label xml:lang="en">Boolean</rdfs:label>
+        <rdfs:label xml:lang="pt">Boleana</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#dataValue"/>
@@ -552,6 +686,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#BufferStocks -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#BufferStocks">
+        <rdfs:label xml:lang="en">Buffer stocks</rdfs:label>
+        <rdfs:label xml:lang="pt">Estoques reguladores</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#CostIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -640,6 +776,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#CostIndicator -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#CostIndicator">
+        <rdfs:label xml:lang="en">Cost Indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de custo</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#EconomicIndicator"/>
     </owl:Class>
     
@@ -654,7 +792,16 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#CropPlanning -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#CropPlanning">
+        <rdfs:label xml:lang="en">Crop Planning</rdfs:label>
+        <rdfs:label xml:lang="pt">Planejamento de safra</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#ProductivityIndicator"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
+                <owl:onClass rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -786,6 +933,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#EnergyEfficiencyOfBoilersForCogeneration -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#EnergyEfficiencyOfBoilersForCogeneration">
+        <rdfs:label xml:lang="en">Energy eficiency of boilers for cogeneration</rdfs:label>
+        <rdfs:label xml:lang="pt">Eficiência energética das caldeiras para cogeração de energia</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#EnergyIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -801,6 +950,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#EnergyIndicator -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#EnergyIndicator">
+        <rdfs:label xml:lang="en">Energy indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de energia</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#EconomicIndicator"/>
     </owl:Class>
     
@@ -841,6 +992,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#ExistNo -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#ExistNo">
+        <rdfs:label xml:lang="en">Exist/No exist</rdfs:label>
+        <rdfs:label xml:lang="pt">Existe/Não existe</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Boolean"/>
     </owl:Class>
     
@@ -870,13 +1023,22 @@
     
 
 
+    <!-- http://biomac.icmc.usp.br/sustenagro#GeneralIndicator -->
+
+    <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#GeneralIndicator">
+        <rdfs:label xml:lang="en">General Indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador Geral</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#EnvironmentalIndicator"/>
+    </owl:Class>
+    
+
+
     <!-- http://biomac.icmc.usp.br/sustenagro#GeneratingJobs -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#GeneratingJobs">
         <rdfs:label xml:lang="en">Generating capacity of direct and indirect jobs</rdfs:label>
         <rdfs:label xml:lang="pt">Capacidade de geração de empregos diretos e indiretos</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobsIndicator"/>
-        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Others_Indicators"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
@@ -990,6 +1152,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#IncomeIndicator -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#IncomeIndicator">
+        <rdfs:label xml:lang="en">Income indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de renda</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#SocialIndicator"/>
     </owl:Class>
     
@@ -1016,9 +1180,11 @@
     
 
 
-    <!-- http://biomac.icmc.usp.br/sustenagro#IndustrialIndicator -->
+    <!-- http://biomac.icmc.usp.br/sustenagro#IndustrialUnityIndicator -->
 
-    <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#IndustrialIndicator">
+    <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#IndustrialUnityIndicator">
+        <rdfs:label xml:lang="en">Industrial unity indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador unidade industrial</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#EconomicIndicator"/>
     </owl:Class>
     
@@ -1035,6 +1201,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#Integer -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#Integer">
+        <rdfs:label xml:lang="en">Integer</rdfs:label>
+        <rdfs:label xml:lang="pt">Inteiro</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#dataValue"/>
@@ -1050,6 +1218,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#IntensityCategory -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#IntensityCategory">
+        <rdfs:label xml:lang="en">Intensity category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria intensidade</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Categorical"/>
     </owl:Class>
     
@@ -1058,6 +1228,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#InvestmentRatioMachinesVersusProductionReturnOnAssets -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#InvestmentRatioMachinesVersusProductionReturnOnAssets">
+        <rdfs:label xml:lang="en">Investment relationship between machines versus sugarcane production and return on assets</rdfs:label>
+        <rdfs:label xml:lang="pt">Relação entre investimento de máquinas versus produção de cana e retorno do imobilizado</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#CostIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1107,6 +1279,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#JobFormalityRateCategory -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#JobFormalityRateCategory">
+        <rdfs:label xml:lang="en">Job formality rate category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria taxa de empregos formais</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Categorical"/>
     </owl:Class>
     
@@ -1115,6 +1289,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#JobsGeneratedPerHectare -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#JobsGeneratedPerHectare">
+        <rdfs:label xml:lang="en">Jobs generated per hectare (year/harvest)</rdfs:label>
+        <rdfs:label xml:lang="pt">Empregos gerados por hectare (ano/safra)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobsIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1130,6 +1306,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#JobsIndicator -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#JobsIndicator">
+        <rdfs:label xml:lang="en">Jobs indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de trabalho</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#SocialIndicator"/>
     </owl:Class>
     
@@ -1138,6 +1316,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#LegalIndicator -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#LegalIndicator">
+        <rdfs:label xml:lang="en">Legal indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador legal</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#SocialIndicator"/>
     </owl:Class>
     
@@ -1199,6 +1379,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#MigrationRate -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#MigrationRate">
+        <rdfs:label xml:lang="en">Migration rate</rdfs:label>
+        <rdfs:label xml:lang="pt">Taxa migratória</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobsIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1272,6 +1454,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#OperationalEfficiencyCategory -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#OperationalEfficiencyCategory">
+        <rdfs:label xml:lang="en">Operational efficiency category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria eficiência operacional</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Categorical"/>
     </owl:Class>
     
@@ -1280,15 +1464,16 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#OperationalEfficiencyPlant -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#OperationalEfficiencyPlant">
+        <rdfs:label xml:lang="en">Operational efficiency of the plant (vertical plant growth, recovery and development)</rdfs:label>
+        <rdfs:label xml:lang="pt">Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#ProductivityIndicator"/>
-    </owl:Class>
-    
-
-
-    <!-- http://biomac.icmc.usp.br/sustenagro#OptimizationOfSugarcaneTransportation -->
-
-    <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#OptimizationOfSugarcaneTransportation">
-        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Others_Indicators"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
+                <owl:onClass rdf:resource="http://biomac.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1304,7 +1489,7 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#PermanentPreservationAreasRecoveredPreserved -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#PermanentPreservationAreasRecoveredPreserved">
-        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#EnvironmentalIndicator"/>
+        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Others_Indicators"/>
     </owl:Class>
     
 
@@ -1325,10 +1510,37 @@
     
 
 
+    <!-- http://biomac.icmc.usp.br/sustenagro#PlanningSystematicPlanting -->
+
+    <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#PlanningSystematicPlanting">
+        <rdfs:label xml:lang="en">Planning and systematic planting</rdfs:label>
+        <rdfs:label xml:lang="pt">Planejamento e sistematização do plantio </rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#PlantingIndicator"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
+                <owl:onClass rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- http://biomac.icmc.usp.br/sustenagro#PlantedArea_HarvestedArea -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#PlantedArea_HarvestedArea">
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Others_Indicators"/>
+    </owl:Class>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#PlantingIndicator -->
+
+    <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#PlantingIndicator">
+        <rdfs:label xml:lang="en">Planting indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de Plantio</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#EnvironmentalIndicator"/>
     </owl:Class>
     
 
@@ -1379,6 +1591,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#ProductivityIndicator -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#ProductivityIndicator">
+        <rdfs:label xml:lang="en">Productivity Indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de Produtividade</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#EconomicIndicator"/>
     </owl:Class>
     
@@ -1395,6 +1609,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#Real -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#Real">
+        <rdfs:label xml:lang="en">Real</rdfs:label>
+        <rdfs:label xml:lang="pt">Real</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#dataValue"/>
@@ -1434,7 +1650,9 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#ResistantYeast -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#ResistantYeast">
-        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#IndustrialIndicator"/>
+        <rdfs:label xml:lang="en">Uses or invests in more resistant yeast</rdfs:label>
+        <rdfs:label xml:lang="pt">Utiliza ou investe em leveduras mais resistentes</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#IndustrialUnityIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
@@ -1449,6 +1667,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#SafetyIndicator -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#SafetyIndicator">
+        <rdfs:label xml:lang="en">Safety indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de segurança</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#SocialIndicator"/>
     </owl:Class>
     
@@ -1474,6 +1694,8 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#SalaryPaidYearSeason -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#SalaryPaidYearSeason">
+        <rdfs:label xml:lang="en">Compensation paid to workers year/harvest</rdfs:label>
+        <rdfs:label xml:lang="pt">Remuneração paga aos trabalhadores ano/safra</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#IncomeIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1499,7 +1721,7 @@
     <!-- http://biomac.icmc.usp.br/sustenagro#SoilCompaction -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#SoilCompaction">
-        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#EnvironmentalIndicator"/>
+        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Others_Indicators"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
@@ -1554,6 +1776,23 @@ Plantio direto ou utilização de maquinário que cause menor compactação do s
     
 
 
+    <!-- http://biomac.icmc.usp.br/sustenagro#StandardAerialSpraying -->
+
+    <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#StandardAerialSpraying">
+        <rdfs:label xml:lang="en">Adequacy to the Joint Regulatory Standard 1/2012//DAS/MAP for aerial spraying.</rdfs:label>
+        <rdfs:label xml:lang="pt">Adequação a Instrução Normativa Conjunta 1/2012//DAS/MAPA de pulverização aérea.</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#GeneralIndicator"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
+                <owl:onClass rdf:resource="http://biomac.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- http://biomac.icmc.usp.br/sustenagro#SugarcaneProductionSystem -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#SugarcaneProductionSystem">
@@ -1565,6 +1804,8 @@ Plantio direto ou utilização de maquinário que cause menor compactação do s
     <!-- http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectare -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectare">
+        <rdfs:label xml:lang="en">Sugarcane productivity per hectare</rdfs:label>
+        <rdfs:label xml:lang="pt">Produtividade de cana por hectare</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#ProductivityIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1580,6 +1821,8 @@ Plantio direto ou utilização de maquinário que cause menor compactação do s
     <!-- http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory">
+        <rdfs:label xml:lang="en">Sugarcane productivity per hectare category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria produtividade de cana por hectare</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Categorical"/>
     </owl:Class>
     
@@ -1588,6 +1831,8 @@ Plantio direto ou utilização de maquinário que cause menor compactação do s
     <!-- http://biomac.icmc.usp.br/sustenagro#SugarcaneTransportOptimization -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#SugarcaneTransportOptimization">
+        <rdfs:label xml:lang="en">Sugarcane transport optimization</rdfs:label>
+        <rdfs:label xml:lang="pt">Otimização do transporte da cana</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#CostIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1600,12 +1845,22 @@ Plantio direto ou utilização de maquinário que cause menor compactação do s
     
 
 
+    <!-- http://biomac.icmc.usp.br/sustenagro#Training -->
+
+    <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#Training">
+        <rdfs:label xml:lang="en">Training Indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de Treinamento</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#SocialIndicator"/>
+    </owl:Class>
+    
+
+
     <!-- http://biomac.icmc.usp.br/sustenagro#TrainingIncentive -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#TrainingIncentive">
         <rdfs:label xml:lang="en">Incentives for employee training</rdfs:label>
         <rdfs:label xml:lang="pt">Incentivos a capacitação dos funcionários</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#TrainingIndicator"/>
+        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Training"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
@@ -1617,17 +1872,11 @@ Plantio direto ou utilização de maquinário que cause menor compactação do s
     
 
 
-    <!-- http://biomac.icmc.usp.br/sustenagro#TrainingIndicator -->
-
-    <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#TrainingIndicator">
-        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#SocialIndicator"/>
-    </owl:Class>
-    
-
-
     <!-- http://biomac.icmc.usp.br/sustenagro#TrueFalse -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#TrueFalse">
+        <rdfs:label xml:lang="en">True/False</rdfs:label>
+        <rdfs:label xml:lang="pt">Verdadeiro/Falso</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Boolean"/>
     </owl:Class>
     
@@ -1636,6 +1885,8 @@ Plantio direto ou utilização de maquinário que cause menor compactação do s
     <!-- http://biomac.icmc.usp.br/sustenagro#UseEffciencyForReducedDieselConsumptionAndEngineReplacementPlan -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#UseEffciencyForReducedDieselConsumptionAndEngineReplacementPlan">
+        <rdfs:label xml:lang="en">Use efficiency for reduced diesel consumption and engine replacement plan </rdfs:label>
+        <rdfs:label xml:lang="pt">Eficiência no uso para diminuição do consumo de diesel e plano de substituição de motores.</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#EnergyIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1654,10 +1905,37 @@ Plantio direto ou utilização de maquinário que cause menor compactação do s
     
 
 
+    <!-- http://biomac.icmc.usp.br/sustenagro#VinasseAndEthanolRelation -->
+
+    <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#VinasseAndEthanolRelation">
+        <rdfs:label xml:lang="en">Relationship between the production of vinasse and ethanol ( liters of vinasse / liters of ethanol).</rdfs:label>
+        <rdfs:label xml:lang="pt">Relação entre a produção de vinhaça e etanol (litros de vinhaça/litros de etanol).</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#GeneralIndicator"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://biomac.icmc.usp.br/sustenagro#value"/>
+                <owl:onClass rdf:resource="http://biomac.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory -->
+
+    <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory">
+        <rdfs:label xml:lang="en">Vinasse and ethanol relation category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria relação entre vinhaça e etanol</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Categorical"/>
+    </owl:Class>
+    
+
+
     <!-- http://biomac.icmc.usp.br/sustenagro#Vinasse_Amount_Area_Applied_With_Respect_Of_Potassium_And_Nitrogen -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#Vinasse_Amount_Area_Applied_With_Respect_Of_Potassium_And_Nitrogen">
-        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#EnvironmentalIndicator"/>
+        <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Others_Indicators"/>
         <dc:title xml:lang="en">Vinasse amount area / area applied with respect of potassium (K) and nitrogen (N)</dc:title>
         <dc:description xml:lang="pt">Justificativa: 
 
@@ -1686,6 +1964,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#YesNo -->
 
     <owl:Class rdf:about="http://biomac.icmc.usp.br/sustenagro#YesNo">
+        <rdfs:label xml:lang="en">Yes/No</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim/Não</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#Boolean"/>
     </owl:Class>
     
@@ -1693,15 +1973,15 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <!-- http://dbpedia.org/ontology/Country -->
 
-    <owl:Class rdf:about="http://dbpedia.org/ontology/Country">
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
+    <owl:Class rdf:about="&db;Country">
+        <rdfs:subClassOf rdf:resource="&db;PopulatedPlace"/>
     </owl:Class>
     
 
 
     <!-- http://dbpedia.org/ontology/GovernmentalAdministrativeRegion -->
 
-    <owl:Class rdf:about="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion">
+    <owl:Class rdf:about="&db;GovernmentalAdministrativeRegion">
         <rdfs:subClassOf rdf:resource="http://biomac.icmc.usp.br/sustenagro#AdministrativeRegion"/>
     </owl:Class>
     
@@ -1709,46 +1989,46 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <!-- http://dbpedia.org/ontology/MicroRegion -->
 
-    <owl:Class rdf:about="http://dbpedia.org/ontology/MicroRegion">
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion"/>
+    <owl:Class rdf:about="&db;MicroRegion">
+        <rdfs:subClassOf rdf:resource="&db;GovernmentalAdministrativeRegion"/>
     </owl:Class>
     
 
 
     <!-- http://dbpedia.org/ontology/Place -->
 
-    <owl:Class rdf:about="http://dbpedia.org/ontology/Place"/>
+    <owl:Class rdf:about="&db;Place"/>
     
 
 
     <!-- http://dbpedia.org/ontology/PopulatedPlace -->
 
-    <owl:Class rdf:about="http://dbpedia.org/ontology/PopulatedPlace">
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Place"/>
+    <owl:Class rdf:about="&db;PopulatedPlace">
+        <rdfs:subClassOf rdf:resource="&db;Place"/>
     </owl:Class>
     
 
 
     <!-- http://dbpedia.org/ontology/Prefecture -->
 
-    <owl:Class rdf:about="http://dbpedia.org/ontology/Prefecture">
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
+    <owl:Class rdf:about="&db;Prefecture">
+        <rdfs:subClassOf rdf:resource="&db;PopulatedPlace"/>
     </owl:Class>
     
 
 
     <!-- http://dbpedia.org/ontology/Region -->
 
-    <owl:Class rdf:about="http://dbpedia.org/ontology/Region">
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
+    <owl:Class rdf:about="&db;Region">
+        <rdfs:subClassOf rdf:resource="&db;PopulatedPlace"/>
     </owl:Class>
     
 
 
     <!-- http://dbpedia.org/ontology/State -->
 
-    <owl:Class rdf:about="http://dbpedia.org/ontology/State">
-        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
+    <owl:Class rdf:about="&db;State">
+        <rdfs:subClassOf rdf:resource="&db;PopulatedPlace"/>
     </owl:Class>
     
 
@@ -1774,10 +2054,21 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     
 
 
+    <!-- http://biomac.icmc.usp.br/sustenagro#Above18 -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Above18">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
+        <rdfs:label xml:lang="en">Above 18</rdfs:label>
+        <rdfs:label xml:lang="pt">Acima de 18</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">-1.0</threshold>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://biomac.icmc.usp.br/sustenagro#Adamantina -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Adamantina">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Adamantina</name>
     </owl:NamedIndividual>
     
@@ -1786,7 +2077,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Amparo -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Amparo">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Amparo</name>
     </owl:NamedIndividual>
     
@@ -1795,7 +2086,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Andradina -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Andradina">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Andradina</name>
     </owl:NamedIndividual>
     
@@ -1804,7 +2095,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Araraquara -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Araraquara">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Araraquara</name>
     </owl:NamedIndividual>
     
@@ -1813,7 +2104,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Araçatuba -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Araçatuba">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Araçatuba</name>
     </owl:NamedIndividual>
     
@@ -1822,7 +2113,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Assis -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Assis">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Assis</name>
     </owl:NamedIndividual>
     
@@ -1831,7 +2122,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Auriflama -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Auriflama">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Auriflama</name>
     </owl:NamedIndividual>
     
@@ -1840,7 +2131,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Avaré -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Avaré">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Avaré</name>
     </owl:NamedIndividual>
     
@@ -1849,7 +2140,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Bananal -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Bananal">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Bananal</name>
     </owl:NamedIndividual>
     
@@ -1858,7 +2149,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Barretos -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Barretos">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Barretos</name>
     </owl:NamedIndividual>
     
@@ -1867,7 +2158,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Batatais -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Batatais">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Batatais</name>
     </owl:NamedIndividual>
     
@@ -1876,8 +2167,30 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Bauru -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Bauru">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Bauru</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#Below10 -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Below10">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
+        <rdfs:label xml:lang="en">Below 10</rdfs:label>
+        <rdfs:label xml:lang="pt">Abaixo de 10</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">1.0</threshold>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#Between10-18 -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Between10-18">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
+        <rdfs:label xml:lang="en">Between 10-18</rdfs:label>
+        <rdfs:label xml:lang="pt">Entre 10-18</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">0.0</threshold>
     </owl:NamedIndividual>
     
 
@@ -1885,7 +2198,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Birigüi -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Birigüi">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Birigüi</name>
     </owl:NamedIndividual>
     
@@ -1894,7 +2207,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Botucatu -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Botucatu">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Botucatu</name>
     </owl:NamedIndividual>
     
@@ -1903,7 +2216,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Bragança_Paulista -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Bragança_Paulista">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Bragança Paulista</name>
     </owl:NamedIndividual>
     
@@ -1912,7 +2225,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Campinas -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Campinas">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Campinas</name>
     </owl:NamedIndividual>
     
@@ -1921,7 +2234,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Campos_do_Jordão -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Campos_do_Jordão">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Campos do Jordão</name>
     </owl:NamedIndividual>
     
@@ -1930,7 +2243,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Capão_Bonito -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Capão_Bonito">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Capão Bonito</name>
     </owl:NamedIndividual>
     
@@ -1939,7 +2252,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Caraguatatuba -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Caraguatatuba">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Caraguatatuba</name>
     </owl:NamedIndividual>
     
@@ -1948,7 +2261,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Catanduva -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Catanduva">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Catanduva</name>
     </owl:NamedIndividual>
     
@@ -1968,8 +2281,19 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Dracena -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Dracena">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Dracena</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#Eq15.83 -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Eq15.83">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
+        <rdfs:label xml:lang="en">Equal 15.83</rdfs:label>
+        <rdfs:label xml:lang="pt">Igual 15,83</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">0.0</threshold>
     </owl:NamedIndividual>
     
 
@@ -1981,6 +2305,16 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
         <rdfs:label xml:lang="en">Exist</rdfs:label>
         <rdfs:label xml:lang="pt">Existe</rdfs:label>
         <dataValue rdf:datatype="&xsd;boolean">true</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#Export -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Export">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BioelectricityDestinationCategory"/>
+        <rdfs:label xml:lang="en">Export</rdfs:label>
+        <rdfs:label xml:lang="pt">Exportação</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1999,7 +2333,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Fernandópolis -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Fernandópolis">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Fernandópolis</name>
     </owl:NamedIndividual>
     
@@ -2008,7 +2342,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Franca -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Franca">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Franca</name>
     </owl:NamedIndividual>
     
@@ -2017,19 +2351,62 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Franco_da_Rocha -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Franco_da_Rocha">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Franco da Rocha</name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://biomac.icmc.usp.br/sustenagro#Gt80 -->
+    <!-- http://biomac.icmc.usp.br/sustenagro#Gt1001 -->
 
-    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Gt80">
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Gt1001">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
+        <rdfs:label xml:lang="en">Greater 1001</rdfs:label>
+        <rdfs:label xml:lang="pt">Maior 1001</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">2.0</threshold>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#Gt15.83 -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Gt15.83">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
+        <rdfs:label xml:lang="en">Greater 15.83</rdfs:label>
+        <rdfs:label xml:lang="pt">Maior 15,83</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">-1.0</threshold>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#Gt2.5Mtons -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Gt2.5Mtons">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
+        <rdfs:label xml:lang="en">Grinding capacity higher than 2.5 million tons/harvest</rdfs:label>
+        <rdfs:label xml:lang="pt">Capacidade de moagem superior a 2,5 milhões de ton/safra</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#Gt85ton -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Gt85ton">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
+        <rdfs:label xml:lang="en">Greater 85 tons</rdfs:label>
+        <rdfs:label xml:lang="pt">Maior 85 toneladas</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">2.0</threshold>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#Gt90 -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Gt90">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
-        <rdfs:label xml:lang="en">&gt; 80%</rdfs:label>
-        <rdfs:label xml:lang="pt">&gt; 80%</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">1.0</threshold>
+        <rdfs:label xml:lang="en">Greater 90%</rdfs:label>
+        <rdfs:label xml:lang="pt">Maior 90%</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">1.0</threshold>
     </owl:NamedIndividual>
     
 
@@ -2037,7 +2414,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Guaratinguetá -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Guaratinguetá">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Guaratinguetá</name>
     </owl:NamedIndividual>
     
@@ -2046,7 +2423,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Guarulhos -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Guarulhos">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Guarulhos</name>
     </owl:NamedIndividual>
     
@@ -2056,6 +2433,29 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#High">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#IntensityCategory"/>
+        <rdfs:label xml:lang="en">High</rdfs:label>
+        <rdfs:label xml:lang="pt">Alta</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#HighEfficiency -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#HighEfficiency">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
+        <rdfs:label xml:lang="en">High efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Alta eficiência</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">0.0</threshold>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#Interval1.0-2.5Mtons -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Interval1.0-2.5Mtons">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
+        <rdfs:label xml:lang="en">Grinding capacity between 1.0 and 2.5 million tons/harvest</rdfs:label>
+        <rdfs:label xml:lang="pt">Capacidade de moagem entre 1,0 e 2,5 milhões de toneladas/safra</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2063,7 +2463,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Itanhaém -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Itanhaém">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Itanhaém</name>
     </owl:NamedIndividual>
     
@@ -2072,7 +2472,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Itapecerica_da_Serra -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Itapecerica_da_Serra">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Itapecerica da Serra</name>
     </owl:NamedIndividual>
     
@@ -2081,7 +2481,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Itapetininga -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Itapetininga">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Itapetininga</name>
     </owl:NamedIndividual>
     
@@ -2090,7 +2490,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Itapeva -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Itapeva">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Itapeva</name>
     </owl:NamedIndividual>
     
@@ -2099,7 +2499,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Ituverava -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Ituverava">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Ituverava</name>
     </owl:NamedIndividual>
     
@@ -2108,7 +2508,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Jaboticabal -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Jaboticabal">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Jaboticabal</name>
     </owl:NamedIndividual>
     
@@ -2117,7 +2517,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Jales -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Jales">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Jales</name>
     </owl:NamedIndividual>
     
@@ -2126,7 +2526,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Jaú -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Jaú">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Jaú</name>
     </owl:NamedIndividual>
     
@@ -2135,7 +2535,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Jundiaí -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Jundiaí">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Jundiaí</name>
     </owl:NamedIndividual>
     
@@ -2144,7 +2544,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Limeira -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Limeira">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Limeira</name>
     </owl:NamedIndividual>
     
@@ -2153,7 +2553,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Lins -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Lins">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Lins</name>
     </owl:NamedIndividual>
     
@@ -2163,6 +2563,62 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Low">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#IntensityCategory"/>
+        <rdfs:label xml:lang="en">Low</rdfs:label>
+        <rdfs:label xml:lang="pt">Baixa</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#LowEfficiency -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#LowEfficiency">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
+        <rdfs:label xml:lang="en">Low efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Baixa eficiência</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">-3.0</threshold>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#Lt15.83 -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Lt15.83">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
+        <rdfs:label xml:lang="en">Less 15.83</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor 15,83</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">1.0</threshold>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#Lt1Mtons -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Lt1Mtons">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
+        <rdfs:label xml:lang="en">Grinding capacity lower than 1.0 million tons/harvest</rdfs:label>
+        <rdfs:label xml:lang="pt">Capacidade de Moagem inferior a 1 milhão de toneladas/safra</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#Lt64ton -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Lt64ton">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
+        <rdfs:label xml:lang="en">Less 64 tons</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor 64 toneladas</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">-2.0</threshold>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#Lt724 -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Lt724">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
+        <rdfs:label xml:lang="en">Less 724</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor 724</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">-1.0</threshold>
     </owl:NamedIndividual>
     
 
@@ -2171,8 +2627,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Lt80">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
-        <rdfs:label xml:lang="en">&lt; 80%</rdfs:label>
-        <rdfs:label xml:lang="pt">&lt; 80%</rdfs:label>
+        <rdfs:label xml:lang="en">Less 80%</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor 80%</rdfs:label>
         <threshold rdf:datatype="&xsd;double">-1.0</threshold>
     </owl:NamedIndividual>
     
@@ -2181,7 +2637,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Marília -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Marília">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Marília</name>
     </owl:NamedIndividual>
     
@@ -2191,6 +2647,19 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Medium">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#IntensityCategory"/>
+        <rdfs:label xml:lang="en">Medium</rdfs:label>
+        <rdfs:label xml:lang="pt">Média</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#MediumEfficiency -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#MediumEfficiency">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
+        <rdfs:label xml:lang="en">Medium efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Média eficiência</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">-1.0</threshold>
     </owl:NamedIndividual>
     
 
@@ -2198,7 +2667,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Mogi_das_Cruzes -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Mogi_das_Cruzes">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Mogi das Cruzes</name>
     </owl:NamedIndividual>
     
@@ -2207,7 +2676,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Moji_Mirim -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Moji_Mirim">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Mogi Mirim</name>
     </owl:NamedIndividual>
     
@@ -2216,7 +2685,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Nhandeara -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Nhandeara">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Nhandeara</name>
     </owl:NamedIndividual>
     
@@ -2233,10 +2702,20 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     
 
 
+    <!-- http://biomac.icmc.usp.br/sustenagro#NoOrPartialSupply -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#NoOrPartialSupply">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
+        <rdfs:label xml:lang="en">No or partial Supply</rdfs:label>
+        <rdfs:label xml:lang="pt">Não ou fornecimento parcial</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://biomac.icmc.usp.br/sustenagro#Novo_Horizonte -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Novo_Horizonte">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Novo Horizonte</name>
     </owl:NamedIndividual>
     
@@ -2245,7 +2724,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Osasco -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Osasco">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Osasco</name>
     </owl:NamedIndividual>
     
@@ -2254,7 +2733,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Ourinhos -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Ourinhos">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Ourinhos</name>
     </owl:NamedIndividual>
     
@@ -2263,7 +2742,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Paraibuna-Paraitinga -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Paraibuna-Paraitinga">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Paraibuna/Paraitinga</name>
     </owl:NamedIndividual>
     
@@ -2272,7 +2751,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Paulínia -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Paulínia">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Paulínia</name>
     </owl:NamedIndividual>
     
@@ -2281,7 +2760,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Piedade -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Piedade">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Piedade</name>
     </owl:NamedIndividual>
     
@@ -2290,7 +2769,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Piracicaba -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Piracicaba">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Piracicaba</name>
     </owl:NamedIndividual>
     
@@ -2299,7 +2778,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Pirassununga -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Pirassununga">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Pirassununga</name>
     </owl:NamedIndividual>
     
@@ -2308,7 +2787,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Presidente_Prudente -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Presidente_Prudente">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Presidente Prudente</name>
     </owl:NamedIndividual>
     
@@ -2317,7 +2796,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Registro -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Registro">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Registro</name>
     </owl:NamedIndividual>
     
@@ -2326,7 +2805,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Ribeirão_Preto -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Ribeirão_Preto">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Ribeirão Preto</name>
     </owl:NamedIndividual>
     
@@ -2335,7 +2814,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Rio_Claro -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Rio_Claro">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Rio Claro</name>
     </owl:NamedIndividual>
     
@@ -2344,8 +2823,18 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Santos -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Santos">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Santos</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#SelfConsumption -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#SelfConsumption">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BioelectricityDestinationCategory"/>
+        <rdfs:label xml:lang="en">Self Consumption</rdfs:label>
+        <rdfs:label xml:lang="pt">Auto Consumo</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2353,7 +2842,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Sorocaba -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Sorocaba">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Sorocaba</name>
     </owl:NamedIndividual>
     
@@ -2368,10 +2857,30 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     
 
 
+    <!-- http://biomac.icmc.usp.br/sustenagro#SuppliesAllSellSurplus -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#SuppliesAllSellSurplus">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
+        <rdfs:label xml:lang="en">Supplies all sell surplus</rdfs:label>
+        <rdfs:label xml:lang="pt">Fornecimento de todos excedentes para venda</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#SupplyAll -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#SupplyAll">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
+        <rdfs:label xml:lang="en">Supply all</rdfs:label>
+        <rdfs:label xml:lang="pt">Fornecimento de todo</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://biomac.icmc.usp.br/sustenagro#São_Carlos -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#São_Carlos">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">São Carlos</name>
     </owl:NamedIndividual>
     
@@ -2380,7 +2889,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#São_Joaquim_da_Barra -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#São_Joaquim_da_Barra">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">São Joaquim da Barra</name>
     </owl:NamedIndividual>
     
@@ -2389,7 +2898,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#São_José_do_Rio_Preto -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#São_José_do_Rio_Preto">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">São José do Rio Preto</name>
     </owl:NamedIndividual>
     
@@ -2398,7 +2907,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#São_José_dos_Campos -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#São_José_dos_Campos">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">São José dos Campos</name>
     </owl:NamedIndividual>
     
@@ -2407,7 +2916,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#São_João_da_Boa_Vista -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#São_João_da_Boa_Vista">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">São João da Boa Vista</name>
     </owl:NamedIndividual>
     
@@ -2416,7 +2925,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#São_Paulo -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#São_Paulo">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">São Paulo</name>
     </owl:NamedIndividual>
     
@@ -2425,7 +2934,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Tatuí -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Tatuí">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Tatuí</name>
     </owl:NamedIndividual>
     
@@ -2445,8 +2954,30 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Tupã -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Tupã">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Tupã</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#UpperHighEfficiency -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#UpperHighEfficiency">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
+        <rdfs:label xml:lang="en">Upper high efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Alta eficiência superior</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">1.0</threshold>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#UpperLowEfficiency -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#UpperLowEfficiency">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
+        <rdfs:label xml:lang="en">Upper low efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Baixa eficiência superior</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">-2.0</threshold>
     </owl:NamedIndividual>
     
 
@@ -2454,7 +2985,7 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://biomac.icmc.usp.br/sustenagro#Votuporanga -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Votuporanga">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdf:type rdf:resource="&db;MicroRegion"/>
         <name rdf:datatype="&xsd;string">Votuporanga</name>
     </owl:NamedIndividual>
     
@@ -2493,13 +3024,58 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     
 
 
+    <!-- http://biomac.icmc.usp.br/sustenagro#interval64-74ton -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#interval64-74ton">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
+        <rdfs:label xml:lang="en">Interval 64-74</rdfs:label>
+        <rdfs:label xml:lang="pt">Intervalo 64-74</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">-1.0</threshold>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#interval724-890 -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#interval724-890">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
+        <rdfs:label xml:lang="en">Interval 74-82</rdfs:label>
+        <rdfs:label xml:lang="pt">Intervalo 74-82</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">0.0</threshold>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://biomac.icmc.usp.br/sustenagro#interval80-90 -->
 
     <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#interval80-90">
         <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
-        <rdfs:label xml:lang="en">80% - 90%</rdfs:label>
-        <rdfs:label xml:lang="pt">80% - 90%</rdfs:label>
+        <rdfs:label xml:lang="en">Between 80% - 90%</rdfs:label>
+        <rdfs:label xml:lang="pt">Entre 80% - 90%</rdfs:label>
         <threshold rdf:datatype="&xsd;double">0.0</threshold>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#interval82-85ton -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#interval82-85ton">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
+        <rdfs:label xml:lang="en">Interval 82-85</rdfs:label>
+        <rdfs:label xml:lang="pt">Intervalo 82-85</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">1.0</threshold>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://biomac.icmc.usp.br/sustenagro#interval891-1000 -->
+
+    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#interval891-1000">
+        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
+        <rdfs:label xml:lang="en">Interval 891-1000</rdfs:label>
+        <rdfs:label xml:lang="pt">Intervalo 891-1000</rdfs:label>
+        <threshold rdf:datatype="&xsd;decimal">1.0</threshold>
     </owl:NamedIndividual>
     
 
@@ -2527,38 +3103,8 @@ Atendimento à Norma P4.231/06 da CETESB, que estabelece os critérios e procedi
     <!-- http://pt.dbpedia.org/page/São_Paulo_(estado) -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/page/São_Paulo_(estado)">
-        <rdf:type rdf:resource="http://dbpedia.org/ontology/State"/>
+        <rdf:type rdf:resource="&db;State"/>
     </owl:NamedIndividual>
-
-    <!-- http://biomac.icmc.usp.br/sustenagro#Eq15.83 -->
-
-    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Eq15.83">
-        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
-        <rdfs:label xml:lang="en">= 15.83</rdfs:label>
-        <rdfs:label xml:lang="pt">= 15,83</rdfs:label>
-        <threshold rdf:datatype="&xsd;decimal">0.0</threshold>
-    </owl:NamedIndividual>
-
-    <!-- http://biomac.icmc.usp.br/sustenagro#Gt15.83 -->
-
-    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Gt15.83">
-        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
-        <rdfs:label xml:lang="en">&gt; 15.83</rdfs:label>
-        <rdfs:label xml:lang="pt">&gt; 15,83</rdfs:label>
-        <threshold rdf:datatype="&xsd;decimal">-1.0</threshold>
-    </owl:NamedIndividual>
-
-    <!-- http://biomac.icmc.usp.br/sustenagro#Lt15.83 -->
-
-    <owl:NamedIndividual rdf:about="http://biomac.icmc.usp.br/sustenagro#Lt15.83">
-        <rdf:type rdf:resource="http://biomac.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
-        <rdfs:label xml:lang="en"> 15.83</rdfs:label>
-        <rdfs:label xml:lang="pt"> 15,83</rdfs:label>
-        <threshold rdf:datatype="&xsd;decimal">1.0</threshold>
-    </owl:NamedIndividual>
-
-
-
 </rdf:RDF>
 
 
