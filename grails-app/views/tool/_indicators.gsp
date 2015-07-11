@@ -19,6 +19,12 @@
                     </div>
                 </g:each>
             </g:if>
+            <g:elseif test="${indicator.class =='http://biomac.icmc.usp.br/sustenagro#Real' }">
+                <div class="form-group">
+                    <label for="${indicator.id}Real">Numérico</label>
+                    <input type="text" class="form-control" name="${indicator.id}-real">
+                </div>
+            </g:elseif>
         </g:each>
     </div>
     <div role="tabpanel" class="tab-pane indicators" id="economic_indicators">
@@ -36,6 +42,18 @@
                     </div>
                 </g:each>
             </g:if>
+            <g:elseif test="${indicator.class =='http://biomac.icmc.usp.br/sustenagro#Real' }">
+                <div class="form-group">
+                    <label for="${indicator.id}Real">Numérico</label>
+                    <input type="text" class="form-control" name="${indicator.id}-real">
+                        <input type="text" class="form-control" value="0">
+                        <div class="input-group-btn-vertical">
+                            <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+                            <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </g:elseif>
         </g:each>
     </div>
     <div role="tabpanel" class="tab-pane indicators" id="social_indicators">
@@ -53,6 +71,12 @@
                     </div>
                 </g:each>
             </g:if>
+            <g:elseif test="${indicator.class =='http://biomac.icmc.usp.br/sustenagro#Real' }">
+                <div class="form-group">
+                    <label for="${indicator.id}Real">Numérico</label>
+                    <input type="text" class="form-control" name="${indicator.id}-real">
+                </div>
+            </g:elseif>
         </g:each>
     </div>
 </div>

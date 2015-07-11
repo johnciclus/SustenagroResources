@@ -5,7 +5,6 @@ import static rdfSlurper.RDFSlurper.N
 
 class ToolController {
     def g
-    //def s
     def slp
 
     def index() {
@@ -28,9 +27,9 @@ class ToolController {
         //slp.'sa:AgriculturalTechnology'._().in("rdf:type").each{ technologies.push(id: it.id, name: it.out('sa:name').next().value, 'description': it.out('sa:description').next().value) }
         //slp.'sa:ProductionUnit'._().in("rdfs:subClassOf").each{ production_unit_types.push(id: it.id, name: it.out('rdfs:label').has('lang','pt').next().value) }
 
-        render(view: "index", model:    [microregions: microregions,
-                                         cultures: cultures,
-                                         technologies: technologies,
+        render(view: "index", model:    [microregions:          microregions,
+                                         cultures:              cultures,
+                                         technologies:          technologies,
                                          production_unit_types: production_unit_types])
     }
 
@@ -104,12 +103,12 @@ class ToolController {
 
         String name = g.v('sustenagro:'+params.id).out('sustenagro:name').next().value
 
-        render(view: "assessment", model: [sustenagro: "http://biomac.icmc.usp.br/sustenagro#",
-                                           production_unit_id: params.id,
-                                           production_unit_name: name,
-                                           environmental_indicators: environmental_indicators,
-                                           economic_indicators: economic_indicators,
-                                           social_indicators: social_indicators,
-                                           categorical: categorical ])
+        render(view: "assessment", model: [sustenagro:                  "http://biomac.icmc.usp.br/sustenagro#",
+                                           production_unit_id:          params.id,
+                                           production_unit_name:        name,
+                                           environmental_indicators:    environmental_indicators,
+                                           economic_indicators:         economic_indicators,
+                                           social_indicators:           social_indicators,
+                                           categorical:                 categorical ])
     }
 }
