@@ -80,7 +80,7 @@ class Sparql2 extends Sparql {
                             varNode.asLiteral().language.size()>1 &&
                             varNode.asLiteral().language!=lang) add= false
                 }
-                println 'row: '+row
+                //println 'row: '+row
                 if (add)
                     res.push(row)
                 //closure.delegate = row
@@ -273,6 +273,8 @@ class RDFSlurper {
     RDFSlurper(String endpoint, String update) {
         g = new SparqlRepositorySailGraph(endpoint, update)
         //"http://localhost:8000/sparql/", "http://localhost:8000/update/")
+        // SPARQL 1.0 or 1.1 endpoint
+        sparql2 = new Sparql2(endpoint: endpoint)
     }
 
     RDFSlurper(String file){
@@ -338,7 +340,7 @@ class RDFSlurper {
         sparql2.query(f, lang)
     }
 
-    def addDefaultNamespaces() { //throw new RuntimeException('Method not working.')}
+    def addDefaultNamespaces() {
 
         addNamespace(SailTokens.RDF_PREFIX, SailTokens.RDF_NS);
         addNamespace(SailTokens.RDFS_PREFIX, SailTokens.RDFS_NS);
