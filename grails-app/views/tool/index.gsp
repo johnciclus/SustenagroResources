@@ -3,10 +3,10 @@
 	<head>
 		<meta name="layout" content="main"/>
 		<title>SustenAgro - Tool</title>
-		<!--
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-		<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
-		-->
+        <!--
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+        -->
 	</head>
 	<body>
 		<div class="row main">

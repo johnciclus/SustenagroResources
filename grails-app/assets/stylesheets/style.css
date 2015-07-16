@@ -128,12 +128,16 @@ body {
 	padding: 0;
 }
 
-.border-content{
-	padding: 15px;
+.ind-content{
+	padding: 15px 0px;
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
 	background-color: #fff;
+}
+
+#indicator_tabs, #indicator_content {
+	padding: 0px 15px;
 }
 
 .spinner {
