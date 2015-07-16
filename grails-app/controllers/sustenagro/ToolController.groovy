@@ -67,7 +67,7 @@ class ToolController {
         categ(economic_indicators)
         categ(social_indicators)
 
-        categorical.each{k,v ->
+        categorical.each{ k, v ->
             slp.query("?id a <$k>; rdfs:label ?title.").each{
                 v.push(it)
             }

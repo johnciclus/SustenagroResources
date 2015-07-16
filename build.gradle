@@ -3,10 +3,12 @@ buildscript {
         grailsVersion = project.grailsVersion
     }
     repositories {
+	    jcenter()
         mavenLocal()
         maven { url "https://repo.grails.org/grails/core" }
     }
     dependencies {
+	    classpath "io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE"
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.1.1'
     }
