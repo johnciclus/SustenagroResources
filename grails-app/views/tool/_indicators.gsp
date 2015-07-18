@@ -11,7 +11,7 @@
                 <b>${indicator.title}</b>
             </div>
 
-            <g:if test="${indicator.valueType =='http://biomac.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://biomac.icmc.usp.br/sustenagro#Categorical'}">
+            <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
                 <div class="form-group">
                 <g:each var="category" in="${categorical[indicator.class]}">
                     <div class="radio">
@@ -22,7 +22,7 @@
                 </g:each>
                 </div>
             </g:if>
-            <g:elseif test="${indicator.class =='http://biomac.icmc.usp.br/sustenagro#Real' }">
+            <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
                 <div class="form-group">
                     <input type="text" class="spin-button" name="${indicator.id}-real" value="0" >
                 </div>
@@ -35,8 +35,9 @@
                 <b>${indicator.title}</b>
             </div>
 
-            <g:if test="${indicator.valueType =='http://biomac.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://biomac.icmc.usp.br/sustenagro#Categorical'}">
+            <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
                 <div class="form-group">
+
                 <g:each var="category" in="${categorical[indicator.class]}">
                     <div class="radio">
                         <label>
@@ -46,7 +47,7 @@
                 </g:each>
                 </div>
             </g:if>
-            <g:elseif test="${indicator.class =='http://biomac.icmc.usp.br/sustenagro#Real' }">
+            <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
                 <div class="form-group">
                     <input type="text" class="spin-button" name="${indicator.id}-real" value="0" >
                 </div>
@@ -59,7 +60,7 @@
                 <b>${indicator.title}</b>
             </div>
 
-            <g:if test="${indicator.valueType =='http://biomac.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://biomac.icmc.usp.br/sustenagro#Categorical'}">
+            <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
                 <div class="form-group">
                 <g:each var="category" in="${categorical[indicator.class]}">
                     <div class="radio">
@@ -70,7 +71,7 @@
                 </g:each>
                 </div>
             </g:if>
-            <g:elseif test="${indicator.class =='http://biomac.icmc.usp.br/sustenagro#Real' }">
+            <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
                 <div class="form-group">
                     <input type="text" class="spin-button" name="${indicator.id}-real" value="0" >
                 </div>

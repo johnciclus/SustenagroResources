@@ -18,7 +18,7 @@
             </g:each>
         </select>
     </div>
-    <div class="form-group">
+    <!--div class="form-group">
         <label>Culturas disponiveis</label>
         <p>Temos disponíveis as seguintes culturas para analisar os indicadores de sustentabilidade:</p>
 
@@ -30,19 +30,19 @@
             </tr>
             </thead>
             <tbody>
-            <g:each in="${cultures}">
+            < g:each in="{cultures}">
                 <tr>
-                    <td>${it.name}</td>
+                    <td>{it.name}</td>
                     <td>
                         <input type="radio" name="production_unit_culture" value="${it.id}">
                     </td>
                 </tr>
-            </g:each>
+            < /g:each>
             </tbody>
         </table>
-    </div>
+    </div-->
     <div class="form-group">
-        <label>Tecnologias disponiveis</label>
+        <label>Tecnologias disponíveis</label>
         <p>Temos disponíveis as seguintes tecnologias para caracterizar os sistemas de produção de cana-deaçúcar no Centro-Sul do Brasil:</p>
 
         <table class="table table-striped table-hover ">

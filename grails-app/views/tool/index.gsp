@@ -11,8 +11,12 @@
 	<body>
 		<div class="row main">
 			<div id="content" class="col-sm-10 col-sm-offset-1 content">
-				<g:render template="description" />
-				<g:render template="production_unit" />
+                <h5 class="text-primary page-header">${name}</h5>
+                <div class="aling-ol">
+                    ${raw(description)}
+                </div>
+
+                <g:render template="production_unit" />
 			</div>
 		</div>
 	</body>

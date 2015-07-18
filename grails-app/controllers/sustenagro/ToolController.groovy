@@ -1,24 +1,40 @@
 package sustenagro
 
 import com.github.slugify.Slugify
+import com.github.rjeschke.txtmark.Processor
+import org.pegdown.PegDownProcessor
 
 import static rdfSlurper.RDFSlurper.N
 
 class ToolController {
     def slp
+    def dsl
 
     def index() {
 
-        def microregions = slp.query('?id a dbp:MicroRegion; sa:name ?name.')
-        def cultures = slp.query('?id a sa:SugarcaneProductionSystem; sa:name ?name.')
-        def technologies = slp.query('?id a sa:AgriculturalTechnology; sa:name ?name; sa:description ?description.')
-        def production_unit_types = slp.query('?id rdfs:subClassOf sa:ProductionUnit; rdfs:label ?name.')// filter (lang(?name) = "pt")')
+        def inputs = []
+        dsl.featureLst.each{
+            def label = slp.query("${it[1]} rdfs:label ?label.")[0].label
+            def lst = slp.query("?id ${it[0]} ${it[1]} ; rdfs:label ?name. optional {?id dc:description ?description}")
+            inputs << [label, lst]
+        }
+        println 'inp: ' + inputs
+        def microregions = slp.query("?id a dbp:MicroRegion ; rdfs:label ?name.")
+        //def cultures = slp.query('?id a sa:SugarcaneProductionSystem; sa:name ?name.')
+        def technologies = slp.query('?id a :AgriculturalEfficiency; rdfs:label ?name; dc:description ?description.')
+        def production_unit_types = slp.query('?id rdfs:subClassOf :ProductionUnit; rdfs:label ?name.')// filter (lang(?name) = "pt")')
+        //println Processor.process("This is ***TXTMARK***");
+        //String html = new Markdown4jProcessor().process("This is a **bold** text");
 
         render(view: 'index',
-               model:    [microregions: microregions,
-                          cultures: cultures,
-                          technologies: technologies,
-                          production_unit_types: production_unit_types])
+               model:    [
+                       name: dsl.name,
+                       //description:   Processor.process(dsl.description),
+                       description:   new PegDownProcessor().markdownToHtml(dsl.description),
+                       microregions: microregions,
+                       //cultures: cultures,
+                       technologies: technologies,
+                       production_unit_types: production_unit_types])
     }
 
     def productionUnitCreate() {
@@ -27,12 +43,12 @@ class ToolController {
         def production_unit_id = slug.slugify(params['production_unit_name'])
 
         slp.addNode(
-            N('sa:'+production_unit_id,
+            N(':'+production_unit_id,
                 'rdf:type': slp.v(params['production_unit_type']),
-                'sa:name': params['production_unit_name'],
-                'sa:microregion': slp.v(params['production_unit_microregion']),
-                'sa:culture': slp.v(params['production_unit_culture']),
-                'sa:technology': slp.v(params['production_unit_technology'])
+                'rdfs:label': params['production_unit_name'],
+                ':microregion': slp.v(params['production_unit_microregion']),
+                //'sa:culture': slp.v(params['production_unit_culture']),
+                ':technology': slp.v(params['production_unit_technology'])
             ))
 
         slp.g.commit()
@@ -50,9 +66,9 @@ class ToolController {
                    ?class rdfs:subClassOf ?valueType.''')
         }
 
-        def environmental_indicators = indicators('sa:EnvironmentalIndicator')
-        def economic_indicators = indicators('sa:EconomicIndicator')
-        def social_indicators = indicators('sa:SocialIndicator')
+        def environmental_indicators = indicators(':EnvironmentalIndicator')
+        def economic_indicators = indicators(':EconomicIndicator')
+        def social_indicators = indicators(':SocialIndicator')
 
         def categorical = [:]
         def categ = {ind ->
@@ -73,10 +89,10 @@ class ToolController {
             }
         }
 
-        String name = slp."sa:$params.id".'$sa:name'
+        String name = slp.":$params.id".'$rdfs:label'
 
         render(view: 'assessment',
-               model: [sustenagro: 'http://biomac.icmc.usp.br/sustenagro#',
+               model: [sustenagro: 'http://bio.icmc.usp.br/sustenagro#',
                        production_unit_id: params.id,
                        production_unit_name: name,
                        environmental_indicators: environmental_indicators,

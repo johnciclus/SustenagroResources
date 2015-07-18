@@ -279,18 +279,20 @@ class RDFSlurper {
 
     RDFSlurper(String file){
         //g = new MemoryStoreSailGraph()
-        g = new SparqlRepositorySailGraph("http://localhost:9999/bigdata/sparql", "http://localhost:9999/bigdata/sparql")
+        String url = 'http://localhost:9999/bigdata/sparql'
+        //String url = 'http://bio.icmc.usp.br:9999/bigdata/namespace/sustenagro/sparql'
         //"http://localhost:8000/sparql/", "http://localhost:8000/update/")
 
+        g = new SparqlRepositorySailGraph(url, url)
 
         addDefaultNamespaces()
-        addNamespace('sa','http://biomac.icmc.usp.br/sustenagro#')
+        addNamespace('','http://bio.icmc.usp.br/sustenagro#')
         addNamespace('dbp','http://dbpedia.org/ontology/')
 
         setLang('pt')
 
         // SPARQL 1.0 or 1.1 endpoint
-        sparql2 = new Sparql2(endpoint:"http://localhost:9999/bigdata/sparql")
+        sparql2 = new Sparql2(endpoint: url)
 
         //removeAll()
         //g.loadRDF(new FileInputStream(file), 'http://biomac.icmc.usp.br/sustenagro#', 'rdf-xml', null)
@@ -347,7 +349,7 @@ class RDFSlurper {
         addNamespace(SailTokens.OWL_PREFIX, SailTokens.OWL_NS);
         addNamespace(SailTokens.XSD_PREFIX, SailTokens.XSD_NS);
         addNamespace(SailTokens.FOAF_PREFIX, SailTokens.FOAF_NS);
-        addNamespace('dc','http://purl.org/dc/terms#')
+        addNamespace('dc','http://purl.org/dc/terms/')
     }
 
     def addNamespace(String prefix, String namespace){
