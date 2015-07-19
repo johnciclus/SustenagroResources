@@ -3,6 +3,7 @@ package sustenagro
 import com.github.slugify.Slugify
 import com.github.rjeschke.txtmark.Processor
 import org.pegdown.PegDownProcessor
+import rdfSlurper.RDFSlurper
 
 import static rdfSlurper.RDFSlurper.N
 
@@ -12,13 +13,25 @@ class ToolController {
 
     def index() {
 
-        def data = [:]
+        def inputs = []
+        def query
         dsl.featureLst.each{
-            def label = slp.query("${it[1]} rdfs:label ?label.", "en")[0].label
-            data[label] = slp.query("?id ${it[0]} ${it[1]}; rdfs:label ?name. optional {?id dc:description ?description}")
+            def uri = '<'+slp.toURI(it[1])+'>'
+            query = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+            if (query.empty) {
+                query = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${it[1]}')", '')
+                if (query.empty)
+                    throw new RuntimeException('Unknown label: '+it[1])
+                uri = "<${query[0].id}>"
+                query = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+            }
+            def lst = slp.query("?id ${it[0]} $uri ; rdfs:label ?name. optional {?id dc:description ?description}")
+            inputs << [query[0].label, query[0].description, lst]
         }
-        println 'input: ' + data
-
+        println 'inp: '
+        inputs.each{
+            println it
+        }
         //println Processor.process("This is ***TXTMARK***");
         //String html = new Markdown4jProcessor().process("This is a **bold** text");
 
@@ -27,9 +40,9 @@ class ToolController {
                        name: dsl.name,
                        //description:   Processor.process(dsl.description),
                        description:   new PegDownProcessor().markdownToHtml(dsl.description),
-                       microregions: data['Microregion'],
-                       technologies: data['Agricultural Efficiency'],
-                       production_unit_types: data['Production Unity']])
+                       microregions: inputs[0][2],
+                       technologies: inputs[1][2],
+                       production_unit_types: inputs[2][2]])
     }
 
     def productionUnitCreate() {

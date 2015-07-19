@@ -75,7 +75,8 @@ class Sparql2 extends Sparql {
                     String varName = varNames.next()
                     RDFNode varNode = sol.get(varName)
                     row.put(varName, (varNode.isLiteral() ? varNode.asLiteral().value : varNode.toString()))
-                    if (varNode.isLiteral() &&
+                    if (lang!='' &&
+                            varNode.isLiteral() &&
                             varNode.asLiteral().language!=null &&
                             varNode.asLiteral().language.size()>1 &&
                             varNode.asLiteral().language!=lang) add= false
@@ -324,7 +325,6 @@ class RDFSlurper {
     def query1(String q) {
         def ret = []
         def f = prefixes + '\n select * where {' + q +'}'
-        //println f
         g.executeSparql(f).each{
             def map = [:]
             def add = true
@@ -337,13 +337,13 @@ class RDFSlurper {
         ret
     }
 
-    def query(String q, String lg = this.lang) {
+
+    def query(String q, String lang = this.lang) {
         def f = prefixes + '\n select * where {' + q +'}'
-        sparql2.query(f, lg)
+        sparql2.query(f, lang)
     }
 
     def addDefaultNamespaces() {
-
         addNamespace(SailTokens.RDF_PREFIX, SailTokens.RDF_NS);
         addNamespace(SailTokens.RDFS_PREFIX, SailTokens.RDFS_NS);
         addNamespace(SailTokens.OWL_PREFIX, SailTokens.OWL_NS);
