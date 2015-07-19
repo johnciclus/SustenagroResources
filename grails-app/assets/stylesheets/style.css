@@ -175,3 +175,11 @@ body {
 	top: 0;
 	left: 4px;
 }
+
+.tab-content>.tab-pane {
+	padding: 15px 0px;
+}
+
+.form-group{
+	margin-bottom: 25px;
+}

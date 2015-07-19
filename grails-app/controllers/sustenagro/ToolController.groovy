@@ -12,17 +12,13 @@ class ToolController {
 
     def index() {
 
-        def inputs = []
+        def data = [:]
         dsl.featureLst.each{
-            def label = slp.query("${it[1]} rdfs:label ?label.")[0].label
-            def lst = slp.query("?id ${it[0]} ${it[1]} ; rdfs:label ?name. optional {?id dc:description ?description}")
-            inputs << [label, lst]
+            def label = slp.query("${it[1]} rdfs:label ?label.", "en")[0].label
+            data[label] = slp.query("?id ${it[0]} ${it[1]}; rdfs:label ?name. optional {?id dc:description ?description}")
         }
-        println 'inp: ' + inputs
-        def microregions = slp.query("?id a dbp:MicroRegion ; rdfs:label ?name.")
-        //def cultures = slp.query('?id a sa:SugarcaneProductionSystem; sa:name ?name.')
-        def technologies = slp.query('?id a :AgriculturalEfficiency; rdfs:label ?name; dc:description ?description.')
-        def production_unit_types = slp.query('?id rdfs:subClassOf :ProductionUnit; rdfs:label ?name.')// filter (lang(?name) = "pt")')
+        println 'input: ' + data
+
         //println Processor.process("This is ***TXTMARK***");
         //String html = new Markdown4jProcessor().process("This is a **bold** text");
 
@@ -31,10 +27,9 @@ class ToolController {
                        name: dsl.name,
                        //description:   Processor.process(dsl.description),
                        description:   new PegDownProcessor().markdownToHtml(dsl.description),
-                       microregions: microregions,
-                       //cultures: cultures,
-                       technologies: technologies,
-                       production_unit_types: production_unit_types])
+                       microregions: data['Microregion'],
+                       technologies: data['Agricultural Efficiency'],
+                       production_unit_types: data['Production Unity']])
     }
 
     def productionUnitCreate() {

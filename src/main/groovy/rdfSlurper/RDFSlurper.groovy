@@ -337,9 +337,9 @@ class RDFSlurper {
         ret
     }
 
-    def query(String q) {
+    def query(String q, String lg = this.lang) {
         def f = prefixes + '\n select * where {' + q +'}'
-        sparql2.query(f, lang)
+        sparql2.query(f, lg)
     }
 
     def addDefaultNamespaces() {

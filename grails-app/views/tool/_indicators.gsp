@@ -7,12 +7,9 @@
 <div id="indicator_content" class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="environmental_indicators">
         <g:each var="indicator" in="${environmental_indicators}">
-            <div class="page-header">
-                <b>${indicator.title}</b>
-            </div>
-
+            <div class="form-group">
+            <b>${indicator.title}</b>
             <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
-                <div class="form-group">
                 <g:each var="category" in="${categorical[indicator.class]}">
                     <div class="radio">
                         <label>
@@ -20,24 +17,25 @@
                         </label>
                     </div>
                 </g:each>
-                </div>
             </g:if>
             <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
-                <div class="form-group">
-                    <input type="text" class="spin-button" name="${indicator.id}-real" value="0" >
-                </div>
+                <input type="text" class="spin-button" name="${indicator.id}">
             </g:elseif>
+            </div>
         </g:each>
+        <div>
+            <nav>
+                <ul class="pager">
+                    <li><a href="#economic_indicators">Próximo</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="economic_indicators">
         <g:each var="indicator" in="${economic_indicators}">
-            <div class="page-header">
-                <b>${indicator.title}</b>
-            </div>
-
+            <div class="form-group">
+            <b>${indicator.title}</b>
             <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
-                <div class="form-group">
-
                 <g:each var="category" in="${categorical[indicator.class]}">
                     <div class="radio">
                         <label>
@@ -45,23 +43,26 @@
                         </label>
                     </div>
                 </g:each>
-                </div>
             </g:if>
             <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
-                <div class="form-group">
-                    <input type="text" class="spin-button" name="${indicator.id}-real" value="0" >
-                </div>
+                <input type="text" class="spin-button" name="${indicator.id}">
             </g:elseif>
+            </div>
         </g:each>
+        <div>
+            <nav>
+                <ul class="pager">
+                    <li><a href="#environmental_indicators">Anterior</a></li>
+                    <li><a href="#social_indicators">Próximo</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="social_indicators">
         <g:each var="indicator" in="${social_indicators}">
-            <div class="page-header">
-                <b>${indicator.title}</b>
-            </div>
-
+            <div class="form-group">
+            <b>${indicator.title}</b>
             <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
-                <div class="form-group">
                 <g:each var="category" in="${categorical[indicator.class]}">
                     <div class="radio">
                         <label>
@@ -69,14 +70,20 @@
                         </label>
                     </div>
                 </g:each>
-                </div>
             </g:if>
             <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
-                <div class="form-group">
-                    <input type="text" class="spin-button" name="${indicator.id}-real" value="0" >
-                </div>
+                <input type="text" class="spin-button" name="${indicator.id}" >
             </g:elseif>
+            </div>
         </g:each>
+        <div>
+            <nav>
+                <ul class="pager">
+                    <li><a href="#economic_indicators">Anterior</a></li>
+                    <li><a href="#recomendations">Próximo</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
 <script>
