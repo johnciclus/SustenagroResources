@@ -3,6 +3,8 @@
 	<head>
 		<meta name="layout" content="main"/>
 		<title>SustenAgro - Tool</title>
+		<asset:stylesheet href="bootstrap-table.min.css"/>
+		<asset:javascript src="bootstrap-table.min.js"/>
         <!--
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>

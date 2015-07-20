@@ -31,9 +31,9 @@ O processo de avaliação da sustentabilidade é composto pelas seguintes etapas
 features {
 //    instance 'dbp:MicroRegion'
     instance 'Microregion'
-    instance 'Farm'
     instance ':AgriculturalEfficiency'
     subclass ':ProductionUnit'
+    instance 'dbp:Farm'
 }
 
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados

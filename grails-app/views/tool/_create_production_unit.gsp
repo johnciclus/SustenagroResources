@@ -1,17 +1,35 @@
 <h5 class="text-primary page-header">Cadastrar nova unidade produtiva</h5>
 
-<form id="location_form" action="/tool/productionUnitCreate" method="post">
+<form id="location_form" action="/tool/createProductionUnit" method="post">
+
+
     <div class="form-group">
         <label for="production_unit_name">Nome da unidade produtiva que será avaliada</label>
         <input id="production_unit_name" name="production_unit_name" type="text" class="form-control" placeholder="Nome">
     </div>
     <div class="form-group">
         <label for="production_unit_microregion">Microrregião da unidade produtiva</label>
-        <select id="production_unit_microregion" name="production_unit_microregion" class="form-control">
+
+        <table data-toggle="table"
+               data-click-to-select="true"
+               data-height="240"
+               data-select-item-name="production_unit_microregion">
+            <thead>
+            <tr>
+                <th></th>
+                <th data-field="name">Nome</th>
+            </tr>
+            </thead>
+            <tbody>
             <g:each in="${microregions}">
-                <option value="${it.id}">${it.name}</option>
+                <tr>
+                    <td><input type="radio" name="production_unit_microregion" value="${it.id}" ></td>
+                    <td>${it.name}</td>
+                </tr>
             </g:each>
-        </select>
+            </tbody>
+        </table>
+
     </div>
     <!--div class="form-group">
         <label>Culturas disponiveis</label>
@@ -40,23 +58,23 @@
         <label>Tecnologias disponíveis</label>
         <p>Temos disponíveis as seguintes tecnologias para caracterizar os sistemas de produção de cana-deaçúcar no Centro-Sul do Brasil:</p>
 
-        <table class="table table-striped table-hover ">
+        <table data-toggle="table"
+               data-click-to-select="true"
+               data-select-item-name="production_unit_technology">
             <thead>
             <tr>
-                <th>Tecnologia</th>
-                <th>Descrição</th>
-                <th>Seleção</th>
+                <th></th>
+                <th data-field="techonology">Tecnologia</th>
+                <th data-field="description">Descrição</th>
             </tr>
             </thead>
             <tbody>
             <g:each in="${technologies}">
-            <tr>
-                <td>${it.name}</td>
-                <td>${it.description}</td>
-                <td>
-                    <input type="radio" name="production_unit_technology" value="${it.id}" >
-                </td>
-            </tr>
+                <tr>
+                    <td><input type="radio" name="production_unit_technology" value="${it.id}" ></td>
+                    <td>${it.name}</td>
+                    <td>${it.description}</td>
+                </tr>
             </g:each>
             </tbody>
         </table>
@@ -65,21 +83,21 @@
         <label>Caracterização dos sistemas produtivos no Centro-Sul</label>
         <p>Temos disponíveis as seguintes caraterizações:</p>
 
-        <table class="table table-striped table-hover ">
+        <table data-toggle="table"
+               data-click-to-select="true"
+               data-select-item-name="production_unit_type">
             <thead>
             <tr>
-                <th>Caracterização</th>
-                <th>Seleção</th>
+                <th></th>
+                <th data-field="characterization">Caracterização</th>
             </tr>
             </thead>
             <tbody>
             <g:each in="${production_unit_types}">
-            <tr>
-                <td>${it.name}</td>
-                <td>
-                    <input type="radio" name="production_unit_type" value="${it.id}">
-                </td>
-            </tr>
+                <tr>
+                    <td><input type="radio" name="production_unit_type" value="${it.id}" ></td>
+                    <td>${it.name}</td>
+                </tr>
             </g:each>
             </tbody>
         </table>
@@ -101,8 +119,8 @@
 <script type="application/javascript">
 
 
-    function initialize() {
-        /*
+    /*function initialize() {
+
         var mapOptions = {
             center: { lat: -23.54547, lng: -46.64340},
             zoom: 8
@@ -120,7 +138,7 @@
         google.maps.event.addListener(map, 'click', function(e) {
             marker.setPosition(e.latLng);
             $("#production_unit_location").val(e.latLng);
-        });*/
-    }
+        });
+    }*/
     //google.maps.event.addDomListener(window, 'load', initialize);
 </script>

@@ -4,6 +4,7 @@ import com.github.slugify.Slugify
 import com.github.rjeschke.txtmark.Processor
 import org.pegdown.PegDownProcessor
 import rdfSlurper.RDFSlurper
+import utils.Uri
 
 import static rdfSlurper.RDFSlurper.N
 
@@ -36,6 +37,8 @@ class ToolController {
         //String html = new Markdown4jProcessor().process("This is a **bold** text");
 
         //farms = slp.query("?s a <http://dbpedia.org/ontology/Farm>")
+        println "production_units"
+        println inputs[3][2]
 
         render(view: 'index',
                model:    [
@@ -43,12 +46,12 @@ class ToolController {
                        //description:   Processor.process(dsl.description),
                        description:   new PegDownProcessor().markdownToHtml(dsl.description),
                        microregions: inputs[0][2],
-                       production_units: inputs[1][2],
-                       technologies: inputs[2][2],
-                       production_unit_types: inputs[3][2]])
+                       technologies: inputs[1][2],
+                       production_unit_types: inputs[2][2],
+                       production_units: inputs[3][2]])
     }
 
-    def productionUnitCreate() {
+    def createProductionUnit() {
         Slugify slug = new Slugify()
 
         def production_unit_id = slug.slugify(params['production_unit_name'])
@@ -57,9 +60,9 @@ class ToolController {
             N(':'+production_unit_id,
                 'rdf:type': slp.v(params['production_unit_type']),
                 'rdfs:label': params['production_unit_name'],
-                ':microregion': slp.v(params['production_unit_microregion']),
+                'dbp:Microregion': slp.v(params['production_unit_microregion']),
                 //'sa:culture': slp.v(params['production_unit_culture']),
-                ':technology': slp.v(params['production_unit_technology'])
+                ':AgriculturalEfficiency': slp.v(params['production_unit_technology'])
             ))
 
         slp.g.commit()
@@ -67,9 +70,9 @@ class ToolController {
         redirect(action: 'assessment', id: production_unit_id)
     }
 
-    def assessmentProductionUnit(){
-        def production_unit_id = params['production_unit_id']
-        redirect(action: 'assessment', id: slp.query("<$production_unit_id> rdfs:label ?name.")[0].name)
+    def selectProductionUnit(){
+        def production_unit_id = Uri.removeDomain(params['production_unit_id'], 'http://bio.icmc.usp.br/sustenagro#')
+        redirect(action: 'assessment', id: production_unit_id)
     }
 
     def assessment() {

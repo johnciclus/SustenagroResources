@@ -27,16 +27,31 @@
             </div>
             <div role="tabpanel" class="tab-pane ind-content" id="recomendations">
                 <p>Recomendations</p>
+                <div>
+                    <nav>
+                        <ul class="pager">
+                            <li><a href="#indicators">Anterior</a></li>
+                            <li><a href="#graphics">Próximo</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
             <div role="tabpanel" class="tab-pane ind-content" id="graphics">
                 <p>Graphics</p>
+                <div>
+                    <nav>
+                        <ul class="pager">
+                            <li><a href="#recomendations">Anterior</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
     $('.pager a').click(function(){
-        console.log($('.nav-tabs a[href="'+$(this).attr('href')+'"]'));
+        $('.nav-tabs a[href="'+$(this).attr('href')+'"]').tab('show');
     });
 </script>
 </body>
