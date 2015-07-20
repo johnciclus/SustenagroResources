@@ -29,8 +29,8 @@ O processo de avaliação da sustentabilidade é composto pelas seguintes etapas
 // Na ontologia, location definiria as microregiões do IBGE.
 // Se a fazenda ficar em mais de uma micro-região?
 features {
-    instance 'dbp:MicroRegion'
-//    instance 'Microregion'
+//    instance 'dbp:MicroRegion'
+    instance 'Microregion'
     instance ':AgriculturalEfficiency'
     subclass ':ProductionUnit'
 }
