@@ -16,7 +16,9 @@
                     ${raw(description)}
                 </div>
 
-                <g:render template="production_unit" />
+				<g:render template="list_production_unit" />
+
+                <g:render template="create_production_unit" />
 			</div>
 		</div>
 	</body>

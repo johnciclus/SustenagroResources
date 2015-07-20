@@ -1,8 +1,3 @@
-<!--<h5 class="text-primary page-header">Selecionar unidade produtiva</h5>
-
-<select class="form-control">
-</select>-->
-
 <h5 class="text-primary page-header">Cadastrar nova unidade produtiva</h5>
 
 <form id="location_form" action="/tool/productionUnitCreate" method="post">

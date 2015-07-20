@@ -35,14 +35,17 @@ class ToolController {
         //println Processor.process("This is ***TXTMARK***");
         //String html = new Markdown4jProcessor().process("This is a **bold** text");
 
+        //farms = slp.query("?s a <http://dbpedia.org/ontology/Farm>")
+
         render(view: 'index',
                model:    [
                        name: dsl.name,
                        //description:   Processor.process(dsl.description),
                        description:   new PegDownProcessor().markdownToHtml(dsl.description),
                        microregions: inputs[0][2],
-                       technologies: inputs[1][2],
-                       production_unit_types: inputs[2][2]])
+                       production_units: inputs[1][2],
+                       technologies: inputs[2][2],
+                       production_unit_types: inputs[3][2]])
     }
 
     def productionUnitCreate() {
@@ -62,6 +65,11 @@ class ToolController {
         slp.g.commit()
         //        g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
         redirect(action: 'assessment', id: production_unit_id)
+    }
+
+    def assessmentProductionUnit(){
+        def production_unit_id = params['production_unit_id']
+        redirect(action: 'assessment', id: slp.query("<$production_unit_id> rdfs:label ?name.")[0].name)
     }
 
     def assessment() {
