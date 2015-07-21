@@ -89,6 +89,16 @@ class ToolController {
         def economic_indicators = indicators(':EconomicIndicator')
         def social_indicators = indicators(':SocialIndicator')
 
+        def removeDomain = { lst ->
+            lst.each{ ind ->
+                ind['id_name'] = Uri.removeDomain(ind.id, 'http://bio.icmc.usp.br/sustenagro#')
+            }
+        }
+
+        removeDomain(environmental_indicators)
+        removeDomain(economic_indicators)
+        removeDomain(social_indicators)
+
         def categorical = [:]
         def categ = {ind ->
             ind.each{
