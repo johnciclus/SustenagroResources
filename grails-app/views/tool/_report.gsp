@@ -1,9 +1,12 @@
+<div id="graphic">
+
+</div>
+
 <script type="text/javascript">
 
-    var w = 960,
-            h = 960;
+    var w = 960, h = 960;
 
-    var svg = d3.select("#graphics").append("svg:svg")
+    var svg = d3.select("#graphic").append("svg:svg")
             .attr("width", w)
             .attr("height", h);
 

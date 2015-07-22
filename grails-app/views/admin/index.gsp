@@ -7,29 +7,18 @@
 	</head>
 	<body>
 		<div class="row main">
-			<div class="col-sm-10 col-sm-offset-1 content">
-				<h5 class="text-primary page-header">DSL Code</h5>
-				<a href="/home" target="_blank" >Exemplos</a>
-
-				<pre id="editor" class="ace_editor ace-tm"></pre>
-
-				<form id="dsl_form" action="/admin/dsl" method="post">
-					<div class="form-group">
-						<input type="submit" class="btn btn-primary" value="Generate" />
+			<div class="content">
+				<div class="col-md-10 col-sm-offset-1">
+					<div class="pull-left"><h5 class="text-primary">DSL Code</h5></div>
+					<div class="pull-right form-group">
+						<form id="dsl_form" action="/admin/dsl" method="post">
+							<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Guardar </button>
+						</form>
 					</div>
-				</form>
-
-				<!--
-				<form id="example_form" action="/sustenagro/admin/dslCreate" method="post">
-					<div class="form-group">
-						<input type="submit" class="btn btn-primary" value="Example" />
-					</div>
-				</form>
-				-->
-				
-				<h5 class="text-primary page-header">Result</h5>
-				<div id='result'>
-					
+				</div>
+				<div class="col-md-10 col-sm-offset-1">
+					<pre id="editor" class="ace_editor ace-tm">${code}</pre>
+					<div id='result'></div>
 				</div>
 				
 				<script type="application/javascript">
@@ -45,7 +34,13 @@
 					  	$(this).attr('action'),
 					  	{'code':  editor.getValue() },
 					  	function( data ) {
-						  $('#result').html(data);
+							if(data=='ok'){
+								function redo(){
+									$('#dsl_form button').removeClass('btn-success').addClass('btn-primary');
+								}
+								$('#dsl_form button').removeClass('btn-primary').addClass('btn-success');
+								setTimeout(redo, 1000);
+							}
 						}
 					  );
 					  event.preventDefault();

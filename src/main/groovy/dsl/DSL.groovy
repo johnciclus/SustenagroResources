@@ -12,6 +12,9 @@ class DSL {
     def description = ''
     def featureLst = []
     def dimensions = []
+    def _nameFile = ''
+    def _script
+    def _shell
 
     DSL(String file){
         // Create CompilerConfiguration and assign
@@ -20,27 +23,35 @@ class DSL {
         compilerConfiguration.scriptBaseClass = DelegatingScript.class.name
 
         // Configure the GroovyShell and pass the compiler configuration.
-        def shell = new GroovyShell(this.class.classLoader, new Binding(), compilerConfiguration)
+        _shell = new GroovyShell(this.class.classLoader, new Binding(), compilerConfiguration)
 
-        def script = shell.parse(new File(file).text)
-        script.setDelegate(this)
+        _nameFile = file
+
+        _script = _shell.parse(new File(_nameFile).text)
+        _script.setDelegate(this)
 
         // Run DSL script.
-        script.run()
+        _script.run()
+    }
 
-        println featureLst
+    def _reLoad(){
 
+        _script = _shell.parse(new File(_nameFile).text)
+        _script.setDelegate(this)
+
+        // Run DSL script.
+        _script.run()
     }
 
     def name(String nameStr){
         name = nameStr
-        println name
+        //println name
     }
 
     def description(String nameStr){
         description = nameStr
         //println  Processor.process(description, true)
-        println new PegDownProcessor().markdownToHtml(description)
+        //println new PegDownProcessor().markdownToHtml(description)
     }
 
     def features(Closure closure){
