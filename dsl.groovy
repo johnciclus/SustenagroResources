@@ -7,8 +7,7 @@ name 'Avaliação da sustentabilidade em agricultura'
 
 // Aba de descrição do conteúdo: um texto em markdown que você vai escrever
 // (esse texto também pode estar num arquivo)
-description '''
-O processo de avaliação da sustentabilidade é composto pelas seguintes etapas:
+description '''O processo de avaliação da sustentabilidade é composto pelas seguintes etapas:
 
 1. Localização da lavoura
 2. Caracterização da cultura, tecnologia e tipo de sistema produtivo

@@ -18,10 +18,6 @@ class ToolController {
         def query
 
         dsl.featureLst.each{
-            println it
-        }
-
-        dsl.featureLst.each{
             def uri = '<'+slp.toURI(it[1])+'>'
             query = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
             if (query.empty) {
@@ -133,6 +129,7 @@ class ToolController {
     }
 
     def assessmentReport() {
+        def production_unit_id = params['production_unit_id']
 
         def getIndicators = {cls ->
             slp.query('?a  rdfs:subClassOf '+cls+''' .
@@ -158,9 +155,11 @@ class ToolController {
             }
         }
 
-        println filled_ind
+        filled_ind.each{
+            println it
+        }
 
-        render 'ok'
+        redirect(action: 'assessment', id: params['production_unit_id'])
     }
 
 }

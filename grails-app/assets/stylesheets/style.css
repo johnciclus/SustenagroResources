@@ -86,6 +86,10 @@ body {
 	margin: 0 auto;
 }
 
+.section{
+	margin-bottom: 30px;
+}
+
 #toolContent{
 	padding: 20px;
 	background-color: #ffffff;
@@ -180,6 +184,6 @@ body {
 	padding: 15px 0px;
 }
 
-.form-group{
+#indicator_content .form-group{
 	margin-bottom: 25px;
 }

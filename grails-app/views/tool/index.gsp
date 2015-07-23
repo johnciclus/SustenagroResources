@@ -13,10 +13,12 @@
 	<body>
 		<div class="row main">
 			<div id="content" class="col-sm-10 col-sm-offset-1 content">
-                <h5 class="text-primary page-header">${name}</h5>
-                <div class="aling-ol">
-                    ${raw(description)}
-                </div>
+				<div class="section">
+					<h5 class="text-primary">${name}</h5>
+					<div class="aling-ol">
+						${raw(description)}
+					</div>
+				</div>
 
 				<g:render template="list_production_unit" />
 
