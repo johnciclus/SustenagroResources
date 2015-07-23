@@ -1,8 +1,6 @@
 <h5 class="text-primary page-header">Cadastrar nova unidade produtiva</h5>
 
-<form id="location_form" action="/tool/createProductionUnit" method="post">
-
-
+<form id="create_form" action="/tool/createProductionUnit" method="post">
     <div class="form-group">
         <label for="production_unit_name">Nome da unidade produtiva que será avaliada</label>
         <input id="production_unit_name" name="production_unit_name" type="text" class="form-control" placeholder="Nome">
@@ -21,9 +19,9 @@
             </tr>
             </thead>
             <tbody>
-            <g:each in="${microregions}">
-                <tr>
-                    <td><input type="radio" name="production_unit_microregion" value="${it.id}" ></td>
+            <g:each status="i" in="${microregions}" var="it">
+                <tr data-index="${i}">
+                    <td><input data-index="${i}" type="radio" name="production_unit_microregion" value="${it.id}" ></td>
                     <td>${it.name}</td>
                 </tr>
             </g:each>
@@ -31,29 +29,6 @@
         </table>
 
     </div>
-    <!--div class="form-group">
-        <label>Culturas disponiveis</label>
-        <p>Temos disponíveis as seguintes culturas para analisar os indicadores de sustentabilidade:</p>
-
-        <table class="table table-striped table-hover ">
-            <thead>
-            <tr>
-                <th>Cultura</th>
-                <th>Seleção</th>
-            </tr>
-            </thead>
-            <tbody>
-            < g:each in="{cultures}">
-                <tr>
-                    <td>{it.name}</td>
-                    <td>
-                        <input type="radio" name="production_unit_culture" value="${it.id}">
-                    </td>
-                </tr>
-            < /g:each>
-            </tbody>
-        </table>
-    </div-->
     <div class="form-group">
         <label>Tecnologias disponíveis</label>
         <p>Temos disponíveis as seguintes tecnologias para caracterizar os sistemas de produção de cana-deaçúcar no Centro-Sul do Brasil:</p>
@@ -69,9 +44,9 @@
             </tr>
             </thead>
             <tbody>
-            <g:each in="${technologies}">
-                <tr>
-                    <td><input type="radio" name="production_unit_technology" value="${it.id}" ></td>
+            <g:each status="i" in="${technologies}" var="it">
+                <tr data-index="${i}">
+                    <td><input data-index="${i}" type="radio" name="production_unit_technology" value="${it.id}" ></td>
                     <td>${it.name}</td>
                     <td>${it.description}</td>
                 </tr>
@@ -93,9 +68,9 @@
             </tr>
             </thead>
             <tbody>
-            <g:each in="${production_unit_types}">
-                <tr>
-                    <td><input type="radio" name="production_unit_type" value="${it.id}" ></td>
+            <g:each status="i" in="${production_unit_types}" var="it">
+                <tr data-index="${i}">
+                    <td><input data-index="${i}" type="radio" name="production_unit_type" value="${it.id}" ></td>
                     <td>${it.name}</td>
                 </tr>
             </g:each>

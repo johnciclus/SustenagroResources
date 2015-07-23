@@ -16,6 +16,11 @@ class ToolController {
 
         def inputs = []
         def query
+
+        dsl.featureLst.each{
+            println it
+        }
+
         dsl.featureLst.each{
             def uri = '<'+slp.toURI(it[1])+'>'
             query = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
@@ -29,16 +34,13 @@ class ToolController {
             def lst = slp.query("?id ${it[0]} $uri ; rdfs:label ?name. optional {?id dc:description ?description}")
             inputs << [query[0].label, query[0].description, lst]
         }
-        println 'inp: '
-        inputs.each{
-            println it
-        }
+
+        //println 'inp: '
+        //inputs.each{
+        //  println it
+        //}
         //println Processor.process("This is ***TXTMARK***");
         //String html = new Markdown4jProcessor().process("This is a **bold** text");
-
-        //farms = slp.query("?s a <http://dbpedia.org/ontology/Farm>")
-        println "production_units"
-        println inputs[3][2]
 
         render(view: 'index',
                model:    [
@@ -100,7 +102,7 @@ class ToolController {
         removeDomain(social_indicators)
 
         def categorical = [:]
-        def categ = {ind ->
+        def categ = { ind ->
             ind.each{
                 slp.query("<$it.id> rdfs:subClassOf ?a. ?a owl:onClass ?id").each{
                    categorical[it.id] = []
@@ -129,4 +131,33 @@ class ToolController {
                        social_indicators: social_indicators,
                        categorical: categorical ])
     }
+
+    def assessmentReport() {
+
+        def getIndicators = {cls ->
+            slp.query('?a  rdfs:subClassOf '+cls+''' .
+                       ?id rdfs:subClassOf ?a;''')
+        }
+
+        def indicators = []
+        dsl.dimensions.each{
+            println it
+        }
+
+        indicators += getIndicators(':EnvironmentalIndicator')
+        indicators += getIndicators(':EconomicIndicator')
+        indicators += getIndicators(':SocialIndicator')
+
+        def indicators_names = []
+
+        indicators.each{
+            indicators_names.push(Uri.removeDomain(it.id, 'http://bio.icmc.usp.br/sustenagro#'))
+        }
+
+        indicators_names.each{ ind ->
+            println "$ind: "+ params[ind]
+        }
+        render 'ok'
+    }
+
 }

@@ -16,6 +16,10 @@ class DSL {
     def indicator
     def props = [:]
 
+    def _nameFile = ''
+    def _script
+    def _shell
+
     DSL(String file){
         // Create CompilerConfiguration and assign
         // the DelegatingScript class as the base script class.
@@ -23,13 +27,24 @@ class DSL {
         compilerConfiguration.scriptBaseClass = DelegatingScript.class.name
 
         // Configure the GroovyShell and pass the compiler configuration.
-        def shell = new GroovyShell(this.class.classLoader, new Binding(), compilerConfiguration)
+        _shell = new GroovyShell(this.class.classLoader, new Binding(), compilerConfiguration)
 
-        def script = shell.parse(new File(file).text)
-        script.setDelegate(this)
+        _nameFile = file
+
+        _script = _shell.parse(new File(_nameFile).text)
+        _script.setDelegate(this)
 
         // Run DSL script.
-        script.run()
+        _script.run()
+    }
+
+    def _reLoad(){
+
+        _script = _shell.parse(new File(_nameFile).text)
+        _script.setDelegate(this)
+
+        // Run DSL script.
+        _script.run()
     }
 
     def name(String nameStr){

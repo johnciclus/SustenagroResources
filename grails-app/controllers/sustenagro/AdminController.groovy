@@ -1,6 +1,9 @@
 package sustenagro
 
 import groovy.xml.MarkupBuilder
+import grails.spring.BeanBuilder
+import org.springframework.context.ApplicationContext
+import dsl.DSL
 /*import org.springframework.data.neo4j.annotation.NodeEntity
 import org.springframework.data.neo4j.annotation.GraphId
 import org.springframework.data.neo4j.annotation.Indexed
@@ -103,25 +106,20 @@ class Html {
 }
 
 class AdminController {
+    def dsl
 
-    def html
     def index(){
-        def indicator = new Indicator(title: "Co2 Emission")
-        indicator.save()
+        render(view: 'index', model: [code: new File('dsl.groovy').text])
     }
 
-    def query(){
-
-        render "ok!"
-    }
-
-    def dsl(){
-        println "query"
+    def dsl() {
+        def file = new File('dsl.groovy').write(params['code'])
+        dsl._reLoad()
 
         //FileUtils.deleteRecursively( new File( DB_PATH ) )
 
         //Binding binding = new Binding([html: new Html(elements)])
-        Html html = new Html()
+        //Html html = new Html()
         //binding.setVariable("html", html)
         
         //GroovyShell shell = new GroovyShell(new Binding([html: new Html()]))
@@ -129,11 +127,11 @@ class AdminController {
         //Script script = shell.parse("html.make({" + params["code"] + "})")
         //render script.run()
 
-        Binding binding   = new Binding()
-        binding.setVariable("html", html)
-        GroovyShell shell = new GroovyShell(binding)
+        //Binding binding   = new Binding()
+        //binding.setVariable("html", html)
+        //GroovyShell shell = new GroovyShell(binding)
 
-        render shell.evaluate("html.make({" + params["code"] + "})")
+        //render shell.evaluate("html.make({" + params["code"] + "})")
 
 
         /*String sparqlQueryString= "select distinct ?Concept where {[] a ?Concept} LIMIT 100"
@@ -145,6 +143,8 @@ class AdminController {
         println results       
 
         qexec.close()*/
+
+        render "ok"
     }
 }
 

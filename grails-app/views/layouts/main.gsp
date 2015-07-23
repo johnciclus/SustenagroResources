@@ -43,24 +43,10 @@
                   </div>
                   <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                      <li <g:if test="${controllerName == null}"> class="active" </g:if> ><a href="/">Inicio</a></li>
-                      <li <g:if test="${controllerName == 'tool'}"> class="active" </g:if> ><a href="/tool">Ferramenta</a></li>
-                      
-                      <!--<li <g:if test="${controllerName == 'tool'}"> class="active" </g:if> class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ferramenta <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li <g:if test="${controllerName == 'tool' && actionName == 'index'}"> class="active" </g:if> ><a href="/sustenagro/tool">Apresentação</a></li>
-                          <li class="divider"></li>
-                          <li <g:if test="${controllerName == 'tool' && actionName == 'location'}">                 class="active" </g:if> ><a href="/sustenagro/tool/location">                1. Localização</a></li>
-                          <li <g:if test="${controllerName == 'tool' && actionName == 'crop'}">                         class="active" </g:if> ><a href="/sustenagro/tool/crop">                        2. Culturas</a></li>
-                          <li <g:if test="${controllerName == 'tool' && actionName == 'technology'}">           class="active" </g:if> ><a href="/sustenagro/tool/technology">          3. Tecnologias</a></li>
-                          <li <g:if test="${controllerName == 'tool' && actionName == 'characterization'}"> class="active" </g:if> ><a href="/sustenagro/tool/characterization">4. Caracterização</a></li>
-                          <li <g:if test="${controllerName == 'tool' && actionName == 'indicators'}">           class="active" </g:if> ><a href="/sustenagro/tool/indicators">          5. Indicadores</a></li>
-                          <li <g:if test="${controllerName == 'tool' && actionName == 'recomendations'}">   class="active" </g:if> ><a href="/sustenagro/tool/recomendations">  6. Recomendações</a></li>
-                        </ul>
-                      </li>-->
-                      
-                      <li <g:if test="${controllerName == 'contact'}"> class="active" </g:if> ><a href="/contact">Contato</a></li>
+                        <li <g:if test="${controllerName == null}"> class="active" </g:if> ><a href="/">Inicio</a></li>
+                        <li <g:if test="${controllerName == 'tool'}"> class="active" </g:if> ><a href="/tool">Ferramenta</a></li>
+                        <li <g:if test="${controllerName == 'admin'}"> class="active" </g:if> ><a href="/admin">Administração</a></li>
+                        <li <g:if test="${controllerName == 'contact'}"> class="active" </g:if> ><a href="/contact">Contato</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                       <li class="active"><a href="./">Inicie sessão</a></li>
