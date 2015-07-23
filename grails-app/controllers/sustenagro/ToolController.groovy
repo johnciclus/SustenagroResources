@@ -140,10 +140,6 @@ class ToolController {
         }
 
         def indicators = []
-        dsl.dimensions.each{
-            println it
-        }
-
         indicators += getIndicators(':EnvironmentalIndicator')
         indicators += getIndicators(':EconomicIndicator')
         indicators += getIndicators(':SocialIndicator')
@@ -154,9 +150,16 @@ class ToolController {
             indicators_names.push(Uri.removeDomain(it.id, 'http://bio.icmc.usp.br/sustenagro#'))
         }
 
+        def filled_ind = []
+
         indicators_names.each{ ind ->
-            println "$ind: "+ params[ind]
+            if(params[ind] != '' && params[ind] != null ){
+                filled_ind.push(indicator: ind, value: params[ind])
+            }
         }
+
+        println filled_ind
+
         render 'ok'
     }
 
