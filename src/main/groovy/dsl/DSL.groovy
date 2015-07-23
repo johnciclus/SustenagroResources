@@ -12,6 +12,9 @@ class DSL {
     def description = ''
     def featureLst = []
     def dimensions = []
+    Closure program
+    def indicator
+    def props = [:]
 
     DSL(String file){
         // Create CompilerConfiguration and assign
@@ -27,25 +30,21 @@ class DSL {
 
         // Run DSL script.
         script.run()
-
-        println featureLst
-
     }
 
     def name(String nameStr){
         name = nameStr
-        println name
     }
 
     def description(String nameStr){
         description = nameStr
         //println  Processor.process(description, true)
-        println new PegDownProcessor().markdownToHtml(description)
+        //println new PegDownProcessor().markdownToHtml(description)
     }
 
     def features(Closure closure){
         featureLst = []
-        closure.run()
+        closure()
     }
 
     def instance(String str){
@@ -58,5 +57,17 @@ class DSL {
 
     def dimension(String cls) {
         dimensions << cls
+    }
+
+    def prog(Closure c){
+        program = c
+    }
+
+    def propertyMissing(String name, arg) {
+        props[name] = arg
+    }
+
+    def propertyMissing(String name) {
+        props[name]
     }
 }

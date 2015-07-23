@@ -13,12 +13,6 @@ name 'Avaliação da sustentabilidade em agricultura'
 // (esse texto também pode estar num arquivo)
 description '''
 O processo de avaliação da sustentabilidade é composto pelas seguintes etapas:
-
-1. Localização da lavoura
-2. Caracterização da cultura, tecnologia e tipo de sistema produtivo
-3. Definição dos indicadores
-4. Recomendações de sustentabilidade
-
  '''
 
 // Informações que serão lidas antes dos indicadores. No exemplo serão
@@ -32,7 +26,6 @@ features {
     instance 'Microregion'
     instance ':AgriculturalEfficiency'
     subclass ':ProductionUnit'
-    instance 'dbp:Farm'
 }
 
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados
@@ -51,16 +44,13 @@ dimension ':SocialIndicator'
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
-    //def indicator = instances
     indice = indicator.'co2 emission'
     soil = 2.0 * indicator.soil + 5.1 *
-            indicator.landBurn
-    transport = 3 * indicator.'road Length' + 7 *
-              indicator.distance
-    social = 3 * indicador.'comprimento da estrada' + 7 *
-            indicador.distância
-    indice = 98
+            indicator.landBurn + 1000
+    transport = 3 * indicator.'road length' + 7 *
+            indicator.distância
 }
+
 //
 //matrix 'm1', indice, soil {
 //
