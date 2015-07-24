@@ -114,7 +114,7 @@ class AdminController {
 
     def dsl() {
         def file = new File('dsl.groovy').write(params['code'])
-        dsl._reLoad()
+        dsl.reLoad()
 
         //FileUtils.deleteRecursively( new File( DB_PATH ) )
 

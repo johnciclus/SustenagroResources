@@ -16,9 +16,9 @@ class DSL {
     def indicator
     def props = [:]
 
-    def _nameFile = ''
-    def _script
-    def _shell
+    private def _nameFile = ''
+    private Script _script
+    private GroovyShell _shell
 
     DSL(String file){
         // Create CompilerConfiguration and assign
@@ -38,7 +38,7 @@ class DSL {
         _script.run()
     }
 
-    def _reLoad(){
+    def reLoad(){
 
         _script = _shell.parse(new File(_nameFile).text)
         _script.setDelegate(this)

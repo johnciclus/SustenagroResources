@@ -131,15 +131,10 @@ class ToolController {
     def assessmentReport() {
         def production_unit_id = params['production_unit_id']
 
-        def getIndicators = {cls ->
-            slp.query('?a  rdfs:subClassOf '+cls+''' .
-                       ?id rdfs:subClassOf ?a;''')
-        }
-
         def indicators = []
-        indicators += getIndicators(':EnvironmentalIndicator')
-        indicators += getIndicators(':EconomicIndicator')
-        indicators += getIndicators(':SocialIndicator')
+        dsl.dimensions.each{
+            indicators += slp.query("?a rdfs:subClassOf $it. ?id rdfs:subClassOf ?a.")
+        }
 
         def indicators_names = []
 
