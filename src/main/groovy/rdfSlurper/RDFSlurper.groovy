@@ -1,10 +1,24 @@
 package rdfSlurper
 
+import com.hp.hpl.jena.query.QueryExecutionFactory
+import com.hp.hpl.jena.query.QueryFactory
+import com.hp.hpl.jena.query.QuerySolution
+import com.hp.hpl.jena.query.Syntax
+import com.hp.hpl.jena.rdf.model.RDFNode
+import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP
+import com.tinkerpop.blueprints.Vertex
 import com.tinkerpop.blueprints.impls.sail.SailGraph
 import com.tinkerpop.blueprints.impls.sail.SailTokens
 import com.tinkerpop.blueprints.impls.sail.impls.MemoryStoreSailGraph
 import com.tinkerpop.blueprints.impls.sail.impls.SparqlRepositorySailGraph
 import com.tinkerpop.gremlin.groovy.Gremlin
+
+import com.hp.hpl.jena.query.Query
+import com.hp.hpl.jena.query.QueryExecution
+import groovy.sparql.Sparql
+
+import com.hp.hpl.jena.query.QuerySolutionMap
+import com.hp.hpl.jena.query.ResultSet
 
 /*
 new MarkupBuilder().root {
@@ -21,6 +35,64 @@ Will print the following to System.out:
    </a>
  </root>
  */
+
+class Sparql2 extends Sparql {
+
+    def query(String sparql, String lang) {
+        Query query = QueryFactory.create(sparql, Syntax.syntaxARQ)
+        QueryExecution qe = null
+
+        /**
+         * Some explanation here - ARQ can provide a QE based on a pure
+         * SPARQL service endpoint, or a Jena model, plus you can still
+         * do remote queries with the model using the in-SPARQL "service"
+         * keyword.
+         */
+        if (model) {
+            qe = QueryExecutionFactory.create(query, model)
+        } else {
+            if (!endpoint) {
+                return
+            }
+            qe = QueryExecutionFactory.sparqlService(endpoint, query)
+            if (config.timeout) {
+                ((QueryEngineHTTP) qe).addParam(timeoutParam, config.timeout as String)
+            }
+            if (user) {
+                ((QueryEngineHTTP) qe).setBasicAuthentication(user, pass?.toCharArray())
+            }
+        }
+
+        def res = []
+        try {
+
+            for (ResultSet rs = qe.execSelect(); rs.hasNext();) {
+                QuerySolution sol = rs.nextSolution()
+
+                Map<String, Object> row = [:]
+                boolean add = true
+                for (Iterator<String> varNames = sol.varNames(); varNames.hasNext();) {
+                    String varName = varNames.next()
+                    RDFNode varNode = sol.get(varName)
+                    row.put(varName, (varNode.isLiteral() ? varNode.asLiteral().value : varNode.toString()))
+                    if (lang!='' &&
+                            varNode.isLiteral() &&
+                            varNode.asLiteral().language!=null &&
+                            varNode.asLiteral().language.size()>1 &&
+                            varNode.asLiteral().language!=lang) add= false
+                }
+                //println 'row: '+row
+                if (add)
+                    res.push(row)
+                //closure.delegate = row
+                //closure.call()
+            }
+        } finally {
+            qe.close()
+        }
+        return res
+    }
+}
 
 abstract class GGraph {
     RDFSlurper slurp
@@ -68,11 +140,6 @@ abstract class GGraph {
         slurp.g.v(id).outE(res[0].pred.id)
     }
 
-    //def getAt(int ind) {
-    //    int i =0
-    //    node().value.find{i++ == ind}
-    //}
-
     def getAt(String name) {
         if (name[0]=='$') {
             def vertice = findVertex(slurp.toURI(name.substring(1)))
@@ -99,37 +166,7 @@ abstract class GGraph {
             if (obj1.outE().count() == 0)
                 slurp.g.removeVertex(obj1)
         }
-        slurp.g.addEdge(subj, make(obj2), slurp.toURI(propName))
-    }
-
-    def make(node) {
-
-        def addProps = { uri, map ->
-            def v2 = slurp.g.addVertex(slurp.toURI(uri))
-            map.each {key, value ->
-                slurp.g.addEdge(v2, make(value), slurp.toURI(key))
-            }
-            v2
-        }
-        switch (node) {
-
-            case List:
-                return addProps(node[0], node[1])
-            case Map:
-                return addProps(
-                        //'_:Z' + ((node.size() * 100000000 + 7652526535345544) * Math.random()).toLong(),
-                        //'http://blankNode.org/blank/B' + ((node.size() * 100000000 + 7652526535345544) * Math.random()).toLong(),
-                        null,
-                        node)
-            case String:
-                return slurp.g.addVertex('"' + node + '"@' + slurp.lang)
-            case int|Integer|long|Long|BigInteger:
-                return slurp.g.addVertex('"' + node + '"^^<http://www.w3.org/2001/XMLSchema#integer>')
-            case float|Float|double|Double|BigDecimal:
-                return slurp.g.addVertex('"' + node + '"^^<http://www.w3.org/2001/XMLSchema#double>')
-            case boolean:
-                return slurp.g.addVertex('"' + node + '"^^<http://www.w3.org/2001/XMLSchema#boolean>')
-        }
+        slurp.g.addEdge(subj, slurp.addNode(obj2), slurp.toURI(propName))
     }
 }
 
@@ -179,7 +216,7 @@ class GEdge extends GGraph {
         slurp.g.removeEdge(pred)
         if (obj1.outE().count()==0)
             slurp.g.removeVertex(obj1)
-        slurp.g.addEdge(subj, make(obj2), propName)
+        slurp.g.addEdge(subj, slurp.addNode(obj2), propName)
     }
 }
 
@@ -228,6 +265,8 @@ class RDFSlurper {
     private Map<String, String> _prefixes = [:]
     String lang = 'en'
 
+    Sparql2 sparql2
+
     RDFSlurper(){
         g = new MemoryStoreSailGraph()
     }
@@ -235,31 +274,82 @@ class RDFSlurper {
     RDFSlurper(String endpoint, String update) {
         g = new SparqlRepositorySailGraph(endpoint, update)
         //"http://localhost:8000/sparql/", "http://localhost:8000/update/")
+        // SPARQL 1.0 or 1.1 endpoint
+        sparql2 = new Sparql2(endpoint: endpoint)
     }
 
     RDFSlurper(String file){
-        g = new MemoryStoreSailGraph()
+        //g = new MemoryStoreSailGraph()
+        String url = 'http://localhost:9999/bigdata/sparql'
+        //String url = 'http://bio.icmc.usp.br:9999/bigdata/namespace/sustenagro/sparql'
+        //"http://localhost:8000/sparql/", "http://localhost:8000/update/")
 
-        //addDefaultNamespaces()
-        addNamespace('sa','http://biomac.icmc.usp.br/sustenagro#')
+        g = new SparqlRepositorySailGraph(url, url)
+
+        addDefaultNamespaces()
+        addNamespace('','http://bio.icmc.usp.br/sustenagro#')
         addNamespace('dbp','http://dbpedia.org/ontology/')
 
-        g.loadRDF(new FileInputStream(file), 'http://biomac.icmc.usp.br/sustenagro#', 'rdf-xml', null)
+        setLang('pt')
+
+        // SPARQL 1.0 or 1.1 endpoint
+        sparql2 = new Sparql2(endpoint: url)
+
+        //removeAll()
+        //g.loadRDF(new FileInputStream(file), 'http://biomac.icmc.usp.br/sustenagro#', 'rdf-xml', null)
     }
 
-    def sparql(String q) {
-        println prefixes + '\n' + q
-        g.executeSparql(prefixes + '\n' + q)
+    def removeAll(){
+         g.E.each{
+            g.removeEdge(it)
+        }
     }
 
-    def addDefaultNamespaces() { //throw new RuntimeException('Method not working.')}
+//    def sparql(String q) {
+//        def ret = []
+//        def f = prefixes + '\n' + q
+//        println f
+//        g.executeSparql(f).each{
+//            def map = [:]
+//            def add = true
+//            it.each {key, val->
+//                map[key] = val.value ? val.value : val.id
+//                if (val.lang != null && val.lang!=lang) add= false
+//            }
+//            if (add) ret.add(map)
+//        }
+//        ret
+//    }
 
+
+    def query1(String q) {
+        def ret = []
+        def f = prefixes + '\n select * where {' + q +'}'
+        g.executeSparql(f).each{
+            def map = [:]
+            def add = true
+            it.each {key, val->
+                map[key] = val.value ? val.value : val.id
+                if (val.lang != null && val.lang!=lang) add= false
+            }
+            if (add) ret.add(map)
+        }
+        ret
+    }
+
+
+    def query(String q, String lang = this.lang) {
+        def f = prefixes + '\n select * where {' + q +'}'
+        sparql2.query(f, lang)
+    }
+
+    def addDefaultNamespaces() {
         addNamespace(SailTokens.RDF_PREFIX, SailTokens.RDF_NS);
         addNamespace(SailTokens.RDFS_PREFIX, SailTokens.RDFS_NS);
         addNamespace(SailTokens.OWL_PREFIX, SailTokens.OWL_NS);
         addNamespace(SailTokens.XSD_PREFIX, SailTokens.XSD_NS);
         addNamespace(SailTokens.FOAF_PREFIX, SailTokens.FOAF_NS);
-        addNamespace('dc','http://purl.org/dc/terms#')
+        addNamespace('dc','http://purl.org/dc/terms/')
     }
 
     def addNamespace(String prefix, String namespace){
@@ -299,6 +389,14 @@ class RDFSlurper {
     }
 
     def propertyMissing(String name) {
+        getAt(name)
+    }
+
+    def v(String name){
+        g.v(toURI(name))
+    }
+
+    def getAt(String name) {
         def node = g.v(toURI(name))
 
         //println "uri:"+toURI(name)
@@ -313,6 +411,37 @@ class RDFSlurper {
     static N(Map node) {node}
     static N(Map node, String uri) {
         [uri, node]
+    }
+
+    def addNode(node) {
+
+        def addProps = { uri, map ->
+            def v2 = g.addVertex(toURI(uri))
+            map.each {key, value ->
+                g.addEdge(v2, addNode(value), toURI(key))
+            }
+            v2
+        }
+        switch (node) {
+            case Vertex:
+                return node
+            case List:
+                return addProps(node[0], node[1])
+            case Map:
+                return addProps(
+                        //'_:Z' + ((node.size() * 100000000 + 7652526535345544) * Math.random()).toLong(),
+                        //'http://blankNode.org/blank/B' + ((node.size() * 100000000 + 7652526535345544) * Math.random()).toLong(),
+                        null,
+                        node)
+            case String:
+                return g.addVertex('"' + node + '"@' + lang)
+            case int|Integer|long|Long|BigInteger:
+                return g.addVertex('"' + node + '"^^<http://www.w3.org/2001/XMLSchema#integer>')
+            case float|Float|double|Double|BigDecimal:
+                return g.addVertex('"' + node + '"^^<http://www.w3.org/2001/XMLSchema#double>')
+            case boolean:
+                return g.addVertex('"' + node + '"^^<http://www.w3.org/2001/XMLSchema#boolean>')
+        }
     }
 }
 

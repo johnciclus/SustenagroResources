@@ -1,115 +1,165 @@
 package sustenagro
 
 import com.github.slugify.Slugify
+import com.github.rjeschke.txtmark.Processor
+import org.pegdown.PegDownProcessor
+import rdfSlurper.RDFSlurper
+import utils.Uri
+
 import static rdfSlurper.RDFSlurper.N
 
 class ToolController {
-    def g
-    //def s
     def slp
+    def dsl
 
     def index() {
-        def microregions = []
-        def cultures = []
-        def technologies = []
-        def production_unit_types = []
 
-        //println slp.isa('dbp:MicroRegion').where
+        def inputs = []
+        def query
 
-        microregions = slp.sparql('select * where {?id a dbp:MicroRegion; sa:name ?name.}')
+        dsl.featureLst.each{
+            def uri = '<'+slp.toURI(it[1])+'>'
+            query = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+            if (query.empty) {
+                query = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${it[1]}')", '')
+                if (query.empty)
+                    throw new RuntimeException('Unknown label: '+it[1])
+                uri = "<${query[0].id}>"
+                query = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+            }
+            def lst = slp.query("?id ${it[0]} $uri ; rdfs:label ?name. optional {?id dc:description ?description}")
+            inputs << [query[0].label, query[0].description, lst]
+        }
 
-        //slp.'dbp:MicroRegion'.in('rdf:type').each{ microregions.push(id: it.id, name: it.out('sa:name').next().value) }
+        //println 'inp: '
+        //inputs.each{
+        //  println it
+        //}
+        //println Processor.process("This is ***TXTMARK***");
+        //String html = new Markdown4jProcessor().process("This is a **bold** text");
 
-        cultures = slp.sparql('select * where {?id a sa:SugarcaneProductionSystem; sa:name ?name.}')
-        technologies = slp.sparql('select * where {?id a sa:AgriculturalTechnology; sa:name ?name; sa:description ?description.}')
-        production_unit_types = slp.sparql("select * where {?id rdfs:subClassOf sa:ProductionUnit; rdfs:label ?name. filter (lang(?name) = 'pt')}")
-
-        //slp.'sa:SugarcaneProductionSystem'._().in("rdf:type").each{ cultures.push(id: it.id, name: it.out('sa:name').next().value) }
-        //slp.'sa:AgriculturalTechnology'._().in("rdf:type").each{ technologies.push(id: it.id, name: it.out('sa:name').next().value, 'description': it.out('sa:description').next().value) }
-        //slp.'sa:ProductionUnit'._().in("rdfs:subClassOf").each{ production_unit_types.push(id: it.id, name: it.out('rdfs:label').has('lang','pt').next().value) }
-
-        render(view: "index", model:    [microregions: microregions,
-                                         cultures: cultures,
-                                         technologies: technologies,
-                                         production_unit_types: production_unit_types])
+        render(view: 'index',
+               model:    [
+                       name: dsl.name,
+                       //description:   Processor.process(dsl.description),
+                       description:   new PegDownProcessor().markdownToHtml(dsl.description),
+                       microregions: inputs[0][2],
+                       technologies: inputs[1][2],
+                       production_unit_types: inputs[2][2],
+                       production_units: inputs[3][2]])
     }
 
-    def productionUnitCreate() {
+    def createProductionUnit() {
         Slugify slug = new Slugify()
 
-        //def g = slp.g
+        def production_unit_id = slug.slugify(params['production_unit_name'])
 
-        def production_unit_id = slug.slugify(params["production_unit_name"])
-//        N('sa:'+production_unit_id,
-//                'rdf:type': slp[params["production_unit_type"]],
-//                'sa:name': params["production_unit_name"],
-//                'sa:microregion': slp[params["production_unit_microregion"]],
-//                'sa:culture': slp[params["production_unit_culture"]],
-//                'sa:technology': slp[params["production_unit_technology"]]
-//        )
+        slp.addNode(
+            N(':'+production_unit_id,
+                'rdf:type': slp.v(params['production_unit_type']),
+                'rdfs:label': params['production_unit_name'],
+                'dbp:Microregion': slp.v(params['production_unit_microregion']),
+                //'sa:culture': slp.v(params['production_unit_culture']),
+                ':AgriculturalEfficiency': slp.v(params['production_unit_technology'])
+            ))
 
-        def v_production_unit = g.addVertex("sustenagro:"+production_unit_id) //Add Microregion to id
+        slp.g.commit()
+        //        g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
+        redirect(action: 'assessment', id: production_unit_id)
+    }
 
-        g.addEdge(v_production_unit, g.v(params["production_unit_type"]), 'rdf:type')
-
-        def name = g.addVertex('"'+params["production_unit_name"]+'"^^<http://www.w3.org/2001/XMLSchema#string>')
-        g.addEdge(v_production_unit, name, 'sustenagro:name')
-        g.addEdge(v_production_unit, g.v(params["production_unit_microregion"]), 'sustenagro:microregion')
-        g.addEdge(v_production_unit, g.v(params["production_unit_culture"]), 'sustenagro:culture')
-        g.addEdge(v_production_unit, g.v(params["production_unit_technology"]), 'sustenagro:technology')
-
-        g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
-        redirect(action: "assessment", id: production_unit_id)
+    def selectProductionUnit(){
+        def production_unit_id = Uri.removeDomain(params['production_unit_id'], 'http://bio.icmc.usp.br/sustenagro#')
+        redirect(action: 'assessment', id: production_unit_id)
     }
 
     def assessment() {
-        def environmental_indicators = []
-        def economic_indicators = []
-        def social_indicators = []
-        def categorical = [:]
 
-        //def g = slp.g
-
-//        g.v('sustenagro:EnvironmentalIndicator').in("rdfs:subClassOf").each{ environmental_indicators.push(  id: it.id, title: it.out('terms:title').has('lang','pt').next().value, description: it.out('terms:description').has('lang','pt').next().value, assessmentQuestion: it.out('sustenagro:assessmentQuestion').has('lang','pt').next().value) }
-        g.v('sustenagro:EnvironmentalIndicator').in("rdfs:subClassOf").in("rdfs:subClassOf").each{
-            environmental_indicators.push(
-                    id: it.id,
-                    title: it.out('rdfs:label').has('lang','pt').next().value,
-                    'class': it.out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").next().id,
-                    'valueType': it.out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").out("rdfs:subClassOf").next().id)
+        def indicators = {cls ->
+            slp.query('?a  rdfs:subClassOf '+cls+''' .
+                   ?id rdfs:subClassOf ?a; rdfs:label ?title.
+                   ?id rdfs:subClassOf ?y.
+                   ?y  owl:onClass ?class.
+                   ?class rdfs:subClassOf ?valueType.''')
         }
-//        slp.sparql('?id rdfs:subClassOf ?a. ?a rdfs:subClassOf sa:EnvironmentalIndicator.') each {
-//            environmental_indicators.push(
-//                    id:
-//            )
-//        }
-//        environmental_indicators = slp.sparql(
-//                'select * where {' +
-//                        '?id rdfs:subClassOf ?a. ' +
-//                        '?a  rdfs:subClassOf sa:EnvironmentalIndicator. ' +
-//                        '?id rdfs:label ?title. filter (lang(?title) = "pt")}')
-//
 
-        g.v('sustenagro:EconomicIndicator').in("rdfs:subClassOf").in("rdfs:subClassOf").each{ economic_indicators.push(id: it.id, title: it.out('rdfs:label').has('lang','pt').next().value, 'class': it.out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").next().id, 'valueType': it.out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").out("rdfs:subClassOf").next().id) }
-        g.v('sustenagro:SocialIndicator').in("rdfs:subClassOf").in("rdfs:subClassOf").each{ social_indicators.push(id: it.id, title: it.out('rdfs:label').has('lang','pt').next().value, 'class': it.out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").next().id, 'valueType': it.out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").out("rdfs:subClassOf").next().id) }
+        def environmental_indicators = indicators(':EnvironmentalIndicator')
+        def economic_indicators = indicators(':EconomicIndicator')
+        def social_indicators = indicators(':SocialIndicator')
 
-        //println "economic_indicators"
-        //println economic_indicators
+        def removeDomain = { lst ->
+            lst.each{ ind ->
+                ind['id_name'] = Uri.removeDomain(ind.id, 'http://bio.icmc.usp.br/sustenagro#')
+            }
+        }
 
-        environmental_indicators.each{ g.v(it.id).out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").each{ categorical[it.id] = [] } }
-        economic_indicators.each{ g.v(it.id).out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").each{ categorical[it.id] = [] } }
-        social_indicators.each{ g.v(it.id).out("rdfs:subClassOf").has("kind","bnode").out("owl:onClass").each{ categorical[it.id] = [] } }
+        removeDomain(environmental_indicators)
+        removeDomain(economic_indicators)
+        removeDomain(social_indicators)
 
-        categorical.each{ k, v -> g.v(k).in('rdf:type').each{ println "indicator id: "+it.id; v.push(id: it.id, title: it.out('rdfs:label').has('lang','pt').next().value)} }
+        def categorical = [:]
+        def categ = { ind ->
+            ind.each{
+                slp.query("<$it.id> rdfs:subClassOf ?a. ?a owl:onClass ?id").each{
+                   categorical[it.id] = []
+                }
+            }
+        }
 
-        String name = g.v('sustenagro:'+params.id).out('sustenagro:name').next().value
+        categ(environmental_indicators)
+        categ(economic_indicators)
+        categ(social_indicators)
 
-        render(view: "assessment", model: [sustenagro: "http://biomac.icmc.usp.br/sustenagro#",
-                                           production_unit_id: params.id,
-                                           production_unit_name: name,
-                                           environmental_indicators: environmental_indicators,
-                                           economic_indicators: economic_indicators,
-                                           social_indicators: social_indicators,
-                                           categorical: categorical ])
+        categorical.each{ k, v ->
+            slp.query("?id a <$k>; rdfs:label ?title.").each{
+                v.push(it)
+            }
+        }
+
+        String name = slp.":$params.id".'$rdfs:label'
+
+        render(view: 'assessment',
+               model: [sustenagro: 'http://bio.icmc.usp.br/sustenagro#',
+                       production_unit_id: params.id,
+                       production_unit_name: name,
+                       environmental_indicators: environmental_indicators,
+                       economic_indicators: economic_indicators,
+                       social_indicators: social_indicators,
+                       categorical: categorical ])
     }
+
+    def assessmentReport() {
+        def production_unit_id = params['production_unit_id']
+
+        def getIndicators = {cls ->
+            slp.query('?a  rdfs:subClassOf '+cls+''' .
+                       ?id rdfs:subClassOf ?a;''')
+        }
+
+        def indicators = []
+        indicators += getIndicators(':EnvironmentalIndicator')
+        indicators += getIndicators(':EconomicIndicator')
+        indicators += getIndicators(':SocialIndicator')
+
+        def indicators_names = []
+
+        indicators.each{
+            indicators_names.push(Uri.removeDomain(it.id, 'http://bio.icmc.usp.br/sustenagro#'))
+        }
+
+        def filled_ind = []
+
+        indicators_names.each{ ind ->
+            if(params[ind] != '' && params[ind] != null ){
+                filled_ind.push(indicator: ind, value: params[ind])
+            }
+        }
+
+        filled_ind.each{
+            println it
+        }
+
+        redirect(action: 'assessment', id: params['production_unit_id'])
+    }
+
 }
