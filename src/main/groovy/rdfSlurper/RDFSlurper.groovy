@@ -262,10 +262,11 @@ class RDFSlurper {
     }
 
     SailGraph g
-    private Map<String, String> _prefixes = [:]
     String lang = 'en'
 
-    Sparql2 sparql2
+    private Map<String, String> _prefixes = [:]
+    private Sparql2 sparql2
+    private String select = '*'
 
     RDFSlurper(){
         g = new MemoryStoreSailGraph()
@@ -337,9 +338,14 @@ class RDFSlurper {
         ret
     }
 
+    def select(str){
+        select = str
+        this
+    }
 
     def query(String q, String lang = this.lang) {
-        def f = prefixes + '\n select * where {' + q +'}'
+        def f = "$prefixes \n select $select where {$q}"
+        select = '*'
         sparql2.query(f, lang)
     }
 
@@ -368,6 +374,16 @@ class RDFSlurper {
         def pre = _prefixes[uri.tokenize(':')[0]]
         if (pre==null) return uri
         return pre+uri.substring(uri.indexOf(':')+1)
+    }
+
+    def fromURI(String uri){
+        if (uri==null) return null
+        if (uri.startsWith('_:')) return uri
+        if (!uri.startsWith('http:')) return uri
+        def v = _prefixes.find { key, obj ->
+            uri.startsWith(obj)
+        }
+        v.key + ':' + uri.substring(v.value.size())
     }
 
     def getPrefixes(){

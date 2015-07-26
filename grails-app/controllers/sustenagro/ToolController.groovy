@@ -75,8 +75,9 @@ class ToolController {
 
     def assessment() {
 
-        def indicators = {cls ->
-            slp.query('?a  rdfs:subClassOf '+cls+''' .
+        def indicators = {
+            slp.select('?id ?title ?class ?valueType')
+               .query('?a  rdfs:subClassOf '+it+''' .
                    ?id rdfs:subClassOf ?a; rdfs:label ?title.
                    ?id rdfs:subClassOf ?y.
                    ?y  owl:onClass ?class.
@@ -87,19 +88,9 @@ class ToolController {
         def economic_indicators = indicators(':EconomicIndicator')
         def social_indicators = indicators(':SocialIndicator')
 
-        def removeDomain = { lst ->
-            lst.each{ ind ->
-                ind['id_name'] = Uri.removeDomain(ind.id, 'http://bio.icmc.usp.br/sustenagro#')
-            }
-        }
-
-        removeDomain(environmental_indicators)
-        removeDomain(economic_indicators)
-        removeDomain(social_indicators)
-
         def categorical = [:]
-        def categ = { ind ->
-            ind.each{
+        def categ = {
+            it.each{
                 slp.query("<$it.id> rdfs:subClassOf ?a. ?a owl:onClass ?id").each{
                    categorical[it.id] = []
                 }
@@ -109,6 +100,20 @@ class ToolController {
         categ(environmental_indicators)
         categ(economic_indicators)
         categ(social_indicators)
+
+        def reduceURI = {
+            it.each{
+                //ind['id_name'] = Uri.removeDomain(ind.id, 'http://bio.icmc.usp.br/sustenagro#')
+                //ind['id_name'] = URLEncoder.encode(ind.id)
+                //ind['id_name'] = ind.id
+                it.id = slp.fromURI(it.id)
+                //println 'ind1- '+ slp.fromURI(ind.id)
+            }
+        }
+
+        reduceURI(environmental_indicators)
+        reduceURI(economic_indicators)
+        reduceURI(social_indicators)
 
         categorical.each{ k, v ->
             slp.query("?id a <$k>; rdfs:label ?title.").each{
@@ -136,25 +141,38 @@ class ToolController {
             indicators += slp.query("?a rdfs:subClassOf $it. ?id rdfs:subClassOf ?a.")
         }
 
-        def indicators_names = []
+//        def indicators_names = []
+//
+//        indicators.each{
+//            indicators_names.push(Uri.removeDomain(it.id, 'http://bio.icmc.usp.br/sustenagro#'))
+//        }
+//
+//        def filled_ind = []
+//
+//        indicators_names.each{ ind ->
+//            if(params[ind] != '' && params[ind] != null ){
+//                filled_ind.push(indicator: ind, value: params[ind])
+//            }
+//        }
 
+        println 'params:'
+        println params.each{k,o->
+            println k + '->'+o
+        }
         indicators.each{
-            indicators_names.push(Uri.removeDomain(it.id, 'http://bio.icmc.usp.br/sustenagro#'))
-        }
-
-        def filled_ind = []
-
-        indicators_names.each{ ind ->
-            if(params[ind] != '' && params[ind] != null ){
-                filled_ind.push(indicator: ind, value: params[ind])
+            //def url = Uri.removeDomain(it.id, 'http://bio.icmc.usp.br/sustenagro#')
+            //def url = URLEncoder.encode(it.id)
+            //def url = it.id
+            def url = slp.fromURI(it.id)
+            if(params[url] != '' && params[url] != null ){
+                println "indicator: $it.id, value: ${params[url]}"
             }
+            //println it.id + ':' + params[url]
         }
-
-        filled_ind.each{
-            println it
-        }
+//        filled_ind.each{
+//            println it
+//        }
 
         redirect(action: 'assessment', id: params['production_unit_id'])
     }
-
 }

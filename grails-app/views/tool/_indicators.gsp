@@ -10,23 +10,23 @@
         <div role="tabpanel" class="tab-pane active" id="environmental_indicators">
             <g:each var="indicator" in="${environmental_indicators}">
                 <div class="form-group">
-                    <label for="<%= indicator.id_name %>" class="col-sm-6 control-label">${indicator.title}</label>
+                    <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.title}</label>
                     <div class="col-sm-6">
                         <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
                             <g:each var="category" in="${categorical[indicator.class]}">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="<%= indicator.id_name %>" value="<%= category.id %>"> <%= category.title %>
+                                        <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>"> <%= category.title %>
                                     </label>
                                 </div>
                             </g:each>
                         </g:if>
                         <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
-                            <input type="text" class="spin-button" name="${indicator.id_name}">
+                            <input type="text" class="spin-button" name="${indicator.id}">
                         </g:elseif>
-                        <button type="button" id="<%= indicator.id_name %>-more" class="btn btn-link btn-sm" data-toggle="collapse" data-target="#<%= indicator.id_name %>-options">Mais opções</button>
-                        <div id="<%= indicator.id_name %>-options" class="collapse">
-                            <button id="<%= indicator.id_name %>-clear" type="button" class="btn btn-default btn-sm clear">Apagar</button>
+                        <button type="button" id="<%= indicator.id %>-more" class="btn btn-link btn-sm" data-toggle="collapse" data-target="#<%= indicator.id %>-options">Mais opções</button>
+                        <div id="<%= indicator.id %>-options" class="collapse">
+                            <button id="<%= indicator.id %>-clear" type="button" class="btn btn-default btn-sm clear">Apagar</button>
                         </div>
                     </div>
                 </div>
@@ -42,23 +42,23 @@
         <div role="tabpanel" class="tab-pane" id="economic_indicators">
             <g:each var="indicator" in="${economic_indicators}">
                 <div class="form-group">
-                    <label for="<%= indicator.id_name %>" class="col-sm-6 control-label">${indicator.title}</label>
+                    <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.title}</label>
                     <div class="col-sm-6">
                         <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
                             <g:each var="category" in="${categorical[indicator.class]}">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="<%= indicator.id_name %>" value="<%= category.id %>"> <%= category.title %>
+                                        <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>"> <%= category.title %>
                                     </label>
                                 </div>
                             </g:each>
                         </g:if>
                         <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
-                            <input type="text" class="spin-button" name="${indicator.id_name}">
+                            <input type="text" class="spin-button" name="${indicator.id}">
                         </g:elseif>
-                        <button type="button" id="<%= indicator.id_name %>-more" class="btn btn-link btn-sm" data-toggle="collapse" data-target="#<%= indicator.id_name %>-options">Mais opções</button>
-                        <div id="<%= indicator.id_name %>-options" class="collapse">
-                            <button id="<%= indicator.id_name %>-clear" type="button" class="btn btn-default btn-sm clear">Apagar</button>
+                        <button type="button" id="<%= indicator.id %>-more" class="btn btn-link btn-sm" data-toggle="collapse" data-target="#<%= indicator.id %>-options">Mais opções</button>
+                        <div id="<%= indicator.id %>-options" class="collapse">
+                            <button id="<%= indicator.id %>-clear" type="button" class="btn btn-default btn-sm clear">Apagar</button>
                         </div>
                     </div>
                 </div>
@@ -75,23 +75,23 @@
         <div role="tabpanel" class="tab-pane" id="social_indicators">
             <g:each var="indicator" in="${social_indicators}">
                 <div class="form-group">
-                    <label for="<%= indicator.id_name %>" class="col-sm-6 control-label">${indicator.title}</label>
+                    <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.title}</label>
                     <div class="col-sm-6">
                         <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
                             <g:each var="category" in="${categorical[indicator.class]}">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="<%= indicator.id_name %>" value="<%= category.id %>"> <%= category.title %>
+                                        <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>"> <%= category.title %>
                                     </label>
                                 </div>
                             </g:each>
                         </g:if>
                         <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
-                            <input type="text" class="spin-button" name="${indicator.id_name}" >
+                            <input type="text" class="spin-button" name="${indicator.id}" >
                         </g:elseif>
-                        <button type="button" id="<%= indicator.id_name %>-more" class="btn btn-link btn-sm" data-toggle="collapse" data-target="#<%= indicator.id_name %>-options">Mais opções</button>
-                        <div id="<%= indicator.id_name %>-options" class="collapse">
-                            <button id="<%= indicator.id_name %>-clear" type="button" class="btn btn-default btn-sm clear">Apagar</button>
+                        <button type="button" id="<%= indicator.id %>-more" class="btn btn-link btn-sm" data-toggle="collapse" data-target="#<%= indicator.id %>-options">Mais opções</button>
+                        <div id="<%= indicator.id %>-options" class="collapse">
+                            <button id="<%= indicator.id %>-clear" type="button" class="btn btn-default btn-sm clear">Apagar</button>
                         </div>
                     </div>
                 </div>
