@@ -75,6 +75,9 @@ class ToolController {
 
     def assessment() {
 
+        println "test _:Hello"
+        println slp.toURI2('_[Hello]')
+
         def indicators = {
             slp.select('?id ?title ?class ?valueType')
                .query('?a  rdfs:subClassOf '+it+''' .
@@ -106,7 +109,7 @@ class ToolController {
                 //ind['id_name'] = Uri.removeDomain(ind.id, 'http://bio.icmc.usp.br/sustenagro#')
                 //ind['id_name'] = URLEncoder.encode(ind.id)
                 //ind['id_name'] = ind.id
-                it.id = slp.fromURI(it.id)
+                it.id = slp.fromURI2(it.id)
                 //println 'ind1- '+ slp.fromURI(ind.id)
             }
         }
@@ -155,15 +158,15 @@ class ToolController {
 //            }
 //        }
 
-        println 'params:'
-        println params.each{k,o->
-            println k + '->'+o
-        }
+        //println 'params:'
+        //println params.each{k,o->
+        //    println k + '->'+o
+        //}
         indicators.each{
             //def url = Uri.removeDomain(it.id, 'http://bio.icmc.usp.br/sustenagro#')
             //def url = URLEncoder.encode(it.id)
             //def url = it.id
-            def url = slp.fromURI(it.id)
+            def url = slp.fromURI2(it.id)
             if(params[url] != '' && params[url] != null ){
                 println "indicator: $it.id, value: ${params[url]}"
             }

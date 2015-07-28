@@ -386,6 +386,23 @@ class RDFSlurper {
         v.key + ':' + uri.substring(v.value.size())
     }
 
+    def toURI2(String uri){
+        if (uri==null) return null
+        if (uri.startsWith('_[')) return '_:'+uri.substring(uri.indexOf('[')+1, uri.indexOf(']'))
+    }
+
+    def fromURI2(String uri){
+        if (uri==null) return null
+        if (uri.startsWith('_:')) return '_'+'['+uri.substring(uri.indexOf(':')+1)+']'
+        if (uri[0]==':') return uri.substring(1)
+        if (uri.contains('#')) return uri.substring(uri.indexOf('#')+1)
+        if (uri.startsWith('http:')){
+            def pre = uri.substring(0, uri.lastIndexOf('/')+1)
+            def domain = _prefixes.find{ it.value == pre }?.key
+            domain+'['+uri.substring(uri.lastIndexOf('/')+1)+']'
+        }
+    }
+
     def getPrefixes(){
         def str = ''
         _prefixes.each {key, obj -> str += "PREFIX $key: <$obj>\n"}
