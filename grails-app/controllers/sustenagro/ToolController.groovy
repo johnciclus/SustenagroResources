@@ -75,34 +75,24 @@ class ToolController {
 
     def assessment() {
 
-        println "test _:Hello"
-        println slp.toURI2('_[Hello]')
-
         def indicators = {
             slp.select('?id ?title ?class ?valueType')
-               .query('?a  rdfs:subClassOf '+it+''' .
-                   ?id rdfs:subClassOf ?a; rdfs:label ?title.
-                   ?id rdfs:subClassOf ?y.
-                   ?y  owl:onClass ?class.
-                   ?class rdfs:subClassOf ?valueType.''')
+               .query( '?a  rdfs:subClassOf '+it+''' .
+                        ?id rdfs:subClassOf ?a; rdfs:label ?title.
+                        ?id rdfs:subClassOf ?y.
+                        ?y  owl:onClass ?class.
+                        ?class rdfs:subClassOf ?valueType.''')
         }
 
-        def environmental_indicators = indicators(':EnvironmentalIndicator')
-        def economic_indicators = indicators(':EconomicIndicator')
-        def social_indicators = indicators(':SocialIndicator')
-
         def categorical = [:]
+
         def categ = {
             it.each{
                 slp.query("<$it.id> rdfs:subClassOf ?a. ?a owl:onClass ?id").each{
-                   categorical[it.id] = []
+                    categorical[it.id] = []
                 }
             }
         }
-
-        categ(environmental_indicators)
-        categ(economic_indicators)
-        categ(social_indicators)
 
         def reduceURI = {
             it.each{
@@ -114,15 +104,26 @@ class ToolController {
             }
         }
 
+        def environmental_indicators = indicators(':EnvironmentalIndicator')
+        def economic_indicators = indicators(':EconomicIndicator')
+        def social_indicators = indicators(':SocialIndicator')
+
+        categ(environmental_indicators)
+        categ(economic_indicators)
+        categ(social_indicators)
+
         reduceURI(environmental_indicators)
         reduceURI(economic_indicators)
         reduceURI(social_indicators)
 
         categorical.each{ k, v ->
             slp.query("?id a <$k>; rdfs:label ?title.").each{
+                it.id = slp.fromURI2(it.id)
                 v.push(it)
             }
         }
+
+        //println categorical
 
         String name = slp.":$params.id".'$rdfs:label'
 
@@ -140,41 +141,27 @@ class ToolController {
         def production_unit_id = params['production_unit_id']
 
         def indicators = []
+        def inputs = [:]
+
         dsl.dimensions.each{
             indicators += slp.query("?a rdfs:subClassOf $it. ?id rdfs:subClassOf ?a.")
         }
 
-//        def indicators_names = []
-//
-//        indicators.each{
-//            indicators_names.push(Uri.removeDomain(it.id, 'http://bio.icmc.usp.br/sustenagro#'))
-//        }
-//
-//        def filled_ind = []
-//
-//        indicators_names.each{ ind ->
-//            if(params[ind] != '' && params[ind] != null ){
-//                filled_ind.push(indicator: ind, value: params[ind])
-//            }
-//        }
-
-        //println 'params:'
-        //println params.each{k,o->
-        //    println k + '->'+o
-        //}
         indicators.each{
-            //def url = Uri.removeDomain(it.id, 'http://bio.icmc.usp.br/sustenagro#')
-            //def url = URLEncoder.encode(it.id)
-            //def url = it.id
             def url = slp.fromURI2(it.id)
             if(params[url] != '' && params[url] != null ){
-                println "indicator: $it.id, value: ${params[url]}"
+                //println "indicator: $it.id, value: " + slp.toURI2(params[url])
+                inputs[it.id] = slp.toURI2(params[url])
             }
-            //println it.id + ':' + params[url]
         }
-//        filled_ind.each{
-//            println it
-//        }
+
+        slp.addNode(
+                N(':'+params['production_unit_id']+"-evaluation",
+                        'rdf:type': slp.v('http://bio.icmc.usp.br/sustenagro#Evaluation'),
+                        'rdfs:label': 'Evaluação')
+                )
+
+        slp.g.commit()
 
         redirect(action: 'assessment', id: params['production_unit_id'])
     }

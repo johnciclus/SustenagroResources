@@ -389,6 +389,7 @@ class RDFSlurper {
     def toURI2(String uri){
         if (uri==null) return null
         if (uri.startsWith('_[')) return '_:'+uri.substring(uri.indexOf('[')+1, uri.indexOf(']'))
+        if (!uri.contains('[') && !uri.contains(']')) return _prefixes['']+uri
     }
 
     def fromURI2(String uri){

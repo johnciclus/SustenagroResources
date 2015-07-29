@@ -2,12 +2,13 @@ package rdfSlurper
 
 import spock.lang.Shared
 import spock.lang.Specification
+import rdfSlurper.RDFSlurper
 
 /**
  * Created by dilvan on 5/30/15.
  */
 class RDFSlurperSpec extends Specification {
-    @Shared def s = new RDFSlurper("http://localhost:9999/bigdata/sparql", "http://localhost:9999/bigdata/sparql")
+    @Shared def s = new RDFSlurper("ontology/SustenAgroOntology.rdf")
 
     def setupSpec() {
         //InputStream inp = this.class.getResourceAsStream('test.ntriple')
