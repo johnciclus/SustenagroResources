@@ -140,6 +140,18 @@ class ToolController {
     def assessmentReport() {
         def production_unit_id = params['production_unit_id']
 
+        def size = slp.query('?id a <http://bio.icmc.usp.br/sustenagro#Evaluation>. ?id <http://bio.icmc.usp.br/sustenagro#appliedTo> <http://bio.icmc.usp.br/sustenagro#' + production_unit_id +'>' ).size()
+        def evaluation_name = production_unit_id+"-evaluation-"+(size+1)
+
+        slp.addNode(
+            N(':'+evaluation_name,
+                    'rdf:type': slp.v('http://bio.icmc.usp.br/sustenagro#Evaluation'),
+                    ':appliedTo': slp.v(':'+production_unit_id) ,
+                    'rdfs:label': 'Evaluação')
+        )
+
+        slp.g.commit()
+
         def indicators = []
         def inputs = [:]
 
@@ -148,20 +160,27 @@ class ToolController {
         }
 
         indicators.each{
-            def url = slp.fromURI2(it.id)
-            if(params[url] != '' && params[url] != null ){
-                //println "indicator: $it.id, value: " + slp.toURI2(params[url])
-                inputs[it.id] = slp.toURI2(params[url])
-            }
-        }
+            def name = slp.fromURI2(it.id)
+            def ind_value
 
-        slp.addNode(
-                N(':'+params['production_unit_id']+"-evaluation",
-                        'rdf:type': slp.v('http://bio.icmc.usp.br/sustenagro#Evaluation'),
-                        'rdfs:label': 'Evaluação')
+            if(params[name] != '' && params[name] != null ){
+                //println "indicator: $it.id, value: " + slp.toURI2(params[name])
+                ind_value = slp.toURI2(params[name])
+                inputs[it.id] = ind_value
+
+                slp.addNode(
+                    N(':'+name+'-'+evaluation_name,
+                      'rdf:type': slp.v(it.id),
+                      'http://bio.icmc.usp.br/sustenagro#compose': slp.v(':'+evaluation_name),
+                      'http://bio.icmc.usp.br/sustenagro#value': slp.v(ind_value),
+                      'rdfs:label': 'individuo de indicador')
                 )
 
-        slp.g.commit()
+                slp.g.commit()
+
+                println "Indicator-> " + it.id +' val:'+ ind_value
+            }
+        }
 
         redirect(action: 'assessment', id: params['production_unit_id'])
     }
