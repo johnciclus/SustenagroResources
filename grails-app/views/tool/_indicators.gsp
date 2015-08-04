@@ -4,6 +4,7 @@
     <li role="presentation">                <a href="#social_indicators" aria-controls="social_indicators" role="tab" data-toggle="tab">                3. Sociais     </a></li>
 </ul>
 
+<p>Oi mundo kjdhsfkjhdsfkjhdskfhj</p>
 <form id="assessment_form" action="/tool/assessmentReport" method="post" class="form-horizontal">
     <input type="hidden" name="production_unit_id" value="${production_unit_id}">
     <div id="indicator_content" class="tab-content">
@@ -90,7 +91,7 @@
                             <input type="text" class="spin-button" name="${indicator.id}" >
                         </g:elseif>
                         <button type="button" id="<%= indicator.id %>-more" class="btn btn-link btn-sm" data-toggle="collapse" data-target="#<%= indicator.id %>-options">Mais opções</button>
-                        <div id="<%= indicator.id %>-options" class="collapse">
+                        <div id="<%= indicator.id %>-options">
                             <button id="<%= indicator.id %>-clear" type="button" class="btn btn-default btn-sm clear">Apagar</button>
                         </div>
                     </div>
@@ -117,7 +118,8 @@
     });
 
     $(".clear").click(function(){
-        var id = $(this).attr('id').replace('-clear', '');
-        $("input:radio[name='"+id+"']").removeAttr('checked');
+        var name = $(this).attr('id').replace('-clear', '');
+        $("input:radio").filter(function(index) {return $(this).attr('name')===name;})
+                        .removeAttr('checked');
     });
 </script>

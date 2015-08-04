@@ -116,7 +116,7 @@ class ToolController {
                 //ind['id_name'] = Uri.removeDomain(ind.id, 'http://bio.icmc.usp.br/sustenagro#')
                 //ind['id_name'] = URLEncoder.encode(ind.id)
                 //ind['id_name'] = ind.id
-                it.id = slp.fromURI2(it.id)
+                //it.id = slp.fromURI(it.id)
                 //println 'ind1- '+ slp.fromURI(ind.id)
             }
         }
@@ -135,7 +135,7 @@ class ToolController {
 
         categorical.each{ k, v ->
             slp.query("?id a <$k>; rdfs:label ?title.").each{
-                it.id = slp.fromURI2(it.id)
+                //it.id = slp.fromURI(it.id)
                 v.push(it)
             }
         }
