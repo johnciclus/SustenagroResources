@@ -27,7 +27,7 @@ class ToolController {
                 uri = "<${query[0].id}>"
                 query = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
             }
-            def lst = slp.query("?id ${it[0]} $uri ; rdfs:label ?name. optional {?id dc:description ?description}")
+            def lst = slp.query("?id ${it[0]} $uri ; rdfs:label ?label. optional {?id dc:description ?description}")
             inputs << [query[0].label, query[0].description, lst]
         }
 
@@ -69,8 +69,25 @@ class ToolController {
     }
 
     def selectProductionUnit(){
+        def production_unit_alias = Uri.removeDomain(params['production_unit_id'], 'http://bio.icmc.usp.br/sustenagro#')
+        def evaluation_alias = Uri.removeDomain(params['evaluation'], 'http://bio.icmc.usp.br/sustenagro#')
+
+        def indicators = slp.query("?id :compose :$evaluation_alias. ?id :value ?value")
+
+        println "indicators"
+        println indicators
+
+        redirect(   action: 'assessment',
+                    id: production_unit_alias,
+                    model:    [indicators: indicators])
+    }
+
+    def selectEvaluations(){
         def production_unit_id = Uri.removeDomain(params['production_unit_id'], 'http://bio.icmc.usp.br/sustenagro#')
-        redirect(action: 'assessment', id: production_unit_id)
+        def evaluations = slp.query("?id :appliedTo :$production_unit_id. ?id rdfs:label ?label")
+
+        render( template: 'list_evaluations',
+                model:    [evaluations: evaluations]);
     }
 
     def assessment() {
@@ -140,14 +157,14 @@ class ToolController {
     def assessmentReport() {
         def production_unit_id = params['production_unit_id']
 
-        def size = slp.query('?id a <http://bio.icmc.usp.br/sustenagro#Evaluation>. ?id <http://bio.icmc.usp.br/sustenagro#appliedTo> <http://bio.icmc.usp.br/sustenagro#' + production_unit_id +'>' ).size()
-        def evaluation_name = production_unit_id+"-evaluation-"+(size+1)
+        def num = slp.query('?id a <http://bio.icmc.usp.br/sustenagro#Evaluation>. ?id <http://bio.icmc.usp.br/sustenagro#appliedTo> <http://bio.icmc.usp.br/sustenagro#' + production_unit_id +'>' ).size() + 1
+        def evaluation_name = production_unit_id+"-evaluation-"+num
 
         slp.addNode(
             N(':'+evaluation_name,
                     'rdf:type': slp.v('http://bio.icmc.usp.br/sustenagro#Evaluation'),
                     ':appliedTo': slp.v(':'+production_unit_id) ,
-                    'rdfs:label': 'Evaluação')
+                    'rdfs:label': 'Avaliação '+ num)
         )
 
         slp.g.commit()
@@ -171,9 +188,8 @@ class ToolController {
                 slp.addNode(
                     N(':'+name+'-'+evaluation_name,
                       'rdf:type': slp.v(it.id),
-                      'http://bio.icmc.usp.br/sustenagro#compose': slp.v(':'+evaluation_name),
-                      'http://bio.icmc.usp.br/sustenagro#value': slp.v(ind_value),
-                      'rdfs:label': 'individuo de indicador')
+                      ':compose': slp.v(':'+evaluation_name),
+                      ':value': slp.v(ind_value))
                 )
 
                 slp.g.commit()

@@ -154,12 +154,6 @@
     
 
 
-    <!-- http://dbpedia.org/ontology/country -->
-
-    <owl:ObjectProperty rdf:about="&db;country"/>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
