@@ -43,6 +43,8 @@ dimension ':EconomicIndicator'
 
 dimension ':SocialIndicator'
 
+//data 'indicator'
+
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {

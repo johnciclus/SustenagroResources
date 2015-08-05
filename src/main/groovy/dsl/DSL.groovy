@@ -13,7 +13,7 @@ class DSL {
     def featureLst = []
     def dimensions = []
     Closure program
-    def indicator
+    def data
     def props = [:]
 
     private def _nameFile = ''
@@ -49,6 +49,10 @@ class DSL {
 
     def name(String nameStr){
         name = nameStr
+    }
+
+    def data(String name){
+        props[name]
     }
 
     def description(String nameStr){

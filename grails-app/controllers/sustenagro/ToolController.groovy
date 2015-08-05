@@ -170,18 +170,17 @@ class ToolController {
         }
 
         indicators.each{
-            def name = slp.fromURI2(it.id)
             if(params[it.id] != '' && params[it.id] != null ){
                 //println "indicator: $it.id, value: " + slp.toURI2(params[name])
                 inputs[it.id] = params[it.id]
 
                 slp.addNode(
-                    N(':'+name+'-'+evaluation_name,
+                    N(it.id+'-'+evaluation_name,
                       'rdf:type': slp.v(it.id),
                       'dc:isPartOf': slp.v(':'+evaluation_name),
                       ':value': slp.v(params[it.id]))
                 )
-                slp.g.addEdge(slp.v(':'+evaluation_name), slp.v(':'+name+'-'+evaluation_name), 'http://purl.org/dc/terms/hasPart')
+                slp.g.addEdge(slp.v(':'+evaluation_name), slp.v(it.id+'-'+evaluation_name), 'http://purl.org/dc/terms/hasPart')
             }
         }
         

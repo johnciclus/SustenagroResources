@@ -7,6 +7,7 @@
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY dbpt "http://pt.dbpedia.org/resource/" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
 ]>
@@ -14,13 +15,14 @@
 
 <rdf:RDF xmlns="http://bio.icmc.usp.br/sustenagro#"
      xml:base="http://bio.icmc.usp.br/sustenagro"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:dc="http://purl.org/dc/terms/"
+     xmlns:db="http://dbpedia.org/ontology/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:dbpt="http://pt.dbpedia.org/resource/"
-     xmlns:db="http://dbpedia.org/ontology/"
-     xmlns:dc="http://purl.org/dc/terms/">
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace">
     <owl:Ontology rdf:about="http://bio.icmc.usp.br/sustenagro#"/>
     
 
@@ -172,24 +174,6 @@
         <rdfs:label xml:lang="en">data value</rdfs:label>
         <rdfs:label xml:lang="pt">valor do dado</rdfs:label>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://bio.icmc.usp.br/sustenagro#threshold -->
-
-    <owl:DatatypeProperty rdf:about="http://bio.icmc.usp.br/sustenagro#threshold">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label xml:lang="en">threshold</rdfs:label>
-        <rdfs:label xml:lang="pt">limiar</rdfs:label>
-        <rdfs:range>
-            <rdfs:Datatype>
-                <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&xsd;double"/>
-                    <rdf:Description rdf:about="&xsd;integer"/>
-                </owl:unionOf>
-            </rdfs:Datatype>
-        </rdfs:range>
     </owl:DatatypeProperty>
     
 
@@ -916,21 +900,6 @@
     <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#Real">
         <rdfs:label xml:lang="en">Real</rdfs:label>
         <rdfs:label xml:lang="pt">Real</rdfs:label>
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#dataValue"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange>
-                    <rdfs:Datatype>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&xsd;double"/>
-                            <rdf:Description rdf:about="&xsd;integer"/>
-                            <rdf:Description rdf:about="&owl;real"/>
-                        </owl:unionOf>
-                    </rdfs:Datatype>
-                </owl:onDataRange>
-            </owl:Restriction>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Value"/>
     </owl:Class>
     
@@ -1282,7 +1251,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
         <rdfs:label xml:lang="en">Above 18</rdfs:label>
         <rdfs:label xml:lang="pt">Acima de 18</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1293,7 +1262,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
         <rdfs:label xml:lang="en">Below 10</rdfs:label>
         <rdfs:label xml:lang="pt">Abaixo de 10</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1302,7 +1271,7 @@
 
     <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Between10-18">
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
-        <threshold rdf:datatype="&xsd;double">0.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1324,7 +1293,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
         <rdfs:label xml:lang="en">= 15.83</rdfs:label>
         <rdfs:label xml:lang="pt">= 15,83</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">0.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1346,6 +1315,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityDestinationCategory"/>
         <rdfs:label xml:lang="en">Export</rdfs:label>
         <rdfs:label xml:lang="pt">Exportação</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1367,7 +1337,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
         <rdfs:label xml:lang="en">&gt; 1,000.00</rdfs:label>
         <rdfs:label xml:lang="pt">&gt; 1.000,00</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">2.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1378,7 +1348,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
         <rdfs:label xml:lang="en">&gt; 15.83</rdfs:label>
         <rdfs:label xml:lang="pt">&gt; 15,83</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1389,6 +1359,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Grinding capacity higher than 2.5 million tons/harvest</rdfs:label>
         <rdfs:label xml:lang="pt">Capacidade de moagem superior a 2,5 milhões de ton/safra</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1399,7 +1370,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
         <rdfs:label xml:lang="en">&gt; 85 ton/ha</rdfs:label>
         <rdfs:label xml:lang="pt">&gt; 85 ton/ha</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">2.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1410,7 +1381,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
         <rdfs:label xml:lang="en">&gt; 90%</rdfs:label>
         <rdfs:label xml:lang="pt">&gt; 90%</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1421,6 +1392,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#IntensityCategory"/>
         <rdfs:label xml:lang="en">High</rdfs:label>
         <rdfs:label xml:lang="pt">Alta</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1431,6 +1403,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AgriculturalEfficiency"/>
         <rdfs:label xml:lang="en">High Agricultural Efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Alta Eficiência Agrícola</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
         <dc:description xml:lang="en">Planting and harvesting mechanization</dc:description>
         <dc:description xml:lang="pt">Mecanização do plantio e colheita</dc:description>
     </owl:NamedIndividual>
@@ -1443,7 +1416,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
         <rdfs:label xml:lang="en">High efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência alta</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">0.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1454,6 +1427,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Grinding capacity between 1.0 and 2.5 million tons/harvest</rdfs:label>
         <rdfs:label xml:lang="pt">Capacidade de moagem entre 1,0 e 2,5 milhões de toneladas/safra</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1464,6 +1438,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#IntensityCategory"/>
         <rdfs:label xml:lang="en">Low</rdfs:label>
         <rdfs:label xml:lang="pt">Baixa</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1474,6 +1449,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AgriculturalEfficiency"/>
         <rdfs:label xml:lang="en">Low Agricultural Efficiecy</rdfs:label>
         <rdfs:label xml:lang="pt">Baixa Eficiência Agrícola</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
         <dc:description xml:lang="en">Semi mechanized planting</dc:description>
         <dc:description xml:lang="pt">Semimecanização do plantio</dc:description>
     </owl:NamedIndividual>
@@ -1486,7 +1462,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Low Efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Baixa eficiência</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-3.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-3.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1497,7 +1473,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
         <rdfs:label xml:lang="en">&lt; 15.83</rdfs:label>
         <rdfs:label xml:lang="pt">&lt; 15,83</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1508,6 +1484,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Grinding capacity lower than 1.0 million tons/harvest</rdfs:label>
         <rdfs:label xml:lang="pt">Capacidade de Moagem inferior a 1 milhão de toneladas/safra</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1518,7 +1495,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
         <rdfs:label xml:lang="en">&lt; 64 ton/ha</rdfs:label>
         <rdfs:label xml:lang="pt">&lt; 64 ton/ha</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-2.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-2.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1529,7 +1506,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
         <rdfs:label xml:lang="en">&lt; 724.00</rdfs:label>
         <rdfs:label xml:lang="pt">&lt; 724,00</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1540,7 +1517,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
         <rdfs:label xml:lang="en">&lt; 80%</rdfs:label>
         <rdfs:label xml:lang="pt">&lt; 80%</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1551,6 +1528,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#IntensityCategory"/>
         <rdfs:label xml:lang="en">Medium</rdfs:label>
         <rdfs:label xml:lang="pt">Média</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1561,6 +1539,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AgriculturalEfficiency"/>
         <rdfs:label xml:lang="en">Medium Agricultural Efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência Agrícola Média</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
         <dc:description xml:lang="en">Mechanization of planting but not harvest</dc:description>
         <dc:description xml:lang="pt">Mecanização do plantio mas não da colheita</dc:description>
     </owl:NamedIndividual>
@@ -1573,7 +1552,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Medium efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência média</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1595,6 +1574,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
         <rdfs:label xml:lang="en">Does not supply own demand or demand is partial</rdfs:label>
         <rdfs:label xml:lang="pt">Não supre a própria demanda ou esta é parcial</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1605,6 +1585,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityDestinationCategory"/>
         <rdfs:label xml:lang="en">Self Consumption</rdfs:label>
         <rdfs:label xml:lang="pt">Auto Consumo</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1615,6 +1596,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
         <rdfs:label xml:lang="en">Fully supplies itself and sells the surplus</rdfs:label>
         <rdfs:label xml:lang="pt">Supre totalmente e comercializa o excedente</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1625,6 +1607,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
         <rdfs:label xml:lang="en">Supply all own demand</rdfs:label>
         <rdfs:label xml:lang="pt">Supre totalmente a própria demanda</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1646,7 +1629,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Upper high efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência alta superior</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1657,7 +1640,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Upper low efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência baixa superior</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-2.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-2.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1679,7 +1662,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
         <rdfs:label xml:lang="en">64 - 74 ton/ha</rdfs:label>
         <rdfs:label xml:lang="pt">64 - 74 ton/ha</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1687,11 +1670,10 @@
     <!-- http://bio.icmc.usp.br/sustenagro#interval724-890 -->
 
     <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#interval724-890">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
         <rdfs:label xml:lang="en">75 - 81 ton/ha</rdfs:label>
         <rdfs:label xml:lang="pt">75 - 81 ton/ha</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">0.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1702,7 +1684,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
         <rdfs:label xml:lang="en">80% - 90%</rdfs:label>
         <rdfs:label xml:lang="pt">80% - 90%</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">0.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1713,7 +1695,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
         <rdfs:label xml:lang="en">81 - 85 ton/ha</rdfs:label>
         <rdfs:label xml:lang="pt">81 - 85 ton/ha</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1724,7 +1706,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
         <rdfs:label xml:lang="en">890.00 - 1,000.00</rdfs:label>
         <rdfs:label xml:lang="pt">890,00 - 1.000,00</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -2378,5 +2360,5 @@
 
 
 
-<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
 

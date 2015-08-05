@@ -386,24 +386,6 @@ class RDFSlurper {
         v.key + ':' + uri.substring(v.value.size())
     }
 
-    def toURI2(String uri){
-        if (uri==null) return null
-        if (uri.startsWith('_[')) return '_:'+uri.substring(uri.indexOf('[')+1, uri.indexOf(']'))
-        if (!uri.contains('[') && !uri.contains(']')) return _prefixes['']+uri
-    }
-
-    def fromURI2(String uri){
-        if (uri==null) return null
-        if (uri.startsWith('_:')) return '_'+'['+uri.substring(uri.indexOf(':')+1)+']'
-        if (uri[0]==':') return uri.substring(1)
-        if (uri.contains('#')) return uri.substring(uri.indexOf('#')+1)
-        if (uri.startsWith('http:')){
-            def pre = uri.substring(0, uri.lastIndexOf('/')+1)
-            def domain = _prefixes.find{ it.value == pre }?.key
-            domain+'['+uri.substring(uri.lastIndexOf('/')+1)+']'
-        }
-    }
-
     def getPrefixes(){
         def str = ''
         _prefixes.each {key, obj -> str += "PREFIX $key: <$obj>\n"}
@@ -476,6 +458,36 @@ class RDFSlurper {
             case boolean:
                 return g.addVertex('"' + node + '"^^<http://www.w3.org/2001/XMLSchema#boolean>')
         }
+    }
+}
+
+class DataReader {
+
+    RDFSlurper slp
+    String uri
+
+    def findNode(String name){
+
+        def q = slp.query("<$uri> rdfs:label '$name'; :value ?v. ")
+
+        //println res[0].subj.id
+        g.v(res[0].subj.id)
+    }
+
+    def propertyMissing(String name) {
+        getAt(name)
+    }
+
+    def getAt(String name) {
+        def node = g.v(toURI(name))
+
+        //println "uri:"+toURI(name)
+
+        if (node.both.count()==0) {
+            g.removeVertex(node)
+            node = findVertex(name)
+        }
+        new GNode(this, node._())
     }
 }
 
