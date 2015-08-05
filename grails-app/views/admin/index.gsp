@@ -12,7 +12,7 @@
 					<div class="pull-left"><h5 class="text-primary">DSL Code</h5></div>
 					<div class="pull-right form-group">
 						<form id="dsl_form" action="/admin/dsl" method="post">
-							<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Guardar </button>
+							<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Salvar </button>
 						</form>
 					</div>
 				</div>

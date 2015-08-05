@@ -70,6 +70,13 @@ class ToolController {
 
     def selectProductionUnit(){
         def production_unit_alias = Uri.removeDomain(params['production_unit_id'], 'http://bio.icmc.usp.br/sustenagro#')
+
+        redirect(   action: 'assessment',
+                    id: production_unit_alias)
+    }
+
+    def selectEvaluation(){
+        def production_unit_alias = Uri.removeDomain(params['production_unit_id'], 'http://bio.icmc.usp.br/sustenagro#')
         def evaluation_alias = Uri.removeDomain(params['evaluation'], 'http://bio.icmc.usp.br/sustenagro#')
 
         def indicators = slp.query("?id :compose :$evaluation_alias. ?id :value ?value")
@@ -78,15 +85,15 @@ class ToolController {
         //println indicators
 
         redirect(   action: 'assessment',
-                    id: production_unit_alias,
-                    model:    [indicators: indicators])
+                id: production_unit_alias,
+                model:    [indicators: indicators])
     }
 
-    def selectEvaluations(){
+    def evaluations(){
         def production_unit_id = Uri.removeDomain(params['production_unit_id'], 'http://bio.icmc.usp.br/sustenagro#')
         def evaluations = slp.query("?id :appliedTo :$production_unit_id. ?id rdfs:label ?label")
 
-        render( template: 'list_evaluations',
+        render( template: 'evaluations',
                 model:    [evaluations: evaluations]);
     }
 
@@ -111,7 +118,7 @@ class ToolController {
             }
         }
 
-        def reduceURI = {
+        /*def reduceURI = {
             it.each{
                 //ind['id_name'] = Uri.removeDomain(ind.id, 'http://bio.icmc.usp.br/sustenagro#')
                 //ind['id_name'] = URLEncoder.encode(ind.id)
@@ -119,7 +126,7 @@ class ToolController {
                 //it.id = slp.fromURI(it.id)
                 //println 'ind1- '+ slp.fromURI(ind.id)
             }
-        }
+        }*/
 
         def environmental_indicators = indicators(':EnvironmentalIndicator')
         def economic_indicators = indicators(':EconomicIndicator')
@@ -129,9 +136,9 @@ class ToolController {
         categ(economic_indicators)
         categ(social_indicators)
 
-        reduceURI(environmental_indicators)
-        reduceURI(economic_indicators)
-        reduceURI(social_indicators)
+        //reduceURI(environmental_indicators)
+        //reduceURI(economic_indicators)
+        //reduceURI(social_indicators)
 
         categorical.each{ k, v ->
             slp.query("?id a <$k>; rdfs:label ?title.").each{
@@ -178,25 +185,22 @@ class ToolController {
 
         indicators.each{
             def name = slp.fromURI2(it.id)
-            def ind_value
-
-            if(params[name] != '' && params[name] != null ){
+            if(params[it.id] != '' && params[it.id] != null ){
                 //println "indicator: $it.id, value: " + slp.toURI2(params[name])
-                ind_value = slp.toURI2(params[name])
-                inputs[it.id] = ind_value
+                inputs[it.id] = params[it.id]
 
                 slp.addNode(
                     N(':'+name+'-'+evaluation_name,
                       'rdf:type': slp.v(it.id),
                       ':compose': slp.v(':'+evaluation_name),
-                      ':value': slp.v(ind_value))
+                      ':value': slp.v(params[it.id]))
                 )
 
                 slp.g.commit()
-
-                println "Indicator-> " + it.id +' val:'+ ind_value
             }
         }
+
+        println inputs
 
         redirect(action: 'assessment', id: params['production_unit_id'])
     }

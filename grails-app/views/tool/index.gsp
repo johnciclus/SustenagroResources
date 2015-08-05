@@ -34,26 +34,30 @@
 								</select>
 							</div>
 						</div>
-                        <div id="evaluations_list" class="form-group">
-
-                        </div>
                         <div class="form-group col-sm-12 text-center">
-                            <input id="evaluation_query" type="submit" class="btn btn-primary" value="Seleccionar" disabled/>
+                            <input id="new_evaluation" type="submit" class="btn btn-primary" value="Nova avaliação" disabled/>
+                            <button id="list_evaluations" class="btn btn-default" type="button" data-toggle="collapse" data-target="#evaluations_form" aria-expanded="false" aria-controls="evaluations_form" disabled>Listar avaliações</button>
                         </div>
                     </form>
 				</div>
+
+				<div id="evaluations_form" class="section collapse">
+
+				</div>
+
                 <g:render template="create_production_unit" />
 			</div>
 		</div>
 		<script type="text/javascript">
 			$('#production_unit_id').change( function(){
 				$.post(
-						'/tool/selectEvaluations',
+						'/tool/evaluations',
 						{'production_unit_id':  this.value},
 						function( data ) {
-                            $('#evaluations_list').html(data);
-                            $('#evaluations_list table').bootstrapTable()
-                            $('#evaluation_query').prop('disabled', false);
+                            $('#evaluations_form').html(data);
+                            $('#evaluations_form table').bootstrapTable()
+                            $('#new_evaluation').prop('disabled', false);
+                            $('#list_evaluations').prop('disabled', false);
                         }
 				);
 			});
