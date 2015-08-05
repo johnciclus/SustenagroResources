@@ -64,7 +64,7 @@ class ToolController {
             ))
 
         slp.g.commit()
-        //        g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
+        //slp.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
         redirect(action: 'assessment', id: production_unit_id)
     }
 
@@ -118,16 +118,6 @@ class ToolController {
             }
         }
 
-        /*def reduceURI = {
-            it.each{
-                //ind['id_name'] = Uri.removeDomain(ind.id, 'http://bio.icmc.usp.br/sustenagro#')
-                //ind['id_name'] = URLEncoder.encode(ind.id)
-                //ind['id_name'] = ind.id
-                //it.id = slp.fromURI(it.id)
-                //println 'ind1- '+ slp.fromURI(ind.id)
-            }
-        }*/
-
         def environmental_indicators = indicators(':EnvironmentalIndicator')
         def economic_indicators = indicators(':EconomicIndicator')
         def social_indicators = indicators(':SocialIndicator')
@@ -135,10 +125,6 @@ class ToolController {
         categ(environmental_indicators)
         categ(economic_indicators)
         categ(social_indicators)
-
-        //reduceURI(environmental_indicators)
-        //reduceURI(economic_indicators)
-        //reduceURI(social_indicators)
 
         categorical.each{ k, v ->
             slp.query("?id a <$k>; rdfs:label ?title.").each{
@@ -192,13 +178,14 @@ class ToolController {
                 slp.addNode(
                     N(':'+name+'-'+evaluation_name,
                       'rdf:type': slp.v(it.id),
-                      ':compose': slp.v(':'+evaluation_name),
+                      'dc:isPartOf': slp.v(':'+evaluation_name),
                       ':value': slp.v(params[it.id]))
                 )
-
-                slp.g.commit()
+                slp.g.addEdge(slp.v(':'+evaluation_name), slp.v(':'+name+'-'+evaluation_name), 'http://purl.org/dc/terms/hasPart')
             }
         }
+        
+        slp.g.commit()
 
         println inputs
 
