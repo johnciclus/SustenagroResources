@@ -4,7 +4,6 @@
     <li role="presentation">                <a href="#social_indicators" aria-controls="social_indicators" role="tab" data-toggle="tab">                3. Sociais     </a></li>
 </ul>
 
-<p>Oi mundo kjdhsfkjhdsfkjhdskfhj</p>
 <form id="assessment_form" action="/tool/assessmentReport" method="post" class="form-horizontal">
     <input type="hidden" name="production_unit_id" value="${production_unit_id}">
     <div id="indicator_content" class="tab-content">
@@ -12,7 +11,7 @@
             <g:each var="indicator" in="${environmental_indicators}">
                 <div class="form-group">
                     <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.title}</label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-5">
                         <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
                             <g:each var="category" in="${categorical[indicator.class]}">
                                 <div class="radio">
@@ -25,10 +24,9 @@
                         <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
                             <input type="text" class="spin-button" name="${indicator.id}">
                         </g:elseif>
-                        <button type="button" id="<%= indicator.id %>-more" class="btn btn-link btn-sm" data-toggle="collapse" data-target="#<%= indicator.id %>-options">Mais opções</button>
-                        <div id="<%= indicator.id %>-options" class="collapse">
-                            <button id="<%= indicator.id %>-clear" type="button" class="btn btn-default btn-sm clear">Apagar</button>
-                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button id="<%= indicator.id %>-clear" type="button" class="btn btn-default btn-sm clear"><span class="glyphicon glyphicon-trash"></span></button>
                     </div>
                 </div>
             </g:each>
@@ -44,7 +42,7 @@
             <g:each var="indicator" in="${economic_indicators}">
                 <div class="form-group">
                     <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.title}</label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-5">
                         <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
                             <g:each var="category" in="${categorical[indicator.class]}">
                                 <div class="radio">
@@ -57,10 +55,9 @@
                         <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
                             <input type="text" class="spin-button" name="${indicator.id}">
                         </g:elseif>
-                        <button type="button" id="<%= indicator.id %>-more" class="btn btn-link btn-sm" data-toggle="collapse" data-target="#<%= indicator.id %>-options">Mais opções</button>
-                        <div id="<%= indicator.id %>-options" class="collapse">
-                            <button id="<%= indicator.id %>-clear" type="button" class="btn btn-default btn-sm clear">Apagar</button>
-                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button id="<%= indicator.id %>-clear" type="button" class="btn btn-default btn-sm clear"><span class="glyphicon glyphicon-trash"></span></button>
                     </div>
                 </div>
             </g:each>
@@ -77,7 +74,7 @@
             <g:each var="indicator" in="${social_indicators}">
                 <div class="form-group">
                     <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.title}</label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-5">
                         <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
                             <g:each var="category" in="${categorical[indicator.class]}">
                                 <div class="radio">
@@ -90,10 +87,9 @@
                         <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
                             <input type="text" class="spin-button" name="${indicator.id}" >
                         </g:elseif>
-                        <button type="button" id="<%= indicator.id %>-more" class="btn btn-link btn-sm" data-toggle="collapse" data-target="#<%= indicator.id %>-options">Mais opções</button>
-                        <div id="<%= indicator.id %>-options">
-                            <button id="<%= indicator.id %>-clear" type="button" class="btn btn-default btn-sm clear">Apagar</button>
-                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button id="<%= indicator.id %>-clear" type="button" class="btn btn-default btn-sm clear"><span class="glyphicon glyphicon-trash"></span></button>
                     </div>
                 </div>
             </g:each>

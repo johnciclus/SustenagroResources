@@ -74,8 +74,8 @@ class ToolController {
 
         def indicators = slp.query("?id :compose :$evaluation_alias. ?id :value ?value")
 
-        println "indicators"
-        println indicators
+        //println "indicators"
+        //println indicators
 
         redirect(   action: 'assessment',
                     id: production_unit_alias,
