@@ -12,6 +12,7 @@ class DSL {
     def description = ''
     def featureLst = []
     def dimensions = []
+    def recommendations = []
     Closure program
     def data
     def props = [:]
@@ -64,6 +65,10 @@ class DSL {
     def features(Closure closure){
         featureLst = []
         closure()
+    }
+
+    def recommendation(Map map, String txt){
+        recommendations << [map['if'],txt]
     }
 
     def instance(String str){

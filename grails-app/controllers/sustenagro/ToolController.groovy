@@ -137,6 +137,10 @@ class ToolController {
         //println categorical
 
         String name = slp.":$params.id".'$rdfs:label'
+        println 'Recom: '+params['recommendations']
+
+        def recom = params['recommendations']
+        if (recom==null) recom =[]
 
         render(view: 'assessment',
                model: [sustenagro: 'http://bio.icmc.usp.br/sustenagro#',
@@ -145,7 +149,8 @@ class ToolController {
                        environmental_indicators: environmental_indicators,
                        economic_indicators: economic_indicators,
                        social_indicators: social_indicators,
-                       categorical: categorical ])
+                       categorical: categorical,
+                       recommendations: recom])
     }
 
     def assessmentReport() {
@@ -176,10 +181,10 @@ class ToolController {
                 inputs[it.id] = params[it.id]
 
                 slp.addNode(
-                    N(it.id+'-'+evaluation_name,
-                      'rdf:type': slp.v(it.id),
-                      'dc:isPartOf': slp.v(':'+evaluation_name),
-                      ':value': slp.v(params[it.id]))
+                        N(it.id+'-'+evaluation_name,
+                                'rdf:type': slp.v(it.id),
+                                'dc:isPartOf': slp.v(':'+evaluation_name),
+                                ':value': slp.v(params[it.id]))
                 )
                 slp.g.addEdge(slp.v(':'+evaluation_name), slp.v(it.id+'-'+evaluation_name), 'http://purl.org/dc/terms/hasPart')
             }
@@ -202,6 +207,14 @@ class ToolController {
         println 'indice: '+ dsl.economic
         println 'indice: '+ dsl.social
 
-        redirect(action: 'assessment', id: params['production_unit_id'])
+        def recommendations = []
+        dsl.recommendations.each{if (it[0]()) recommendations << it[1]}
+
+        println 'Recom1: '
+        recommendations.each{println it}
+
+        redirect(action: 'assessment',
+                id: params['production_unit_id'],
+                params: [recommendations:recommendations])
     }
 }

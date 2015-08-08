@@ -60,14 +60,15 @@ prog {
 //
 //}
 //
-//// Cada recomendação terá uma fórmula lógica que permite especificar
-//// quando ela deve ser mostrada. Essas fórmulas podem ser tão complexas
-//// quanto necessário. Caso o resultado da fórmula dê verdadeiro, o texto
-//// (em markdown) depois de action: vai ser mostrado.
-//recommendation 'rec 1' {
-//    condition environment > 3.5 || social <7 && indicator.'co2 emission' <9
-//    text ''' markdown blah blah blah '''
-//}
+// Cada recomendação terá uma fórmula lógica que permite especificar
+// quando ela deve ser mostrada. Essas fórmulas podem ser tão complexas
+// quanto necessário. Caso o resultado da fórmula dê verdadeiro, o texto
+// (em markdown) depois de action: vai ser mostrado.
+
+recommendation if: {environment > 3.5 || social ==7}, ''' markdown blah blah blah ''' // && indicator.'co2 emission' <9)
+recommendation if: {environment > 3.5 || social ==7}, ''' ggggg gg ''' // && indicator.'co2 emission' <9)
+
+
 ////
 //map {
 //
