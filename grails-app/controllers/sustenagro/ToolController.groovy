@@ -3,6 +3,7 @@ package sustenagro
 import com.github.slugify.Slugify
 import com.github.rjeschke.txtmark.Processor
 import org.pegdown.PegDownProcessor
+import rdfSlurper.DataReader
 import rdfSlurper.RDFSlurper
 import utils.Uri
 
@@ -170,7 +171,7 @@ class ToolController {
         }
 
         indicators.each{
-            if(params[it.id] != '' && params[it.id] != null ){
+            if(params[it.id]){
                 //println "indicator: $it.id, value: " + slp.toURI2(params[name])
                 inputs[it.id] = params[it.id]
 
@@ -187,6 +188,19 @@ class ToolController {
         slp.g.commit()
 
         println inputs
+
+        def data = new DataReader(slp, slp.toURI(':'+evaluation_name))
+
+        println 'Data: '+data.'OperationalEfficiencyPlant'
+        println 'Data: '+data.'EnergyEfficiencyOfBoilersForCogeneration'
+        println 'Data: '+data.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)'
+        println 'Data: '+data.'Eficiência energética das caldeiras para cogeração de energia'
+
+        dsl.indicator = data
+        dsl.program()
+        println 'indice: '+ dsl.environment
+        println 'indice: '+ dsl.economic
+        println 'indice: '+ dsl.social
 
         redirect(action: 'assessment', id: params['production_unit_id'])
     }

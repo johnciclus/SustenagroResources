@@ -49,14 +49,11 @@ dimension ':SocialIndicator'
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
     //def indicator = instances
-    indice = indicator.'co2 emission'
-    soil = 2.0 * indicator.soil + 5.1 *
-            indicator.landBurn
-    transport = 3 * indicator.'road Length' + 7 *
-              indicator.distance
-    social = 3 * indicador.'comprimento da estrada' + 7 *
-            indicador.distância
-    indice = 98
+    environment = indicator.':OperationalEfficiencyPlant'
+    economic = 2.0 * indicator.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
+            indicator.'Eficiência energética das caldeiras para cogeração de energia'
+    social = 3 * indicator.EnergyEfficiencyOfBoilersForCogeneration + 7 *
+              indicator.OperationalEfficiencyPlant
 }
 //
 //matrix 'm1', indice, soil {

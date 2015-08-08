@@ -451,9 +451,9 @@ class RDFSlurper {
                         node)
             case String:
                 return g.addVertex('"' + node + '"@' + lang)
-            case int|Integer|long|Long|BigInteger:
+            case int: case Integer: case long: case Long: case BigInteger:
                 return g.addVertex('"' + node + '"^^<http://www.w3.org/2001/XMLSchema#integer>')
-            case float|Float|double|Double|BigDecimal:
+            case float: case Float: case double: case Double: case BigDecimal:
                 return g.addVertex('"' + node + '"^^<http://www.w3.org/2001/XMLSchema#double>')
             case boolean:
                 return g.addVertex('"' + node + '"^^<http://www.w3.org/2001/XMLSchema#boolean>')
@@ -466,12 +466,35 @@ class DataReader {
     RDFSlurper slp
     String uri
 
+    DataReader(slp, uri){
+        this.slp = slp
+        this.uri = uri
+    }
+
     def findNode(String name){
-
-        def q = slp.query("<$uri> rdfs:label '$name'; :value ?v. ")
-
-        //println res[0].subj.id
-        g.v(res[0].subj.id)
+        def res = slp
+                .select('?v')
+                .query("<$uri> dc:hasPart ?x." +
+                       "?x a ?cls." +
+                       "?cls rdfs:label '$name'@${slp.lang}." +
+                       "?x :value ?ind." +
+                       "?ind :dataValue ?v.")
+        if (res.empty) {
+            def cls = slp.toURI(name)
+            try {
+                res = slp
+                        .select('?v')
+                        .query("<$uri> dc:hasPart ?x." +
+                        "?x a <$cls>." +
+                        "?x :value ?ind." +
+                        "?ind :dataValue ?v.")
+            }
+            catch (e){ res = []}
+            if (res.empty) throw new RuntimeException("Unknown value: $name")
+        }
+        if (res.size()==1)
+            return res[0].v
+        res.collect{it.v}
     }
 
     def propertyMissing(String name) {
@@ -479,15 +502,7 @@ class DataReader {
     }
 
     def getAt(String name) {
-        def node = g.v(toURI(name))
-
-        //println "uri:"+toURI(name)
-
-        if (node.both.count()==0) {
-            g.removeVertex(node)
-            node = findVertex(name)
-        }
-        new GNode(this, node._())
+        findNode(name)
     }
 }
 
