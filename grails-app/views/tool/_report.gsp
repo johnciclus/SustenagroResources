@@ -18,7 +18,7 @@
     <g:if test="${recommendations.class == String}">
         <tr>
             <td>1</td>
-            <td> ${recommendations} </td>
+            <td> ${raw(recommendations)} </td>
             <td>Meia</td>
         </tr>
     </g:if>
@@ -26,7 +26,7 @@
         <g:each in="${recommendations}">
             <tr>
                 <td>1</td>
-                <td> ${it} </td>
+                <td> ${raw(it)} </td>
                 <td>Meia</td>
             </tr>
         </g:each>

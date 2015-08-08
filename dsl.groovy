@@ -65,8 +65,8 @@ prog {
 // quanto necessário. Caso o resultado da fórmula dê verdadeiro, o texto
 // (em markdown) depois de action: vai ser mostrado.
 
-recommendation if: {environment > 3.5 || social ==7}, ''' markdown blah blah blah ''' // && indicator.'co2 emission' <9)
-recommendation if: {environment > 3.5 || social ==7}, ''' ggggg gg ''' // && indicator.'co2 emission' <9)
+recommendation if: {environment > 3.5 || social ==7}, ''' **markdown** blah *blah* blah ''' // && indicator.'co2 emission' <9)
+recommendation if: {environment > 3.5 || social ==7}, ''' ggggg *gg* ''' // && indicator.'co2 emission' <9)
 
 
 ////

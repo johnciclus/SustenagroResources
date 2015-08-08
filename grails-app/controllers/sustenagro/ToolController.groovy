@@ -208,7 +208,7 @@ class ToolController {
         println 'indice: '+ dsl.social
 
         def recommendations = []
-        dsl.recommendations.each{if (it[0]()) recommendations << it[1]}
+        dsl.recommendations.each{if (it[0]()) recommendations << new PegDownProcessor().markdownToHtml(it[1])}
 
         println 'Recom1: '
         recommendations.each{println it}
