@@ -43,37 +43,38 @@ dimension ':EconomicIndicator'
 
 dimension ':SocialIndicator'
 
-//data 'indicator'
+data 'indicator'
 
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
-    //def indicator = instances
     environment = indicator.':OperationalEfficiencyPlant'
     economic = 2.0 * indicator.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
             indicator.'Eficiência energética das caldeiras para cogeração de energia'
     social = 3 * indicator.EnergyEfficiencyOfBoilersForCogeneration + 7 *
               indicator.OperationalEfficiencyPlant
+
+    if (environment > 3.5 || social ==7)
+        recommendation ''' **markdown** *First* option '''
+
+    recommendation environment > 3.5 || social ==7, ''' **Second** *option* ''' // && indicator.'co2 emission' <9)
+    recommendation if:(environment > 3.5 || social ==7), ''' **Third** *option* ''' // && indicator.'co2 emission' <9)
+    recommendation if:(environment > 3.5 || social ==7), show: ''' *Fourth* *option* ''' // && indicator.'co2 emission' <9)
 }
-//
+
 //matrix 'm1', indice, soil {
 //
 //}
-//
+
 // Cada recomendação terá uma fórmula lógica que permite especificar
 // quando ela deve ser mostrada. Essas fórmulas podem ser tão complexas
 // quanto necessário. Caso o resultado da fórmula dê verdadeiro, o texto
 // (em markdown) depois de action: vai ser mostrado.
 
-recommendation if: {environment > 3.5 || social ==7}, ''' **markdown** blah *blah* blah ''' // && indicator.'co2 emission' <9)
-recommendation if: {environment > 3.5 || social ==7}, ''' ggggg *gg* ''' // && indicator.'co2 emission' <9)
+//recommendation if: {environment > 3.5 || social ==7}, ''' **markdown** blah *blah* blah ''' // && indicator.'co2 emission' <9)
+//recommendation if: {environment > 3.5 || social ==7}, ''' ggggg *gg* ''' // && indicator.'co2 emission' <9)
 
-
-////
 //map {
 //
 //}
-//// A saída do programa tem APENAS:
-//// 1. Matriz de sustentabilidade.
-//// 2. Conjunto de remomendações
-//// 3. Mapas da microregião
+

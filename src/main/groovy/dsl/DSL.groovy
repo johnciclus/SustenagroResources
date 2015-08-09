@@ -12,7 +12,7 @@ class DSL {
     def description = ''
     def featureLst = []
     def dimensions = []
-    def recommendations = []
+    def report = []
     Closure program
     def data
     def props = [:]
@@ -20,6 +20,7 @@ class DSL {
     private def _nameFile = ''
     private Script _script
     private GroovyShell _shell
+    private static md = new PegDownProcessor()
 
     DSL(String file){
         // Create CompilerConfiguration and assign
@@ -53,11 +54,16 @@ class DSL {
     }
 
     def data(String name){
+        data = name
         props[name]
     }
 
+    def setData(obj){
+        props[data]= obj
+    }
+
     def description(String nameStr){
-        description = nameStr
+        description = toHTML(nameStr)
         //println  Processor.process(description, true)
         //println new PegDownProcessor().markdownToHtml(description)
     }
@@ -67,8 +73,26 @@ class DSL {
         closure()
     }
 
+//    def recommendation(Map map, String txt){
+//        recommendations << [map['if'],txt]
+//    }
+
+    static toHTML(String txt) {md.markdownToHtml(txt)}
+
+    def recommendation(String txt){
+        report << toHTML(txt)
+    }
+
+    def recommendation(boolean c, String txt){
+        if (c) report << toHTML(txt)
+    }
+
+    def recommendation(Map map){
+        if (map.if) report << toHTML(map.show)
+    }
+
     def recommendation(Map map, String txt){
-        recommendations << [map['if'],txt]
+        if (map['if']) report << toHTML(txt)
     }
 
     def instance(String str){

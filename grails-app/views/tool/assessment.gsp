@@ -21,7 +21,7 @@
                 <g:render template="indicators"></g:render>
             </div>
             <div role="tabpanel" class="tab-pane ind-content" id="report">
-                <p>Relatório</p>
+
                 <g:render template="report"></g:render>
                 <div>
                     <nav>

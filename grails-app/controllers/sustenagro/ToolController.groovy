@@ -2,7 +2,7 @@ package sustenagro
 
 import com.github.slugify.Slugify
 import com.github.rjeschke.txtmark.Processor
-import org.pegdown.PegDownProcessor
+//import org.pegdown.PegDownProcessor
 import rdfSlurper.DataReader
 import rdfSlurper.RDFSlurper
 import utils.Uri
@@ -12,6 +12,7 @@ import static rdfSlurper.RDFSlurper.N
 class ToolController {
     def slp
     def dsl
+
 
     def index() {
 
@@ -43,7 +44,7 @@ class ToolController {
                model:    [
                        name: dsl.name,
                        //description:   Processor.process(dsl.description),
-                       description:   new PegDownProcessor().markdownToHtml(dsl.description),
+                       description:   dsl.description,
                        microregions: inputs[0][2],
                        technologies: inputs[1][2],
                        production_unit_types: inputs[2][2],
@@ -137,10 +138,10 @@ class ToolController {
         //println categorical
 
         String name = slp.":$params.id".'$rdfs:label'
-        println 'Recom: '+params['recommendations']
+        println 'Recom: '+params['report']
 
-        def recom = params['recommendations']
-        if (recom==null) recom =[]
+        def report = params['report']
+        if (report==null) report =[]
 
         render(view: 'assessment',
                model: [sustenagro: 'http://bio.icmc.usp.br/sustenagro#',
@@ -150,7 +151,7 @@ class ToolController {
                        economic_indicators: economic_indicators,
                        social_indicators: social_indicators,
                        categorical: categorical,
-                       recommendations: recom])
+                       report: report])
     }
 
     def assessmentReport() {
@@ -201,20 +202,20 @@ class ToolController {
         println 'Data: '+data.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)'
         println 'Data: '+data.'Eficiência energética das caldeiras para cogeração de energia'
 
-        dsl.indicator = data
+        dsl.data = data
         dsl.program()
         println 'indice: '+ dsl.environment
         println 'indice: '+ dsl.economic
         println 'indice: '+ dsl.social
 
-        def recommendations = []
-        dsl.recommendations.each{if (it[0]()) recommendations << new PegDownProcessor().markdownToHtml(it[1])}
+        //def recommendations = []
+        //dsl.recommendations.each{if (it[0]()) recommendations << new PegDownProcessor().markdownToHtml(it[1])}
 
-        println 'Recom1: '
-        recommendations.each{println it}
+        //println 'Recom1: '
+        //recommendations.each{println it}
 
         redirect(action: 'assessment',
                 id: params['production_unit_id'],
-                params: [recommendations:recommendations])
+                params: [report: dsl.report])
     }
 }
