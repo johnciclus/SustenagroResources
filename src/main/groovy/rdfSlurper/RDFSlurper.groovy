@@ -475,10 +475,10 @@ class DataReader {
         def res = slp
                 .select('?v')
                 .query("<$uri> dc:hasPart ?x." +
-                       "?x a ?cls." +
-                       "?cls rdfs:label '$name'@${slp.lang}." +
-                       "?x :value ?ind." +
-                       "?ind :dataValue ?v.")
+                "?x a ?cls." +
+                "?cls rdfs:label '$name'@${slp.lang}." +
+                "?x :value ?ind." +
+                "?ind :dataValue ?v.")
         if (res.empty) {
             def cls = slp.toURI(name)
             try {
@@ -505,4 +505,3 @@ class DataReader {
         findNode(name)
     }
 }
-

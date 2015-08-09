@@ -2,7 +2,7 @@
 <table class="table table-striped table-hover ">
     <thead>
         <tr class="text-primary">
-            <th>Recomendações</th>
+            <th>Recomendação</th>
         </tr>
     </thead>
     <tbody>

@@ -54,25 +54,23 @@ prog {
     social = 3 * indicator.EnergyEfficiencyOfBoilersForCogeneration + 7 *
               indicator.OperationalEfficiencyPlant
 
-    if (environment > 3.5 || social ==7)
-        recommendation ''' **markdown** *First* option '''
+    show '***That is the report:***'
 
-    recommendation environment > 3.5 || social ==7, ''' **Second** *option* ''' // && indicator.'co2 emission' <9)
-    recommendation if:(environment > 3.5 || social ==7), ''' **Third** *option* ''' // && indicator.'co2 emission' <9)
-    recommendation if:(environment > 3.5 || social ==7), show: ''' *Fourth* *option* ''' // && indicator.'co2 emission' <9)
+    // Cada recomendação terá uma fórmula lógica que permite especificar
+    // quando ela deve ser mostrada. Essas fórmulas podem ser tão complexas
+    // quanto necessário. Caso o resultado da fórmula dê verdadeiro, o texto
+    // (em markdown) depois de action: vai ser mostrado.
+    if (environment > 3.5 || social ==7)
+        recommendation '**markdown** *First* option'
+
+    recommendation environment > 3.5 || social ==7, ''' **Second** *option* '''
+    recommendation if:(environment > 3.5 || social ==7), ''' **Third** *option* '''
+    recommendation if:(environment > 3.5 || social ==7), show: ''' *Fourth* *option* '''
 }
 
 //matrix 'm1', indice, soil {
 //
 //}
-
-// Cada recomendação terá uma fórmula lógica que permite especificar
-// quando ela deve ser mostrada. Essas fórmulas podem ser tão complexas
-// quanto necessário. Caso o resultado da fórmula dê verdadeiro, o texto
-// (em markdown) depois de action: vai ser mostrado.
-
-//recommendation if: {environment > 3.5 || social ==7}, ''' **markdown** blah *blah* blah ''' // && indicator.'co2 emission' <9)
-//recommendation if: {environment > 3.5 || social ==7}, ''' ggggg *gg* ''' // && indicator.'co2 emission' <9)
 
 //map {
 //

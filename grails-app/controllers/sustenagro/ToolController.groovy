@@ -2,6 +2,8 @@ package sustenagro
 
 import com.github.slugify.Slugify
 import com.github.rjeschke.txtmark.Processor
+import dsl.DataReader
+
 //import org.pegdown.PegDownProcessor
 import rdfSlurper.DataReader
 import rdfSlurper.RDFSlurper
@@ -208,6 +210,17 @@ class ToolController {
         println 'indice: '+ dsl.economic
         println 'indice: '+ dsl.social
 
+        def report = ''
+        dsl.report.each{
+            switch (it[0]){
+                case 'show': report += it[1]; break
+                case 'recommendation':
+                    report += '''<div class="text-primary">
+                                 Recomendação</div><div>'''+it[1]+'</div>'
+                    break
+            }
+        }
+
         //def recommendations = []
         //dsl.recommendations.each{if (it[0]()) recommendations << new PegDownProcessor().markdownToHtml(it[1])}
 
@@ -216,6 +229,6 @@ class ToolController {
 
         redirect(action: 'assessment',
                 id: params['production_unit_id'],
-                params: [report: dsl.report])
+                params: [report: report])
     }
 }

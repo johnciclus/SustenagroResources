@@ -22,7 +22,8 @@
             </div>
             <div role="tabpanel" class="tab-pane ind-content" id="report">
 
-                <g:render template="report"></g:render>
+                ${raw(report)}
+                %{--<g:render template="report"></g:render>--}%
                 <div>
                     <nav>
                         <ul class="pager">

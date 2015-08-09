@@ -3,6 +3,7 @@ package dsl
 import com.github.rjeschke.txtmark.Processor
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.pegdown.PegDownProcessor
+import rdfSlurper.RDFSlurper
 
 /**
  * Created by dilvan on 7/14/15.
@@ -79,20 +80,24 @@ class DSL {
 
     static toHTML(String txt) {md.markdownToHtml(txt)}
 
+    def show(String txt){
+        report << ['show', toHTML(txt)]
+    }
+
     def recommendation(String txt){
-        report << toHTML(txt)
+        report << ['recommendation', toHTML(txt)]
     }
 
     def recommendation(boolean c, String txt){
-        if (c) report << toHTML(txt)
+        if (c) report << ['recommendation', toHTML(txt)]
     }
 
     def recommendation(Map map){
-        if (map.if) report << toHTML(map.show)
+        if (map.if) report << ['recommendation', toHTML(map.show)]
     }
 
     def recommendation(Map map, String txt){
-        if (map['if']) report << toHTML(txt)
+        if (map['if']) report << ['recommendation', toHTML(txt)]
     }
 
     def instance(String str){
@@ -119,3 +124,6 @@ class DSL {
         props[name]
     }
 }
+
+
+
