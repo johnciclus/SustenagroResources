@@ -215,8 +215,8 @@ class ToolController {
             switch (it[0]){
                 case 'show': report += it[1]; break
                 case 'recommendation':
-                    report += '''<div class="text-primary">
-                                 Recomendação</div><div>'''+it[1]+'</div>'
+                    report += "<div class='text-primary'>Recomendação</div>"+
+                            "<div>${it[1]}</div>"
                     break
             }
         }

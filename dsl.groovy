@@ -54,6 +54,9 @@ prog {
     social = 3 * indicator.EnergyEfficiencyOfBoilersForCogeneration + 7 *
               indicator.OperationalEfficiencyPlant
 
+    // THE REPORT
+
+    // Just showing text
     show '***That is the report:***'
 
     // Cada recomendação terá uma fórmula lógica que permite especificar
