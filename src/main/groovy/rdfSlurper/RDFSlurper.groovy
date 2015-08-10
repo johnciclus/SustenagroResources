@@ -492,8 +492,10 @@ class DataReader {
             catch (e){ res = []}
             if (res.empty) throw new RuntimeException("Unknown value: $name")
         }
+
         if (res.size()==1)
             return res[0].v
+
         res.collect{it.v}
     }
 

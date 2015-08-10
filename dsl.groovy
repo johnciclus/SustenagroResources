@@ -48,7 +48,7 @@ data 'indicator'
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
-    environment = indicator.':OperationalEfficiencyPlant'
+    environment = indicator.'BiologicalPestControl' ? 1 : 0        //OperationalEfficiencyPlant
     economic = 2.0 * indicator.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
             indicator.'Eficiência energética das caldeiras para cogeração de energia'
     social = 3 * indicator.EnergyEfficiencyOfBoilersForCogeneration + 7 *
@@ -66,9 +66,9 @@ prog {
     if (environment > 3.5 || social ==7)
         recommendation '**markdown** *First* option'
 
-    recommendation environment > 3.5 || social ==7, ''' **Second** *option* '''
-    recommendation if:(environment > 3.5 || social ==7), ''' **Third** *option* '''
-    recommendation if:(environment > 3.5 || social ==7), show: ''' *Fourth* *option* '''
+    recommendation environment > 3.5 || social == 7, ''' **Second** *option* '''
+    recommendation if:(environment > 3.5 || social == 7), ''' **Third** *option* '''
+    recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
 }
 
 //matrix 'm1', indice, soil {

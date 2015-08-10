@@ -90,7 +90,7 @@ class ToolController {
 
         redirect(   action: 'assessment',
                 id: production_unit_alias,
-                model:    [indicators: indicators])
+                params:    [indicators: indicators])
     }
 
     def evaluations(){
@@ -137,13 +137,12 @@ class ToolController {
             }
         }
 
-        //println categorical
-
         String name = slp.":$params.id".'$rdfs:label'
-        println 'Recom: '+params['report']
+        //println 'Recom: '+params['report']
 
-        def report = params['report']
-        if (report==null) report =[]
+        //def report = params['report']
+
+        //if (report==null) report =[]
 
         render(view: 'assessment',
                model: [sustenagro: 'http://bio.icmc.usp.br/sustenagro#',
@@ -153,7 +152,7 @@ class ToolController {
                        economic_indicators: economic_indicators,
                        social_indicators: social_indicators,
                        categorical: categorical,
-                       report: report])
+                       report: params['report']])
     }
 
     def assessmentReport() {
@@ -195,20 +194,25 @@ class ToolController {
         
         slp.g.commit()
 
+        println 'Inputs'
+
         println inputs
+
+        println 'URI'
+        println slp.toURI(':'+evaluation_name)
 
         def data = new DataReader(slp, slp.toURI(':'+evaluation_name))
 
-        println 'Data: '+data.'OperationalEfficiencyPlant'
-        println 'Data: '+data.'EnergyEfficiencyOfBoilersForCogeneration'
-        println 'Data: '+data.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)'
-        println 'Data: '+data.'Eficiência energética das caldeiras para cogeração de energia'
+        //  println 'Data: '+data.'OperationalEfficiencyPlant'
+        //  println 'Data: '+data.'EnergyEfficiencyOfBoilersForCogeneration'
+        //  println 'Data: '+data.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)'
+        //  println 'Data: '+data.'Eficiência energética das caldeiras para cogeração de energia'
 
         dsl.data = data
         dsl.program()
-        println 'indice: '+ dsl.environment
-        println 'indice: '+ dsl.economic
-        println 'indice: '+ dsl.social
+        println 'Indice Amb: '+ dsl.environment
+        println 'Indice Eco: '+ dsl.economic
+        println 'Indice Soc: '+ dsl.social
 
         def report = ''
         dsl.report.each{
@@ -230,5 +234,6 @@ class ToolController {
         redirect(action: 'assessment',
                 id: params['production_unit_id'],
                 params: [report: report])
+
     }
 }

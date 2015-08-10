@@ -12,18 +12,19 @@
         <p>Unidade produtiva atual: <b>${production_unit_name}</b> </p>
 
         <ul id="assessment_tab" class="nav nav-tabs">
-            <li role="presentation" class="active"> <a href="#indicators" aria-controls="indicators" role="tab" data-toggle="tab">  Indicadores</a>      </li>
-            <li role="presentation">                <a href="#report" aria-controls="report" role="tab" data-toggle="tab">          Relatório</a>         </li>
+            <li role="presentation" <g:if test="${report == null}"> class="active" </g:if>> <a href="#indicators" aria-controls="indicators" role="tab" data-toggle="tab">  Indicadores</a>      </li>
+            <g:if test="${report != null}">
+            <li role="presentation" class="active">                <a href="#report" aria-controls="report" role="tab" data-toggle="tab">          Relatório</a>         </li>
+            </g:if>
         </ul>
 
         <div id="assessment_content" class="tab-content">
-            <div role="tabpanel" class="tab-pane ind-content active" id="indicators">
+            <div role="tabpanel" class="tab-pane ind-content <g:if test='${report == null}'>active</g:if>"  id="indicators">
                 <g:render template="indicators"></g:render>
             </div>
-            <div role="tabpanel" class="tab-pane ind-content" id="report">
-
-                ${raw(report)}
-                %{--<g:render template="report"></g:render>--}%
+            <g:if test="${report != null}">
+            <div role="tabpanel" class="tab-pane ind-content active" id="report">
+                <g:render template="report"></g:render>
                 <div>
                     <nav>
                         <ul class="pager">
@@ -32,6 +33,7 @@
                     </nav>
                 </div>
             </div>
+            </g:if>
         </div>
     </div>
 </div>
