@@ -4,7 +4,7 @@
     <li role="presentation">                <a href="#social_indicators" aria-controls="social_indicators" role="tab" data-toggle="tab">                3. Sociais     </a></li>
 </ul>
 
-<form id="assessment_form" action="/tool/assessmentReport" method="post" class="form-horizontal">
+<form id="assessment_form" action="/tool/report" method="post" class="form-horizontal">
     <input type="hidden" name="production_unit_id" value="${production_unit_id}">
     <div id="indicator_content" class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="environmental_indicators">

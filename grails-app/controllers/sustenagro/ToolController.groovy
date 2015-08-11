@@ -81,16 +81,16 @@ class ToolController {
 
     def selectEvaluation(){
         def production_unit_alias = Uri.removeDomain(params['production_unit_id'], 'http://bio.icmc.usp.br/sustenagro#')
-        def evaluation_alias = Uri.removeDomain(params['evaluation'], 'http://bio.icmc.usp.br/sustenagro#')
+        def evaluation_name = Uri.removeDomain(params['evaluation'], 'http://bio.icmc.usp.br/sustenagro#')
 
-        def indicators = slp.query("?id :compose :$evaluation_alias. ?id :value ?value")
+        //def indicators = slp.query("?id :compose :$evaluation_alias. ?id :value ?value")
 
         //println "indicators"
         //println indicators
 
         redirect(   action: 'assessment',
                 id: production_unit_alias,
-                params:    [indicators: indicators])
+                params: [evaluation: evaluation_name])
     }
 
     def evaluations(){
@@ -98,7 +98,8 @@ class ToolController {
         def evaluations = slp.query("?id :appliedTo :$production_unit_id. ?id rdfs:label ?label")
 
         render( template: 'evaluations',
-                model:    [evaluations: evaluations]);
+                model:    [evaluations: evaluations,
+                           production_unit_id: production_unit_id]);
     }
 
     def assessment() {
@@ -140,9 +141,40 @@ class ToolController {
         String name = slp.":$params.id".'$rdfs:label'
         //println 'Recom: '+params['report']
 
-        //def report = params['report']
+        //def report
 
-        //if (report==null) report =[]
+        if (params['evaluation'] != null) {
+
+            println 'evaluation logic'
+            def data = new DataReader(slp, slp.toURI(':'+params['evaluation']))
+
+            //  println 'Data: ' + data.'OperationalEfficiencyPlant'
+            //  println 'Data: ' + data.'EnergyEfficiencyOfBoilersForCogeneration'
+            //  println 'Data: ' + data.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)'
+            //  println 'Data: ' + data.'Eficiência energética das caldeiras para cogeração de energia'
+
+            dsl.data = data
+            dsl.program()
+
+            println 'Indice Amb: '+ dsl.environment
+            println 'Indice Eco: '+ dsl.economic
+            println 'Indice Soc: '+ dsl.social
+
+
+            //report = ''
+            /*dsl.report.each{
+                switch (it[0]){
+                    case 'show': report += it[1];
+                        break
+                    case 'recommendation':
+                        report += "<div class='text-primary'>Recomendação</div>"+
+                                "<div>${it[1]}</div>"
+                        break
+                }
+            }*/
+        }
+        println dsl.report
+        println dsl.report.size()
 
         render(view: 'assessment',
                model: [sustenagro: 'http://bio.icmc.usp.br/sustenagro#',
@@ -152,10 +184,10 @@ class ToolController {
                        economic_indicators: economic_indicators,
                        social_indicators: social_indicators,
                        categorical: categorical,
-                       report: params['report']])
+                       report: (dsl.report.size()>0 ? dsl.report:null)])
     }
 
-    def assessmentReport() {
+    def report() {
         def production_unit_id = params['production_unit_id']
 
         def num = slp.query('?id a <http://bio.icmc.usp.br/sustenagro#Evaluation>. ?id <http://bio.icmc.usp.br/sustenagro#appliedTo> <http://bio.icmc.usp.br/sustenagro#' + production_unit_id +'>' ).size() + 1
@@ -164,7 +196,7 @@ class ToolController {
         slp.addNode(
             N(':'+evaluation_name,
                     'rdf:type': slp.v('http://bio.icmc.usp.br/sustenagro#Evaluation'),
-                    ':appliedTo': slp.v(':'+production_unit_id) ,
+                    ':appliedTo': slp.v(':'+production_unit_id),
                     'rdfs:label': 'Avaliação '+ num)
         )
 
@@ -194,36 +226,9 @@ class ToolController {
         
         slp.g.commit()
 
-        println 'Inputs'
+        //println slp.toURI(':'+evaluation_name)
 
-        println inputs
-
-        println 'URI'
-        println slp.toURI(':'+evaluation_name)
-
-        def data = new DataReader(slp, slp.toURI(':'+evaluation_name))
-
-        //  println 'Data: '+data.'OperationalEfficiencyPlant'
-        //  println 'Data: '+data.'EnergyEfficiencyOfBoilersForCogeneration'
-        //  println 'Data: '+data.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)'
-        //  println 'Data: '+data.'Eficiência energética das caldeiras para cogeração de energia'
-
-        dsl.data = data
-        dsl.program()
-        println 'Indice Amb: '+ dsl.environment
-        println 'Indice Eco: '+ dsl.economic
-        println 'Indice Soc: '+ dsl.social
-
-        def report = ''
-        dsl.report.each{
-            switch (it[0]){
-                case 'show': report += it[1]; break
-                case 'recommendation':
-                    report += "<div class='text-primary'>Recomendação</div>"+
-                            "<div>${it[1]}</div>"
-                    break
-            }
-        }
+        //Save evaluation data
 
         //def recommendations = []
         //dsl.recommendations.each{if (it[0]()) recommendations << new PegDownProcessor().markdownToHtml(it[1])}
@@ -233,7 +238,7 @@ class ToolController {
 
         redirect(action: 'assessment',
                 id: params['production_unit_id'],
-                params: [report: report])
+                params: [evaluation: evaluation_name])
 
     }
 }

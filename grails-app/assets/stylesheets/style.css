@@ -191,3 +191,9 @@ body {
 .clear{
 	margin-top: 9px;
 }
+
+#assessment_tab > .active > a{
+	color: #ffffff;
+	background-color: #4582ec;
+	border-color: #4582ec;
+}

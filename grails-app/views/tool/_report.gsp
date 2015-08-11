@@ -1,3 +1,15 @@
+<g:each in="${report}">
+    <g:if test="${it[0] == 'show'}">
+        <%= it[1] %>
+    </g:if>
+    <g:if test="${it[0] == 'recommendation'}">
+        <div class='text-primary'>Recomendação</div>
+
+        <div><%= it[1]  %></div>
+    </g:if>
+</g:each>
+
+
 <table class="table table-striped table-hover ">
     <thead>
         <tr class="text-primary">
@@ -5,18 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        <g:if test="${report.class == String}">
-            <tr>
-                <td> ${raw(report)} </td>
-            </tr>
-        </g:if>
-        <g:else>
-        <g:each in="${report}">
-            <tr>
-                <td> ${raw(it)} </td>
-            </tr>
-        </g:each>
-        </g:else>
+
     </tbody>
 </table>
 

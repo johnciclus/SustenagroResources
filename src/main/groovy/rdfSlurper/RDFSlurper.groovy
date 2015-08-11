@@ -490,8 +490,10 @@ class DataReader {
                         "?ind :dataValue ?v.")
             }
             catch (e){ res = []}
-            if (res.empty) throw new RuntimeException("Unknown value: $name")
         }
+
+        if (res.empty) //throw new RuntimeException("Unknown value: $name")
+            return 0
 
         if (res.size()==1)
             return res[0].v

@@ -48,9 +48,14 @@ data 'indicator'
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
-    environment = indicator.'BiologicalPestControl' ? 1 : 0        //OperationalEfficiencyPlant
+    environment =   (indicator.'BiologicalPestControl' ? 1:-1) +
+                    (indicator.'PlanningSystematicPlanting' ? 1:-1) +
+                    (indicator.'StandardAerialSpraying' ? 1:-1) +
+                    indicator.'VinasseAndEthanolRelation'
+
     economic = 2.0 * indicator.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
             indicator.'Eficiência energética das caldeiras para cogeração de energia'
+
     social = 3 * indicator.EnergyEfficiencyOfBoilersForCogeneration + 7 *
               indicator.OperationalEfficiencyPlant
 

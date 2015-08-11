@@ -12,9 +12,9 @@
         <p>Unidade produtiva atual: <b>${production_unit_name}</b> </p>
 
         <ul id="assessment_tab" class="nav nav-tabs">
-            <li role="presentation" <g:if test="${report == null}"> class="active" </g:if>> <a href="#indicators" aria-controls="indicators" role="tab" data-toggle="tab">  Indicadores</a>      </li>
+            <li role="presentation" <g:if test="${report == null}"> class="active" </g:if>> <a href="#indicators" aria-controls="indicators" role="tab" data-toggle="tab"> Indicadores</a>      </li>
             <g:if test="${report != null}">
-            <li role="presentation" class="active">                <a href="#report" aria-controls="report" role="tab" data-toggle="tab">          Relatório</a>         </li>
+            <li role="presentation" class="active">                <a href="#report" aria-controls="report" role="tab" data-toggle="tab">        Relatório</a>         </li>
             </g:if>
         </ul>
 
