@@ -9,7 +9,7 @@
 <body>
 <div class="row main">
     <div id="content" class="col-sm-10 col-sm-offset-1 content">
-        <p>Unidade produtiva atual: <b>${production_unit_name}</b> </p>
+        <p>Unidade produtiva atual: <b>${production_unit.name}</b> </p>
 
         <ul id="assessment_tab" class="nav nav-tabs">
             <li role="presentation" <g:if test="${report == null}"> class="active" </g:if>> <a href="#indicators" aria-controls="indicators" role="tab" data-toggle="tab"> Indicadores</a>      </li>

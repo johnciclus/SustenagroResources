@@ -116,6 +116,10 @@ class DSL {
         program = c
     }
 
+    def _cleanProgram(){
+        report = []
+    }
+
     def propertyMissing(String name, arg) {
         props[name] = arg
     }

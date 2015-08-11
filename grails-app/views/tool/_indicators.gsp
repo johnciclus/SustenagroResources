@@ -5,18 +5,20 @@
 </ul>
 
 <form id="assessment_form" action="/tool/report" method="post" class="form-horizontal">
-    <input type="hidden" name="production_unit_id" value="${production_unit_id}">
+    <input type="hidden" name="production_unit_id" value="${production_unit.id}">
     <div id="indicator_content" class="tab-content">
+
         <div role="tabpanel" class="tab-pane active" id="environmental_indicators">
-            <g:each var="indicator" in="${environmental_indicators}">
+            <g:each var="indicator" in="${indicators.environmental}">
                 <div class="form-group">
                     <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.title}</label>
+                    <g:set var="wasFilled" value="${values[indicator.id] != null}" />
                     <div class="col-sm-5">
                         <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
                             <g:each var="category" in="${categorical[indicator.class]}">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>"> <%= category.title %>
+                                        <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>" <g:if test="${ wasFilled && values[indicator.id] == category.id}"> checked </g:if>> <%= category.title %>
                                     </label>
                                 </div>
                             </g:each>
@@ -38,16 +40,18 @@
                 </nav>
             </div>
         </div>
+
         <div role="tabpanel" class="tab-pane" id="economic_indicators">
-            <g:each var="indicator" in="${economic_indicators}">
+            <g:each var="indicator" in="${indicators.economic}">
                 <div class="form-group">
                     <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.title}</label>
+                    <g:set var="wasFilled" value="${values[indicator.id] != null}" />
                     <div class="col-sm-5">
                         <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
                             <g:each var="category" in="${categorical[indicator.class]}">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>"> <%= category.title %>
+                                        <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>" <g:if test="${ wasFilled && values[indicator.id] == category.id}"> checked </g:if>> <%= category.title %>
                                     </label>
                                 </div>
                             </g:each>
@@ -70,16 +74,18 @@
                 </nav>
             </div>
         </div>
+
         <div role="tabpanel" class="tab-pane" id="social_indicators">
-            <g:each var="indicator" in="${social_indicators}">
+            <g:each var="indicator" in="${indicators.social}">
                 <div class="form-group">
                     <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.title}</label>
+                    <g:set var="wasFilled" value="${values[indicator.id] != null}" />
                     <div class="col-sm-5">
                         <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
                             <g:each var="category" in="${categorical[indicator.class]}">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>"> <%= category.title %>
+                                        <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>" <g:if test="${ wasFilled && values[indicator.id] == category.id}"> checked </g:if>> <%= category.title %>
                                     </label>
                                 </div>
                             </g:each>

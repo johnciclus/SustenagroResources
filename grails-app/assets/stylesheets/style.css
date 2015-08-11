@@ -192,6 +192,12 @@ body {
 	margin-top: 9px;
 }
 
+#assessment_tab > li > a{
+	background-color: #eeeeee;
+	border: 1px solid #ddd;
+}
+
+
 #assessment_tab > .active > a{
 	color: #ffffff;
 	background-color: #4582ec;

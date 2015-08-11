@@ -139,63 +139,48 @@ class ToolController {
         }
 
         String name = slp.":$params.id".'$rdfs:label'
-        //println 'Recom: '+params['report']
 
-        //def report
+        def values = [:]
 
         if (params['evaluation'] != null) {
 
-            println 'evaluation logic'
+            slp.select('?cls ?value')
+            .query("?id dc:isPartOf :${params['evaluation']}. ?id a ?cls. ?id :value ?value.").each{
+                values[it.cls] = it.value
+            }
+
             def data = new DataReader(slp, slp.toURI(':'+params['evaluation']))
 
-            //  println 'Data: ' + data.'OperationalEfficiencyPlant'
-            //  println 'Data: ' + data.'EnergyEfficiencyOfBoilersForCogeneration'
-            //  println 'Data: ' + data.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)'
-            //  println 'Data: ' + data.'Eficiência energética das caldeiras para cogeração de energia'
-
             dsl.data = data
+            dsl._cleanProgram()
             dsl.program()
 
             println 'Indice Amb: '+ dsl.environment
             println 'Indice Eco: '+ dsl.economic
             println 'Indice Soc: '+ dsl.social
 
-
-            //report = ''
-            /*dsl.report.each{
-                switch (it[0]){
-                    case 'show': report += it[1];
-                        break
-                    case 'recommendation':
-                        report += "<div class='text-primary'>Recomendação</div>"+
-                                "<div>${it[1]}</div>"
-                        break
-                }
-            }*/
         }
-        println dsl.report
-        println dsl.report.size()
+
+        println values
 
         render(view: 'assessment',
                model: [sustenagro: 'http://bio.icmc.usp.br/sustenagro#',
-                       production_unit_id: params.id,
-                       production_unit_name: name,
-                       environmental_indicators: environmental_indicators,
-                       economic_indicators: economic_indicators,
-                       social_indicators: social_indicators,
+                       production_unit: [id: params.id, name: name],
+                       indicators: [environmental: environmental_indicators, economic: economic_indicators, social: social_indicators],
                        categorical: categorical,
-                       report: (dsl.report.size()>0 ? dsl.report:null)])
+                       values: values,
+                       report: (dsl.report.size()>0 ? dsl.report : null)])
     }
 
     def report() {
         def production_unit_id = params['production_unit_id']
 
-        def num = slp.query('?id a <http://bio.icmc.usp.br/sustenagro#Evaluation>. ?id <http://bio.icmc.usp.br/sustenagro#appliedTo> <http://bio.icmc.usp.br/sustenagro#' + production_unit_id +'>' ).size() + 1
+        def num = slp.query('?id a :Evaluation. ?id :appliedTo :' + production_unit_id).size() + 1
         def evaluation_name = production_unit_id+"-evaluation-"+num
 
         slp.addNode(
             N(':'+evaluation_name,
-                    'rdf:type': slp.v('http://bio.icmc.usp.br/sustenagro#Evaluation'),
+                    'rdf:type': slp.v(':Evaluation'),
                     ':appliedTo': slp.v(':'+production_unit_id),
                     'rdfs:label': 'Avaliação '+ num)
         )
@@ -203,7 +188,6 @@ class ToolController {
         slp.g.commit()
 
         def indicators = []
-        def inputs = [:]
 
         dsl.dimensions.each{
             indicators += slp.query("?a rdfs:subClassOf $it. ?id rdfs:subClassOf ?a.")
@@ -212,7 +196,6 @@ class ToolController {
         indicators.each{
             if(params[it.id]){
                 //println "indicator: $it.id, value: " + slp.toURI2(params[name])
-                inputs[it.id] = params[it.id]
 
                 slp.addNode(
                         N(it.id+'-'+evaluation_name,
