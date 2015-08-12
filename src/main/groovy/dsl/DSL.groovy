@@ -104,6 +104,10 @@ class DSL {
         featureLst << ['a', str]
     }
 
+    def matrix(Map map){
+        report << ['matrix', map.x, map.y, map.labelX, map.labelY, map.rangeX, map.rangeY]
+    }
+
     def subclass(String str){
         featureLst << ['rdfs:subClassOf', str]
     }

@@ -55,12 +55,12 @@ prog {
 //    social =        3 * indicator.EnergyEfficiencyOfBoilersForCogeneration + 7 *
 //            indicator.OperationalEfficiencyPlant
 
-    environment =    (indicator.'BiologicalPestControl' ? 1:-1) +
-                        (indicator.'PlanningSystematicPlanting' ? 1:-1) +
-                        (indicator.'StandardAerialSpraying' ? 1:-1) +
-                        indicator.'VinasseAndEthanolRelation'
+    environment =   (indicator.'BiologicalPestControl' ? 1:-1) +
+                    (indicator.'PlanningSystematicPlanting' ? 1:-1) +
+                    (indicator.'StandardAerialSpraying' ? 1:-1) +
+                     indicator.'VinasseAndEthanolRelation'
 
-    environmentAvg =    environment/4
+    environmentAvg= environment/4
 
     economic =      2.0 * indicator.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
                     indicator.'Eficiência energética das caldeiras para cogeração de energia'
@@ -83,6 +83,18 @@ prog {
     recommendation environment > 3.5 || social == 7, ''' **Second** *option* '''
     recommendation if:(environment > 3.5 || social == 7), ''' **Third** *option* '''
     recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
+
+    show 'Matrix de avaliação'
+    
+    show 'Indice de Magnitude: ' + environment
+    show 'Indice de Segurança: ' + environmentAvg
+    
+    matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2]
+
+    //matrix  x: [label: 'kkk', value = environment, range: [1,9]],
+    //        y: [label: 'kkk', value = social, range: [1,9]]
+
+    //map indicator.'Microregion'
 }
 
 //matrix 'm1', indice, soil {
@@ -92,4 +104,3 @@ prog {
 //map {
 //
 //}
-
