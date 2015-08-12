@@ -43,6 +43,69 @@
         $('.nav-tabs a[href="'+$(this).attr('href')+'"]').tab('show');
     });
 
+    var w = 800, h = 600, m=40;
+
+    var svg = d3.select("#graphic").append("svg:svg")
+            .attr("width", w)
+            .attr("height", h)
+            .attr("xmlns", "http://www.w3.org/2000/svg");
+
+    var w_rect = (w-(2*m))/4, h_rect = (h-(2*m))/3;
+
+    var colors = ["#000000", "#707070", "#A9A9A9", "#0086B2", "#319c21", "#7CFC00"]
+
+    var min_x_lim = -4;
+    var max_x_lim = 4;
+    var min_y_lim = -1;
+    var max_y_lim = 1;
+    var d_x_label = (max_x_lim - min_x_lim)/4;
+    var d_y_label = (max_y_lim - min_y_lim)/3;
+
+    for(var i=0; i<4; i++) {
+        for(var j=0; j<3; j++) {
+            svg.append("svg:rect")
+                    .attr("x", m + w_rect*i)
+                    .attr("y", m + h_rect*j)
+                    .attr("width", w_rect)
+                    .attr("height", h_rect)
+                    .style("stroke", "#000")
+                    .style("fill", colors[i-j+2])
+                    .attr("fill-opacity", 0.2)
+                    .attr("stroke-opacity", 0.2)
+        }
+    }
+
+    svg.append("svg:text")
+            .attr("x", (w_rect*2) + 2*m)
+            .attr("y", (h_rect*3) + 1.5*m)
+            .text("Indice de Magnitude");
+
+    svg.append("svg:text")
+            .attr("x", -1*(h_rect*1.5) + m)
+            .attr("y", m)
+            .attr("transform", "rotate(270 20,40)")
+            .text("Indice de Segurança");
+
+    for(var i=0; i<=4; i++) {
+        svg.append("svg:text")
+                .attr("x", (w_rect * i) + m)
+                .attr("y", (h_rect * 3) + 1.5 * m)
+                .text(min_x_lim + d_x_label * i);
+    }
+
+    for(var j=0; j<=3; j++) {
+        svg.append("svg:text")
+                .attr("x", -1*(h_rect*j) + 0.5*m)
+                .attr("y", m)
+                .attr("transform", "rotate(270 35,40)")
+                .text(max_y_lim - d_y_label * j);
+    }
+
+
+
+
+
+    /*
     var w = 960, h = 960;
 
     var svg = d3.select("#graphic").append("svg:svg")
@@ -69,6 +132,9 @@
             .attr("r", 250)
             .style("fill", "darkred")
             .style("fill-opacity", ".5");
+    */
+
+
 </script>
 </body>
 </html>

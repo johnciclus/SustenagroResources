@@ -155,9 +155,9 @@ class ToolController {
             dsl._cleanProgram()
             dsl.program()
 
-            println 'Indice Amb: '+ dsl.environment
-            println 'Indice Eco: '+ dsl.economic
-            println 'Indice Soc: '+ dsl.social
+            //println 'Indice Amb: '+ dsl.environment
+            //println 'Indice Eco: '+ dsl.economic
+            //println 'Indice Soc: '+ dsl.social
 
         }
 
