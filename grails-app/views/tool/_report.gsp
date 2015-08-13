@@ -17,40 +17,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
             <script src="/assets/matrix.js" type="text/javascript"></script>
             <script type="text/javascript">
-                $('.pager a').click(function(){
-                    $('.nav-tabs a[href="'+$(this).attr('href')+'"]').tab('show');
-                });
-
                 Matrix("#graphic", {x: ${it[1]}, y: ${it[2]}, label_x: "${it[3]}", label_y: "${it[4]}", range_x: ${it[5]}, range_y: ${it[6]}})
-
-                /*
-                 var w = 960, h = 960;
-
-                 var svg = d3.select("#graphic").append("svg:svg")
-                 .attr("width", w)
-                 .attr("height", h);
-
-                 svg.append("svg:circle")
-                 .attr("cx", w/3)
-                 .attr("cy", h/3)
-                 .attr("r", 250)
-                 .style("fill", "green")
-                 .style("fill-opacity", ".5");
-
-                 svg.append("svg:circle")
-                 .attr("cx", w*2/3)
-                 .attr("cy", h/3)
-                 .attr("r", 250)
-                 .style("fill", "steelblue")
-                 .style("fill-opacity", ".5");
-
-                 svg.append("svg:circle")
-                 .attr("cx", w/2)
-                 .attr("cy", h*2/3)
-                 .attr("r", 250)
-                 .style("fill", "darkred")
-                 .style("fill-opacity", ".5");
-                 */
             </script>
         </div>
     </g:elseif>
@@ -61,10 +28,40 @@
             </div>
         </div>
         <script type="text/javascript">
-            $('#map').load('<%=it[1]%>');
+            $('#map').load('<%=it[1]%>', function(){
+                $('#map svg').attr('width', '175mm');
+                $('#map svg').attr('height', '125mm')
+            });
         </script>
     </g:elseif>
 </g:each>
 
+<!--
+ var w = 960, h = 960;
 
+ var svg = d3.select("#graphic").append("svg:svg")
+ .attr("width", w)
+ .attr("height", h);
+
+ svg.append("svg:circle")
+ .attr("cx", w/3)
+ .attr("cy", h/3)
+ .attr("r", 250)
+ .style("fill", "green")
+ .style("fill-opacity", ".5");
+
+ svg.append("svg:circle")
+ .attr("cx", w*2/3)
+ .attr("cy", h/3)
+ .attr("r", 250)
+ .style("fill", "steelblue")
+ .style("fill-opacity", ".5");
+
+ svg.append("svg:circle")
+ .attr("cx", w/2)
+ .attr("cy", h*2/3)
+ .attr("r", 250)
+ .style("fill", "darkred")
+ .style("fill-opacity", ".5");
+ -->
 

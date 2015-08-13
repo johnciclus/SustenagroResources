@@ -37,5 +37,10 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $('.pager a').click(function(){
+        $('.nav-tabs a[href="'+$(this).attr('href')+'"]').tab('show');
+    });
+</script>
 </body>
 </html>
