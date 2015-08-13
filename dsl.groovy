@@ -43,30 +43,30 @@ dimension ':EconomicIndicator'
 
 dimension ':SocialIndicator'
 
-data 'indicator'
+data 'evaluation'
 
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
 
-//    economic =      2.0 * indicator.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
-//            indicator.'Eficiência energética das caldeiras para cogeração de energia'
+//    economic =      2.0 * evaluation.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
+//                    evaluation.'Eficiência energética das caldeiras para cogeração de energia'
 //
-//    social =        3 * indicator.EnergyEfficiencyOfBoilersForCogeneration + 7 *
-//            indicator.OperationalEfficiencyPlant
+//    social =        3 * evaluation.EnergyEfficiencyOfBoilersForCogeneration + 7 *
+//                    evaluation.OperationalEfficiencyPlant
 
-    environment =   (indicator.'BiologicalPestControl' ? 1:-1) +
-                    (indicator.'PlanningSystematicPlanting' ? 1:-1) +
-                    (indicator.'StandardAerialSpraying' ? 1:-1) +
-                     indicator.'VinasseAndEthanolRelation'
+    environment =   (evaluation.'BiologicalPestControl' ? 1:-1) +
+                    (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
+                    (evaluation.'StandardAerialSpraying' ? 1:-1) +
+                    evaluation.'VinasseAndEthanolRelation'
 
     environmentAvg= environment/4
 
-    economic =      2.0 * indicator.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
-                    indicator.'Eficiência energética das caldeiras para cogeração de energia'
+    economic =      2.0 * evaluation.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
+                    evaluation.'Eficiência energética das caldeiras para cogeração de energia'
 
-    social =        3 * indicator.EnergyEfficiencyOfBoilersForCogeneration + 7 *
-                    indicator.OperationalEfficiencyPlant
+    social =        3 * evaluation.EnergyEfficiencyOfBoilersForCogeneration + 7 *
+                    evaluation.OperationalEfficiencyPlant
 
     // THE REPORT
 
@@ -94,7 +94,7 @@ prog {
     //matrix  x: [label: 'kkk', value = environment, range: [1,9]],
     //        y: [label: 'kkk', value = social, range: [1,9]]
 
-    //map indicator.'Microregion'
+    map evaluation.'Microregion'
 }
 
 //matrix 'm1', indice, soil {

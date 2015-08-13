@@ -54,6 +54,16 @@
             </script>
         </div>
     </g:elseif>
+    <g:elseif test="${it[0] == 'map'}">
+        <div class="section">
+            <div id="map">
+
+            </div>
+        </div>
+        <script type="text/javascript">
+            $('#map').load('<%=it[1]%>');
+        </script>
+    </g:elseif>
 </g:each>
 
 

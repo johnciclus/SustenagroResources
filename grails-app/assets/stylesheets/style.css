@@ -203,3 +203,7 @@ body {
 	background-color: #4582ec;
 	border-color: #4582ec;
 }
+
+#map{
+	overflow: scroll;
+}

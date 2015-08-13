@@ -472,33 +472,53 @@ class DataReader {
     }
 
     def findNode(String name){
-        def res = slp
-                .select('?v')
-                .query("<$uri> dc:hasPart ?x." +
-                "?x a ?cls." +
-                "?cls rdfs:label '$name'@${slp.lang}." +
-                "?x :value ?ind." +
-                "?ind :dataValue ?v.")
-        if (res.empty) {
-            def cls = slp.toURI(name)
+        def res
+
+        if (name == 'Microregion') {
             try {
-                res = slp
-                        .select('?v')
-                        .query("<$uri> dc:hasPart ?x." +
-                        "?x a <$cls>." +
-                        "?x :value ?ind." +
-                        "?ind :dataValue ?v.")
+                res = slp.select('?map')
+                         .query("<$uri> :appliedTo ?u." +
+                                "?u <http://dbpedia.org/ontology/Microregion> ?m."+
+                                "?m <http://dbpedia.org/property/pt/mapa> ?map."
+                )
             }
             catch (e){ res = []}
+            if(!res.empty && res.size()==1)
+                return res[0].map
+            else
+                throw new RuntimeException("Unknown value: $name")
         }
+        else {
+            res = slp
+                    .select('?v')
+                    .query("<$uri> dc:hasPart ?x." +
+                    "?x a ?cls." +
+                    "?cls rdfs:label '$name'@${slp.lang}." +
+                    "?x :value ?ind." +
+                    "?ind :dataValue ?v.")
+            if (res.empty) {
+                def cls = slp.toURI(name)
+                try {
+                    res = slp
+                            .select('?v')
+                            .query("<$uri> dc:hasPart ?x." +
+                            "?x a <$cls>." +
+                            "?x :value ?ind." +
+                            "?ind :dataValue ?v.")
+                }
+                catch (e) {
+                    res = []
+                }
+            }
 
-        if (res.empty) //throw new RuntimeException("Unknown value: $name")
-            return 0
+            if (res.empty) //throw new RuntimeException("Unknown value: $name")
+                return 0
 
-        if (res.size()==1)
-            return res[0].v
+            if (res.size() == 1)
+                return res[0].v
 
-        res.collect{it.v}
+            res.collect { it.v }
+        }
     }
 
     def propertyMissing(String name) {

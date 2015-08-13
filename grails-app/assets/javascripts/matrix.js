@@ -11,8 +11,6 @@ function Matrix(container, parameters){
     var rx= params['range_x'] || [-4, 4];
     var ry= params['range_y'] || [-1, 1];
 
-    console.log(ry)
-
     var svg = d3.select(container).append("svg:svg")
         .attr("width", width)
         .attr("height", height)
@@ -58,9 +56,6 @@ function Matrix(container, parameters){
             .attr("y", (h_rect * 3) + 1.5 * margin)
             .text(rx[0] + dx * i);
     }
-
-    console.log(ry[1])
-    console.log(ry[0])
 
     for(var j=0; j<=3; j++) {
         svg.append("svg:text")

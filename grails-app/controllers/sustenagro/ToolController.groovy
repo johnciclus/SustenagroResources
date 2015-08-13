@@ -140,7 +140,6 @@ class ToolController {
         String name = slp.":$params.id".'$rdfs:label'
 
         def values = [:]
-        def vars = [:]
 
         if (params['evaluation'] != null) {
 
@@ -158,10 +157,7 @@ class ToolController {
             //println 'Indice Amb: '+ dsl.environment
             //println 'Indice Eco: '+ dsl.economic
             //println 'Indice Soc: '+ dsl.social
-            vars = [environment: dsl.environment, environmentAvg: dsl.environmentAvg ]
         }
-
-        println values
 
         render(view: 'assessment',
                model: [sustenagro: 'http://bio.icmc.usp.br/sustenagro#',
@@ -169,8 +165,7 @@ class ToolController {
                        indicators: [environmental: environmental_indicators, economic: economic_indicators, social: social_indicators],
                        categorical: categorical,
                        values: values,
-                       report: (dsl.report.size()>0 ? dsl.report : null),
-                       vars: vars ])
+                       report: (dsl.report.size()>0 ? dsl.report : null) ])
     }
 
     def report() {
