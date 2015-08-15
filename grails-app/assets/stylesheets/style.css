@@ -187,3 +187,29 @@ body {
 #indicator_content .form-group{
 	margin-bottom: 25px;
 }
+
+.clear{
+	margin-top: 9px;
+}
+
+#assessment_tab > li > a{
+	background-color: #eeeeee;
+	border: 1px solid #ddd;
+}
+
+
+#assessment_tab > .active > a{
+	color: #ffffff;
+	background-color: #4582ec;
+	border-color: #4582ec;
+}
+
+#graphic svg{
+    display: block;
+    margin: 0 auto;
+}
+
+#map svg{
+    display: block;
+    margin: 0 auto;
+}

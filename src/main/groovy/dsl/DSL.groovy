@@ -3,6 +3,7 @@ package dsl
 import com.github.rjeschke.txtmark.Processor
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.pegdown.PegDownProcessor
+import rdfSlurper.RDFSlurper
 
 /**
  * Created by dilvan on 7/14/15.
@@ -12,13 +13,15 @@ class DSL {
     def description = ''
     def featureLst = []
     def dimensions = []
+    def report = []
     Closure program
-    def indicator
+    def data
     def props = [:]
 
-    def _nameFile = ''
-    def _script
-    def _shell
+    private def _nameFile = ''
+    private Script _script
+    private GroovyShell _shell
+    private static md = new PegDownProcessor()
 
     DSL(String file){
         // Create CompilerConfiguration and assign
@@ -38,7 +41,7 @@ class DSL {
         _script.run()
     }
 
-    def _reLoad(){
+    def reLoad(){
 
         _script = _shell.parse(new File(_nameFile).text)
         _script.setDelegate(this)
@@ -51,8 +54,17 @@ class DSL {
         name = nameStr
     }
 
+    def data(String name){
+        data = name
+        props[name]
+    }
+
+    def setData(obj){
+        props[data]= obj
+    }
+
     def description(String nameStr){
-        description = nameStr
+        description = toHTML(nameStr)
         //println  Processor.process(description, true)
         //println new PegDownProcessor().markdownToHtml(description)
     }
@@ -62,8 +74,42 @@ class DSL {
         closure()
     }
 
+//    def recommendation(Map map, String txt){
+//        recommendations << [map['if'],txt]
+//    }
+
+    static toHTML(String txt) {md.markdownToHtml(txt)}
+
+    def show(String txt){
+        report << ['show', toHTML(txt)]
+    }
+
+    def recommendation(String txt){
+        report << ['recommendation', toHTML(txt)]
+    }
+
+    def recommendation(boolean c, String txt){
+        if (c) report << ['recommendation', toHTML(txt)]
+    }
+
+    def recommendation(Map map){
+        if (map.if) report << ['recommendation', toHTML(map.show)]
+    }
+
+    def recommendation(Map map, String txt){
+        if (map['if']) report << ['recommendation', toHTML(txt)]
+    }
+
     def instance(String str){
         featureLst << ['a', str]
+    }
+
+    def matrix(Map map){
+        report << ['matrix', map.x, map.y, map.labelX, map.labelY, map.rangeX, map.rangeY]
+    }
+
+    def map(String url){
+        report << ['map', url]
     }
 
     def subclass(String str){
@@ -78,6 +124,10 @@ class DSL {
         program = c
     }
 
+    def _cleanProgram(){
+        report = []
+    }
+
     def propertyMissing(String name, arg) {
         props[name] = arg
     }
@@ -86,3 +136,6 @@ class DSL {
         props[name]
     }
 }
+
+
+

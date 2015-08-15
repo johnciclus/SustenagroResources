@@ -43,37 +43,66 @@ dimension ':EconomicIndicator'
 
 dimension ':SocialIndicator'
 
+data 'evaluation'
+
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
-    //def indicator = instances
-    indice = indicator.'co2 emission'
-    soil = 2.0 * indicator.soil + 5.1 *
-            indicator.landBurn
-    transport = 3 * indicator.'road Length' + 7 *
-              indicator.distance
-    social = 3 * indicador.'comprimento da estrada' + 7 *
-            indicador.distância
-    indice = 98
-}
+
+//    economic =      2.0 * evaluation.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
+//                    evaluation.'Eficiência energética das caldeiras para cogeração de energia'
 //
+//    social =        3 * evaluation.EnergyEfficiencyOfBoilersForCogeneration + 7 *
+//                    evaluation.OperationalEfficiencyPlant
+
+    environment =   (evaluation.'BiologicalPestControl' ? 1:-1) +
+                    (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
+                    (evaluation.'StandardAerialSpraying' ? 1:-1) +
+                    evaluation.'VinasseAndEthanolRelation'
+
+    environmentAvg= environment/4
+
+    economic =      2.0 * evaluation.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
+                    evaluation.'Eficiência energética das caldeiras para cogeração de energia'
+
+    social =        3 * evaluation.EnergyEfficiencyOfBoilersForCogeneration + 7 *
+                    evaluation.OperationalEfficiencyPlant
+
+    // THE REPORT
+
+    // Just showing text
+    show '***That is the report:***'
+
+    // Cada recomendação terá uma fórmula lógica que permite especificar
+    // quando ela deve ser mostrada. Essas fórmulas podem ser tão complexas
+    // quanto necessário. Caso o resultado da fórmula dê verdadeiro, o texto
+    // (em markdown) depois de action: vai ser mostrado.
+    if (environment > 3.5 || social ==7)
+        recommendation '**markdown** *First* option'
+
+    recommendation environment > 3.5 || social == 7, ''' **Second** *option* '''
+    recommendation if:(environment > 3.5 || social == 7), ''' **Third** *option* '''
+    recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
+
+    show 'Matrix de avaliação'
+    
+    show 'Indice de Magnitude: ' + environment
+    show 'Indice de Segurança: ' + environmentAvg
+    
+    matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2]
+
+    //matrix  x: [label: 'kkk', value = environment, range: [1,9]],
+    //        y: [label: 'kkk', value = social, range: [1,9]]
+
+    show 'Mapa da microregião'
+
+    map evaluation.'Microregion'
+}
+
 //matrix 'm1', indice, soil {
 //
 //}
-//
-//// Cada recomendação terá uma fórmula lógica que permite especificar
-//// quando ela deve ser mostrada. Essas fórmulas podem ser tão complexas
-//// quanto necessário. Caso o resultado da fórmula dê verdadeiro, o texto
-//// (em markdown) depois de action: vai ser mostrado.
-//recommendation 'rec 1' {
-//    condition environment > 3.5 || social <7 && indicator.'co2 emission' <9
-//    text ''' markdown blah blah blah '''
-//}
-////
+
 //map {
 //
 //}
-//// A saída do programa tem APENAS:
-//// 1. Matriz de sustentabilidade.
-//// 2. Conjunto de remomendações
-//// 3. Mapas da microregião

@@ -6,6 +6,7 @@
     <!ENTITY db "http://dbpedia.org/ontology/" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY dbpt "http://pt.dbpedia.org/resource/" >
+    <!ENTITY pt "http://dbpedia.org/property/pt/" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
@@ -14,6 +15,7 @@
 
 <rdf:RDF xmlns="http://bio.icmc.usp.br/sustenagro#"
      xml:base="http://bio.icmc.usp.br/sustenagro"
+     xmlns:pt="http://dbpedia.org/property/pt/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
@@ -125,18 +127,32 @@
     
 
 
+    <!-- http://bio.icmc.usp.br/sustenagro#appliedTo -->
+
+    <owl:ObjectProperty rdf:about="http://bio.icmc.usp.br/sustenagro#appliedTo">
+        <rdfs:label xml:lang="en">applied to</rdfs:label>
+        <rdfs:label xml:lang="pt">aplicado a</rdfs:label>
+        <rdfs:domain rdf:resource="http://bio.icmc.usp.br/sustenagro#Evaluation"/>
+        <rdfs:range rdf:resource="http://bio.icmc.usp.br/sustenagro#ProductionUnit"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#compose -->
+
+    <owl:ObjectProperty rdf:about="http://bio.icmc.usp.br/sustenagro#compose">
+        <rdfs:label xml:lang="en">compose</rdfs:label>
+        <rdfs:label xml:lang="pt">compõe</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://bio.icmc.usp.br/sustenagro#value -->
 
     <owl:ObjectProperty rdf:about="http://bio.icmc.usp.br/sustenagro#value">
         <rdfs:label xml:lang="en">value</rdfs:label>
         <rdfs:label xml:lang="pt">valor</rdfs:label>
     </owl:ObjectProperty>
-    
-
-
-    <!-- http://dbpedia.org/ontology/country -->
-
-    <owl:ObjectProperty rdf:about="&db;country"/>
     
 
 
@@ -162,21 +178,9 @@
     
 
 
-    <!-- http://bio.icmc.usp.br/sustenagro#threshold -->
+    <!-- http://dbpedia.org/property/pt/mapa -->
 
-    <owl:DatatypeProperty rdf:about="http://bio.icmc.usp.br/sustenagro#threshold">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label xml:lang="en">threshold</rdfs:label>
-        <rdfs:label xml:lang="pt">limiar</rdfs:label>
-        <rdfs:range>
-            <rdfs:Datatype>
-                <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="&xsd;double"/>
-                    <rdf:Description rdf:about="&xsd;integer"/>
-                </owl:unionOf>
-            </rdfs:Datatype>
-        </rdfs:range>
-    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="&pt;mapa"/>
     
 
 
@@ -902,21 +906,6 @@
     <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#Real">
         <rdfs:label xml:lang="en">Real</rdfs:label>
         <rdfs:label xml:lang="pt">Real</rdfs:label>
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#dataValue"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange>
-                    <rdfs:Datatype>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="&xsd;double"/>
-                            <rdf:Description rdf:about="&xsd;integer"/>
-                            <rdf:Description rdf:about="&owl;real"/>
-                        </owl:unionOf>
-                    </rdfs:Datatype>
-                </owl:onDataRange>
-            </owl:Restriction>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Value"/>
     </owl:Class>
     
@@ -1268,7 +1257,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
         <rdfs:label xml:lang="en">Above 18</rdfs:label>
         <rdfs:label xml:lang="pt">Acima de 18</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1279,7 +1268,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
         <rdfs:label xml:lang="en">Below 10</rdfs:label>
         <rdfs:label xml:lang="pt">Abaixo de 10</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1288,7 +1277,7 @@
 
     <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Between10-18">
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
-        <threshold rdf:datatype="&xsd;double">0.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1310,7 +1299,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
         <rdfs:label xml:lang="en">= 15.83</rdfs:label>
         <rdfs:label xml:lang="pt">= 15,83</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">0.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1332,6 +1321,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityDestinationCategory"/>
         <rdfs:label xml:lang="en">Export</rdfs:label>
         <rdfs:label xml:lang="pt">Exportação</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1353,7 +1343,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
         <rdfs:label xml:lang="en">&gt; 1,000.00</rdfs:label>
         <rdfs:label xml:lang="pt">&gt; 1.000,00</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">2.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1364,7 +1354,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
         <rdfs:label xml:lang="en">&gt; 15.83</rdfs:label>
         <rdfs:label xml:lang="pt">&gt; 15,83</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1375,6 +1365,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Grinding capacity higher than 2.5 million tons/harvest</rdfs:label>
         <rdfs:label xml:lang="pt">Capacidade de moagem superior a 2,5 milhões de ton/safra</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1385,7 +1376,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
         <rdfs:label xml:lang="en">&gt; 85 ton/ha</rdfs:label>
         <rdfs:label xml:lang="pt">&gt; 85 ton/ha</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">2.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1396,7 +1387,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
         <rdfs:label xml:lang="en">&gt; 90%</rdfs:label>
         <rdfs:label xml:lang="pt">&gt; 90%</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1407,6 +1398,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#IntensityCategory"/>
         <rdfs:label xml:lang="en">High</rdfs:label>
         <rdfs:label xml:lang="pt">Alta</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1417,6 +1409,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AgriculturalEfficiency"/>
         <rdfs:label xml:lang="en">High Agricultural Efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Alta Eficiência Agrícola</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
         <dc:description xml:lang="en">Planting and harvesting mechanization</dc:description>
         <dc:description xml:lang="pt">Mecanização do plantio e colheita</dc:description>
     </owl:NamedIndividual>
@@ -1429,7 +1422,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
         <rdfs:label xml:lang="en">High efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência alta</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">0.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1440,6 +1433,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Grinding capacity between 1.0 and 2.5 million tons/harvest</rdfs:label>
         <rdfs:label xml:lang="pt">Capacidade de moagem entre 1,0 e 2,5 milhões de toneladas/safra</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1450,6 +1444,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#IntensityCategory"/>
         <rdfs:label xml:lang="en">Low</rdfs:label>
         <rdfs:label xml:lang="pt">Baixa</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1460,6 +1455,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AgriculturalEfficiency"/>
         <rdfs:label xml:lang="en">Low Agricultural Efficiecy</rdfs:label>
         <rdfs:label xml:lang="pt">Baixa Eficiência Agrícola</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
         <dc:description xml:lang="en">Semi mechanized planting</dc:description>
         <dc:description xml:lang="pt">Semimecanização do plantio</dc:description>
     </owl:NamedIndividual>
@@ -1472,7 +1468,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Low Efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Baixa eficiência</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-3.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-3.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1483,7 +1479,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
         <rdfs:label xml:lang="en">&lt; 15.83</rdfs:label>
         <rdfs:label xml:lang="pt">&lt; 15,83</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1494,6 +1490,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Grinding capacity lower than 1.0 million tons/harvest</rdfs:label>
         <rdfs:label xml:lang="pt">Capacidade de Moagem inferior a 1 milhão de toneladas/safra</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1504,7 +1501,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
         <rdfs:label xml:lang="en">&lt; 64 ton/ha</rdfs:label>
         <rdfs:label xml:lang="pt">&lt; 64 ton/ha</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-2.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-2.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1515,7 +1512,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
         <rdfs:label xml:lang="en">&lt; 724.00</rdfs:label>
         <rdfs:label xml:lang="pt">&lt; 724,00</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1526,7 +1523,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
         <rdfs:label xml:lang="en">&lt; 80%</rdfs:label>
         <rdfs:label xml:lang="pt">&lt; 80%</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1537,6 +1534,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#IntensityCategory"/>
         <rdfs:label xml:lang="en">Medium</rdfs:label>
         <rdfs:label xml:lang="pt">Média</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1547,6 +1545,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AgriculturalEfficiency"/>
         <rdfs:label xml:lang="en">Medium Agricultural Efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência Agrícola Média</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
         <dc:description xml:lang="en">Mechanization of planting but not harvest</dc:description>
         <dc:description xml:lang="pt">Mecanização do plantio mas não da colheita</dc:description>
     </owl:NamedIndividual>
@@ -1559,7 +1558,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Medium efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência média</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1581,6 +1580,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
         <rdfs:label xml:lang="en">Does not supply own demand or demand is partial</rdfs:label>
         <rdfs:label xml:lang="pt">Não supre a própria demanda ou esta é parcial</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1591,6 +1591,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityDestinationCategory"/>
         <rdfs:label xml:lang="en">Self Consumption</rdfs:label>
         <rdfs:label xml:lang="pt">Auto Consumo</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1601,6 +1602,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
         <rdfs:label xml:lang="en">Fully supplies itself and sells the surplus</rdfs:label>
         <rdfs:label xml:lang="pt">Supre totalmente e comercializa o excedente</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1611,6 +1613,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
         <rdfs:label xml:lang="en">Supply all own demand</rdfs:label>
         <rdfs:label xml:lang="pt">Supre totalmente a própria demanda</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1632,7 +1635,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Upper high efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência alta superior</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1643,7 +1646,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Upper low efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência baixa superior</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-2.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-2.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1665,7 +1668,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
         <rdfs:label xml:lang="en">64 - 74 ton/ha</rdfs:label>
         <rdfs:label xml:lang="pt">64 - 74 ton/ha</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">-1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1673,11 +1676,10 @@
     <!-- http://bio.icmc.usp.br/sustenagro#interval724-890 -->
 
     <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#interval724-890">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
         <rdfs:label xml:lang="en">75 - 81 ton/ha</rdfs:label>
         <rdfs:label xml:lang="pt">75 - 81 ton/ha</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">0.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1688,7 +1690,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
         <rdfs:label xml:lang="en">80% - 90%</rdfs:label>
         <rdfs:label xml:lang="pt">80% - 90%</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">0.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1699,7 +1701,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
         <rdfs:label xml:lang="en">81 - 85 ton/ha</rdfs:label>
         <rdfs:label xml:lang="pt">81 - 85 ton/ha</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1710,7 +1712,7 @@
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
         <rdfs:label xml:lang="en">890.00 - 1,000.00</rdfs:label>
         <rdfs:label xml:lang="pt">890,00 - 1.000,00</rdfs:label>
-        <threshold rdf:datatype="&xsd;double">1.0</threshold>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
@@ -1721,6 +1723,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Adamantina Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Adamantina</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/db/SaoPaulo_Micro_Adamantina.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1731,6 +1734,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Amparo Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microregião de Amparo</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/df/SaoPaulo_Micro_Amparo.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1741,6 +1745,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Andradina Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Andradina</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/6/65/SaoPaulo_Micro_Andradina.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1751,6 +1756,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Araraquara Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Araraquara</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/d1/SaoPaulo_Micro_Araraquara.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1761,6 +1767,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Araçatuba Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Araçatuba</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/4/46/SaoPaulo_Micro_Aracatuba.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1771,6 +1778,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Assis Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Assis</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/4/46/SaoPaulo_Micro_Assis.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1781,6 +1789,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Auriflama Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Auriflama</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/4/42/SaoPaulo_Micro_Auriflama.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1791,6 +1800,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Avaré Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Avaré</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/6/62/SaoPaulo_Micro_Avare.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1801,6 +1811,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Bananal Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Bananal</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/8/83/SaoPaulo_Micro_Bananal.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1811,6 +1822,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Barretos Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Barretos</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/e/e0/SaoPaulo_Micro_Barretos.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1821,6 +1833,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Batatais Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Batatais</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/2/2d/SaoPaulo_Micro_Batatais.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1831,6 +1844,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Bauru Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Bauru</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/d4/SaoPaulo_Micro_Bauru.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1841,6 +1855,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Birigüi Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Birigüi</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/b/be/SaoPaulo_Micro_Birigui.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1851,6 +1866,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Botucatu Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Botucatu</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/5/56/SaoPaulo_Micro_Botucatu.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1861,6 +1877,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Bragança Paulista Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Bragança Paulista</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/0/0f/SaoPaulo_Micro_BragancaPaulista.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1871,6 +1888,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Campinas Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Campinas</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/9/9f/SaoPaulo_Micro_Campinas.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1881,6 +1899,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Campos do Jordão Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Campos do Jordão</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/a/a6/SaoPaulo_Micro_CamposdoJordao.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1891,6 +1910,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Capão Bonito Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Capão Bonito</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/9/96/SaoPaulo_Micro_CampaoBonito.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1901,6 +1921,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Caraguatatuba Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Caraguatatuba</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/a/a9/SaoPaulo_Micro_Caraguatatuba.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1911,6 +1932,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Catanduva Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Catanduva</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/2/22/SaoPaulo_Micro_Catanduva.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1921,6 +1943,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Dracena Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Dracena</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/4/42/SaoPaulo_Micro_Dracena.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1931,6 +1954,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Fernandópolis Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Fernandópolis</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/4/4f/SaoPaulo_Micro_Fernandopolis.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1941,6 +1965,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Franca Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Franca</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/3/36/SaoPaulo_Micro_Franca.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1951,6 +1976,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Franco da Rocha Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Franco da Rocha</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/0/05/SaoPaulo_Micro_FrancodaRocha.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1961,6 +1987,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Guaratinguetá Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Guaratinguetá</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/b/bc/SaoPaulo_Micro_Guaratingueta.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1971,6 +1998,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Guarulhos Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Guarulhos</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/a/a2/SaoPaulo_Micro_Guarulhos.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1981,6 +2009,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Itanhaém Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Itanhaém</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/7/7b/SaoPaulo_Micro_Itanhaem.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -1991,6 +2020,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Itapecerica da Serra Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Itapecerica da Serra</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/f/ff/SaoPaulo_Micro_ItapecericadaSerra.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2001,6 +2031,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Itapetininga Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Itapetininga</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/2/25/SaoPaulo_Micro_Itapetininga.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2011,6 +2042,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Itapeva Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Itapeva</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/9/9e/SaoPaulo_Micro_Itapeva.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2021,6 +2053,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Ituverava Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Ituverava</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/7/73/SaoPaulo_Micro_Ituverava.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2031,6 +2064,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Jaboticabal Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Jaboticabal</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/e/e3/SaoPaulo_Micro_Jaboticabal.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2041,6 +2075,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Jales Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Jales</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/2/2b/SaoPaulo_Micro_Jales.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2051,6 +2086,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Jaú Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Jaú</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/5/56/SaoPaulo_Micro_Jau.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2061,6 +2097,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Jundiaí Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Jundiaí</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/e/ec/SaoPaulo_Micro_Jundiai.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2071,6 +2108,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Limeira Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Limeira</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/7/75/SaoPaulo_Micro_Limeira.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2081,6 +2119,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Lins Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Lins</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/e/e6/SaoPaulo_Micro_Lins.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2091,6 +2130,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Marília Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Marília</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/b/b0/SaoPaulo_Micro_Marilia.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2101,6 +2141,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Mogi das Cruzes Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Mogi das Cruzes</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/6/61/SaoPaulo_Micro_MogidasCruzes.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2111,6 +2152,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Mogi Mirim Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Mogi Mirim</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/e/eb/SaoPaulo_Micro_MojiMirim.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2121,6 +2163,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Nhandeara Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Nhandeara</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/5/5b/SaoPaulo_Micro_Nhandeara.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2131,6 +2174,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Novo Horizonte Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Novo Horizonte</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/df/SaoPaulo_Micro_NovoHorizonte.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2141,6 +2185,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Osasco Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Osasco</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/3/3d/SaoPaulo_Micro_Osasco.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2151,6 +2196,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Ourinhos Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Ourinhos</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/8/8b/SaoPaulo_Micro_Ourinhos.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2161,6 +2207,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Paraibuna/Paraitinga Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Paraibuna/Paraitinga</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/1/1f/SaoPaulo_Micro_ParaibunaParaitinga.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2171,6 +2218,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Paulínia Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Paulínia</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/9/90/SaoPaulo_Micro_Paulinia.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2181,6 +2229,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Piedade Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Piedade</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/a/a7/SaoPaulo_Micro_Piedade.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2191,6 +2240,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Piracicaba Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Piracicaba</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/8/80/SaoPaulo_Micro_Piracicaba.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2201,6 +2251,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Pirassununga Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Pirassununga</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/d1/SaoPaulo_Micro_Pirassununga.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2211,6 +2262,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Presidente Prudente Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Presidente Prudente</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/b/b8/SaoPaulo_Micro_PresidentePrudente.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2221,6 +2273,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Registro Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Registro</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/5/50/SaoPaulo_Micro_Registro.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2231,6 +2284,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Ribeirão Preto Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Ribeirão Preto</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/dd/SaoPaulo_Micro_RibeiraoPreto.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2241,6 +2295,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Rio Claro Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Rio Claro</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/dd/SaoPaulo_Micro_RioClaro.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2251,6 +2306,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Santos Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Santos</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/f/f8/SaoPaulo_Micro_Santos.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2261,6 +2317,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Sorocaba Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Sorocaba</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/2/26/SaoPaulo_Micro_Sorocaba.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2271,6 +2328,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">São Carlos Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de São Carlos</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/e/ef/SaoPaulo_Micro_SaoCarlos.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2281,6 +2339,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">São Joaquim da Barra Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de São Joaquim da Barra</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/6/65/SaoPaulo_Micro_SaoJoaquimdaBarra.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2291,6 +2350,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">São José do Rio Preto Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de São José do Rio Preto</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/6/68/SaoPaulo_Micro_SaoJosedoRioPreto.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2301,6 +2361,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">São José dos Campos Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de São José dos Campos</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/a/ac/SaoPaulo_Micro_SaoJosedosCampos.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2311,6 +2372,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">São João da Boa Vista Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de São João da Boa Vista</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/2/26/SaoPaulo_Micro_SaoJoaodaBoaVista.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2321,6 +2383,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">São Paulo Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de São Paulo</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/3/37/SaoPaulo_Micro_SaoPaulo.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2331,6 +2394,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Tatuí Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Tatuí</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/0/0c/SaoPaulo_Micro_Tatui.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2341,6 +2405,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Tupã Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Tupã</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/b/ba/SaoPaulo_Micro_Tupa.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
@@ -2351,6 +2416,7 @@
         <rdf:type rdf:resource="&db;MicroRegion"/>
         <rdfs:label xml:lang="en">Votuporanga Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião de Votuporanga</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/7/78/SaoPaulo_Micro_Votuporanga.svg</pt:mapa>
     </owl:NamedIndividual>
     
 

@@ -262,10 +262,11 @@ class RDFSlurper {
     }
 
     SailGraph g
-    private Map<String, String> _prefixes = [:]
     String lang = 'en'
 
-    Sparql2 sparql2
+    private Map<String, String> _prefixes = [:]
+    private Sparql2 sparql2
+    private String select = '*'
 
     RDFSlurper(){
         g = new MemoryStoreSailGraph()
@@ -337,9 +338,14 @@ class RDFSlurper {
         ret
     }
 
+    def select(str){
+        select = str
+        this
+    }
 
     def query(String q, String lang = this.lang) {
-        def f = prefixes + '\n select * where {' + q +'}'
+        def f = "$prefixes \n select $select where {$q}"
+        select = '*'
         sparql2.query(f, lang)
     }
 
@@ -368,6 +374,16 @@ class RDFSlurper {
         def pre = _prefixes[uri.tokenize(':')[0]]
         if (pre==null) return uri
         return pre+uri.substring(uri.indexOf(':')+1)
+    }
+
+    def fromURI(String uri){
+        if (uri==null) return null
+        if (uri.startsWith('_:')) return uri
+        if (!uri.startsWith('http:')) return uri
+        def v = _prefixes.find { key, obj ->
+            uri.startsWith(obj)
+        }
+        v.key + ':' + uri.substring(v.value.size())
     }
 
     def getPrefixes(){
@@ -435,9 +451,9 @@ class RDFSlurper {
                         node)
             case String:
                 return g.addVertex('"' + node + '"@' + lang)
-            case int|Integer|long|Long|BigInteger:
+            case int: case Integer: case long: case Long: case BigInteger:
                 return g.addVertex('"' + node + '"^^<http://www.w3.org/2001/XMLSchema#integer>')
-            case float|Float|double|Double|BigDecimal:
+            case float: case Float: case double: case Double: case BigDecimal:
                 return g.addVertex('"' + node + '"^^<http://www.w3.org/2001/XMLSchema#double>')
             case boolean:
                 return g.addVertex('"' + node + '"^^<http://www.w3.org/2001/XMLSchema#boolean>')
@@ -445,3 +461,71 @@ class RDFSlurper {
     }
 }
 
+class DataReader {
+
+    RDFSlurper slp
+    String uri
+
+    DataReader(slp, uri){
+        this.slp = slp
+        this.uri = uri
+    }
+
+    def findNode(String name){
+        def res
+
+        if (name == 'Microregion') {
+            try {
+                res = slp.select('?map')
+                         .query("<$uri> :appliedTo ?u." +
+                                "?u <http://dbpedia.org/ontology/Microregion> ?m."+
+                                "?m <http://dbpedia.org/property/pt/mapa> ?map."
+                )
+            }
+            catch (e){ res = []}
+            if(!res.empty && res.size()==1)
+                return res[0].map
+            else
+                throw new RuntimeException("Unknown value: $name")
+        }
+        else {
+            res = slp
+                    .select('?v')
+                    .query("<$uri> dc:hasPart ?x." +
+                    "?x a ?cls." +
+                    "?cls rdfs:label '$name'@${slp.lang}." +
+                    "?x :value ?ind." +
+                    "?ind :dataValue ?v.")
+            if (res.empty) {
+                def cls = slp.toURI(name)
+                try {
+                    res = slp
+                            .select('?v')
+                            .query("<$uri> dc:hasPart ?x." +
+                            "?x a <$cls>." +
+                            "?x :value ?ind." +
+                            "?ind :dataValue ?v.")
+                }
+                catch (e) {
+                    res = []
+                }
+            }
+
+            if (res.empty) //throw new RuntimeException("Unknown value: $name")
+                return 0
+
+            if (res.size() == 1)
+                return res[0].v
+
+            res.collect { it.v }
+        }
+    }
+
+    def propertyMissing(String name) {
+        getAt(name)
+    }
+
+    def getAt(String name) {
+        findNode(name)
+    }
+}

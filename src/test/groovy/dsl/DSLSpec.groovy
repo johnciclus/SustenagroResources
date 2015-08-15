@@ -41,14 +41,15 @@ O processo de avaliação da sustentabilidade é composto pelas seguintes etapas
 
     def "program"(){
         when:
-        def indicator = [:]
-        indicator['co2 emission'] = 1.0d
-        indicator['soil'] = 1.0d
-        indicator['landBurn'] = 1.0d
-        indicator['road length'] = 1.0d
-        indicator['distância'] = 1.0d
-        indicator['landBurn'] = 1.0d
-        dsl.indicator = indicator
+        dsl.indicator = [:]
+        dsl.indicator['co2 emission'] = 1.0d
+        dsl.indicator['soil'] = 1.0d
+        dsl.indicator['landBurn'] = 1.0d
+        dsl.indicator['road length'] = 1.0d
+        dsl.indicator['distância'] = 1.0d
+        dsl.indicator['landBurn'] = 1.0d
+
+
         dsl.program()
 
         then:

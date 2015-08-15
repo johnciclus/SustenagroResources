@@ -2,12 +2,13 @@ package rdfSlurper
 
 import spock.lang.Shared
 import spock.lang.Specification
+import rdfSlurper.RDFSlurper
 
 /**
  * Created by dilvan on 5/30/15.
  */
 class RDFSlurperSpec extends Specification {
-    @Shared def s = new RDFSlurper("http://localhost:9999/bigdata/sparql", "http://localhost:9999/bigdata/sparql")
+    @Shared def s = new RDFSlurper()
 
     def setupSpec() {
         //InputStream inp = this.class.getResourceAsStream('test.ntriple')
@@ -25,7 +26,15 @@ class RDFSlurperSpec extends Specification {
                 'PREFIX owl: <http://www.w3.org/2002/07/owl#>\n'+
                 'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n'+
                 'PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n'+
+                'PREFIX dc: <http://purl.org/dc/terms/>\n' +
                 'PREFIX : <http://tinkerpop.com#>\n'
+//        def pref2 =
+//                'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n' +
+//                'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n' +
+//                'PREFIX owl: <http://www.w3.org/2002/07/owl#>\n' +
+//                'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n' +
+//                'PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n' +
+//                'PREFIX : <http://tinkerpop.com#>'
         then:
         s.prefixes == pref
     }
@@ -101,6 +110,22 @@ class RDFSlurperSpec extends Specification {
         s.'1'.knows.car.'$rdfs:label' == 'Voyage'
         s.'1'.knows.car.maker.$name == 'Volkswagen'
         s.'1'.knows.car.maker.country.collect().find{true} == 'Brazil'
+    }
+
+    def "read using node names"(){
+        when:
+        s.'1'[':hasValue'] =
+                ['val3',
+                 ['rdfs:label':    'Variable',
+                  'dc:hasPart': ['rdf:type':    ':CO2Emission',
+                                 ':value': [':dataValue': 5.0]]]]
+        s.'1'[':hasClass'] = [':CO2Emission', ['rdfs:label': 'CO2 Emission']]
+        s.g.commit()
+        def d = new DataReader(s, s.toURI(':car3'))
+
+        then:
+        d.':CO2Emission' == 5.0
+        d.'CO2 Emission' == 5.0
     }
 }
 

@@ -24,7 +24,7 @@
                     <g:each status="i" in="${microregions}" var="it">
                         <tr data-index="${i}">
                             <td><input data-index="${i}" type="radio" name="production_unit_microregion" value="${it.id}" ></td>
-                            <td>${it.name}</td>
+                            <td>${it.label}</td>
                         </tr>
                     </g:each>
                     </tbody>
@@ -51,7 +51,7 @@
                     <g:each status="i" in="${technologies}" var="it">
                         <tr data-index="${i}">
                             <td><input data-index="${i}" type="radio" name="production_unit_technology" value="${it.id}" ></td>
-                            <td>${it.name}</td>
+                            <td>${it.label}</td>
                             <td>${it.description}</td>
                         </tr>
                     </g:each>
@@ -78,7 +78,7 @@
                     <g:each status="i" in="${production_unit_types}" var="it">
                         <tr data-index="${i}">
                             <td><input data-index="${i}" type="radio" name="production_unit_type" value="${it.id}" ></td>
-                            <td>${it.name}</td>
+                            <td>${it.label}</td>
                         </tr>
                     </g:each>
                     </tbody>
