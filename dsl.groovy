@@ -94,6 +94,8 @@ prog {
     //matrix  x: [label: 'kkk', value = environment, range: [1,9]],
     //        y: [label: 'kkk', value = social, range: [1,9]]
 
+    show 'Mapa da microregião'
+
     map evaluation.'Microregion'
 }
 

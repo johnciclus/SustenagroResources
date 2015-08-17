@@ -204,6 +204,12 @@ body {
 	border-color: #4582ec;
 }
 
-#map{
-	overflow: scroll;
+#graphic svg{
+    display: block;
+    margin: 0 auto;
+}
+
+#map svg{
+    display: block;
+    margin: 0 auto;
 }

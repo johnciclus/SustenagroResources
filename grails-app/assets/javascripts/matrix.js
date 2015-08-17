@@ -2,8 +2,8 @@ function Matrix(container, parameters){
 
     var params = parameters || {};
 
-    var width = params['width'] || 800;
-    var height= params['height'] || 600;
+    var width = params['width'] || 640;
+    var height= params['height'] || 480;
     var x= params['x'] || 0;
     var y= params['y'] || 0;
     var label_x= params['label_x'] || 'label X';
@@ -25,6 +25,10 @@ function Matrix(container, parameters){
     var dx = (rx[1] - rx[0])/4;
     var dy = (ry[1] - ry[0])/3;
 
+    function formatFloat(num){
+        return Math.round(num*100)/100;
+    }
+
     for(var i=0; i<4; i++) {
         for(var j=0; j<3; j++) {
             svg.append("svg:rect")
@@ -38,14 +42,29 @@ function Matrix(container, parameters){
                 .attr("stroke-opacity", 0.2)
         }
     }
+    svg.append("svg:line")
+        .attr("x1", margin)
+        .attr("y1", margin)
+        .attr("x2", margin)
+        .attr("y2", margin + 3*h_rect)
+        .style("stroke-width", "1")
+        .style("stroke", "#000");
+
+    svg.append("svg:line")
+        .attr("x1", margin)
+        .attr("y1", margin + 3*h_rect)
+        .attr("x2", margin + 4*w_rect)
+        .attr("y2", margin + 3*h_rect)
+        .style("stroke-width", "1")
+        .style("stroke", "#000");
 
     svg.append("svg:text")
-        .attr("x", (w_rect*2) + 2*margin)
-        .attr("y", (h_rect*3) + 1.5*margin)
+        .attr("x", (w_rect*2) + margin)
+        .attr("y", (h_rect*3) + 2*margin)
         .text(label_x);
 
     svg.append("svg:text")
-        .attr("x", -1*(h_rect*1.5) + margin)
+        .attr("x", -1*(1.75*h_rect) )
         .attr("y", margin)
         .attr("transform", "rotate(270 20,40)")
         .text(lable_y);
@@ -54,7 +73,7 @@ function Matrix(container, parameters){
         svg.append("svg:text")
             .attr("x", (w_rect * i) + margin)
             .attr("y", (h_rect * 3) + 1.5 * margin)
-            .text(rx[0] + dx * i);
+            .text(formatFloat(rx[0] + dx * i));
     }
 
     for(var j=0; j<=3; j++) {
@@ -62,7 +81,7 @@ function Matrix(container, parameters){
             .attr("x", -1*(h_rect*j) + 0.5*margin)
             .attr("y", margin)
             .attr("transform", "rotate(270 35,40)")
-            .text(ry[1] - (dy * j));
+            .text(formatFloat(ry[1] - (dy * j)));
     }
 
     svg.append("svg:circle")
