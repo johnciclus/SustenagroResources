@@ -17,13 +17,13 @@ class DSLSpec extends Specification {
 //        s.addNamespace('', 'http://tinkerpop.com#')
     }
 
-    def "name description"(){
-        expect:
-        dsl.name == 'Avaliação da sustentabilidade em agricultura'
-        dsl.description == '''
-O processo de avaliação da sustentabilidade é composto pelas seguintes etapas:
- '''
-    }
+//    def "name description"(){
+//        expect:
+//        dsl.name == 'Avaliação da sustentabilidade em agricultura'
+//        dsl.description == '''
+//O processo de avaliação da sustentabilidade é composto pelas seguintes etapas:
+// '''
+//    }
 
     def "features"(){
         expect:

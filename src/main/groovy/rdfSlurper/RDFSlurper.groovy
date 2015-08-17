@@ -15,9 +15,7 @@ import com.tinkerpop.gremlin.groovy.Gremlin
 
 import com.hp.hpl.jena.query.Query
 import com.hp.hpl.jena.query.QueryExecution
-import groovy.sparql.Sparql
-
-import com.hp.hpl.jena.query.QuerySolutionMap
+import groovy1.sparql.Sparql
 import com.hp.hpl.jena.query.ResultSet
 
 /*
