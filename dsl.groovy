@@ -49,12 +49,6 @@ data 'evaluation'
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
 
-//    economic =      2.0 * evaluation.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
-//                    evaluation.'Eficiência energética das caldeiras para cogeração de energia'
-//
-//    social =        3 * evaluation.EnergyEfficiencyOfBoilersForCogeneration + 7 *
-//                    evaluation.OperationalEfficiencyPlant
-
     environment =   (evaluation.'BiologicalPestControl' ? 1:-1) +
                     (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
                     (evaluation.'StandardAerialSpraying' ? 1:-1) +
@@ -75,22 +69,25 @@ prog {
 
     // Cada recomendação terá uma fórmula lógica que permite especificar
     // quando ela deve ser mostrada. Essas fórmulas podem ser tão complexas
-    // quanto necessário. Caso o resultado da fórmula dê verdadeiro, o texto
-    // (em markdown) depois de action: vai ser mostrado.
+    // quanto necessário. Caso o resultado da fórmula seja verdadeiro, o texto
+    // (em markdown) vai ser mostrado.
+    // Aqui temos 4 possibilidades de implementação:
     if (environment > 3.5 || social ==7)
         recommendation '**markdown** *First* option'
 
-    recommendation environment > 3.5 || social == 7, ''' **Second** *option* '''
-    recommendation if:(environment > 3.5 || social == 7), ''' **Third** *option* '''
+    recommendation environment > 3.5 || social == 7, '**Second** *option*'
+    recommendation if:(environment > 3.5 || social == 7), '**Third** *option*'
     recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
 
     show 'Matrix de avaliação'
     
     show 'Indice de Magnitude: ' + environment
     show 'Indice de Segurança: ' + environmentAvg
-    
+
+    // Matrix de sustentabilidade
     matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2]
 
+    //Outra possibilidade
     //matrix  x: [label: 'kkk', value = environment, range: [1,9]],
     //        y: [label: 'kkk', value = social, range: [1,9]]
 
@@ -98,11 +95,3 @@ prog {
 
     map evaluation.'Microregion'
 }
-
-//matrix 'm1', indice, soil {
-//
-//}
-
-//map {
-//
-//}

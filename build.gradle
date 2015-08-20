@@ -74,7 +74,9 @@ dependencies {
     //--------
     compile 'org.apache.jena:jena:2.13.0'
     compile 'org.apache.jena:jena-arq:2.13.0'
-    //compile 'com.github.jsonld-java:jsonld-java:0.5.0'
+    compile 'com.github.jsonld-java:jsonld-java:0.5.1'
+    //compile 'xerces:xercesImpl:2.11.0'
+
     // this can be replaced after jena 2.12.2 or later
     // it was partially merged in 2.12.1, but not fully so it's incompatible
     // with 2.12.0
@@ -98,6 +100,30 @@ dependencies {
     testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
 
     //console "org.grails:grails-console"
+
+    //---------------
+//    compile 'com.fasterxml.jackson.core:jackson-core:2.3.3'
+//    compile 'com.fasterxml.jackson.core:jackson-databind:2.3.3'
+//    compile 'com.fasterxml.jackson.core:jackson-annotations:2.3.3'
+//    compile 'org.apache.clerezza:rdf.core:0.14'
+//    compile 'org.openrdf.sesame:sesame-bom:2.7.15'
+//    compile 'org.openrdf.sesame:sesame-model:2.7.15'
+//    compile 'org.openrdf.sesame:sesame-rio-api:2.7.15'
+//    compile 'org.openrdf.sesame:sesame-rio-nquads:2.7.15'
+//    compile 'org.openrdf.sesame:sesame-rio-testsuite:2.7.15'
+//
+//    compile ('org.apache.httpcomponents:httpclient-osgi:4.2.5') {
+//        exclude group: 'commons-logging:commons-logging'
+//    }
+//    compile 'org.apache.httpcomponents:httpcore-osgi:4.2.5'
+//    compile 'org.mockito:mockito-core:1.10.17'
+//
+//    compile ('org.semweb4j:rdf2go.api:5.0.1') {
+//        exclude group: 'org.slf4j:slf4j-log4j12'
+//        exclude group: 'log4j:log4j'
+//    }
+//
+//    testCompile 'org.semweb4j:rdf2go.impl.sesame:5.0.1'
 }
 
 configurations {
