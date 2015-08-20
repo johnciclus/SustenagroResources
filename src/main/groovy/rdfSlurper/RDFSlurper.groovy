@@ -277,9 +277,8 @@ class RDFSlurper {
         sparql2 = new Sparql2(endpoint: endpoint)
     }
 
-    RDFSlurper(String file){
+    RDFSlurper(String url){
         //g = new MemoryStoreSailGraph()
-        String url = 'http://localhost:9999/bigdata/sparql'
         //String url = 'http://bio.icmc.usp.br:9999/bigdata/namespace/sustenagro/sparql'
         //"http://localhost:8000/sparql/", "http://localhost:8000/update/")
         g = new SparqlRepositorySailGraph(url, url)

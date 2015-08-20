@@ -3,6 +3,6 @@ import dsl.DSL
 
 // Place your Spring DSL code here
 beans = {
-    slp(RDFSlurper, 'ontology/SustenAgroOntology.rdf')
+    slp(RDFSlurper, 'http://biomac.icmc.usp.br:9999/bigdata/sparql')
     dsl(DSL,'dsl.groovy')
 }
