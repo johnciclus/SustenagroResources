@@ -13,10 +13,10 @@
                 <p>Fornecer informação técnica validada para embasar a formulação de políticas públicas no setor agrícola.</p>
                 <h5 class="text-primary page-header">Alcance do projeto</h5> 
                 <p>O projeto prevê o levantamento de dados dos sistemas de produção mais representativos dessas culturas nas regiões e microrregiões do Centro Sul do Brasil.</p>
-                <g:img dir='images' file='comunity.png' class="img-centered" width="350" />     
+                <asset:image src='comunity.png' class="img-centered" width="350" />
             </div>
             <div class="col-sm-4 col-sm-offset-1 right-content">
-                <g:img dir='images' file='sustainability.png' class="img-centered" width="350" />
+                <asset:image src='sustainability.png' class="img-centered" width="350" />
                 <h5 class="text-primary page-header">Resultados Esperados</h5> 
                 <p>Serão geradas 4 ferramentas:</p>
                 <ul>

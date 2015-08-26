@@ -15,10 +15,10 @@ buildscript {
 }
 
 plugins {
-    id "io.spring.dependency-management" version "0.4.0.RELEASE"
+    id "io.spring.dependency-management" version "0.5.2.RELEASE"
 }
 
-version "0.1"
+version "1"
 group "sustenagro"
 
 apply plugin: "spring-boot"
@@ -35,14 +35,13 @@ ext {
 }
 
 assets {
-    minifyJs = true
-    minifyCss = true
+    minifyJs = false
+    minifyCss = false
 }
 
 repositories {
     mavenLocal()
     maven { url "https://repo.grails.org/grails/core" }
-    maven { url  "http://jcenter.bintray.com" }
 }
 
 dependencyManagement {
@@ -127,6 +126,7 @@ dependencies {
 }
 
 configurations {
+    compile.exclude group: "org.slf4j", module: "slf4j-log4j12"
     runtime.exclude group: "org.slf4j", module: "slf4j-log4j12"
 }
 
