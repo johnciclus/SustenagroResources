@@ -49,17 +49,23 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			$('#production_unit_id').change( function(){
-				$.post(
-						'/tool/evaluations',
-						{'production_unit_id':  this.value},
-						function( data ) {
+            function loadEvaluations(){
+                $.post('/tool/evaluations',
+                        {'production_unit_id':  $('#production_unit_id').val()},
+                        function( data ) {
                             $('#evaluations_form').html(data);
                             $('#evaluations_form table').bootstrapTable()
                             $('#new_evaluation').prop('disabled', false);
                             $('#list_evaluations').prop('disabled', false);
                         }
-				);
+                );
+            }
+
+			if($('#production_unit_id').val()!=null){
+                loadEvaluations();
+			}
+			$('#production_unit_id').change( function(){
+                loadEvaluations();
 			});
 		</script>
 	</body>
