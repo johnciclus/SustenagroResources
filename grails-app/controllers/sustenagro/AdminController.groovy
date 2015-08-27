@@ -146,6 +146,13 @@ class AdminController {
 
         render "ok"
     }
+
+    def reset() {
+        def file = new File('dsl.groovy').write(new File('dsl-bk.groovy').text)
+        dsl.reLoad()
+
+        redirect(action: 'index')
+    }
 }
 
 /*class EmbeddedNeo4j{

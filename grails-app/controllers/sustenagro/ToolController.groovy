@@ -20,6 +20,10 @@ class ToolController {
         def inputs = []
         def query
 
+        if(dsl.featureLst.size() == 3){
+            dsl.featureLst.push(['a', 'dbp:Farm'])
+        }
+
         dsl.featureLst.each{
             def uri = '<'+slp.toURI(it[1])+'>'
             query = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
