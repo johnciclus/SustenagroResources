@@ -112,21 +112,21 @@ class RDFSlurperSpec extends Specification {
         s.'1'.knows.car.maker.country.collect().find{true} == 'Brazil'
     }
 
-    def "read using node names"(){
-        when:
-        s.'1'[':hasValue'] =
-                ['val3',
-                 ['rdfs:label':    'Variable',
-                  'dc:hasPart': ['rdf:type':    ':CO2Emission',
-                                 ':value': [':dataValue': 5.0]]]]
-        s.'1'[':hasClass'] = [':CO2Emission', ['rdfs:label': 'CO2 Emission']]
-        s.g.commit()
-        def d = new DataReader(s, s.toURI(':car3'))
-
-        then:
-        d.':CO2Emission' == 5.0
-        d.'CO2 Emission' == 5.0
-    }
+//    def "read using node names"(){
+//        when:
+//        s.'1'[':hasValue'] =
+//                ['val3',
+//                 ['rdfs:label':    'Variable',
+//                  'dc:hasPart': ['rdf:type':    ':CO2Emission',
+//                                 ':value': [':dataValue': 5.0]]]]
+//        s.'1'[':hasClass'] = [':CO2Emission', ['rdfs:label': 'CO2 Emission']]
+//        s.g.commit()
+//        def d = new DataReader(s, s.toURI(':car3'))
+//
+//        then:
+//        d.':CO2Emission' == 5.0
+//        d.'CO2 Emission' == 5.0
+//    }
 }
 
 

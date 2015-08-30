@@ -6,16 +6,21 @@
 		<asset:javascript src="ace-min-noconflict/ace.js"/>
 	</head>
 	<body>
-		<div class="row main">
-			<div class="content">
-				<div class="col-md-10 col-sm-offset-1">
-					<div class="pull-left"><h5 class="text-primary">DSL Code</h5></div>
-					<div class="pull-right form-group">
-						<form id="dsl_form" action="/admin/dsl" method="post">
-							<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Salvar </button>
-						</form>
-					</div>
+        <div class="content main">
+		    <div class="row">
+				<div class="col-md-6 col-sm-offset-1">
+					<h5 class="text-primary">DSL Code</h5>
 				</div>
+				<div class="col-md-4">
+					<form id="dsl_form" action="/admin/dsl" method="post" class="form-inline-block pull-right" role="form">
+						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Salvar </button>
+					</form>
+                    <form id="reset_form" action="/admin/reset" method="post" class="form-inline-block pull-right" role="form">
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Restaurar </button>
+                    </form>
+				</div>
+            </div>
+            <div class="row">
 				<div class="col-md-10 col-sm-offset-1">
 					<pre id="editor" class="ace_editor ace-tm">${code}</pre>
 					<div id='result'></div>

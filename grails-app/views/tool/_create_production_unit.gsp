@@ -102,7 +102,6 @@
 
 <script type="application/javascript">
 
-
     /*function initialize() {
 
         var mapOptions = {

@@ -20,6 +20,10 @@ class ToolController {
         def inputs = []
         def query
 
+        if(dsl.featureLst.size() == 3){
+            dsl.featureLst.push(['a', 'dbp:Farm'])
+        }
+
         dsl.featureLst.each{
             def uri = '<'+slp.toURI(it[1])+'>'
             query = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
@@ -42,8 +46,7 @@ class ToolController {
         //String html = new Markdown4jProcessor().process("This is a **bold** text");
 
         render(view: 'index',
-               model:    [
-                       name: dsl.name,
+               model: [name: dsl.name,
                        //description:   Processor.process(dsl.description),
                        description:   dsl.description,
                        microregions: inputs[0][2],
@@ -72,10 +75,10 @@ class ToolController {
     }
 
     def selectProductionUnit(){
-        def production_unit_alias = Uri.removeDomain(params['production_unit_id'], 'http://bio.icmc.usp.br/sustenagro#')
+        def production_unit_id = Uri.removeDomain(params['production_unit_id'], 'http://bio.icmc.usp.br/sustenagro#')
 
         redirect(   action: 'assessment',
-                    id: production_unit_alias)
+                    id: production_unit_id)
     }
 
     def selectEvaluation(){
@@ -88,8 +91,8 @@ class ToolController {
         //println indicators
 
         redirect(   action: 'assessment',
-                id: production_unit_alias,
-                params: [evaluation: evaluation_name])
+                    id: production_unit_alias,
+                    params: [evaluation: evaluation_name])
     }
 
     def evaluations(){
@@ -140,6 +143,8 @@ class ToolController {
         String name = slp.":$params.id".'$rdfs:label'
 
         def values = [:]
+        def report
+        dsl._cleanProgram()
 
         if (params['evaluation'] != null) {
 
@@ -151,12 +156,8 @@ class ToolController {
             def data = new DataReader(slp, slp.toURI(':'+params['evaluation']))
 
             dsl.data = data
-            dsl._cleanProgram()
             dsl.program()
-
-            //println 'Indice Amb: '+ dsl.environment
-            //println 'Indice Eco: '+ dsl.economic
-            //println 'Indice Soc: '+ dsl.social
+            report = dsl.report
         }
 
         render(view: 'assessment',
@@ -165,7 +166,7 @@ class ToolController {
                        indicators: [environmental: environmental_indicators, economic: economic_indicators, social: social_indicators],
                        categorical: categorical,
                        values: values,
-                       report: (dsl.report.size()>0 ? dsl.report : null) ])
+                       report: report])
     }
 
     def report() {

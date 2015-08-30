@@ -38,7 +38,7 @@
                       <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/">
-                        <g:img dir='images' file='logo.png' class="logo" />
+                        <asset:image src="logo.png" class="logo"/>
                     </a>
                   </div>
                   <div class="navbar-collapse collapse">
@@ -60,13 +60,13 @@
             
             <div class="row footer">
                 <div class="col-sm-4">
-                    <g:img dir='images' file='embrapa-ma.jpg' class="img-centered" height="75" />
+                    <asset:image src='embrapa-ma.jpg' class="img-centered" height="75" />
                 </div>
                 <div class="col-sm-4">
-                    <g:img dir='images' file='logo-icmc.jpg' class="img-centered" height="75" />
+                    <asset:image src='logo-icmc.jpg' class="img-centered" height="75" />
                 </div>
                 <div class="col-sm-4">
-                    <g:img dir='images' file='intermidia.png' class="img-centered" height="75" />
+                    <asset:image src='intermidia.png' class="img-centered" height="75" />
                 </div>
             </div>
         </div>
