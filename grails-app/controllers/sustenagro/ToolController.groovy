@@ -17,15 +17,17 @@ class ToolController {
 
     def index() {
 
-        def inputs = []
+        def data = []
         def query
-
-        if(dsl.featureLst.size() == 3){
-            dsl.featureLst.push(['a', 'dbp:Farm'])
+        dsl.toolIndexStack.each{
+            if(it.data){
+                println it.data
+            }
         }
 
         dsl.featureLst.each{
             def uri = '<'+slp.toURI(it[1])+'>'
+            println uri
             query = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
             if (query.empty) {
                 query = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${it[1]}')", '')
@@ -35,8 +37,13 @@ class ToolController {
                 query = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
             }
             def lst = slp.query("?id ${it[0]} $uri ; rdfs:label ?label. optional {?id dc:description ?description}")
-            inputs << [query[0].label, query[0].description, lst]
+            data << [query[0].label, query[0].description, lst]
         }
+
+        //dsl.toolIndexStack.push(['type': 'selectEntity', 'args': ['production_units': data[3][2]]])
+        //dsl.toolIndexStack.push(['type': 'createEntity', 'args': ['microregions': data[0][2], 'technologies': data[1][2], 'production_unit_types': data[2][2]]])
+
+        //println dsl.toolIndexStack
 
         //println 'inp: '
         //inputs.each{
@@ -46,13 +53,15 @@ class ToolController {
         //String html = new Markdown4jProcessor().process("This is a **bold** text");
 
         render(view: 'index',
-               model: [name: dsl.name,
+               model: [inputs: dsl.toolIndexStack,
+                       //name: dsl.name,
                        //description:   Processor.process(dsl.description),
-                       description:   dsl.description,
-                       microregions: inputs[0][2],
-                       technologies: inputs[1][2],
-                       production_unit_types: inputs[2][2],
-                       production_units: inputs[3][2]])
+                       //description:   dsl.description,
+                       //microregions: inputs[0][2],
+                       //technologies: inputs[1][2],
+                       //production_unit_types: inputs[2][2],
+                       //production_units: inputs[3][2]
+                       ])
     }
 
     def createProductionUnit() {

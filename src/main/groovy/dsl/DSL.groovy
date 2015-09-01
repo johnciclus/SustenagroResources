@@ -18,6 +18,8 @@ class DSL {
     def data
     def props = [:]
 
+    def toolIndexStack = []
+
     private def _nameFile = ''
     private Script _script
     private GroovyShell _shell
@@ -50,8 +52,9 @@ class DSL {
         _script.run()
     }
 
-    def name(String nameStr){
-        name = nameStr
+    def name(String str){
+        name = str
+        toolIndexStack.push(['type': 'title', 'args': ['name': name]])
     }
 
     def data(String name){
@@ -65,13 +68,19 @@ class DSL {
 
     def description(String nameStr){
         description = toHTML(nameStr)
+        toolIndexStack.push(['type': 'description', 'args': ['description': description]])
         //println  Processor.process(description, true)
         //println new PegDownProcessor().markdownToHtml(description)
     }
 
-    def features(Closure closure){
+    def features(String str, Closure closure){
         featureLst = []
         closure()
+        featureLst.push(['rdfs:subClassOf', str])
+
+        toolIndexStack.push(['type': 'selectEntity', 'data': [['a', 'dbp:Farm']], 'args': []])
+        toolIndexStack.push(['type': 'createEntity', 'data': featureLst, 'args': []])
+
     }
 
 //    def recommendation(Map map, String txt){

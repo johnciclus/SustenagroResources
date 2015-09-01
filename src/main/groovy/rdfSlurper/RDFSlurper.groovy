@@ -469,52 +469,68 @@ class DataReader {
 
     def findNode(String name){
         def res
+        switch(name) {
+            case 'EnvironmentalIndicator':
+                /*try{
 
-        if (name == 'Microregion') {
-            try {
-                res = slp.select('?map')
-                         .query("<$uri> :appliedTo ?u." +
-                                "?u <http://dbpedia.org/ontology/Microregion> ?m."+
-                                "?m <http://dbpedia.org/property/pt/mapa> ?map."
-                )
-            }
-            catch (e){ res = []}
-            if(!res.empty && res.size()==1)
-                return res[0].map
-            else
-                throw new RuntimeException("Unknown value: $name")
-        }
-        else {
-            res = slp
-                    .select('?v')
-                    .query("<$uri> dc:hasPart ?x." +
-                    "?x a ?cls." +
-                    "?cls rdfs:label '$name'@${slp.lang}." +
-                    "?x :value ?ind." +
-                    "?ind :dataValue ?v.")
-            if (res.empty) {
-                def cls = slp.toURI(name)
+                    res = slp.select('?map')
+                            .query("<$uri> :appliedTo ?u." +
+                            "?u <http://dbpedia.org/ontology/Microregion> ?m." +
+                            "?m <http://dbpedia.org/property/pt/mapa> ?map."
+                    )
+                }
+                */
+                res = []
+                println 'EnvironmentalIndicator'
+                break
+            case 'Microregion':
                 try {
-                    res = slp
-                            .select('?v')
-                            .query("<$uri> dc:hasPart ?x." +
-                            "?x a <$cls>." +
-                            "?x :value ?ind." +
-                            "?ind :dataValue ?v.")
+                    res = slp.select('?map')
+                            .query("<$uri> :appliedTo ?u." +
+                            "?u <http://dbpedia.org/ontology/Microregion> ?m." +
+                            "?m <http://dbpedia.org/property/pt/mapa> ?map."
+                    )
                 }
                 catch (e) {
                     res = []
                 }
-            }
+                if (!res.empty && res.size() == 1)
+                    return res[0].map
+                else
+                    throw new RuntimeException("Unknown value: $name")
 
-            if (res.empty) //throw new RuntimeException("Unknown value: $name")
-                return 0
+                break
 
-            if (res.size() == 1)
-                return res[0].v
-
-            res.collect { it.v }
+            default:
+                res = slp.select('?v')
+                        .query("<$uri> dc:hasPart ?x." +
+                        "?x a ?cls." +
+                        "?cls rdfs:label '$name'@${slp.lang}." +
+                        "?x :value ?ind." +
+                        "?ind :dataValue ?v.")
+                if (res.empty) {
+                    def cls = slp.toURI(name)
+                    try {
+                        res = slp
+                                .select('?v')
+                                .query("<$uri> dc:hasPart ?x." +
+                                "?x a <$cls>." +
+                                "?x :value ?ind." +
+                                "?ind :dataValue ?v.")
+                    }
+                    catch (e) {
+                        res = []
+                    }
+                }
+                break
         }
+        if (res.empty) //throw new RuntimeException("Unknown value: $name")
+            return 0
+
+        if (res.size() == 1)
+            return res[0].v
+
+        res.collect { it.v }
     }
 
     def propertyMissing(String name) {

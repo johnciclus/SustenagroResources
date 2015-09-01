@@ -23,10 +23,9 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // a interface só mostra uma opção (sem possibilidade de escolha)
 // Na ontologia, location definiria as microregiões do IBGE.
 // Se a fazenda ficar em mais de uma micro-região?
-features {
+features(':ProductionUnit') {
     instance 'Microregion'
     instance ':AgriculturalEfficiency'
-    subclass ':ProductionUnit'
 }
 
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados
@@ -47,19 +46,20 @@ data 'evaluation'
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
+    evaluation.'EnvironmentalIndicator'
 
     environment =   (evaluation.'BiologicalPestControl' ? 1:-1) +
-            (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
-            (evaluation.'StandardAerialSpraying' ? 1:-1) +
-            evaluation.'VinasseAndEthanolRelation'
+                    (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
+                    (evaluation.'StandardAerialSpraying' ? 1:-1) +
+                    evaluation.'VinasseAndEthanolRelation'
 
     environmentAvg= environment/4
 
     economic =      2.0 * evaluation.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
-            evaluation.'Eficiência energética das caldeiras para cogeração de energia'
+                    evaluation.'Eficiência energética das caldeiras para cogeração de energia'
 
     social =        3 * evaluation.EnergyEfficiencyOfBoilersForCogeneration + 7 *
-            evaluation.OperationalEfficiencyPlant
+                    evaluation.OperationalEfficiencyPlant
 
     // THE REPORT
 
