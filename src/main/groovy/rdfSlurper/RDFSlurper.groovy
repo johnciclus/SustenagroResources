@@ -467,6 +467,33 @@ class DataReader {
         this.uri = uri
     }
 
+//    def findNode(String uri, String name) {
+//        // Try to find as class label
+//        def res = slp
+//                .select('?v')
+//                .query("<$uri> dc:hasPart ?x." +
+//                "?x a ?cls." +
+//                "?cls rdfs:label '$name'@${slp.lang}." +
+//                "?x :value ?ind." +
+//                "?ind :dataValue ?v.")
+//        if (res.empty) {
+//            // Try to find as class uri
+//            def cls = slp.toURI(name)
+//            try {
+//                res = slp
+//                        .select('?v')
+//                        .query("<$uri> dc:hasPart ?x." +
+//                        "?x a <$cls>." +
+//                        "?x :value ?ind." +
+//                        "?ind :dataValue ?v.")
+//            }
+//            catch (e) {
+//                res = []
+//            }
+//        }
+//        res
+//    }
+
     def findNode(String name){
         def res
         switch(name) {

@@ -9,7 +9,7 @@ package com.github.jsonldjava.core;
  *         graph). for the moment i'm just going to use the dataset provided by
  *         toRDF but this should probably change in the future
  */
-public interface JsonLdTripleCallback {
+public interface JSONLDTripleCallback {
 
     /**
      * Construct output based on internal RDF dataset format

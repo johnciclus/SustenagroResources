@@ -73,7 +73,7 @@ dependencies {
     //--------
     compile 'org.apache.jena:jena:2.13.0'
     compile 'org.apache.jena:jena-arq:2.13.0'
-    //compile 'com.github.jsonld-java:jsonld-java:0.5.1'
+    compile 'com.github.jsonld-java:jsonld-java:0.5.1'
     //compile 'xerces:xercesImpl:2.11.0'
 
     // this can be replaced after jena 2.12.2 or later
