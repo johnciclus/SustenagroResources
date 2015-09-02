@@ -3,7 +3,7 @@
 // em português ou inglês. Isso vai depender da ontologia, nela teremos as
 // definições nas duas linguas.
 // nome vai aparecer onde um nome for necessário
-name 'Avaliação da sustentabilidade em agricultura'
+title 'Avaliação da sustentabilidade em agricultura'
 
 // Aba de descrição do conteúdo: um texto em markdown que você vai escrever
 // (esse texto também pode estar num arquivo)
@@ -24,8 +24,8 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // Na ontologia, location definiria as microregiões do IBGE.
 // Se a fazenda ficar em mais de uma micro-região?
 features(':ProductionUnit') {
-    instance 'Microregion'
-    instance ':AgriculturalEfficiency'
+    instance 'Microregion', 'label': "Microrregião da unidade produtiva", 'id': 'production_unit_microregion'
+    //instance ':AgriculturalEfficiency'
 }
 
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados

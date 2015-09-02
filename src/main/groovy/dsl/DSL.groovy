@@ -9,7 +9,6 @@ import rdfSlurper.RDFSlurper
  * Created by dilvan on 7/14/15.
  */
 class DSL {
-    def name = ''
     def description = ''
     def featureLst = []
     def dimensions = []
@@ -44,6 +43,7 @@ class DSL {
     }
 
     def reLoad(){
+        toolIndexStack = []
 
         _script = _shell.parse(new File(_nameFile).text)
         _script.setDelegate(this)
@@ -52,34 +52,46 @@ class DSL {
         _script.run()
     }
 
-    def name(String str){
-        name = str
-        toolIndexStack.push(['type': 'title', 'args': ['name': name]])
+    def title(String str){
+        toolIndexStack.push(['widget': 'title', 'args': ['title': str]])
     }
 
-    def data(String name){
-        data = name
-        props[name]
+    def data(String str){
+        data = str
+        props[str]
     }
 
     def setData(obj){
         props[data]= obj
     }
 
-    def description(String nameStr){
-        description = toHTML(nameStr)
-        toolIndexStack.push(['type': 'description', 'args': ['description': description]])
+    def description(String str){
+        toolIndexStack.push(['widget': 'description', 'args': ['description': toHTML(str)]])
         //println  Processor.process(description, true)
         //println new PegDownProcessor().markdownToHtml(description)
     }
 
     def features(String str, Closure closure){
+        requestLst = []
+        argLst     = [:]
         featureLst = []
         closure()
-        featureLst.push(['rdfs:subClassOf', str])
 
-        toolIndexStack.push(['type': 'selectEntity', 'data': [['a', 'dbp:Farm']], 'args': []])
-        toolIndexStack.push(['type': 'createEntity', 'data': featureLst, 'args': []])
+        requestLst.push(['production_unit_types': ['rdfs:subClassOf', str]])
+        featureLst.each{
+            requestLst.push(it.query)
+            it.args.each{key, arg ->
+                argLst[key] = arg
+            }
+        }
+        println 'Request Lst'
+        println requestLst
+        println 'Arg Lst'
+        println argLst
+
+        toolIndexStack.push(['widget': 'selectEntity', 'request': [['production_units': ['a', 'dbp:Farm']]], 'args': [:]])
+        toolIndexStack.push(['widget': 'createEntity', 'request': requestLst, 'args': argLst])
+        //dsl.toolIndexStack.push(['widget': 'createEntity', 'args': ['microregions': data[0][2], 'technologies': data[1][2], 'production_unit_types': data[2][2]]])
 
     }
 
@@ -109,8 +121,12 @@ class DSL {
         if (map['if']) report << ['recommendation', toHTML(txt)]
     }
 
-    def instance(String str){
-        featureLst << ['a', str]
+    def instance(Map textMap = [:], String clsName){
+        contentLst = [:]
+        if(textMap.label)
+            contentLst['label'] = textMap.label
+
+        featureLst << ['query': ['instance': ['a', clsName]], 'args': contentLst]
     }
 
     def matrix(Map map){
@@ -122,7 +138,7 @@ class DSL {
     }
 
     def subclass(String str){
-        featureLst << ['rdfs:subClassOf', str]
+        featureLst << ['subclass': ['rdfs:subClassOf', str]]
     }
 
     def dimension(String cls) {
@@ -137,12 +153,12 @@ class DSL {
         report = []
     }
 
-    def propertyMissing(String name, arg) {
-        props[name] = arg
+    def propertyMissing(String str, arg) {
+        props[str] = arg
     }
 
-    def propertyMissing(String name) {
-        props[name]
+    def propertyMissing(String str) {
+        props[str]
     }
 }
 

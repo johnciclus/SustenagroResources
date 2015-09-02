@@ -3,7 +3,7 @@
 // em português ou inglês. Isso vai depender da ontologia, nela teremos as
 // definições nas duas linguas.
 // nome vai aparecer onde um nome for necessário
-name 'Avaliação da sustentabilidade em agricultura'
+title 'Avaliação da sustentabilidade em agricultura'
 
 // Aba de descrição do conteúdo: um texto em markdown que você vai escrever
 // (esse texto também pode estar num arquivo)
