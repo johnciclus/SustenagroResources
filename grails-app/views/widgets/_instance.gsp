@@ -14,11 +14,12 @@
         </tr>
         </thead>
         <tbody>
-
-            <tr data-index="0">
-                <td><input data-index="0" type="radio" name="${id}" value="id" ></td>
-                <td>label</td>
-            </tr>
+            <g:each status="i" in="${data}" var="it">
+                <tr data-index="${i}">
+                    <td><input data-index="${i}" type="radio" name="${id}" value="${it.id}" ></td>
+                    <td>${it.label}</td>
+                </tr>
+            </g:each>
         </tbody>
     </table>
 </div>

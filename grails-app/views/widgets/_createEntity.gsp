@@ -7,7 +7,11 @@
         </div>
     </div>
     <div class="form-group">
-        <g:render template="/shared/instance" />
+        <g:if test="${widgets}">
+            <g:each in="${widgets}">
+                <g:render template="/widgets/${it.widget}" model="${it.args}" />
+            </g:each>
+        </g:if>
     </div>
     <div class="form-group">
 

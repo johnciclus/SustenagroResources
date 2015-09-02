@@ -24,7 +24,7 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // Na ontologia, location definiria as microregiões do IBGE.
 // Se a fazenda ficar em mais de uma micro-região?
 features(':ProductionUnit') {
-    instance 'Microregion', 'label': "Microrregião da unidade produtiva", 'id': 'production_unit_microregion'
+    instance 'Microregion', 'label': "Microrregião da unidade produtiva"
     //instance ':AgriculturalEfficiency'
 }
 

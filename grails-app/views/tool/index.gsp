@@ -15,7 +15,7 @@
 			<div  id="content" class="col-sm-10 col-sm-offset-1 content">
                 <g:each in="${inputs}">
                     <div class="section">
-                        <g:render template="/shared/${it.widget}" model="${it.args}" />
+                        <g:render template="/widgets/${it.widget}" model="${it.args}" />
                     </div>
                 </g:each>
 			</div>

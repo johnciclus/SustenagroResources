@@ -18,22 +18,41 @@ class ToolController {
     def index() {
         def result
 
+        def queryLabelDescription = { query ->
+            def uri = '<'+slp.toURI(query[1])+'>'
+            //println uri
+            result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+            if (result.empty) {
+                result = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${query[1]}')", '')
+                if (result.empty)
+                    throw new RuntimeException('Unknown label: '+query[1])
+                uri = "<${result[0].id}>"
+                result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+            }
+            result = slp.query("?id ${query[0]} $uri ; rdfs:label ?label. optional {?id dc:description ?description}")
+            return result
+        }
+
         dsl.toolIndexStack.each{ command ->
             if(command.request){
-                command.request.each{ query ->
-                    query.each{ key, qry ->
-                        println qry[1]
-                        def uri = '<'+slp.toURI(qry[1])+'>'
-                        println uri
-                        result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
-                        if (result.empty) {
-                            result = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${qry[1]}')", '')
-                            if (result.empty)
-                                throw new RuntimeException('Unknown label: '+qry[1])
-                            uri = "<${result[0].id}>"
-                            result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+                command.request.each{ key, value ->
+                    if(key!='widgets'){
+                        command.args[key] = queryLabelDescription(value)
+                    }
+                    else{
+                        value.each{ subCommand ->
+                            println "Command instance"
+                            subCommand.each { subKey, subValue ->
+                                //println subKey
+                                //println subValue
+                                command.args.widgets.each{ arg -> // need improve
+                                    if(arg.widget == subKey){
+                                        arg.args['data']= queryLabelDescription(subValue)
+                                    }
+                                }
+                            }
+
                         }
-                        command.args[key] = slp.query("?id ${qry[0]} $uri ; rdfs:label ?label. optional {?id dc:description ?description}")
                     }
                 }
             }
@@ -41,6 +60,12 @@ class ToolController {
 
         //println Processor.process("This is ***TXTMARK***");
         //String html = new Markdown4jProcessor().process("This is a **bold** text");
+
+        println 'inputs:\n'
+        println dsl.toolIndexStack.each { command ->
+            println command.args
+            println '\n'
+        }
 
         render(view: 'index',
                model: [inputs: dsl.toolIndexStack,
@@ -55,9 +80,8 @@ class ToolController {
     }
 
     def createProductionUnit() {
-        Slugify slug = new Slugify()
 
-        def production_unit_id = slug.slugify(params['production_unit_name'])
+        def production_unit_id = new Slugify().slugify(params['production_unit_name'])
 
         slp.addNode(
             N(':'+production_unit_id,
