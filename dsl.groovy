@@ -25,7 +25,7 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // Se a fazenda ficar em mais de uma micro-região?
 features(':ProductionUnit') {
     instance 'Microregion', 'label': "Microrregião da unidade produtiva"
-    //instance ':AgriculturalEfficiency'
+    instance ':AgriculturalEfficiency', 'label': "Tecnologias disponíveis"
 }
 
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados

@@ -37,7 +37,6 @@ Will print the following to System.out:
 class Sparql2 extends Sparql {
 
     def query(String sparql, String lang) {
-        println sparql
         Query query = QueryFactory.create(sparql, Syntax.syntaxARQ)
         QueryExecution qe = null
 
@@ -343,7 +342,6 @@ class RDFSlurper {
     def query(String q, String lang = this.lang) {
         def f = "$prefixes \n select $select where {$q}"
         select = '*'
-        println lang
         sparql2.query(f, lang)
     }
 

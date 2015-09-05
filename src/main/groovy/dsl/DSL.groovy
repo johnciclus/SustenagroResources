@@ -56,6 +56,9 @@ class DSL {
 
     def title(String str){
         toolIndexStack.push(['widget': 'title', 'args': ['title': str]])
+        //println 'toolIndexStack'
+        //println toolIndexStack
+        //println ''
     }
 
     def data(String str){
@@ -69,6 +72,9 @@ class DSL {
 
     def description(String str){
         toolIndexStack.push(['widget': 'description', 'args': ['description': toHTML(str)]])
+        //println 'toolIndexStack'
+        //println toolIndexStack
+        //println ''
         //println  Processor.process(description, true)
         //println new PegDownProcessor().markdownToHtml(description)
     }
@@ -76,9 +82,11 @@ class DSL {
     def features(String clsName, Closure closure){
         clsId = slg.slugify(clsName)
 
-        requestLst = [:]
-        argLst     = [:]
-        featureLst = []
+        def requestLst          = [:]
+        requestLst['widgets']   = [:]
+        def argLst              = [:]
+        argLst['widgets']       = [:]
+        featureLst              = []
         closure()
 
         //println 'Features Lst'
@@ -86,27 +94,36 @@ class DSL {
 
         requestLst[clsId+'_types'] = ['rdfs:subClassOf', clsName]
         featureLst.each{
-            requestLst['widgets'] = [:]
             requestLst['widgets'][it.id] = it.request
-            argLst['widgets'] = [:]
             argLst['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
         }
 
+        //println 'requestLst'
+        //println requestLst
+        //println 'argLst'
+        //println argLst
+
         //argLst[id] = clsId+'_'+id
 
-        println 'Request Lst'
-        requestLst.widgets.each{ key, value ->
+        //println 'Request Lst'
+        /*requestLst.widgets.each{ key, value ->
             println 'widget'
             println key
             println value
-        }
+        }*/
         //println 'Arg Lst:'
         //println argLst
 
-        //toolIndexStack.push(['widget': 'selectEntity', 'request': ['production_units': ['a', 'dbp:Farm']], 'args': [:]])
+        //println 'toolIndexStack'
+        //println toolIndexStack
+        //println ''
+
+        toolIndexStack.push(['widget': 'selectEntity', 'request': ['production_units': ['a', 'dbp:Farm']], 'args': [:]])
         toolIndexStack.push(['widget': 'createEntity', 'request': requestLst, 'args': argLst])
         //dsl.toolIndexStack.push(['widget': 'createEntity', 'args': ['microregions': data[0][2], 'technologies': data[1][2], 'production_unit_types': data[2][2]]])
-
+        //println 'toolIndexStack'
+        //println toolIndexStack
+        //println ''
     }
 
 //    def recommendation(Map map, String txt){
@@ -136,7 +153,7 @@ class DSL {
     }
 
     def instance(Map textMap = [:], String clsName){
-        argLst = [:]
+        def argLst = [:]
         id = slg.slugify(clsName)
         argLst['id'] = id
         if(textMap.label)

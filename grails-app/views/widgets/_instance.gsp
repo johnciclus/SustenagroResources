@@ -5,7 +5,9 @@
 <div class="col-sm-8">
     <table data-toggle="table"
            data-click-to-select="true"
-           data-height="240"
+           <g:if test="${data.size()>5}">
+                data-height="240"
+           </g:if>
            data-select-item-name="${id}">
         <thead>
         <tr>
@@ -14,10 +16,10 @@
         </tr>
         </thead>
         <tbody>
-            <g:each status="i" in="${data}" var="it">
+            <g:each status="i" var="row" in="${data}">
                 <tr data-index="${i}">
-                    <td><input data-index="${i}" type="radio" name="${id}" value="${it.id}" ></td>
-                    <td>${it.label}</td>
+                    <td><input data-index="${i}" type="radio" name="${id}" value="${row.id}" ></td>
+                    <td>${row.label}</td>
                 </tr>
             </g:each>
         </tbody>

@@ -21,47 +21,57 @@ class ToolController {
         def queryLabelDescription = { query ->
             def uri = '<'+slp.toURI(query[1])+'>'
             //println uri
-            /*def result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+            def result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
             if (!result) {
                 result = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${query[1]}')", '')
                 if (!result){
-                    //throw new RuntimeException('Unknown label: '+query[1])
+                    throw new RuntimeException('Unknown label: '+query[1])
                 }
                 else{
                     uri = "<${result[0].id}>"
-                    return result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+                    result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
                 }
-            }*/
-            def result = slp.query("?id ${query[0]} $uri; rdfs:label ?label. optional {?id dc:description ?description}")
-            return result
+            }
+            return slp.query("?id ${query[0]} $uri; rdfs:label ?label. optional {?id dc:description ?description}")
         }
-        println 'inputs:\n'
+
+        //println dsl.toolIndexStack
 
         dsl.toolIndexStack.each{ command ->
             if(command.request){
-                println "command.request"
-                println command.request
+                //println "command.request"
+                //println command.request
                 command.request.each{ key, query ->
+                    //println key
+                    //println query
+                    //println '\n'
                     if(key!='widgets'){
-                        println key
-                        println query
-                        println '\n'
                         command.args[key] = queryLabelDescription(query)
                     }
-                    else{
-                        println 'Key: '+key
-                        println '\n'
+                    else if(key=='widgets'){
                         query.each{ subKey, subQuery ->
-                            println 'subKey: '+subKey
-                            println 'subQuery: '+subQuery
+                            //println 'subKey: '+subKey
+                            //println 'subQuery: '+subQuery
 
-                            println 'command.args.widgets'
-                            println command.args.widgets
-                            println '\n'
-                            println command.args.widgets[subKey]['args']
-                            command.args.widgets[subKey]['args']['data']= queryLabelDescription(subQuery)
+                            //println 'command.args.widgets'
+                            //println command.args
+                            //println '\n'
+                            //println command.args.widgets[subKey]['args']
+                            command.args.widgets[subKey]['args']['data'] = queryLabelDescription(subQuery)
                         }
                     }
+                }
+            }
+        }
+
+        dsl.toolIndexStack.each{ command ->
+            if(command.args.widgets) {
+                command.args.widgets.each { key, query ->
+                    println '\nKey:'
+                    println key
+                    println 'Query:'
+                    println query
+                    println ''
                 }
             }
         }
@@ -94,11 +104,11 @@ class ToolController {
             //':AgriculturalEfficiency': slp.v(params['production_unit_technology'])
         ))
 
-        if(params['production_unit_microregion'])
-            slp.g.addEdge(slp.v(':' + production_unit_id), slp.v(params['production_unit_microregion']), 'dbp:Microregion')
+        if(params['microregion'])
+            slp.g.addEdge(slp.v(':' + production_unit_id), slp.v(params['microregion']), 'dbp:Microregion')
 
-        if(params['production_unit_technology'])
-            slp.g.addEdge(slp.v(':' + production_unit_id), slp.v(params['production_unit_technology']), ':AgriculturalEfficiency')
+        if(params['agriculturalefficiency'])
+            slp.g.addEdge(slp.v(':' + production_unit_id), slp.v(params['agriculturalefficiency']), ':AgriculturalEfficiency')
 
         slp.g.commit()
         //slp.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')

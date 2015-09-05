@@ -8,9 +8,9 @@
     </div>
 
     <g:if test="${widgets}">
-        <g:each in="${widgets}">
+        <g:each var="widget" in="${widgets}">
             <div class="form-group">
-            <g:render template="/widgets/${it.widget}" model="${it.args}" />
+                <g:render template="/widgets/${widget.value.widget}" model="${widget.value.args}" />
             </div>
         </g:each>
     </g:if>
