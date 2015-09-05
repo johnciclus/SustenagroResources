@@ -84,25 +84,26 @@ class DSL {
         //println 'Features Lst'
         //println featureLst
 
-        requestLst['production_unit_types'] = ['rdfs:subClassOf', clsName]
+        requestLst[clsId+'_types'] = ['rdfs:subClassOf', clsName]
         featureLst.each{
-            requestLst['widgets'] = []
-            requestLst['widgets'] << it.request
-            it.args.each{ id, arg ->
-                arg['id'] = clsId+'_'+arg.id
-                argLst['widgets'] = []
-                argLst['widgets'] << ['widget': id, 'args': arg]
-            }
+            requestLst['widgets'] = [:]
+            requestLst['widgets'][it.id] = it.request
+            argLst['widgets'] = [:]
+            argLst['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
         }
 
         //argLst[id] = clsId+'_'+id
 
-        //println 'Request Lst'
-        //println requestLst
+        println 'Request Lst'
+        requestLst.widgets.each{ key, value ->
+            println 'widget'
+            println key
+            println value
+        }
         //println 'Arg Lst:'
         //println argLst
 
-        toolIndexStack.push(['widget': 'selectEntity', 'request': ['production_units': ['a', 'dbp:Farm']], 'args': [:]])
+        //toolIndexStack.push(['widget': 'selectEntity', 'request': ['production_units': ['a', 'dbp:Farm']], 'args': [:]])
         toolIndexStack.push(['widget': 'createEntity', 'request': requestLst, 'args': argLst])
         //dsl.toolIndexStack.push(['widget': 'createEntity', 'args': ['microregions': data[0][2], 'technologies': data[1][2], 'production_unit_types': data[2][2]]])
 
@@ -135,16 +136,13 @@ class DSL {
     }
 
     def instance(Map textMap = [:], String clsName){
-        contentLst = [:]
+        argLst = [:]
         id = slg.slugify(clsName)
-        contentLst['id'] = id
+        argLst['id'] = id
         if(textMap.label)
-            contentLst['label'] = textMap.label
+            argLst['label'] = textMap.label
 
-        args = [:]
-        args['instance'] = contentLst
-
-        featureLst << ['request': ['instance': ['a', clsName]], 'args': args]
+        featureLst << ['id': id, 'widget': 'instance', 'request': ['a', clsName], 'args': argLst]
     }
 
     def matrix(Map map){

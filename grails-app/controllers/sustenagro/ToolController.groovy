@@ -16,42 +16,50 @@ class ToolController {
     def dsl
 
     def index() {
-        def result
+
 
         def queryLabelDescription = { query ->
             def uri = '<'+slp.toURI(query[1])+'>'
             //println uri
-            result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
-            if (result.empty) {
+            /*def result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+            if (!result) {
                 result = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${query[1]}')", '')
-                if (result.empty)
-                    throw new RuntimeException('Unknown label: '+query[1])
-                uri = "<${result[0].id}>"
-                result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
-            }
-            result = slp.query("?id ${query[0]} $uri ; rdfs:label ?label. optional {?id dc:description ?description}")
+                if (!result){
+                    //throw new RuntimeException('Unknown label: '+query[1])
+                }
+                else{
+                    uri = "<${result[0].id}>"
+                    return result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+                }
+            }*/
+            def result = slp.query("?id ${query[0]} $uri; rdfs:label ?label. optional {?id dc:description ?description}")
             return result
         }
+        println 'inputs:\n'
 
         dsl.toolIndexStack.each{ command ->
             if(command.request){
-                command.request.each{ key, value ->
+                println "command.request"
+                println command.request
+                command.request.each{ key, query ->
                     if(key!='widgets'){
-                        command.args[key] = queryLabelDescription(value)
+                        println key
+                        println query
+                        println '\n'
+                        command.args[key] = queryLabelDescription(query)
                     }
                     else{
-                        value.each{ subCommand ->
-                            println "Command instance"
-                            subCommand.each { subKey, subValue ->
-                                //println subKey
-                                //println subValue
-                                command.args.widgets.each{ arg -> // need improve
-                                    if(arg.widget == subKey){
-                                        arg.args['data']= queryLabelDescription(subValue)
-                                    }
-                                }
-                            }
+                        println 'Key: '+key
+                        println '\n'
+                        query.each{ subKey, subQuery ->
+                            println 'subKey: '+subKey
+                            println 'subQuery: '+subQuery
 
+                            println 'command.args.widgets'
+                            println command.args.widgets
+                            println '\n'
+                            println command.args.widgets[subKey]['args']
+                            command.args.widgets[subKey]['args']['data']= queryLabelDescription(subQuery)
                         }
                     }
                 }
@@ -60,12 +68,6 @@ class ToolController {
 
         //println Processor.process("This is ***TXTMARK***");
         //String html = new Markdown4jProcessor().process("This is a **bold** text");
-
-        println 'inputs:\n'
-        println dsl.toolIndexStack.each { command ->
-            println command.args
-            println '\n'
-        }
 
         render(view: 'index',
                model: [inputs: dsl.toolIndexStack,

@@ -1,11 +1,11 @@
 package rdfSlurper
 
-import com.hp.hpl.jena.query.QueryExecutionFactory
-import com.hp.hpl.jena.query.QueryFactory
-import com.hp.hpl.jena.query.QuerySolution
-import com.hp.hpl.jena.query.Syntax
-import com.hp.hpl.jena.rdf.model.RDFNode
-import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP
+import org.apache.jena.query.QueryExecutionFactory
+import org.apache.jena.query.QueryFactory
+import org.apache.jena.query.QuerySolution
+import org.apache.jena.query.Syntax
+import org.apache.jena.rdf.model.RDFNode
+import org.apache.jena.sparql.engine.http.QueryEngineHTTP
 import com.tinkerpop.blueprints.Vertex
 import com.tinkerpop.blueprints.impls.sail.SailGraph
 import com.tinkerpop.blueprints.impls.sail.SailTokens
@@ -13,10 +13,10 @@ import com.tinkerpop.blueprints.impls.sail.impls.MemoryStoreSailGraph
 import com.tinkerpop.blueprints.impls.sail.impls.SparqlRepositorySailGraph
 import com.tinkerpop.gremlin.groovy.Gremlin
 
-import com.hp.hpl.jena.query.Query
-import com.hp.hpl.jena.query.QueryExecution
+import org.apache.jena.query.Query
+import org.apache.jena.query.QueryExecution
 import groovy1.sparql.Sparql
-import com.hp.hpl.jena.query.ResultSet
+import org.apache.jena.query.ResultSet
 
 /*
 new MarkupBuilder().root {
@@ -37,6 +37,7 @@ Will print the following to System.out:
 class Sparql2 extends Sparql {
 
     def query(String sparql, String lang) {
+        println sparql
         Query query = QueryFactory.create(sparql, Syntax.syntaxARQ)
         QueryExecution qe = null
 
@@ -342,6 +343,7 @@ class RDFSlurper {
     def query(String q, String lang = this.lang) {
         def f = "$prefixes \n select $select where {$q}"
         select = '*'
+        println lang
         sparql2.query(f, lang)
     }
 

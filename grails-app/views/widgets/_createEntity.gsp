@@ -6,16 +6,15 @@
             <input id="production_unit_name" name="production_unit_name" type="text" class="form-control" placeholder="Nome">
         </div>
     </div>
-    <div class="form-group">
-        <g:if test="${widgets}">
-            <g:each in="${widgets}">
-                <g:render template="/widgets/${it.widget}" model="${it.args}" />
-            </g:each>
-        </g:if>
-    </div>
-    <div class="form-group">
 
-    </div>
+    <g:if test="${widgets}">
+        <g:each in="${widgets}">
+            <div class="form-group">
+            <g:render template="/widgets/${it.widget}" model="${it.args}" />
+            </div>
+        </g:each>
+    </g:if>
+
     <div class="form-group">
         <div class="col-sm-4 text-right">
             <label for="production_unit_type" class="control-label">Caracterização dos sistemas produtivos no Centro-Sul</label>
@@ -32,7 +31,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <g:each status="i" in="${production_unit_types}" var="it">
+                <g:each status="i" in="${productionunit_types}" var="it">
                     <tr data-index="${i}">
                         <td><input data-index="${i}" type="radio" name="production_unit_type" value="${it.id}" ></td>
                         <td>${it.label}</td>

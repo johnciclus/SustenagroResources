@@ -26,24 +26,24 @@ import org.apache.http.impl.client.BasicCredentialsProvider
 import org.apache.http.protocol.BasicHttpContext
 import org.apache.http.protocol.HttpContext
 
-import com.hp.hpl.jena.query.Query
-import com.hp.hpl.jena.query.QueryExecution
-import com.hp.hpl.jena.query.QueryExecutionFactory
-import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP
-import com.hp.hpl.jena.query.QueryFactory
-import com.hp.hpl.jena.query.QuerySolution
-import com.hp.hpl.jena.query.QuerySolutionMap
-import com.hp.hpl.jena.query.ResultSet
-import com.hp.hpl.jena.query.Syntax
-import com.hp.hpl.jena.sparql.modify.UpdateProcessRemoteForm
-import com.hp.hpl.jena.update.UpdateExecutionFactory
-import com.hp.hpl.jena.update.UpdateFactory
-import com.hp.hpl.jena.update.UpdateProcessor
-import com.hp.hpl.jena.update.UpdateRequest
-import com.hp.hpl.jena.rdf.model.Model
-import com.hp.hpl.jena.rdf.model.ModelFactory
-import com.hp.hpl.jena.rdf.model.RDFNode
-import com.hp.hpl.jena.shared.JenaException
+import org.apache.jena.query.Query
+import org.apache.jena.query.QueryExecution
+import org.apache.jena.query.QueryExecutionFactory
+import org.apache.jena.sparql.engine.http.QueryEngineHTTP
+import org.apache.jena.query.QueryFactory
+import org.apache.jena.query.QuerySolution
+import org.apache.jena.query.QuerySolutionMap
+import org.apache.jena.query.ResultSet
+import org.apache.jena.query.Syntax
+import org.apache.jena.sparql.modify.UpdateProcessRemoteForm
+import org.apache.jena.update.UpdateExecutionFactory
+import org.apache.jena.update.UpdateFactory
+import org.apache.jena.update.UpdateProcessor
+import org.apache.jena.update.UpdateRequest
+import org.apache.jena.rdf.model.Model
+import org.apache.jena.rdf.model.ModelFactory
+import org.apache.jena.rdf.model.RDFNode
+import org.apache.jena.shared.JenaException
 
 //import org.apache.jena.propertytable.graph.GraphCSV
 
