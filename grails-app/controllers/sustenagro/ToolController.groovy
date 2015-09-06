@@ -17,57 +17,98 @@ class ToolController {
 
     def index() {
 
-        def inputs = []
-        def query
 
-        if(dsl.featureLst.size() == 3){
-            dsl.featureLst.push(['a', 'dbp:Farm'])
-        }
-
-        dsl.featureLst.each{
-            def uri = '<'+slp.toURI(it[1])+'>'
-            query = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
-            if (query.empty) {
-                query = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${it[1]}')", '')
-                if (query.empty)
-                    throw new RuntimeException('Unknown label: '+it[1])
-                uri = "<${query[0].id}>"
-                query = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+        def queryLabelDescription = { query ->
+            def uri = '<'+slp.toURI(query[1])+'>'
+            //println uri
+            def result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+            if (!result) {
+                result = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${query[1]}')", '')
+                if (!result){
+                    throw new RuntimeException('Unknown label: '+query[1])
+                }
+                else{
+                    uri = "<${result[0].id}>"
+                    result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+                }
             }
-            def lst = slp.query("?id ${it[0]} $uri ; rdfs:label ?label. optional {?id dc:description ?description}")
-            inputs << [query[0].label, query[0].description, lst]
+            return slp.query("?id ${query[0]} $uri; rdfs:label ?label. optional {?id dc:description ?description}")
         }
 
-        //println 'inp: '
-        //inputs.each{
-        //  println it
-        //}
+        //println dsl.toolIndexStack
+
+        dsl.toolIndexStack.each{ command ->
+            if(command.request){
+                //println "command.request"
+                //println command.request
+                command.request.each{ key, query ->
+                    //println key
+                    //println query
+                    //println '\n'
+                    if(key!='widgets'){
+                        command.args[key] = queryLabelDescription(query)
+                    }
+                    else if(key=='widgets'){
+                        query.each{ subKey, subQuery ->
+                            //println 'subKey: '+subKey
+                            //println 'subQuery: '+subQuery
+
+                            //println 'command.args.widgets'
+                            //println command.args
+                            //println '\n'
+                            //println command.args.widgets[subKey]['args']
+                            command.args.widgets[subKey]['args']['data'] = queryLabelDescription(subQuery)
+                        }
+                    }
+                }
+            }
+        }
+
+        dsl.toolIndexStack.each{ command ->
+            if(command.args.widgets) {
+                command.args.widgets.each { key, query ->
+                    println '\nKey:'
+                    println key
+                    println 'Query:'
+                    println query
+                    println ''
+                }
+            }
+        }
+
         //println Processor.process("This is ***TXTMARK***");
         //String html = new Markdown4jProcessor().process("This is a **bold** text");
 
         render(view: 'index',
-               model: [name: dsl.name,
+               model: [inputs: dsl.toolIndexStack,
+                       //name: dsl.name,
                        //description:   Processor.process(dsl.description),
-                       description:   dsl.description,
-                       microregions: inputs[0][2],
-                       technologies: inputs[1][2],
-                       production_unit_types: inputs[2][2],
-                       production_units: inputs[3][2]])
+                       //description:   dsl.description,
+                       //microregions: inputs[0][2],
+                       //technologies: inputs[1][2],
+                       //production_unit_types: inputs[2][2],
+                       //production_units: inputs[3][2]
+                       ])
     }
 
     def createProductionUnit() {
-        Slugify slug = new Slugify()
 
-        def production_unit_id = slug.slugify(params['production_unit_name'])
+        def production_unit_id = new Slugify().slugify(params['production_unit_name'])
 
         slp.addNode(
             N(':'+production_unit_id,
-                'rdf:type': slp.v(params['production_unit_type']),
-                'rdfs:label': params['production_unit_name'],
-                'dbp:Microregion': slp.v(params['production_unit_microregion']),
-                //'sa:culture': slp.v(params['production_unit_culture']),
-                ':AgriculturalEfficiency': slp.v(params['production_unit_technology'])
-            ))
+            'rdf:type': slp.v(params['production_unit_type']),
+            'rdfs:label': params['production_unit_name'],
+            //'dbp:Microregion': slp.v(params['production_unit_microregion']),
+            //'sa:culture': slp.v(params['production_unit_culture']),
+            //':AgriculturalEfficiency': slp.v(params['production_unit_technology'])
+        ))
+
+        if(params['microregion'])
+            slp.g.addEdge(slp.v(':' + production_unit_id), slp.v(params['microregion']), 'dbp:Microregion')
+
+        if(params['agriculturalefficiency'])
+            slp.g.addEdge(slp.v(':' + production_unit_id), slp.v(params['agriculturalefficiency']), ':AgriculturalEfficiency')
 
         slp.g.commit()
         //slp.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
@@ -196,9 +237,9 @@ class ToolController {
 
                 slp.addNode(
                         N(it.id+'-'+evaluation_name,
-                                'rdf:type': slp.v(it.id),
-                                'dc:isPartOf': slp.v(':'+evaluation_name),
-                                ':value': slp.v(params[it.id]))
+                            'rdf:type': slp.v(it.id),
+                            'dc:isPartOf': slp.v(':'+evaluation_name),
+                            ':value': slp.v(params[it.id]))
                 )
                 slp.g.addEdge(slp.v(':'+evaluation_name), slp.v(it.id+'-'+evaluation_name), 'http://purl.org/dc/terms/hasPart')
             }

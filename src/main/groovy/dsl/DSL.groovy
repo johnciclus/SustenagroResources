@@ -4,19 +4,22 @@ import com.github.rjeschke.txtmark.Processor
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.pegdown.PegDownProcessor
 import rdfSlurper.RDFSlurper
+import com.github.slugify.Slugify
 
 /**
  * Created by dilvan on 7/14/15.
  */
 class DSL {
-    def name = ''
-    def description = ''
     def featureLst = []
     def dimensions = []
     def report = []
     Closure program
     def data
     def props = [:]
+
+    def slg = new Slugify()
+
+    def toolIndexStack = []
 
     private def _nameFile = ''
     private Script _script
@@ -42,6 +45,7 @@ class DSL {
     }
 
     def reLoad(){
+        toolIndexStack = []
 
         _script = _shell.parse(new File(_nameFile).text)
         _script.setDelegate(this)
@@ -50,28 +54,76 @@ class DSL {
         _script.run()
     }
 
-    def name(String nameStr){
-        name = nameStr
+    def title(String str){
+        toolIndexStack.push(['widget': 'title', 'args': ['title': str]])
+        //println 'toolIndexStack'
+        //println toolIndexStack
+        //println ''
     }
 
-    def data(String name){
-        data = name
-        props[name]
+    def data(String str){
+        data = str
+        props[str]
     }
 
     def setData(obj){
         props[data]= obj
     }
 
-    def description(String nameStr){
-        description = toHTML(nameStr)
+    def description(String str){
+        toolIndexStack.push(['widget': 'description', 'args': ['description': toHTML(str)]])
+        //println 'toolIndexStack'
+        //println toolIndexStack
+        //println ''
         //println  Processor.process(description, true)
         //println new PegDownProcessor().markdownToHtml(description)
     }
 
-    def features(Closure closure){
-        featureLst = []
+    def features(String clsName, Closure closure){
+        clsId = slg.slugify(clsName)
+
+        def requestLst          = [:]
+        requestLst['widgets']   = [:]
+        def argLst              = [:]
+        argLst['widgets']       = [:]
+        featureLst              = []
         closure()
+
+        //println 'Features Lst'
+        //println featureLst
+
+        requestLst[clsId+'_types'] = ['rdfs:subClassOf', clsName]
+        featureLst.each{
+            requestLst['widgets'][it.id] = it.request
+            argLst['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
+        }
+
+        //println 'requestLst'
+        //println requestLst
+        //println 'argLst'
+        //println argLst
+
+        //argLst[id] = clsId+'_'+id
+
+        //println 'Request Lst'
+        /*requestLst.widgets.each{ key, value ->
+            println 'widget'
+            println key
+            println value
+        }*/
+        //println 'Arg Lst:'
+        //println argLst
+
+        //println 'toolIndexStack'
+        //println toolIndexStack
+        //println ''
+
+        toolIndexStack.push(['widget': 'selectEntity', 'request': ['production_units': ['a', 'dbp:Farm']], 'args': [:]])
+        toolIndexStack.push(['widget': 'createEntity', 'request': requestLst, 'args': argLst])
+        //dsl.toolIndexStack.push(['widget': 'createEntity', 'args': ['microregions': data[0][2], 'technologies': data[1][2], 'production_unit_types': data[2][2]]])
+        //println 'toolIndexStack'
+        //println toolIndexStack
+        //println ''
     }
 
 //    def recommendation(Map map, String txt){
@@ -100,8 +152,14 @@ class DSL {
         if (map['if']) report << ['recommendation', toHTML(txt)]
     }
 
-    def instance(String str){
-        featureLst << ['a', str]
+    def instance(Map textMap = [:], String clsName){
+        def argLst = [:]
+        id = slg.slugify(clsName)
+        argLst['id'] = id
+        if(textMap.label)
+            argLst['label'] = textMap.label
+
+        featureLst << ['id': id, 'widget': 'instance', 'request': ['a', clsName], 'args': argLst]
     }
 
     def matrix(Map map){
@@ -113,7 +171,7 @@ class DSL {
     }
 
     def subclass(String str){
-        featureLst << ['rdfs:subClassOf', str]
+        featureLst << ['subclass': ['rdfs:subClassOf', str]]
     }
 
     def dimension(String cls) {
@@ -128,12 +186,12 @@ class DSL {
         report = []
     }
 
-    def propertyMissing(String name, arg) {
-        props[name] = arg
+    def propertyMissing(String str, arg) {
+        props[str] = arg
     }
 
-    def propertyMissing(String name) {
-        props[name]
+    def propertyMissing(String str) {
+        props[str]
     }
 }
 

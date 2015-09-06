@@ -1,11 +1,11 @@
 package rdfSlurper
 
-import com.hp.hpl.jena.query.QueryExecutionFactory
-import com.hp.hpl.jena.query.QueryFactory
-import com.hp.hpl.jena.query.QuerySolution
-import com.hp.hpl.jena.query.Syntax
-import com.hp.hpl.jena.rdf.model.RDFNode
-import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP
+import org.apache.jena.query.QueryExecutionFactory
+import org.apache.jena.query.QueryFactory
+import org.apache.jena.query.QuerySolution
+import org.apache.jena.query.Syntax
+import org.apache.jena.rdf.model.RDFNode
+import org.apache.jena.sparql.engine.http.QueryEngineHTTP
 import com.tinkerpop.blueprints.Vertex
 import com.tinkerpop.blueprints.impls.sail.SailGraph
 import com.tinkerpop.blueprints.impls.sail.SailTokens
@@ -13,10 +13,10 @@ import com.tinkerpop.blueprints.impls.sail.impls.MemoryStoreSailGraph
 import com.tinkerpop.blueprints.impls.sail.impls.SparqlRepositorySailGraph
 import com.tinkerpop.gremlin.groovy.Gremlin
 
-import com.hp.hpl.jena.query.Query
-import com.hp.hpl.jena.query.QueryExecution
+import org.apache.jena.query.Query
+import org.apache.jena.query.QueryExecution
 import groovy1.sparql.Sparql
-import com.hp.hpl.jena.query.ResultSet
+import org.apache.jena.query.ResultSet
 
 /*
 new MarkupBuilder().root {
@@ -467,54 +467,97 @@ class DataReader {
         this.uri = uri
     }
 
+//    def findNode(String uri, String name) {
+//        // Try to find as class label
+//        def res = slp
+//                .select('?v')
+//                .query("<$uri> dc:hasPart ?x." +
+//                "?x a ?cls." +
+//                "?cls rdfs:label '$name'@${slp.lang}." +
+//                "?x :value ?ind." +
+//                "?ind :dataValue ?v.")
+//        if (res.empty) {
+//            // Try to find as class uri
+//            def cls = slp.toURI(name)
+//            try {
+//                res = slp
+//                        .select('?v')
+//                        .query("<$uri> dc:hasPart ?x." +
+//                        "?x a <$cls>." +
+//                        "?x :value ?ind." +
+//                        "?ind :dataValue ?v.")
+//            }
+//            catch (e) {
+//                res = []
+//            }
+//        }
+//        res
+//    }
+
     def findNode(String name){
         def res
+        switch(name) {
+            case 'EnvironmentalIndicator':
+                /*try{
 
-        if (name == 'Microregion') {
-            try {
-                res = slp.select('?map')
-                         .query("<$uri> :appliedTo ?u." +
-                                "?u <http://dbpedia.org/ontology/Microregion> ?m."+
-                                "?m <http://dbpedia.org/property/pt/mapa> ?map."
-                )
-            }
-            catch (e){ res = []}
-            if(!res.empty && res.size()==1)
-                return res[0].map
-            else
-                throw new RuntimeException("Unknown value: $name")
-        }
-        else {
-            res = slp
-                    .select('?v')
-                    .query("<$uri> dc:hasPart ?x." +
-                    "?x a ?cls." +
-                    "?cls rdfs:label '$name'@${slp.lang}." +
-                    "?x :value ?ind." +
-                    "?ind :dataValue ?v.")
-            if (res.empty) {
-                def cls = slp.toURI(name)
+                    res = slp.select('?map')
+                            .query("<$uri> :appliedTo ?u." +
+                            "?u <http://dbpedia.org/ontology/Microregion> ?m." +
+                            "?m <http://dbpedia.org/property/pt/mapa> ?map."
+                    )
+                }
+                */
+                res = []
+                println 'EnvironmentalIndicator'
+                break
+            case 'Microregion':
                 try {
-                    res = slp
-                            .select('?v')
-                            .query("<$uri> dc:hasPart ?x." +
-                            "?x a <$cls>." +
-                            "?x :value ?ind." +
-                            "?ind :dataValue ?v.")
+                    res = slp.select('?map')
+                            .query("<$uri> :appliedTo ?u." +
+                            "?u <http://dbpedia.org/ontology/Microregion> ?m." +
+                            "?m <http://dbpedia.org/property/pt/mapa> ?map."
+                    )
                 }
                 catch (e) {
                     res = []
                 }
-            }
+                if (!res.empty && res.size() == 1)
+                    return res[0].map
+                else
+                    throw new RuntimeException("Unknown value: $name")
 
-            if (res.empty) //throw new RuntimeException("Unknown value: $name")
-                return 0
+                break
 
-            if (res.size() == 1)
-                return res[0].v
-
-            res.collect { it.v }
+            default:
+                res = slp.select('?v')
+                        .query("<$uri> dc:hasPart ?x." +
+                        "?x a ?cls." +
+                        "?cls rdfs:label '$name'@${slp.lang}." +
+                        "?x :value ?ind." +
+                        "?ind :dataValue ?v.")
+                if (res.empty) {
+                    def cls = slp.toURI(name)
+                    try {
+                        res = slp
+                                .select('?v')
+                                .query("<$uri> dc:hasPart ?x." +
+                                "?x a <$cls>." +
+                                "?x :value ?ind." +
+                                "?ind :dataValue ?v.")
+                    }
+                    catch (e) {
+                        res = []
+                    }
+                }
+                break
         }
+        if (res.empty) //throw new RuntimeException("Unknown value: $name")
+            return 0
+
+        if (res.size() == 1)
+            return res[0].v
+
+        res.collect { it.v }
     }
 
     def propertyMissing(String name) {
