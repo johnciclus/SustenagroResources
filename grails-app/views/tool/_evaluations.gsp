@@ -17,7 +17,7 @@
                 <tbody>
                     <g:each status="i" in="${evaluations}" var="it">
                         <tr data-index="${i}">
-                            <td><input data-index="${i}" type="radio" name="evaluation" value="${it.id}" ></td>
+                            <td><input data-index="${i}" type="radio" name="evaluation" value="${it.id}"></td>
                             <td>${it.label}</td>
                         </tr>
                     </g:each>

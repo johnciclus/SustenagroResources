@@ -3,8 +3,8 @@ package dsl
 import com.github.rjeschke.txtmark.Processor
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.pegdown.PegDownProcessor
-import rdfSlurper.RDFSlurper
 import com.github.slugify.Slugify
+import org.kohsuke.groovy.sandbox.SandboxTransformer
 
 /**
  * Created by dilvan on 7/14/15.
@@ -20,24 +20,37 @@ class DSL {
     def slg = new Slugify()
 
     def toolIndexStack = []
+    def toolEvaluationStack = []
 
     private def _nameFile = ''
-    private Script _script
-    private GroovyShell _shell
+    private def _script
+    private def _shell
+    private def _sandbox
+    private def _cc
+    private def _binding
     private static md = new PegDownProcessor()
 
     DSL(String file){
         // Create CompilerConfiguration and assign
         // the DelegatingScript class as the base script class.
-        def compilerConfiguration = new CompilerConfiguration()
-        compilerConfiguration.scriptBaseClass = DelegatingScript.class.name
+        _cc = new CompilerConfiguration()
+        _cc.addCompilationCustomizers(new SandboxTransformer())
+        println "DelegatingScript"
+        println DelegatingScript.class.getName()
+        _cc.setScriptBaseClass(DelegatingScript.class.getName())
+
+
+        _binding = new Binding()
+        _shell = new GroovyShell(_binding, _cc)
+        _sandbox = new DSLSandbox()
+        //_sandbox.register()
 
         // Configure the GroovyShell and pass the compiler configuration.
-        _shell = new GroovyShell(this.class.classLoader, new Binding(), compilerConfiguration)
+        //_shell = new GroovyShell(this.class.classLoader, binding, cc)
 
         _nameFile = file
 
-        _script = _shell.parse(new File(_nameFile).text)
+        _script = (DelegatingScript) _shell.parse(new File(_nameFile).text)
         _script.setDelegate(this)
 
         // Run DSL script.
@@ -46,8 +59,9 @@ class DSL {
 
     def reLoad(){
         toolIndexStack = []
+        toolEvaluationStack = []
 
-        _script = _shell.parse(new File(_nameFile).text)
+        _script = (DelegatingScript) _shell.parse(new File(_nameFile))
         _script.setDelegate(this)
 
         // Run DSL script.
@@ -80,50 +94,27 @@ class DSL {
     }
 
     def features(String clsName, Closure closure){
-        clsId = slg.slugify(clsName)
+        def clsId = slg.slugify(clsName)
 
         def requestLst          = [:]
         requestLst['widgets']   = [:]
         def argLst              = [:]
         argLst['widgets']       = [:]
         featureLst              = []
+
+        featureLst.push(['id': clsId+'_name', 'widget': 'name', 'args': ['id': clsId+'_name', 'label': 'Nome da unidade produtiva']])
+        featureLst.push(['id': clsId+'_types', 'widget': 'instance', 'request': ['rdfs:subClassOf', clsName], 'args': ['id': clsId+'_types', 'label': 'Caracterização dos sistemas produtivos no Centro-Sul']])
         closure()
 
-        //println 'Features Lst'
-        //println featureLst
-
-        requestLst[clsId+'_types'] = ['rdfs:subClassOf', clsName]
         featureLst.each{
-            requestLst['widgets'][it.id] = it.request
+            if(it.request) {
+                requestLst['widgets'][it.id] = it.request
+            }
             argLst['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
         }
 
-        //println 'requestLst'
-        //println requestLst
-        //println 'argLst'
-        //println argLst
-
-        //argLst[id] = clsId+'_'+id
-
-        //println 'Request Lst'
-        /*requestLst.widgets.each{ key, value ->
-            println 'widget'
-            println key
-            println value
-        }*/
-        //println 'Arg Lst:'
-        //println argLst
-
-        //println 'toolIndexStack'
-        //println toolIndexStack
-        //println ''
-
         toolIndexStack.push(['widget': 'selectEntity', 'request': ['production_units': ['a', 'dbp:Farm']], 'args': [:]])
         toolIndexStack.push(['widget': 'createEntity', 'request': requestLst, 'args': argLst])
-        //dsl.toolIndexStack.push(['widget': 'createEntity', 'args': ['microregions': data[0][2], 'technologies': data[1][2], 'production_unit_types': data[2][2]]])
-        //println 'toolIndexStack'
-        //println toolIndexStack
-        //println ''
     }
 
 //    def recommendation(Map map, String txt){
@@ -153,8 +144,8 @@ class DSL {
     }
 
     def instance(Map textMap = [:], String clsName){
+        def id = slg.slugify(clsName)
         def argLst = [:]
-        id = slg.slugify(clsName)
         argLst['id'] = id
         if(textMap.label)
             argLst['label'] = textMap.label
