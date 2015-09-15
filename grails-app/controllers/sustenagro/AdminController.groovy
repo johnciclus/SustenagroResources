@@ -114,7 +114,13 @@ class AdminController {
 
     def dsl() {
         def file = new File('dsl.groovy').write(params['code'])
-        dsl.reLoad()
+
+        try{
+            dsl.reLoad()
+        }
+        catch (Exception e){
+            handleException(e, "DSL Error")
+        }
 
         //FileUtils.deleteRecursively( new File( DB_PATH ) )
 
@@ -152,6 +158,13 @@ class AdminController {
         dsl.reLoad()
 
         redirect(action: 'index')
+    }
+
+    private void handleException(Exception e, String message) {
+        flash.message = message
+        String eMessage = ExceptionUtils.getRootCauseMessage(e)
+        log.error message(code: "sic.log.error.ExceptionOccurred", args: ["${eMessage}", "${e}"])
+        //redirect(action:index)
     }
 }
 

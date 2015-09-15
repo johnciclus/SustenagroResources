@@ -17,7 +17,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
             <script src="/assets/matrix.js" type="text/javascript"></script>
             <script type="text/javascript">
-                Matrix("#graphic", {x: ${it[1]}, y: ${it[2]}, label_x: "${it[3]}", label_y: "${it[4]}", range_x: ${it[5]}, range_y: ${it[6]}})
+                Matrix("#graphic", {x: ${it[1]}, y: ${it[2]}, label_x: "${it[3]}", label_y: "${it[4]}", range_x: ${it[5]}, range_y: ${it[6]}, quadrants: ${it[7]})
             </script>
         </div>
     </g:elseif>

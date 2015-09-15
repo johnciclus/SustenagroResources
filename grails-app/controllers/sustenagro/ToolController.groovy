@@ -173,16 +173,15 @@ class ToolController {
                 values[it.cls] = it.value
             }
 
-            println 'Evaluation'
-            println slp.toURI(':'+params['evaluation'])
+            //println 'Evaluation'
+            //println slp.toURI(':'+params['evaluation'])
 
             def data = new DataReader(slp, slp.toURI(':'+params['evaluation']))
 
             dsl.data = data
             dsl.program()
             report = dsl.report
-            println "Report"
-            println report
+
         }
 
         render(view: 'assessment',

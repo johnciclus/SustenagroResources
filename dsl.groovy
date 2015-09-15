@@ -3,7 +3,7 @@
 // em português ou inglês. Isso vai depender da ontologia, nela teremos as
 // definições nas duas linguas.
 // nome vai aparecer onde um nome for necessário
-title 'Avaliação da sustentabilidade em agricultura'
+title 'Avaliação da sustentabilidade na agricultura'
 
 // Aba de descrição do conteúdo: um texto em markdown que você vai escrever
 // (esse texto também pode estar num arquivo)
@@ -24,8 +24,9 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // Na ontologia, location definiria as microregiões do IBGE.
 // Se a fazenda ficar em mais de uma micro-região?
 features(':ProductionUnit') {
-    instance ':AgriculturalEfficiency'
-    instance 'Microregion'
+    instance 'Microregion', 'label': "Microrregião da unidade produtiva"
+
+    instance ':AgriculturalEfficiency', 'label': "Tecnologias disponíveis"
 }
 
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados
@@ -46,6 +47,7 @@ data 'evaluation'
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
+    //evaluation.'EnvironmentalIndicator'
 
     environment =   (evaluation.'BiologicalPestControl' ? 1:-1) +
             (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
@@ -83,13 +85,24 @@ prog {
     show 'Indice de Segurança: ' + environmentAvg
 
     // Matrix de sustentabilidade
-    matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2]
+    matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], recomendations: [ 
+        [0, 0, 'Recomendação 1'],
+        [0, 1, 'Recomendação 2']
+    ]
 
+    /*
+        matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], [ 
+        [0, 0, 'bla bla bla'],
+        [0, 1, 'bla bla bla'],
+        //quadrant2: 'bla bla bla',
+        ...
+    ]
+
+    */
     //Outra possibilidade
     //matrix  x: [label: 'kkk', value = environment, range: [1,9]],
     //        y: [label: 'kkk', value = social, range: [1,9]]
 
     show 'Mapa da microregião'
-
     map evaluation.'Microregion'
 }

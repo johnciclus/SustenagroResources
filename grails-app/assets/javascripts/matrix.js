@@ -7,9 +7,11 @@ function Matrix(container, parameters){
     var x= params['x'] || 0;
     var y= params['y'] || 0;
     var label_x= params['label_x'] || 'label X';
-    var lable_y= params['label_y'] || 'label Y';
+    var label_y= params['label_y'] || 'label Y';
     var rx= params['range_x'] || [-4, 4];
     var ry= params['range_y'] || [-1, 1];
+    var quadrants= params['quadrants'] || [4, 3];
+    var recomendations= params['recomendations'] || [];
 
     var svg = d3.select(container).append("svg:svg")
         .attr("width", width)

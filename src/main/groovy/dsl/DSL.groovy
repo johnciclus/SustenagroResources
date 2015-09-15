@@ -22,28 +22,24 @@ class DSL {
     def toolIndexStack = []
     def toolEvaluationStack = []
 
-    private def _nameFile = ''
-    private def _script
-    private def _shell
-    private def _sandbox
-    private def _cc
-    private def _binding
-    private static md = new PegDownProcessor()
+    def _nameFile = ''
+    def _cc
+    def _shell
+
+    def _sandbox
+    def _script
+    static md = new PegDownProcessor()
 
     DSL(String file){
         // Create CompilerConfiguration and assign
         // the DelegatingScript class as the base script class.
         _cc = new CompilerConfiguration()
         _cc.addCompilationCustomizers(new SandboxTransformer())
-        println "DelegatingScript"
-        println DelegatingScript.class.getName()
         _cc.setScriptBaseClass(DelegatingScript.class.getName())
 
-
-        _binding = new Binding()
-        _shell = new GroovyShell(_binding, _cc)
+        _shell = new GroovyShell(new Binding(), _cc)
         _sandbox = new DSLSandbox()
-        //_sandbox.register()
+        _sandbox.register()
 
         // Configure the GroovyShell and pass the compiler configuration.
         //_shell = new GroovyShell(this.class.classLoader, binding, cc)
@@ -54,18 +50,28 @@ class DSL {
         _script.setDelegate(this)
 
         // Run DSL script.
-        _script.run()
+        try {
+            _script.run()
+        } finally {
+            _sandbox.unregister()
+        }
     }
 
     def reLoad(){
         toolIndexStack = []
         toolEvaluationStack = []
 
-        _script = (DelegatingScript) _shell.parse(new File(_nameFile))
+        _sandbox.register()
+
+        _script = (DelegatingScript) _shell.parse(new File(_nameFile).text)
         _script.setDelegate(this)
 
         // Run DSL script.
-        _script.run()
+        try {
+            _script.run()
+        } finally {
+            _sandbox.unregister()
+        }
     }
 
     def title(String str){
@@ -154,7 +160,7 @@ class DSL {
     }
 
     def matrix(Map map){
-        report << ['matrix', map.x, map.y, map.labelX, map.labelY, map.rangeX, map.rangeY]
+        report << ['matrix', map.x, map.y, map.labelX, map.labelY, map.rangeX, map.rangeY, map.quadrants, map.recomendations]
     }
 
     def map(String url){
