@@ -109,8 +109,9 @@ class AdminController {
     def dsl
 
     def index(){
+
         render(view: 'index', model: [code: new File('dsl.groovy').text,
-                                      sustenAgroOntology: ''])
+                                      ontology: new File('ontology/SustenAgroOntology.owl').text])
     }
 
     def dsl() {
@@ -154,7 +155,11 @@ class AdminController {
         render "ok"
     }
 
-    def reset() {
+    def ontology(){
+
+    }
+
+    def dslReset() {
         def file = new File('dsl.groovy').write(new File('dsl-bk.groovy').text)
 
         try{

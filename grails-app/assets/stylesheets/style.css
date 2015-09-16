@@ -6,7 +6,7 @@
 
 html {
 	min-height: 100%;
-  position: relative;
+  	position: relative;
 }
 
 body {
@@ -110,7 +110,7 @@ body {
 	margin-bottom: 20px; 
 }
 
-#editor { 
+.editor {
     height: 800px;
     border: 1px solid #DDD;
     border-radius: 4px;
