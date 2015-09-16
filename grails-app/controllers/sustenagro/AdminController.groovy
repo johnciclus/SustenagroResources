@@ -109,7 +109,8 @@ class AdminController {
     def dsl
 
     def index(){
-        render(view: 'index', model: [code: new File('dsl.groovy').text])
+        render(view: 'index', model: [code: new File('dsl.groovy').text,
+                                      sustenAgroOntology: ''])
     }
 
     def dsl() {
@@ -155,8 +156,13 @@ class AdminController {
 
     def reset() {
         def file = new File('dsl.groovy').write(new File('dsl-bk.groovy').text)
-        dsl.reLoad()
 
+        try{
+            dsl.reLoad()
+        }
+        catch (Exception e){
+            handleException(e, "DSL Error")
+        }
         redirect(action: 'index')
     }
 

@@ -28,7 +28,6 @@
                             $('#evaluations_form').html(data);
                             $('#evaluations_form table').bootstrapTable()
                             $('#new_evaluation').prop('disabled', false);
-                            $('#list_evaluations').prop('disabled', false);
                         }
                 );
             }

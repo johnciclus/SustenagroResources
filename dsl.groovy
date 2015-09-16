@@ -25,7 +25,6 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // Se a fazenda ficar em mais de uma micro-região?
 features(':ProductionUnit') {
     instance 'Microregion', 'label': "Microrregião da unidade produtiva"
-
     instance ':AgriculturalEfficiency', 'label': "Tecnologias disponíveis"
 }
 
@@ -72,12 +71,13 @@ prog {
     // quanto necessário. Caso o resultado da fórmula seja verdadeiro, o texto
     // (em markdown) vai ser mostrado.
     // Aqui temos 4 possibilidades de implementação:
-    if (environment > 3.5 || social ==7)
-        recommendation '**markdown** *First* option'
 
-    recommendation environment > 3.5 || social == 7, '**Second** *option*'
-    recommendation if:(environment > 3.5 || social == 7), '**Third** *option*'
-    recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
+    // if (environment > 3.5 || social ==7)
+    //    recommendation '**markdown** *First* option'
+
+    // recommendation environment > 3.5 || social == 7, '**Second** *option*'
+    // recommendation if:(environment > 3.5 || social == 7), '**Third** *option*'
+    // recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
 
     show 'Matrix de avaliação'
 
@@ -85,11 +85,7 @@ prog {
     show 'Indice de Segurança: ' + environmentAvg
 
     // Matrix de sustentabilidade
-    matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], recomendations: [ 
-        [0, 0, 'Recomendação 1'],
-        [0, 1, 'Recomendação 2']
-    ]
-
+    matrix([x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,3], recomendations: [ [1, 1, "Recomendation 1"], [1, 2, "Recomendation 2"], [1, 3, "Recomendation 3"], [1, 4, "Recomendation 4"], [2, 1, "Recomendation 5"], [2, 2, "Recomendation 6"], [2, 3, "Recomendation 7"], [2, 4, "Recomendation 8"], [3, 1, "Recomendation 9"], [3, 2, "Recomendation 10"], [3, 3, "Recomendation 11"], [3, 4, "Recomendation 12"]]])
     /*
         matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], [ 
         [0, 0, 'bla bla bla'],

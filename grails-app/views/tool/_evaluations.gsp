@@ -2,7 +2,7 @@
 <form id="select_evaluation" action="/tool/selectEvaluation" method="post" class="form-horizontal" >
     <input type="hidden" name="production_unit_id" value="http://bio.icmc.usp.br/sustenagro#${production_unit_id}">
     <div class="form-group">
-        <label for="production_unit_id" class="col-sm-4 control-label">Avaliações</label>
+        <label for="evaluation" class="col-sm-4 control-label">Avaliações</label>
         <div class="col-sm-8">
             <table data-toggle="table"
                    data-click-to-select="true"
@@ -15,7 +15,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <g:each status="i" in="${evaluations}" var="it">
+                    <g:each status="i" var="it" in="${evaluations}">
                         <tr data-index="${i}">
                             <td><input data-index="${i}" type="radio" name="evaluation" value="${it.id}"></td>
                             <td>${it.label}</td>
@@ -26,6 +26,6 @@
         </div>
     </div>
     <div class="form-group col-sm-12 text-center">
-        <input id="get_evaluation" type="submit" class="btn btn-primary" value="Selecionar avaliação"/>
+        <input id="get_evaluation" type="submit" class="btn btn-primary" value="Ver avaliação"/>
     </div>
 </form>

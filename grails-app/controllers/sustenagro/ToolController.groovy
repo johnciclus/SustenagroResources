@@ -13,6 +13,7 @@ class ToolController {
     def index() {
         def queryLabelDescription = { query ->
             def uri = '<'+slp.toURI(query[1])+'>'
+            println uri
             def result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
 
             if (!result) {
