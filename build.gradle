@@ -76,6 +76,7 @@ dependencies {
     compile 'org.apache.jena:jena:3.0.0'
     compile 'org.apache.jena:jena-arq:3.0.0'
     compile 'net.sourceforge.owlapi:owlapi-api:4.1.0-RC2'
+    compile 'net.sourceforge.owlapi:owlapi-apibinding:4.1.0-RC2'
     compile 'com.github.jsonld-java:jsonld-java:0.5.1'
     //compile 'xerces:xercesImpl:2.11.0'
 

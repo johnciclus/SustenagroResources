@@ -32,7 +32,6 @@
 						<div class="row">
 							<div class="col-md-12">
 								<pre id="dslEditor" class="ace_editor editor ace-tm">${code}</pre>
-								<div id='result'></div>
 							</div>
 
 							<script type="application/javascript">
@@ -41,7 +40,7 @@
                                 dslEditor.setTheme("ace/theme/chrome");
                                 dslEditor.getSession().setMode("ace/mode/groovy");
                                 dslEditor.setOption("showPrintMargin", false)
-								document.getElementById('dslEditor').style.fontSize='14px';
+								document.getElementById('dslEditor').style.fontSize='13px';
 
 								$( "#dsl_form" ).submit(function( event ) {
 									$.post(
@@ -49,11 +48,11 @@
 											{'code':  dslEditor.getValue() },
 											function( data ) {
 												if(data=='ok'){
-													function redo(){
+													function resetButton(){
 														$('#dsl_form button').removeClass('btn-success').addClass('btn-primary');
 													}
 													$('#dsl_form button').removeClass('btn-primary').addClass('btn-success');
-													setTimeout(redo, 1000);
+													setTimeout(resetButton, 1000);
 												}
 											}
 									);
@@ -79,15 +78,31 @@
 						<div class="row">
 							<div class="col-md-12">
 								<pre id="ontEditor" class="ace_editor editor ace-tm">${ontology}</pre>
-								<div id='result'></div>
 							</div>
 
 							<script type="application/javascript">
                                 var ontEditor = ace.edit("ontEditor");
                                 ontEditor.setTheme("ace/theme/chrome");
-                                ontEditor.getSession().setMode("ace/mode/groovy");
+                                ontEditor.getSession().setMode("ace/mode/plain_text");
                                 ontEditor.setOption("showPrintMargin", false);
-                                document.getElementById('dslEditor').style.fontSize='14px';
+                                document.getElementById('ontEditor').style.fontSize='13px';
+
+								$( "#ontology_form" ).submit(function( event ) {
+									$.post(
+											$(this).attr('action'),
+											{'ontology':  ontEditor.getValue() },
+											function( data ) {
+												if(data=='ok'){
+													function resetButton(){
+														$('#ontology_form button').removeClass('btn-success').addClass('btn-primary');
+													}
+													$('#ontology_form button').removeClass('btn-primary').addClass('btn-success');
+													setTimeout(resetButton, 1000);
+												}
+											}
+									);
+									event.preventDefault();
+								});
 							</script>
 						</div>
 					</div>

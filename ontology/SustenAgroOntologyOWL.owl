@@ -1,0 +1,4026 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://bio.icmc.usp.br/sustenagro#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://bio.icmc.usp.br/sustenagro#">
+    <Prefix name="" IRI="http://bio.icmc.usp.br/sustenagro#"/>
+    <Prefix name="db" IRI="http://dbpedia.org/ontology/"/>
+    <Prefix name="dc" IRI="http://purl.org/dc/terms/"/>
+    <Prefix name="pt" IRI="http://dbpedia.org/property/pt/"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="dbpt" IRI="http://pt.dbpedia.org/resource/"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="AccidentsInWorkplace"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="AccidentsIncidenceCategory"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="AgriculturalActivityPlanning"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="AgriculturalEfficiency"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="AgriculturalProductionSystem"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="AnnualRateUnemploymentByMechanization"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="AverageMonthlyIncomeAgriculture"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="AverageMonthlyIncomeIndustry"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="AverageSalary"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="AverageSalaryCategory"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="BioelectricityDestination"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="BioelectricityDestinationCategory"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="BioelectricityProduction"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="BioelectricityProductionCategory"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="BiofuelInfrastructure"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="BiologicalPestControl"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="BoilerEfficiencyCategory"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Boolean"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="BufferStocks"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Categorical"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="ComplianceLaborLaws"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="CostIndicator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="CropPlanning"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="EconomicIndicator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="EnergyEfficiencyOfBoilersForCogeneration"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="EnergyIndicator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="EnvironmentalIndicator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Evaluation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="ExistNo"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="GeneralIndicator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="GeneratingJobs"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="HealthIndicator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="IncomeIndicator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Indicator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="IndustrialUnityIndicator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Integer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="IntensityCategory"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="InvestmentRatioMachinesVersusProductionReturnOnAssets"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="InvestmentsSocialResponsibility"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="JobFormalityRate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="JobFormalityRateCategory"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="JobsGeneratedPerHectare"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="JobsIndicator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="LegalIndicator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="MigrationRate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Norm24"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Norm31"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="OperationalEfficiencyCategory"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="OperationalEfficiencyPlant"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="PlanningSystematicPlanting"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="PlantingIndicator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="ProductionUnit"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="ProductivityIndicator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Real"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="ResistantYeast"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="SafetyIndicator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="SafetyProgram"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="SalaryPaidYearSeason"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="SocialIndicator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="StandardAerialSpraying"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="SugarcaneProductionSystem"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="SugarcaneProductivityPerHectare"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="SugarcaneProductivityPerHectareCategory"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="SugarcaneTransportOptimization"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Training"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="TrainingIncentive"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="TrueFalse"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="UseEffciencyForReducedDieselConsumptionAndEngineReplacementPlan"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Value"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="VinasseAndEthanolRelation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="VinasseAndEthanolRelationCategory"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="YesNo"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="db:AdministrativeRegion"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="db:Country"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="db:Farm"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="db:GovernmentalAdministrativeRegion"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="db:Place"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="db:PopulatedPlace"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="db:Prefecture"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="db:Region"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="db:State"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://dbpedia.org/resource/Physical_plant"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="appliedTo"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="compose"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="value"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="dataValue"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Above18"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Below10"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Between10-18"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="DontExist"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Eq15.83"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Exist"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Export"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="False"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Gt1000"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Gt15.83"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Gt2.5Mtons"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Gt85ton"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Gt90"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="High"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="HighAgriculturalEfficiency"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="HighEfficiency"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Interval1.0-2.5Mtons"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Low"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="LowAgriculturalEfficiency"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="LowEfficiency"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Lt15.83"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Lt1Mtons"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Lt64ton"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Lt724"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Lt80"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Medium"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="MediumAgriculturalEfficiency"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="MediumEfficiency"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="No"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="NoOrPartialSupply"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="SelfConsumption"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="SuppliesAllSellSurplus"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="SupplyAll"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="True"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="UpperHighEfficiency"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="UpperLowEfficiency"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="Yes"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="interval64-74ton"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="interval724-890"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="interval80-90"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="interval82-85ton"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="interval891-1000"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Adamantina"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Amparo"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Andradina"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Araraquara"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Araçatuba"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Assis"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Auriflama"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Avaré"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Bananal"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Barretos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Batatais"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Bauru"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Birigüi"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Botucatu"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Bragança_Paulista"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Campinas"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Campos_do_Jordão"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Capão_Bonito"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Caraguatatuba"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Catanduva"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Dracena"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Fernandópolis"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Franca"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Franco_da_Rocha"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Guaratinguetá"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Guarulhos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Itanhaém"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Itapecerica_da_Serra"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Itapetininga"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Itapeva"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Ituverava"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Jaboticabal"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Jales"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Jaú"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Jundiaí"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Limeira"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Lins"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Marília"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Mogi_das_Cruzes"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Moji_Mirim"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Nhandeara"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Novo_Horizonte"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Osasco"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Ourinhos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Paraibuna_e_Paraitinga"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Paulínia"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Piedade"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Piracicaba"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Pirassununga"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Presidente_Prudente"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Registro"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Ribeirão_Preto"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Rio_Claro"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Santos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Sorocaba"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_Carlos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_Joaquim_da_Barra"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_José_do_Rio_Preto"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_José_dos_Campos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_João_da_Boa_Vista"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_Paulo"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Tatuí"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Tupã"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Votuporanga"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual abbreviatedIRI="dbpt:São_Paulo"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="dc:title"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="rdf:PlainLiteral"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="rdfs:Literal"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="owl:real"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="Boolean"/>
+        <DataExactCardinality cardinality="1">
+            <DataProperty IRI="dataValue"/>
+            <Datatype abbreviatedIRI="xsd:boolean"/>
+        </DataExactCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="Integer"/>
+        <DataExactCardinality cardinality="1">
+            <DataProperty IRI="dataValue"/>
+            <Datatype abbreviatedIRI="xsd:integer"/>
+        </DataExactCardinality>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="AccidentsInWorkplace"/>
+        <Class IRI="SafetyIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="AccidentsInWorkplace"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="AccidentsIncidenceCategory"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="AccidentsIncidenceCategory"/>
+        <Class IRI="Categorical"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="AgriculturalActivityPlanning"/>
+        <Class IRI="EnergyIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="AgriculturalActivityPlanning"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="YesNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="AnnualRateUnemploymentByMechanization"/>
+        <Class IRI="JobsIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="AnnualRateUnemploymentByMechanization"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="Real"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="AverageMonthlyIncomeAgriculture"/>
+        <Class IRI="JobsIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="AverageMonthlyIncomeAgriculture"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="Real"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="AverageMonthlyIncomeIndustry"/>
+        <Class IRI="JobsIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="AverageMonthlyIncomeIndustry"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="Real"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="AverageSalary"/>
+        <Class IRI="IncomeIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="AverageSalary"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="AverageSalaryCategory"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="AverageSalaryCategory"/>
+        <Class IRI="Categorical"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="BioelectricityDestination"/>
+        <Class IRI="EnergyIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="BioelectricityDestination"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="BioelectricityDestinationCategory"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="BioelectricityDestinationCategory"/>
+        <Class IRI="Categorical"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="BioelectricityProduction"/>
+        <Class IRI="EnergyIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="BioelectricityProduction"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="BioelectricityProductionCategory"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="BioelectricityProductionCategory"/>
+        <Class IRI="Categorical"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="BiofuelInfrastructure"/>
+        <Class IRI="IndustrialUnityIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="BiofuelInfrastructure"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="YesNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="BiologicalPestControl"/>
+        <Class IRI="GeneralIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="BiologicalPestControl"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="YesNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="BoilerEfficiencyCategory"/>
+        <Class IRI="Categorical"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Boolean"/>
+        <Class IRI="Categorical"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="BufferStocks"/>
+        <Class IRI="CostIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="BufferStocks"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="YesNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Categorical"/>
+        <Class IRI="Value"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="ComplianceLaborLaws"/>
+        <Class IRI="LegalIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="ComplianceLaborLaws"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="YesNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="CostIndicator"/>
+        <Class IRI="EconomicIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="CropPlanning"/>
+        <Class IRI="ProductivityIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="CropPlanning"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="YesNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="EconomicIndicator"/>
+        <Class IRI="Indicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="EnergyEfficiencyOfBoilersForCogeneration"/>
+        <Class IRI="EnergyIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="EnergyEfficiencyOfBoilersForCogeneration"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="BoilerEfficiencyCategory"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="EnergyIndicator"/>
+        <Class IRI="EconomicIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="EnvironmentalIndicator"/>
+        <Class IRI="Indicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="ExistNo"/>
+        <Class IRI="Boolean"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="GeneralIndicator"/>
+        <Class IRI="EnvironmentalIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="GeneratingJobs"/>
+        <Class IRI="JobsIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="GeneratingJobs"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="Real"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="HealthIndicator"/>
+        <Class IRI="SocialIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="IncomeIndicator"/>
+        <Class IRI="SocialIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Indicator"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="value"/>
+            <Class IRI="Value"/>
+        </ObjectSomeValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="IndustrialUnityIndicator"/>
+        <Class IRI="EconomicIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Integer"/>
+        <Class IRI="Real"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="IntensityCategory"/>
+        <Class IRI="Categorical"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="InvestmentRatioMachinesVersusProductionReturnOnAssets"/>
+        <Class IRI="CostIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="InvestmentRatioMachinesVersusProductionReturnOnAssets"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="Real"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="InvestmentsSocialResponsibility"/>
+        <Class IRI="LegalIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="InvestmentsSocialResponsibility"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="YesNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="JobFormalityRate"/>
+        <Class IRI="JobsIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="JobFormalityRate"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="JobFormalityRateCategory"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="JobFormalityRateCategory"/>
+        <Class IRI="Categorical"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="JobsGeneratedPerHectare"/>
+        <Class IRI="JobsIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="JobsGeneratedPerHectare"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="Real"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="JobsIndicator"/>
+        <Class IRI="SocialIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="LegalIndicator"/>
+        <Class IRI="SocialIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="MigrationRate"/>
+        <Class IRI="JobsIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="MigrationRate"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="Real"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Norm24"/>
+        <Class IRI="HealthIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Norm24"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="YesNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Norm31"/>
+        <Class IRI="HealthIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Norm31"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="YesNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="OperationalEfficiencyCategory"/>
+        <Class IRI="Categorical"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="OperationalEfficiencyPlant"/>
+        <Class IRI="ProductivityIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="OperationalEfficiencyPlant"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="OperationalEfficiencyCategory"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="PlanningSystematicPlanting"/>
+        <Class IRI="PlantingIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="PlanningSystematicPlanting"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="YesNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="PlantingIndicator"/>
+        <Class IRI="EnvironmentalIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="ProductivityIndicator"/>
+        <Class IRI="EconomicIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Real"/>
+        <Class IRI="Value"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="ResistantYeast"/>
+        <Class IRI="IndustrialUnityIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="ResistantYeast"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="YesNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SafetyIndicator"/>
+        <Class IRI="SocialIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SafetyProgram"/>
+        <Class IRI="HealthIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SafetyProgram"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="ExistNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SalaryPaidYearSeason"/>
+        <Class IRI="IncomeIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SalaryPaidYearSeason"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="Real"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SocialIndicator"/>
+        <Class IRI="Indicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="StandardAerialSpraying"/>
+        <Class IRI="GeneralIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="StandardAerialSpraying"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="YesNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SugarcaneProductionSystem"/>
+        <Class IRI="AgriculturalProductionSystem"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SugarcaneProductivityPerHectare"/>
+        <Class IRI="ProductivityIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SugarcaneProductivityPerHectare"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="SugarcaneProductivityPerHectareCategory"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SugarcaneProductivityPerHectareCategory"/>
+        <Class IRI="Categorical"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SugarcaneTransportOptimization"/>
+        <Class IRI="CostIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SugarcaneTransportOptimization"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="YesNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Training"/>
+        <Class IRI="SocialIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="TrainingIncentive"/>
+        <Class IRI="Training"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="TrainingIncentive"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="ExistNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="TrueFalse"/>
+        <Class IRI="Boolean"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="UseEffciencyForReducedDieselConsumptionAndEngineReplacementPlan"/>
+        <Class IRI="EnergyIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="UseEffciencyForReducedDieselConsumptionAndEngineReplacementPlan"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="YesNo"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="VinasseAndEthanolRelation"/>
+        <Class IRI="GeneralIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="VinasseAndEthanolRelation"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty IRI="value"/>
+            <Class IRI="VinasseAndEthanolRelationCategory"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="VinasseAndEthanolRelationCategory"/>
+        <Class IRI="Categorical"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="YesNo"/>
+        <Class IRI="Boolean"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="db:AdministrativeRegion"/>
+        <Class abbreviatedIRI="db:Region"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="db:Country"/>
+        <Class abbreviatedIRI="db:PopulatedPlace"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="db:Farm"/>
+        <Class IRI="ProductionUnit"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="db:GovernmentalAdministrativeRegion"/>
+        <Class abbreviatedIRI="db:AdministrativeRegion"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <Class abbreviatedIRI="db:GovernmentalAdministrativeRegion"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="db:PopulatedPlace"/>
+        <Class abbreviatedIRI="db:Place"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="db:Prefecture"/>
+        <Class abbreviatedIRI="db:PopulatedPlace"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="db:Region"/>
+        <Class abbreviatedIRI="db:PopulatedPlace"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="db:State"/>
+        <Class abbreviatedIRI="db:PopulatedPlace"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://dbpedia.org/resource/Physical_plant"/>
+        <Class IRI="ProductionUnit"/>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="VinasseAndEthanolRelationCategory"/>
+        <NamedIndividual IRI="Above18"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="VinasseAndEthanolRelationCategory"/>
+        <NamedIndividual IRI="Below10"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="VinasseAndEthanolRelationCategory"/>
+        <NamedIndividual IRI="Between10-18"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="ExistNo"/>
+        <NamedIndividual IRI="DontExist"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="AccidentsIncidenceCategory"/>
+        <NamedIndividual IRI="Eq15.83"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="ExistNo"/>
+        <NamedIndividual IRI="Exist"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="BioelectricityDestinationCategory"/>
+        <NamedIndividual IRI="Export"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="TrueFalse"/>
+        <NamedIndividual IRI="False"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="AverageSalaryCategory"/>
+        <NamedIndividual IRI="Gt1000"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="AccidentsIncidenceCategory"/>
+        <NamedIndividual IRI="Gt15.83"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OperationalEfficiencyCategory"/>
+        <NamedIndividual IRI="Gt2.5Mtons"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="SugarcaneProductivityPerHectareCategory"/>
+        <NamedIndividual IRI="Gt85ton"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="JobFormalityRateCategory"/>
+        <NamedIndividual IRI="Gt90"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="IntensityCategory"/>
+        <NamedIndividual IRI="High"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="AgriculturalEfficiency"/>
+        <NamedIndividual IRI="HighAgriculturalEfficiency"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="BoilerEfficiencyCategory"/>
+        <NamedIndividual IRI="HighEfficiency"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OperationalEfficiencyCategory"/>
+        <NamedIndividual IRI="Interval1.0-2.5Mtons"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="IntensityCategory"/>
+        <NamedIndividual IRI="Low"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="AgriculturalEfficiency"/>
+        <NamedIndividual IRI="LowAgriculturalEfficiency"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="BoilerEfficiencyCategory"/>
+        <NamedIndividual IRI="LowEfficiency"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="AccidentsIncidenceCategory"/>
+        <NamedIndividual IRI="Lt15.83"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="OperationalEfficiencyCategory"/>
+        <NamedIndividual IRI="Lt1Mtons"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="SugarcaneProductivityPerHectareCategory"/>
+        <NamedIndividual IRI="Lt64ton"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="AverageSalaryCategory"/>
+        <NamedIndividual IRI="Lt724"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="JobFormalityRateCategory"/>
+        <NamedIndividual IRI="Lt80"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="IntensityCategory"/>
+        <NamedIndividual IRI="Medium"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="AgriculturalEfficiency"/>
+        <NamedIndividual IRI="MediumAgriculturalEfficiency"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="BoilerEfficiencyCategory"/>
+        <NamedIndividual IRI="MediumEfficiency"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="YesNo"/>
+        <NamedIndividual IRI="No"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="BioelectricityProductionCategory"/>
+        <NamedIndividual IRI="NoOrPartialSupply"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="BioelectricityDestinationCategory"/>
+        <NamedIndividual IRI="SelfConsumption"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="BioelectricityProductionCategory"/>
+        <NamedIndividual IRI="SuppliesAllSellSurplus"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="BioelectricityProductionCategory"/>
+        <NamedIndividual IRI="SupplyAll"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="TrueFalse"/>
+        <NamedIndividual IRI="True"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="BoilerEfficiencyCategory"/>
+        <NamedIndividual IRI="UpperHighEfficiency"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="BoilerEfficiencyCategory"/>
+        <NamedIndividual IRI="UpperLowEfficiency"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="YesNo"/>
+        <NamedIndividual IRI="Yes"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="SugarcaneProductivityPerHectareCategory"/>
+        <NamedIndividual IRI="interval64-74ton"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="SugarcaneProductivityPerHectareCategory"/>
+        <NamedIndividual IRI="interval724-890"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="JobFormalityRateCategory"/>
+        <NamedIndividual IRI="interval80-90"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="SugarcaneProductivityPerHectareCategory"/>
+        <NamedIndividual IRI="interval82-85ton"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="AverageSalaryCategory"/>
+        <NamedIndividual IRI="interval891-1000"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Adamantina"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Amparo"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Andradina"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Araraquara"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Araçatuba"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Assis"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Auriflama"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Avaré"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Bananal"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Barretos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Batatais"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Bauru"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Birigüi"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Botucatu"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Bragança_Paulista"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Campinas"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Campos_do_Jordão"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Capão_Bonito"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Caraguatatuba"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Catanduva"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Dracena"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Fernandópolis"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Franca"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Franco_da_Rocha"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Guaratinguetá"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Guarulhos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Itanhaém"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Itapecerica_da_Serra"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Itapetininga"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Itapeva"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Ituverava"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Jaboticabal"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Jales"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Jaú"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Jundiaí"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Limeira"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Lins"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Marília"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Mogi_das_Cruzes"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Moji_Mirim"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Nhandeara"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Novo_Horizonte"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Osasco"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Ourinhos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Paraibuna_e_Paraitinga"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Paulínia"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Piedade"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Piracicaba"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Pirassununga"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Presidente_Prudente"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Registro"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Ribeirão_Preto"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Rio_Claro"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Santos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Sorocaba"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_Carlos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_Joaquim_da_Barra"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_José_do_Rio_Preto"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_José_dos_Campos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_João_da_Boa_Vista"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_Paulo"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Tatuí"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Tupã"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:MicroRegion"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Votuporanga"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="db:State"/>
+        <NamedIndividual abbreviatedIRI="dbpt:São_Paulo"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Above18"/>
+        <Literal datatypeIRI="&xsd;double">-1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Below10"/>
+        <Literal datatypeIRI="&xsd;double">1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Between10-18"/>
+        <Literal datatypeIRI="&xsd;double">0.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="DontExist"/>
+        <Literal datatypeIRI="&xsd;boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Eq15.83"/>
+        <Literal datatypeIRI="&xsd;double">0.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Exist"/>
+        <Literal datatypeIRI="&xsd;boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Export"/>
+        <Literal datatypeIRI="&xsd;double">1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="False"/>
+        <Literal datatypeIRI="&xsd;boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Gt1000"/>
+        <Literal datatypeIRI="&xsd;double">2.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Gt15.83"/>
+        <Literal datatypeIRI="&xsd;double">-1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Gt2.5Mtons"/>
+        <Literal datatypeIRI="&xsd;double">1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Gt85ton"/>
+        <Literal datatypeIRI="&xsd;double">2.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Gt90"/>
+        <Literal datatypeIRI="&xsd;double">1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="High"/>
+        <Literal datatypeIRI="&xsd;double">1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="HighAgriculturalEfficiency"/>
+        <Literal datatypeIRI="&xsd;double">1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="HighEfficiency"/>
+        <Literal datatypeIRI="&xsd;double">0.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Interval1.0-2.5Mtons"/>
+        <Literal datatypeIRI="&xsd;double">0.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Low"/>
+        <Literal datatypeIRI="&xsd;double">-1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="LowAgriculturalEfficiency"/>
+        <Literal datatypeIRI="&xsd;double">-1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="LowEfficiency"/>
+        <Literal datatypeIRI="&xsd;double">-3.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Lt15.83"/>
+        <Literal datatypeIRI="&xsd;double">1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Lt1Mtons"/>
+        <Literal datatypeIRI="&xsd;double">-1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Lt64ton"/>
+        <Literal datatypeIRI="&xsd;double">-2.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Lt724"/>
+        <Literal datatypeIRI="&xsd;double">-1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Lt80"/>
+        <Literal datatypeIRI="&xsd;double">-1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Medium"/>
+        <Literal datatypeIRI="&xsd;double">0.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="MediumAgriculturalEfficiency"/>
+        <Literal datatypeIRI="&xsd;double">0.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="MediumEfficiency"/>
+        <Literal datatypeIRI="&xsd;double">-1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="No"/>
+        <Literal datatypeIRI="&xsd;boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="NoOrPartialSupply"/>
+        <Literal datatypeIRI="&xsd;double">-1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="SelfConsumption"/>
+        <Literal datatypeIRI="&xsd;double">0.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="SuppliesAllSellSurplus"/>
+        <Literal datatypeIRI="&xsd;double">1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="SupplyAll"/>
+        <Literal datatypeIRI="&xsd;double">0.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="True"/>
+        <Literal datatypeIRI="&xsd;boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="UpperHighEfficiency"/>
+        <Literal datatypeIRI="&xsd;double">1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="UpperLowEfficiency"/>
+        <Literal datatypeIRI="&xsd;double">-2.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="Yes"/>
+        <Literal datatypeIRI="&xsd;boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="interval64-74ton"/>
+        <Literal datatypeIRI="&xsd;double">-1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="interval724-890"/>
+        <Literal datatypeIRI="&xsd;double">0.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="interval80-90"/>
+        <Literal datatypeIRI="&xsd;double">0.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="interval82-85ton"/>
+        <Literal datatypeIRI="&xsd;double">1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="dataValue"/>
+        <NamedIndividual IRI="interval891-1000"/>
+        <Literal datatypeIRI="&xsd;double">1.0</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Adamantina"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/db/SaoPaulo_Micro_Adamantina.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Amparo"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/df/SaoPaulo_Micro_Amparo.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Andradina"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/6/65/SaoPaulo_Micro_Andradina.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Araraquara"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/d1/SaoPaulo_Micro_Araraquara.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Araçatuba"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/4/46/SaoPaulo_Micro_Aracatuba.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Assis"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/4/46/SaoPaulo_Micro_Assis.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Auriflama"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/4/42/SaoPaulo_Micro_Auriflama.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Avaré"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/6/62/SaoPaulo_Micro_Avare.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Bananal"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/8/83/SaoPaulo_Micro_Bananal.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Barretos"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/e0/SaoPaulo_Micro_Barretos.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Batatais"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/2d/SaoPaulo_Micro_Batatais.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Bauru"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/d4/SaoPaulo_Micro_Bauru.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Birigüi"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/b/be/SaoPaulo_Micro_Birigui.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Botucatu"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/5/56/SaoPaulo_Micro_Botucatu.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Bragança_Paulista"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/0/0f/SaoPaulo_Micro_BragancaPaulista.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Campinas"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/9/9f/SaoPaulo_Micro_Campinas.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Campos_do_Jordão"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/a/a6/SaoPaulo_Micro_CamposdoJordao.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Capão_Bonito"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/9/96/SaoPaulo_Micro_CampaoBonito.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Caraguatatuba"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/a/a9/SaoPaulo_Micro_Caraguatatuba.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Catanduva"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/22/SaoPaulo_Micro_Catanduva.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Dracena"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/4/42/SaoPaulo_Micro_Dracena.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Fernandópolis"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/4/4f/SaoPaulo_Micro_Fernandopolis.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Franca"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/3/36/SaoPaulo_Micro_Franca.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Franco_da_Rocha"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/0/05/SaoPaulo_Micro_FrancodaRocha.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Guaratinguetá"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/b/bc/SaoPaulo_Micro_Guaratingueta.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Guarulhos"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/a/a2/SaoPaulo_Micro_Guarulhos.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Itanhaém"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/7/7b/SaoPaulo_Micro_Itanhaem.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Itapecerica_da_Serra"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/f/ff/SaoPaulo_Micro_ItapecericadaSerra.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Itapetininga"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/25/SaoPaulo_Micro_Itapetininga.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Itapeva"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/9/9e/SaoPaulo_Micro_Itapeva.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Ituverava"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/7/73/SaoPaulo_Micro_Ituverava.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Jaboticabal"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/e3/SaoPaulo_Micro_Jaboticabal.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Jales"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/2b/SaoPaulo_Micro_Jales.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Jaú"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/5/56/SaoPaulo_Micro_Jau.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Jundiaí"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/ec/SaoPaulo_Micro_Jundiai.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Limeira"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/7/75/SaoPaulo_Micro_Limeira.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Lins"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/e6/SaoPaulo_Micro_Lins.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Marília"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/b/b0/SaoPaulo_Micro_Marilia.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Mogi_das_Cruzes"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/6/61/SaoPaulo_Micro_MogidasCruzes.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Moji_Mirim"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/eb/SaoPaulo_Micro_MojiMirim.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Nhandeara"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/5/5b/SaoPaulo_Micro_Nhandeara.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Novo_Horizonte"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/df/SaoPaulo_Micro_NovoHorizonte.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Osasco"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/3/3d/SaoPaulo_Micro_Osasco.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Ourinhos"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/8/8b/SaoPaulo_Micro_Ourinhos.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Paraibuna_e_Paraitinga"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/1/1f/SaoPaulo_Micro_ParaibunaParaitinga.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Paulínia"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/9/90/SaoPaulo_Micro_Paulinia.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Piedade"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/a/a7/SaoPaulo_Micro_Piedade.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Piracicaba"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/8/80/SaoPaulo_Micro_Piracicaba.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Pirassununga"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/d1/SaoPaulo_Micro_Pirassununga.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Presidente_Prudente"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/b/b8/SaoPaulo_Micro_PresidentePrudente.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Registro"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/5/50/SaoPaulo_Micro_Registro.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Ribeirão_Preto"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/dd/SaoPaulo_Micro_RibeiraoPreto.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Rio_Claro"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/dd/SaoPaulo_Micro_RioClaro.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Santos"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/f/f8/SaoPaulo_Micro_Santos.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Sorocaba"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/26/SaoPaulo_Micro_Sorocaba.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_Carlos"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/ef/SaoPaulo_Micro_SaoCarlos.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_Joaquim_da_Barra"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/6/65/SaoPaulo_Micro_SaoJoaquimdaBarra.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_José_do_Rio_Preto"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/6/68/SaoPaulo_Micro_SaoJosedoRioPreto.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_José_dos_Campos"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/a/ac/SaoPaulo_Micro_SaoJosedosCampos.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_João_da_Boa_Vista"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/26/SaoPaulo_Micro_SaoJoaodaBoaVista.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_São_Paulo"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/3/37/SaoPaulo_Micro_SaoPaulo.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Tatuí"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/0/0c/SaoPaulo_Micro_Tatui.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Tupã"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/b/ba/SaoPaulo_Micro_Tupa.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual abbreviatedIRI="dbpt:Microrregião_de_Votuporanga"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/7/78/SaoPaulo_Micro_Votuporanga.svg</Literal>
+    </DataPropertyAssertion>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="appliedTo"/>
+        <Class IRI="Evaluation"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="appliedTo"/>
+        <Class IRI="ProductionUnit"/>
+    </ObjectPropertyRange>
+    <FunctionalDataProperty>
+        <DataProperty IRI="dataValue"/>
+    </FunctionalDataProperty>
+    <DataPropertyRange>
+        <DataProperty IRI="dataValue"/>
+        <Datatype abbreviatedIRI="rdfs:Literal"/>
+    </DataPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Above18</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Above 18</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Above18</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Acima de 18</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AccidentsInWorkplace</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Incidence of accidents and fatalities in the workplace</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AccidentsInWorkplace</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Incidência de acidentes e fatalidades no local de trabalho</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AccidentsIncidenceCategory</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Accidents incidence category</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AccidentsIncidenceCategory</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Categoria incidência de acidentes</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AgriculturalActivityPlanning</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Planejamento das atividades agrícolas de acordo com a estratégia de mercado da usina</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AgriculturalActivityPlanning</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Planning of agricultural activities according to the market strategy of the plant</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AgriculturalEfficiency</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Agricultural Efficiency</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AgriculturalEfficiency</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Eficiência Agrícola</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AnnualRateUnemploymentByMechanization</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Annual rate of unemployment caused by mechanization</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AnnualRateUnemploymentByMechanization</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Taxa anual de desemprego causado pela mecanização</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AverageMonthlyIncomeAgriculture</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Average monthly income of active employees in agriculture</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AverageMonthlyIncomeAgriculture</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Rendimento médio mensal dos empregados ativos na área agrícola</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AverageMonthlyIncomeIndustry</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Average monthly income of active employees in the industrial area</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AverageMonthlyIncomeIndustry</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Rendimento médio mensal dos empregados ativos na área industrial</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AverageSalary</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Average worker salary</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AverageSalary</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Salário médio do trabalhador</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AverageSalaryCategory</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Average salary category</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>AverageSalaryCategory</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Categoria salário médio</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Below10</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Abaixo de 10</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Below10</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Below 10</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BioelectricityDestination</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bioelectricity destination</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BioelectricityDestination</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Destino da bioeletricidade</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BioelectricityDestinationCategory</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bioelectricity destination category</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BioelectricityDestinationCategory</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Categoria destinação da bioeletricidade</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BioelectricityProduction</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bioelectricity production</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BioelectricityProduction</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Produção de bioeletricidade</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BioelectricityProductionCategory</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bioelectricity production category</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BioelectricityProductionCategory</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Categoria produção de bioeletricidade</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BiofuelInfrastructure</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Infraestrutura para produção de biocombustíveis de segunda e terceira geração</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BiofuelInfrastructure</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Infrastructure for producing second and third generation biofuels</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BiologicalPestControl</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Biological pest control</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BiologicalPestControl</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Controle biológico de pragas</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BoilerEfficiencyCategory</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Boiller efficiency category</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BoilerEfficiencyCategory</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Categoria eficiência das caldeiras</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Boolean</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Boleana</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Boolean</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Boolean</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BufferStocks</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Buffer stocks</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>BufferStocks</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Estoques reguladores</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ComplianceLaborLaws</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Compliance with labor laws</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ComplianceLaborLaws</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Cumprimento das leis trabalhistas</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>CostIndicator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Cost Indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>CostIndicator</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador de custo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>CropPlanning</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Crop Planning</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>CropPlanning</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Planejamento de safra</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>DontExist</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Doesn&apos;t Exist</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>DontExist</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Não Existe</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>EconomicIndicator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Economic Indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>EconomicIndicator</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador Econômico</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>EnergyEfficiencyOfBoilersForCogeneration</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Eficiência energética das caldeiras para cogeração de energia</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>EnergyEfficiencyOfBoilersForCogeneration</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Energy eficiency of boilers for cogeneration</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>EnergyIndicator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Energy indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>EnergyIndicator</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador de energia</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>EnvironmentalIndicator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Environmental Indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>EnvironmentalIndicator</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador Ambiental</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Eq15.83</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">= 15,83</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Eq15.83</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">= 15.83</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Exist</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Exist</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Exist</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Existe</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ExistNo</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Exist/No exist</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ExistNo</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Existe/Não existe</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Export</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Export</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Export</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Exportação</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>False</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">False</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>False</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Falso</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>GeneralIndicator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">General Indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>GeneralIndicator</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador Geral</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>GeneratingJobs</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Capacidade de geração de empregos diretos e indiretos por Número/safra</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>GeneratingJobs</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Capacidade de geração de empregos diretos e indiretos</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>GeneratingJobs</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Generating capacity of direct and indirect jobs</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Gt1000</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">&gt; 1,000.00</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Gt1000</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">&gt; 1.000,00</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Gt15.83</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">&gt; 15,83</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Gt15.83</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">&gt; 15.83</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Gt2.5Mtons</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Capacidade de moagem superior a 2,5 milhões de ton/safra</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Gt2.5Mtons</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Grinding capacity higher than 2.5 million tons/harvest</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Gt85ton</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">&gt; 85 ton/ha</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Gt85ton</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">&gt; 85 ton/ha</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Gt90</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">&gt; 90%</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Gt90</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">&gt; 90%</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>HealthIndicator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Health Indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>HealthIndicator</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador de Saúde</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>High</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Alta</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>High</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">High</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>HighAgriculturalEfficiency</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Mecanização do plantio e colheita</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>HighAgriculturalEfficiency</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Planting and harvesting mechanization</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>HighAgriculturalEfficiency</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Alta Eficiência Agrícola</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>HighAgriculturalEfficiency</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">High Agricultural Efficiency</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>HighEfficiency</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Eficiência alta</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>HighEfficiency</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">High efficiency</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>IncomeIndicator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Income indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>IncomeIndicator</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador de renda</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Indicator</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Indicator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>IndustrialUnityIndicator</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador unidade industrial</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>IndustrialUnityIndicator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Industrial unity indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Integer</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Integer</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Integer</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Inteiro</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>IntensityCategory</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Categoria intensidade</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>IntensityCategory</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Intensity category</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Interval1.0-2.5Mtons</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Capacidade de moagem entre 1,0 e 2,5 milhões de toneladas/safra</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Interval1.0-2.5Mtons</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Grinding capacity between 1.0 and 2.5 million tons/harvest</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>InvestmentRatioMachinesVersusProductionReturnOnAssets</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Investment relationship between machines versus sugarcane production and return on assets</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>InvestmentRatioMachinesVersusProductionReturnOnAssets</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Relação entre investimento de máquinas versus produção de cana e retorno do imobilizado</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>InvestmentsSocialResponsibility</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Investimentos em responsabilidade social</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>InvestmentsSocialResponsibility</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Investments in social responsibility</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>JobFormalityRate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Job formality rate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>JobFormalityRate</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Taxa de formalidade de emprego</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>JobFormalityRateCategory</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Categoria taxa de empregos formais</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>JobFormalityRateCategory</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Job formality rate category</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>JobsGeneratedPerHectare</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Empregos gerados por hectare (ano/safra)</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>JobsGeneratedPerHectare</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Jobs generated per hectare (year/harvest)</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>JobsIndicator</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador de trabalho</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>JobsIndicator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Jobs indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>LegalIndicator</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador legal</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>LegalIndicator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Legal indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Low</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Baixa</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Low</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Low</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>LowAgriculturalEfficiency</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Semi mechanized planting</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>LowAgriculturalEfficiency</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Semimecanização do plantio</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>LowAgriculturalEfficiency</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Baixa Eficiência Agrícola</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>LowAgriculturalEfficiency</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Low Agricultural Efficiecy</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>LowEfficiency</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Baixa eficiência</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>LowEfficiency</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Low Efficiency</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Lt15.83</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">&lt; 15,83</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Lt15.83</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">&lt; 15.83</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Lt1Mtons</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Capacidade de Moagem inferior a 1 milhão de toneladas/safra</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Lt1Mtons</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Grinding capacity lower than 1.0 million tons/harvest</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Lt64ton</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">&lt; 64 ton/ha</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Lt64ton</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">&lt; 64 ton/ha</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Lt724</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">&lt; 724,00</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Lt724</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">&lt; 724.00</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Lt80</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">&lt; 80%</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Lt80</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">&lt; 80%</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Medium</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Medium</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Medium</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Média</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>MediumAgriculturalEfficiency</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Mecanização do plantio mas não da colheita</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="dc:description"/>
+        <IRI>MediumAgriculturalEfficiency</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Mechanization of planting but not harvest</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>MediumAgriculturalEfficiency</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Eficiência Agrícola Média</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>MediumAgriculturalEfficiency</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Medium Agricultural Efficiency</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>MediumEfficiency</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Eficiência média</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>MediumEfficiency</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Medium efficiency</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>MigrationRate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Migration rate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>MigrationRate</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Taxa migratória</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>No</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">No</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>No</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Não</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>NoOrPartialSupply</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Does not supply own demand or demand is partial</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>NoOrPartialSupply</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Não supre a própria demanda ou esta é parcial</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Norm24</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Cumprimento a Norma Regulamentadora 24</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Norm24</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Fulfilling Regulatory Norm 24</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Norm31</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Cumprimento a Norma Regulamentadora 31</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Norm31</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Fulfilling Regulatory Norm 31</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>OperationalEfficiencyCategory</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Categoria eficiência operacional</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>OperationalEfficiencyCategory</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Operational efficiency category</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>OperationalEfficiencyPlant</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>OperationalEfficiencyPlant</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Operational efficiency of the plant (vertical plant growth, recovery and development)</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>PlanningSystematicPlanting</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Planejamento e sistematização do plantio </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>PlanningSystematicPlanting</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Planning and systematic planting</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>PlantingIndicator</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador de Plantio</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>PlantingIndicator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Planting indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ProductionUnit</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Production Unity</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ProductionUnit</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Unidade de Produção</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ProductivityIndicator</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador de Produtividade</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ProductivityIndicator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Productivity Indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Real</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Real</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Real</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Real</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ResistantYeast</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Uses or invests in more resistant yeast</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ResistantYeast</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Utiliza ou investe em leveduras mais resistentes</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SafetyIndicator</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador de segurança</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SafetyIndicator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Safety indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SafetyProgram</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Accident prevention and safety program</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SafetyProgram</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Programa de prevenção e segurança do trabalho</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SalaryPaidYearSeason</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Compensation paid to workers year/harvest</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SalaryPaidYearSeason</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Remuneração paga aos trabalhadores ano/safra</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SelfConsumption</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Auto Consumo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SelfConsumption</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Self Consumption</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SocialIndicator</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador Social</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SocialIndicator</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Social Indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>StandardAerialSpraying</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Adequacy to the Joint Regulatory Standard 1/2012//DAS/MAP for aerial spraying.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>StandardAerialSpraying</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Adequação a Instrução Normativa Conjunta 1/2012//DAS/MAPA de pulverização aérea.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SugarcaneProductivityPerHectare</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Produtividade de cana por hectare</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SugarcaneProductivityPerHectare</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Sugarcane productivity per hectare</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SugarcaneProductivityPerHectareCategory</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Categoria produtividade de cana por hectare</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SugarcaneProductivityPerHectareCategory</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Sugarcane productivity per hectare category</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SugarcaneTransportOptimization</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Otimização do transporte da cana</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SugarcaneTransportOptimization</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Sugarcane transport optimization</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SuppliesAllSellSurplus</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Fully supplies itself and sells the surplus</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SuppliesAllSellSurplus</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Supre totalmente e comercializa o excedente</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SupplyAll</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Supply all own demand</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>SupplyAll</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Supre totalmente a própria demanda</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Training</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Indicador de Treinamento</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Training</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Training Indicator</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>TrainingIncentive</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Incentives for employee training</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>TrainingIncentive</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Incentivos a capacitação dos funcionários</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>True</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">True</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>True</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Verdadeiro</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>TrueFalse</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">True/False</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>TrueFalse</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Verdadeiro/Falso</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>UpperHighEfficiency</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Eficiência alta superior</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>UpperHighEfficiency</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Upper high efficiency</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>UpperLowEfficiency</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Eficiência baixa superior</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>UpperLowEfficiency</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Upper low efficiency</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>UseEffciencyForReducedDieselConsumptionAndEngineReplacementPlan</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Eficiência no uso para diminuição do consumo de diesel e plano de substituição de motores.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>UseEffciencyForReducedDieselConsumptionAndEngineReplacementPlan</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Use efficiency for reduced diesel consumption and engine replacement plan </Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>VinasseAndEthanolRelation</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Relationship between the production of vinasse and ethanol ( liters of vinasse / liters of ethanol).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>VinasseAndEthanolRelation</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Relação entre a produção de vinhaça e etanol (litros de vinhaça/litros de etanol).</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>VinasseAndEthanolRelationCategory</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Categoria relação entre vinhaça e etanol</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>VinasseAndEthanolRelationCategory</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Vinasse and ethanol relation category</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Yes</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Sim</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>Yes</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Yes</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>YesNo</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Sim/Não</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>YesNo</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Yes/No</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>appliedTo</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">aplicado a</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>appliedTo</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">applied to</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>compose</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">compose</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>compose</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">compõe</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>dataValue</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">data value</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>dataValue</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">valor do dado</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>interval64-74ton</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">64 - 74 ton/ha</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>interval64-74ton</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">64 - 74 ton/ha</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>interval724-890</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">75 - 81 ton/ha</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>interval724-890</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">75 - 81 ton/ha</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>interval80-90</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">80% - 90%</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>interval80-90</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">80% - 90%</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>interval82-85ton</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">81 - 85 ton/ha</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>interval82-85ton</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">81 - 85 ton/ha</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>interval891-1000</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">890,00 - 1.000,00</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>interval891-1000</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">890.00 - 1,000.00</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>value</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">valor</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>value</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">value</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>db:Farm</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Farm</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>db:Farm</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Fazenda</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>db:MicroRegion</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>db:MicroRegion</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/resource/Physical_plant</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Plant</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/resource/Physical_plant</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Usina</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Adamantina</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Adamantina Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Adamantina</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Adamantina</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Amparo</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Amparo Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Amparo</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microregião de Amparo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Andradina</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Andradina Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Andradina</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Andradina</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Araraquara</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Araraquara Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Araraquara</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Araraquara</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Araçatuba</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Araçatuba Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Araçatuba</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Araçatuba</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Assis</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Assis Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Assis</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Assis</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Auriflama</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Auriflama Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Auriflama</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Auriflama</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Avaré</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Avaré Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Avaré</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Avaré</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Bananal</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bananal Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Bananal</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Bananal</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Barretos</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Barretos Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Barretos</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Barretos</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Batatais</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Batatais Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Batatais</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Batatais</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Bauru</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bauru Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Bauru</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Bauru</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Birigüi</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Birigüi Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Birigüi</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Birigüi</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Botucatu</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Botucatu Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Botucatu</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Botucatu</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Bragança_Paulista</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bragança Paulista Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Bragança_Paulista</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Bragança Paulista</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Campinas</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Campinas Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Campinas</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Campinas</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Campos_do_Jordão</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Campos do Jordão Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Campos_do_Jordão</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Campos do Jordão</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Capão_Bonito</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Capão Bonito Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Capão_Bonito</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Capão Bonito</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Caraguatatuba</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Caraguatatuba Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Caraguatatuba</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Caraguatatuba</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Catanduva</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Catanduva Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Catanduva</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Catanduva</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Dracena</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Dracena Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Dracena</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Dracena</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Fernandópolis</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Fernandópolis Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Fernandópolis</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Fernandópolis</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Franca</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Franca Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Franca</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Franca</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Franco_da_Rocha</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Franco da Rocha Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Franco_da_Rocha</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Franco da Rocha</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Guaratinguetá</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Guaratinguetá Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Guaratinguetá</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Guaratinguetá</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Guarulhos</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Guarulhos Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Guarulhos</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Guarulhos</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Itanhaém</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Itanhaém Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Itanhaém</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Itanhaém</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Itapecerica_da_Serra</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Itapecerica da Serra Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Itapecerica_da_Serra</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Itapecerica da Serra</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Itapetininga</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Itapetininga Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Itapetininga</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Itapetininga</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Itapeva</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Itapeva Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Itapeva</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Itapeva</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Ituverava</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Ituverava Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Ituverava</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Ituverava</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Jaboticabal</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Jaboticabal Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Jaboticabal</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Jaboticabal</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Jales</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Jales Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Jales</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Jales</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Jaú</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Jaú Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Jaú</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Jaú</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Jundiaí</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Jundiaí Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Jundiaí</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Jundiaí</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Limeira</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Limeira Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Limeira</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Limeira</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Lins</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Lins Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Lins</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Lins</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Marília</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Marília Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Marília</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Marília</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Mogi_das_Cruzes</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Mogi das Cruzes</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Mogi_das_Cruzes</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Mogi das Cruzes Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Moji_Mirim</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Mogi Mirim</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Moji_Mirim</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Mogi Mirim Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Nhandeara</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Nhandeara</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Nhandeara</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Nhandeara Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Novo_Horizonte</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Novo Horizonte</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Novo_Horizonte</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Novo Horizonte Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Osasco</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Osasco</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Osasco</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Osasco Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Ourinhos</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Ourinhos</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Ourinhos</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Ourinhos Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Paraibuna_e_Paraitinga</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Paraibuna/Paraitinga</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Paraibuna_e_Paraitinga</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Paraibuna/Paraitinga Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Paulínia</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Paulínia</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Paulínia</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Paulínia Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Piedade</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Piedade</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Piedade</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Piedade Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Piracicaba</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Piracicaba</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Piracicaba</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Piracicaba Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Pirassununga</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Pirassununga</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Pirassununga</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Pirassununga Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Presidente_Prudente</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Presidente Prudente</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Presidente_Prudente</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Presidente Prudente Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Registro</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Registro</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Registro</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Registro Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Ribeirão_Preto</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Ribeirão Preto</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Ribeirão_Preto</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Ribeirão Preto Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Rio_Claro</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Rio Claro</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Rio_Claro</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Rio Claro Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Santos</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Santos</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Santos</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Santos Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Sorocaba</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Sorocaba</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Sorocaba</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Sorocaba Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_São_Carlos</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São Carlos</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_São_Carlos</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São Carlos Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_São_Joaquim_da_Barra</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São Joaquim da Barra</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_São_Joaquim_da_Barra</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São Joaquim da Barra Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_São_José_do_Rio_Preto</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São José do Rio Preto</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_São_José_do_Rio_Preto</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São José do Rio Preto Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_São_José_dos_Campos</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São José dos Campos</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_São_José_dos_Campos</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São José dos Campos Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_São_João_da_Boa_Vista</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São João da Boa Vista</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_São_João_da_Boa_Vista</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São João da Boa Vista Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_São_Paulo</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São Paulo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_São_Paulo</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São Paulo Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Tatuí</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Tatuí</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Tatuí</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Tatuí Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Tupã</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Tupã</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Tupã</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Tupã Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Votuporanga</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Votuporanga</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dbpt:Microrregião_de_Votuporanga</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Votuporanga Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dc:description</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">description</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dc:description</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">descrição</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dc:title</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">title</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>dc:title</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">título</Literal>
+    </AnnotationAssertion>
+    <AnnotationPropertyRange>
+        <AnnotationProperty abbreviatedIRI="dc:title"/>
+        <AbbreviatedIRI>rdfs:Literal</AbbreviatedIRI>
+    </AnnotationPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+
