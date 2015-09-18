@@ -1,10 +1,10 @@
 package sustenagro
 
 import org.semanticweb.owlapi.apibinding.OWLManager
-import org.semanticweb.owlapi.model.IRI
-import org.semanticweb.owlapi.model.OWLOntologyManager
-import org.semanticweb.owlapi.model.OWLOntology
+import org.semanticweb.owlapi.model.*
 import org.semanticweb.owlapi.io.StringDocumentSource
+import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat
+import org.semanticweb.owlapi.io.*
 import org.semanticweb.owlapi.util.AutoIRIMapper
 
 class AdminController {
@@ -61,6 +61,12 @@ class AdminController {
     def ontology(){
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager()
         OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
+        def format = manager.getOntologyFormat(ontology)
+        println(" format: " + format)
+
+        File file = new File("ontology/SustenAgroRDFTMP.rdf")
+        manager.saveOntology(ontology, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
+
         //File localFolder = new File("TestingOntology")
         //manager.addIRIMapper(new AutoIRIMapper(localFolder, true))
         //OWLOntology o = manager.createOntology(example_save_iri);
