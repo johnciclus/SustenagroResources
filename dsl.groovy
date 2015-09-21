@@ -3,7 +3,7 @@
 // em português ou inglês. Isso vai depender da ontologia, nela teremos as
 // definições nas duas linguas.
 // nome vai aparecer onde um nome for necessário
-title 'Avaliação da sustentabilidade em agricultura'
+title 'Avaliação da sustentabilidade na agricultura'
 
 // Aba de descrição do conteúdo: um texto em markdown que você vai escrever
 // (esse texto também pode estar num arquivo)
@@ -46,20 +46,20 @@ data 'evaluation'
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
-    evaluation.'EnvironmentalIndicator'
+    //evaluation.'EnvironmentalIndicator'
 
     environment =   (evaluation.'BiologicalPestControl' ? 1:-1) +
-                    (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
-                    (evaluation.'StandardAerialSpraying' ? 1:-1) +
-                    evaluation.'VinasseAndEthanolRelation'
+            (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
+            (evaluation.'StandardAerialSpraying' ? 1:-1) +
+            evaluation.'VinasseAndEthanolRelation'
 
     environmentAvg= environment/4
 
     economic =      2.0 * evaluation.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
-                    evaluation.'Eficiência energética das caldeiras para cogeração de energia'
+            evaluation.'Eficiência energética das caldeiras para cogeração de energia'
 
     social =        3 * evaluation.EnergyEfficiencyOfBoilersForCogeneration + 7 *
-                    evaluation.OperationalEfficiencyPlant
+            evaluation.OperationalEfficiencyPlant
 
     // THE REPORT
 
@@ -71,12 +71,13 @@ prog {
     // quanto necessário. Caso o resultado da fórmula seja verdadeiro, o texto
     // (em markdown) vai ser mostrado.
     // Aqui temos 4 possibilidades de implementação:
-    if (environment > 3.5 || social ==7)
-        recommendation '**markdown** *First* option'
 
-    recommendation environment > 3.5 || social == 7, '**Second** *option*'
-    recommendation if:(environment > 3.5 || social == 7), '**Third** *option*'
-    recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
+    // if (environment > 3.5 || social ==7)
+    //    recommendation '**markdown** *First* option'
+
+    // recommendation environment > 3.5 || social == 7, '**Second** *option*'
+    // recommendation if:(environment > 3.5 || social == 7), '**Third** *option*'
+    // recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
 
     show 'Matrix de avaliação'
 
@@ -84,13 +85,20 @@ prog {
     show 'Indice de Segurança: ' + environmentAvg
 
     // Matrix de sustentabilidade
-    matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2]
+    matrix([x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,3], recomendations: [ [1, 1, "Recomendation 1"], [1, 2, "Recomendation 2"], [1, 3, "Recomendation 3"], [1, 4, "Recomendation 4"], [2, 1, "Recomendation 5"], [2, 2, "Recomendation 6"], [2, 3, "Recomendation 7"], [2, 4, "Recomendation 8"], [3, 1, "Recomendation 9"], [3, 2, "Recomendation 10"], [3, 3, "Recomendation 11"], [3, 4, "Recomendation 12"]]])
+    /*
+        matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], [ 
+        [0, 0, 'bla bla bla'],
+        [0, 1, 'bla bla bla'],
+        //quadrant2: 'bla bla bla',
+        ...
+    ]
 
+    */
     //Outra possibilidade
     //matrix  x: [label: 'kkk', value = environment, range: [1,9]],
     //        y: [label: 'kkk', value = social, range: [1,9]]
 
     show 'Mapa da microregião'
-
     map evaluation.'Microregion'
 }

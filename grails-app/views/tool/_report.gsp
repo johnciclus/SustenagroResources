@@ -17,7 +17,15 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
             <script src="/assets/matrix.js" type="text/javascript"></script>
             <script type="text/javascript">
-                Matrix("#graphic", {x: ${it[1]}, y: ${it[2]}, label_x: "${it[3]}", label_y: "${it[4]}", range_x: ${it[5]}, range_y: ${it[6]}})
+                var recomendations = [];
+                <g:each var="recomendation" in="${it[8]}">
+                    recomendations.push([${recomendation[0]}, ${recomendation[1]}, "${recomendation[2]}"]);
+                </g:each>
+
+                var result = Matrix("#graphic", {x: ${it[1]}, y: ${it[2]}, label_x: "${it[3]}", label_y: "${it[4]}", range_x: ${it[5]}, range_y: ${it[6]}, quadrants: ${it[7]}, recomendations: recomendations });
+                $("#graphic").append("<p><i>Quadrante X: </i>"+result.qx+"</p>");
+                $("#graphic").append("<p><i>Quadrante Y: </i>"+result.qy+"</p>");
+                $("#graphic").append("<p><i>Recomendation: </i>"+result.recomendation+"</p>");
             </script>
         </div>
     </g:elseif>

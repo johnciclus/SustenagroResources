@@ -514,7 +514,7 @@ class DataReader {
                 try {
                     res = slp.select('?map')
                             .query("<$uri> :appliedTo ?u." +
-                            "?u <http://dbpedia.org/ontology/Microregion> ?m." +
+                            "?u <dbp:Microregion> ?m." +
                             "?m <http://dbpedia.org/property/pt/mapa> ?map."
                     )
                 }

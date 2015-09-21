@@ -75,6 +75,8 @@ dependencies {
     //--------
     compile 'org.apache.jena:jena:3.0.0'
     compile 'org.apache.jena:jena-arq:3.0.0'
+    compile 'net.sourceforge.owlapi:owlapi-api:4.1.0-RC2'
+    compile 'net.sourceforge.owlapi:owlapi-apibinding:4.1.0-RC2'
     compile 'com.github.jsonld-java:jsonld-java:0.5.1'
     //compile 'xerces:xercesImpl:2.11.0'
 
@@ -87,6 +89,7 @@ dependencies {
 
     compile 'com.github.rjeschke:txtmark:0.13'
     compile 'org.pegdown:pegdown:1.5.0'
+    compile 'org.kohsuke:groovy-sandbox:1.10'
 
     //runtime "org.postgresql:postgresql:9.4-1201-jdbc41" 
     runtime "org.grails.plugins:asset-pipeline"

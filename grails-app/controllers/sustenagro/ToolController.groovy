@@ -1,12 +1,7 @@
 package sustenagro
 
 import com.github.slugify.Slugify
-import com.github.rjeschke.txtmark.Processor
-import dsl.DataReader
-
-//import org.pegdown.PegDownProcessor
 import rdfSlurper.DataReader
-import rdfSlurper.RDFSlurper
 import utils.Uri
 
 import static rdfSlurper.RDFSlurper.N
@@ -16,47 +11,32 @@ class ToolController {
     def dsl
 
     def index() {
-
-
         def queryLabelDescription = { query ->
             def uri = '<'+slp.toURI(query[1])+'>'
-            //println uri
+            println uri
             def result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+
             if (!result) {
                 result = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${query[1]}')", '')
-                if (!result){
-                    throw new RuntimeException('Unknown label: '+query[1])
+                if (result){
+                    uri = "<${result[0].id}>"
                 }
                 else{
-                    uri = "<${result[0].id}>"
-                    result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+                    throw new RuntimeException('Unknown label: '+query[1])
+                    //result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
                 }
             }
             return slp.query("?id ${query[0]} $uri; rdfs:label ?label. optional {?id dc:description ?description}")
         }
 
-        //println dsl.toolIndexStack
-
         dsl.toolIndexStack.each{ command ->
             if(command.request){
-                //println "command.request"
-                //println command.request
                 command.request.each{ key, query ->
-                    //println key
-                    //println query
-                    //println '\n'
                     if(key!='widgets'){
                         command.args[key] = queryLabelDescription(query)
                     }
                     else if(key=='widgets'){
                         query.each{ subKey, subQuery ->
-                            //println 'subKey: '+subKey
-                            //println 'subQuery: '+subQuery
-
-                            //println 'command.args.widgets'
-                            //println command.args
-                            //println '\n'
-                            //println command.args.widgets[subKey]['args']
                             command.args.widgets[subKey]['args']['data'] = queryLabelDescription(subQuery)
                         }
                     }
@@ -64,7 +44,7 @@ class ToolController {
             }
         }
 
-        dsl.toolIndexStack.each{ command ->
+        /*dsl.toolIndexStack.each{ command ->
             if(command.args.widgets) {
                 command.args.widgets.each { key, query ->
                     println '\nKey:'
@@ -74,7 +54,7 @@ class ToolController {
                     println ''
                 }
             }
-        }
+        }*/
 
         //println Processor.process("This is ***TXTMARK***");
         //String html = new Markdown4jProcessor().process("This is a **bold** text");
@@ -93,12 +73,12 @@ class ToolController {
 
     def createProductionUnit() {
 
-        def production_unit_id = new Slugify().slugify(params['production_unit_name'])
+        def production_unit_id = new Slugify().slugify(params['productionunit_name'])
 
         slp.addNode(
             N(':'+production_unit_id,
-            'rdf:type': slp.v(params['production_unit_type']),
-            'rdfs:label': params['production_unit_name'],
+            'rdf:type': slp.v(params['productionunit_types']),
+            'rdfs:label': params['productionunit_name'],
             //'dbp:Microregion': slp.v(params['production_unit_microregion']),
             //'sa:culture': slp.v(params['production_unit_culture']),
             //':AgriculturalEfficiency': slp.v(params['production_unit_technology'])
@@ -181,7 +161,7 @@ class ToolController {
             }
         }
 
-        String name = slp.":$params.id".'$rdfs:label'
+        def name = slp.":$params.id".'$rdfs:label'
 
         def values = [:]
         def report
@@ -194,11 +174,15 @@ class ToolController {
                 values[it.cls] = it.value
             }
 
+            //println 'Evaluation'
+            //println slp.toURI(':'+params['evaluation'])
+
             def data = new DataReader(slp, slp.toURI(':'+params['evaluation']))
 
             dsl.data = data
             dsl.program()
             report = dsl.report
+
         }
 
         render(view: 'assessment',
