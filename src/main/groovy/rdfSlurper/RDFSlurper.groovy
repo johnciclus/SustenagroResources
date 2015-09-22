@@ -297,9 +297,11 @@ class RDFSlurper {
     }
 
     def removeAll(){
-         g.E.each{
+        g.E.each{
             g.removeEdge(it)
+            g.commit()
         }
+
     }
 
 //    def sparql(String q) {
@@ -317,7 +319,6 @@ class RDFSlurper {
 //        }
 //        ret
 //    }
-
 
     def query1(String q) {
         def ret = []
