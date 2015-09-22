@@ -9,6 +9,7 @@ import org.semanticweb.owlapi.util.AutoIRIMapper
 
 class AdminController {
     def dsl
+    def slp
 
     def index(){
 
@@ -61,11 +62,20 @@ class AdminController {
     def ontology(){
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager()
         OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
-        def format = manager.getOntologyFormat(ontology)
-        println(" format: " + format)
 
         File file = new File("ontology/SustenAgroRDFTMP.rdf")
         manager.saveOntology(ontology, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
+
+        println slp.g.class
+
+        //slp.removeAll()
+
+        slp.g.loadRDF(new FileInputStream(file), 'http://biomac.icmc.usp.br/sustenagro#', 'rdf-xml', null)
+
+        slp.g.commit()
+
+        def format = manager.getOntologyFormat(ontology)
+        println(" format: " + format)
 
         //File localFolder = new File("TestingOntology")
         //manager.addIRIMapper(new AutoIRIMapper(localFolder, true))
