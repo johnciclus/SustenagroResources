@@ -11,10 +11,11 @@ class AdminController {
     def dsl
     def slp
 
+
     def index(){
 
         render(view: 'index', model: [code: new File('dsl.groovy').text,
-                                      ontology: new File('ontology/SustenAgroOntology.owl').text])
+                                      ontology: new File('ontology/SustenAgroOntology.man').text])
     }
 
     def dsl() {
@@ -63,19 +64,22 @@ class AdminController {
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager()
         OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
 
+        OutputStream out = new ByteArrayOutputStream();
+        manager.saveOntology(ontology, new RDFXMLDocumentFormat(), out)
+
         File file = new File("ontology/SustenAgroRDFTMP.rdf")
         manager.saveOntology(ontology, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
 
-        println slp.g.class
 
-        //slp.removeAll()
+        slp.removeAll()
 
-        slp.g.loadRDF(new FileInputStream(file), 'http://biomac.icmc.usp.br/sustenagro#', 'rdf-xml', null)
+        println 'Read Ontology'
+
+        slp.g.loadRDF(new ByteArrayInputStream(out.toByteArray()), 'http://bio.icmc.usp.br/sustenagro#', 'rdf-xml', null)
+
+
 
         slp.g.commit()
-
-        def format = manager.getOntologyFormat(ontology)
-        println(" format: " + format)
 
         //File localFolder = new File("TestingOntology")
         //manager.addIRIMapper(new AutoIRIMapper(localFolder, true))

@@ -7,16 +7,22 @@ import org.apache.jena.query.Syntax
 import org.apache.jena.rdf.model.RDFNode
 import org.apache.jena.sparql.engine.http.QueryEngineHTTP
 import com.tinkerpop.blueprints.Vertex
+import com.tinkerpop.blueprints.Edge
 import com.tinkerpop.blueprints.impls.sail.SailGraph
 import com.tinkerpop.blueprints.impls.sail.SailTokens
 import com.tinkerpop.blueprints.impls.sail.impls.MemoryStoreSailGraph
 import com.tinkerpop.blueprints.impls.sail.impls.SparqlRepositorySailGraph
 import com.tinkerpop.gremlin.groovy.Gremlin
+import groovyx.net.http.AsyncHTTPBuilder
+import groovyx.net.http.RESTClient
+import groovyx.net.http.ContentType.*
 
 import org.apache.jena.query.Query
 import org.apache.jena.query.QueryExecution
 import groovy1.sparql.Sparql
 import org.apache.jena.query.ResultSet
+import org.apache.log4j.Logger
+
 
 /*
 new MarkupBuilder().root {
@@ -260,7 +266,11 @@ class RDFSlurper {
     }
 
     SailGraph g
+    AsyncHTTPBuilder http
+    RESTClient rest
+
     String lang = 'en'
+    //Logger log = Logger.getLogger(RDFSlurper.class);
 
     private Map<String, String> _prefixes = [:]
     private Sparql2 sparql2
@@ -281,7 +291,10 @@ class RDFSlurper {
         //g = new MemoryStoreSailGraph()
         //String url = 'http://bio.icmc.usp.br:9999/bigdata/namespace/sustenagro/sparql'
         //"http://localhost:8000/sparql/", "http://localhost:8000/update/")
+
         g = new SparqlRepositorySailGraph(url, url)
+        http = new AsyncHTTPBuilder( uri: 'http://java.icmc.usp.br:9999/', contentType : "application/xml" )
+        rest = new RESTClient( 'http://java.icmc.usp.br:9999/' )
 
         addDefaultNamespaces()
         addNamespace('','http://bio.icmc.usp.br/sustenagro#')
@@ -292,16 +305,26 @@ class RDFSlurper {
         // SPARQL 1.0 or 1.1 endpoint
         sparql2 = new Sparql2(endpoint: url)
 
+        //g2 = new BigdataGraphClient(url)
+
         //removeAll()
         //g.loadRDF(new FileInputStream(file), 'http://biomac.icmc.usp.br/sustenagro#', 'rdf-xml', null)
     }
 
     def removeAll(){
-        g.E.each{
-            g.removeEdge(it)
-            g.commit()
+        def file = new File('namespace.xml')
+        def resp
+        resp = rest.delete(path: "/bigdata/namespace/kb")
+        if(resp.status == 200 ){
+            resp = http.post(
+                path: "/bigdata/namespace",
+                body: file.getText(),
+                headers : ['Content-Type': 'application/xml']
+            )
         }
-
+        while ( ! resp.done  ) Thread.sleep 500
+        println this.getPrefixes()
+        return resp
     }
 
 //    def sparql(String q) {
