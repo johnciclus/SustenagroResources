@@ -4,21 +4,21 @@ import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.model.*
 import org.semanticweb.owlapi.io.StringDocumentSource
 import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat
-import org.semanticweb.owlapi.io.*
-import org.semanticweb.owlapi.util.AutoIRIMapper
 
 class AdminController {
+
+
     def dsl
     def slp
 
     def index(){
-
-        render(view: 'index', model: [code: new File('dsl.groovy').text,
-                                      ontology: new File('ontology/SustenAgroOntology.owl').text])
+        render(view: 'index', model: [code: new File('dsl/dsl.groovy').text,
+                                      ontology: new File('ontology/SustenAgroOntology.man').text])
     }
 
     def dsl() {
-        def file = new File('dsl.groovy')
+
+        def file = new File('dsl/dsl.groovy')
         file.write(params['code'])
 
         try{
@@ -63,19 +63,19 @@ class AdminController {
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager()
         OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
 
+        OutputStream out = new ByteArrayOutputStream();
+        manager.saveOntology(ontology, new RDFXMLDocumentFormat(), out)
+
         File file = new File("ontology/SustenAgroRDFTMP.rdf")
+        println file.toURI()
         manager.saveOntology(ontology, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
 
-        println slp.g.class
 
-        //slp.removeAll()
+        slp.removeAll()
 
-        slp.g.loadRDF(new FileInputStream(file), 'http://biomac.icmc.usp.br/sustenagro#', 'rdf-xml', null)
+        slp.g.loadRDF(new ByteArrayInputStream(out.toByteArray()), 'http://bio.icmc.usp.br/sustenagro#', 'rdf-xml', null)
 
         slp.g.commit()
-
-        def format = manager.getOntologyFormat(ontology)
-        println(" format: " + format)
 
         //File localFolder = new File("TestingOntology")
         //manager.addIRIMapper(new AutoIRIMapper(localFolder, true))
@@ -85,8 +85,8 @@ class AdminController {
     }
 
     def dslReset() {
-        def file = new File('dsl.groovy')
-        file.write(new File('dsl-bk.groovy').text)
+        def file = new File('dsl/dsl.groovy')
+        file.write(new File('dsl/dsl-bk.groovy').text)
 
         try{
             dsl.reLoad()

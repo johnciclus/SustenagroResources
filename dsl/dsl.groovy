@@ -85,7 +85,27 @@ prog {
     show 'Indice de Segurança: ' + environmentAvg
 
     // Matrix de sustentabilidade
-    matrix([x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,3], recomendations: [ [1, 1, "Recomendation 1"], [1, 2, "Recomendation 2"], [1, 3, "Recomendation 3"], [1, 4, "Recomendation 4"], [2, 1, "Recomendation 5"], [2, 2, "Recomendation 6"], [2, 3, "Recomendation 7"], [2, 4, "Recomendation 8"], [3, 1, "Recomendation 9"], [3, 2, "Recomendation 10"], [3, 3, "Recomendation 11"], [3, 4, "Recomendation 12"]]])
+    matrix([
+            x: environment,
+            y: environmentAvg,
+            labelX: 'Indice de Magnitude',
+            labelY: 'Indice de Segurança',
+            rangeX: [-5,5],
+            rangeY: [-2,2],
+            quadrants: [4,3],
+            recomendations: [
+                    [1, 1, "Recomendation one"],
+                    [1, 2, "Recomendation two"],
+                    [1, 3, "Recomendation three"],
+                    [1, 4, "Recomendation four"],
+                    [2, 1, "Recomendation five"],
+                    [2, 2, "Recomendation six"],
+                    [2, 3, "Recomendation seven"],
+                    [2, 4, "Recomendation eigth"],
+                    [3, 1, "Recomendation nine"],
+                    [3, 2, "Recomendation ten"],
+                    [3, 3, "Recomendation eleven"],
+                    [3, 4, "Recomendation twelve"]]])
     /*
         matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], [ 
         [0, 0, 'bla bla bla'],
