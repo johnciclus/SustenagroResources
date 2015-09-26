@@ -312,7 +312,7 @@ class RDFSlurper {
     }
 
     def removeAll(){
-        def file = new File('namespace.xml')
+        def file = new File('src/main/resources/namespace.xml')
         def resp
         resp = rest.delete(path: "/bigdata/namespace/kb")
         if(resp.status == 200 ){
