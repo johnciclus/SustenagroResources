@@ -93,7 +93,6 @@ dependencies {
     compile 'org.pegdown:pegdown:1.5.0'
     compile 'org.kohsuke:groovy-sandbox:1.10'
     compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.2'
-    //runtime "org.postgresql:postgresql:9.4-1201-jdbc41"
 
     runtime "org.grails.plugins:asset-pipeline"
 

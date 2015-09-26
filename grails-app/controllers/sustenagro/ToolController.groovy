@@ -3,7 +3,7 @@ package sustenagro
 import com.github.slugify.Slugify
 import rdfSlurper.DataReader
 import utils.Uri
-
+import grails.gsp.PageRenderer
 import static rdfSlurper.RDFSlurper.N
 
 class ToolController {
@@ -171,22 +171,28 @@ class ToolController {
         def values = [:]
         def report
         dsl._cleanProgram()
+        def evaluationID = params['evaluation']
 
-        if (params['evaluation'] != null) {
+        if (evaluationID != null) {
 
             slp.select('?cls ?value')
-            .query("?id dc:isPartOf :${params['evaluation']}. ?id a ?cls. ?id :value ?value.").each{
+            .query("?id dc:isPartOf :${evaluationID}. ?id a ?cls. ?id :value ?value.").each{
                 values[it.cls] = it.value
             }
 
             //println 'Evaluation'
             //println slp.toURI(':'+params['evaluation'])
 
-            def data = new DataReader(slp, slp.toURI(':'+params['evaluation']))
+            def data = new DataReader(slp, slp.toURI(':'+evaluationID))
 
             dsl.data = data
             dsl.program()
             report = dsl.report
+
+            def page = g.render(template: 'report', model: [report: report])
+
+            def file = new File("reports/${evaluationID}.html")
+            file.write(page.toString())
 
         }
 
