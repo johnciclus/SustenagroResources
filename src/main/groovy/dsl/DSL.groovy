@@ -190,6 +190,26 @@ class DSL {
     def propertyMissing(String str) {
         props[str]
     }
+
+    def sum(ArrayList list){
+        float val = 0
+        def num
+        list.each{
+            num = (it.getClass() == Boolean ? (it ? 1 : -1) : it)
+            val += num
+        }
+        val
+    }
+
+    def average(ArrayList list){
+        float val = 0
+        def num
+        list.each{
+            num = (it.getClass() == Boolean ? (it ? 1 : -1) : it)
+            val += num
+        }
+        val/list.size()
+    }
 }
 
 

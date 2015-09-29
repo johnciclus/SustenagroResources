@@ -150,16 +150,16 @@ class ToolController {
         def economic_indicators = indicators(':EconomicIndicator')
         def social_indicators = indicators(':SocialIndicator')
 
-        println environmental_indicators
-        println economic_indicators
-        println social_indicators
+        //println environmental_indicators
+        //println economic_indicators
+        //println social_indicators
 
         categ(environmental_indicators)
         categ(economic_indicators)
         categ(social_indicators)
 
         categorical.each{ k, v ->
-            println k
+            //println k
             slp.query("?id a <$k>; rdfs:label ?title.").each{
                 //it.id = slp.fromURI(it.id)
                 v.push(it)

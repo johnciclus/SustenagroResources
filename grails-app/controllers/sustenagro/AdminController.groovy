@@ -67,7 +67,7 @@ class AdminController {
         manager.saveOntology(ontology, new RDFXMLDocumentFormat(), out)
 
         File file = new File("ontology/SustenAgroRDFTMP.rdf")
-        println file.toURI()
+
         manager.saveOntology(ontology, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
 
 

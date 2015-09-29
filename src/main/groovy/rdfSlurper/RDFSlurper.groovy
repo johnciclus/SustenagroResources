@@ -323,7 +323,7 @@ class RDFSlurper {
             )
         }
         while ( ! resp.done  ) Thread.sleep 500
-        println this.getPrefixes()
+        this.getPrefixes()
         return resp
     }
 
@@ -385,7 +385,8 @@ class RDFSlurper {
     }
 
     def toURI(String uri){
-        if (uri==null) return null
+        if (uri==null || uri == '' ) return null
+        if (uri.contains(' ')) return null
         if (uri.startsWith('_:')) return uri
         if (uri[0]==':') return _prefixes['']+uri.substring(1)
         if (uri.startsWith('http:')) return uri
@@ -519,20 +520,32 @@ class DataReader {
 //    }
 
     def findNode(String name){
+        def type = name
+        def cls = slp.toURI(name)
         def res
-        switch(name) {
-            case 'EnvironmentalIndicator':
-                /*try{
+        if(cls){
+            res = slp.select('?c')
+                    .query("<$cls> rdfs:subClassOf ?c.")
+            if(res[0])
+                type = res[0].c
+        }
 
-                    res = slp.select('?map')
-                            .query("<$uri> :appliedTo ?u." +
-                            "?u <http://dbpedia.org/ontology/Microregion> ?m." +
-                            "?m <http://dbpedia.org/property/pt/mapa> ?map."
+        switch(type) {
+            case 'http://bio.icmc.usp.br/sustenagro#Indicator':
+                try{
+                    cls = slp.toURI(name)
+                    res = slp.select('?v')
+                            .query("<$uri> dc:hasPart ?x." +
+                            "?x a ?i." +
+                            "?i rdfs:subClassOf ?a." +
+                            "?a rdfs:subClassOf <$cls>." +
+                            "?x :value ?ind." +
+                            "?ind :dataValue ?v."
                     )
                 }
-                */
-                res = []
-                println 'EnvironmentalIndicator'
+                catch (e){
+                    res = []
+                }
                 break
             case 'Microregion':
                 try {
@@ -560,7 +573,7 @@ class DataReader {
                         "?x :value ?ind." +
                         "?ind :dataValue ?v.")
                 if (res.empty) {
-                    def cls = slp.toURI(name)
+                    cls = slp.toURI(name)
                     try {
                         res = slp
                                 .select('?v')

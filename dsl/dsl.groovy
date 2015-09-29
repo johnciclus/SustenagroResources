@@ -46,20 +46,30 @@ data 'evaluation'
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
-    //evaluation.'EnvironmentalIndicator'
+    environment = sum(evaluation.'EnvironmentalIndicator')
+    social      = sum(evaluation.'SocialIndicator')
+    economic    = sum(evaluation.'EconomicIndicator')
 
-    environment =   (evaluation.'BiologicalPestControl' ? 1:-1) +
-            (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
-            (evaluation.'StandardAerialSpraying' ? 1:-1) +
-            evaluation.'VinasseAndEthanolRelation'
+    sustainability = (environment+social+economic)/3
 
-    environmentAvg= environment/4
+    environmentAvg  = average(evaluation.'EnvironmentalIndicator')
+    socialAvg       = average(evaluation.'SocialIndicator')
+    economicAvg     = average(evaluation.'EconomicIndicator')
 
-    economic =      2.0 * evaluation.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
-            evaluation.'Eficiência energética das caldeiras para cogeração de energia'
+    sustainabilityAvg = (environmentAvg+socialAvg+economicAvg)/3
 
-    social =        3 * evaluation.EnergyEfficiencyOfBoilersForCogeneration + 7 *
-            evaluation.OperationalEfficiencyPlant
+    //environment =   (evaluation.'BiologicalPestControl' ? 1:-1) +
+    //        (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
+    //        (evaluation.'StandardAerialSpraying' ? 1:-1) +
+    //        evaluation.'VinasseAndEthanolRelation'
+
+
+
+    //economic =      2.0 * evaluation.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
+    //        evaluation.'Eficiência energética das caldeiras para cogeração de energia'
+
+    //social =        3 * evaluation.EnergyEfficiencyOfBoilersForCogeneration + 7 *
+    //        evaluation.OperationalEfficiencyPlant
 
     // THE REPORT
 
@@ -81,31 +91,31 @@ prog {
 
     show 'Matrix de avaliação'
 
-    show 'Indice de Magnitude: ' + environment
-    show 'Indice de Segurança: ' + environmentAvg
+    show 'Indice de Magnitude: ' + sustainability
+    show 'Indice de Segurança: ' + sustainabilityAvg
 
     // Matrix de sustentabilidade
     matrix([
-            x: environment,
+            x: sustainability,
             y: environmentAvg,
             labelX: 'Indice de Magnitude',
             labelY: 'Indice de Segurança',
-            rangeX: [-5,5],
+            rangeX: [-4,4],
             rangeY: [-2,2],
             quadrants: [4,3],
             recomendations: [
-                    [1, 1, "Recomendation one"],
-                    [1, 2, "Recomendation two"],
-                    [1, 3, "Recomendation three"],
-                    [1, 4, "Recomendation four"],
-                    [2, 1, "Recomendation five"],
-                    [2, 2, "Recomendation six"],
-                    [2, 3, "Recomendation seven"],
-                    [2, 4, "Recomendation eigth"],
-                    [3, 1, "Recomendation nine"],
-                    [3, 2, "Recomendation ten"],
-                    [3, 3, "Recomendation eleven"],
-                    [3, 4, "Recomendation twelve"]]])
+                    [1, 1, "Cenário desfavorável, Muito baixo desempenho dos indicadores"],
+                    [1, 2, "Cenário desfavorável, Baixo desempenho dos indicadores"],
+                    [1, 3, "Cenário desfavorável, Médio desempenho dos indicadores"],
+                    [1, 4, "Cenário desfavorável, Alto desempenho dos indicadores"],
+                    [2, 1, "Cenário propício, Muito baixo desempenho dos indicadores"],
+                    [2, 2, "Cenário propício, Baixo desempenho dos indicadores"],
+                    [2, 3, "Cenário propício, Médio desempenho dos indicadores"],
+                    [2, 4, "Cenário propício, Alto desempenho dos indicadores"],
+                    [3, 1, "Cenário muito favorável, Muito baixo desempenho dos indicadores"],
+                    [3, 2, "Cenário muito favorável, Baixo desempenho dos indicadores"],
+                    [3, 3, "Cenário muito favorável, Médio desempenho dos indicadores"],
+                    [3, 4, "Cenário muito favorável, Alto desempenho dos indicadores"]]])
     /*
         matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], [ 
         [0, 0, 'bla bla bla'],
