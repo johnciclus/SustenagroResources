@@ -529,7 +529,7 @@ class DataReader {
             if(res[0])
                 type = res[0].c
         }
-
+        println 'Find Node: ' + type
         switch(type) {
             case 'http://bio.icmc.usp.br/sustenagro#Indicator':
                 try{
@@ -558,6 +558,7 @@ class DataReader {
                 catch (e) {
                     res = []
                 }
+
                 if (!res.empty && res.size() == 1)
                     return res[0].map
                 else

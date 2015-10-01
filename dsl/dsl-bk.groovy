@@ -1,3 +1,5 @@
+//                          Decisioner
+
 // Esta DSL descreve como o aplicativo será gerado. Ele é em inglês pois
 // facilita na hora de publicarmos os papers. Porém, o aplicativo pode ser
 // em português ou inglês. Isso vai depender da ontologia, nela teremos as
