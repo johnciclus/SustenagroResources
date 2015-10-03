@@ -1,13 +1,18 @@
 package sustenagro
 
+import org.apache.jena.query.Dataset
+import org.apache.jena.rdf.model.Model
+import org.apache.jena.rdf.model.ModelFactory
+import org.apache.jena.sparql.modify.GraphStoreBasic
+import org.apache.jena.update.UpdateAction
+
 import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.model.*
 import org.semanticweb.owlapi.io.StringDocumentSource
 import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat
 
 class AdminController {
-
-
+    
     def dsl
     def slp
 
@@ -66,16 +71,25 @@ class AdminController {
         OutputStream out = new ByteArrayOutputStream();
         manager.saveOntology(ontology, new RDFXMLDocumentFormat(), out)
 
-        File file = new File("ontology/SustenAgroRDFTMP.rdf")
+        //File file = new File("/home/dilvan/SustenAgroRDFTMP.rdf")
 
-        manager.saveOntology(ontology, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
-
+        //manager.saveOntology(ontology, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
 
         slp.removeAll()
 
-        slp.g.loadRDF(new ByteArrayInputStream(out.toByteArray()), 'http://bio.icmc.usp.br/sustenagro#', 'rdf-xml', null)
+        Model m = ModelFactory.createDefaultModel()
+        m.read(new ByteArrayInputStream(out.toByteArray()), "http://bio.icmc.usp.br/sustenagro#")
 
-        slp.g.commit()
+        GraphStoreBasic graphStore = GraphStoreFactory.create(m)
+        UpdateAction.parseExecute("DROP ALL", graphStore)
+
+
+
+
+        //error not load data properties
+        //slp.g.loadRDF(new ByteArrayInputStream(out.toByteArray()), 'http://bio.icmc.usp.br/sustenagro#', 'rdf-xml', null)
+
+        //slp.g.commit()
 
         //File localFolder = new File("TestingOntology")
         //manager.addIRIMapper(new AutoIRIMapper(localFolder, true))

@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 
-package groovy1.sparql
+package groovySparql
 
 import groovy.util.logging.*
-
 
 import org.apache.http.auth.AuthScope
 import org.apache.http.auth.UsernamePasswordCredentials
@@ -42,11 +41,8 @@ import org.apache.jena.update.UpdateProcessor
 import org.apache.jena.update.UpdateRequest
 import org.apache.jena.rdf.model.Model
 import org.apache.jena.rdf.model.ModelFactory
-import org.apache.jena.rdf.model.RDFNode
 import org.apache.jena.shared.JenaException
-
-//import org.apache.jena.propertytable.graph.GraphCSV
-
+import org.apache.jena.rdf.model.RDFNode
 
 
 /**
@@ -373,9 +369,9 @@ class Sparql {
         try {
             HttpContext httpContext = new BasicHttpContext()
             CredentialsProvider provider = new BasicCredentialsProvider()
-            provider.setCredentials(new AuthScope(AuthScope.ANY_HOST,
-                    AuthScope.ANY_PORT), new UsernamePasswordCredentials(user, pass))
-            httpContext.setAttribute(ClientContext.CREDS_PROVIDER, provider)
+            //provider.setCredentials(new AuthScope(AuthScope.ANY_HOST,
+            //        AuthScope.ANY_PORT), new UsernamePasswordCredentials(user, pass))
+            //httpContext.setAttribute(ClientContext.CREDS_PROVIDER, provider)
 
             UpdateRequest request = UpdateFactory.create()
 
@@ -392,7 +388,6 @@ class Sparql {
             log.error "Error executing update with ${query}", e
             throw new SparqlException(e)
         }
-
     }
 
     /**
@@ -423,4 +418,61 @@ class Sparql {
         return qe.execAsk()
     }
 
+}
+
+class Sparql2 extends Sparql {
+
+    def query(String sparql, String lang) {
+        Query query = QueryFactory.create(sparql, Syntax.syntaxARQ)
+        QueryExecution qe = null
+
+        /**
+         * Some explanation here - ARQ can provide a QE based on a pure
+         * SPARQL service endpoint, or a Jena model, plus you can still
+         * do remote queries with the model using the in-SPARQL "service"
+         * keyword.
+         */
+        if (model) {
+            qe = QueryExecutionFactory.create(query, model)
+        } else {
+            if (!endpoint) {
+                return
+            }
+            qe = QueryExecutionFactory.sparqlService(endpoint, query)
+            if (config.timeout) {
+                ((QueryEngineHTTP) qe).addParam(timeoutParam, config.timeout as String)
+            }
+            if (user) {
+                ((QueryEngineHTTP) qe).setBasicAuthentication(user, pass?.toCharArray())
+            }
+        }
+
+        def res = []
+        try {
+            for (ResultSet rs = qe.execSelect(); rs.hasNext();) {
+                QuerySolution sol = rs.nextSolution()
+
+                Map<String, Object> row = [:]
+                boolean add = true
+                for (Iterator<String> varNames = sol.varNames(); varNames.hasNext();) {
+                    String varName = varNames.next()
+                    RDFNode varNode = sol.get(varName)
+                    row.put(varName, (varNode.isLiteral() ? varNode.asLiteral().value : varNode.toString()))
+                    if (lang!='' &&
+                            varNode.isLiteral() &&
+                            varNode.asLiteral().language!=null &&
+                            varNode.asLiteral().language.size()>1 &&
+                            varNode.asLiteral().language!=lang) add= false
+                }
+                //println 'row: '+row
+                if (add)
+                    res.push(row)
+                //closure.delegate = row
+                //closure.call()
+            }
+        } finally {
+            qe.close()
+        }
+        return res
+    }
 }
