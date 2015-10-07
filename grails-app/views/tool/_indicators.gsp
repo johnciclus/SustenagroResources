@@ -24,7 +24,7 @@
                             </g:each>
                         </g:if>
                         <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
-                            <input type="text" class="spin-button" name="${indicator.id}">
+                            <input type="text" class="form-control" name="${indicator.id}" value="${values[indicator.id]}">
                         </g:elseif>
                     </div>
                     <div class="col-sm-1">
@@ -57,7 +57,7 @@
                             </g:each>
                         </g:if>
                         <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
-                            <input type="text" class="spin-button" name="${indicator.id}">
+                            <input type="text" class="form-control" name="${indicator.id}" value="${values[indicator.id]}">
                         </g:elseif>
                     </div>
                     <div class="col-sm-1">
@@ -91,7 +91,7 @@
                             </g:each>
                         </g:if>
                         <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
-                            <input type="text" class="spin-button" name="${indicator.id}" >
+                            <input type="text" class="form-control" name="${indicator.id}" value="${values[indicator.id]}">
                         </g:elseif>
                     </div>
                     <div class="col-sm-1">

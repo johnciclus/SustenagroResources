@@ -100,5 +100,5 @@ function Matrix(container, parameters){
 
     var rqx = Math.floor(qds[0]*rx);
     var rqy = Math.floor(qds[1]*ry);
-    return {'qx': rqx, 'qy': rqy, 'recomendation': recomendations[(rqx*qds[0])+rqy][2]}
+    return {'qx': (rqx+1), 'qy': (rqy+1), 'recomendation': recomendations[((rqx-1)*qds[0])+rqy+1][2]}
 }

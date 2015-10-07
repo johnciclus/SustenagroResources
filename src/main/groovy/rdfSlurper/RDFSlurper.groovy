@@ -1,29 +1,20 @@
 package rdfSlurper
 
-import org.apache.jena.query.QueryExecutionFactory
-import org.apache.jena.query.QueryFactory
-import org.apache.jena.query.QuerySolution
-import org.apache.jena.query.Syntax
-import org.apache.jena.rdf.model.RDFNode
-import org.apache.jena.sparql.engine.http.QueryEngineHTTP
 import com.tinkerpop.blueprints.Vertex
-import com.tinkerpop.blueprints.Edge
 import com.tinkerpop.blueprints.impls.sail.SailGraph
 import com.tinkerpop.blueprints.impls.sail.SailTokens
 import com.tinkerpop.blueprints.impls.sail.impls.MemoryStoreSailGraph
 import com.tinkerpop.blueprints.impls.sail.impls.SparqlRepositorySailGraph
 import com.tinkerpop.gremlin.groovy.Gremlin
-import groovyx.net.http.AsyncHTTPBuilder
-import groovyx.net.http.RESTClient
-import groovyx.net.http.ContentType.*
+import groovySparql.Sparql2
 
-import org.apache.jena.query.Query
-import org.apache.jena.query.QueryExecution
-import groovy1.sparql.Sparql
-import org.apache.jena.query.ResultSet
-import org.apache.log4j.Logger
-
-
+import org.apache.jena.update.UpdateExecutionFactory
+import org.apache.jena.update.UpdateFactory
+import org.apache.jena.update.UpdateProcessor
+import org.apache.jena.update.UpdateRequest
+import org.apache.jena.rdf.model.Model
+import org.apache.jena.rdf.model.ModelFactory
+import org.apache.jena.sparql.modify.request.UpdateLoad
 /*
 new MarkupBuilder().root {
    a( a1:'one' ) {
@@ -39,64 +30,6 @@ Will print the following to System.out:
    </a>
  </root>
  */
-
-class Sparql2 extends Sparql {
-
-    def query(String sparql, String lang) {
-        Query query = QueryFactory.create(sparql, Syntax.syntaxARQ)
-        QueryExecution qe = null
-
-        /**
-         * Some explanation here - ARQ can provide a QE based on a pure
-         * SPARQL service endpoint, or a Jena model, plus you can still
-         * do remote queries with the model using the in-SPARQL "service"
-         * keyword.
-         */
-        if (model) {
-            qe = QueryExecutionFactory.create(query, model)
-        } else {
-            if (!endpoint) {
-                return
-            }
-            qe = QueryExecutionFactory.sparqlService(endpoint, query)
-            if (config.timeout) {
-                ((QueryEngineHTTP) qe).addParam(timeoutParam, config.timeout as String)
-            }
-            if (user) {
-                ((QueryEngineHTTP) qe).setBasicAuthentication(user, pass?.toCharArray())
-            }
-        }
-
-        def res = []
-        try {
-
-            for (ResultSet rs = qe.execSelect(); rs.hasNext();) {
-                QuerySolution sol = rs.nextSolution()
-
-                Map<String, Object> row = [:]
-                boolean add = true
-                for (Iterator<String> varNames = sol.varNames(); varNames.hasNext();) {
-                    String varName = varNames.next()
-                    RDFNode varNode = sol.get(varName)
-                    row.put(varName, (varNode.isLiteral() ? varNode.asLiteral().value : varNode.toString()))
-                    if (lang!='' &&
-                            varNode.isLiteral() &&
-                            varNode.asLiteral().language!=null &&
-                            varNode.asLiteral().language.size()>1 &&
-                            varNode.asLiteral().language!=lang) add= false
-                }
-                //println 'row: '+row
-                if (add)
-                    res.push(row)
-                //closure.delegate = row
-                //closure.call()
-            }
-        } finally {
-            qe.close()
-        }
-        return res
-    }
-}
 
 abstract class GGraph {
     RDFSlurper slurp
@@ -266,8 +199,6 @@ class RDFSlurper {
     }
 
     SailGraph g
-    AsyncHTTPBuilder http
-    RESTClient rest
 
     String lang = 'en'
     //Logger log = Logger.getLogger(RDFSlurper.class);
@@ -293,8 +224,6 @@ class RDFSlurper {
         //"http://localhost:8000/sparql/", "http://localhost:8000/update/")
 
         g = new SparqlRepositorySailGraph(url, url)
-        http = new AsyncHTTPBuilder( uri: 'http://java.icmc.usp.br:9999/', contentType : "application/xml" )
-        rest = new RESTClient( 'http://java.icmc.usp.br:9999/' )
 
         addDefaultNamespaces()
         addNamespace('','http://bio.icmc.usp.br/sustenagro#')
@@ -311,20 +240,8 @@ class RDFSlurper {
         //g.loadRDF(new FileInputStream(file), 'http://biomac.icmc.usp.br/sustenagro#', 'rdf-xml', null)
     }
 
-    def removeAll(){
-        def file = new File('src/main/resources/namespace.xml')
-        def resp
-        resp = rest.delete(path: "/bigdata/namespace/kb")
-        if(resp.status == 200 ){
-            resp = http.post(
-                path: "/bigdata/namespace",
-                body: file.getText(),
-                headers : ['Content-Type': 'application/xml']
-            )
-        }
-        while ( ! resp.done  ) Thread.sleep 500
-        println this.getPrefixes()
-        return resp
+    def removeAll(String data){
+        delete("?s ?p ?o")
     }
 
 //    def sparql(String q) {
@@ -343,7 +260,7 @@ class RDFSlurper {
 //        ret
 //    }
 
-    def query1(String q) {
+/*    def query1(String q) {
         def ret = []
         def f = prefixes + '\n select * where {' + q +'}'
         g.executeSparql(f).each{
@@ -357,7 +274,7 @@ class RDFSlurper {
         }
         ret
     }
-
+*/
     def select(str){
         select = str
         this
@@ -367,6 +284,30 @@ class RDFSlurper {
         def f = "$prefixes \n select $select where {$q}"
         select = '*'
         sparql2.query(f, lang)
+    }
+
+    def delete(String q){
+        def f = "$prefixes \n DELETE where {$q}"
+        sparql2.update(f)
+    }
+
+    def update(String q){
+        def f = "$prefixes \n $q"
+        sparql2.update(f)
+    }
+
+    def loadRDF(InputStream is){
+        Model m = ModelFactory.createDefaultModel()
+
+        m.read(is, "http://bio.icmc.usp.br/sustenagro#")
+
+        UpdateRequest request = UpdateFactory.create()
+
+        request.add(new UpdateLoad("http://java.icmc.usp.br/sustenagro/SustenAgroOntology.rdf", "http://bio.icmc.usp.br/sustenagro#"))
+
+        UpdateProcessor processor = UpdateExecutionFactory.createRemoteForm(request, 'http://java.icmc.usp.br:9999/bigdata/namespace/kb/sparql')
+
+        processor.execute()
     }
 
     def addDefaultNamespaces() {
@@ -385,7 +326,8 @@ class RDFSlurper {
     }
 
     def toURI(String uri){
-        if (uri==null) return null
+        if (uri==null || uri == '' ) return null
+        if (uri.contains(' ')) return null
         if (uri.startsWith('_:')) return uri
         if (uri[0]==':') return _prefixes['']+uri.substring(1)
         if (uri.startsWith('http:')) return uri
@@ -519,20 +461,32 @@ class DataReader {
 //    }
 
     def findNode(String name){
+        def type = name
+        def cls = slp.toURI(name)
         def res
-        switch(name) {
-            case 'EnvironmentalIndicator':
-                /*try{
-
-                    res = slp.select('?map')
-                            .query("<$uri> :appliedTo ?u." +
-                            "?u <http://dbpedia.org/ontology/Microregion> ?m." +
-                            "?m <http://dbpedia.org/property/pt/mapa> ?map."
+        if(cls){
+            res = slp.select('?c')
+                    .query("<$cls> rdfs:subClassOf ?c.")
+            if(res[0])
+                type = res[0].c
+        }
+        println 'Find Node: ' + type
+        switch(type) {
+            case 'http://bio.icmc.usp.br/sustenagro#Indicator':
+                try{
+                    cls = slp.toURI(name)
+                    res = slp.select('?v')
+                            .query("<$uri> dc:hasPart ?x." +
+                            "?x a ?i." +
+                            "?i rdfs:subClassOf ?a." +
+                            "?a rdfs:subClassOf <$cls>." +
+                            "?x :value ?ind." +
+                            "?ind :dataValue ?v."
                     )
                 }
-                */
-                res = []
-                println 'EnvironmentalIndicator'
+                catch (e){
+                    res = []
+                }
                 break
             case 'Microregion':
                 try {
@@ -545,6 +499,7 @@ class DataReader {
                 catch (e) {
                     res = []
                 }
+
                 if (!res.empty && res.size() == 1)
                     return res[0].map
                 else
@@ -560,7 +515,7 @@ class DataReader {
                         "?x :value ?ind." +
                         "?ind :dataValue ?v.")
                 if (res.empty) {
-                    def cls = slp.toURI(name)
+                    cls = slp.toURI(name)
                     try {
                         res = slp
                                 .select('?v')

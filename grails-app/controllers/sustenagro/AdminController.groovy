@@ -7,7 +7,6 @@ import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat
 
 class AdminController {
 
-
     def dsl
     def slp
 
@@ -63,19 +62,21 @@ class AdminController {
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager()
         OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
 
-        OutputStream out = new ByteArrayOutputStream();
+        OutputStream out = new ByteArrayOutputStream()
         manager.saveOntology(ontology, new RDFXMLDocumentFormat(), out)
 
-        File file = new File("ontology/SustenAgroRDFTMP.rdf")
-        println file.toURI()
-        manager.saveOntology(ontology, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
+        File file = new File("/home/dilvan/javabkp/var/www/sustenagro/SustenAgroRDF.rdf")
 
+        manager.saveOntology(ontology, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
 
         slp.removeAll()
 
-        slp.g.loadRDF(new ByteArrayInputStream(out.toByteArray()), 'http://bio.icmc.usp.br/sustenagro#', 'rdf-xml', null)
+        slp.loadRDF(new ByteArrayInputStream(out.toByteArray()))
 
-        slp.g.commit()
+        //error not load data properties
+        //slp.g.loadRDF(new ByteArrayInputStream(out.toByteArray()), 'http://bio.icmc.usp.br/sustenagro#', 'rdf-xml', null)
+
+        //slp.g.commit()
 
         //File localFolder = new File("TestingOntology")
         //manager.addIRIMapper(new AutoIRIMapper(localFolder, true))

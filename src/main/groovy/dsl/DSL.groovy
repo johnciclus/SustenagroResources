@@ -190,7 +190,44 @@ class DSL {
     def propertyMissing(String str) {
         props[str]
     }
+
+    def sum(obj){
+        float val = 0
+        float num
+        println obj
+
+        if(obj instanceof ArrayList) {
+            obj.each {
+                num = (it.getClass() == Boolean ? (it ? 1 : -1) : it)
+                val += (float) num
+            }
+            return val
+        }
+        else if(obj instanceof Boolean){
+            return (obj ? 1.0 : -1.0)
+        }
+        else if(obj instanceof Double || obj instanceof Integer){
+            return obj
+        }
+    }
+
+    def average(obj){
+        float val = 0
+        float num
+        println obj
+
+        if(obj instanceof ArrayList){
+            obj.each{
+                num = (it.getClass() == Boolean ? (it ? 1 : -1) : it)
+                val += (float) num
+            }
+            return val/obj.size()
+        }
+        else if(obj instanceof Boolean){
+            return (obj ? 1.0 : -1.0)
+        }
+        else if(obj instanceof Double || obj instanceof Integer){
+            return obj
+        }
+    }
 }
-
-
-
