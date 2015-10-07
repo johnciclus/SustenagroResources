@@ -180,6 +180,8 @@ class ToolController {
                 values[it.cls] = it.value
             }
 
+            println values
+
             //println 'Evaluation'
             //println slp.toURI(':'+params['evaluation'])
 
@@ -193,7 +195,6 @@ class ToolController {
 
             def file = new File("reports/${evaluationID}.html")
             file.write(page.toString())
-
         }
 
         render(view: 'assessment',
@@ -223,18 +224,27 @@ class ToolController {
         def indicators = []
 
         dsl.dimensions.each{
-            indicators += slp.query("?a rdfs:subClassOf $it. ?id rdfs:subClassOf ?a.")
+            indicators += slp.select("?id ?class")
+                             .query("?a rdfs:subClassOf $it. ?id rdfs:subClassOf ?a. ?id rdfs:subClassOf ?y. ?y owl:onClass ?class.")
         }
 
+        def value = ''
         indicators.each{
             if(params[it.id]){
-                //println "indicator: $it.id, value: " + slp.toURI2(params[name])
+                println "indicator: $it.id, value: " + params[it.id]
+
+                if(it.class == "http://bio.icmc.usp.br/sustenagro#Real"){
+                    value = params[it.id]
+                }
+                else{
+                    value = slp.v(params[it.id])
+                }
 
                 slp.addNode(
-                        N(it.id+'-'+evaluation_name,
-                            'rdf:type': slp.v(it.id),
-                            'dc:isPartOf': slp.v(':'+evaluation_name),
-                            ':value': slp.v(params[it.id]))
+                    N(it.id+'-'+evaluation_name,
+                        'rdf:type': slp.v(it.id),
+                        'dc:isPartOf': slp.v(':'+evaluation_name),
+                        ':value': value)
                 )
                 slp.g.addEdge(slp.v(':'+evaluation_name), slp.v(it.id+'-'+evaluation_name), 'http://purl.org/dc/terms/hasPart')
             }

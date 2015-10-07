@@ -7,9 +7,14 @@ import com.tinkerpop.blueprints.impls.sail.impls.MemoryStoreSailGraph
 import com.tinkerpop.blueprints.impls.sail.impls.SparqlRepositorySailGraph
 import com.tinkerpop.gremlin.groovy.Gremlin
 import groovySparql.Sparql2
-import org.apache.jena.query.Dataset
+
+import org.apache.jena.update.UpdateExecutionFactory
+import org.apache.jena.update.UpdateFactory
+import org.apache.jena.update.UpdateProcessor
+import org.apache.jena.update.UpdateRequest
 import org.apache.jena.rdf.model.Model
 import org.apache.jena.rdf.model.ModelFactory
+import org.apache.jena.sparql.modify.request.UpdateLoad
 /*
 new MarkupBuilder().root {
    a( a1:'one' ) {
@@ -237,8 +242,6 @@ class RDFSlurper {
 
     def removeAll(String data){
         delete("?s ?p ?o")
-
-
     }
 
 //    def sparql(String q) {
@@ -291,6 +294,20 @@ class RDFSlurper {
     def update(String q){
         def f = "$prefixes \n $q"
         sparql2.update(f)
+    }
+
+    def loadRDF(InputStream is){
+        Model m = ModelFactory.createDefaultModel()
+
+        m.read(is, "http://bio.icmc.usp.br/sustenagro#")
+
+        UpdateRequest request = UpdateFactory.create()
+
+        request.add(new UpdateLoad("http://java.icmc.usp.br/sustenagro/SustenAgroOntology.rdf", "http://bio.icmc.usp.br/sustenagro#"))
+
+        UpdateProcessor processor = UpdateExecutionFactory.createRemoteForm(request, 'http://java.icmc.usp.br:9999/bigdata/namespace/kb/sparql')
+
+        processor.execute()
     }
 
     def addDefaultNamespaces() {

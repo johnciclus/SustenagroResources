@@ -191,26 +191,43 @@ class DSL {
         props[str]
     }
 
-    def sum(ArrayList list){
+    def sum(obj){
         float val = 0
-        def num
-        list.each{
-            num = (it.getClass() == Boolean ? (it ? 1 : -1) : it)
-            val += num
+        float num
+        println obj
+
+        if(obj instanceof ArrayList) {
+            obj.each {
+                num = (it.getClass() == Boolean ? (it ? 1 : -1) : it)
+                val += (float) num
+            }
+            return val
         }
-        val
+        else if(obj instanceof Boolean){
+            return (obj ? 1.0 : -1.0)
+        }
+        else if(obj instanceof Double || obj instanceof Integer){
+            return obj
+        }
     }
 
-    def average(ArrayList list){
+    def average(obj){
         float val = 0
-        def num
-        list.each{
-            num = (it.getClass() == Boolean ? (it ? 1 : -1) : it)
-            val += num
+        float num
+        println obj
+
+        if(obj instanceof ArrayList){
+            obj.each{
+                num = (it.getClass() == Boolean ? (it ? 1 : -1) : it)
+                val += (float) num
+            }
+            return val/obj.size()
         }
-        val/list.size()
+        else if(obj instanceof Boolean){
+            return (obj ? 1.0 : -1.0)
+        }
+        else if(obj instanceof Double || obj instanceof Integer){
+            return obj
+        }
     }
 }
-
-
-

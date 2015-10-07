@@ -1,18 +1,12 @@
 package sustenagro
 
-import org.apache.jena.query.Dataset
-import org.apache.jena.rdf.model.Model
-import org.apache.jena.rdf.model.ModelFactory
-import org.apache.jena.sparql.modify.GraphStoreBasic
-import org.apache.jena.update.UpdateAction
-
 import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.model.*
 import org.semanticweb.owlapi.io.StringDocumentSource
 import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat
 
 class AdminController {
-    
+
     def dsl
     def slp
 
@@ -68,23 +62,16 @@ class AdminController {
         OWLOntologyManager manager = OWLManager.createOWLOntologyManager()
         OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
 
-        OutputStream out = new ByteArrayOutputStream();
+        OutputStream out = new ByteArrayOutputStream()
         manager.saveOntology(ontology, new RDFXMLDocumentFormat(), out)
 
-        //File file = new File("/home/dilvan/SustenAgroRDFTMP.rdf")
+        File file = new File("/home/dilvan/javabkp/var/www/sustenagro/SustenAgroRDF.rdf")
 
-        //manager.saveOntology(ontology, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
+        manager.saveOntology(ontology, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
 
         slp.removeAll()
 
-        Model m = ModelFactory.createDefaultModel()
-        m.read(new ByteArrayInputStream(out.toByteArray()), "http://bio.icmc.usp.br/sustenagro#")
-
-        GraphStoreBasic graphStore = GraphStoreFactory.create(m)
-        UpdateAction.parseExecute("DROP ALL", graphStore)
-
-
-
+        slp.loadRDF(new ByteArrayInputStream(out.toByteArray()))
 
         //error not load data properties
         //slp.g.loadRDF(new ByteArrayInputStream(out.toByteArray()), 'http://bio.icmc.usp.br/sustenagro#', 'rdf-xml', null)

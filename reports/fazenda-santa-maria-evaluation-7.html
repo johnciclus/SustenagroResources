@@ -8,11 +8,11 @@
     
 
     
-        <p>Indice de Magnitude: 0.6666666666666666</p>
+        <p>Indice de Magnitude: 0.0</p>
     
 
     
-        <p>Indice de Segurança: 0.6666666666666666</p>
+        <p>Indice de Segurança: -0.16666666666666666</p>
     
 
     
@@ -50,7 +50,7 @@
                     recomendations.push([3, 4, "Cenário muito favorável, Alto desempenho dos indicadores"]);
                 
 
-                var result = Matrix("#graphic", {x: 0.6666666666666666, y: 1.0, label_x: "Indice de Magnitude", label_y: "Indice de Segurança", range_x: [-4, 4], range_y: [-2, 2], quadrants: [4, 3], recomendations: recomendations });
+                var result = Matrix("#graphic", {x: 0.0, y: -0.16666666666666666, label_x: "Indice de Magnitude", label_y: "Indice de Segurança", range_x: [-4, 4], range_y: [-1.5, 1.5], quadrants: [4, 3], recomendations: recomendations });
                 $("#graphic").append("<p><i>Quadrante X: </i>"+result.qx+"</p>");
                 $("#graphic").append("<p><i>Quadrante Y: </i>"+result.qy+"</p>");
                 $("#graphic").append("<p><i>Recomendation: </i>"+result.recomendation+"</p>");

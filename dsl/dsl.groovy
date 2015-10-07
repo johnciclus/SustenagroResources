@@ -99,11 +99,11 @@ prog {
     // Matrix de sustentabilidade
     matrix([
             x: sustainability,
-            y: environmentAvg,
+            y: sustainabilityAvg,
             labelX: 'Indice de Magnitude',
             labelY: 'Indice de Segurança',
             rangeX: [-4,4],
-            rangeY: [-2,2],
+            rangeY: [-1.5,1.5],
             quadrants: [4,3],
             recomendations: [
                     [1, 1, "Cenário desfavorável, Muito baixo desempenho dos indicadores"],

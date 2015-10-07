@@ -318,7 +318,7 @@
     
 
 
-    <!-- Bioelectricity destination -->
+    <!-- Destino da bioeletricidade -->
 
     <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#BioelectricityDestination">
         <rdfs:label xml:lang="en">Bioelectricity destination</rdfs:label>
@@ -1413,7 +1413,7 @@
     
 
 
-    <!-- Capacidade de moagem entre 1,0 e 2,5 milhões de toneladas/safra -->
+    <!-- Grinding capacity between 1.0 and 2.5 million tons/harvest -->
 
     <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Interval1.0-2.5Mtons">
         <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
@@ -1813,7 +1813,7 @@
     
 
 
-    <!-- Batatais Microregion -->
+    <!-- Microrregião de Batatais -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Batatais">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -2341,7 +2341,7 @@
     
 
 
-    <!-- São José dos Campos Microregion -->
+    <!-- Microrregião de São José dos Campos -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
