@@ -284,6 +284,7 @@ class RDFSlurper {
         def f = "$prefixes \n select $select where {$q}"
         select = '*'
         sparql2.query(f, lang)
+        println f
     }
 
     def delete(String q){

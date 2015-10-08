@@ -17,16 +17,18 @@ class ToolController {
             def result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
 
             if (!result) {
-                result = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${query[1]}')", '')
-                if (result){
-                    uri = "<${result[0].id}>"
+                try{
+                    result = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${query[1]}')", '')
+                    if (result){
+                        uri = "<${result[0].id}>"
+                    }
                 }
-                else{
-                    throw new RuntimeException('Unknown label: '+query[1])
-                    //result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
-                }
+                catch(RuntimeException e){
+                        println new RuntimeException('Unknown label: '+query[1])
+                }//result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+
             }
-            return slp.query("?id ${query[0]} $uri; rdfs:label ?label. optional {?id dc:description ?description}")
+            return slp.query("?id ${query[0]} $uri; rdfs:label ?label. optional {?id dc:description ?description}. FILTER ( ?id != $uri )")
         }
 
         dsl.toolIndexStack.each{ command ->
@@ -34,10 +36,12 @@ class ToolController {
                 command.request.each{ key, query ->
                     if(key!='widgets'){
                         command.args[key] = queryLabelDescription(query)
+                        //println "Key: $key, Query: $query"
                     }
                     else if(key=='widgets'){
                         query.each{ subKey, subQuery ->
                             command.args.widgets[subKey]['args']['data'] = queryLabelDescription(subQuery)
+                            //println "Key: $subKey, Query: $subQuery"
                         }
                     }
                 }
@@ -88,7 +92,7 @@ class ToolController {
             slp.g.addEdge(slp.v(':' + production_unit_id), slp.v(params['microregion']), 'dbp:Microregion')
 
         if(params['agriculturalefficiency'])
-            slp.g.addEdge(slp.v(':' + production_unit_id), slp.v(params['agriculturalefficiency']), ':AgriculturalEfficiency')
+            slp.g.addEdge(slp.v(':' + production_unit_id), slp.v(params['agriculturalefficiency']), slp.toURI(':AgriculturalEfficiency'))
 
         slp.g.commit()
         //slp.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
@@ -128,12 +132,13 @@ class ToolController {
     def assessment() {
 
         def indicators = {
-            slp.select('?id ?title ?class ?valueType')
+            slp.select('distinct ?id ?title ?class ?valueType')
                .query( '?a  rdfs:subClassOf '+it+''' .
                         ?id rdfs:subClassOf ?a; rdfs:label ?title.
                         ?id rdfs:subClassOf ?y.
                         ?y  owl:onClass ?class.
-                        ?class rdfs:subClassOf ?valueType.''')
+                        ?class rdfs:subClassOf ?valueType.
+                          FILTER( ?valueType = <http://bio.icmc.usp.br/sustenagro#Categorical> || ?valueType = <http://bio.icmc.usp.br/sustenagro#Real> )''')
         }
 
         def categorical = [:]
@@ -150,7 +155,7 @@ class ToolController {
         def economic_indicators = indicators(':EconomicIndicator')
         def social_indicators = indicators(':SocialIndicator')
 
-        //println environmental_indicators
+        println environmental_indicators
         //println economic_indicators
         //println social_indicators
 
