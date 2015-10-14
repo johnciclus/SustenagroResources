@@ -11,101 +11,108 @@ class ToolController {
     def dsl
 
     def index() {
-        def existOnt = false
-        def result = slp.query("?o rdf:type owl:Ontology")
+        if(slp.existOntology("http://bio.icmc.usp.br/sustenagro#")){
+            def queryLabelDescription = { query ->
+                def uri = '<'+slp.toURI(query[1])+'>'
+                def result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
 
-        if (result){
-            if (result[0].o == "http://bio.icmc.usp.br/sustenagro#")
-                existOnt = true
-            println existOnt
-            println result[0].o
-
-        }
-
-        def queryLabelDescription = { query ->
-            def uri = '<'+slp.toURI(query[1])+'>'
-            //println uri
-            result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
-
-            if (!result) {
-                try{
-                    result = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${query[1]}')", '')
-                    if (result){
-                        uri = "<${result[0].id}>"
+                if (!result) {
+                    try{
+                        result = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${query[1]}')", '')
+                        if (result){
+                            uri = "<${result[0].id}>"
+                        }
                     }
-                }
-                catch(RuntimeException e){
+                    catch(RuntimeException e){
                         println new RuntimeException('Unknown label: '+query[1])
-                }//result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
-
+                    }//result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+                }
+                return slp.query("?id ${query[0]} $uri; rdfs:label ?label. optional {?id dc:description ?description}. FILTER ( ?id != $uri )")
             }
-            return slp.query("?id ${query[0]} $uri; rdfs:label ?label. optional {?id dc:description ?description}. FILTER ( ?id != $uri )")
-        }
 
-        dsl.toolIndexStack.each{ command ->
-            if(command.request){
-                command.request.each{ key, query ->
-                    if(key!='widgets'){
-                        command.args[key] = queryLabelDescription(query)
-                        //println "Key: $key, Query: $query"
-                    }
-                    else if(key=='widgets'){
-                        query.each{ subKey, subQuery ->
-                            command.args.widgets[subKey]['args']['data'] = queryLabelDescription(subQuery)
-                            //println "Key: $subKey, Query: $subQuery"
+            dsl.toolIndexStack.each{ command ->
+                if(command.request){
+                    command.request.each{ key, query ->
+                        if(key!='widgets'){
+                            command.args[key] = queryLabelDescription(query)
+                            //println "Key: $key, Query: $query"
+                        }
+                        else if(key=='widgets'){
+                            query.each{ subKey, subQuery ->
+                                command.args.widgets[subKey]['args']['data'] = queryLabelDescription(subQuery)
+                                //println "Key: $subKey, Query: $subQuery"
+                            }
                         }
                     }
                 }
             }
-        }
 
-        /*dsl.toolIndexStack.each{ command ->
-            if(command.args.widgets) {
-                command.args.widgets.each { key, query ->
-                    println '\nKey:'
-                    println key
-                    println 'Query:'
-                    println query
-                    println ''
+            /*dsl.toolIndexStack.each{ command ->
+                if(command.args.widgets) {
+                    command.args.widgets.each { key, query ->
+                        println '\nKey:'
+                        println key
+                        println 'Query:'
+                        println query
+                        println ''
+                    }
                 }
-            }
-        }*/
+            }*/
 
-        //println Processor.process("This is ***TXTMARK***");
-        //String html = new Markdown4jProcessor().process("This is a **bold** text");
+            //println Processor.process("This is ***TXTMARK***");
+            //String html = new Markdown4jProcessor().process("This is a **bold** text");
 
-        render(view: 'index',
-               model: [inputs: dsl.toolIndexStack,
-                       //name: dsl.name,
-                       //description:   Processor.process(dsl.description),
-                       //description:   dsl.description,
-                       //microregions: inputs[0][2],
-                       //technologies: inputs[1][2],
-                       //production_unit_types: inputs[2][2],
-                       //production_units: inputs[3][2]
-                       ])
+            render(view: 'index',
+                    model: [inputs: dsl.toolIndexStack,
+                            //name: dsl.name,
+                            //description:   Processor.process(dsl.description),
+                            //description:   dsl.description,
+                            //microregions: inputs[0][2],
+                            //technologies: inputs[1][2],
+                            //production_unit_types: inputs[2][2],
+                            //production_units: inputs[3][2]
+                    ])
+        }
+        else
+            redirect(uri: "/")
     }
 
     def createProductionUnit() {
 
         def production_unit_id = new Slugify().slugify(params['productionunit_name'])
+        String sparql = ':'+production_unit_id+" rdf:type <"+    params['productionunit_types']+">; rdfs:label '"+  params['productionunit_name']+"'@pt; rdfs:label '"+  params['productionunit_name']+"'"
 
-        slp.addNode(
+
+        if(params['microregion'])
+            sparql += "; dbp:Microregion <" + params['microregion'] + ">"
+
+        if(params['agriculturalefficiency'])
+            sparql += "; :AgriculturalEfficiency <" + params['agriculturalefficiency'] + ">"
+
+        sparql += "."
+        println sparql
+
+        slp.insert(sparql)
+
+                    //"dbp:Microregion <http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos>;"
+                    //":AgriculturalEfficiency :HighAgriculturalEfficiency.")
+
+
+        /*slp.addNode(
             N(':'+production_unit_id,
             'rdf:type': slp.v(params['productionunit_types']),
-            'rdfs:label': params['productionunit_name'],
+            'rdfs:label': params['productionunit_name']
             //'dbp:Microregion': slp.v(params['production_unit_microregion']),
             //'sa:culture': slp.v(params['production_unit_culture']),
             //':AgriculturalEfficiency': slp.v(params['production_unit_technology'])
         ))
 
-        if(params['microregion'])
-            slp.g.addEdge(slp.v(':' + production_unit_id), slp.v(params['microregion']), 'dbp:Microregion')
+
 
         if(params['agriculturalefficiency'])
             slp.g.addEdge(slp.v(':' + production_unit_id), slp.v(params['agriculturalefficiency']), slp.toURI(':AgriculturalEfficiency'))
 
-        slp.g.commit()
+        slp.g.commit()*/
         //slp.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
         redirect(action: 'assessment', id: production_unit_id)
     }
@@ -283,4 +290,5 @@ class ToolController {
                 params: [evaluation: evaluation_name])
 
     }
+
 }

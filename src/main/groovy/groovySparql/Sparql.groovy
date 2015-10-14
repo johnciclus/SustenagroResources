@@ -57,7 +57,7 @@ import org.apache.jena.rdf.model.RDFNode
  *
  */
 @Slf4j
-class Sparql2 {
+class Sparql {
 
     String endpoint
     String updateEndpoint
@@ -75,8 +75,8 @@ class Sparql2 {
      * @param url sparql endpoint URL
      * @return instance of Sparql
      */
-    static Sparql2 newInstance(String url) {
-        new Sparql2(endpoint:url)
+    static Sparql newInstance(String url) {
+        new Sparql(endpoint:url)
     }
 
     /**
@@ -84,8 +84,8 @@ class Sparql2 {
      * @param model Apache Jena model
      * @return instance of Sparql
      */
-    static Sparql2 newInstance(Model model) {
-        new Sparql2(model:model)
+    static Sparql newInstance(Model model) {
+        new Sparql(model:model)
     }
 
 //    static Sparql fromCsvFile(String filename) {
@@ -97,7 +97,7 @@ class Sparql2 {
      * Construct the Sparql object with an Apache Jena model
      * @param model
      */
-    Sparql2(Model model) { this.model = model }
+    Sparql(Model model) { this.model = model }
 
     /**
      * Constructor
@@ -105,7 +105,7 @@ class Sparql2 {
      * If updateEndpoint is not set, this parameter will be used for SPARQL update
      * @param endpoint
      */
-    Sparql2(String endpoint) { this.endpoint = endpoint }
+    Sparql(String endpoint) { this.endpoint = endpoint }
 
     /**
      * Constructor
@@ -115,7 +115,7 @@ class Sparql2 {
      * @param model
      * @param config
      */
-    Sparql2(Model model, Map config) {
+    Sparql(Model model, Map config) {
         this.model = model
         this.config = config
     }
@@ -125,7 +125,7 @@ class Sparql2 {
      * @param endpoint
      * @param config
      */
-    Sparql2(String endpoint, Map config) {
+    Sparql(String endpoint, Map config) {
         this.endpoint = endpoint
         this.config = config
     }
@@ -136,7 +136,7 @@ class Sparql2 {
      * This allows this class to be easliy used in dependency injection frameworks, where you can either do
      * constructor injection or property injection post-construction
      */
-    Sparql2() { }
+    Sparql() { }
 
     /**
      * <code>eachRow</code>
@@ -445,14 +445,19 @@ class Sparql2 {
 
         def res = []
         try {
-            for (ResultSet rs = qe.execSelect(); rs.hasNext();) {
-                QuerySolution sol = rs.nextSolution()
+            QuerySolution sol
+            Map<String, Object> row
+            boolean add
+            String varName
+            RDFNode varNode
 
-                Map<String, Object> row = [:]
-                boolean add = true
+            for (ResultSet rs = qe.execSelect(); rs.hasNext();) {
+                sol = rs.nextSolution()
+                row = [:]
+                add = true
                 for (Iterator<String> varNames = sol.varNames(); varNames.hasNext();) {
-                    String varName = varNames.next()
-                    RDFNode varNode = sol.get(varName)
+                    varName = varNames.next()
+                    varNode = sol.get(varName)
                     row.put(varName, (varNode.isLiteral() ? varNode.asLiteral().value : varNode.toString()))
                     if (lang!='' &&
                             varNode.isLiteral() &&
