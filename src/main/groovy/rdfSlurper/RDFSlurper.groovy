@@ -281,10 +281,9 @@ class RDFSlurper {
     }
 
     def query(String q, String lang = this.lang) {
-        def f = "$prefixes \n select $select where {$q}"
+        def f = "$prefixes \nselect $select where {$q}"
         select = '*'
         sparql2.query(f, lang)
-        println f
     }
 
     def delete(String q){
@@ -388,6 +387,7 @@ class RDFSlurper {
     }
 
     static N(Map node) {node}
+
     static N(Map node, String uri) {
         [uri, node]
     }

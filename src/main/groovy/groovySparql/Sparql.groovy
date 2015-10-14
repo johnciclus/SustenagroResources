@@ -57,7 +57,7 @@ import org.apache.jena.rdf.model.RDFNode
  *
  */
 @Slf4j
-class Sparql {
+class Sparql2 {
 
     String endpoint
     String updateEndpoint
@@ -75,8 +75,8 @@ class Sparql {
      * @param url sparql endpoint URL
      * @return instance of Sparql
      */
-    static Sparql newInstance(String url) {
-        new Sparql(endpoint:url)
+    static Sparql2 newInstance(String url) {
+        new Sparql2(endpoint:url)
     }
 
     /**
@@ -84,8 +84,8 @@ class Sparql {
      * @param model Apache Jena model
      * @return instance of Sparql
      */
-    static Sparql newInstance(Model model) {
-        new Sparql(model:model)
+    static Sparql2 newInstance(Model model) {
+        new Sparql2(model:model)
     }
 
 //    static Sparql fromCsvFile(String filename) {
@@ -97,7 +97,7 @@ class Sparql {
      * Construct the Sparql object with an Apache Jena model
      * @param model
      */
-    Sparql(Model model) { this.model = model }
+    Sparql2(Model model) { this.model = model }
 
     /**
      * Constructor
@@ -105,7 +105,7 @@ class Sparql {
      * If updateEndpoint is not set, this parameter will be used for SPARQL update
      * @param endpoint
      */
-    Sparql(String endpoint) { this.endpoint = endpoint }
+    Sparql2(String endpoint) { this.endpoint = endpoint }
 
     /**
      * Constructor
@@ -115,7 +115,7 @@ class Sparql {
      * @param model
      * @param config
      */
-    Sparql(Model model, Map config) {
+    Sparql2(Model model, Map config) {
         this.model = model
         this.config = config
     }
@@ -125,7 +125,7 @@ class Sparql {
      * @param endpoint
      * @param config
      */
-    Sparql(String endpoint, Map config) {
+    Sparql2(String endpoint, Map config) {
         this.endpoint = endpoint
         this.config = config
     }
@@ -136,7 +136,7 @@ class Sparql {
      * This allows this class to be easliy used in dependency injection frameworks, where you can either do
      * constructor injection or property injection post-construction
      */
-    Sparql() { }
+    Sparql2() { }
 
     /**
      * <code>eachRow</code>
@@ -417,10 +417,6 @@ class Sparql {
 
         return qe.execAsk()
     }
-
-}
-
-class Sparql2 extends Sparql {
 
     def query(String sparql, String lang) {
         Query query = QueryFactory.create(sparql, Syntax.syntaxARQ)

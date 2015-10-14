@@ -3,7 +3,7 @@ package sustenagro
 import com.github.slugify.Slugify
 import rdfSlurper.DataReader
 import utils.Uri
-import grails.gsp.PageRenderer
+
 import static rdfSlurper.RDFSlurper.N
 
 class ToolController {
@@ -11,10 +11,21 @@ class ToolController {
     def dsl
 
     def index() {
+        def existOnt = false
+        def result = slp.query("?o rdf:type owl:Ontology")
+
+        if (result){
+            if (result[0].o == "http://bio.icmc.usp.br/sustenagro#")
+                existOnt = true
+            println existOnt
+            println result[0].o
+
+        }
+
         def queryLabelDescription = { query ->
             def uri = '<'+slp.toURI(query[1])+'>'
             //println uri
-            def result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+            result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
 
             if (!result) {
                 try{
