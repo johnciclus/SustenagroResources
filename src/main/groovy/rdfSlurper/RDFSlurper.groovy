@@ -288,6 +288,7 @@ class RDFSlurper {
         //println f+"\n"
         Sparql.query(f, lang)
     }
+
     def insert(String q, String lang = this.lang){
         def f = "$prefixes \nINSERT DATA {$q}"
         Sparql.update(f)
@@ -430,9 +431,28 @@ class RDFSlurper {
         }
     }
 
+    def dataSchema(value){
+        def result = null
+        switch (value) {
+            case String:
+                result = '"' + node + '"@' + lang
+                break
+            case int: case Integer: case long: case Long: case BigInteger:
+                result = '"' + node + '"^^<http://www.w3.org/2001/XMLSchema#integer>'
+                break
+            case float: case Float: case double: case Double: case BigDecimal:
+                result = '"' + node + '"^^<http://www.w3.org/2001/XMLSchema#double>'
+                break
+            case boolean:
+                result = '"' + node + '"^^<http://www.w3.org/2001/XMLSchema#boolean>'
+                break
+        }
+        return result
+    }
+
     def existOntology(String uri){
         def existOnt = false
-        def result = this.query("?o rdf:type owl:Ontology")
+        def result = query("?o rdf:type owl:Ontology")
 
         result.each{
             if(it.o == uri)

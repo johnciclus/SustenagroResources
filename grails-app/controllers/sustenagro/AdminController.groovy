@@ -11,6 +11,9 @@ class AdminController {
     def slp
 
     def index(){
+
+
+
         render(view: 'index', model: [code: new File('dsl/dsl.groovy').text,
                                       ontology: new File('ontology/SustenAgroOntology.man').text])
     }
