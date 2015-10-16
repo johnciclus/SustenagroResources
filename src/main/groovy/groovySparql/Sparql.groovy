@@ -418,10 +418,6 @@ class Sparql {
         return qe.execAsk()
     }
 
-}
-
-class Sparql2 extends Sparql {
-
     def query(String sparql, String lang) {
         Query query = QueryFactory.create(sparql, Syntax.syntaxARQ)
         QueryExecution qe = null
@@ -449,14 +445,19 @@ class Sparql2 extends Sparql {
 
         def res = []
         try {
-            for (ResultSet rs = qe.execSelect(); rs.hasNext();) {
-                QuerySolution sol = rs.nextSolution()
+            QuerySolution sol
+            Map<String, Object> row
+            boolean add
+            String varName
+            RDFNode varNode
 
-                Map<String, Object> row = [:]
-                boolean add = true
+            for (ResultSet rs = qe.execSelect(); rs.hasNext();) {
+                sol = rs.nextSolution()
+                row = [:]
+                add = true
                 for (Iterator<String> varNames = sol.varNames(); varNames.hasNext();) {
-                    String varName = varNames.next()
-                    RDFNode varNode = sol.get(varName)
+                    varName = varNames.next()
+                    varNode = sol.get(varName)
                     row.put(varName, (varNode.isLiteral() ? varNode.asLiteral().value : varNode.toString()))
                     if (lang!='' &&
                             varNode.isLiteral() &&

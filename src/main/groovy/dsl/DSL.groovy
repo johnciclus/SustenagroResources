@@ -119,7 +119,7 @@ class DSL {
             argLst['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
         }
 
-        toolIndexStack.push(['widget': 'selectEntity', 'request': ['production_units': ['a', 'dbp:Farm']], 'args': [:]])
+        toolIndexStack.push(['widget': 'selectEntity', 'request': ['production_units': ['a', ':ProductionUnit']], 'args': [:]])
         toolIndexStack.push(['widget': 'createEntity', 'request': requestLst, 'args': argLst])
     }
 

@@ -6,7 +6,7 @@ import com.tinkerpop.blueprints.impls.sail.SailTokens
 import com.tinkerpop.blueprints.impls.sail.impls.MemoryStoreSailGraph
 import com.tinkerpop.blueprints.impls.sail.impls.SparqlRepositorySailGraph
 import com.tinkerpop.gremlin.groovy.Gremlin
-import groovySparql.Sparql2
+import groovySparql.Sparql
 
 import org.apache.jena.update.UpdateExecutionFactory
 import org.apache.jena.update.UpdateFactory
@@ -204,7 +204,7 @@ class RDFSlurper {
     //Logger log = Logger.getLogger(RDFSlurper.class);
 
     private Map<String, String> _prefixes = [:]
-    private Sparql2 sparql2
+    private Sparql Sparql
     private String select = '*'
 
     RDFSlurper(){
@@ -215,7 +215,7 @@ class RDFSlurper {
         g = new SparqlRepositorySailGraph(endpoint, update)
         //"http://localhost:8000/sparql/", "http://localhost:8000/update/")
         // SPARQL 1.0 or 1.1 endpoint
-        sparql2 = new Sparql2(endpoint: endpoint)
+        Sparql = new Sparql(endpoint: endpoint)
     }
 
     RDFSlurper(String url){
@@ -232,7 +232,7 @@ class RDFSlurper {
         setLang('pt')
 
         // SPARQL 1.0 or 1.1 endpoint
-        sparql2 = new Sparql2(endpoint: url)
+        Sparql = new Sparql(endpoint: url)
 
         //g2 = new BigdataGraphClient(url)
 
@@ -244,23 +244,24 @@ class RDFSlurper {
         delete("?s ?p ?o")
     }
 
-//    def sparql(String q) {
-//        def ret = []
-//        def f = prefixes + '\n' + q
-//        println f
-//        g.executeSparql(f).each{
-//            def map = [:]
-//            def add = true
-//            it.each {key, val->
-//                map[key] = val.value ? val.value : val.id
-//                if (val.lang != null && val.lang!=lang) add= false
-//            }
-//            if (add) ret.add(map)
-//        }
-//        ret
-//    }
+    //    def sparql(String q) {
+    //        def ret = []
+    //        def f = prefixes + '\n' + q
+    //        println f
+    //        g.executeSparql(f).each{
+    //            def map = [:]
+    //            def add = true
+    //            it.each {key, val->
+    //                map[key] = val.value ? val.value : val.id
+    //                if (val.lang != null && val.lang!=lang) add= false
+    //            }
+    //            if (add) ret.add(map)
+    //        }
+    //        ret
+    //    }
 
-/*    def query1(String q) {
+    /*
+    def query1(String q) {
         def ret = []
         def f = prefixes + '\n select * where {' + q +'}'
         g.executeSparql(f).each{
@@ -274,26 +275,32 @@ class RDFSlurper {
         }
         ret
     }
-*/
+    */
+
     def select(str){
         select = str
         this
     }
 
     def query(String q, String lang = this.lang) {
-        def f = "$prefixes \n select $select where {$q}"
+        def f = "$prefixes \nselect $select where {$q}"
         select = '*'
-        sparql2.query(f, lang)
+        //println f+"\n"
+        Sparql.query(f, lang)
+    }
+    def insert(String q, String lang = this.lang){
+        def f = "$prefixes \nINSERT DATA {$q}"
+        Sparql.update(f)
     }
 
     def delete(String q){
         def f = "$prefixes \n DELETE where {$q}"
-        sparql2.update(f)
+        Sparql.update(f)
     }
 
     def update(String q){
         def f = "$prefixes \n $q"
-        sparql2.update(f)
+        Sparql.update(f)
     }
 
     def loadRDF(InputStream is){
@@ -387,6 +394,7 @@ class RDFSlurper {
     }
 
     static N(Map node) {node}
+
     static N(Map node, String uri) {
         [uri, node]
     }
@@ -421,6 +429,19 @@ class RDFSlurper {
                 return g.addVertex('"' + node + '"^^<http://www.w3.org/2001/XMLSchema#boolean>')
         }
     }
+
+    def existOntology(String uri){
+        def existOnt = false
+        def result = this.query("?o rdf:type owl:Ontology")
+
+        result.each{
+            if(it.o == uri)
+                existOnt = true
+        }
+
+        existOnt
+    }
+
 }
 
 class DataReader {
@@ -491,8 +512,8 @@ class DataReader {
             case 'Microregion':
                 try {
                     res = slp.select('?map')
-                            .query("<$uri> :appliedTo ?u." +
-                            "?u <dbp:Microregion> ?m." +
+                            .query("<$uri> :appliedTo ?u. " +
+                            "?u dbp:Microregion ?m. " +
                             "?m <http://dbpedia.org/property/pt/mapa> ?map."
                     )
                 }
