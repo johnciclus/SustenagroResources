@@ -79,23 +79,21 @@ class ToolController {
 
     def createProductionUnit() {
 
-        def production_unit_id = new Slugify().slugify(params['productionunit_name'])
-        String sparql = ':'+production_unit_id+" rdf:type <"+    params['productionunit_types']+">; rdfs:label '"+  params['productionunit_name']+"'@pt; rdfs:label '"+  params['productionunit_name']+"'"
+        def production_unit_id = new Slugify().slugify(params.productionunit_name)
+        String sparql = ":"+production_unit_id+" rdf:type <"+    params.productionunit_types+">; rdfs:label '"+  params.productionunit_name+"'@pt"
 
+        if(params.microregion)
+            sparql += "; dbp:Microregion <" + params.microregion + ">"
 
-        if(params['microregion'])
-            sparql += "; dbp:Microregion <" + params['microregion'] + ">"
-
-        if(params['agriculturalefficiency'])
-            sparql += "; :AgriculturalEfficiency <" + params['agriculturalefficiency'] + ">"
+        if(params.agriculturalefficiency)
+            sparql += "; :AgriculturalEfficiency <" + params.agriculturalefficiency + ">"
 
         sparql += "."
-        println sparql
 
         slp.insert(sparql)
 
-                    //"dbp:Microregion <http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos>;"
-                    //":AgriculturalEfficiency :HighAgriculturalEfficiency.")
+        //"dbp:Microregion <http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos>;"
+        //":AgriculturalEfficiency :HighAgriculturalEfficiency.")
 
 
         /*slp.addNode(
@@ -118,15 +116,15 @@ class ToolController {
     }
 
     def selectProductionUnit(){
-        def production_unit_id = Uri.removeDomain(params['production_unit_id'], 'http://bio.icmc.usp.br/sustenagro#')
+        def production_unit_id = Uri.removeDomain(params.production_unit_id, 'http://bio.icmc.usp.br/sustenagro#')
 
         redirect(   action: 'assessment',
                     id: production_unit_id)
     }
 
     def selectEvaluation(){
-        def production_unit_alias = Uri.removeDomain(params['production_unit_id'], 'http://bio.icmc.usp.br/sustenagro#')
-        def evaluation_name = Uri.removeDomain(params['evaluation'], 'http://bio.icmc.usp.br/sustenagro#')
+        def production_unit_alias = Uri.removeDomain(params.production_unit_id, 'http://bio.icmc.usp.br/sustenagro#')
+        def evaluation_name = Uri.removeDomain(params.evaluation, 'http://bio.icmc.usp.br/sustenagro#')
 
         //def indicators = slp.query("?id :compose :$evaluation_alias. ?id :value ?value")
 
@@ -139,7 +137,7 @@ class ToolController {
     }
 
     def evaluations(){
-        def production_unit_id = Uri.removeDomain(params['production_unit_id'], 'http://bio.icmc.usp.br/sustenagro#')
+        def production_unit_id = Uri.removeDomain(params.production_unit_id, 'http://bio.icmc.usp.br/sustenagro#')
         def evaluations = slp.query("?id :appliedTo :$production_unit_id. ?id rdfs:label ?label")
 
         render( template: 'evaluations',
@@ -173,13 +171,15 @@ class ToolController {
         def economic_indicators = indicators(':EconomicIndicator')
         def social_indicators = indicators(':SocialIndicator')
 
-        println environmental_indicators
+        //println environmental_indicators
         //println economic_indicators
         //println social_indicators
 
         categ(environmental_indicators)
         categ(economic_indicators)
         categ(social_indicators)
+
+        println categorical
 
         categorical.each{ k, v ->
             //println k
@@ -189,12 +189,12 @@ class ToolController {
             }
         }
 
-        def name = slp.":$params.id".'$rdfs:label'
+        def name = slp.query(":$params.id rdfs:label ?label")[0].label
 
         def values = [:]
         def report
         dsl._cleanProgram()
-        def evaluationID = params['evaluation']
+        def evaluationID = params.evaluation
 
         if (evaluationID != null) {
 
@@ -230,7 +230,7 @@ class ToolController {
     }
 
     def report() {
-        def production_unit_id = params['production_unit_id']
+        def production_unit_id = params.production_unit_id
 
         def num = slp.query('?id a :Evaluation. ?id :appliedTo :' + production_unit_id).size() + 1
         def evaluation_name = production_unit_id+"-evaluation-"+num
@@ -286,7 +286,7 @@ class ToolController {
         //recommendations.each{println it}
 
         redirect(action: 'assessment',
-                id: params['production_unit_id'],
+                id: params.production_unit_id,
                 params: [evaluation: evaluation_name])
 
     }

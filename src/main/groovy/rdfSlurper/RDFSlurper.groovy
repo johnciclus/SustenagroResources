@@ -285,7 +285,7 @@ class RDFSlurper {
     def query(String q, String lang = this.lang) {
         def f = "$prefixes \nselect $select where {$q}"
         select = '*'
-
+        //println f+"\n"
         Sparql.query(f, lang)
     }
     def insert(String q, String lang = this.lang){
@@ -512,8 +512,8 @@ class DataReader {
             case 'Microregion':
                 try {
                     res = slp.select('?map')
-                            .query("<$uri> :appliedTo ?u." +
-                            "?u <dbp:Microregion> ?m." +
+                            .query("<$uri> :appliedTo ?u. " +
+                            "?u dbp:Microregion ?m. " +
                             "?m <http://dbpedia.org/property/pt/mapa> ?map."
                     )
                 }
