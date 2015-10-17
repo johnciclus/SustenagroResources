@@ -1,4 +1,4 @@
-import rdfSlurper.RDFSlurper
+import rdfUtils.RDFSlurper
 import dsl.DSL
 
 // Place your Spring DSL code here

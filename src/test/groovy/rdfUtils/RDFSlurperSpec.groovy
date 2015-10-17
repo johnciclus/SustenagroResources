@@ -1,8 +1,7 @@
-package rdfSlurper
+package rdfUtils
 
 import spock.lang.Shared
 import spock.lang.Specification
-import rdfSlurper.RDFSlurper
 
 /**
  * Created by dilvan on 5/30/15.

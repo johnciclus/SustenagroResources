@@ -1,11 +1,7 @@
-package rdfSlurper
+package rdfUtils
 
-import com.tinkerpop.blueprints.Vertex
-import com.tinkerpop.blueprints.impls.sail.SailGraph
-import com.tinkerpop.blueprints.impls.sail.SailTokens
-import com.tinkerpop.blueprints.impls.sail.impls.MemoryStoreSailGraph
-import com.tinkerpop.blueprints.impls.sail.impls.SparqlRepositorySailGraph
-import com.tinkerpop.gremlin.groovy.Gremlin
+//import com.tinkerpop.blueprints.Vertex
+//import com.tinkerpop.blueprints.impls.sail.SailTokens
 import groovySparql.Sparql
 
 import org.apache.jena.update.UpdateExecutionFactory
@@ -31,6 +27,7 @@ Will print the following to System.out:
  </root>
  */
 
+/*
 abstract class GGraph {
     RDFSlurper slurp
     def pipe
@@ -64,7 +61,7 @@ abstract class GGraph {
 
         //println q
 
-        def res = slurp.g.executeSparql(q)
+        /*def res = slurp.g.executeSparql(q)
         //println res
         if (!res.empty) return slurp.g.v(id).outE(slurp.toURI(name))
 
@@ -75,6 +72,7 @@ abstract class GGraph {
         if (res.empty)
             throw new RuntimeException("Unknown field: $name.")
         slurp.g.v(id).outE(res[0].pred.id)
+
     }
 
     def getAt(String name) {
@@ -91,12 +89,13 @@ abstract class GGraph {
         }
         def edge1 = findVertex(name)
         new GEdge(slurp, edge1._())
+
     }
 
     abstract def getTriple(String propName)
 
     def putAt(String propName, obj2) {
-        def (subj, pred, obj1) = getTriple(propName)
+        /*def (subj, pred, obj1) = getTriple(propName)
 
         if (pred!=null) {
             slurp.g.removeEdge(pred)
@@ -104,8 +103,10 @@ abstract class GGraph {
                 slurp.g.removeVertex(obj1)
         }
         slurp.g.addEdge(subj, slurp.addNode(obj2), slurp.toURI(propName))
+
     }
 }
+
 
 class GNode extends GGraph {
 
@@ -156,7 +157,7 @@ class GEdge extends GGraph {
         slurp.g.addEdge(subj, slurp.addNode(obj2), propName)
     }
 }
-
+*/
 /**
  * Class RDFSlurper
  *
@@ -194,11 +195,12 @@ class GEdge extends GGraph {
 //@CompileStatic
 class RDFSlurper {
 
-    static {
+    /*static {
         Gremlin.load()
     }
 
     SailGraph g
+    */
 
     String lang = 'en'
     //Logger log = Logger.getLogger(RDFSlurper.class);
@@ -208,11 +210,11 @@ class RDFSlurper {
     private String select = '*'
 
     RDFSlurper(){
-        g = new MemoryStoreSailGraph()
+        //g = new MemoryStoreSailGraph()
     }
 
     RDFSlurper(String endpoint, String update) {
-        g = new SparqlRepositorySailGraph(endpoint, update)
+        //g = new SparqlRepositorySailGraph(endpoint, update)
         //"http://localhost:8000/sparql/", "http://localhost:8000/update/")
         // SPARQL 1.0 or 1.1 endpoint
         Sparql = new Sparql(endpoint: endpoint)
@@ -223,16 +225,16 @@ class RDFSlurper {
         //String url = 'http://bio.icmc.usp.br:9999/bigdata/namespace/sustenagro/sparql'
         //"http://localhost:8000/sparql/", "http://localhost:8000/update/")
 
-        g = new SparqlRepositorySailGraph(url, url)
-
-        addDefaultNamespaces()
-        addNamespace('','http://bio.icmc.usp.br/sustenagro#')
-        addNamespace('dbp','http://dbpedia.org/ontology/')
-
-        setLang('pt')
+        //g = new SparqlRepositorySailGraph(url, url)
 
         // SPARQL 1.0 or 1.1 endpoint
         Sparql = new Sparql(endpoint: url)
+
+        addDefaultNamespaces()
+
+        setLang('pt')
+
+
 
         //g2 = new BigdataGraphClient(url)
 
@@ -319,12 +321,14 @@ class RDFSlurper {
     }
 
     def addDefaultNamespaces() {
-        addNamespace(SailTokens.RDF_PREFIX, SailTokens.RDF_NS);
-        addNamespace(SailTokens.RDFS_PREFIX, SailTokens.RDFS_NS);
-        addNamespace(SailTokens.OWL_PREFIX, SailTokens.OWL_NS);
-        addNamespace(SailTokens.XSD_PREFIX, SailTokens.XSD_NS);
-        addNamespace(SailTokens.FOAF_PREFIX, SailTokens.FOAF_NS);
+        addNamespace('rdf','http://www.w3.org/1999/02/22-rdf-syntax-ns#')
+        addNamespace('rdfs','http://www.w3.org/2000/01/rdf-schema#')
+        addNamespace('owl','http://www.w3.org/2002/07/owl#')
+        addNamespace('xsd','http://www.w3.org/2001/XMLSchema#')
+        addNamespace('foaf','http://xmlns.com/foaf/0.1/')
         addNamespace('dc','http://purl.org/dc/terms/')
+        addNamespace('dbp','http://dbpedia.org/ontology/')
+        addNamespace('','http://bio.icmc.usp.br/sustenagro#')
     }
 
     def addNamespace(String prefix, String namespace){
@@ -374,14 +378,16 @@ class RDFSlurper {
         g.v(res[0].subj.id)
     }
 
-    def propertyMissing(String name) {
+    /*def propertyMissing(String name) {
         getAt(name)
     }
+    */
 
     def v(String name){
         g.v(toURI(name))
     }
 
+    /*
     def getAt(String name) {
         def node = g.v(toURI(name))
 
@@ -393,6 +399,7 @@ class RDFSlurper {
         }
         new GNode(this, node._())
     }
+    */
 
     static N(Map node) {node}
 
@@ -462,129 +469,4 @@ class RDFSlurper {
         existOnt
     }
 
-}
-
-class DataReader {
-
-    RDFSlurper slp
-    String uri
-
-    DataReader(slp, uri){
-        this.slp = slp
-        this.uri = uri
-    }
-
-//    def findNode(String uri, String name) {
-//        // Try to find as class label
-//        def res = slp
-//                .select('?v')
-//                .query("<$uri> dc:hasPart ?x." +
-//                "?x a ?cls." +
-//                "?cls rdfs:label '$name'@${slp.lang}." +
-//                "?x :value ?ind." +
-//                "?ind :dataValue ?v.")
-//        if (res.empty) {
-//            // Try to find as class uri
-//            def cls = slp.toURI(name)
-//            try {
-//                res = slp
-//                        .select('?v')
-//                        .query("<$uri> dc:hasPart ?x." +
-//                        "?x a <$cls>." +
-//                        "?x :value ?ind." +
-//                        "?ind :dataValue ?v.")
-//            }
-//            catch (e) {
-//                res = []
-//            }
-//        }
-//        res
-//    }
-
-    def findNode(String name){
-        def type = name
-        def cls = slp.toURI(name)
-        def res
-        if(cls){
-            res = slp.select('?c')
-                    .query("<$cls> rdfs:subClassOf ?c.")
-            if(res[0])
-                type = res[0].c
-        }
-        println 'Find Node: ' + type
-        switch(type) {
-            case 'http://bio.icmc.usp.br/sustenagro#Indicator':
-                try{
-                    cls = slp.toURI(name)
-                    res = slp.select('?v')
-                            .query("<$uri> dc:hasPart ?x." +
-                            "?x a ?i." +
-                            "?i rdfs:subClassOf ?a." +
-                            "?a rdfs:subClassOf <$cls>." +
-                            "?x :value ?ind." +
-                            "?ind :dataValue ?v."
-                    )
-                }
-                catch (e){
-                    res = []
-                }
-                break
-            case 'Microregion':
-                try {
-                    res = slp.select('?map')
-                            .query("<$uri> :appliedTo ?u. " +
-                            "?u dbp:Microregion ?m. " +
-                            "?m <http://dbpedia.org/property/pt/mapa> ?map."
-                    )
-                }
-                catch (e) {
-                    res = []
-                }
-
-                if (!res.empty && res.size() == 1)
-                    return res[0].map
-                else
-                    throw new RuntimeException("Unknown value: $name")
-
-                break
-
-            default:
-                res = slp.select('?v')
-                        .query("<$uri> dc:hasPart ?x." +
-                        "?x a ?cls." +
-                        "?cls rdfs:label '$name'@${slp.lang}." +
-                        "?x :value ?ind." +
-                        "?ind :dataValue ?v.")
-                if (res.empty) {
-                    cls = slp.toURI(name)
-                    try {
-                        res = slp
-                                .select('?v')
-                                .query("<$uri> dc:hasPart ?x." +
-                                "?x a <$cls>." +
-                                "?x :value ?ind." +
-                                "?ind :dataValue ?v.")
-                    }
-                    catch (e) {
-                        res = []
-                    }
-                }
-                break
-        }
-        if (res.empty) //throw new RuntimeException("Unknown value: $name")
-            return 0
-
-        if (res.size() == 1)
-            return res[0].v
-
-        res.collect { it.v }
-    }
-
-    def propertyMissing(String name) {
-        getAt(name)
-    }
-
-    def getAt(String name) {
-        findNode(name)
-    }
 }

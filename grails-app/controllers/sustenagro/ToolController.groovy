@@ -1,10 +1,8 @@
 package sustenagro
 
 import com.github.slugify.Slugify
-import rdfSlurper.DataReader
+import rdfUtils.DataReader
 import utils.Uri
-
-import static rdfSlurper.RDFSlurper.N
 
 class ToolController {
     def slp
@@ -35,43 +33,20 @@ class ToolController {
                     command.request.each{ key, query ->
                         if(key!='widgets'){
                             command.args[key] = queryLabelDescription(query)
-                            //println "Key: $key, Query: $query"
                         }
                         else if(key=='widgets'){
                             query.each{ subKey, subQuery ->
                                 command.args.widgets[subKey]['args']['data'] = queryLabelDescription(subQuery)
-                                //println "Key: $subKey, Query: $subQuery"
                             }
                         }
                     }
                 }
             }
 
-            /*dsl.toolIndexStack.each{ command ->
-                if(command.args.widgets) {
-                    command.args.widgets.each { key, query ->
-                        println '\nKey:'
-                        println key
-                        println 'Query:'
-                        println query
-                        println ''
-                    }
-                }
-            }*/
-
             //println Processor.process("This is ***TXTMARK***");
             //String html = new Markdown4jProcessor().process("This is a **bold** text");
 
-            render(view: 'index',
-                    model: [inputs: dsl.toolIndexStack,
-                            //name: dsl.name,
-                            //description:   Processor.process(dsl.description),
-                            //description:   dsl.description,
-                            //microregions: inputs[0][2],
-                            //technologies: inputs[1][2],
-                            //production_unit_types: inputs[2][2],
-                            //production_units: inputs[3][2]
-                    ])
+            render(view: 'index', model: [inputs: dsl.toolIndexStack])
         }
         else
             redirect(uri: "/")
@@ -211,8 +186,8 @@ class ToolController {
             slp.select('?cls ?value').query("?id dc:isPartOf :$evaluationID. ?id a ?cls. ?id :value ?value.").each{
                 values[it.cls] = it.value
             }
-            println "values"
-            println values
+            //println "values"
+            //println values
 
             //println 'Evaluation'
             //println slp.toURI(':'+params['evaluation'])

@@ -9,9 +9,8 @@ buildscript {
         maven { url "http://www.systap.com/maven/releases" }
     }
     dependencies {
-	    classpath "io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE"
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
-        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.1.1'
+        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.5.0'
     }
 }
 
@@ -57,29 +56,20 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-logging"
     compile "org.springframework.boot:spring-boot-starter-actuator"
     compile "org.springframework.boot:spring-boot-autoconfigure"
-    compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-tomcat"
-    //providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
     compile "org.grails:grails-dependencies"
-    //compile "org.grails:grails-web-boot"
+    compile "org.grails:grails-web-boot"
+    //providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
 
-    //compile "org.grails.plugins:hibernate"
     compile "org.grails.plugins:cache"
-    //compile "org.hibernate:hibernate-ehcache"
     compile 'org.codehaus.groovy:groovy-all:2.4.3'
-    compile 'com.tinkerpop.blueprints:blueprints-core:2.6.0'
-    compile 'com.tinkerpop.blueprints:blueprints-sail-graph:2.6.0'
-    compile 'com.tinkerpop.gremlin:gremlin-groovy:2.6.0'
     compile 'com.github.slugify:slugify:2.1.3'
-    //compile "org.neo4j:neo4j:2.2.1"
 
-    //compile 'com.github.albaker:GroovySparql:0.9.0'
-    //--------
     compile 'org.apache.jena:jena:3.0.0'
     compile 'org.apache.jena:jena-arq:3.0.0'
     compile 'net.sourceforge.owlapi:owlapi-api:4.1.0-RC2'
     compile 'net.sourceforge.owlapi:owlapi-apibinding:4.1.0-RC2'
-    compile 'com.github.jsonld-java:jsonld-java:0.5.1'
+    //compile 'com.github.jsonld-java:jsonld-java:0.5.1'
     //compile 'xerces:xercesImpl:2.11.0'
 
     // this can be replaced after jena 2.12.2 or later
@@ -89,14 +79,12 @@ dependencies {
     //compile 'org.codehaus.gpars:gpars:1.1.0'
     //-------------
 
-    compile 'com.github.rjeschke:txtmark:0.13'
+    //compile 'com.github.rjeschke:txtmark:0.13'
     compile 'org.pegdown:pegdown:1.5.0'
     compile 'org.kohsuke:groovy-sandbox:1.10'
-    compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.2'
+    //compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.2'
 
     runtime "org.grails.plugins:asset-pipeline"
-
-    //runtime "org.grails.plugins:scaffolding"
 
     testCompile "org.grails:grails-plugin-testing"
     testCompile "org.grails.plugins:geb"
@@ -105,18 +93,13 @@ dependencies {
     //testRuntime 'org.seleniumhq.selenium:selenium-htmlunit-driver:2.44.0'
     testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
 
-    //console "org.grails:grails-console"
+    console "org.grails:grails-console"
 
     //---------------
 //    compile 'com.fasterxml.jackson.core:jackson-core:2.3.3'
 //    compile 'com.fasterxml.jackson.core:jackson-databind:2.3.3'
 //    compile 'com.fasterxml.jackson.core:jackson-annotations:2.3.3'
 //    compile 'org.apache.clerezza:rdf.core:0.14'
-//    compile 'org.openrdf.sesame:sesame-bom:2.7.15'
-//    compile 'org.openrdf.sesame:sesame-model:2.7.15'
-//    compile 'org.openrdf.sesame:sesame-rio-api:2.7.15'
-//    compile 'org.openrdf.sesame:sesame-rio-nquads:2.7.15'
-//    compile 'org.openrdf.sesame:sesame-rio-testsuite:2.7.15'
 //
 //    compile ('org.apache.httpcomponents:httpclient-osgi:4.2.5') {
 //        exclude group: 'commons-logging:commons-logging'
@@ -133,7 +116,6 @@ dependencies {
 }
 
 configurations {
-    //providedRuntime
     compile.exclude group: "org.slf4j", module: "slf4j-log4j12"
     runtime.exclude group: "org.slf4j", module: "slf4j-log4j12"
 }
@@ -143,6 +125,11 @@ task wrapper(type: Wrapper) {
 }
 
 war {
+    from('dsl') {
+        include 'dsl.groovy'
+        include 'dsl-bk.groovy'
+        into('dsl')
+    }
     baseName = 'sustenagro'
     version =  '1'
 }

@@ -11,11 +11,23 @@ class AdminController {
     def slp
 
     def index(){
-
-
+        def indicators = slp.select("distinct ?id ?class ?title")
+                            .query('''?dim rdfs:subClassOf :Indicator.
+                                      ?att rdfs:subClassOf ?dim.
+                                      ?id rdfs:subClassOf ?att; rdfs:label ?title.
+                                      ?id rdfs:subClassOf ?y.
+                                      ?y  owl:onClass ?class.''')
+        indicators.each{    indicator ->
+            indicator.each{
+                //println it.value
+                it.value = it.value.replace("http://bio.icmc.usp.br/sustenagro#",":")
+            }
+        }
 
         render(view: 'index', model: [code: new File('dsl/dsl.groovy').text,
-                                      ontology: new File('ontology/SustenAgroOntology.man').text])
+                                      ontology: new File('ontology/SustenAgroOntology.man').text,
+                                      indicators: indicators,
+                                      ind_tags: ["id", "class", "title"]])
     }
 
     def dsl() {
@@ -29,6 +41,7 @@ class AdminController {
         catch (Exception e){
             handleException(e, "DSL Error")
         }
+
 
         //FileUtils.deleteRecursively( new File( DB_PATH ) )
 

@@ -224,3 +224,7 @@ body {
 	display: inline-block;
     margin: 0 2px;
 }
+
+.input-text-lg{
+	font-size: 13px;
+}
