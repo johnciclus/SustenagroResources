@@ -420,15 +420,16 @@ class Sparql {
 
     def query(String sparql, String lang) {
         Query query = QueryFactory.create(sparql, Syntax.syntaxARQ)
-        QueryExecution qe = null
+        QueryExecution qe = QueryExecutionFactory.sparqlService(endpoint, query)
 
-        /**
+        /*
          * Some explanation here - ARQ can provide a QE based on a pure
          * SPARQL service endpoint, or a Jena model, plus you can still
          * do remote queries with the model using the in-SPARQL "service"
          * keyword.
          */
-        if (model) {
+
+        /*if (model) {
             qe = QueryExecutionFactory.create(query, model)
         } else {
             if (!endpoint) {
@@ -441,7 +442,7 @@ class Sparql {
             if (user) {
                 ((QueryEngineHTTP) qe).setBasicAuthentication(user, pass?.toCharArray())
             }
-        }
+        }*/
 
         def res = []
         try {

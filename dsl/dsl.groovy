@@ -59,7 +59,7 @@ prog {
     economicAvg     = average(evaluation.'EconomicIndicator')
 
     sustainabilityAvg = (environmentAvg+socialAvg+economicAvg)/3
-
+    
     //environment =   (evaluation.'BiologicalPestControl' ? 1:-1) +
     //        (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
     //        (evaluation.'StandardAerialSpraying' ? 1:-1) +
@@ -74,6 +74,8 @@ prog {
     //        evaluation.OperationalEfficiencyPlant
 
     // THE REPORT
+
+     // THE REPORT
 
     // Just showing text
     show '***That is the report:***'
@@ -99,11 +101,11 @@ prog {
     // Matrix de sustentabilidade
     matrix([
             x: sustainability,
-            y: sustainabilityAvg,
+            y: environmentAvg,
             labelX: 'Indice de Magnitude',
             labelY: 'Indice de Segurança',
-            rangeX: [-4,4],
-            rangeY: [-1.5,1.5],
+            rangeX: [0,5],
+            rangeY: [0,3],
             quadrants: [4,3],
             recomendations: [
                     [1, 1, "Cenário desfavorável, Muito baixo desempenho dos indicadores"],
@@ -134,3 +136,4 @@ prog {
     show 'Mapa da microregião'
     map evaluation.'Microregion'
 }
+System.exit(0)

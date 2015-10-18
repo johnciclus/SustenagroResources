@@ -1,10 +1,8 @@
 package sustenagro
 
 import com.github.slugify.Slugify
-import rdfSlurper.DataReader
+import rdfUtils.DataReader
 import utils.Uri
-
-import static rdfSlurper.RDFSlurper.N
 
 class ToolController {
     def slp
@@ -35,43 +33,20 @@ class ToolController {
                     command.request.each{ key, query ->
                         if(key!='widgets'){
                             command.args[key] = queryLabelDescription(query)
-                            //println "Key: $key, Query: $query"
                         }
                         else if(key=='widgets'){
                             query.each{ subKey, subQuery ->
                                 command.args.widgets[subKey]['args']['data'] = queryLabelDescription(subQuery)
-                                //println "Key: $subKey, Query: $subQuery"
                             }
                         }
                     }
                 }
             }
 
-            /*dsl.toolIndexStack.each{ command ->
-                if(command.args.widgets) {
-                    command.args.widgets.each { key, query ->
-                        println '\nKey:'
-                        println key
-                        println 'Query:'
-                        println query
-                        println ''
-                    }
-                }
-            }*/
-
             //println Processor.process("This is ***TXTMARK***");
             //String html = new Markdown4jProcessor().process("This is a **bold** text");
 
-            render(view: 'index',
-                    model: [inputs: dsl.toolIndexStack,
-                            //name: dsl.name,
-                            //description:   Processor.process(dsl.description),
-                            //description:   dsl.description,
-                            //microregions: inputs[0][2],
-                            //technologies: inputs[1][2],
-                            //production_unit_types: inputs[2][2],
-                            //production_units: inputs[3][2]
-                    ])
+            render(view: 'index', model: [inputs: dsl.toolIndexStack])
         }
         else
             redirect(uri: "/")
@@ -80,7 +55,10 @@ class ToolController {
     def createProductionUnit() {
 
         def production_unit_id = new Slugify().slugify(params.productionunit_name)
-        String sparql = ":"+production_unit_id+" rdf:type <"+    params.productionunit_types+">; rdfs:label '"+  params.productionunit_name+"'@pt"
+
+        String sparql = ":" + production_unit_id +
+                        " rdf:type <"+    params.productionunit_types+">;"+
+                        " rdfs:label '"+  params.productionunit_name+"'@pt"
 
         if(params.microregion)
             sparql += "; dbp:Microregion <" + params.microregion + ">"
@@ -154,7 +132,7 @@ class ToolController {
                         ?id rdfs:subClassOf ?y.
                         ?y  owl:onClass ?class.
                         ?class rdfs:subClassOf ?valueType.
-                          FILTER( ?valueType = <http://bio.icmc.usp.br/sustenagro#Categorical> || ?valueType = <http://bio.icmc.usp.br/sustenagro#Real> )''')
+                        FILTER( ?valueType = <http://bio.icmc.usp.br/sustenagro#Categorical> || ?valueType = <http://bio.icmc.usp.br/sustenagro#Real> )''')
         }
 
         def categorical = [:]
@@ -179,8 +157,6 @@ class ToolController {
         categ(economic_indicators)
         categ(social_indicators)
 
-        println categorical
-
         categorical.each{ k, v ->
             //println k
             slp.query("?id a <$k>; rdfs:label ?title.").each{
@@ -196,14 +172,22 @@ class ToolController {
         dsl._cleanProgram()
         def evaluationID = params.evaluation
 
+        println "name"
+        println name
+
+        println "evaluationID"
+        println evaluationID
+
+        println "categorical"
+        println categorical
+
         if (evaluationID != null) {
 
-            slp.select('?cls ?value')
-            .query("?id dc:isPartOf :${evaluationID}. ?id a ?cls. ?id :value ?value.").each{
+            slp.select('?cls ?value').query("?id dc:isPartOf :$evaluationID. ?id a ?cls. ?id :value ?value.").each{
                 values[it.cls] = it.value
             }
-
-            println values
+            //println "values"
+            //println values
 
             //println 'Evaluation'
             //println slp.toURI(':'+params['evaluation'])
@@ -214,10 +198,11 @@ class ToolController {
             dsl.program()
             report = dsl.report
 
-            def page = g.render(template: 'report', model: [report: report])
+            //def page = g.render(template: 'report', model: [report: report])
+            //lack generate the report file
 
-            def file = new File("reports/${evaluationID}.html")
-            file.write(page.toString())
+            //def file = new File("reports/${evaluationID}.html")
+            //file.write(page.toString())
         }
 
         render(view: 'assessment',
@@ -235,45 +220,63 @@ class ToolController {
         def num = slp.query('?id a :Evaluation. ?id :appliedTo :' + production_unit_id).size() + 1
         def evaluation_name = production_unit_id+"-evaluation-"+num
 
-        slp.addNode(
+        slp.insert( ":" + evaluation_name +
+                    " rdf:type :Evaluation;"+
+                    " :appliedTo :"+ production_unit_id +";"+
+                    " rdfs:label 'Avaliação "+  num +"'@pt.")
+
+        /*slp.addNode(
             N(':'+evaluation_name,
                     'rdf:type': slp.v(':Evaluation'),
                     ':appliedTo': slp.v(':'+production_unit_id),
                     'rdfs:label': 'Avaliação '+ num)
         )
-
-        slp.g.commit()
+        slp.g.commit()*/
 
         def indicators = []
 
         dsl.dimensions.each{
-            indicators += slp.select("?id ?class")
+            indicators += slp.select("distinct ?id ?class")
                              .query("?a rdfs:subClassOf $it. ?id rdfs:subClassOf ?a. ?id rdfs:subClassOf ?y. ?y owl:onClass ?class.")
         }
 
         def value = ''
         indicators.each{
             if(params[it.id]){
-                println "indicator: $it.id, value: " + params[it.id]
+                //print "indicator: "
+                //println it
+                //println "indicator: $it.id, value: " + params[it.id]
 
                 if(it.class == "http://bio.icmc.usp.br/sustenagro#Real"){
-                    value = params[it.id]
+                    //value = params[it.id]
+                    value = slp.dataSchema(Integer.parseInt(params[it.id]))
                 }
                 else{
-                    value = slp.v(params[it.id])
+                    // value = params[it.id]
+                    value = "<" + params[it.id] + ">"
                 }
 
+                slp.insert( "<" +it.id+'-'+evaluation_name +">"+
+                            " rdf:type <"+ it.id +">;"+
+                            " dc:isPartOf :"+ evaluation_name +";"+
+                            " :value "+  value +".")
+                slp.insert( ":" + evaluation_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+evaluation_name+">.")
+
+
+                /*
                 slp.addNode(
+
                     N(it.id+'-'+evaluation_name,
                         'rdf:type': slp.v(it.id),
                         'dc:isPartOf': slp.v(':'+evaluation_name),
                         ':value': value)
                 )
                 slp.g.addEdge(slp.v(':'+evaluation_name), slp.v(it.id+'-'+evaluation_name), 'http://purl.org/dc/terms/hasPart')
+                */
             }
         }
         
-        slp.g.commit()
+        //slp.g.commit()
 
         //println slp.toURI(':'+evaluation_name)
 

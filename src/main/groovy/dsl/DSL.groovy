@@ -1,6 +1,6 @@
 package dsl
 
-import com.github.rjeschke.txtmark.Processor
+//import com.github.rjeschke.txtmark.Processor
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.pegdown.PegDownProcessor
 import com.github.slugify.Slugify
@@ -61,7 +61,7 @@ class DSL {
         toolIndexStack = []
         toolEvaluationStack = []
 
-        _sandbox.register()
+        //_sandbox.register()
 
         _script = (DelegatingScript) _shell.parse(new File(_nameFile).text)
         _script.setDelegate(this)

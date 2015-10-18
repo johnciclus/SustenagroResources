@@ -4,12 +4,15 @@
 		<meta name="layout" content="main"/>
 		<title>SustenAgro - Admin</title>
 		<asset:javascript src="ace-min-noconflict/ace.js"/>
+        <asset:javascript src="bootstrap-table.min.js"/>
+        <asset:stylesheet href="bootstrap-table.min.css"/>
 	</head>
 	<body>
         <div class="row main">
-			<div id="content" class="col-sm-10 col-sm-offset-1 content">
+			<div id="content" class="col-sm-12 content">
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#dsl">DSL Main</a></li>
+					<li><a data-toggle="tab" href="#indicators">Indicators Editor</a></li>
 					<li><a data-toggle="tab" href="#ontology">Ontology Editor</a></li>
 					<li><a data-toggle="tab" href="#widgets">DSL Widgets</a></li>
 					<li><a data-toggle="tab" href="#default">DSL Default</a></li>
@@ -59,6 +62,46 @@
 									event.preventDefault();
 								});
 							</script>
+						</div>
+					</div>
+					<div id="indicators" class="tab-pane fade">
+						<div class="row">
+							<div class="col-md-8">
+							</div>
+							<div class="col-md-4">
+								<form id="indicators_form" action="/admin/indicators" method="post" class="form-inline-block pull-right" role="form">
+									<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Salvar </button>
+								</form>
+								<form id="reset_indicators_form" action="/admin/indicatorsReset" method="post" class="form-inline-block pull-right" role="form">
+									<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Restaurar </button>
+								</form>
+							</div>
+						</div>
+						<div class="row">
+                            <div>
+                                <table data-toggle="table"
+                                       data-sort-name="id"
+                                       data-sort-order="desc"
+                                       data-height="600"
+                                       data-show-columns="true">
+                                    <thead>
+                                    <tr>
+                                        <g:each var="tag" in="${ind_tags}">
+                                            <th data-field="${tag}" data-sortable="true">${tag}</th>
+                                        </g:each>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <g:each status="i" var="row" in="${indicators}">
+                                        <tr data-index="${i}">
+                                            <g:each var="tag" in="${ind_tags}">
+                                                <td><input type="text" class="form-control input input-text-lg" name="${i$}_${tag}" value="${row[tag]}" ></td>
+                                            </g:each>
+                                        </tr>
+                                    </g:each>
+                                    </tbody>
+                                </table>
+                            </div>
 						</div>
 					</div>
 					<div id="ontology" class="tab-pane fade">
