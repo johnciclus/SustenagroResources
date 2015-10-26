@@ -38,26 +38,45 @@
 							</div>
 
 							<script type="application/javascript">
+                                var Range = ace.require("ace/range").Range
 
 								var dslEditor = ace.edit("dslEditor");
                                 dslEditor.setTheme("ace/theme/chrome");
                                 dslEditor.getSession().setMode("ace/mode/groovy");
-                                dslEditor.setOption("showPrintMargin", false)
+                                dslEditor.setOption("showPrintMargin", false);
+                                var session = dslEditor.getSession();
+
 								document.getElementById('dslEditor').style.fontSize='13px';
 
 								$( "#dsl_form" ).submit(function( event ) {
+                                    var markers = session.getMarkers(false);
+                                    for( var i in markers){
+                                        if(markers[i].clazz=='ace_error-line')
+                                            session.removeMarker(markers[i].id);
+                                    }
+
 									$.post(
-											$(this).attr('action'),
-											{'code':  dslEditor.getValue() },
-											function( data ) {
-												if(data=='ok'){
-													function resetButton(){
-														$('#dsl_form button').removeClass('btn-success').addClass('btn-primary');
-													}
-													$('#dsl_form button').removeClass('btn-primary').addClass('btn-success');
-													setTimeout(resetButton, 1000);
-												}
-											}
+                                        $(this).attr('action'),
+                                        {'code':  dslEditor.getValue() },
+                                        function( data ) {
+                                            var res = $(data);
+                                            var status = res.find("entry[key='status']");
+
+                                            if(status.text() =='ok'){
+                                                $('#dsl_form button').removeClass('btn-primary').addClass('btn-success');
+                                                setTimeout(function(){
+                                                    $('#dsl_form button').removeClass('btn-success').addClass('btn-primary');
+                                                }, 1000);
+                                            }
+                                            else if(status.text() =='error'){
+                                                $('#dsl_form button').removeClass('btn-primary').addClass('btn-danger');
+                                                setTimeout(function(){
+                                                    $('#dsl_form button').removeClass('btn-danger').addClass('btn-primary');
+                                                }, 1000);
+                                                var line = Number(res.find("entry[key='line']").text())-1;
+                                                session.addMarker(new Range(line, 0, line, 200), "ace_error-line", "fullLine");
+                                            }
+                                        }
 									);
 									event.preventDefault();
 								});

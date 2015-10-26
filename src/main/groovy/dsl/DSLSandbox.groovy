@@ -1,6 +1,7 @@
 package dsl
 
 import org.kohsuke.groovy.sandbox.GroovyValueFilter
+import rdfUtils.DataReader
 
 /**
  * Created by john on 09/09/15.
@@ -8,7 +9,7 @@ import org.kohsuke.groovy.sandbox.GroovyValueFilter
 class DSLSandbox extends GroovyValueFilter{
     @Override
     Object filter(Object o) {
-        //println "#[" + o.getClass() + "] " + o
+        //println "#[" + o.getClass() + "] " + o.toString()
 
         if (o==null || ALLOWED_TYPES.contains(o.getClass()))
             return o;
@@ -23,6 +24,7 @@ class DSLSandbox extends GroovyValueFilter{
             Boolean,
             Binding,
             ArrayList,
-            Object[]
+            Object[],
+            DataReader
     ] as Set
 }

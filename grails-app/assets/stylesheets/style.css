@@ -228,3 +228,9 @@ body {
 .input-text-lg{
 	font-size: 13px;
 }
+
+.ace_error-line{
+	position: absolute;
+	background: rgba(228, 53, 58, 0.75);
+	z-index:40;
+}

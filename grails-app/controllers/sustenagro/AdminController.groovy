@@ -5,6 +5,8 @@ import org.semanticweb.owlapi.model.*
 import org.semanticweb.owlapi.io.StringDocumentSource
 import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat
 
+import grails.converters.*
+
 class AdminController {
 
     def dsl
@@ -17,7 +19,8 @@ class AdminController {
                                       ?id rdfs:subClassOf ?att; rdfs:label ?title.
                                       ?id rdfs:subClassOf ?y.
                                       ?y  owl:onClass ?class.''')
-        indicators.each{    indicator ->
+
+        indicators.each{ indicator ->
             indicator.each{
                 //println it.value
                 it.value = it.value.replace("http://bio.icmc.usp.br/sustenagro#",":")
@@ -30,48 +33,16 @@ class AdminController {
                                       ind_tags: ["id", "class", "title"]])
     }
 
-    def dsl() {
+    def dsl(){
+        def response = dsl.reLoad(params['code'])
 
-        def file = new File('dsl/dsl.groovy')
-        file.write(params['code'])
-
-        try{
-            dsl.reLoad()
+        if(response.status == 'error'){
+            println response
         }
-        catch (Exception e){
-            handleException(e, "DSL Error")
-        }
+        else if(response.status == 'ok')
+            new File('dsl/dsl.groovy').write(params['code'])
 
-
-        //FileUtils.deleteRecursively( new File( DB_PATH ) )
-
-        //Binding binding = new Binding([html: new Html(elements)])
-        //Html html = new Html()
-        //binding.setVariable("html", html)
-        
-        //GroovyShell shell = new GroovyShell(new Binding([html: new Html()]))
-
-        //Script script = shell.parse("html.make({" + params["code"] + "})")
-        //render script.run()
-
-        //Binding binding   = new Binding()
-        //binding.setVariable("html", html)
-        //GroovyShell shell = new GroovyShell(binding)
-
-        //render shell.evaluate("html.make({" + params["code"] + "})")
-
-
-        /*String sparqlQueryString= "select distinct ?Concept where {[] a ?Concept} LIMIT 100"
-
-        Query query = QueryFactory.create(sparqlQueryString)
-        QueryExecution qexec = QueryExecutionFactory.sparqlService("http://dbpedia.org/sparql", query)
-
-        ResultSet results = qexec.execSelect()
-        println results       
-
-        qexec.close()*/
-
-        render "ok"
+        render response as XML
     }
 
     def ontology(){
@@ -112,12 +83,5 @@ class AdminController {
             handleException(e, "DSL Error")
         }
         redirect(action: 'index')
-    }
-
-    private void handleException(Exception e, String message) {
-        flash.message = message
-        String eMessage = ExceptionUtils.getRootCauseMessage(e)
-        log.error message(code: "sic.log.error.ExceptionOccurred", args: ["${eMessage}", "${e}"])
-        //redirect(action:index)
     }
 }

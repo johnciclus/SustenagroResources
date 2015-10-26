@@ -7,7 +7,7 @@
 // nome vai aparecer onde um nome for necessário
 title 'Avaliação da sustentabilidade na agricultura'
 
-// Aba de descrição do conteúdo: um texto em markdown que você vai escrever
+// Aba de des0crição do conteúdo: um texto em markdown que você vai escrever
 // (esse texto também pode estar num arquivo)
 description '''O processo de avaliação da sustentabilidade é composto pelas seguintes etapas:
 
@@ -59,7 +59,7 @@ prog {
     economicAvg     = average(evaluation.'EconomicIndicator')
 
     sustainabilityAvg = (environmentAvg+socialAvg+economicAvg)/3
-    
+
     //environment =   (evaluation.'BiologicalPestControl' ? 1:-1) +
     //        (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
     //        (evaluation.'StandardAerialSpraying' ? 1:-1) +
@@ -74,8 +74,6 @@ prog {
     //        evaluation.OperationalEfficiencyPlant
 
     // THE REPORT
-
-     // THE REPORT
 
     // Just showing text
     show '***That is the report:***'
@@ -93,7 +91,7 @@ prog {
     // recommendation if:(environment > 3.5 || social == 7), '**Third** *option*'
     // recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
 
-    show 'Matrix de avaliação'
+    show 'Matrix de Avaliação'
 
     show 'Indice de Magnitude: ' + sustainability
     show 'Indice de Segurança: ' + sustainabilityAvg
@@ -104,8 +102,8 @@ prog {
             y: environmentAvg,
             labelX: 'Indice de Magnitude',
             labelY: 'Indice de Segurança',
-            rangeX: [0,5],
-            rangeY: [0,3],
+            rangeX: [-4,4],
+            rangeY: [-2,2],
             quadrants: [4,3],
             recomendations: [
                     [1, 1, "Cenário desfavorável, Muito baixo desempenho dos indicadores"],
@@ -136,4 +134,3 @@ prog {
     show 'Mapa da microregião'
     map evaluation.'Microregion'
 }
-System.exit(0)
