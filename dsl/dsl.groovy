@@ -7,7 +7,7 @@
 // nome vai aparecer onde um nome for necessário
 title 'Avaliação da sustentabilidade na agricultura'
 
-// Aba de des0crição do conteúdo: um texto em markdown que você vai escrever
+// Aba de descrição do conteúdo: um texto em markdown que você vai escrever
 // (esse texto também pode estar num arquivo)
 description '''O processo de avaliação da sustentabilidade é composto pelas seguintes etapas:
 

@@ -83,7 +83,7 @@ class DSL {
             _script.run()
             response.status = 'ok'
         }
-        catch(SecurityException e){
+        catch(Exception e){
             response.error = [:]
             for (StackTraceElement el : e.getStackTrace()) {
                 if(el.getMethodName() == 'run' && el.getFileName() ==~ /Script.+\.groovy/) {

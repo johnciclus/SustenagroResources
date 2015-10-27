@@ -172,14 +172,14 @@ class ToolController {
         dsl._cleanProgram()
         def evaluationID = params.evaluation
 
-        println "name"
-        println name
+        //println "name"
+        //println name
 
-        println "evaluationID"
-        println evaluationID
+        //println "evaluationID"
+        //println evaluationID
 
-        println "categorical"
-        println categorical
+        //println "categorical"
+        //println categorical
 
         if (evaluationID != null) {
 

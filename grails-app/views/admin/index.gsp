@@ -97,30 +97,52 @@
 							</div>
 						</div>
 						<div class="row">
-                            <div>
-                                <table data-toggle="table"
-                                       data-sort-name="id"
-                                       data-sort-order="desc"
-                                       data-height="600"
-                                       data-show-columns="true">
-                                    <thead>
-                                    <tr>
+                            <div id="indicator_editor" class="col-sm-10 col-sm-offset-1">
+                                <form class="form-horizontal">
+                                <g:each status="i" var="row" in="${indicators}">
+                                    <div class="form-group">
+                                        <h5>${row['title']}</h5>
                                         <g:each var="tag" in="${ind_tags}">
-                                            <th data-field="${tag}" data-sortable="true">${tag}</th>
+                                            <label for="${i}_${tag}" class="col-sm-4 control-label">${tag}</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control input input-text-lg" name="${i}_${tag}" value="${row[tag]}" >
+                                            </div>
+                                        </g:each>
+                                        <label for="${i}_dimension" class="col-sm-4 control-label">Dimension</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control input input-text-lg" name="${i}_dimension" value="" >
+                                        </div>
+                                        <label for="${i}_attribute" class="col-sm-4 control-label">Attribute</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control input input-text-lg" name="${i}_attribute" value="" >
+                                        </div>
+                                    </div>
+                                </g:each>
+                                </form>
+                            </div>
+
+                            <table data-toggle="table"
+                                   data-sort-name="id"
+                                   data-sort-order="desc"
+                                   data-height="600"
+                                   data-show-columns="true">
+                                <thead>
+                                <tr>
+                                    <g:each var="tag" in="${ind_tags}">
+                                        <th data-field="${tag}" data-sortable="true">${tag}</th>
+                                    </g:each>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <g:each status="i" var="row" in="${indicators}">
+                                    <tr data-index="${i}">
+                                        <g:each var="tag" in="${ind_tags}">
+                                            <td><input type="text" class="form-control input input-text-lg" name="${i$}_${tag}" value="${row[tag]}" ></td>
                                         </g:each>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <g:each status="i" var="row" in="${indicators}">
-                                        <tr data-index="${i}">
-                                            <g:each var="tag" in="${ind_tags}">
-                                                <td><input type="text" class="form-control input input-text-lg" name="${i$}_${tag}" value="${row[tag]}" ></td>
-                                            </g:each>
-                                        </tr>
-                                    </g:each>
-                                    </tbody>
-                                </table>
-                            </div>
+                                </g:each>
+                                </tbody>
+                            </table>
 						</div>
 					</div>
 					<div id="ontology" class="tab-pane fade">

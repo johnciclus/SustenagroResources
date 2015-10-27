@@ -26,6 +26,7 @@ class AdminController {
                 it.value = it.value.replace("http://bio.icmc.usp.br/sustenagro#",":")
             }
         }
+        println indicators.size()
 
         render(view: 'index', model: [code: new File('dsl/dsl.groovy').text,
                                       ontology: new File('ontology/SustenAgroOntology.man').text,
@@ -36,13 +37,27 @@ class AdminController {
     def dsl(){
         def response = dsl.reLoad(params['code'])
 
-        if(response.status == 'error'){
-            println response
-        }
-        else if(response.status == 'ok')
+        if(response.status == 'ok')
             new File('dsl/dsl.groovy').write(params['code'])
 
         render response as XML
+    }
+
+    def dslReset() {
+        def file = new File('dsl/dsl.groovy')
+        file.write(new File('dsl/dsl-bk.groovy').text)
+
+        def response = dsl.reLoad(file.text)
+
+        redirect(action: 'index')
+    }
+
+    def indicators(){
+
+    }
+
+    def indicatorsReset(){
+
     }
 
     def ontology(){
@@ -72,16 +87,5 @@ class AdminController {
         render "ok"
     }
 
-    def dslReset() {
-        def file = new File('dsl/dsl.groovy')
-        file.write(new File('dsl/dsl-bk.groovy').text)
 
-        try{
-            dsl.reLoad()
-        }
-        catch (Exception e){
-            handleException(e, "DSL Error")
-        }
-        redirect(action: 'index')
-    }
 }
