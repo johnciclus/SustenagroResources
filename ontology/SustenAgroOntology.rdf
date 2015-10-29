@@ -405,7 +405,7 @@
 
     <!-- http://bio.icmc.usp.br/sustenagro#BiologicalPestControl -->
 
-        <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#BiologicalPestControl">
+    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#BiologicalPestControl">
         <rdfs:label xml:lang="en">Biological pest control</rdfs:label>
         <rdfs:label xml:lang="pt">Controle biológico de pragas</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#GeneralIndicator"/>
@@ -413,7 +413,7 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
                 <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -435,13 +435,6 @@
     <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#Boolean">
         <rdfs:label xml:lang="en">Boolean</rdfs:label>
         <rdfs:label xml:lang="pt">Boleana</rdfs:label>
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#dataValue"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;boolean"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Categorical"/>
     </owl:Class>
     
@@ -657,13 +650,6 @@
     <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#Integer">
         <rdfs:label xml:lang="en">Integer</rdfs:label>
         <rdfs:label xml:lang="pt">Inteiro</rdfs:label>
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#dataValue"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;integer"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Real"/>
     </owl:Class>
     

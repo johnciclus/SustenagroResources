@@ -102,20 +102,34 @@
                                 <g:each status="i" var="row" in="${indicators}">
                                     <div class="form-group">
                                         <h5>${row['title']}</h5>
+                                        <input type="hidden" name="id" value="${row['id']}">
                                         <g:each var="tag" in="${ind_tags}">
-                                            <label for="${i}_${tag}" class="col-sm-4 control-label">${tag}</label>
+                                            <label for="${i}_${tag}" class="col-sm-4 control-label">${tag.capitalize()}</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control input input-text-lg" name="${i}_${tag}" value="${row[tag]}" >
+                                                <g:if test="${tag == 'class'}">
+                                                    <select class="form-control">
+                                                        <g:each var="el" in="${classes}">
+                                                            <option value="${el.class}" <g:if test="${ row['class'] == el.class}"> selected </g:if>> ${el.class}</option>
+                                                        </g:each>
+                                                    </select>
+                                                </g:if>
+                                                <g:elseif test="${tag == 'dimension'}">
+                                                    <select class="form-control select-dimension">
+                                                        <g:each var="el" in="${dimensions}">
+                                                            <option value="${el.dimension}" <g:if test="${ row['dimension'] == el.dimension}"> selected </g:if>> ${el.dimension}</option>
+                                                        </g:each>
+                                                    </select>
+                                                </g:elseif>
+                                                <g:elseif test="${tag == 'attribute'}">
+                                                    <select class="form-control select-attribute">
+
+                                                    </select>
+                                                </g:elseif>
+                                                <g:else>
+                                                    <input id="${i}_${tag}" type="text" class="form-control input input-text-lg" name="${i}_${tag}" value="${row[tag]}" >
+                                                </g:else>
                                             </div>
                                         </g:each>
-                                        <label for="${i}_dimension" class="col-sm-4 control-label">Dimension</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control input input-text-lg" name="${i}_dimension" value="" >
-                                        </div>
-                                        <label for="${i}_attribute" class="col-sm-4 control-label">Attribute</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control input input-text-lg" name="${i}_attribute" value="" >
-                                        </div>
                                     </div>
                                 </g:each>
                                 </form>
@@ -124,8 +138,7 @@
                             <table data-toggle="table"
                                    data-sort-name="id"
                                    data-sort-order="desc"
-                                   data-height="600"
-                                   data-show-columns="true">
+                                   data-height="600">
                                 <thead>
                                 <tr>
                                     <g:each var="tag" in="${ind_tags}">
@@ -143,6 +156,20 @@
                                 </g:each>
                                 </tbody>
                             </table>
+                            <script type="application/javascript">
+                                $('#indicator_editor .select-dimension').change( function(){
+                                    var id = $(this).val();
+                                    $.post( '/admin/attributes',
+                                        {'dimension':  id },
+                                        function( data ) {
+                                            console.log(data)
+                                            if(data=='ok'){
+
+                                            }
+                                        }
+                                    );
+                                });
+                            </script>
 						</div>
 					</div>
 					<div id="ontology" class="tab-pane fade">

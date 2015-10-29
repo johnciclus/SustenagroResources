@@ -4,8 +4,8 @@ import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.model.*
 import org.semanticweb.owlapi.io.StringDocumentSource
 import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat
-
 import grails.converters.*
+import utils.Uri
 
 class AdminController {
 
@@ -13,25 +13,41 @@ class AdminController {
     def slp
 
     def index(){
-        def indicators = slp.select("distinct ?id ?class ?title")
-                            .query('''?dim rdfs:subClassOf :Indicator.
-                                      ?att rdfs:subClassOf ?dim.
-                                      ?id rdfs:subClassOf ?att; rdfs:label ?title.
+        def indicators = slp.select("distinct ?id ?class ?title ?dimension ?attribute")
+                            .query('''?dimension rdfs:subClassOf :Indicator.
+                                      ?attribute rdfs:subClassOf ?dimension.
+                                      ?id rdfs:subClassOf ?attribute; rdfs:label ?title.
                                       ?id rdfs:subClassOf ?y.
-                                      ?y  owl:onClass ?class.''')
+                                      ?y  owl:onClass ?class.
+                                      FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != ?id )''',
+                                      'ORDER BY ?id')
 
-        indicators.each{ indicator ->
-            indicator.each{
-                //println it.value
-                it.value = it.value.replace("http://bio.icmc.usp.br/sustenagro#",":")
-            }
-        }
-        println indicators.size()
+        def classes = slp.query('''?class rdfs:subClassOf :Value.
+                                   FILTER( ?class != :Value)''')
+
+        def dimensions = slp.select("distinct ?dimension")
+                            .query('''?dimension rdfs:subClassOf :Indicator.
+                                      ?attribute rdfs:subClassOf ?dimension.
+                                      ?indicator rdfs:subClassOf ?attribute.
+                                      FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?dimension != ?indicator && ?attribute != ?indicator)''')
+
+
+
+        def attributes = []
+
+        Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#")
+        Uri.simpleDomain(classes,    "http://bio.icmc.usp.br/sustenagro#")
+        Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#")
+
+        //println getAttributes(":EnvironmentalIndicator")
 
         render(view: 'index', model: [code: new File('dsl/dsl.groovy').text,
                                       ontology: new File('ontology/SustenAgroOntology.man').text,
+                                      ind_tags: ['id', 'class', 'dimension', 'attribute', 'title'],
                                       indicators: indicators,
-                                      ind_tags: ["id", "class", "title"]])
+                                      classes: classes,
+                                      dimensions: dimensions,
+                                      attributes: attributes  ])
     }
 
     def dsl(){
@@ -87,5 +103,24 @@ class AdminController {
         render "ok"
     }
 
+    def ontologyReset(){
 
+    }
+
+    def getAttributes(String dimension) {
+        def result = slp.select("distinct ?attribute")
+                .query("?attribute rdfs:subClassOf ${dimension}."+
+                "?indicator rdfs:subClassOf ?attribute."+
+                "FILTER( ?attribute != ${dimension} && ?attribute != ?indicator)")
+        result
+    }
+
+    def attributes(){
+        def attr = getAttributes(params['dimension'])
+        println attr
+
+        Uri.simpleDomain(attr, "http://bio.icmc.usp.br/sustenagro#")
+
+        render attr as XML
+    }
 }

@@ -461,10 +461,10 @@ class Sparql {
                     varNode = sol.get(varName)
                     row.put(varName, (varNode.isLiteral() ? varNode.asLiteral().value : varNode.toString()))
                     if (lang!='' &&
-                            varNode.isLiteral() &&
-                            varNode.asLiteral().language!=null &&
-                            varNode.asLiteral().language.size()>1 &&
-                            varNode.asLiteral().language!=lang) add= false
+                        varNode.isLiteral() &&
+                        varNode.asLiteral().language!=null &&
+                        varNode.asLiteral().language.size()>1 &&
+                        varNode.asLiteral().language!=lang) add= false
                 }
                 //println 'row: '+row
                 if (add)

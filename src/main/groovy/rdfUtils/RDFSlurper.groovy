@@ -284,8 +284,8 @@ class RDFSlurper {
         this
     }
 
-    def query(String q, String lang = this.lang) {
-        def f = "$prefixes \nselect $select where {$q}"
+    def query(String q, String order='', String lang = this.lang) {
+        def f = "$prefixes \nselect $select where {$q} ${order}"
         select = '*'
         //println f+"\n"
         Sparql.query(f, lang)
