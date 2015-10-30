@@ -31,15 +31,21 @@ class AdminController {
                                       ?indicator rdfs:subClassOf ?attribute.
                                       FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?dimension != ?indicator && ?attribute != ?indicator)''')
 
-
-
-        def attributes = []
-
         Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#")
         Uri.simpleDomain(classes,    "http://bio.icmc.usp.br/sustenagro#")
         Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#")
 
-        //println getAttributes(":EnvironmentalIndicator")
+        def attributes = [:]
+
+        dimensions.each{
+            attributes[it.dimension] = Uri.simpleDomain(getAttributes(it.dimension), "http://bio.icmc.usp.br/sustenagro#")
+        }
+
+        def options = [:]
+
+        classes.each{
+            options[it.class] = getOptions(it.class)
+        }
 
         render(view: 'index', model: [code: new File('dsl/dsl.groovy').text,
                                       ontology: new File('ontology/SustenAgroOntology.man').text,
@@ -47,7 +53,8 @@ class AdminController {
                                       indicators: indicators,
                                       classes: classes,
                                       dimensions: dimensions,
-                                      attributes: attributes  ])
+                                      attributes: attributes,
+                                      options: options])
     }
 
     def dsl(){
@@ -108,11 +115,16 @@ class AdminController {
     }
 
     def getAttributes(String dimension) {
-        def result = slp.select("distinct ?attribute")
+        slp.select("distinct ?attribute")
                 .query("?attribute rdfs:subClassOf ${dimension}."+
                 "?indicator rdfs:subClassOf ?attribute."+
                 "FILTER( ?attribute != ${dimension} && ?attribute != ?indicator)")
-        result
+    }
+
+    def getOptions(String cls) {
+        slp.query("?option rdf:type $cls. "+
+                  "?option rdfs:label ?label. " +
+                  "?option :dataValue ?value.")
     }
 
     def attributes(){

@@ -107,22 +107,24 @@
                                             <label for="${i}_${tag}" class="col-sm-4 control-label">${tag.capitalize()}</label>
                                             <div class="col-sm-8">
                                                 <g:if test="${tag == 'class'}">
-                                                    <select class="form-control">
+                                                    <select id="${i}_class" class="form-control">
                                                         <g:each var="el" in="${classes}">
                                                             <option value="${el.class}" <g:if test="${ row['class'] == el.class}"> selected </g:if>> ${el.class}</option>
                                                         </g:each>
                                                     </select>
                                                 </g:if>
                                                 <g:elseif test="${tag == 'dimension'}">
-                                                    <select class="form-control select-dimension">
+                                                    <select id="${i}_dimension" class="form-control select-dimension">
                                                         <g:each var="el" in="${dimensions}">
                                                             <option value="${el.dimension}" <g:if test="${ row['dimension'] == el.dimension}"> selected </g:if>> ${el.dimension}</option>
                                                         </g:each>
                                                     </select>
                                                 </g:elseif>
                                                 <g:elseif test="${tag == 'attribute'}">
-                                                    <select class="form-control select-attribute">
-
+                                                    <select id="${i}_attribute" class="form-control select-attribute">
+                                                        <g:each var="el" in="${attributes[row['dimension']]}">
+                                                            <option value="${el.attribute}" <g:if test="${ row['attribute'] == el.attribute}"> selected </g:if>> ${el.attribute}</option>
+                                                        </g:each>
                                                     </select>
                                                 </g:elseif>
                                                 <g:else>
@@ -131,41 +133,56 @@
                                             </div>
                                         </g:each>
                                     </div>
+                                    <div>
+                                        <table data-toggle="table"
+                                               data-sort-name="id"
+                                               data-sort-order="desc">
+                                            <thead>
+                                            <tr>
+                                                <th data-field="id" data-sortable="true">ID</th>
+                                                <th data-field="name" data-sortable="true">Name</th>
+                                                <th data-field="value" data-sortable="true">Value</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <g:each var="el" in="${options[row['class']]}">
+                                                    <tr data-index="${i}">
+                                                        <td>
+                                                            <label for="${i}_id" class="col-sm-4 control-label">${el.option}</label>
+                                                        </td>
+                                                        <td>
+                                                            <input id="${i}_label" type="text" class="form-control input input-text-lg" value="${el.label}" >
+                                                        </td>
+                                                        <td>
+                                                            <input id="${i}_value" type="text" class="form-control input input-text-lg" value="${el.value}" >
+                                                        </td>
+                                                    </tr>
+                                                </g:each>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </g:each>
                                 </form>
                             </div>
 
-                            <table data-toggle="table"
-                                   data-sort-name="id"
-                                   data-sort-order="desc"
-                                   data-height="600">
-                                <thead>
-                                <tr>
-                                    <g:each var="tag" in="${ind_tags}">
-                                        <th data-field="${tag}" data-sortable="true">${tag}</th>
-                                    </g:each>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <g:each status="i" var="row" in="${indicators}">
-                                    <tr data-index="${i}">
-                                        <g:each var="tag" in="${ind_tags}">
-                                            <td><input type="text" class="form-control input input-text-lg" name="${i$}_${tag}" value="${row[tag]}" ></td>
-                                        </g:each>
-                                    </tr>
-                                </g:each>
-                                </tbody>
-                            </table>
+
+
+
                             <script type="application/javascript">
                                 $('#indicator_editor .select-dimension').change( function(){
-                                    var id = $(this).val();
-                                    $.post( '/admin/attributes',
-                                        {'dimension':  id },
-                                        function( data ) {
-                                            console.log(data)
-                                            if(data=='ok'){
+                                    var id = $(this).attr('id');
+                                    var dim = $(this).val();
+                                    id = id.substring(0, id.indexOf('_'));
+                                    var attribute = $('#'+id+'_attribute');
+                                    attribute.empty();
 
-                                            }
+                                    $.post('/admin/attributes',
+                                        {'dimension':  dim },
+                                        function(data){
+                                            var res = $(data);
+                                            $.each(res.find("entry[key='attribute']"), function(){
+                                                attribute.append($('<option></option>').attr('value', $(this).text()).text($(this).text()));
+                                            });
                                         }
                                     );
                                 });
