@@ -185,16 +185,16 @@ class DSL {
         featureLst << ['id': id, 'widget': 'instance', 'request': ['a', clsName], 'args': argLst]
     }
 
+    def subclass(String str){
+        featureLst << ['subclass': ['rdfs:subClassOf', str]]
+    }
+
     def matrix(Map map){
         report << ['matrix', map.x, map.y, map.labelX, map.labelY, map.rangeX, map.rangeY, map.quadrants, map.recomendations]
     }
 
     def map(String url){
         report << ['map', url]
-    }
-
-    def subclass(String str){
-        featureLst << ['subclass': ['rdfs:subClassOf', str]]
     }
 
     def dimension(String cls) {

@@ -16,7 +16,7 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 3. Definição dos indicadores
 4. Recomendações de sustentabilidade
 
- '''
+'''
 
 // Informações que serão lidas antes dos indicadores. No exemplo serão
 // mostradas todas as culturas, tecnologias e meios de produção que

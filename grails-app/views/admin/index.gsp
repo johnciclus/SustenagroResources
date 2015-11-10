@@ -4,6 +4,7 @@
 		<meta name="layout" content="main"/>
 		<title>SustenAgro - Admin</title>
 		<asset:javascript src="ace-min-noconflict/ace.js"/>
+        <asset:javascript src="ace-min-noconflict/ext-language_tools.js"/>
         <asset:javascript src="bootstrap-table.min.js"/>
         <asset:stylesheet href="bootstrap-table.min.css"/>
 	</head>
@@ -38,15 +39,34 @@
 							</div>
 
 							<script type="application/javascript">
-                                var Range = ace.require("ace/range").Range
-
-								var dslEditor = ace.edit("dslEditor");
-                                dslEditor.setTheme("ace/theme/chrome");
-                                dslEditor.getSession().setMode("ace/mode/groovy");
-                                dslEditor.setOption("showPrintMargin", false);
+                                var Range = ace.require("ace/range").Range;
+                                var langTools = ace.require("ace/ext/language_tools");
+                                var dslEditor = ace.edit("dslEditor");
                                 var session = dslEditor.getSession();
+                                dslEditor.setTheme("ace/theme/chrome");
+                                dslEditor.setOption("showPrintMargin", false);
+                                dslEditor.setOptions({
+                                    enableBasicAutocompletion: true
+                                });
+                                session.setMode("ace/mode/groovy");
 
 								document.getElementById('dslEditor').style.fontSize='13px';
+
+                                var dslCompleter = {
+                                    getCompletions: function(editor, session, pos, prefix, callback) {
+                                        console.log(prefix);
+
+                                        $.get('/admin/autoComplete', function( respond ) {
+                                            callback(null, respond);
+                                        });
+
+                                        //callback(null, [
+                                        //        {'name': 'title', 'value': 'title', 'score': 400, 'meta': 'commands'},
+                                        //        {'name': 'description', 'value': 'Description', 'score': 400, 'meta': 'commands'}]);
+                                    }
+                                }
+
+                                langTools.addCompleter(dslCompleter);
 
 								$( "#dsl_form" ).submit(function( event ) {
                                     var markers = session.getMarkers(false);

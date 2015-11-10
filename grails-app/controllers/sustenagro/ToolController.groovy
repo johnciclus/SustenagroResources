@@ -14,16 +14,16 @@ class ToolController {
                 def uri = '<'+slp.toURI(query[1])+'>'
                 def result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
 
-                if (!result) {
+                if (result.size == 0) {
                     try{
-                        result = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${query[1]}')", '')
-                        if (result){
+                        result = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${query[1]}')", '', '')
+                        if (result.size > 0){
                             uri = "<${result[0].id}>"
                         }
                     }
                     catch(RuntimeException e){
-                        println new RuntimeException('Unknown label: '+query[1])
-                    }//result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+                        new RuntimeException('Unknown label: '+query[1])
+                    }
                 }
                 return slp.query("?id ${query[0]} $uri; rdfs:label ?label. optional {?id dc:description ?description}. FILTER ( ?id != $uri )")
             }

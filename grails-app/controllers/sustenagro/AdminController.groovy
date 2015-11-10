@@ -135,4 +135,30 @@ class AdminController {
 
         render attr as XML
     }
+
+    def autoComplete(){
+        def list = []
+
+        if(params['word']){
+            
+        }
+        else{
+            list.addAll([['name': 'title', 'value': 'title', 'score': 500, 'meta': 'commands'],
+                         ['name': 'data', 'value': 'data', 'score': 500, 'meta': 'commands'],
+                         ['name': 'description', 'value': 'description', 'score': 500, 'meta': 'commands'],
+                         ['name': 'features', 'value': 'features', 'score': 500, 'meta': 'commands'],
+                         ['name': 'show', 'value': 'show', 'score': 500, 'meta': 'commands'],
+                         ['name': 'instance', 'value': 'instance', 'score': 500, 'meta': 'commands'],
+                         ['name': 'subclass', 'value': 'subclass', 'score': 500, 'meta': 'commands'],
+                         ['name': 'matrix', 'value': 'matrix', 'score': 500, 'meta': 'commands'],
+                         ['name': 'map', 'value': 'map', 'score': 500, 'meta': 'commands'],
+                         ['name': 'dimension', 'value': 'dimension', 'score': 500, 'meta': 'commands'],
+                         ['name': 'prog', 'value': 'prog', 'score': 500, 'meta': 'commands'],
+                         ['name': 'sum', 'value': 'sum', 'score': 500, 'meta': 'commands'],
+                         ['name': 'average', 'value': 'average', 'score': 500, 'meta': 'commands']])
+        }
+
+
+        render list as JSON
+    }
 }
