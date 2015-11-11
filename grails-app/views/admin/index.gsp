@@ -117,8 +117,8 @@
                                                 <div class="panel-body">
                                                     <div class="list-group">
                                                     <g:each status="i" var="row" in="${indicators}">
-                                                        <g:if test="${ row['dimension'] == el.id}">
-                                                            <button id="${row['id']}" type="button" class="list-group-item indicator">${row['title']}</button>
+                                                        <g:if test="${ row.dimension == el.id}">
+                                                            <button id="${row.id}" type="button" class="list-group-item indicator">${row.label}</button>
                                                         </g:if>
                                                     </g:each>
                                                     </div>
@@ -129,77 +129,7 @@
                                 </g:each>
                             </div>
                             <div id="indicator_editor" class="col-sm-9">
-                                <form class="form-horizontal">
-                                <g:each status="i" var="row" in="${indicators}">
-                                    <div class="form-group">
-                                        <h5>${row['title']}</h5>
-                                        <input type="hidden" name="id" value="${row['id']}">
-                                        <g:each var="tag" in="${ind_tags}">
-                                            <label for="${i}_${tag}" class="col-sm-4 control-label">${tag.capitalize()}</label>
-                                            <div class="col-sm-8">
-                                                <g:if test="${tag == 'class'}">
-                                                    <select id="${i}_class" class="form-control">
-                                                        <g:each var="el" in="${classes}">
-                                                            <option value="${el.class}" <g:if test="${ row['class'] == el.class}"> selected </g:if>> ${el.class}</option>
-                                                        </g:each>
-                                                    </select>
-                                                </g:if>
-                                                <g:elseif test="${tag == 'dimension'}">
-                                                    <select id="${i}_dimension" class="form-control select-dimension">
-                                                        <g:each var="el" in="${dimensions}">
-                                                            <option value="${el.id}" <g:if test="${ row['dimension'] == el.id}"> selected </g:if>> ${el.id}</option>
-                                                        </g:each>
-                                                    </select>
-                                                </g:elseif>
-                                                <g:elseif test="${tag == 'attribute'}">
-                                                    <select id="${i}_attribute" class="form-control select-attribute">
-                                                        <g:each var="el" in="${attributes[row['dimension']]}">
-                                                            <option value="${el.attribute}" <g:if test="${ row['attribute'] == el.attribute}"> selected </g:if>> ${el.attribute}</option>
-                                                        </g:each>
-                                                    </select>
-                                                </g:elseif>
-                                                <g:else>
-                                                    <input id="${i}_${tag}" type="text" class="form-control input input-text-lg" name="${i}_${tag}" value="${row[tag]}" >
-                                                </g:else>
-                                            </div>
-                                        </g:each>
-                                    </div>
-                                    <div>
-                                        <table data-toggle="table"
-                                               data-sort-name="id"
-                                               data-sort-order="desc">
-                                            <thead>
-                                            <tr>
-                                                <th data-field="id" data-sortable="true">ID</th>
-                                                <th data-field="name" data-sortable="true">Name</th>
-                                                <th data-field="value" data-sortable="true">Value</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <g:each var="el" in="${options[row['class']]}">
-                                                    <tr data-index="${i}">
-                                                        <td>
-                                                            <label for="${i}_id" class="col-sm-4 control-label">${el.option}</label>
-                                                        </td>
-                                                        <td>
-                                                            <input id="${i}_label" type="text" class="form-control input input-text-lg" value="${el.label}" >
-                                                        </td>
-                                                        <td>
-                                                            <input id="${i}_value" type="text" class="form-control input input-text-lg" value="${el.value}" >
-                                                        </td>
-                                                    </tr>
-                                                </g:each>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </g:each>
-                                </form>
-                                <form id="indicators_form" action="/admin/indicators" method="post" class="form-inline-block pull-right" role="form">
-                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Salvar </button>
-                                </form>
-                                <form id="reset_indicators_form" action="/admin/indicatorsReset" method="post" class="form-inline-block pull-right" role="form">
-                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Restaurar </button>
-                                </form>
+
                             </div>
                             <script type="application/javascript">
 
@@ -208,27 +138,26 @@
                                     $('#indicators .indicator.active').removeClass('active');
                                     $(this).addClass('active');
 
-                                    $.post('/admin/indicatorData',
+                                    $.post('/admin/indicatorForm',
                                         {'id':  id },
                                         function(data){
+                                            $("#indicator_editor").html(data)
+                                            $('#indicator_editor .select-dimension').change( function(){
+                                                var id = $(this).attr('id');
+                                                var dim = $(this).val();
+                                                id = id.substring(0, id.indexOf('_'));
+                                                var attribute = $('#'+id+'_attribute');
+                                                attribute.empty();
 
-                                        }
-                                    );
-                                });
-
-                                $('#indicator_editor .select-dimension').change( function(){
-                                    var id = $(this).attr('id');
-                                    var dim = $(this).val();
-                                    id = id.substring(0, id.indexOf('_'));
-                                    var attribute = $('#'+id+'_attribute');
-                                    attribute.empty();
-
-                                    $.post('/admin/attributes',
-                                        {'dimension':  dim },
-                                        function(data){
-                                            var res = $(data);
-                                            $.each(res.find("entry[key='attribute']"), function(){
-                                                attribute.append($('<option></option>').attr('value', $(this).text()).text($(this).text()));
+                                                $.post('/admin/attributes',
+                                                        {'dimension':  dim },
+                                                        function(data){
+                                                            var res = $(data);
+                                                            $.each(res.find("entry[key='attribute']"), function(){
+                                                                attribute.append($('<option></option>').attr('value', $(this).text()).text($(this).text()));
+                                                            });
+                                                        }
+                                                );
                                             });
                                         }
                                     );

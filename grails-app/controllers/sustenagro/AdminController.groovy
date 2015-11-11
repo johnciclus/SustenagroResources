@@ -13,48 +13,29 @@ class AdminController {
     def slp
 
     def index(){
-        def indicators = slp.select("distinct ?id ?class ?title ?dimension ?attribute")
-                            .query('''?dimension rdfs:subClassOf :Indicator.
-                                      ?attribute rdfs:subClassOf ?dimension.
-                                      ?id rdfs:subClassOf ?attribute; rdfs:label ?title.
-                                      ?id rdfs:subClassOf ?y.
-                                      ?y  owl:onClass ?class.
-                                      FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != ?id )''',
-                                      'ORDER BY ?id')
-
-        def classes = slp.query('''?class rdfs:subClassOf :Value.
-                                   FILTER( ?class != :Value)''')
-
-        def dimensions = slp.select("distinct ?id ?label")
-                            .query('''?id rdfs:subClassOf :Indicator.
-                                      ?attribute rdfs:subClassOf ?id.
-                                      ?indicator rdfs:subClassOf ?attribute.
-                                      ?id rdfs:label ?label.
-                                      FILTER( ?id != :Indicator && ?id != ?attribute && ?id != ?indicator && ?attribute != ?indicator)''')
+        def indicators = getIndicators()
+        def valuetypes = getDataValues()
+        def dimensions = getDimensions()
+        def attributes = [:]
+        def options = [:]
 
         Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#", '')
-        Uri.simpleDomain(classes,    "http://bio.icmc.usp.br/sustenagro#", '')
+        Uri.simpleDomain(valuetypes, "http://bio.icmc.usp.br/sustenagro#", '')
         Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#", '')
 
-        def attributes = [:]
+        valuetypes.each{
+            options[it.valuetype] = Uri.simpleDomain(getOptions(':'+it.valuetype), "http://bio.icmc.usp.br/sustenagro#", '')
+        }
 
         dimensions.each{
             attributes[it.id] = Uri.simpleDomain(getAttributes(':'+it.id), "http://bio.icmc.usp.br/sustenagro#", '')
         }
 
-        println dimensions
-
-        def options = [:]
-
-        classes.each{
-            options[it.class] = getOptions(':'+it.class)
-        }
-
         render(view: 'index', model: [code: new File('dsl/dsl.groovy').text,
                                       ontology: new File('ontology/SustenAgroOntology.man').text,
-                                      ind_tags: ['id', 'class', 'dimension', 'attribute', 'title'],
+                                      ind_tags: ['id', 'valuetype', 'dimension', 'attribute', 'label'],
                                       indicators: indicators,
-                                      classes: classes,
+                                      valuetypes: valuetypes,
                                       dimensions: dimensions,
                                       attributes: attributes,
                                       options: options])
@@ -118,26 +99,51 @@ class AdminController {
     }
 
     def getIndicator(String id){
-        slp.select("distinct ?class ?title ?dimension ?attribute")
-                .query("?dimension rdfs:subClassOf :Indicator."+
-                "?attribute rdfs:subClassOf ?dimension."+
-                "$id rdfs:subClassOf ?attribute; rdfs:label ?title."+
-                "$id rdfs:subClassOf ?y."+
-                "?y  owl:onClass ?class."+
-                "FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != $id )")
+        slp.select("distinct ?valuetype ?label ?dimension ?attribute")
+            .query("?dimension rdfs:subClassOf :Indicator."+
+            "?attribute rdfs:subClassOf ?dimension."+
+            "$id rdfs:subClassOf ?attribute; rdfs:label ?label."+
+            "$id rdfs:subClassOf ?y."+
+            "?y  owl:onClass ?valuetype."+
+            "FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != $id )")
+    }
+
+    def getIndicators(){
+        slp.select("distinct ?id ?valuetype ?label ?dimension ?attribute")
+            .query('''?dimension rdfs:subClassOf :Indicator.
+            ?attribute rdfs:subClassOf ?dimension.
+            ?id rdfs:subClassOf ?attribute; rdfs:label ?label.
+            ?id rdfs:subClassOf ?y.
+            ?y  owl:onClass ?valuetype.
+            FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != ?id )''',
+            'ORDER BY ?id')
+    }
+
+    def getDataValues(){
+        slp.query('''?valuetype rdfs:subClassOf :Value.
+            FILTER( ?valuetype != :Value)''')
+    }
+
+    def getDimensions(){
+        slp.select("distinct ?id ?label")
+            .query('''?id rdfs:subClassOf :Indicator.
+            ?attribute rdfs:subClassOf ?id.
+            ?indicator rdfs:subClassOf ?attribute.
+            ?id rdfs:label ?label.
+            FILTER( ?id != :Indicator && ?id != ?attribute && ?id != ?indicator && ?attribute != ?indicator)''')
     }
 
     def getAttributes(String dimension) {
         slp.select("distinct ?attribute")
-                .query("?attribute rdfs:subClassOf ${dimension}."+
-                "?indicator rdfs:subClassOf ?attribute."+
-                "FILTER( ?attribute != ${dimension} && ?attribute != ?indicator)")
+            .query("?attribute rdfs:subClassOf ${dimension}."+
+            "?indicator rdfs:subClassOf ?attribute."+
+            "FILTER( ?attribute != ${dimension} && ?attribute != ?indicator)")
     }
 
     def getOptions(String cls) {
-        slp.query("?option rdf:type $cls. "+
-                  "?option rdfs:label ?label. " +
-                  "?option :dataValue ?value.")
+        slp.query("?id rdf:type $cls. "+
+            "?id rdfs:label ?label. " +
+            "?id :dataValue ?value.")
     }
 
     def attributes(){
@@ -149,13 +155,36 @@ class AdminController {
         render attr as XML
     }
 
-    def indicatorData(){
-        def data = []
+    def indicatorForm(){
         def id = params['id']
+        def data = [:]
+        def result = Uri.simpleDomain(getIndicator(':'+id), "http://bio.icmc.usp.br/sustenagro#", '')
 
-        println getIndicator(':'+id)
+        if(result.size() == 1){
+            data['indicator'] = result[0]
+            data['indicator']['id'] = id
+            data['valuetypes'] = Uri.simpleDomain(getDataValues(), "http://bio.icmc.usp.br/sustenagro#", '')
+            data['dimensions'] = Uri.simpleDomain(getDimensions(), "http://bio.icmc.usp.br/sustenagro#", '')
+            data['attributes'] = [:]
+            data['options'] = [:]
 
-        render data as JSON
+            data['dimensions'].each{
+                data['attributes'][it.id] = Uri.simpleDomain(getAttributes(':'+it.id), "http://bio.icmc.usp.br/sustenagro#", '')
+            }
+
+            data['valuetypes'].each{
+                data['options'][it.valuetype] = Uri.simpleDomain(getOptions(':'+it.valuetype), "http://bio.icmc.usp.br/sustenagro#", '')
+            }
+        }
+
+        render( template: '/widgets/indicatorForm',
+                model:    [indicator: data['indicator'],
+                           valuetypes: data['valuetypes'],
+                           dimensions: data['dimensions'],
+                           attributes: data['attributes'],
+                           options: data['options'],
+                           ind_tags: ['id', 'valuetype', 'dimension', 'attribute', 'label']
+                ]);
     }
 
     def autoComplete(){

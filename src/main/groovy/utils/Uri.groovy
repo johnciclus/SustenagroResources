@@ -15,7 +15,8 @@ class Uri {
     def static simpleDomain(ArrayList list, String dom, String prefix=":"){
         list.each{ el ->
             el.each{
-                it.value = it.value.replace(dom,prefix)
+                if(it.value instanceof String)
+                    it.value = it.value.replace(dom,prefix)
             }
         }
         return list
