@@ -46,7 +46,8 @@
                                 dslEditor.setTheme("ace/theme/chrome");
                                 dslEditor.setOption("showPrintMargin", false);
                                 dslEditor.setOptions({
-                                    enableBasicAutocompletion: true
+                                    enableBasicAutocompletion: true,
+                                    enableSnippets: true
                                 });
                                 session.setMode("ace/mode/groovy");
 
@@ -54,9 +55,7 @@
 
                                 var dslCompleter = {
                                     getCompletions: function(editor, session, pos, prefix, callback) {
-                                        console.log(prefix);
-
-                                        $.get('/admin/autoComplete', function( respond ) {
+                                        $.get('/admin/autoComplete?word='+prefix, function( respond ) {
                                             callback(null, respond);
                                         });
 

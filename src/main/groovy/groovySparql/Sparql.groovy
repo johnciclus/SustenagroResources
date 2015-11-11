@@ -133,7 +133,7 @@ class Sparql {
     /**
      * Empty constructor
      * The properties of the Sparql class are public so this can be used if property injection happens eleswhere
-     * This allows this class to be easliy used in dependency injection frameworks, where you can either do
+     * This allows this class to be easliy used in dependency injection frameworks, where you can either —
      * constructor injection or property injection post-construction
      */
     Sparql() { }

@@ -12,10 +12,10 @@ class Uri {
         return dom + uri
     }
 
-    def static simpleDomain(ArrayList list, String dom){
+    def static simpleDomain(ArrayList list, String dom, String prefix=":"){
         list.each{ el ->
             el.each{
-                it.value = it.value.replace(dom,":")
+                it.value = it.value.replace(dom,prefix)
             }
         }
         return list

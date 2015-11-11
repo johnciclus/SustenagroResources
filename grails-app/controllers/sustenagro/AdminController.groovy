@@ -131,33 +131,27 @@ class AdminController {
         def attr = getAttributes(params['dimension'])
         println attr
 
-        Uri.simpleDomain(attr, "http://bio.icmc.usp.br/sustenagro#")
+        Uri.simpleDomain(attr, 'http://bio.icmc.usp.br/sustenagro#')
 
         render attr as XML
     }
 
     def autoComplete(){
         def list = []
+        def commands = ['title', 'data', 'description', 'features', 'show', 'instance', 'subclass', 'matrix', 'map', 'dimension', 'prog', 'sum', 'average']
 
         if(params['word']){
-            
+            def cmds = commands.findAll{ it.contains(params['word']) }
+            def identifiers = slp.select('distinct ?s').query("?s ?p ?o. FILTER regex(str(?s), 'http://bio.icmc.usp.br/sustenagro#$params.word', 'i')")
+            Uri.simpleDomain(identifiers,'http://bio.icmc.usp.br/sustenagro#','')
+            def labels = slp.select('distinct ?label').query("?s rdfs:label ?label. FILTER regex(str(?label), '$params.word', 'i')")
+            cmds.each{list.push(['name': it, 'value': it, 'score': 2000, 'meta': 'command'])}
+            identifiers.each{list.push(['name': it.s, 'value': it.s, 'score': 2000, 'meta': 'identifier'])}
+            labels.each{list.push(['name': it.label, 'value': it.label, 'score': 2000, 'meta': 'label'])}
         }
         else{
-            list.addAll([['name': 'title', 'value': 'title', 'score': 500, 'meta': 'commands'],
-                         ['name': 'data', 'value': 'data', 'score': 500, 'meta': 'commands'],
-                         ['name': 'description', 'value': 'description', 'score': 500, 'meta': 'commands'],
-                         ['name': 'features', 'value': 'features', 'score': 500, 'meta': 'commands'],
-                         ['name': 'show', 'value': 'show', 'score': 500, 'meta': 'commands'],
-                         ['name': 'instance', 'value': 'instance', 'score': 500, 'meta': 'commands'],
-                         ['name': 'subclass', 'value': 'subclass', 'score': 500, 'meta': 'commands'],
-                         ['name': 'matrix', 'value': 'matrix', 'score': 500, 'meta': 'commands'],
-                         ['name': 'map', 'value': 'map', 'score': 500, 'meta': 'commands'],
-                         ['name': 'dimension', 'value': 'dimension', 'score': 500, 'meta': 'commands'],
-                         ['name': 'prog', 'value': 'prog', 'score': 500, 'meta': 'commands'],
-                         ['name': 'sum', 'value': 'sum', 'score': 500, 'meta': 'commands'],
-                         ['name': 'average', 'value': 'average', 'score': 500, 'meta': 'commands']])
+            commands.each{list.push(['name': it, 'value': it, 'score': 2000, 'meta': 'command'])}
         }
-
 
         render list as JSON
     }
