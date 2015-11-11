@@ -25,26 +25,29 @@ class AdminController {
         def classes = slp.query('''?class rdfs:subClassOf :Value.
                                    FILTER( ?class != :Value)''')
 
-        def dimensions = slp.select("distinct ?dimension")
-                            .query('''?dimension rdfs:subClassOf :Indicator.
-                                      ?attribute rdfs:subClassOf ?dimension.
+        def dimensions = slp.select("distinct ?id ?label")
+                            .query('''?id rdfs:subClassOf :Indicator.
+                                      ?attribute rdfs:subClassOf ?id.
                                       ?indicator rdfs:subClassOf ?attribute.
-                                      FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?dimension != ?indicator && ?attribute != ?indicator)''')
+                                      ?id rdfs:label ?label.
+                                      FILTER( ?id != :Indicator && ?id != ?attribute && ?id != ?indicator && ?attribute != ?indicator)''')
 
-        Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#")
-        Uri.simpleDomain(classes,    "http://bio.icmc.usp.br/sustenagro#")
-        Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#")
+        Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#", '')
+        Uri.simpleDomain(classes,    "http://bio.icmc.usp.br/sustenagro#", '')
+        Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#", '')
 
         def attributes = [:]
 
         dimensions.each{
-            attributes[it.dimension] = Uri.simpleDomain(getAttributes(it.dimension), "http://bio.icmc.usp.br/sustenagro#")
+            attributes[it.id] = Uri.simpleDomain(getAttributes(':'+it.id), "http://bio.icmc.usp.br/sustenagro#", '')
         }
+
+        println dimensions
 
         def options = [:]
 
         classes.each{
-            options[it.class] = getOptions(it.class)
+            options[it.class] = getOptions(':'+it.class)
         }
 
         render(view: 'index', model: [code: new File('dsl/dsl.groovy').text,
@@ -114,6 +117,16 @@ class AdminController {
 
     }
 
+    def getIndicator(String id){
+        slp.select("distinct ?class ?title ?dimension ?attribute")
+                .query("?dimension rdfs:subClassOf :Indicator."+
+                "?attribute rdfs:subClassOf ?dimension."+
+                "$id rdfs:subClassOf ?attribute; rdfs:label ?title."+
+                "$id rdfs:subClassOf ?y."+
+                "?y  owl:onClass ?class."+
+                "FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != $id )")
+    }
+
     def getAttributes(String dimension) {
         slp.select("distinct ?attribute")
                 .query("?attribute rdfs:subClassOf ${dimension}."+
@@ -128,12 +141,21 @@ class AdminController {
     }
 
     def attributes(){
-        def attr = getAttributes(params['dimension'])
+        def attr = getAttributes(':'+params['dimension'])
         println attr
 
         Uri.simpleDomain(attr, 'http://bio.icmc.usp.br/sustenagro#')
 
         render attr as XML
+    }
+
+    def indicatorData(){
+        def data = []
+        def id = params['id']
+
+        println getIndicator(':'+id)
+
+        render data as JSON
     }
 
     def autoComplete(){

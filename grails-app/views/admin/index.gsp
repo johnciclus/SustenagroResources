@@ -104,19 +104,31 @@
 					</div>
 					<div id="indicators" class="tab-pane fade">
 						<div class="row">
-							<div class="col-md-8">
-							</div>
-							<div class="col-md-4">
-								<form id="indicators_form" action="/admin/indicators" method="post" class="form-inline-block pull-right" role="form">
-									<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Salvar </button>
-								</form>
-								<form id="reset_indicators_form" action="/admin/indicatorsReset" method="post" class="form-inline-block pull-right" role="form">
-									<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Restaurar </button>
-								</form>
-							</div>
-						</div>
-						<div class="row">
-                            <div id="indicator_editor" class="col-sm-10 col-sm-offset-1">
+                            <div class="col-md-3">
+                                <g:each var="el" in="${dimensions}">
+                                    <div class="panel-group" id="accordion-${el.id}">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-${el.id}">${el.label}</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapse-${el.id}" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <div class="list-group">
+                                                    <g:each status="i" var="row" in="${indicators}">
+                                                        <g:if test="${ row['dimension'] == el.id}">
+                                                            <button id="${row['id']}" type="button" class="list-group-item indicator">${row['title']}</button>
+                                                        </g:if>
+                                                    </g:each>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </g:each>
+                            </div>
+                            <div id="indicator_editor" class="col-sm-9">
                                 <form class="form-horizontal">
                                 <g:each status="i" var="row" in="${indicators}">
                                     <div class="form-group">
@@ -135,7 +147,7 @@
                                                 <g:elseif test="${tag == 'dimension'}">
                                                     <select id="${i}_dimension" class="form-control select-dimension">
                                                         <g:each var="el" in="${dimensions}">
-                                                            <option value="${el.dimension}" <g:if test="${ row['dimension'] == el.dimension}"> selected </g:if>> ${el.dimension}</option>
+                                                            <option value="${el.id}" <g:if test="${ row['dimension'] == el.id}"> selected </g:if>> ${el.id}</option>
                                                         </g:each>
                                                     </select>
                                                 </g:elseif>
@@ -182,12 +194,28 @@
                                     </div>
                                 </g:each>
                                 </form>
+                                <form id="indicators_form" action="/admin/indicators" method="post" class="form-inline-block pull-right" role="form">
+                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Salvar </button>
+                                </form>
+                                <form id="reset_indicators_form" action="/admin/indicatorsReset" method="post" class="form-inline-block pull-right" role="form">
+                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Restaurar </button>
+                                </form>
                             </div>
-
-
-
-
                             <script type="application/javascript">
+
+                                $('#indicators .indicator').click(function(){
+                                    var id = $(this).attr('id');
+                                    $('#indicators .indicator.active').removeClass('active');
+                                    $(this).addClass('active');
+
+                                    $.post('/admin/indicatorData',
+                                        {'id':  id },
+                                        function(data){
+
+                                        }
+                                    );
+                                });
+
                                 $('#indicator_editor .select-dimension').change( function(){
                                     var id = $(this).attr('id');
                                     var dim = $(this).val();
