@@ -14,31 +14,16 @@ class AdminController {
 
     def index(){
         def indicators = getIndicators()
-        def valuetypes = getDataValues()
         def dimensions = getDimensions()
-        def attributes = [:]
-        def options = [:]
 
         Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#", '')
-        Uri.simpleDomain(valuetypes, "http://bio.icmc.usp.br/sustenagro#", '')
         Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#", '')
 
-        valuetypes.each{
-            options[it.valuetype] = Uri.simpleDomain(getOptions(':'+it.valuetype), "http://bio.icmc.usp.br/sustenagro#", '')
-        }
-
-        dimensions.each{
-            attributes[it.id] = Uri.simpleDomain(getAttributes(':'+it.id), "http://bio.icmc.usp.br/sustenagro#", '')
-        }
 
         render(view: 'index', model: [code: new File('dsl/dsl.groovy').text,
                                       ontology: new File('ontology/SustenAgroOntology.man').text,
-                                      ind_tags: ['id', 'valuetype', 'dimension', 'attribute', 'label'],
                                       indicators: indicators,
-                                      valuetypes: valuetypes,
-                                      dimensions: dimensions,
-                                      attributes: attributes,
-                                      options: options])
+                                      dimensions: dimensions])
     }
 
     def dsl(){
@@ -60,7 +45,23 @@ class AdminController {
     }
 
     def indicators(){
+        def outgoingLinks = slp.query(":${params.id_base} ?p ?o. FILTER( ?o != :${params.id_base})", '', '*')
+        def incomingLinks = slp.query("?s ?p :${params.id_base}. FILTER( ?s != :${params.id_base})", '', '*')
 
+        println outgoingLinks
+        println incomingLinks
+
+        if(params.id_base != params.id){
+            println "different id"
+            if(incomingLinks.size() == 0){
+                println "Zero incoming links"
+            }
+        }
+
+
+        def respond = ['result': 'ok']
+
+        render respond as JSON
     }
 
     def indicatorsReset(){
@@ -121,7 +122,7 @@ class AdminController {
 
     def getDataValues(){
         slp.query('''?valuetype rdfs:subClassOf :Value.
-            FILTER( ?valuetype != :Value)''')
+            FILTER( ?valuetype != :Value && !isBlank(?valuetype) )''')
     }
 
     def getDimensions(){
@@ -175,6 +176,13 @@ class AdminController {
             data['valuetypes'].each{
                 data['options'][it.valuetype] = Uri.simpleDomain(getOptions(':'+it.valuetype), "http://bio.icmc.usp.br/sustenagro#", '')
             }
+
+            if(data['indicator']['valuetype'] == 'Real'){
+
+            }
+            else{
+
+            }
         }
 
         render( template: '/widgets/indicatorForm',
@@ -183,7 +191,7 @@ class AdminController {
                            dimensions: data['dimensions'],
                            attributes: data['attributes'],
                            options: data['options'],
-                           ind_tags: ['id', 'valuetype', 'dimension', 'attribute', 'label']
+                           ind_tags: ['id', 'label', 'dimension', 'attribute', 'valuetype']
                 ]);
     }
 

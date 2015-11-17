@@ -15,8 +15,8 @@
 					<li class="active"><a data-toggle="tab" href="#dsl">DSL Main</a></li>
 					<li><a data-toggle="tab" href="#indicators">Indicators Editor</a></li>
 					<li><a data-toggle="tab" href="#ontology">Ontology Editor</a></li>
-					<li><a data-toggle="tab" href="#widgets">DSL Widgets</a></li>
-					<li><a data-toggle="tab" href="#default">DSL Default</a></li>
+					<li><a data-toggle="tab" href="#widgets">Widgets</a></li>
+					<li><a data-toggle="tab" href="#default">Widgets Default</a></li>
 				</ul>
 				<div class="tab-content">
 					<div id="dsl" class="tab-pane fade in active">
@@ -43,6 +43,7 @@
                                 var langTools = ace.require("ace/ext/language_tools");
                                 var dslEditor = ace.edit("dslEditor");
                                 var session = dslEditor.getSession();
+
                                 dslEditor.setTheme("ace/theme/chrome");
                                 dslEditor.setOption("showPrintMargin", false);
                                 dslEditor.setOptions({
@@ -142,6 +143,19 @@
                                         {'id':  id },
                                         function(data){
                                             $("#indicator_editor").html(data)
+                                            $("#valuetype-table").bootstrapTable()
+                                            $('#indicator_form').submit(function(event){
+                                                $.post(
+                                                    $(this).attr('action'),
+                                                    $(this).serializeArray(),
+                                                    function( data ) {
+                                                        if(data.result == 'ok'){
+
+                                                        }
+                                                    }
+                                                );
+                                                event.preventDefault();
+                                            });
                                             $('#indicator_editor .select-dimension').change( function(){
                                                 var id = $(this).attr('id');
                                                 var dim = $(this).val();
@@ -193,17 +207,17 @@
 
 								$( "#ontology_form" ).submit(function( event ) {
 									$.post(
-											$(this).attr('action'),
-											{'ontology':  ontEditor.getValue() },
-											function( data ) {
-												if(data=='ok'){
-													function resetButton(){
-														$('#ontology_form button').removeClass('btn-success').addClass('btn-primary');
-													}
-													$('#ontology_form button').removeClass('btn-primary').addClass('btn-success');
-													setTimeout(resetButton, 1000);
-												}
-											}
+                                        $(this).attr('action'),
+                                        {'ontology':  ontEditor.getValue() },
+                                        function( data ) {
+                                            if(data=='ok'){
+                                                function resetButton(){
+                                                    $('#ontology_form button').removeClass('btn-success').addClass('btn-primary');
+                                                }
+                                                $('#ontology_form button').removeClass('btn-primary').addClass('btn-success');
+                                                setTimeout(resetButton, 1000);
+                                            }
+                                        }
 									);
 									event.preventDefault();
 								});
