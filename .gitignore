@@ -25,3 +25,4 @@ gradle
 *.log
 *.log.lck
 
+catalog-v001.xml
