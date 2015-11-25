@@ -1,10 +1,14 @@
+import org.semanticweb.owlapi.model.OWLOntologyManager
+
 import rdfUtils.RDFSlurper
+import rdfUtils.Ontology
 import dsl.DSL
 
 // Place your Spring DSL code here
 beans = {
-    slp(RDFSlurper, 'http://143.107.231.216:9999/bigdata/namespace/kb/sparql')       //http://java.icmc.usp.br:9999/bigdata/namespace/kb/sparql
+    slp(RDFSlurper, 'http://10.62.9.236:9999/bigdata/namespace/kb/sparql')       //http://java.icmc.usp.br:9999/bigdata/namespace/kb/sparql
     dsl(DSL, 'dsl/dsl.groovy')
+    ontology(Ontology, 'ontology/SustenAgroRDF.rdf')
 }
 
 // "/bigdata/namespace/kb/sparql"

@@ -1,11 +1,23 @@
 <?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY terms "http://purl.org/dc/terms/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY pt "http://dbpedia.org/property/pt/" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY sustenagro "http://bio.icmc.usp.br/sustenagro#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
 <rdf:RDF xmlns="http://bio.icmc.usp.br/sustenagro#"
      xml:base="http://bio.icmc.usp.br/sustenagro"
      xmlns:pt="http://dbpedia.org/property/pt/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:sustenagro="http://bio.icmc.usp.br/sustenagro#">
@@ -24,28 +36,28 @@
     
 
 
-    <!-- description -->
+    <!-- http://purl.org/dc/terms/description -->
 
-    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/description">
+    <owl:AnnotationProperty rdf:about="&terms;description">
         <rdfs:label xml:lang="en">description</rdfs:label>
         <rdfs:label xml:lang="pt">descrição</rdfs:label>
     </owl:AnnotationProperty>
     
 
 
-    <!-- title -->
+    <!-- http://purl.org/dc/terms/title -->
 
-    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/title">
+    <owl:AnnotationProperty rdf:about="&terms;title">
         <rdfs:label xml:lang="en">title</rdfs:label>
         <rdfs:label xml:lang="pt">título</rdfs:label>
-        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:AnnotationProperty>
     
 
 
-    <!-- label -->
+    <!-- http://www.w3.org/2000/01/rdf-schema#label -->
 
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#label"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
     
 
 
@@ -60,45 +72,45 @@
     
 
 
-    <!-- PlainLiteral -->
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral -->
 
-    <rdfs:Datatype rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral"/>
+    <rdfs:Datatype rdf:about="&rdf;PlainLiteral"/>
     
 
 
-    <!-- Literal -->
+    <!-- http://www.w3.org/2000/01/rdf-schema#Literal -->
 
-    <rdfs:Datatype rdf:about="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    <rdfs:Datatype rdf:about="&rdfs;Literal"/>
     
 
 
-    <!-- boolean -->
+    <!-- http://www.w3.org/2001/XMLSchema#boolean -->
 
-    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:Datatype rdf:about="&xsd;boolean"/>
     
 
 
-    <!-- double -->
+    <!-- http://www.w3.org/2001/XMLSchema#double -->
 
-    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#double"/>
+    <rdfs:Datatype rdf:about="&xsd;double"/>
     
 
 
-    <!-- integer -->
+    <!-- http://www.w3.org/2001/XMLSchema#integer -->
 
-    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:Datatype rdf:about="&xsd;integer"/>
     
 
 
-    <!-- string -->
+    <!-- http://www.w3.org/2001/XMLSchema#string -->
 
-    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:Datatype rdf:about="&xsd;string"/>
     
 
 
-    <!-- real -->
+    <!-- http://www.w3.org/2002/07/owl#real -->
 
-    <rdfs:Datatype rdf:about="http://www.w3.org/2002/07/owl#real"/>
+    <rdfs:Datatype rdf:about="&owl;real"/>
     
 
 
@@ -113,31 +125,31 @@
     
 
 
-    <!-- aplicado a -->
+    <!-- http://bio.icmc.usp.br/sustenagro#appliedTo -->
 
-    <owl:ObjectProperty rdf:about="http://bio.icmc.usp.br/sustenagro#appliedTo">
-        <rdfs:label xml:lang="pt">aplicado a</rdfs:label>
+    <owl:ObjectProperty rdf:about="&sustenagro;appliedTo">
         <rdfs:label xml:lang="en">applied to</rdfs:label>
-        <rdfs:domain rdf:resource="http://bio.icmc.usp.br/sustenagro#Evaluation"/>
-        <rdfs:range rdf:resource="http://bio.icmc.usp.br/sustenagro#ProductionUnit"/>
+        <rdfs:label xml:lang="pt">aplicado a</rdfs:label>
+        <rdfs:domain rdf:resource="&sustenagro;Evaluation"/>
+        <rdfs:range rdf:resource="&sustenagro;ProductionUnit"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- compõe -->
+    <!-- http://bio.icmc.usp.br/sustenagro#compose -->
 
-    <owl:ObjectProperty rdf:about="http://bio.icmc.usp.br/sustenagro#compose">
+    <owl:ObjectProperty rdf:about="&sustenagro;compose">
         <rdfs:label xml:lang="en">compose</rdfs:label>
         <rdfs:label xml:lang="pt">compõe</rdfs:label>
     </owl:ObjectProperty>
     
 
 
-    <!-- valor -->
+    <!-- http://bio.icmc.usp.br/sustenagro#value -->
 
-    <owl:ObjectProperty rdf:about="http://bio.icmc.usp.br/sustenagro#value">
-        <rdfs:label xml:lang="pt">valor</rdfs:label>
+    <owl:ObjectProperty rdf:about="&sustenagro;value">
         <rdfs:label xml:lang="en">value</rdfs:label>
+        <rdfs:label xml:lang="pt">valor</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -153,20 +165,20 @@
     
 
 
-    <!-- valor do dado -->
+    <!-- http://bio.icmc.usp.br/sustenagro#dataValue -->
 
-    <owl:DatatypeProperty rdf:about="http://bio.icmc.usp.br/sustenagro#dataValue">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <owl:DatatypeProperty rdf:about="&sustenagro;dataValue">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label xml:lang="en">data value</rdfs:label>
         <rdfs:label xml:lang="pt">valor do dado</rdfs:label>
-        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- mapa -->
+    <!-- http://dbpedia.org/property/pt/mapa -->
 
-    <owl:DatatypeProperty rdf:about="http://dbpedia.org/property/pt/mapa"/>
+    <owl:DatatypeProperty rdf:about="&pt;mapa"/>
     
 
 
@@ -181,411 +193,625 @@
     
 
 
-    <!-- Incidência de acidentes e fatalidades no local de trabalho -->
+    <!-- http://bio.icmc.usp.br/sustenagro#AccessToInternalMarket -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#AccidentsInWorkplace">
+    <owl:Class rdf:about="&sustenagro;AccessToInternalMarket">
+        <rdfs:label xml:lang="en">Access to the internal market (function of incentives and/or public policy)</rdfs:label>
+        <rdfs:label xml:lang="pt">Acesso ao mercado interno (função de incentivos e/ou políticas públicas)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;MarketVariable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AccessToInternalMarketCategory -->
+
+    <owl:Class rdf:about="&sustenagro;AccessToInternalMarketCategory">
+        <rdfs:label xml:lang="en">Access to internal market category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria de acesso ao mercado interno</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AccessToInternationalMarket -->
+
+    <owl:Class rdf:about="&sustenagro;AccessToInternationalMarket">
+        <rdfs:label xml:lang="en">Access to the international market (function of the attendance to international certifications)</rdfs:label>
+        <rdfs:label xml:lang="pt">Acesso ao mercado internacional (função do atendimento a certificações internacionais)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;MarketVariable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AccessToInternationalMarketCategory -->
+
+    <owl:Class rdf:about="&sustenagro;AccessToInternationalMarketCategory">
+        <rdfs:label xml:lang="en">Access to international market category</rdfs:label>
+        <rdfs:label xml:lang="pt">Acesso ao mercado internacional</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AccidentsInWorkplace -->
+
+    <owl:Class rdf:about="&sustenagro;AccidentsInWorkplace">
         <rdfs:label xml:lang="en">Incidence of accidents and fatalities in the workplace</rdfs:label>
         <rdfs:label xml:lang="pt">Incidência de acidentes e fatalidades no local de trabalho</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#SafetyIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;SafetyIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;AccidentsIncidenceCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Accidents incidence category -->
+    <!-- http://bio.icmc.usp.br/sustenagro#AccidentsIncidenceCategory -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#AccidentsIncidenceCategory">
+    <owl:Class rdf:about="&sustenagro;AccidentsIncidenceCategory">
         <rdfs:label xml:lang="en">Accidents incidence category</rdfs:label>
         <rdfs:label xml:lang="pt">Categoria incidência de acidentes</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Categorical"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
     </owl:Class>
     
 
 
-    <!-- Planejamento das atividades agrícolas de acordo com a estratégia de mercado da usina -->
+    <!-- http://bio.icmc.usp.br/sustenagro#AgriculturalActivityPlanning -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#AgriculturalActivityPlanning">
-        <rdfs:label xml:lang="pt">Planejamento das atividades agrícolas de acordo com a estratégia de mercado da usina</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;AgriculturalActivityPlanning">
         <rdfs:label xml:lang="en">Planning of agricultural activities according to the market strategy of the plant</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#EnergyIndicator"/>
+        <rdfs:label xml:lang="pt">Planejamento das atividades agrícolas de acordo com a estratégia de mercado da usina</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnergyIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Eficiência Agrícola -->
+    <!-- http://bio.icmc.usp.br/sustenagro#AgriculturalCuttingType -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#AgriculturalEfficiency">
-        <rdfs:label xml:lang="en">Agricultural Efficiency</rdfs:label>
-        <rdfs:label xml:lang="pt">Eficiência Agrícola</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;AgriculturalCuttingType">
+        <rdfs:label xml:lang="en">Agricultural cutting type</rdfs:label>
+        <rdfs:label xml:lang="pt">Tipo de corte agrícola</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheField"/>
     </owl:Class>
     
 
 
-    <!-- AgriculturalProductionSystem -->
+    <!-- http://bio.icmc.usp.br/sustenagro#AgriculturalEfficiency -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#AgriculturalProductionSystem"/>
+    <owl:Class rdf:about="&sustenagro;AgriculturalEfficiency">
+        <rdfs:label xml:lang="en">Agricultural efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Eficiência agrícola</rdfs:label>
+    </owl:Class>
     
 
 
-    <!-- Annual rate of unemployment caused by mechanization -->
+    <!-- http://bio.icmc.usp.br/sustenagro#AgriculturalManagement -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#AnnualRateUnemploymentByMechanization">
+    <owl:Class rdf:about="&sustenagro;AgriculturalManagement">
+        <rdfs:label xml:lang="en">Agricultural management</rdfs:label>
+        <rdfs:label xml:lang="pt">Manejo agrícola</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheField"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AgriculturalManagementCategory -->
+
+    <owl:Class rdf:about="&sustenagro;AgriculturalManagementCategory">
+        <rdfs:label xml:lang="en">Agricultural management category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria de manejo agrícola</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AgriculturalProductionSystem -->
+
+    <owl:Class rdf:about="&sustenagro;AgriculturalProductionSystem">
+        <rdfs:label xml:lang="en">Agricultural production system</rdfs:label>
+        <rdfs:label xml:lang="pt">Sistema de produção agrícola</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AnnualRateUnemploymentByMechanization -->
+
+    <owl:Class rdf:about="&sustenagro;AnnualRateUnemploymentByMechanization">
         <rdfs:label xml:lang="en">Annual rate of unemployment caused by mechanization</rdfs:label>
         <rdfs:label xml:lang="pt">Taxa anual de desemprego causado pela mecanização</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#JobsIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;JobsIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#Real"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;Real"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Average monthly income of active employees in agriculture -->
+    <!-- http://bio.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResults -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#AverageMonthlyIncomeAgriculture">
+    <owl:Class rdf:about="&sustenagro;AvailabilityOfEvaluationResults">
+        <rdfs:label xml:lang="en">Availability of evaluations results</rdfs:label>
+        <rdfs:label xml:lang="pt">Disponibilização dos resultados da avaliação</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AverageMonthlyIncomeAgriculture -->
+
+    <owl:Class rdf:about="&sustenagro;AverageMonthlyIncomeAgriculture">
         <rdfs:label xml:lang="en">Average monthly income of active employees in agriculture</rdfs:label>
         <rdfs:label xml:lang="pt">Rendimento médio mensal dos empregados ativos na área agrícola</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#JobsIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;JobsIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#Real"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;Real"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Average monthly income of active employees in the industrial area -->
+    <!-- http://bio.icmc.usp.br/sustenagro#AverageMonthlyIncomeIndustry -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#AverageMonthlyIncomeIndustry">
+    <owl:Class rdf:about="&sustenagro;AverageMonthlyIncomeIndustry">
         <rdfs:label xml:lang="en">Average monthly income of active employees in the industrial area</rdfs:label>
         <rdfs:label xml:lang="pt">Rendimento médio mensal dos empregados ativos na área industrial</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#JobsIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;JobsIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#Real"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;Real"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Average worker salary -->
+    <!-- http://bio.icmc.usp.br/sustenagro#AverageSalary -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#AverageSalary">
+    <owl:Class rdf:about="&sustenagro;AverageSalary">
         <rdfs:label xml:lang="en">Average worker salary</rdfs:label>
         <rdfs:label xml:lang="pt">Salário médio do trabalhador</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#IncomeIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;IncomeIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;AverageSalaryCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Categoria salário médio -->
+    <!-- http://bio.icmc.usp.br/sustenagro#AverageSalaryCategory -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#AverageSalaryCategory">
+    <owl:Class rdf:about="&sustenagro;AverageSalaryCategory">
         <rdfs:label xml:lang="en">Average salary category</rdfs:label>
         <rdfs:label xml:lang="pt">Categoria salário médio</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Categorical"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
     </owl:Class>
     
 
 
-    <!-- Destino da bioeletricidade -->
+    <!-- http://bio.icmc.usp.br/sustenagro#BioelectricityDestination -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#BioelectricityDestination">
+    <owl:Class rdf:about="&sustenagro;BioelectricityDestination">
         <rdfs:label xml:lang="en">Bioelectricity destination</rdfs:label>
         <rdfs:label xml:lang="pt">Destino da bioeletricidade</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#EnergyIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnergyIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityDestinationCategory"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;BioelectricityDestinationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Bioelectricity destination category -->
+    <!-- http://bio.icmc.usp.br/sustenagro#BioelectricityDestinationCategory -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#BioelectricityDestinationCategory">
+    <owl:Class rdf:about="&sustenagro;BioelectricityDestinationCategory">
         <rdfs:label xml:lang="en">Bioelectricity destination category</rdfs:label>
         <rdfs:label xml:lang="pt">Categoria destinação da bioeletricidade</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Categorical"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
     </owl:Class>
     
 
 
-    <!-- Bioelectricity production -->
+    <!-- http://bio.icmc.usp.br/sustenagro#BioelectricityProduction -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#BioelectricityProduction">
+    <owl:Class rdf:about="&sustenagro;BioelectricityProduction">
         <rdfs:label xml:lang="en">Bioelectricity production</rdfs:label>
         <rdfs:label xml:lang="pt">Produção de bioeletricidade</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#EnergyIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnergyIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;BioelectricityProductionCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Categoria produção de bioeletricidade -->
+    <!-- http://bio.icmc.usp.br/sustenagro#BioelectricityProductionCategory -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#BioelectricityProductionCategory">
+    <owl:Class rdf:about="&sustenagro;BioelectricityProductionCategory">
         <rdfs:label xml:lang="en">Bioelectricity production category</rdfs:label>
         <rdfs:label xml:lang="pt">Categoria produção de bioeletricidade</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Categorical"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
     </owl:Class>
     
 
 
-    <!-- Infrastructure for producing second and third generation biofuels -->
+    <!-- http://bio.icmc.usp.br/sustenagro#BiofuelInfrastructure -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#BiofuelInfrastructure">
-        <rdfs:label xml:lang="pt">Infraestrutura para produção de biocombustíveis de segunda e terceira geração</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;BiofuelInfrastructure">
         <rdfs:label xml:lang="en">Infrastructure for producing second and third generation biofuels</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#IndustrialUnityIndicator"/>
+        <rdfs:label xml:lang="pt">Infraestrutura para produção de biocombustíveis de segunda e terceira geração</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndustrialUnityIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Biological pest control -->
+    <!-- http://bio.icmc.usp.br/sustenagro#BiologicalPestControl -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#BiologicalPestControl">
+    <owl:Class rdf:about="&sustenagro;BiologicalPestControl">
         <rdfs:label xml:lang="en">Biological pest control</rdfs:label>
         <rdfs:label xml:lang="pt">Controle biológico de pragas</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#GeneralIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;GeneralIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Boiller efficiency category -->
+    <!-- http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory">
+    <owl:Class rdf:about="&sustenagro;BoilerEfficiencyCategory">
         <rdfs:label xml:lang="en">Boiller efficiency category</rdfs:label>
         <rdfs:label xml:lang="pt">Categoria eficiência das caldeiras</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Categorical"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
     </owl:Class>
     
 
 
-    <!-- Boleana -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Boolean -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#Boolean">
-        <rdfs:label xml:lang="pt">Boleana</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;Boolean">
         <rdfs:label xml:lang="en">Boolean</rdfs:label>
+        <rdfs:label xml:lang="pt">Boleana</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#dataValue"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+                <owl:onProperty rdf:resource="&sustenagro;dataValue"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;boolean"/>
             </owl:Restriction>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Categorical"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
     </owl:Class>
     
 
 
-    <!-- Buffer stocks -->
+    <!-- http://bio.icmc.usp.br/sustenagro#BufferStocks -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#BufferStocks">
+    <owl:Class rdf:about="&sustenagro;BufferStocks">
         <rdfs:label xml:lang="en">Buffer stocks</rdfs:label>
         <rdfs:label xml:lang="pt">Estoques reguladores</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#CostIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;CostIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Categorical -->
+    <!-- http://bio.icmc.usp.br/sustenagro#CanavialLongevity -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#Categorical">
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Value"/>
+    <owl:Class rdf:about="&sustenagro;CanavialLongevity">
+        <rdfs:label xml:lang="en">Canavial Longevity</rdfs:label>
+        <rdfs:label xml:lang="pt">Longevidade do canvial</rdfs:label>
     </owl:Class>
     
 
 
-    <!-- Cumprimento das leis trabalhistas -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Categorical -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#ComplianceLaborLaws">
+    <owl:Class rdf:about="&sustenagro;Categorical">
+        <rdfs:label xml:lang="en">Categorical</rdfs:label>
+        <rdfs:label xml:lang="pt">Categórico</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Value"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ComplianceLaborLaws -->
+
+    <owl:Class rdf:about="&sustenagro;ComplianceLaborLaws">
         <rdfs:label xml:lang="en">Compliance with labor laws</rdfs:label>
         <rdfs:label xml:lang="pt">Cumprimento das leis trabalhistas</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#LegalIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;LegalIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Indicador de custo -->
+    <!-- http://bio.icmc.usp.br/sustenagro#ComplianceProtocolsCategory -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#CostIndicator">
+    <owl:Class rdf:about="&sustenagro;ComplianceProtocolsCategory">
+        <rdfs:label xml:lang="en">Compliance protocols category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria de atendimento a protocolos</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ComplianceToCommitmentCategory -->
+
+    <owl:Class rdf:about="&sustenagro;ComplianceToCommitmentCategory">
+        <rdfs:label xml:lang="en">Compliance to commitment category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria de atendimento ao compromisso</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ComplianceToStateEnvironmentalProtocols -->
+
+    <owl:Class rdf:about="&sustenagro;ComplianceToStateEnvironmentalProtocols">
+        <rdfs:label xml:lang="en">Compliance to state environmental protocols</rdfs:label>
+        <rdfs:label xml:lang="pt">Atendimento a protocolos ambientais estaduais</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;PoliticalVariable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ComplianceToZoningCategory -->
+
+    <owl:Class rdf:about="&sustenagro;ComplianceToZoningCategory">
+        <rdfs:label xml:lang="en">Compliance to zoning category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria atendimento ao zoneamento</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ComplianceWithAgriculturalAndEconomicZoning -->
+
+    <owl:Class rdf:about="&sustenagro;ComplianceWithAgriculturalAndEconomicZoning">
+        <rdfs:label xml:lang="en">Compliance with Agricultural and Economic Zoning (AEZ)</rdfs:label>
+        <rdfs:label xml:lang="pt">Atendimento ao Zoneamento Agrícola e Econômico (ZAE)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;PoliticalVariable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ComplianceWithNationalCommitmentToAdequacyToGoodWorkingConditions -->
+
+    <owl:Class rdf:about="&sustenagro;ComplianceWithNationalCommitmentToAdequacyToGoodWorkingConditions">
+        <rdfs:label xml:lang="en">Compliance to national commitment to good working conditions (NR&apos;s)</rdfs:label>
+        <rdfs:label xml:lang="pt">Atendimento ao compromisso nacional para adequação às boas condições de trabalho (NR´s)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;PoliticalVariable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#CostIndicator -->
+
+    <owl:Class rdf:about="&sustenagro;CostIndicator">
         <rdfs:label xml:lang="en">Cost Indicator</rdfs:label>
         <rdfs:label xml:lang="pt">Indicador de custo</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#EconomicIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
     </owl:Class>
     
 
 
-    <!-- Planejamento de safra -->
+    <!-- http://bio.icmc.usp.br/sustenagro#CropPlanning -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#CropPlanning">
+    <owl:Class rdf:about="&sustenagro;CropPlanning">
         <rdfs:label xml:lang="en">Crop Planning</rdfs:label>
         <rdfs:label xml:lang="pt">Planejamento de safra</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#ProductivityIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;ProductivityIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Economic Indicator -->
+    <!-- http://bio.icmc.usp.br/sustenagro#EconomicIndicator -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#EconomicIndicator">
+    <owl:Class rdf:about="&sustenagro;EconomicIndicator">
         <rdfs:label xml:lang="en">Economic Indicator</rdfs:label>
         <rdfs:label xml:lang="pt">Indicador Econômico</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Indicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Indicator"/>
     </owl:Class>
     
 
 
-    <!-- Energy eficiency of boilers for cogeneration -->
+    <!-- http://bio.icmc.usp.br/sustenagro#EnergyEfficiencyOfBoilersForCogeneration -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#EnergyEfficiencyOfBoilersForCogeneration">
-        <rdfs:label xml:lang="pt">Eficiência energética das caldeiras para cogeração de energia</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;EnergyEfficiencyOfBoilersForCogeneration">
         <rdfs:label xml:lang="en">Energy eficiency of boilers for cogeneration</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#EnergyIndicator"/>
+        <rdfs:label xml:lang="pt">Eficiência energética das caldeiras para cogeração de energia</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnergyIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;BoilerEfficiencyCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Indicador de energia -->
+    <!-- http://bio.icmc.usp.br/sustenagro#EnergyIndicator -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#EnergyIndicator">
+    <owl:Class rdf:about="&sustenagro;EnergyIndicator">
         <rdfs:label xml:lang="en">Energy indicator</rdfs:label>
         <rdfs:label xml:lang="pt">Indicador de energia</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#EconomicIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
     </owl:Class>
     
 
 
-    <!-- Environmental Indicator -->
+    <!-- http://bio.icmc.usp.br/sustenagro#EnvironmentalIndicator -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#EnvironmentalIndicator">
+    <owl:Class rdf:about="&sustenagro;EnvironmentalIndicator">
         <rdfs:label xml:lang="en">Environmental Indicator</rdfs:label>
         <rdfs:label xml:lang="pt">Indicador Ambiental</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Indicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Indicator"/>
     </owl:Class>
     
 
 
-    <!-- Evaluation -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Evaluation -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#Evaluation"/>
+    <owl:Class rdf:about="&sustenagro;Evaluation">
+        <rdfs:label xml:lang="en">Evaluation</rdfs:label>
+        <rdfs:label xml:lang="pt">Avaliação</rdfs:label>
+    </owl:Class>
     
 
 
-    <!-- Existe/Não existe -->
+    <!-- http://bio.icmc.usp.br/sustenagro#EvaluationWeight -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#ExistNo">
+    <owl:Class rdf:about="&sustenagro;EvaluationWeight">
+        <rdfs:label xml:lang="en">Evaluation weight</rdfs:label>
+        <rdfs:label xml:lang="pt">Pesos de evaluación</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ExistNo -->
+
+    <owl:Class rdf:about="&sustenagro;ExistNo">
         <rdfs:label xml:lang="en">Exist/No exist</rdfs:label>
         <rdfs:label xml:lang="pt">Existe/Não existe</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Boolean"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Boolean"/>
     </owl:Class>
     
 
 
-    <!-- Indicador Geral -->
+    <!-- http://bio.icmc.usp.br/sustenagro#FarmAndPlant -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#GeneralIndicator">
+    <owl:Class rdf:about="&sustenagro;FarmAndPlant">
+        <rdfs:label xml:lang="en">Farm and plant</rdfs:label>
+        <rdfs:label xml:lang="pt">Fazenda e usina</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;ProductionUnit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#FiberValue -->
+
+    <owl:Class rdf:about="&sustenagro;FiberValue">
+        <rdfs:label xml:lang="en">Fiber value</rdfs:label>
+        <rdfs:label xml:lang="pt">Valor da fibra</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;SugarcaneQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#FiberValueCategory -->
+
+    <owl:Class rdf:about="&sustenagro;FiberValueCategory">
+        <rdfs:label xml:lang="en">Fiber value category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria do valor da fibra</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#Financing -->
+
+    <owl:Class rdf:about="&sustenagro;Financing">
+        <rdfs:label xml:lang="en">Financing</rdfs:label>
+        <rdfs:label xml:lang="pt">Financiamento</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#FoundationDate -->
+
+    <owl:Class rdf:about="&sustenagro;FoundationDate">
+        <rdfs:label xml:lang="en">Foundation date</rdfs:label>
+        <rdfs:label xml:lang="pt">Data de fundação</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2006/time#Instant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#GeneralIndicator -->
+
+    <owl:Class rdf:about="&sustenagro;GeneralIndicator">
         <rdfs:label xml:lang="en">General Indicator</rdfs:label>
         <rdfs:label xml:lang="pt">Indicador Geral</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#EnvironmentalIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnvironmentalIndicator"/>
     </owl:Class>
     
 
 
-    <!-- Generating capacity of direct and indirect jobs -->
+    <!-- http://bio.icmc.usp.br/sustenagro#GeneratingJobs -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#GeneratingJobs">
-        <rdfs:label xml:lang="pt">Capacidade de geração de empregos diretos e indiretos</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;GeneratingJobs">
         <rdfs:label xml:lang="en">Generating capacity of direct and indirect jobs</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#JobsIndicator"/>
+        <rdfs:label xml:lang="pt">Capacidade de geração de empregos diretos e indiretos</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;JobsIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#Real"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;Real"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <terms:description xml:lang="pt">Capacidade de geração de empregos diretos e indiretos por Número/safra</terms:description>
@@ -593,582 +819,990 @@
     
 
 
-    <!-- Health Indicator -->
+    <!-- http://bio.icmc.usp.br/sustenagro#GovernmentSubsidy -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#HealthIndicator">
+    <owl:Class rdf:about="&sustenagro;GovernmentSubsidy">
+        <rdfs:label xml:lang="en">Government subsidy</rdfs:label>
+        <rdfs:label xml:lang="pt">Subsídio do governo</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;PoliticalVariable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#GovernmentSubsidyCategory -->
+
+    <owl:Class rdf:about="&sustenagro;GovernmentSubsidyCategory">
+        <rdfs:label xml:lang="en">Government subsidy category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria do subsídio do governo</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#HarvestRange -->
+
+    <owl:Class rdf:about="&sustenagro;HarvestRange">
+        <rdfs:label xml:lang="en">Harvest range</rdfs:label>
+        <rdfs:label xml:lang="pt">Faixa da colheita</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2006/time#Interval"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#HealthIndicator -->
+
+    <owl:Class rdf:about="&sustenagro;HealthIndicator">
         <rdfs:label xml:lang="en">Health Indicator</rdfs:label>
         <rdfs:label xml:lang="pt">Indicador de Saúde</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#SocialIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;SocialIndicator"/>
     </owl:Class>
     
 
 
-    <!-- Income indicator -->
+    <!-- http://bio.icmc.usp.br/sustenagro#IncomeIndicator -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#IncomeIndicator">
+    <owl:Class rdf:about="&sustenagro;IncomeIndicator">
         <rdfs:label xml:lang="en">Income indicator</rdfs:label>
         <rdfs:label xml:lang="pt">Indicador de renda</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#SocialIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;SocialIndicator"/>
     </owl:Class>
     
 
 
-    <!-- Indicator -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Indicator -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#Indicator">
-        <rdfs:label xml:lang="pt">Indicador</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;Indicator">
         <rdfs:label xml:lang="en">Indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador</rdfs:label>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:someValuesFrom rdf:resource="http://bio.icmc.usp.br/sustenagro#Value"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:someValuesFrom rdf:resource="&sustenagro;Value"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Indicador unidade industrial -->
+    <!-- http://bio.icmc.usp.br/sustenagro#IndustrialUnityIndicator -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#IndustrialUnityIndicator">
-        <rdfs:label xml:lang="pt">Indicador unidade industrial</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;IndustrialUnityIndicator">
         <rdfs:label xml:lang="en">Industrial unity indicator</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#EconomicIndicator"/>
+        <rdfs:label xml:lang="pt">Indicador unidade industrial</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
     </owl:Class>
     
 
 
-    <!-- Inteiro -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Integer -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#Integer">
+    <owl:Class rdf:about="&sustenagro;Integer">
         <rdfs:label xml:lang="en">Integer</rdfs:label>
         <rdfs:label xml:lang="pt">Inteiro</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#dataValue"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                <owl:onProperty rdf:resource="&sustenagro;dataValue"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;integer"/>
             </owl:Restriction>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Real"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Real"/>
     </owl:Class>
     
 
 
-    <!-- Categoria intensidade -->
+    <!-- http://bio.icmc.usp.br/sustenagro#IntensityCategory -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#IntensityCategory">
-        <rdfs:label xml:lang="pt">Categoria intensidade</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;IntensityCategory">
         <rdfs:label xml:lang="en">Intensity category</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Categorical"/>
+        <rdfs:label xml:lang="pt">Categoria intensidade</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
     </owl:Class>
     
 
 
-    <!-- Investment relationship between machines versus sugarcane production and return on assets -->
+    <!-- http://bio.icmc.usp.br/sustenagro#InvestmentRatioMachinesVersusProductionReturnOnAssets -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#InvestmentRatioMachinesVersusProductionReturnOnAssets">
+    <owl:Class rdf:about="&sustenagro;InvestmentRatioMachinesVersusProductionReturnOnAssets">
         <rdfs:label xml:lang="en">Investment relationship between machines versus sugarcane production and return on assets</rdfs:label>
         <rdfs:label xml:lang="pt">Relação entre investimento de máquinas versus produção de cana e retorno do imobilizado</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#CostIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;CostIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#Real"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;Real"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Investments in social responsibility -->
+    <!-- http://bio.icmc.usp.br/sustenagro#InvestmentsSocialResponsibility -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#InvestmentsSocialResponsibility">
-        <rdfs:label xml:lang="pt">Investimentos em responsabilidade social</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;InvestmentsSocialResponsibility">
         <rdfs:label xml:lang="en">Investments in social responsibility</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#LegalIndicator"/>
+        <rdfs:label xml:lang="pt">Investimentos em responsabilidade social</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;LegalIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Job formality rate -->
+    <!-- http://bio.icmc.usp.br/sustenagro#JobFormalityRate -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#JobFormalityRate">
+    <owl:Class rdf:about="&sustenagro;JobFormalityRate">
         <rdfs:label xml:lang="en">Job formality rate</rdfs:label>
         <rdfs:label xml:lang="pt">Taxa de formalidade de emprego</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#JobsIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;JobsIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;JobFormalityRateCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Categoria taxa de empregos formais -->
+    <!-- http://bio.icmc.usp.br/sustenagro#JobFormalityRateCategory -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#JobFormalityRateCategory">
-        <rdfs:label xml:lang="pt">Categoria taxa de empregos formais</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;JobFormalityRateCategory">
         <rdfs:label xml:lang="en">Job formality rate category</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Categorical"/>
+        <rdfs:label xml:lang="pt">Categoria taxa de empregos formais</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
     </owl:Class>
     
 
 
-    <!-- Jobs generated per hectare (year/harvest) -->
+    <!-- http://bio.icmc.usp.br/sustenagro#JobsGeneratedPerHectare -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#JobsGeneratedPerHectare">
-        <rdfs:label xml:lang="pt">Empregos gerados por hectare (ano/safra)</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;JobsGeneratedPerHectare">
         <rdfs:label xml:lang="en">Jobs generated per hectare (year/harvest)</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#JobsIndicator"/>
+        <rdfs:label xml:lang="pt">Empregos gerados por hectare (ano/safra)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;JobsIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#Real"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;Real"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Indicador de trabalho -->
+    <!-- http://bio.icmc.usp.br/sustenagro#JobsIndicator -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#JobsIndicator">
-        <rdfs:label xml:lang="pt">Indicador de trabalho</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;JobsIndicator">
         <rdfs:label xml:lang="en">Jobs indicator</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#SocialIndicator"/>
+        <rdfs:label xml:lang="pt">Indicador de trabalho</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;SocialIndicator"/>
     </owl:Class>
     
 
 
-    <!-- Indicador legal -->
+    <!-- http://bio.icmc.usp.br/sustenagro#LegalIndicator -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#LegalIndicator">
-        <rdfs:label xml:lang="pt">Indicador legal</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;LegalIndicator">
         <rdfs:label xml:lang="en">Legal indicator</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#SocialIndicator"/>
+        <rdfs:label xml:lang="pt">Indicador legal</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;SocialIndicator"/>
     </owl:Class>
     
 
 
-    <!-- Taxa migratória -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Logistic -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#MigrationRate">
+    <owl:Class rdf:about="&sustenagro;Logistic">
+        <rdfs:label xml:lang="en">Logistic</rdfs:label>
+        <rdfs:label xml:lang="pt">Logística</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;ProductionEfficiencyFeature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#LogisticsProximity -->
+
+    <owl:Class rdf:about="&sustenagro;LogisticsProximity">
+        <rdfs:label xml:lang="en">Logistics proximity of sugarcane planting area over the plant (up to 50 Km away)</rdfs:label>
+        <rdfs:label xml:lang="pt">Proximidade logística da área de plantio da cana em relação a usina (até 50 Km de distância)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Logistic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#LogisticsProximityCategory -->
+
+    <owl:Class rdf:about="&sustenagro;LogisticsProximityCategory">
+        <rdfs:label xml:lang="en">Logistics proximity category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria de proximidade logística</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#MarketVariable -->
+
+    <owl:Class rdf:about="&sustenagro;MarketVariable">
+        <rdfs:label xml:lang="en">Market variable</rdfs:label>
+        <rdfs:label xml:lang="pt">Variável de mercado</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;ProductionEfficiencyFeature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#MigrationRate -->
+
+    <owl:Class rdf:about="&sustenagro;MigrationRate">
         <rdfs:label xml:lang="en">Migration rate</rdfs:label>
         <rdfs:label xml:lang="pt">Taxa migratória</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#JobsIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;JobsIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#Real"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;Real"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Cumprimento a Norma Regulamentadora 24 -->
+    <!-- http://bio.icmc.usp.br/sustenagro#MonitoringOfFlowCategory -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#Norm24">
-        <rdfs:label xml:lang="pt">Cumprimento a Norma Regulamentadora 24</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;MonitoringOfFlowCategory">
+        <rdfs:label xml:lang="en">Monitoring of flow</rdfs:label>
+        <rdfs:label xml:lang="pt">Monitoramento do fluxo</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#MonitoringOfFlowOfSugarcane -->
+
+    <owl:Class rdf:about="&sustenagro;MonitoringOfFlowOfSugarcane">
+        <rdfs:label xml:lang="en">Monitoring of loading and unloading flow of sugarcane</rdfs:label>
+        <rdfs:label xml:lang="pt">Monitoramento do fluxo de carregamento e descarregamento da cana-de-açucar</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Logistic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#Norm24 -->
+
+    <owl:Class rdf:about="&sustenagro;Norm24">
         <rdfs:label xml:lang="en">Fulfilling Regulatory Norm 24</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#HealthIndicator"/>
+        <rdfs:label xml:lang="pt">Cumprimento a Norma Regulamentadora 24</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;HealthIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Fulfilling Regulatory Norm 31 -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Norm31 -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#Norm31">
-        <rdfs:label xml:lang="pt">Cumprimento a Norma Regulamentadora 31</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;Norm31">
         <rdfs:label xml:lang="en">Fulfilling Regulatory Norm 31</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#HealthIndicator"/>
+        <rdfs:label xml:lang="pt">Cumprimento a Norma Regulamentadora 31</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;HealthIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Categoria eficiência operacional -->
+    <!-- http://bio.icmc.usp.br/sustenagro#OneAndHalfYear -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#OperationalEfficiencyCategory">
-        <rdfs:label xml:lang="pt">Categoria eficiência operacional</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;OneAndHalfYear">
+        <rdfs:label xml:lang="en">One and half year</rdfs:label>
+        <rdfs:label xml:lang="pt">Um ano e meio</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;CanavialLongevity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#OneYear -->
+
+    <owl:Class rdf:about="&sustenagro;OneYear">
+        <rdfs:label xml:lang="en">One year</rdfs:label>
+        <rdfs:label xml:lang="pt">Um ano</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;CanavialLongevity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#OperationalEfficiencyCategory -->
+
+    <owl:Class rdf:about="&sustenagro;OperationalEfficiencyCategory">
         <rdfs:label xml:lang="en">Operational efficiency category</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Categorical"/>
+        <rdfs:label xml:lang="pt">Categoria eficiência operacional</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
     </owl:Class>
     
 
 
-    <!-- Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço) -->
+    <!-- http://bio.icmc.usp.br/sustenagro#OperationalEfficiencyPlant -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#OperationalEfficiencyPlant">
-        <rdfs:label xml:lang="pt">Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;OperationalEfficiencyPlant">
         <rdfs:label xml:lang="en">Operational efficiency of the plant (vertical plant growth, recovery and development)</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#ProductivityIndicator"/>
+        <rdfs:label xml:lang="pt">Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;ProductivityIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;OperationalEfficiencyCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Planning and systematic planting -->
+    <!-- http://bio.icmc.usp.br/sustenagro#PlanningOfHarvestFront -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#PlanningSystematicPlanting">
-        <rdfs:label xml:lang="pt">Planejamento e sistematização do plantio </rdfs:label>
+    <owl:Class rdf:about="&sustenagro;PlanningOfHarvestFront">
+        <rdfs:label xml:lang="en">Planning of harvest front (machinery)</rdfs:label>
+        <rdfs:label xml:lang="pt">Planejamento da frente de colheita (maquinário)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Logistic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#PlanningOfHarvestFrontCategory -->
+
+    <owl:Class rdf:about="&sustenagro;PlanningOfHarvestFrontCategory">
+        <rdfs:label xml:lang="en">Planning of harvest front category</rdfs:label>
+        <rdfs:label xml:lang="pt">Planejamento da frente de colheita</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#PlanningSystematicPlanting -->
+
+    <owl:Class rdf:about="&sustenagro;PlanningSystematicPlanting">
         <rdfs:label xml:lang="en">Planning and systematic planting</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#PlantingIndicator"/>
+        <rdfs:label xml:lang="pt">Planejamento e sistematização do plantio </rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;PlantingIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Indicador de Plantio -->
+    <!-- http://bio.icmc.usp.br/sustenagro#PlantingIndicator -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#PlantingIndicator">
-        <rdfs:label xml:lang="pt">Indicador de Plantio</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;PlantingIndicator">
         <rdfs:label xml:lang="en">Planting indicator</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#EnvironmentalIndicator"/>
+        <rdfs:label xml:lang="pt">Indicador de Plantio</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnvironmentalIndicator"/>
     </owl:Class>
     
 
 
-    <!-- Production Unity -->
+    <!-- http://bio.icmc.usp.br/sustenagro#PlantingRange -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#ProductionUnit">
-        <rdfs:label xml:lang="en">Production Unity</rdfs:label>
-        <rdfs:label xml:lang="pt">Unidade de Produção</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;PlantingRange">
+        <rdfs:label xml:lang="en">Planting range</rdfs:label>
+        <rdfs:label xml:lang="pt">Faixa do plantio</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2006/time#Interval"/>
     </owl:Class>
     
 
 
-    <!-- Productivity Indicator -->
+    <!-- http://bio.icmc.usp.br/sustenagro#PoliticalVariable -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#ProductivityIndicator">
-        <rdfs:label xml:lang="pt">Indicador de Produtividade</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;PoliticalVariable">
+        <rdfs:label xml:lang="en">Political variable</rdfs:label>
+        <rdfs:label xml:lang="pt">Variável política</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;ProductionEfficiencyFeature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#PresenceOfInnovationsInTheField -->
+
+    <owl:Class rdf:about="&sustenagro;PresenceOfInnovationsInTheField">
+        <rdfs:label xml:lang="en">Presence of innovations in the field</rdfs:label>
+        <rdfs:label xml:lang="pt">Presença de inovações no campo</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheField"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#PricePoliciesAppliedToSector -->
+
+    <owl:Class rdf:about="&sustenagro;PricePoliciesAppliedToSector">
+        <rdfs:label xml:lang="en">Price policies applied to the sector (agricultural harvest financing)</rdfs:label>
+        <rdfs:label xml:lang="pt">Políticas de preço aplicadas ao setor (mínimo, financiamento de safra agrícola)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;MarketVariable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#PricePoliciesCategory -->
+
+    <owl:Class rdf:about="&sustenagro;PricePoliciesCategory">
+        <rdfs:label xml:lang="en">Price policies category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria de políticas de preço</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ProductionEfficiencyFeature -->
+
+    <owl:Class rdf:about="&sustenagro;ProductionEfficiencyFeature">
+        <rdfs:label xml:lang="en">Production efficiency feature</rdfs:label>
+        <rdfs:label xml:lang="pt">Característica eficiência da produção</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;ProductionFeature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ProductionEnvironmentAlignment -->
+
+    <owl:Class rdf:about="&sustenagro;ProductionEnvironmentAlignment">
+        <rdfs:label xml:lang="en">Production environment alignment</rdfs:label>
+        <rdfs:label xml:lang="pt">Alinhamento ao ambiente de produção/produtor</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;EvaluationWeight"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ProductionFeature -->
+
+    <owl:Class rdf:about="&sustenagro;ProductionFeature">
+        <rdfs:label xml:lang="en">Production feature</rdfs:label>
+        <rdfs:label xml:lang="pt">Característica de produção</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ProductionUnit -->
+
+    <owl:Class rdf:about="&sustenagro;ProductionUnit">
+        <rdfs:label xml:lang="en">Production unity</rdfs:label>
+        <rdfs:label xml:lang="pt">Unidade de produção</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ProductivityIndicator -->
+
+    <owl:Class rdf:about="&sustenagro;ProductivityIndicator">
         <rdfs:label xml:lang="en">Productivity Indicator</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#EconomicIndicator"/>
+        <rdfs:label xml:lang="pt">Indicador de Produtividade</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
     </owl:Class>
     
 
 
-    <!-- Real -->
+    <!-- http://bio.icmc.usp.br/sustenagro#PublicPoliciesCategory -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#Real">
+    <owl:Class rdf:about="&sustenagro;PublicPoliciesCategory">
+        <rdfs:label xml:lang="en">Public policies category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categorias de políticas públicas</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#PublicPoliciesForSector -->
+
+    <owl:Class rdf:about="&sustenagro;PublicPoliciesForSector">
+        <rdfs:label xml:lang="en">Public policies for the sector</rdfs:label>
+        <rdfs:label xml:lang="pt">Políticas públicas para o setor</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;PoliticalVariable"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#Real -->
+
+    <owl:Class rdf:about="&sustenagro;Real">
         <rdfs:label xml:lang="en">Real</rdfs:label>
         <rdfs:label xml:lang="pt">Real</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Value"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Value"/>
     </owl:Class>
     
 
 
-    <!-- Utiliza ou investe em leveduras mais resistentes -->
+    <!-- http://bio.icmc.usp.br/sustenagro#ResistantYeast -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#ResistantYeast">
+    <owl:Class rdf:about="&sustenagro;ResistantYeast">
         <rdfs:label xml:lang="en">Uses or invests in more resistant yeast</rdfs:label>
         <rdfs:label xml:lang="pt">Utiliza ou investe em leveduras mais resistentes</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#IndustrialUnityIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;IndustrialUnityIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Indicador de segurança -->
+    <!-- http://bio.icmc.usp.br/sustenagro#SafetyIndicator -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#SafetyIndicator">
-        <rdfs:label xml:lang="pt">Indicador de segurança</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;SafetyIndicator">
         <rdfs:label xml:lang="en">Safety indicator</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#SocialIndicator"/>
+        <rdfs:label xml:lang="pt">Indicador de segurança</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;SocialIndicator"/>
     </owl:Class>
     
 
 
-    <!-- Programa de prevenção e segurança do trabalho -->
+    <!-- http://bio.icmc.usp.br/sustenagro#SafetyProgram -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#SafetyProgram">
+    <owl:Class rdf:about="&sustenagro;SafetyProgram">
         <rdfs:label xml:lang="en">Accident prevention and safety program</rdfs:label>
         <rdfs:label xml:lang="pt">Programa de prevenção e segurança do trabalho</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#HealthIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;HealthIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#ExistNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;ExistNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Remuneração paga aos trabalhadores ano/safra -->
+    <!-- http://bio.icmc.usp.br/sustenagro#SalaryPaidYearSeason -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#SalaryPaidYearSeason">
+    <owl:Class rdf:about="&sustenagro;SalaryPaidYearSeason">
         <rdfs:label xml:lang="en">Compensation paid to workers year/harvest</rdfs:label>
         <rdfs:label xml:lang="pt">Remuneração paga aos trabalhadores ano/safra</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#IncomeIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;IncomeIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#Real"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;Real"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Indicador Social -->
+    <!-- http://bio.icmc.usp.br/sustenagro#SocialIndicator -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#SocialIndicator">
-        <rdfs:label xml:lang="pt">Indicador Social</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;SocialIndicator">
         <rdfs:label xml:lang="en">Social Indicator</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Indicator"/>
+        <rdfs:label xml:lang="pt">Indicador Social</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Indicator"/>
     </owl:Class>
     
 
 
-    <!-- Adequação a Instrução Normativa Conjunta 1/2012//DAS/MAPA de pulverização aérea. -->
+    <!-- http://bio.icmc.usp.br/sustenagro#StandardAerialSpraying -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#StandardAerialSpraying">
+    <owl:Class rdf:about="&sustenagro;StandardAerialSpraying">
         <rdfs:label xml:lang="en">Adequacy to the Joint Regulatory Standard 1/2012//DAS/MAP for aerial spraying.</rdfs:label>
         <rdfs:label xml:lang="pt">Adequação a Instrução Normativa Conjunta 1/2012//DAS/MAPA de pulverização aérea.</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#GeneralIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;GeneralIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- SugarcaneProductionSystem -->
+    <!-- http://bio.icmc.usp.br/sustenagro#SugarcanePlanting -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#SugarcaneProductionSystem">
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#AgriculturalProductionSystem"/>
+    <owl:Class rdf:about="&sustenagro;SugarcanePlanting">
+        <rdfs:label xml:lang="en">Sugarcane planting</rdfs:label>
+        <rdfs:label xml:lang="pt">Plantio de cana</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheField"/>
     </owl:Class>
     
 
 
-    <!-- Sugarcane productivity per hectare -->
+    <!-- http://bio.icmc.usp.br/sustenagro#SugarcaneProcessingOptimization -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectare">
-        <rdfs:label xml:lang="pt">Produtividade de cana por hectare</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;SugarcaneProcessingOptimization">
+        <rdfs:label xml:lang="en">Sugarcane processing optimization</rdfs:label>
+        <rdfs:label xml:lang="pt">Otimização do processamento da cana</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;EvaluationWeight"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#SugarcaneProductionSystem -->
+
+    <owl:Class rdf:about="&sustenagro;SugarcaneProductionSystem">
+        <rdfs:label xml:lang="en">Sugarcane production system</rdfs:label>
+        <rdfs:label xml:lang="pt">Sistema de produção de cana-de-açucar</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalProductionSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectare -->
+
+    <owl:Class rdf:about="&sustenagro;SugarcaneProductivityPerHectare">
         <rdfs:label xml:lang="en">Sugarcane productivity per hectare</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#ProductivityIndicator"/>
+        <rdfs:label xml:lang="pt">Produtividade de cana por hectare</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;ProductivityIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;SugarcaneProductivityPerHectareCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Categoria produtividade de cana por hectare -->
+    <!-- http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory">
-        <rdfs:label xml:lang="pt">Categoria produtividade de cana por hectare</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;SugarcaneProductivityPerHectareCategory">
         <rdfs:label xml:lang="en">Sugarcane productivity per hectare category</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Categorical"/>
+        <rdfs:label xml:lang="pt">Categoria produtividade de cana por hectare</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
     </owl:Class>
     
 
 
-    <!-- Otimização do transporte da cana -->
+    <!-- http://bio.icmc.usp.br/sustenagro#SugarcaneQuality -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#SugarcaneTransportOptimization">
-        <rdfs:label xml:lang="pt">Otimização do transporte da cana</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;SugarcaneQuality">
+        <rdfs:label xml:lang="en">Sugarcane quality</rdfs:label>
+        <rdfs:label xml:lang="pt">Qualidade da cana-de-açucar</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;ProductionEfficiencyFeature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#SugarcaneSource -->
+
+    <owl:Class rdf:about="&sustenagro;SugarcaneSource">
+        <rdfs:label xml:lang="en">Sugarcane source</rdfs:label>
+        <rdfs:label xml:lang="pt">Origem da cana</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#SugarcaneTransportOptimization -->
+
+    <owl:Class rdf:about="&sustenagro;SugarcaneTransportOptimization">
         <rdfs:label xml:lang="en">Sugarcane transport optimization</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#CostIndicator"/>
+        <rdfs:label xml:lang="pt">Otimização do transporte da cana</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;CostIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Indicador de Treinamento -->
+    <!-- http://bio.icmc.usp.br/sustenagro#SugarcaneValueCategory -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#Training">
-        <rdfs:label xml:lang="pt">Indicador de Treinamento</rdfs:label>
-        <rdfs:label xml:lang="en">Training Indicator</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#SocialIndicator"/>
+    <owl:Class rdf:about="&sustenagro;SugarcaneValueCategory">
+        <rdfs:label xml:lang="en">Sugarcane value category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria do valor da cana</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
     </owl:Class>
     
 
 
-    <!-- Incentivos a capacitação dos funcionários -->
+    <!-- http://bio.icmc.usp.br/sustenagro#SugarcaneValueInATR -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#TrainingIncentive">
+    <owl:Class rdf:about="&sustenagro;SugarcaneValueInATR">
+        <rdfs:label xml:lang="en">Sugarcane value in ATR</rdfs:label>
+        <rdfs:label xml:lang="pt">Valor da cana em ATR</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;SugarcaneQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiency -->
+
+    <owl:Class rdf:about="&sustenagro;TechnologicalEfficiency">
+        <rdfs:label xml:lang="en">Technological efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Eficiência tecnológica</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;ProductionFeature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField -->
+
+    <owl:Class rdf:about="&sustenagro;TechnologicalEfficiencyInTheField">
+        <rdfs:label xml:lang="en">Technological efficiency in the field</rdfs:label>
+        <rdfs:label xml:lang="pt">Eficiência tecnológica no campo</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiency"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial -->
+
+    <owl:Class rdf:about="&sustenagro;TechnologicalEfficiencyInTheIndustrial">
+        <rdfs:label xml:lang="en">Technological efficiency in the industry</rdfs:label>
+        <rdfs:label xml:lang="pt">Eficiência tecnológica na industrial</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiency"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#TotalValue -->
+
+    <owl:Class rdf:about="&sustenagro;TotalValue">
+        <rdfs:label xml:lang="en">Total value</rdfs:label>
+        <rdfs:label xml:lang="pt">Valor total</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#TotalValueInvestedInTechnologicInAgriculturalPhase -->
+
+    <owl:Class rdf:about="&sustenagro;TotalValueInvestedInTechnologicInAgriculturalPhase">
+        <rdfs:label xml:lang="en">Total value invested in technologic in agricultural phase</rdfs:label>
+        <rdfs:label xml:lang="pt">Valor total investido em tecnologia na fase agrícola (até a fase atual)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;TotalValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#TotalValueInvestedInTechnologicInIndustrialPhase -->
+
+    <owl:Class rdf:about="&sustenagro;TotalValueInvestedInTechnologicInIndustrialPhase">
+        <rdfs:label xml:lang="en">Total value invested in technologic in industrial phase</rdfs:label>
+        <rdfs:label xml:lang="pt">Valor total investido em tecnologia na fase industrial (até a fase atual)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;TotalValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#TotalValuePlaneedForInvestmentToProductionDrainage -->
+
+    <owl:Class rdf:about="&sustenagro;TotalValuePlaneedForInvestmentToProductionDrainage">
+        <rdfs:label xml:lang="en">Total value planeed for investment to production drainage</rdfs:label>
+        <rdfs:label xml:lang="pt">Valor total previsto para investimento para escoamento da produção</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;TotalValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#Training -->
+
+    <owl:Class rdf:about="&sustenagro;Training">
+        <rdfs:label xml:lang="en">Training Indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de Treinamento</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;SocialIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#TrainingIncentive -->
+
+    <owl:Class rdf:about="&sustenagro;TrainingIncentive">
         <rdfs:label xml:lang="en">Incentives for employee training</rdfs:label>
         <rdfs:label xml:lang="pt">Incentivos a capacitação dos funcionários</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Training"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Training"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#ExistNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;ExistNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- True/False -->
+    <!-- http://bio.icmc.usp.br/sustenagro#TrueFalse -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#TrueFalse">
+    <owl:Class rdf:about="&sustenagro;TrueFalse">
         <rdfs:label xml:lang="en">True/False</rdfs:label>
         <rdfs:label xml:lang="pt">Verdadeiro/Falso</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Boolean"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Boolean"/>
     </owl:Class>
     
 
 
-    <!-- Use efficiency for reduced diesel consumption and engine replacement plan  -->
+    <!-- http://bio.icmc.usp.br/sustenagro#UseEffciencyForReducedDieselConsumptionAndEngineReplacementPlan -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#UseEffciencyForReducedDieselConsumptionAndEngineReplacementPlan">
-        <rdfs:label xml:lang="pt">Eficiência no uso para diminuição do consumo de diesel e plano de substituição de motores.</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;UseEffciencyForReducedDieselConsumptionAndEngineReplacementPlan">
         <rdfs:label xml:lang="en">Use efficiency for reduced diesel consumption and engine replacement plan </rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#EnergyIndicator"/>
+        <rdfs:label xml:lang="pt">Eficiência no uso para diminuição do consumo de diesel e plano de substituição de motores.</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;EnergyIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Value -->
+    <!-- http://bio.icmc.usp.br/sustenagro#UsePrecursorOfTheArea -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#Value"/>
+    <owl:Class rdf:about="&sustenagro;UsePrecursorOfTheArea">
+        <rdfs:label xml:lang="en">Use precursor of the area (soil)</rdfs:label>
+        <rdfs:label xml:lang="pt">Uso precursor da área (solo)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;PoliticalVariable"/>
+    </owl:Class>
     
 
 
-    <!-- Relationship between the production of vinasse and ethanol ( liters of vinasse / liters of ethanol). -->
+    <!-- http://bio.icmc.usp.br/sustenagro#UsePrecursorOfTheAreaCategory -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#VinasseAndEthanolRelation">
+    <owl:Class rdf:about="&sustenagro;UsePrecursorOfTheAreaCategory">
+        <rdfs:label xml:lang="en">Use precursor of the area category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria do uso precursor da área</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#Value -->
+
+    <owl:Class rdf:about="&sustenagro;Value">
+        <rdfs:label xml:lang="en">Value</rdfs:label>
+        <rdfs:label xml:lang="pt">Valor</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#Varieties -->
+
+    <owl:Class rdf:about="&sustenagro;Varieties">
+        <rdfs:label xml:lang="en">Varieties</rdfs:label>
+        <rdfs:label xml:lang="pt">Variedades</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheField"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#VarietiesCategory -->
+
+    <owl:Class rdf:about="&sustenagro;VarietiesCategory">
+        <rdfs:label xml:lang="en">Varieties category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria variedades</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#VinasseAndEthanolRelation -->
+
+    <owl:Class rdf:about="&sustenagro;VinasseAndEthanolRelation">
         <rdfs:label xml:lang="en">Relationship between the production of vinasse and ethanol ( liters of vinasse / liters of ethanol).</rdfs:label>
         <rdfs:label xml:lang="pt">Relação entre a produção de vinhaça e etanol (litros de vinhaça/litros de etanol).</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#GeneralIndicator"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;GeneralIndicator"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://bio.icmc.usp.br/sustenagro#value"/>
-                <owl:onClass rdf:resource="http://bio.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;VinasseAndEthanolRelationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- Categoria relação entre vinhaça e etanol -->
+    <!-- http://bio.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory">
-        <rdfs:label xml:lang="pt">Categoria relação entre vinhaça e etanol</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;VinasseAndEthanolRelationCategory">
         <rdfs:label xml:lang="en">Vinasse and ethanol relation category</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Categorical"/>
+        <rdfs:label xml:lang="pt">Categoria relação entre vinhaça e etanol</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
     </owl:Class>
     
 
 
-    <!-- Sim/Não -->
+    <!-- http://bio.icmc.usp.br/sustenagro#YesNo -->
 
-    <owl:Class rdf:about="http://bio.icmc.usp.br/sustenagro#YesNo">
-        <rdfs:label xml:lang="pt">Sim/Não</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;YesNo">
         <rdfs:label xml:lang="en">Yes/No</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#Boolean"/>
+        <rdfs:label xml:lang="pt">Sim/Não</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Boolean"/>
     </owl:Class>
     
 
 
-    <!-- AdministrativeRegion -->
+    <!-- http://dbpedia.org/ontology/AdministrativeRegion -->
 
     <owl:Class rdf:about="http://dbpedia.org/ontology/AdministrativeRegion">
+        <rdfs:label xml:lang="en">Administrative region</rdfs:label>
+        <rdfs:label xml:lang="pt">Região administrativa</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Region"/>
     </owl:Class>
     
 
 
-    <!-- Country -->
+    <!-- http://dbpedia.org/ontology/Country -->
 
     <owl:Class rdf:about="http://dbpedia.org/ontology/Country">
+        <rdfs:label xml:lang="en">Country</rdfs:label>
+        <rdfs:label xml:lang="pt">País</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
     </owl:Class>
     
 
 
-    <!-- Farm -->
+    <!-- http://dbpedia.org/ontology/Farm -->
 
     <owl:Class rdf:about="http://dbpedia.org/ontology/Farm">
         <rdfs:label xml:lang="en">Farm</rdfs:label>
         <rdfs:label xml:lang="pt">Fazenda</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#ProductionUnit"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;ProductionUnit"/>
     </owl:Class>
     
 
 
-    <!-- GovernmentalAdministrativeRegion -->
+    <!-- http://dbpedia.org/ontology/GovernmentalAdministrativeRegion -->
 
     <owl:Class rdf:about="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion">
+        <rdfs:label xml:lang="en">Governmental administrative region</rdfs:label>
+        <rdfs:label xml:lang="pt">Região administrativa governamental</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/AdministrativeRegion"/>
     </owl:Class>
     
 
 
-    <!-- Microregion -->
+    <!-- http://dbpedia.org/ontology/MicroRegion -->
 
     <owl:Class rdf:about="http://dbpedia.org/ontology/MicroRegion">
         <rdfs:label xml:lang="en">Microregion</rdfs:label>
@@ -1178,50 +1812,79 @@
     
 
 
-    <!-- Place -->
+    <!-- http://dbpedia.org/ontology/Place -->
 
-    <owl:Class rdf:about="http://dbpedia.org/ontology/Place"/>
+    <owl:Class rdf:about="http://dbpedia.org/ontology/Place">
+        <rdfs:label xml:lang="en">Place</rdfs:label>
+        <rdfs:label xml:lang="pt">Lugar</rdfs:label>
+    </owl:Class>
     
 
 
-    <!-- PopulatedPlace -->
+    <!-- http://dbpedia.org/ontology/PopulatedPlace -->
 
     <owl:Class rdf:about="http://dbpedia.org/ontology/PopulatedPlace">
+        <rdfs:label xml:lang="en">Populate place</rdfs:label>
+        <rdfs:label xml:lang="pt">Lugar povoado</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Place"/>
     </owl:Class>
     
 
 
-    <!-- Prefecture -->
+    <!-- http://dbpedia.org/ontology/Prefecture -->
 
     <owl:Class rdf:about="http://dbpedia.org/ontology/Prefecture">
+        <rdfs:label xml:lang="en">Prefecture</rdfs:label>
+        <rdfs:label xml:lang="pt">Prefeitura</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
     </owl:Class>
     
 
 
-    <!-- Region -->
+    <!-- http://dbpedia.org/ontology/Region -->
 
     <owl:Class rdf:about="http://dbpedia.org/ontology/Region">
+        <rdfs:label xml:lang="en">Region</rdfs:label>
+        <rdfs:label xml:lang="pt">Região</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
     </owl:Class>
     
 
 
-    <!-- State -->
+    <!-- http://dbpedia.org/ontology/State -->
 
     <owl:Class rdf:about="http://dbpedia.org/ontology/State">
+        <rdfs:label xml:lang="en">State</rdfs:label>
+        <rdfs:label xml:lang="pt">Estado</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
     </owl:Class>
     
 
 
-    <!-- Usina -->
+    <!-- http://dbpedia.org/resource/Physical_plant -->
 
     <owl:Class rdf:about="http://dbpedia.org/resource/Physical_plant">
         <rdfs:label xml:lang="en">Plant</rdfs:label>
         <rdfs:label xml:lang="pt">Usina</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://bio.icmc.usp.br/sustenagro#ProductionUnit"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;ProductionUnit"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2006/time#Instant -->
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#Instant">
+        <rdfs:label xml:lang="en">Instant</rdfs:label>
+        <rdfs:label xml:lang="pt">Instante</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2006/time#Interval -->
+
+    <owl:Class rdf:about="http://www.w3.org/2006/time#Interval">
+        <rdfs:label xml:lang="en">Interval</rdfs:label>
+        <rdfs:label xml:lang="pt">intervalo</rdfs:label>
     </owl:Class>
     
 
@@ -1237,473 +1900,930 @@
     
 
 
-    <!-- Acima de 18 -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Above18 -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Above18">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;Above18">
+        <rdf:type rdf:resource="&sustenagro;VinasseAndEthanolRelationCategory"/>
         <rdfs:label xml:lang="en">Above 18</rdfs:label>
         <rdfs:label xml:lang="pt">Acima de 18</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</dataValue>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Below 10 -->
+    <!-- http://bio.icmc.usp.br/sustenagro#AccessToInternalMarketNo -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Below10">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
-        <rdfs:label xml:lang="pt">Abaixo de 10</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;AccessToInternalMarketNo">
+        <rdf:type rdf:resource="&sustenagro;AccessToInternalMarketCategory"/>
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AccessToInternalMarketYes -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;AccessToInternalMarketYes">
+        <rdf:type rdf:resource="&sustenagro;AccessToInternalMarketCategory"/>
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">3.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AccessToInternationalMarketNo -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;AccessToInternationalMarketNo">
+        <rdf:type rdf:resource="&sustenagro;AccessToInternationalMarketCategory"/>
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AccessToInternationalMarketYes -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;AccessToInternationalMarketYes">
+        <rdf:type rdf:resource="&sustenagro;AccessToInternationalMarketCategory"/>
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">3.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AdaptedAndResistantVarieties -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;AdaptedAndResistantVarieties">
+        <rdf:type rdf:resource="&sustenagro;VarietiesCategory"/>
+        <rdfs:label xml:lang="en">Adapted and resistant varieties</rdfs:label>
+        <rdfs:label xml:lang="pt">Variedades adaptadas e resistentes</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AdaptedVarieties -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;AdaptedVarieties">
+        <rdf:type rdf:resource="&sustenagro;VarietiesCategory"/>
+        <rdfs:label xml:lang="en">Adapted varieties</rdfs:label>
+        <rdfs:label xml:lang="pt">Variedades adaptadas</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AttendanceProtocolsNo -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;AttendanceProtocolsNo">
+        <rdf:type rdf:resource="&sustenagro;ComplianceProtocolsCategory"/>
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-2.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AttendanceProtocolsYes -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;AttendanceProtocolsYes">
+        <rdf:type rdf:resource="&sustenagro;ComplianceProtocolsCategory"/>
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#Below10 -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Below10">
+        <rdf:type rdf:resource="&sustenagro;VinasseAndEthanolRelationCategory"/>
         <rdfs:label xml:lang="en">Below 10</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</dataValue>
+        <rdfs:label xml:lang="pt">Abaixo de 10</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Between10-18 -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Between10-18 -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Between10-18">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory"/>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</dataValue>
+    <owl:NamedIndividual rdf:about="&sustenagro;Between10-18">
+        <rdf:type rdf:resource="&sustenagro;VinasseAndEthanolRelationCategory"/>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Não Existe -->
+    <!-- http://bio.icmc.usp.br/sustenagro#BusinessNascent -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#DontExist">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#ExistNo"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;BusinessNascent">
+        <rdf:type rdf:resource="&sustenagro;GovernmentSubsidyCategory"/>
+        <rdfs:label xml:lang="en">Business nascent</rdfs:label>
+        <rdfs:label xml:lang="pt">Empresa nascente</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ComplianceToCommitmentNo -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;ComplianceToCommitmentNo">
+        <rdf:type rdf:resource="&sustenagro;ComplianceToCommitmentCategory"/>
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-2.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ComplianceToCommitmentYes -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;ComplianceToCommitmentYes">
+        <rdf:type rdf:resource="&sustenagro;ComplianceToCommitmentCategory"/>
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ComplianceToZoningNo -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;ComplianceToZoningNo">
+        <rdf:type rdf:resource="&sustenagro;ComplianceToZoningCategory"/>
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-2.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ComplianceToZoningYes -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;ComplianceToZoningYes">
+        <rdf:type rdf:resource="&sustenagro;ComplianceToZoningCategory"/>
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ConventionalVarieties -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;ConventionalVarieties">
+        <rdf:type rdf:resource="&sustenagro;VarietiesCategory"/>
+        <rdfs:label xml:lang="en">Conventional varieties</rdfs:label>
+        <rdfs:label xml:lang="pt">Variedades convencionais</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#DirectedToInnovationWithCostReduction -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;DirectedToInnovationWithCostReduction">
+        <rdf:type rdf:resource="&sustenagro;PublicPoliciesCategory"/>
+        <rdfs:label xml:lang="en">Directed to innovation with cost reduction</rdfs:label>
+        <rdfs:label xml:lang="pt">Direcionada para inovação com redução de custo</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#DontExist -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;DontExist">
+        <rdf:type rdf:resource="&sustenagro;ExistNo"/>
         <rdfs:label xml:lang="en">Doesn&apos;t Exist</rdfs:label>
         <rdfs:label xml:lang="pt">Não Existe</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</dataValue>
+        <dataValue rdf:datatype="&xsd;boolean">false</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- = 15,83 -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Eq15.83 -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Eq15.83">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
-        <rdfs:label xml:lang="pt">= 15,83</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;Eq15.83">
+        <rdf:type rdf:resource="&sustenagro;AccidentsIncidenceCategory"/>
         <rdfs:label xml:lang="en">= 15.83</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</dataValue>
+        <rdfs:label xml:lang="pt">= 15,83</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Exist -->
+    <!-- http://bio.icmc.usp.br/sustenagro#EqualOrLowestOf50km -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Exist">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#ExistNo"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;EqualOrLowestOf50km">
+        <rdf:type rdf:resource="&sustenagro;LogisticsProximityCategory"/>
+        <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#Exist -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Exist">
+        <rdf:type rdf:resource="&sustenagro;ExistNo"/>
         <rdfs:label xml:lang="en">Exist</rdfs:label>
         <rdfs:label xml:lang="pt">Existe</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</dataValue>
+        <dataValue rdf:datatype="&xsd;boolean">true</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Export -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Export -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Export">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityDestinationCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;Export">
+        <rdf:type rdf:resource="&sustenagro;BioelectricityDestinationCategory"/>
         <rdfs:label xml:lang="en">Export</rdfs:label>
         <rdfs:label xml:lang="pt">Exportação</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</dataValue>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Falso -->
+    <!-- http://bio.icmc.usp.br/sustenagro#False -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#False">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#TrueFalse"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;False">
+        <rdf:type rdf:resource="&sustenagro;TrueFalse"/>
         <rdfs:label xml:lang="en">False</rdfs:label>
         <rdfs:label xml:lang="pt">Falso</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</dataValue>
+        <dataValue rdf:datatype="&xsd;boolean">false</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- &gt; 1.000,00 -->
+    <!-- http://bio.icmc.usp.br/sustenagro#FiberValueEqualOrHigher -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Gt1000">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;FiberValueEqualOrHigher">
+        <rdf:type rdf:resource="&sustenagro;FiberValueCategory"/>
+        <rdfs:label xml:lang="en">Equal or higher</rdfs:label>
+        <rdfs:label xml:lang="pt">Igual ou superior</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#FiberValueLowest -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;FiberValueLowest">
+        <rdf:type rdf:resource="&sustenagro;FiberValueCategory"/>
+        <rdfs:label xml:lang="en">Lowest</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ForTheSector -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;ForTheSector">
+        <rdf:type rdf:resource="&sustenagro;GovernmentSubsidyCategory"/>
+        <rdfs:label xml:lang="en">For the Sector</rdfs:label>
+        <rdfs:label xml:lang="pt">Para o setor</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#FormulatedWithoutConsideringTheRealityOfTheFieldOrProducer -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;FormulatedWithoutConsideringTheRealityOfTheFieldOrProducer">
+        <rdf:type rdf:resource="&sustenagro;PublicPoliciesCategory"/>
+        <rdfs:label xml:lang="en">Formulated without considering the reality of the field or producer</rdfs:label>
+        <rdfs:label xml:lang="pt">Formuladas sem considerar a realidade do campo ou do produtor</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#Gt1000 -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Gt1000">
+        <rdf:type rdf:resource="&sustenagro;AverageSalaryCategory"/>
         <rdfs:label xml:lang="en">&gt; 1,000.00</rdfs:label>
         <rdfs:label xml:lang="pt">&gt; 1.000,00</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</dataValue>
+        <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- &gt; 15.83 -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Gt15.83 -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Gt15.83">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
-        <rdfs:label xml:lang="pt">&gt; 15,83</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;Gt15.83">
+        <rdf:type rdf:resource="&sustenagro;AccidentsIncidenceCategory"/>
         <rdfs:label xml:lang="en">&gt; 15.83</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</dataValue>
+        <rdfs:label xml:lang="pt">&gt; 15,83</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Grinding capacity higher than 2.5 million tons/harvest -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Gt2.5Mtons -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Gt2.5Mtons">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
-        <rdfs:label xml:lang="pt">Capacidade de moagem superior a 2,5 milhões de ton/safra</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;Gt2.5Mtons">
+        <rdf:type rdf:resource="&sustenagro;OperationalEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Grinding capacity higher than 2.5 million tons/harvest</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</dataValue>
+        <rdfs:label xml:lang="pt">Capacidade de moagem superior a 2,5 milhões de ton/safra</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- &gt; 85 ton/ha -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Gt85ton -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Gt85ton">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;Gt85ton">
+        <rdf:type rdf:resource="&sustenagro;SugarcaneProductivityPerHectareCategory"/>
         <rdfs:label xml:lang="en">&gt; 85 ton/ha</rdfs:label>
         <rdfs:label xml:lang="pt">&gt; 85 ton/ha</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</dataValue>
+        <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- &gt; 90% -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Gt90 -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Gt90">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;Gt90">
+        <rdf:type rdf:resource="&sustenagro;JobFormalityRateCategory"/>
         <rdfs:label xml:lang="en">&gt; 90%</rdfs:label>
         <rdfs:label xml:lang="pt">&gt; 90%</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</dataValue>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Alta -->
+    <!-- http://bio.icmc.usp.br/sustenagro#High -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#High">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#IntensityCategory"/>
-        <rdfs:label xml:lang="pt">Alta</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;High">
+        <rdf:type rdf:resource="&sustenagro;IntensityCategory"/>
         <rdfs:label xml:lang="en">High</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</dataValue>
+        <rdfs:label xml:lang="pt">Alta</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Alta Eficiência Agrícola -->
+    <!-- http://bio.icmc.usp.br/sustenagro#HighAgriculturalEfficiency -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#HighAgriculturalEfficiency">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AgriculturalEfficiency"/>
-        <rdfs:label xml:lang="pt">Alta Eficiência Agrícola</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;HighAgriculturalEfficiency">
+        <rdf:type rdf:resource="&sustenagro;AgriculturalEfficiency"/>
         <rdfs:label xml:lang="en">High Agricultural Efficiency</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</dataValue>
-        <terms:description xml:lang="pt">Mecanização do plantio e colheita</terms:description>
+        <rdfs:label xml:lang="pt">Alta Eficiência Agrícola</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
         <terms:description xml:lang="en">Planting and harvesting mechanization</terms:description>
+        <terms:description xml:lang="pt">Mecanização do plantio e colheita</terms:description>
     </owl:NamedIndividual>
     
 
 
-    <!-- Eficiência alta -->
+    <!-- http://bio.icmc.usp.br/sustenagro#HighEfficiency -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#HighEfficiency">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
-        <rdfs:label xml:lang="pt">Eficiência alta</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;HighEfficiency">
+        <rdf:type rdf:resource="&sustenagro;BoilerEfficiencyCategory"/>
         <rdfs:label xml:lang="en">High efficiency</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</dataValue>
+        <rdfs:label xml:lang="pt">Eficiência alta</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Grinding capacity between 1.0 and 2.5 million tons/harvest -->
+    <!-- http://bio.icmc.usp.br/sustenagro#HigherOf50km -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Interval1.0-2.5Mtons">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
-        <rdfs:label xml:lang="pt">Capacidade de moagem entre 1,0 e 2,5 milhões de toneladas/safra</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;HigherOf50km">
+        <rdf:type rdf:resource="&sustenagro;LogisticsProximityCategory"/>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#Interval1.0-2.5Mtons -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Interval1.0-2.5Mtons">
+        <rdf:type rdf:resource="&sustenagro;OperationalEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Grinding capacity between 1.0 and 2.5 million tons/harvest</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</dataValue>
+        <rdfs:label xml:lang="pt">Capacidade de moagem entre 1,0 e 2,5 milhões de toneladas/safra</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Baixa -->
+    <!-- http://bio.icmc.usp.br/sustenagro#LeaseOrigin -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Low">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#IntensityCategory"/>
-        <rdfs:label xml:lang="pt">Baixa</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;LeaseOrigin">
+        <rdf:type rdf:resource="&sustenagro;SugarcaneSource"/>
+        <rdfs:label xml:lang="en">Lease origin</rdfs:label>
+        <rdfs:label xml:lang="pt">Origem do arrendamento</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#Low -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;Low">
+        <rdf:type rdf:resource="&sustenagro;IntensityCategory"/>
         <rdfs:label xml:lang="en">Low</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</dataValue>
+        <rdfs:label xml:lang="pt">Baixa</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Low Agricultural Efficiecy -->
+    <!-- http://bio.icmc.usp.br/sustenagro#LowAgriculturalEfficiency -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#LowAgriculturalEfficiency">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AgriculturalEfficiency"/>
-        <rdfs:label xml:lang="pt">Baixa Eficiência Agrícola</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;LowAgriculturalEfficiency">
+        <rdf:type rdf:resource="&sustenagro;AgriculturalEfficiency"/>
         <rdfs:label xml:lang="en">Low Agricultural Efficiecy</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</dataValue>
+        <rdfs:label xml:lang="pt">Baixa Eficiência Agrícola</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
         <terms:description xml:lang="en">Semi mechanized planting</terms:description>
         <terms:description xml:lang="pt">Semimecanização do plantio</terms:description>
     </owl:NamedIndividual>
     
 
 
-    <!-- Low Efficiency -->
+    <!-- http://bio.icmc.usp.br/sustenagro#LowEfficiency -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#LowEfficiency">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
-        <rdfs:label xml:lang="pt">Baixa eficiência</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;LowEfficiency">
+        <rdf:type rdf:resource="&sustenagro;BoilerEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Low Efficiency</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-3.0</dataValue>
+        <rdfs:label xml:lang="pt">Baixa eficiência</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-3.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- &lt; 15,83 -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Lt15.83 -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Lt15.83">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AccidentsIncidenceCategory"/>
-        <rdfs:label xml:lang="pt">&lt; 15,83</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;Lt15.83">
+        <rdf:type rdf:resource="&sustenagro;AccidentsIncidenceCategory"/>
         <rdfs:label xml:lang="en">&lt; 15.83</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</dataValue>
+        <rdfs:label xml:lang="pt">&lt; 15,83</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Grinding capacity lower than 1.0 million tons/harvest -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Lt1Mtons -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Lt1Mtons">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#OperationalEfficiencyCategory"/>
-        <rdfs:label xml:lang="pt">Capacidade de Moagem inferior a 1 milhão de toneladas/safra</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;Lt1Mtons">
+        <rdf:type rdf:resource="&sustenagro;OperationalEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Grinding capacity lower than 1.0 million tons/harvest</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</dataValue>
+        <rdfs:label xml:lang="pt">Capacidade de Moagem inferior a 1 milhão de toneladas/safra</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- &lt; 64 ton/ha -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Lt64ton -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Lt64ton">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;Lt64ton">
+        <rdf:type rdf:resource="&sustenagro;SugarcaneProductivityPerHectareCategory"/>
         <rdfs:label xml:lang="en">&lt; 64 ton/ha</rdfs:label>
         <rdfs:label xml:lang="pt">&lt; 64 ton/ha</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</dataValue>
+        <dataValue rdf:datatype="&xsd;double">-2.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- &lt; 724.00 -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Lt724 -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Lt724">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
-        <rdfs:label xml:lang="pt">&lt; 724,00</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;Lt724">
+        <rdf:type rdf:resource="&sustenagro;AverageSalaryCategory"/>
         <rdfs:label xml:lang="en">&lt; 724.00</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</dataValue>
+        <rdfs:label xml:lang="pt">&lt; 724,00</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- &lt; 80% -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Lt80 -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Lt80">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;Lt80">
+        <rdf:type rdf:resource="&sustenagro;JobFormalityRateCategory"/>
         <rdfs:label xml:lang="en">&lt; 80%</rdfs:label>
         <rdfs:label xml:lang="pt">&lt; 80%</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</dataValue>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Média -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Medium -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Medium">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#IntensityCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;Medium">
+        <rdf:type rdf:resource="&sustenagro;IntensityCategory"/>
         <rdfs:label xml:lang="en">Medium</rdfs:label>
         <rdfs:label xml:lang="pt">Média</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</dataValue>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Medium Agricultural Efficiency -->
+    <!-- http://bio.icmc.usp.br/sustenagro#MediumAgriculturalEfficiency -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#MediumAgriculturalEfficiency">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AgriculturalEfficiency"/>
-        <rdfs:label xml:lang="pt">Eficiência Agrícola Média</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;MediumAgriculturalEfficiency">
+        <rdf:type rdf:resource="&sustenagro;AgriculturalEfficiency"/>
         <rdfs:label xml:lang="en">Medium Agricultural Efficiency</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</dataValue>
-        <terms:description xml:lang="pt">Mecanização do plantio mas não da colheita</terms:description>
+        <rdfs:label xml:lang="pt">Eficiência Agrícola Média</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
         <terms:description xml:lang="en">Mechanization of planting but not harvest</terms:description>
+        <terms:description xml:lang="pt">Mecanização do plantio mas não da colheita</terms:description>
     </owl:NamedIndividual>
     
 
 
-    <!-- Eficiência média -->
+    <!-- http://bio.icmc.usp.br/sustenagro#MediumEfficiency -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#MediumEfficiency">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
-        <rdfs:label xml:lang="pt">Eficiência média</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;MediumEfficiency">
+        <rdf:type rdf:resource="&sustenagro;BoilerEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Medium efficiency</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</dataValue>
+        <rdfs:label xml:lang="pt">Eficiência média</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- No -->
+    <!-- http://bio.icmc.usp.br/sustenagro#MonitoringOfFlowNo -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#No">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;MonitoringOfFlowNo">
+        <rdf:type rdf:resource="&sustenagro;MonitoringOfFlowCategory"/>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#MonitoringOfFlowYes -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;MonitoringOfFlowYes">
+        <rdf:type rdf:resource="&sustenagro;MonitoringOfFlowCategory"/>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#No -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;No">
+        <rdf:type rdf:resource="&sustenagro;YesNo"/>
         <rdfs:label xml:lang="en">No</rdfs:label>
         <rdfs:label xml:lang="pt">Não</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</dataValue>
+        <dataValue rdf:datatype="&xsd;boolean">false</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Não supre a própria demanda ou esta é parcial -->
+    <!-- http://bio.icmc.usp.br/sustenagro#NoOrPartialSupply -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#NoOrPartialSupply">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;NoOrPartialSupply">
+        <rdf:type rdf:resource="&sustenagro;BioelectricityProductionCategory"/>
         <rdfs:label xml:lang="en">Does not supply own demand or demand is partial</rdfs:label>
         <rdfs:label xml:lang="pt">Não supre a própria demanda ou esta é parcial</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</dataValue>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Auto Consumo -->
+    <!-- http://bio.icmc.usp.br/sustenagro#OwnOrigin -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#SelfConsumption">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityDestinationCategory"/>
-        <rdfs:label xml:lang="pt">Auto Consumo</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;OwnOrigin">
+        <rdf:type rdf:resource="&sustenagro;SugarcaneSource"/>
+        <rdfs:label xml:lang="en">Own origin</rdfs:label>
+        <rdfs:label xml:lang="pt">Origem própria</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#PlanningOfHarvestFromNo -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;PlanningOfHarvestFromNo">
+        <rdf:type rdf:resource="&sustenagro;PlanningOfHarvestFrontCategory"/>
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#PreparationPlantationAutomatedOrSystemInformationBasedMaintenance -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;PreparationPlantationAutomatedOrSystemInformationBasedMaintenance">
+        <rdf:type rdf:resource="&sustenagro;AgriculturalManagementCategory"/>
+        <rdfs:label xml:lang="en">Preparation / Plantation / Automated Or System Information Based Maintenance</rdfs:label>
+        <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial (automatizados ou empregando sistemas de informação? Por ex sensoriamento remoto ou agricultura de precisão)</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#PreparationPlantationManualMaintenance -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;PreparationPlantationManualMaintenance">
+        <rdf:type rdf:resource="&sustenagro;AgriculturalManagementCategory"/>
+        <rdfs:label xml:lang="en">Preparation / Plantation / Manual Sugarcane Maintenance according to constraints of the size of the area and slope</rdfs:label>
+        <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial manual em função de restrições do tamanho da área e declividade</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#PreparationPlantationMechanizedMaintenance -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;PreparationPlantationMechanizedMaintenance">
+        <rdf:type rdf:resource="&sustenagro;AgriculturalManagementCategory"/>
+        <rdfs:label xml:lang="en">Preparation / Plantation / Mechanized Maintenance of sugarcane field</rdfs:label>
+        <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial usando mecanização</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#PreparationPlantationMechanizedMaintenanceInSuitableAreas -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;PreparationPlantationMechanizedMaintenanceInSuitableAreas">
+        <rdf:type rdf:resource="&sustenagro;AgriculturalManagementCategory"/>
+        <rdfs:label xml:lang="en">Preparation / Plantation / Manual maintenance of sugarcane field in suitable areas to mechanization</rdfs:label>
+        <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial manual em áreas aptas a mecanização</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#PricePoliciesNo -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;PricePoliciesNo">
+        <rdf:type rdf:resource="&sustenagro;PricePoliciesCategory"/>
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#PricePoliciesYes -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;PricePoliciesYes">
+        <rdf:type rdf:resource="&sustenagro;PricePoliciesCategory"/>
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ReplacingAreasOfNativeForests -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;ReplacingAreasOfNativeForests">
+        <rdf:type rdf:resource="&sustenagro;UsePrecursorOfTheAreaCategory"/>
+        <rdfs:label xml:lang="en">Replacing areas of native forests</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a áreas de matas nativas</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-2.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ReplacingDegradedAreas -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;ReplacingDegradedAreas">
+        <rdf:type rdf:resource="&sustenagro;UsePrecursorOfTheAreaCategory"/>
+        <rdfs:label xml:lang="en">Replacing degraded areas</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a áreas degradadas</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">3.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ReplacingFoodCrops -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;ReplacingFoodCrops">
+        <rdf:type rdf:resource="&sustenagro;UsePrecursorOfTheAreaCategory"/>
+        <rdfs:label xml:lang="en">Replacing food crops</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a culturas alimentares</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ReplacingPasture -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;ReplacingPasture">
+        <rdf:type rdf:resource="&sustenagro;UsePrecursorOfTheAreaCategory"/>
+        <rdfs:label xml:lang="en">Replacing pasture</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a pasto</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#ReplacingSugarcaneAndSimilarCultures -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;ReplacingSugarcaneAndSimilarCultures">
+        <rdf:type rdf:resource="&sustenagro;UsePrecursorOfTheAreaCategory"/>
+        <rdfs:label xml:lang="en">Replacing sugarcane and similar cultures</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a cana-de-açucar e culturas similares</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#SelfConsumption -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;SelfConsumption">
+        <rdf:type rdf:resource="&sustenagro;BioelectricityDestinationCategory"/>
         <rdfs:label xml:lang="en">Self Consumption</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</dataValue>
+        <rdfs:label xml:lang="pt">Auto Consumo</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Fully supplies itself and sells the surplus -->
+    <!-- http://bio.icmc.usp.br/sustenagro#SugarcaneValueEqualOrHigher -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#SuppliesAllSellSurplus">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;SugarcaneValueEqualOrHigher">
+        <rdf:type rdf:resource="&sustenagro;SugarcaneValueCategory"/>
+        <rdfs:label xml:lang="en">Equal or higher</rdfs:label>
+        <rdfs:label xml:lang="pt">Igual ou superior</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#SugarcaneValueLowest -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;SugarcaneValueLowest">
+        <rdf:type rdf:resource="&sustenagro;SugarcaneValueCategory"/>
+        <rdfs:label xml:lang="en">Lowest</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#SupplierOrigin -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;SupplierOrigin">
+        <rdf:type rdf:resource="&sustenagro;SugarcaneSource"/>
+        <rdfs:label xml:lang="en">Supplier origin</rdfs:label>
+        <rdfs:label xml:lang="pt">Origem do fornecedor</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#SuppliesAllSellSurplus -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;SuppliesAllSellSurplus">
+        <rdf:type rdf:resource="&sustenagro;BioelectricityProductionCategory"/>
         <rdfs:label xml:lang="en">Fully supplies itself and sells the surplus</rdfs:label>
         <rdfs:label xml:lang="pt">Supre totalmente e comercializa o excedente</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</dataValue>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Supply all own demand -->
+    <!-- http://bio.icmc.usp.br/sustenagro#SupplyAll -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#SupplyAll">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BioelectricityProductionCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;SupplyAll">
+        <rdf:type rdf:resource="&sustenagro;BioelectricityProductionCategory"/>
         <rdfs:label xml:lang="en">Supply all own demand</rdfs:label>
         <rdfs:label xml:lang="pt">Supre totalmente a própria demanda</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</dataValue>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Verdadeiro -->
+    <!-- http://bio.icmc.usp.br/sustenagro#True -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#True">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#TrueFalse"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;True">
+        <rdf:type rdf:resource="&sustenagro;TrueFalse"/>
         <rdfs:label xml:lang="en">True</rdfs:label>
         <rdfs:label xml:lang="pt">Verdadeiro</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</dataValue>
+        <dataValue rdf:datatype="&xsd;boolean">true</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Upper high efficiency -->
+    <!-- http://bio.icmc.usp.br/sustenagro#UpperHighEfficiency -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#UpperHighEfficiency">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
-        <rdfs:label xml:lang="pt">Eficiência alta superior</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;UpperHighEfficiency">
+        <rdf:type rdf:resource="&sustenagro;BoilerEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Upper high efficiency</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</dataValue>
+        <rdfs:label xml:lang="pt">Eficiência alta superior</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Eficiência baixa superior -->
+    <!-- http://bio.icmc.usp.br/sustenagro#UpperLowEfficiency -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#UpperLowEfficiency">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#BoilerEfficiencyCategory"/>
-        <rdfs:label xml:lang="pt">Eficiência baixa superior</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;UpperLowEfficiency">
+        <rdf:type rdf:resource="&sustenagro;BoilerEfficiencyCategory"/>
         <rdfs:label xml:lang="en">Upper low efficiency</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</dataValue>
+        <rdfs:label xml:lang="pt">Eficiência baixa superior</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">-2.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Yes -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Yes -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#Yes">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#YesNo"/>
-        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;Yes">
+        <rdf:type rdf:resource="&sustenagro;YesNo"/>
         <rdfs:label xml:lang="en">Yes</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</dataValue>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <dataValue rdf:datatype="&xsd;boolean">true</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- 64 - 74 ton/ha -->
+    <!-- http://bio.icmc.usp.br/sustenagro#YesWithAdaptationOfArea -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#interval64-74ton">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;YesWithAdaptationOfArea">
+        <rdf:type rdf:resource="&sustenagro;PlanningOfHarvestFrontCategory"/>
+        <rdfs:label xml:lang="en">Yes with adaptation to the zise of the area</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim com adequação ao tamanho da área</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#YesWithoutConsideringArea -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;YesWithoutConsideringArea">
+        <rdf:type rdf:resource="&sustenagro;PlanningOfHarvestFrontCategory"/>
+        <rdfs:label xml:lang="en">Yes without considering the size of the area</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim sem considerar o tamanho da área</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#interval64-74ton -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;interval64-74ton">
+        <rdf:type rdf:resource="&sustenagro;SugarcaneProductivityPerHectareCategory"/>
         <rdfs:label xml:lang="en">64 - 74 ton/ha</rdfs:label>
         <rdfs:label xml:lang="pt">64 - 74 ton/ha</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</dataValue>
+        <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- 75 - 81 ton/ha -->
+    <!-- http://bio.icmc.usp.br/sustenagro#interval724-890 -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#interval724-890">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;interval724-890">
+        <rdf:type rdf:resource="&sustenagro;SugarcaneProductivityPerHectareCategory"/>
         <rdfs:label xml:lang="en">75 - 81 ton/ha</rdfs:label>
         <rdfs:label xml:lang="pt">75 - 81 ton/ha</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</dataValue>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- 80% - 90% -->
+    <!-- http://bio.icmc.usp.br/sustenagro#interval80-90 -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#interval80-90">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#JobFormalityRateCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;interval80-90">
+        <rdf:type rdf:resource="&sustenagro;JobFormalityRateCategory"/>
         <rdfs:label xml:lang="en">80% - 90%</rdfs:label>
         <rdfs:label xml:lang="pt">80% - 90%</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</dataValue>
+        <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- 81 - 85 ton/ha -->
+    <!-- http://bio.icmc.usp.br/sustenagro#interval82-85ton -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#interval82-85ton">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#SugarcaneProductivityPerHectareCategory"/>
+    <owl:NamedIndividual rdf:about="&sustenagro;interval82-85ton">
+        <rdf:type rdf:resource="&sustenagro;SugarcaneProductivityPerHectareCategory"/>
         <rdfs:label xml:lang="en">81 - 85 ton/ha</rdfs:label>
         <rdfs:label xml:lang="pt">81 - 85 ton/ha</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</dataValue>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- 890.00 - 1,000.00 -->
+    <!-- http://bio.icmc.usp.br/sustenagro#interval891-1000 -->
 
-    <owl:NamedIndividual rdf:about="http://bio.icmc.usp.br/sustenagro#interval891-1000">
-        <rdf:type rdf:resource="http://bio.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
-        <rdfs:label xml:lang="pt">890,00 - 1.000,00</rdfs:label>
+    <owl:NamedIndividual rdf:about="&sustenagro;interval891-1000">
+        <rdf:type rdf:resource="&sustenagro;AverageSalaryCategory"/>
         <rdfs:label xml:lang="en">890.00 - 1,000.00</rdfs:label>
-        <dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</dataValue>
+        <rdfs:label xml:lang="pt">890,00 - 1.000,00</rdfs:label>
+        <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
 
 
-    <!-- Microrregião de Adamantina -->
+    <!-- http://bio.icmc.usp.br/sustenagro#50Km -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;50Km"/>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Adamantina -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Adamantina">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1714,7 +2834,7 @@
     
 
 
-    <!-- Microregião de Amparo -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Amparo -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Amparo">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1725,7 +2845,7 @@
     
 
 
-    <!-- Andradina Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Andradina -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Andradina">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1736,7 +2856,7 @@
     
 
 
-    <!-- Microrregião de Araraquara -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Araraquara -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Araraquara">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1747,7 +2867,7 @@
     
 
 
-    <!-- Microrregião de Araçatuba -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Araçatuba -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Araçatuba">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1758,7 +2878,7 @@
     
 
 
-    <!-- Microrregião de Assis -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Assis -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Assis">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1769,7 +2889,7 @@
     
 
 
-    <!-- Auriflama Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Auriflama -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Auriflama">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1780,7 +2900,7 @@
     
 
 
-    <!-- Microrregião de Avaré -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Avaré -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Avaré">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1791,7 +2911,7 @@
     
 
 
-    <!-- Microrregião de Bananal -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Bananal -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Bananal">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1802,7 +2922,7 @@
     
 
 
-    <!-- Microrregião de Barretos -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Barretos -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Barretos">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1813,7 +2933,7 @@
     
 
 
-    <!-- Microrregião de Batatais -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Batatais -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Batatais">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1824,7 +2944,7 @@
     
 
 
-    <!-- Bauru Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Bauru -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Bauru">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1835,7 +2955,7 @@
     
 
 
-    <!-- Microrregião de Birigüi -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Birigüi -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Birigüi">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1846,7 +2966,7 @@
     
 
 
-    <!-- Microrregião de Botucatu -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Botucatu -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Botucatu">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1857,7 +2977,7 @@
     
 
 
-    <!-- Bragança Paulista Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Bragança_Paulista -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Bragança_Paulista">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1868,7 +2988,7 @@
     
 
 
-    <!-- Microrregião de Campinas -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Campinas -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Campinas">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1879,7 +2999,7 @@
     
 
 
-    <!-- Microrregião de Campos do Jordão -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Campos_do_Jordão -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Campos_do_Jordão">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1890,7 +3010,7 @@
     
 
 
-    <!-- Microrregião de Capão Bonito -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Capão_Bonito -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Capão_Bonito">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1901,7 +3021,7 @@
     
 
 
-    <!-- Microrregião de Caraguatatuba -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Caraguatatuba -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Caraguatatuba">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1912,7 +3032,7 @@
     
 
 
-    <!-- Microrregião de Catanduva -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Catanduva -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Catanduva">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1923,7 +3043,7 @@
     
 
 
-    <!-- Dracena Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Dracena -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Dracena">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1934,7 +3054,7 @@
     
 
 
-    <!-- Microrregião de Fernandópolis -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Fernandópolis -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Fernandópolis">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1945,7 +3065,7 @@
     
 
 
-    <!-- Microrregião de Franca -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Franca -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Franca">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1956,7 +3076,7 @@
     
 
 
-    <!-- Microrregião de Franco da Rocha -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Franco_da_Rocha -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Franco_da_Rocha">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1967,7 +3087,7 @@
     
 
 
-    <!-- Guaratinguetá Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Guaratinguetá -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Guaratinguetá">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1978,7 +3098,7 @@
     
 
 
-    <!-- Guarulhos Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Guarulhos -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Guarulhos">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -1989,7 +3109,7 @@
     
 
 
-    <!-- Microrregião de Itanhaém -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Itanhaém -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itanhaém">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -2000,7 +3120,7 @@
     
 
 
-    <!-- Microrregião de Itapecerica da Serra -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Itapecerica_da_Serra -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itapecerica_da_Serra">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -2011,7 +3131,7 @@
     
 
 
-    <!-- Microrregião de Itapetininga -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Itapetininga -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itapetininga">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -2022,7 +3142,7 @@
     
 
 
-    <!-- Itapeva Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Itapeva -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itapeva">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -2033,7 +3153,7 @@
     
 
 
-    <!-- Microrregião de Ituverava -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Ituverava -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ituverava">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -2044,7 +3164,7 @@
     
 
 
-    <!-- Jaboticabal Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Jaboticabal -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Jaboticabal">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -2055,7 +3175,7 @@
     
 
 
-    <!-- Microrregião de Jales -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Jales -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Jales">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -2066,7 +3186,7 @@
     
 
 
-    <!-- Microrregião de Jaú -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Jaú -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Jaú">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -2077,7 +3197,7 @@
     
 
 
-    <!-- Microrregião de Jundiaí -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Jundiaí -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Jundiaí">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -2088,7 +3208,7 @@
     
 
 
-    <!-- Limeira Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Limeira -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Limeira">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -2099,7 +3219,7 @@
     
 
 
-    <!-- Microrregião de Lins -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Lins -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Lins">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -2110,7 +3230,7 @@
     
 
 
-    <!-- Marília Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Marília -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Marília">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
@@ -2121,300 +3241,324 @@
     
 
 
-    <!-- Mogi das Cruzes Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Mogi_das_Cruzes -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Mogi_das_Cruzes">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Mogi das Cruzes</rdfs:label>
         <rdfs:label xml:lang="en">Mogi das Cruzes Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Mogi das Cruzes</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/6/61/SaoPaulo_Micro_MogidasCruzes.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Microrregião de Mogi Mirim -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Moji_Mirim -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Moji_Mirim">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Mogi Mirim</rdfs:label>
         <rdfs:label xml:lang="en">Mogi Mirim Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Mogi Mirim</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/e/eb/SaoPaulo_Micro_MojiMirim.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Nhandeara Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Nhandeara -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Nhandeara">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Nhandeara</rdfs:label>
         <rdfs:label xml:lang="en">Nhandeara Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Nhandeara</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/5/5b/SaoPaulo_Micro_Nhandeara.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Microrregião de Novo Horizonte -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Novo_Horizonte -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Novo_Horizonte">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Novo Horizonte</rdfs:label>
         <rdfs:label xml:lang="en">Novo Horizonte Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Novo Horizonte</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/df/SaoPaulo_Micro_NovoHorizonte.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Microrregião de Osasco -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Osasco -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Osasco">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Osasco</rdfs:label>
         <rdfs:label xml:lang="en">Osasco Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Osasco</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/3/3d/SaoPaulo_Micro_Osasco.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Ourinhos Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Ourinhos -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ourinhos">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Ourinhos</rdfs:label>
         <rdfs:label xml:lang="en">Ourinhos Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Ourinhos</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/8/8b/SaoPaulo_Micro_Ourinhos.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Paraibuna/Paraitinga Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Paraibuna_e_Paraitinga -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Paraibuna_e_Paraitinga">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Paraibuna/Paraitinga</rdfs:label>
         <rdfs:label xml:lang="en">Paraibuna/Paraitinga Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Paraibuna/Paraitinga</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/1/1f/SaoPaulo_Micro_ParaibunaParaitinga.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Paulínia Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Paulínia -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Paulínia">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Paulínia</rdfs:label>
         <rdfs:label xml:lang="en">Paulínia Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Paulínia</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/9/90/SaoPaulo_Micro_Paulinia.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Piedade Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Piedade -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Piedade">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Piedade</rdfs:label>
         <rdfs:label xml:lang="en">Piedade Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Piedade</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/a/a7/SaoPaulo_Micro_Piedade.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Piracicaba Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Piracicaba -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Piracicaba">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Piracicaba</rdfs:label>
         <rdfs:label xml:lang="en">Piracicaba Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Piracicaba</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/8/80/SaoPaulo_Micro_Piracicaba.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Microrregião de Pirassununga -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Pirassununga -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Pirassununga">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Pirassununga</rdfs:label>
         <rdfs:label xml:lang="en">Pirassununga Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Pirassununga</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/d1/SaoPaulo_Micro_Pirassununga.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Presidente Prudente Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Presidente_Prudente -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Presidente_Prudente">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Presidente Prudente</rdfs:label>
         <rdfs:label xml:lang="en">Presidente Prudente Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Presidente Prudente</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/b/b8/SaoPaulo_Micro_PresidentePrudente.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Microrregião de Registro -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Registro -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Registro">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Registro</rdfs:label>
         <rdfs:label xml:lang="en">Registro Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Registro</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/5/50/SaoPaulo_Micro_Registro.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Ribeirão Preto Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Ribeirão_Preto -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ribeirão_Preto">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Ribeirão Preto</rdfs:label>
         <rdfs:label xml:lang="en">Ribeirão Preto Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Ribeirão Preto</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/dd/SaoPaulo_Micro_RibeiraoPreto.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Microrregião de Rio Claro -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Rio_Claro -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Rio_Claro">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Rio Claro</rdfs:label>
         <rdfs:label xml:lang="en">Rio Claro Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Rio Claro</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/dd/SaoPaulo_Micro_RioClaro.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Santos Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Santos -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Santos">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Santos</rdfs:label>
         <rdfs:label xml:lang="en">Santos Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Santos</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/f/f8/SaoPaulo_Micro_Santos.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Microrregião de Sorocaba -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Sorocaba -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Sorocaba">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Sorocaba</rdfs:label>
         <rdfs:label xml:lang="en">Sorocaba Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Sorocaba</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/2/26/SaoPaulo_Micro_Sorocaba.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Microrregião de São Carlos -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de São Carlos</rdfs:label>
         <rdfs:label xml:lang="en">São Carlos Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São Carlos</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/e/ef/SaoPaulo_Micro_SaoCarlos.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- São Joaquim da Barra Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_Joaquim_da_Barra -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Joaquim_da_Barra">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de São Joaquim da Barra</rdfs:label>
         <rdfs:label xml:lang="en">São Joaquim da Barra Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São Joaquim da Barra</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/6/65/SaoPaulo_Micro_SaoJoaquimdaBarra.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- São José do Rio Preto Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_José_do_Rio_Preto -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_José_do_Rio_Preto">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de São José do Rio Preto</rdfs:label>
         <rdfs:label xml:lang="en">São José do Rio Preto Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São José do Rio Preto</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/6/68/SaoPaulo_Micro_SaoJosedoRioPreto.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Microrregião de São José dos Campos -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de São José dos Campos</rdfs:label>
         <rdfs:label xml:lang="en">São José dos Campos Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São José dos Campos</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/a/ac/SaoPaulo_Micro_SaoJosedosCampos.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- São João da Boa Vista Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_João_da_Boa_Vista -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_João_da_Boa_Vista">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de São João da Boa Vista</rdfs:label>
         <rdfs:label xml:lang="en">São João da Boa Vista Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São João da Boa Vista</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/2/26/SaoPaulo_Micro_SaoJoaodaBoaVista.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Microrregião de São Paulo -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_Paulo -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Paulo">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de São Paulo</rdfs:label>
         <rdfs:label xml:lang="en">São Paulo Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São Paulo</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/3/37/SaoPaulo_Micro_SaoPaulo.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Microrregião de Tatuí -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Tatuí -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Tatuí">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Tatuí</rdfs:label>
         <rdfs:label xml:lang="en">Tatuí Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Tatuí</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/0/0c/SaoPaulo_Micro_Tatui.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Tupã Microregion -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Tupã -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Tupã">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Tupã</rdfs:label>
         <rdfs:label xml:lang="en">Tupã Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Tupã</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/b/ba/SaoPaulo_Micro_Tupa.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- Microrregião de Votuporanga -->
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Votuporanga -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Votuporanga">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
-        <rdfs:label xml:lang="pt">Microrregião de Votuporanga</rdfs:label>
         <rdfs:label xml:lang="en">Votuporanga Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Votuporanga</rdfs:label>
         <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/7/78/SaoPaulo_Micro_Votuporanga.svg</pt:mapa>
     </owl:NamedIndividual>
     
 
 
-    <!-- São_Paulo -->
+    <!-- http://pt.dbpedia.org/resource/São_Paulo -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/São_Paulo">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/State"/>
     </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&sustenagro;AgriculturalEfficiency"/>
+            <rdf:Description rdf:about="&sustenagro;AgriculturalProductionSystem"/>
+            <rdf:Description rdf:about="&sustenagro;Evaluation"/>
+            <rdf:Description rdf:about="&sustenagro;Indicator"/>
+            <rdf:Description rdf:about="&sustenagro;ProductionFeature"/>
+            <rdf:Description rdf:about="&sustenagro;ProductionUnit"/>
+            <rdf:Description rdf:about="&sustenagro;Value"/>
+            <rdf:Description rdf:about="http://dbpedia.org/ontology/Place"/>
+        </owl:members>
+    </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 4.1.0) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
 

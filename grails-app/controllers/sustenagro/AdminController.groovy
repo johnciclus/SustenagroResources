@@ -4,6 +4,7 @@ import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.model.*
 import org.semanticweb.owlapi.io.StringDocumentSource
 import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat
+import org.semanticweb.owlapi.formats.ManchesterSyntaxDocumentFormat
 import grails.converters.*
 import utils.Uri
 
@@ -11,6 +12,7 @@ class AdminController {
 
     def dsl
     def slp
+    def ontology
 
     def index(){
         def indicators = getIndicators()
@@ -19,9 +21,11 @@ class AdminController {
         Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#", '')
         Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#", '')
 
+        OutputStream out = new ByteArrayOutputStream()
+        ontology.getManager().saveOntology(ontology.getOntology(), new ManchesterSyntaxDocumentFormat(), out)
 
         render(view: 'index', model: [code: new File('dsl/dsl.groovy').text,
-                                      ontology: new File('ontology/SustenAgroOntology.man').text,
+                                      ontology: new String(out.toByteArray(), "UTF-8"),
                                       indicators: indicators,
                                       dimensions: dimensions])
     }
@@ -58,7 +62,6 @@ class AdminController {
             }
         }
 
-
         def respond = ['result': 'ok']
 
         render respond as JSON
@@ -69,15 +72,15 @@ class AdminController {
     }
 
     def ontology(){
-        OWLOntologyManager manager = OWLManager.createOWLOntologyManager()
-        OWLOntology ontology = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
+        def manager = ontology.getManager()
+        OWLOntology ontologyMan = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
 
         OutputStream out = new ByteArrayOutputStream()
-        manager.saveOntology(ontology, new RDFXMLDocumentFormat(), out)
+        manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), out)
 
         File file = new File("/home/dilvan/javabkp/var/www/sustenagro/SustenAgroRDF.rdf")
 
-        manager.saveOntology(ontology, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
+        manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
 
         slp.removeAll()
 
