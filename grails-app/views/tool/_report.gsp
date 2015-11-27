@@ -23,8 +23,7 @@
                 </g:each>
 
                 var result = Matrix("#graphic", {x: ${it[1]}, y: ${it[2]}, label_x: "${it[3]}", label_y: "${it[4]}", range_x: ${it[5]}, range_y: ${it[6]}, quadrants: ${it[7]}, recomendations: recomendations });
-                $("#graphic").append("<p><i>Quadrante X: </i>"+result.qx+"</p>");
-                $("#graphic").append("<p><i>Quadrante Y: </i>"+result.qy+"</p>");
+                $("#graphic").append("<p><i>Quadrante : </i>"+result.quadrant+"</p>");
                 $("#graphic").append("<p><i>Recomendation: </i>"+result.recomendation+"</p>");
             </script>
         </div>

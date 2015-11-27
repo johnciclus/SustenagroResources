@@ -298,6 +298,13 @@
         <rdfs:label xml:lang="en">Adequacy of boilers</rdfs:label>
         <rdfs:label xml:lang="pt">Adequação das caldeiras</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;AdequacyOfBoilersCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -335,6 +342,13 @@
         <rdfs:label xml:lang="en">Agricultural cutting type</rdfs:label>
         <rdfs:label xml:lang="pt">Tipo de corte agrícola</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;AgriculturalCuttingTypeCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -364,6 +378,13 @@
         <rdfs:label xml:lang="en">Agricultural management</rdfs:label>
         <rdfs:label xml:lang="pt">Manejo agrícola</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;AgriculturalManagementCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -410,6 +431,13 @@
         <rdfs:label xml:lang="en">Atmospheric pollutants emission</rdfs:label>
         <rdfs:label xml:lang="pt">Emissão de poluentes atmosféricos</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;AtmosphericPollutantsEmissionCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -500,6 +528,13 @@
         <rdfs:label xml:lang="en">Bagasse and straw destination for 2nd generation ethanol production</rdfs:label>
         <rdfs:label xml:lang="pt">Destinação do bagaço e palha para produção de etanol de 2nd geração</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;BagasseAndStrawDestinationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -520,6 +555,13 @@
         <rdfs:label xml:lang="en">Bagasse destination</rdfs:label>
         <rdfs:label xml:lang="pt">Destinação do bagaço</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;BagasseDestinationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -691,6 +733,13 @@
         <rdfs:label xml:lang="en">Circuit closing</rdfs:label>
         <rdfs:label xml:lang="pt">Fechamento do circuito</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;CircuitClosingCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -846,6 +895,13 @@
         <rdfs:label xml:lang="en">Electricity production</rdfs:label>
         <rdfs:label xml:lang="pt">Produção de energia elétrica</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;ElectricityProductionCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -969,6 +1025,13 @@
         <rdfs:label xml:lang="en">Filtercake and ashes destination</rdfs:label>
         <rdfs:label xml:lang="pt">Destinação de torta de filtro e cinza</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;FiltercakeAndAshesDestinationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1489,6 +1552,13 @@
         <rdfs:label xml:lang="en">Presence of innovations in the field</rdfs:label>
         <rdfs:label xml:lang="pt">Presença de inovações no campo</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;PresenceOfInnovationsInTheFieldCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1509,6 +1579,13 @@
         <rdfs:label xml:lang="en">Price equalization policy (tanking and off season)</rdfs:label>
         <rdfs:label xml:lang="pt">Política de equalização de preços (tancagem e entre safra)</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;PriceEqualizationPolicyCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1556,6 +1633,13 @@
         <rdfs:label xml:lang="en">Producers or plants organization</rdfs:label>
         <rdfs:label xml:lang="pt">Organização de produtores ou de usinas</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;ProducersOrPlantsOrganizationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1576,6 +1660,13 @@
         <rdfs:label xml:lang="en">Production and reuse of water from sugarcane processing</rdfs:label>
         <rdfs:label xml:lang="pt">Produção e reutilização de água a partir do processamento da cana-de-açucar</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;ProductionAndReuseOfWaterFromSugarcaneProcessingCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1594,7 +1685,7 @@
 
     <owl:Class rdf:about="&sustenagro;ProductionEfficiencyFeature">
         <rdfs:label xml:lang="en">Production efficiency feature</rdfs:label>
-        <rdfs:label xml:lang="pt">Característica eficiência da produção</rdfs:label>
+        <rdfs:label xml:lang="pt">Característica de eficiência da produção</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;ProductionFeature"/>
     </owl:Class>
     
@@ -1687,6 +1778,13 @@
         <rdfs:label xml:lang="en">Raw material diversification with improved inputs</rdfs:label>
         <rdfs:label xml:lang="pt">Diversificação da matéria prima com insumos melhorados</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;RawMaterialDiversificationWithImprovedInputsCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1717,6 +1815,13 @@
         <rdfs:label xml:lang="en">Reduction in water consumption</rdfs:label>
         <rdfs:label xml:lang="pt">Redução de consumo de água</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;ReductionInWaterConsumptionCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1825,6 +1930,13 @@
         <rdfs:label xml:lang="en">Sugarcane mechanization</rdfs:label>
         <rdfs:label xml:lang="pt">Mecanização da cana</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;SugarcaneMechanizationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1845,6 +1957,13 @@
         <rdfs:label xml:lang="en">Sugarcane planting</rdfs:label>
         <rdfs:label xml:lang="pt">Plantio de cana</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;SugarcanePlantingCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1985,11 +2104,11 @@
     
 
 
-    <!-- http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiency -->
+    <!-- http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyFeature -->
 
-    <owl:Class rdf:about="&sustenagro;TechnologicalEfficiency">
-        <rdfs:label xml:lang="en">Technological efficiency</rdfs:label>
-        <rdfs:label xml:lang="pt">Eficiência tecnológica</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;TechnologicalEfficiencyFeature">
+        <rdfs:label xml:lang="en">Technological efficiency feature</rdfs:label>
+        <rdfs:label xml:lang="pt">Característica de eficiência tecnológica</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;ProductionFeature"/>
     </owl:Class>
     
@@ -2000,7 +2119,7 @@
     <owl:Class rdf:about="&sustenagro;TechnologicalEfficiencyInTheField">
         <rdfs:label xml:lang="en">Technological efficiency in the field</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência tecnológica no campo</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiency"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyFeature"/>
     </owl:Class>
     
 
@@ -2010,7 +2129,7 @@
     <owl:Class rdf:about="&sustenagro;TechnologicalEfficiencyInTheIndustrial">
         <rdfs:label xml:lang="en">Technological efficiency in the industry</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência tecnológica na industrial</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiency"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyFeature"/>
     </owl:Class>
     
 
@@ -2114,6 +2233,13 @@
         <rdfs:label xml:lang="en">Use of more resistant strains to the ethanol concentration</rdfs:label>
         <rdfs:label xml:lang="pt">Utilização de cepas mais resistentes a concentração do etanol</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;UseOfMoreResistantStrainsToTheEthanolConcentrationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2170,6 +2296,13 @@
         <rdfs:label xml:lang="en">Varieties</rdfs:label>
         <rdfs:label xml:lang="pt">Variedades</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;VarietiesCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2217,6 +2350,13 @@
         <rdfs:label xml:lang="en">Vinasse concentration</rdfs:label>
         <rdfs:label xml:lang="pt">Concentração da vinhaça</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;VinasseConcentrationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2237,6 +2377,13 @@
         <rdfs:label xml:lang="en">Vinasse destination</rdfs:label>
         <rdfs:label xml:lang="pt">Destinação da vinhaca</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;VinasseDestinationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2257,6 +2404,13 @@
         <rdfs:label xml:lang="en">Vinasse use</rdfs:label>
         <rdfs:label xml:lang="pt">Uso da vinhaça</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;VinasseUseCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2875,6 +3029,8 @@
 
     <owl:NamedIndividual rdf:about="&sustenagro;EqualOrLowestOf50km">
         <rdf:type rdf:resource="&sustenagro;LogisticsProximityCategory"/>
+        <rdfs:label xml:lang="en">Equal or lowest of 50 km</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor ou igual a 50 km</rdfs:label>
         <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
     </owl:NamedIndividual>
     
@@ -3051,6 +3207,8 @@
 
     <owl:NamedIndividual rdf:about="&sustenagro;HigherOf50km">
         <rdf:type rdf:resource="&sustenagro;LogisticsProximityCategory"/>
+        <rdfs:label xml:lang="en">Higher of 50 km</rdfs:label>
+        <rdfs:label xml:lang="pt">Maior 50 km</rdfs:label>
         <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
     </owl:NamedIndividual>
     
@@ -3327,6 +3485,8 @@
 
     <owl:NamedIndividual rdf:about="&sustenagro;MonitoringOfFlowNo">
         <rdf:type rdf:resource="&sustenagro;MonitoringOfFlowCategory"/>
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
         <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
     </owl:NamedIndividual>
     
@@ -3336,6 +3496,8 @@
 
     <owl:NamedIndividual rdf:about="&sustenagro;MonitoringOfFlowYes">
         <rdf:type rdf:resource="&sustenagro;MonitoringOfFlowCategory"/>
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
         <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
     </owl:NamedIndividual>
     
