@@ -217,6 +217,13 @@
         <rdfs:label xml:lang="en">Access to the internal market (function of incentives and/or public policy)</rdfs:label>
         <rdfs:label xml:lang="pt">Acesso ao mercado interno (função de incentivos e/ou políticas públicas)</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;MarketVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;AccessToInternalMarketCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -237,6 +244,13 @@
         <rdfs:label xml:lang="en">Access to the international market (function of the attendance to international certifications)</rdfs:label>
         <rdfs:label xml:lang="pt">Acesso ao mercado internacional (função do atendimento a certificações internacionais)</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;MarketVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;AccessToInternationalMarketCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -734,6 +748,13 @@
         <rdfs:label xml:lang="en">Compliance to state environmental protocols</rdfs:label>
         <rdfs:label xml:lang="pt">Atendimento a protocolos ambientais estaduais</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;PoliticalVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;ComplianceProtocolsCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -751,9 +772,16 @@
     <!-- http://bio.icmc.usp.br/sustenagro#ComplianceWithAgriculturalAndEconomicZoning -->
 
     <owl:Class rdf:about="&sustenagro;ComplianceWithAgriculturalAndEconomicZoning">
-        <rdfs:label xml:lang="en">Compliance with Agricultural and Economic Zoning (AEZ)</rdfs:label>
-        <rdfs:label xml:lang="pt">Atendimento ao Zoneamento Agrícola e Econômico (ZAE)</rdfs:label>
+        <rdfs:label xml:lang="en">Compliance with agricultural and economic zoning (AEZ)</rdfs:label>
+        <rdfs:label xml:lang="pt">Atendimento ao zoneamento agrícola e econômico (ZAE)</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;PoliticalVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;ComplianceToZoningCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -764,6 +792,13 @@
         <rdfs:label xml:lang="en">Compliance to national commitment to good working conditions (NR&apos;s)</rdfs:label>
         <rdfs:label xml:lang="pt">Atendimento ao compromisso nacional para adequação às boas condições de trabalho (NR´s)</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;PoliticalVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;ComplianceToCommitmentCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -907,6 +942,13 @@
         <rdfs:label xml:lang="en">Fiber value</rdfs:label>
         <rdfs:label xml:lang="pt">Valor da fibra</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;SugarcaneQuality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;FiberValueCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -994,6 +1036,13 @@
         <rdfs:label xml:lang="en">Government subsidy</rdfs:label>
         <rdfs:label xml:lang="pt">Subsídio do governo</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;PoliticalVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;GovernmentSubsidyCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1204,6 +1253,13 @@
         <rdfs:label xml:lang="en">Logistics proximity of sugarcane planting area over the plant (up to 50 Km away)</rdfs:label>
         <rdfs:label xml:lang="pt">Proximidade logística da área de plantio da cana em relação a usina (até 50 Km de distância)</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;Logistic"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;LogisticsProximityCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1248,8 +1304,8 @@
     <!-- http://bio.icmc.usp.br/sustenagro#MonitoringOfFlowCategory -->
 
     <owl:Class rdf:about="&sustenagro;MonitoringOfFlowCategory">
-        <rdfs:label xml:lang="en">Monitoring of flow</rdfs:label>
-        <rdfs:label xml:lang="pt">Monitoramento do fluxo</rdfs:label>
+        <rdfs:label xml:lang="en">Monitoring of flow category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria de monitoramento do fluxo</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
     </owl:Class>
     
@@ -1261,6 +1317,13 @@
         <rdfs:label xml:lang="en">Monitoring of loading and unloading flow of sugarcane</rdfs:label>
         <rdfs:label xml:lang="pt">Monitoramento do fluxo de carregamento e descarregamento da cana-de-açucar</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;Logistic"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;MonitoringOfFlowCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1352,6 +1415,13 @@
         <rdfs:label xml:lang="en">Planning of harvest front (machinery)</rdfs:label>
         <rdfs:label xml:lang="pt">Planejamento da frente de colheita (maquinário)</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;Logistic"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;PlanningOfHarvestFrontCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1459,6 +1529,13 @@
         <rdfs:label xml:lang="en">Price policies applied to the sector (agricultural harvest financing)</rdfs:label>
         <rdfs:label xml:lang="pt">Políticas de preço aplicadas ao setor (mínimo, financiamento de safra agrícola)</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;MarketVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;PricePoliciesCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1593,6 +1670,13 @@
         <rdfs:label xml:lang="en">Public policies for the sector</rdfs:label>
         <rdfs:label xml:lang="pt">Políticas públicas para o setor</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;PoliticalVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;PublicPoliciesCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1890,6 +1974,13 @@
         <rdfs:label xml:lang="en">Sugarcane value in ATR</rdfs:label>
         <rdfs:label xml:lang="pt">Valor da cana em ATR</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;SugarcaneQuality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;SugarcaneValueCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2043,6 +2134,13 @@
         <rdfs:label xml:lang="en">Use precursor of the area (soil)</rdfs:label>
         <rdfs:label xml:lang="pt">Uso precursor da área (solo)</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;PoliticalVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;UsePrecursorOfTheAreaCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 

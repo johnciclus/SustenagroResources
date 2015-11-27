@@ -7,23 +7,22 @@
 <form id="assessment_form" action="/tool/report" method="post" class="form-horizontal">
     <input type="hidden" name="production_unit_id" value="${production_unit.id}">
     <div id="indicator_content" class="tab-content">
-
         <div role="tabpanel" class="tab-pane active" id="environmental_indicators">
             <g:each var="indicator" in="${indicators.environmental}">
                 <div class="form-group">
-                    <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.title}</label>
+                    <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.label}</label>
                     <g:set var="wasFilled" value="${values[indicator.id] != null}" />
                     <div class="col-sm-5">
                         <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
-                            <g:each var="category" in="${categorical[indicator.class]}">
+                            <g:each var="category" in="${indCategorical[indicator.category]}">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>" <g:if test="${ wasFilled && values[indicator.id] == category.id}"> checked </g:if>> <%= category.title %>
+                                        <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>" <g:if test="${ wasFilled && values[indicator.id] == category.id}"> checked </g:if>> <%= category.label %>
                                     </label>
                                 </div>
                             </g:each>
                         </g:if>
-                        <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
+                        <g:elseif test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Real' }">
                             <input type="text" class="form-control" name="${indicator.id}" value="${values[indicator.id]}">
                         </g:elseif>
                     </div>
@@ -44,19 +43,19 @@
         <div role="tabpanel" class="tab-pane" id="economic_indicators">
             <g:each var="indicator" in="${indicators.economic}">
                 <div class="form-group">
-                    <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.title}</label>
+                    <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.label}</label>
                     <g:set var="wasFilled" value="${values[indicator.id] != null}" />
                     <div class="col-sm-5">
                         <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
-                            <g:each var="category" in="${categorical[indicator.class]}">
+                            <g:each var="category" in="${indCategorical[indicator.category]}">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>" <g:if test="${ wasFilled && values[indicator.id] == category.id}"> checked </g:if>> <%= category.title %>
+                                        <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>" <g:if test="${ wasFilled && values[indicator.id] == category.id}"> checked </g:if>> <%= category.label %>
                                     </label>
                                 </div>
                             </g:each>
                         </g:if>
-                        <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
+                        <g:elseif test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Real' }">
                             <input type="text" class="form-control" name="${indicator.id}" value="${values[indicator.id]}">
                         </g:elseif>
                     </div>
@@ -78,19 +77,19 @@
         <div role="tabpanel" class="tab-pane" id="social_indicators">
             <g:each var="indicator" in="${indicators.social}">
                 <div class="form-group">
-                    <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.title}</label>
+                    <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.label}</label>
                     <g:set var="wasFilled" value="${values[indicator.id] != null}" />
                     <div class="col-sm-5">
                         <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
-                            <g:each var="category" in="${categorical[indicator.class]}">
+                            <g:each var="category" in="${indCategorical[indicator.category]}">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>" <g:if test="${ wasFilled && values[indicator.id] == category.id}"> checked </g:if>> <%= category.title %>
+                                        <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>" <g:if test="${ wasFilled && values[indicator.id] == category.id}"> checked </g:if>> <%= category.label %>
                                     </label>
                                 </div>
                             </g:each>
                         </g:if>
-                        <g:elseif test="${indicator.class =='http://bio.icmc.usp.br/sustenagro#Real' }">
+                        <g:elseif test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Real' }">
                             <input type="text" class="form-control" name="${indicator.id}" value="${values[indicator.id]}">
                         </g:elseif>
                     </div>

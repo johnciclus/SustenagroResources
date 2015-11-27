@@ -124,46 +124,43 @@ class ToolController {
     }
 
     def assessment() {
-
-        def indicators = {
-            slp.select('distinct ?id ?title ?class ?valueType')
-               .query( '?a  rdfs:subClassOf '+it+''' .
-                        ?id rdfs:subClassOf ?a; rdfs:label ?title.
-                        ?id rdfs:subClassOf ?y.
-                        ?y  owl:onClass ?class.
-                        ?class rdfs:subClassOf ?valueType.
-                        FILTER( ?valueType = <http://bio.icmc.usp.br/sustenagro#Categorical> || ?valueType = <http://bio.icmc.usp.br/sustenagro#Real> )''')
-        }
-
-        def categorical = [:]
+        def indicators = [:]
+        def indCategorical = [:]
+        def effCategorical = [:]
 
         def categ = {
             it.each{
-                slp.query("<$it.id> rdfs:subClassOf ?a. ?a owl:onClass ?id").each{
-                    categorical[it.id] = []
-                }
+                indCategorical[it.category] = []
             }
         }
 
-        def environmental_indicators = indicators(':EnvironmentalIndicator')
-        def economic_indicators = indicators(':EconomicIndicator')
-        def social_indicators = indicators(':SocialIndicator')
+        indicators['environmental'] = getGrandchildren(':EnvironmentalIndicator')
+        indicators['economic'] = getGrandchildren(':EconomicIndicator')
+        indicators['social'] = getGrandchildren(':SocialIndicator')
 
-        //println environmental_indicators
-        //println economic_indicators
-        //println social_indicators
+        categ(indicators['environmental'])
+        categ(indicators['economic'])
+        categ(indicators['social'])
 
-        categ(environmental_indicators)
-        categ(economic_indicators)
-        categ(social_indicators)
-
-        categorical.each{ k, v ->
+        indCategorical.each{ k, v ->
             //println k
-            slp.query("?id a <$k>; rdfs:label ?title.").each{
+            slp.query("?id a <$k>; rdfs:label ?label.").each{
                 //it.id = slp.fromURI(it.id)
                 v.push(it)
             }
         }
+
+        def efficiencyFeatures = getGrandchildren(':ProductionEfficiencyFeature')
+
+        efficiencyFeatures.each{ feature ->
+            effCategorical[feature.category] = []
+            slp.query("?id a <$feature.category>; rdfs:label ?label.").each{
+                //it.id = slp.fromURI(it.id)
+                effCategorical[feature.category].push(it)
+            }
+        }
+
+        println effCategorical
 
         def name = slp.query(":$params.id rdfs:label ?label")[0].label
 
@@ -171,15 +168,6 @@ class ToolController {
         def report
         dsl._cleanProgram()
         def evaluationID = params.evaluation
-
-        //println "name"
-        //println name
-
-        //println "evaluationID"
-        //println evaluationID
-
-        //println "categorical"
-        //println categorical
 
         if (evaluationID != null) {
 
@@ -205,11 +193,14 @@ class ToolController {
             //file.write(page.toString())
         }
 
+
+
         render(view: 'assessment',
-               model: [sustenagro: 'http://bio.icmc.usp.br/sustenagro#',
-                       production_unit: [id: params.id, name: name],
-                       indicators: [environmental: environmental_indicators, economic: economic_indicators, social: social_indicators],
-                       categorical: categorical,
+               model: [production_unit: [id: params.id, name: name],
+                       indicators: indicators,
+                       indCategorical: indCategorical,
+                       efficiencyFeatures: efficiencyFeatures,
+                       effCategorical: effCategorical,
                        values: values,
                        report: report])
     }
@@ -292,6 +283,16 @@ class ToolController {
                 id: params.production_unit_id,
                 params: [evaluation: evaluation_name])
 
+    }
+
+    def getGrandchildren(String cls){
+        slp.select('distinct ?id ?label ?subclass ?category ?valueType')
+            .query('?subclass rdfs:subClassOf '+cls+''' .
+                    ?id rdfs:subClassOf ?subclass; rdfs:label ?label.
+                    ?id rdfs:subClassOf ?y.
+                    ?y owl:onClass ?category.
+                    ?category rdfs:subClassOf ?valueType. '''+
+                    "FILTER(?subclass != $cls && ?subclass != ?id && (?valueType = :Categorical || ?valueType = :Real))")
     }
 
 }
