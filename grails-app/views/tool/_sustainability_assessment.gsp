@@ -8,7 +8,7 @@
     <div role="tabpanel" class="tab-pane active" id="environmental_indicators">
         <g:each var="subClass" in="${indSubClass.environmental}">
             <fieldset>
-                <legend><h5>${subClass.value[0].label}</h5></legend>
+                <legend><h5>${subClass.value.label}</h5></legend>
                 <g:each var="indicator" in="${indicators.environmental}">
                     <g:if test="${subClass.key == indicator.subClass}">
                         <div class="form-group">
@@ -48,7 +48,7 @@
     <div role="tabpanel" class="tab-pane" id="economic_indicators">
         <g:each var="subClass" in="${indSubClass.economic}">
             <fieldset>
-                <legend><h5>${subClass.value[0].label}</h5></legend>
+                <legend><h5>${subClass.value.label}</h5></legend>
                 <g:each var="indicator" in="${indicators.economic}">
                     <g:if test="${subClass.key == indicator.subClass}">
                         <div class="form-group">
@@ -89,7 +89,7 @@
     <div role="tabpanel" class="tab-pane" id="social_indicators">
         <g:each var="subClass" in="${indSubClass.social}">
             <fieldset>
-                <legend><h5>${subClass.value[0].label}</h5></legend>
+                <legend><h5>${subClass.value.label}</h5></legend>
                 <g:each var="indicator" in="${indicators.social}">
                     <g:if test="${subClass.key == indicator.subClass}">
                         <div class="form-group">

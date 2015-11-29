@@ -138,46 +138,42 @@ class ToolController {
         indicators['economic'] = getGrandchildren(':EconomicIndicator')
         indicators['social'] = getGrandchildren(':SocialIndicator')
 
-        indCategories += mapProperty(indicators['environmental'], 'category')
-        indCategories += mapProperty(indicators['economic'], 'category')
-        indCategories += mapProperty(indicators['social'], 'category')
+        indCategories += propertyToList(indicators['environmental'], 'category')
+        indCategories += propertyToList(indicators['economic'], 'category')
+        indCategories += propertyToList(indicators['social'], 'category')
         indCategories.each{ k, v ->
-            slp.query("?id a <$k>; rdfs:label ?label.").each{
+            getInstances(k).each{
                 v.push(it)
             }
         }
 
-        indSubClass['environmental'] = mapProperty(indicators['environmental'], 'subClass')
-        indSubClass['economic'] = mapProperty(indicators['economic'], 'subClass')
-        indSubClass['social'] = mapProperty(indicators['social'], 'subClass')
+        indSubClass['environmental'] = propertyToMap(indicators['environmental'], 'subClass')
+        indSubClass['economic'] = propertyToMap(indicators['economic'], 'subClass')
+        indSubClass['social'] = propertyToMap(indicators['social'], 'subClass')
         indSubClass.each{ dimension, list ->
             list.each{ k, v ->
-                slp.query("<$k> rdfs:label ?label.").each{
-                    v.push(it)
-                }
+                v['label']= getLabel(k)
             }
         }
 
         productionFeatures = getGrandchildren(':ProductionEfficiencyFeature')
 
-        proCategories = mapProperty(productionFeatures, 'category')
+        proCategories = propertyToList(productionFeatures, 'category')
         proCategories.each{ k, v ->
-            slp.query("?id a <$k>; rdfs:label ?label.").each{
+            getInstances(k).each{
                 v.push(it)
             }
         }
 
-        proSubClass = mapProperty(productionFeatures, 'subClass')
+        proSubClass = propertyToMap(productionFeatures, 'subClass')
         proSubClass.each{ k, v ->
-            slp.query("<$k> rdfs:label ?label.").each{
-                v.push(it)
-            }
+            v['label']= getLabel(k)
         }
 
         def technologyTypes = []
         technologyFeatures = []
 
-        switch(slp.query(":$params.id rdf:type ?type. FILTER(?type != :ProductionUnit)")[0].type){
+        switch(getProductionUnitType(params.id)){
             case 'http://dbpedia.org/ontology/Farm':
                 technologyTypes.push(':TechnologicalEfficiencyInTheField')
                 break
@@ -194,21 +190,19 @@ class ToolController {
             technologyFeatures.addAll(getChildren(type).each{it.subClass = slp.toURI(type)})
         }
 
-        tecCategories = mapProperty(technologyFeatures, 'category')
+        tecCategories = propertyToList(technologyFeatures, 'category')
         tecCategories.each{ k, v ->
-            slp.query("?id a <$k>; rdfs:label ?label.").each{
+            getInstances(k).each{
                 v.push(it)
             }
         }
 
-        tecSubClass = mapProperty(technologyFeatures, 'subClass')
+        tecSubClass = propertyToMap(technologyFeatures, 'subClass')
         tecSubClass.each{ k, v ->
-            slp.query("<$k> rdfs:label ?label.").each{
-                v.push(it)
-            }
+            v['label']= getLabel(k)
         }
 
-        def name = slp.query(":$params.id rdfs:label ?label")[0].label
+        def name = getLabel(params.id)
 
         def values = [:]
         def report
@@ -217,9 +211,25 @@ class ToolController {
 
         if (evaluationID != null) {
 
-            slp.select('?cls ?value').query("?id dc:isPartOf :$evaluationID. ?id a ?cls. ?id :value ?value.").each{
-                values[it.cls] = it.value
+            getGranchildrenIntances(':EnvironmentalIndicator', evaluationID).each{
+                values[it.id] = it.value
             }
+            getGranchildrenIntances(':EconomicIndicator', evaluationID).each{
+                values[it.id] = it.value
+            }
+            getGranchildrenIntances(':SocialIndicator', evaluationID).each{
+                values[it.id] = it.value
+            }
+            getGranchildrenIntances(':ProductionEfficiencyFeature', evaluationID).each{
+                values[it.id] = it.value
+            }
+            getGranchildrenIntances(':TechnologicalEfficiencyFeature', evaluationID).each{
+                values[it.id] = it.value
+            }
+
+            //slp.select('?cls ?value').query("?id dc:isPartOf :$evaluationID. ?id a ?cls. ?id :value ?value.").each{
+            //    values[it.cls] = it.value
+            //}
             //println "values"
             //println values
 
@@ -260,35 +270,27 @@ class ToolController {
         def num = slp.query('?id a :Evaluation. ?id :appliedTo :' + production_unit_id).size() + 1
         def evaluation_name = production_unit_id+"-evaluation-"+num
 
+        println params
+
         slp.insert( ":" + evaluation_name +
                     " rdf:type :Evaluation;"+
                     " :appliedTo :"+ production_unit_id +";"+
                     " rdfs:label 'Avaliação "+  num +"'@pt.")
 
-        /*slp.addNode(
-            N(':'+evaluation_name,
-                    'rdf:type': slp.v(':Evaluation'),
-                    ':appliedTo': slp.v(':'+production_unit_id),
-                    'rdfs:label': 'Avaliação '+ num)
-        )
-        slp.g.commit()*/
-
         def indicators = []
 
         dsl.dimensions.each{
-            indicators += slp.select("distinct ?id ?class")
-                             .query("?a rdfs:subClassOf $it. ?id rdfs:subClassOf ?a. ?id rdfs:subClassOf ?y. ?y owl:onClass ?class.")
+            indicators += getGrandchildren(it)
         }
 
-        def value = ''
+        def value
+
         indicators.each{
             if(params[it.id]){
-                if(it.class == "http://bio.icmc.usp.br/sustenagro#Real"){
-                    //value = params[it.id]
+                if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
                     value = slp.dataSchema(Integer.parseInt(params[it.id]))
                 }
                 else{
-                    // value = params[it.id]
                     value = "<" + params[it.id] + ">"
                 }
 
@@ -297,10 +299,50 @@ class ToolController {
                             " dc:isPartOf :"+ evaluation_name +";"+
                             " :value "+  value +".")
                 slp.insert( ":" + evaluation_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+evaluation_name+">.")
+            }
+        }
+
+        def productionFeatures = getGrandchildren(':ProductionEfficiencyFeature')
+
+        productionFeatures.each{
+            if(params[it.id]){
+                if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
+                    value = slp.dataSchema(Integer.parseInt(params[it.id]))
+                }
+                else{
+                    value = "<" + params[it.id] + ">"
+                }
+
+                slp.insert( "<" +it.id+'-'+evaluation_name +">"+
+                        " rdf:type <"+ it.id +">;"+
+                        " dc:isPartOf :"+ evaluation_name +";"+
+                        " :value "+  value +".")
+                slp.insert( ":" + evaluation_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+evaluation_name+">.")
 
             }
         }
-        
+
+        def TechnologicalEfficiency = getGrandchildren(':TechnologicalEfficiencyFeature')
+
+        TechnologicalEfficiency.each{
+            if(params[it.id]){
+                if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
+                    value = slp.dataSchema(Integer.parseInt(params[it.id]))
+                }
+                else{
+                    value = "<" + params[it.id] + ">"
+                }
+
+                slp.insert( "<" +it.id+'-'+evaluation_name +">"+
+                        " rdf:type <"+ it.id +">;"+
+                        " dc:isPartOf :"+ evaluation_name +";"+
+                        " :value "+  value +".")
+                slp.insert( ":" + evaluation_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+evaluation_name+">.")
+
+            }
+        }
+
+
         //slp.g.commit()
 
         //println slp.toURI(':'+evaluation_name)
@@ -319,12 +361,34 @@ class ToolController {
 
     }
 
-    def mapProperty = { source, property ->
+    def propertyToList = { source, property ->
         def map = [:]
         source.each{
             map[it[property]] = []
         }
         return map
+    }
+
+    def propertyToMap = { source, property ->
+        def map = [:]
+        source.each{
+            map[it[property]] = [:]
+        }
+        return map
+    }
+
+    def getLabel(String cls){
+        slp.query("<"+slp.toURI(cls)+"> rdfs:label ?label.")[0].label
+    }
+
+    def getProductionUnitType(String ind){
+        slp.query("<"+slp.toURI(ind)+"> rdf:type ?type. FILTER(?type != :ProductionUnit)")[0].type
+    }
+
+    def getInstances(String cls){
+        slp.select('distinct ?id ?label')
+            .query("?id a <"+slp.toURI(cls)+">; rdfs:label ?label.",
+            "ORDER BY ?label")
     }
 
     def getChildren(String cls){
@@ -333,7 +397,8 @@ class ToolController {
                 ?id rdfs:subClassOf ?y.
                 ?y owl:onClass ?category.
                 ?category rdfs:subClassOf ?valueType. '''+
-                "FILTER(?valueType = :Categorical || ?valueType = :Real)")
+                "FILTER(?valueType = :Categorical || ?valueType = :Real)",
+                "ORDER BY ?label")
     }
 
     def getGrandchildren(String cls){
@@ -343,7 +408,18 @@ class ToolController {
                     ?id rdfs:subClassOf ?y.
                     ?y owl:onClass ?category.
                     ?category rdfs:subClassOf ?valueType. '''+
-                    "FILTER(?subClass != <"+slp.toURI(cls)+"> && ?subClass != ?id && (?valueType = :Categorical || ?valueType = :Real))")
+                    "FILTER(?subClass != <"+slp.toURI(cls)+"> && ?subClass != ?id && (?valueType = :Categorical || ?valueType = :Real))",
+                    "ORDER BY ?label")
     }
 
+    def getGranchildrenIntances(String cls, String evaluation){
+        slp.select('?id ?subClass ?in ?value')
+            .query("?subClass rdfs:subClassOf <"+slp.toURI(cls)+"> ."+
+                   "?id rdfs:subClassOf ?subClass."+
+                   "?in a ?id."+
+                   "?in dc:isPartOf <"+slp.toURI(evaluation)+">."+
+                   "?in :value ?value."+
+                   "FILTER( ?subClass != <"+slp.toURI(cls)+"> && ?id != <"+slp.toURI(cls)+"> && ?subClass != ?id)",
+                   "ORDER BY ?in")
+    }
 }

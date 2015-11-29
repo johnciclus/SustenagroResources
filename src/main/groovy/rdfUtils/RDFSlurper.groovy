@@ -234,8 +234,6 @@ class RDFSlurper {
 
         setLang('pt')
 
-
-
         //g2 = new BigdataGraphClient(url)
 
         //removeAll()
@@ -293,6 +291,7 @@ class RDFSlurper {
 
     def insert(String q, String lang = this.lang){
         def f = "$prefixes \nINSERT DATA {$q}"
+        //println f
         Sparql.update(f)
     }
 

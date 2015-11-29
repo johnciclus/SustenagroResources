@@ -7,7 +7,7 @@
     <div role="tabpanel" class="tab-pane active" id="cost_production_efficiency">
         <g:each var="subClass" in="${proSubClass}">
             <fieldset>
-                <legend><h5>${subClass.value[0].label}</h5></legend>
+                <legend><h5>${subClass.value.label}</h5></legend>
                 <g:each var="feature" in="${productionFeatures}">
                     <g:if test="${subClass.key == feature.subClass}">
                         <div class="form-group">
@@ -48,7 +48,7 @@
     <div role="tabpanel" class="tab-pane" id="technologic_efficiency">
     <g:each var="subClass" in="${tecSubClass}">
         <fieldset>
-            <legend><h5>${subClass.value[0].label}</h5></legend>
+            <legend><h5>${subClass.value.label}</h5></legend>
             <g:each var="tech" in="${technologyFeatures}">
                 <g:if test="${subClass.key == tech.subClass}">
                     <div class="form-group">
