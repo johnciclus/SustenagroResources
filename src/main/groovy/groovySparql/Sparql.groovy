@@ -43,7 +43,7 @@ import org.apache.jena.rdf.model.Model
 import org.apache.jena.rdf.model.ModelFactory
 import org.apache.jena.shared.JenaException
 import org.apache.jena.rdf.model.RDFNode
-
+import org.apache.jena.rdf.model.Literal
 
 /**
  * SPARQL
@@ -133,7 +133,7 @@ class Sparql {
     /**
      * Empty constructor
      * The properties of the Sparql class are public so this can be used if property injection happens eleswhere
-     * This allows this class to be easliy used in dependency injection frameworks, where you can either do
+     * This allows this class to be easliy used in dependency injection frameworks, where you can either —
      * constructor injection or property injection post-construction
      */
     Sparql() { }
@@ -444,6 +444,7 @@ class Sparql {
             }
         }*/
 
+
         def res = []
         try {
             QuerySolution sol
@@ -451,20 +452,32 @@ class Sparql {
             boolean add
             String varName
             RDFNode varNode
+            Literal literal
 
             for (ResultSet rs = qe.execSelect(); rs.hasNext();) {
                 sol = rs.nextSolution()
                 row = [:]
                 add = true
+
                 for (Iterator<String> varNames = sol.varNames(); varNames.hasNext();) {
                     varName = varNames.next()
                     varNode = sol.get(varName)
-                    row.put(varName, (varNode.isLiteral() ? varNode.asLiteral().value : varNode.toString()))
+
+                    if(varNode.isLiteral())
+                        literal = varNode.asLiteral()
+
+                    row.put(varName, (varNode.isLiteral() ? literal.value : varNode.toString()))
+
                     if (lang!='' &&
-                            varNode.isLiteral() &&
-                            varNode.asLiteral().language!=null &&
-                            varNode.asLiteral().language.size()>1 &&
-                            varNode.asLiteral().language!=lang) add= false
+                        varNode.isLiteral() &&
+                        literal.language!=null &&
+                        literal.language.size()>1 &&
+                        literal.language!=lang) add= false
+
+                    if(lang == '*' && varNode.isLiteral() && literal.getLanguage()){
+                        row[varName] = literal.getString()+'@'+literal.getLanguage()
+                        add = true
+                    }
                 }
                 //println 'row: '+row
                 if (add)

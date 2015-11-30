@@ -52,26 +52,52 @@ class DSL {
         // Run DSL script.
         try {
             _script.run()
-        } finally {
+        }
+        finally {
             _sandbox.unregister()
         }
     }
 
-    def reLoad(){
+    def reLoad(String code){
+        dimensions = []
+        featureLst = []
+        report = []
         toolIndexStack = []
         toolEvaluationStack = []
 
-        //_sandbox.register()
+        _sandbox.register()
 
-        _script = (DelegatingScript) _shell.parse(new File(_nameFile).text)
+        //def stack = code.tokenize("\n")
+
+        //for (c in stack){
+        //    println c + "\n"
+        //}
+
+        _script = (DelegatingScript) _shell.parse(code)
         _script.setDelegate(this)
+
+        def response  = [:]
 
         // Run DSL script.
         try {
             _script.run()
-        } finally {
+            response.status = 'ok'
+        }
+        catch(Exception e){
+            response.error = [:]
+            for (StackTraceElement el : e.getStackTrace()) {
+                if(el.getMethodName() == 'run' && el.getFileName() ==~ /Script.+\.groovy/) {
+                    response.error.line = el.getLineNumber()
+                    response.error.message = e.getMessage()
+                    response.error.filename = el.getFileName()
+                }
+            }
+            response.status = 'error'
+        }
+        finally {
             _sandbox.unregister()
         }
+        return response
     }
 
     def title(String str){
@@ -159,16 +185,16 @@ class DSL {
         featureLst << ['id': id, 'widget': 'instance', 'request': ['a', clsName], 'args': argLst]
     }
 
+    def subclass(String str){
+        featureLst << ['subclass': ['rdfs:subClassOf', str]]
+    }
+
     def matrix(Map map){
         report << ['matrix', map.x, map.y, map.labelX, map.labelY, map.rangeX, map.rangeY, map.quadrants, map.recomendations]
     }
 
     def map(String url){
         report << ['map', url]
-    }
-
-    def subclass(String str){
-        featureLst << ['subclass': ['rdfs:subClassOf', str]]
     }
 
     def dimension(String cls) {

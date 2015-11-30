@@ -101,8 +101,8 @@ function Matrix(container, parameters){
     var rqx = Math.floor(qds[0]*rx);
     var rqy = Math.floor(qds[1]*ry);
 
-    var recid = ((rqx-1)*qds[0])+rqy+1
+    var recid = (rqy*qds[0])+rqx
     var recomendation = (recid >= 0 && recid < recomendations.length) ? recomendations[recid][2] : "Não tem recomendações";
 
-    return {'qx': (rqx+1), 'qy': (rqy+1), 'recomendation': recomendation}
+    return {'quadrant': recid+1, 'recomendation': recomendation}
 }

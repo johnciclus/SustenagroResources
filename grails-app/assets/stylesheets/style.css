@@ -140,7 +140,7 @@ body {
 	background-color: #fff;
 }
 
-#indicator_tabs, #indicator_content {
+#indicator_tabs, #indicator_content, #indicator_editor, #efficiency_tabs, #efficiency_content {
 	padding: 0px 15px;
 }
 
@@ -190,7 +190,7 @@ body {
 	padding: 15px 0px;
 }
 
-#indicator_content .form-group{
+#indicator_content .form-group, #indicator_editor .form-group, #efficiency_content .form-group, #efficiency_content .form-group{
 	margin-bottom: 25px;
 }
 
@@ -227,4 +227,14 @@ body {
 
 .input-text-lg{
 	font-size: 13px;
+}
+
+.ace_error-line{
+	position: absolute;
+	background: rgba(228, 53, 58, 0.75);
+	z-index:40;
+}
+
+fieldset{
+	margin-bottom: 22px;
 }

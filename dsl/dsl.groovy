@@ -16,7 +16,7 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 3. Definição dos indicadores
 4. Recomendações de sustentabilidade
 
- '''
+'''
 
 // Informações que serão lidas antes dos indicadores. No exemplo serão
 // mostradas todas as culturas, tecnologias e meios de produção que
@@ -59,7 +59,7 @@ prog {
     economicAvg     = average(evaluation.'EconomicIndicator')
 
     sustainabilityAvg = (environmentAvg+socialAvg+economicAvg)/3
-    
+
     //environment =   (evaluation.'BiologicalPestControl' ? 1:-1) +
     //        (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
     //        (evaluation.'StandardAerialSpraying' ? 1:-1) +
@@ -74,8 +74,6 @@ prog {
     //        evaluation.OperationalEfficiencyPlant
 
     // THE REPORT
-
-     // THE REPORT
 
     // Just showing text
     show '***That is the report:***'
@@ -93,7 +91,7 @@ prog {
     // recommendation if:(environment > 3.5 || social == 7), '**Third** *option*'
     // recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
 
-    show 'Matrix de avaliação'
+    show 'Matrix de Avaliação'
 
     show 'Indice de Magnitude: ' + sustainability
     show 'Indice de Segurança: ' + sustainabilityAvg
@@ -104,8 +102,8 @@ prog {
             y: environmentAvg,
             labelX: 'Indice de Magnitude',
             labelY: 'Indice de Segurança',
-            rangeX: [0,5],
-            rangeY: [0,3],
+            rangeX: [-4,4],
+            rangeY: [-2,2],
             quadrants: [4,3],
             recomendations: [
                     [1, 1, "Cenário desfavorável, Muito baixo desempenho dos indicadores"],
@@ -136,4 +134,3 @@ prog {
     show 'Mapa da microregião'
     map evaluation.'Microregion'
 }
-System.exit(0)

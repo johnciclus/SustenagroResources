@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1443798719638" name="duplicate:http://bio.icmc.usp.br/sustenagro" uri="SustenAgro.rdf"/>
-        <uri id="Automatically generated entry, Timestamp=1443798719638" name="duplicate:http://bio.icmc.usp.br/sustenagro" uri="SustenAgroOntology.rdf"/>
-        <uri id="Automatically generated entry, Timestamp=1443798719638" name="duplicate:http://bio.icmc.usp.br/sustenagro" uri="SustenAgroRDFTMP.rdf"/>
-        <uri id="Automatically generated entry, Timestamp=1443798719638" name="duplicate:http://bio.icmc.usp.br/sustenagro" uri="UI.rdf"/>
-    </group>
-</catalog>

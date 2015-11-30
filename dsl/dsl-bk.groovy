@@ -91,7 +91,7 @@ prog {
     // recommendation if:(environment > 3.5 || social == 7), '**Third** *option*'
     // recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
 
-    show 'Matrix de avaliação'
+    show 'Matrix de Avaliação'
 
     show 'Indice de Magnitude: ' + sustainability
     show 'Indice de Segurança: ' + sustainabilityAvg
