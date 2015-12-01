@@ -10,33 +10,15 @@ class ToolController {
 
     def index() {
         if(slp.existOntology("http://bio.icmc.usp.br/sustenagro#")){
-            def queryLabelDescription = { query ->
-                def uri = '<'+slp.toURI(query[1])+'>'
-                def result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
-
-                if (result.size == 0) {
-                    try{
-                        result = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='${query[1]}')", '', '')
-                        if (result.size > 0){
-                            uri = "<${result[0].id}>"
-                        }
-                    }
-                    catch(RuntimeException e){
-                        new RuntimeException('Unknown label: '+query[1])
-                    }
-                }
-                return slp.query("?id ${query[0]} $uri; rdfs:label ?label. optional {?id dc:description ?description}. FILTER ( ?id != $uri )")
-            }
-
             dsl.toolIndexStack.each{ command ->
                 if(command.request){
-                    command.request.each{ key, query ->
+                    command.request.each{ key, args ->
                         if(key!='widgets'){
-                            command.args[key] = queryLabelDescription(query)
+                            command.args[key] = getLabelDescription(args[1], args[0])
                         }
                         else if(key=='widgets'){
-                            query.each{ subKey, subQuery ->
-                                command.args.widgets[subKey]['args']['data'] = queryLabelDescription(subQuery)
+                            args.each{ subKey, subArgs ->
+                                command.args.widgets[subKey]['args']['data'] = getLabelDescription(subArgs[1], subArgs[0])
                             }
                         }
                     }
@@ -104,11 +86,6 @@ class ToolController {
         def production_unit_alias = Uri.removeDomain(params.production_unit_id, 'http://bio.icmc.usp.br/sustenagro#')
         def evaluation_name = Uri.removeDomain(params.evaluation, 'http://bio.icmc.usp.br/sustenagro#')
 
-        //def indicators = slp.query("?id :compose :$evaluation_alias. ?id :value ?value")
-
-        //println "indicators"
-        //println indicators
-
         redirect(   action: 'assessment',
                     id: production_unit_alias,
                     params: [evaluation: evaluation_name])
@@ -116,7 +93,7 @@ class ToolController {
 
     def evaluations(){
         def production_unit_id = Uri.removeDomain(params.production_unit_id, 'http://bio.icmc.usp.br/sustenagro#')
-        def evaluations = slp.query("?id :appliedTo :$production_unit_id. ?id rdfs:label ?label")
+        def evaluations = getLabelAppliedTo(production_unit_id)
 
         render( template: 'evaluations',
                 model:    [evaluations: evaluations,
@@ -133,6 +110,8 @@ class ToolController {
         def technologyFeatures
         def tecCategories
         def tecSubClass
+        def tecAlignment
+        def tecOptimization
 
         indicators['environmental'] = getGrandchildren(':EnvironmentalIndicator')
         indicators['economic'] = getGrandchildren(':EconomicIndicator')
@@ -150,10 +129,11 @@ class ToolController {
         indSubClass['environmental'] = propertyToMap(indicators['environmental'], 'subClass')
         indSubClass['economic'] = propertyToMap(indicators['economic'], 'subClass')
         indSubClass['social'] = propertyToMap(indicators['social'], 'subClass')
-        indSubClass.each{ dimension, list ->
-            list.each{ k, v ->
+        indSubClass.each{ dimension, map ->
+            map.each{ k, v ->
                 v['label']= getLabel(k)
             }
+            indSubClass[dimension] = map.sort{ it.value.label.toLowerCase() }
         }
 
         productionFeatures = getGrandchildren(':ProductionEfficiencyFeature')
@@ -169,18 +149,19 @@ class ToolController {
         proSubClass.each{ k, v ->
             v['label']= getLabel(k)
         }
+        proSubClass = proSubClass.sort{ it.value.label.toLowerCase() }
 
         def technologyTypes = []
         technologyFeatures = []
 
         switch(getProductionUnitType(params.id)){
-            case 'http://dbpedia.org/ontology/Farm':
+            case 'http://dbpedia.org/ontology/Provider':
                 technologyTypes.push(':TechnologicalEfficiencyInTheField')
                 break
-            case 'http://dbpedia.org/resource/Physical_plant':
+            case 'http://dbpedia.org/resource/PhysicalPlant':
                 technologyTypes.push(':TechnologicalEfficiencyInTheIndustrial')
                 break
-            case 'http://bio.icmc.usp.br/sustenagro#FarmAndPlant':
+            case 'http://bio.icmc.usp.br/sustenagro#FarmAndProvider':
                 technologyTypes.push(':TechnologicalEfficiencyInTheIndustrial')
                 technologyTypes.push(':TechnologicalEfficiencyInTheField')
                 break
@@ -201,13 +182,16 @@ class ToolController {
         tecSubClass.each{ k, v ->
             v['label']= getLabel(k)
         }
+        tecSubClass = tecSubClass.sort{ it.value.label.toLowerCase() }
 
+        tecAlignment = getInstances(':ProductionEnvironmentAlignmentCategory')
+        tecOptimization = getInstances(':SugarcaneProcessingOptimizationCategory')
+
+        def evaluationID = params.evaluation
         def name = getLabel(params.id)
-
         def values = [:]
         def report
         dsl._cleanProgram()
-        def evaluationID = params.evaluation
 
         if (evaluationID != null) {
 
@@ -226,15 +210,6 @@ class ToolController {
             getGranchildrenIntances(':TechnologicalEfficiencyFeature', evaluationID).each{
                 values[it.id] = it.value
             }
-
-            //slp.select('?cls ?value').query("?id dc:isPartOf :$evaluationID. ?id a ?cls. ?id :value ?value.").each{
-            //    values[it.cls] = it.value
-            //}
-            //println "values"
-            //println values
-
-            //println 'Evaluation'
-            //println slp.toURI(':'+params['evaluation'])
 
             def data = new DataReader(slp, slp.toURI(':'+evaluationID))
 
@@ -260,6 +235,8 @@ class ToolController {
                        technologyFeatures: technologyFeatures,
                        tecCategories: tecCategories,
                        tecSubClass: tecSubClass,
+                       tecAlignment: tecAlignment,
+                       tecOptimization: tecOptimization,
                        values: values,
                        report: report])
     }
@@ -267,10 +244,8 @@ class ToolController {
     def report() {
         def production_unit_id = params.production_unit_id
 
-        def num = slp.query('?id a :Evaluation. ?id :appliedTo :' + production_unit_id).size() + 1
+        def num = getEvaluations(production_unit_id).size() + 1
         def evaluation_name = production_unit_id+"-evaluation-"+num
-
-        println params
 
         slp.insert( ":" + evaluation_name +
                     " rdf:type :Evaluation;"+
@@ -323,6 +298,7 @@ class ToolController {
         }
 
         def TechnologicalEfficiency = getGrandchildren(':TechnologicalEfficiencyFeature')
+        def weight
 
         TechnologicalEfficiency.each{
             if(params[it.id]){
@@ -333,32 +309,26 @@ class ToolController {
                     value = "<" + params[it.id] + ">"
                 }
 
+                if(it.subClass == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'){
+                    weight = ':SugarcaneProcessingOptimization'
+                }
+                else if(it.subClass == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField'){
+                    weight = ':ProductionEnvironmentAlignment'
+                }
+
                 slp.insert( "<" +it.id+'-'+evaluation_name +">"+
                         " rdf:type <"+ it.id +">;"+
                         " dc:isPartOf :"+ evaluation_name +";"+
-                        " :value "+  value +".")
+                        " :value "+ value +";"+
+                        " :hasWeight "+ weight +"." )
                 slp.insert( ":" + evaluation_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+evaluation_name+">.")
 
             }
         }
 
-
-        //slp.g.commit()
-
-        //println slp.toURI(':'+evaluation_name)
-
-        //Save evaluation data
-
-        //def recommendations = []
-        //dsl.recommendations.each{if (it[0]()) recommendations << new PegDownProcessor().markdownToHtml(it[1])}
-
-        //println 'Recom1: '
-        //recommendations.each{println it}
-
         redirect(action: 'assessment',
                 id: params.production_unit_id,
                 params: [evaluation: evaluation_name])
-
     }
 
     def propertyToList = { source, property ->
@@ -379,6 +349,36 @@ class ToolController {
 
     def getLabel(String cls){
         slp.query("<"+slp.toURI(cls)+"> rdfs:label ?label.")[0].label
+    }
+
+    def getLabelAppliedTo(String cls){
+        slp.query("?id :appliedTo <"+slp.toURI(cls)+">. ?id rdfs:label ?label")
+    }
+
+    def getLabelDataValue(String cls){
+        slp.query("?id a <"+slp.toURI(cls)+">; rdfs:label ?label; :dataValue ?dataValue")
+    }
+
+    def getEvaluations(String cls){
+        slp.query("?id a :Evaluation. ?id :appliedTo <"+slp.toURI(cls)+">")
+    }
+
+    def getLabelDescription(String cls, String property) {
+        def uri = '<'+slp.toURI(cls)+'>'
+        def result = slp.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
+
+        if (result.size == 0) {
+            try{
+                result = slp.query("?id rdfs:label ?label. FILTER (STR(?label)='$cls')", '', '')
+                if (result.size > 0){
+                    uri = "<${result[0].id}>"
+                }
+            }
+            catch(RuntimeException e){
+                new RuntimeException("Unknown label: $cls")
+            }
+        }
+        return slp.query("?id $property $uri; rdfs:label ?label. optional {?id dc:description ?description}. FILTER ( ?id != $uri )")
     }
 
     def getProductionUnitType(String ind){

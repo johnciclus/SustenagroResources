@@ -855,7 +855,7 @@
     <!-- http://bio.icmc.usp.br/sustenagro#CostIndicator -->
 
     <owl:Class rdf:about="&sustenagro;CostIndicator">
-        <rdfs:label xml:lang="en">Cost Indicator</rdfs:label>
+        <rdfs:label xml:lang="en">Cost indicator</rdfs:label>
         <rdfs:label xml:lang="pt">Indicador de custo</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
     </owl:Class>
@@ -882,8 +882,8 @@
     <!-- http://bio.icmc.usp.br/sustenagro#EconomicIndicator -->
 
     <owl:Class rdf:about="&sustenagro;EconomicIndicator">
-        <rdfs:label xml:lang="en">Economic Indicator</rdfs:label>
-        <rdfs:label xml:lang="pt">Indicador Econômico</rdfs:label>
+        <rdfs:label xml:lang="en">Economic indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador econômico</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;Indicator"/>
     </owl:Class>
     
@@ -946,8 +946,8 @@
     <!-- http://bio.icmc.usp.br/sustenagro#EnvironmentalIndicator -->
 
     <owl:Class rdf:about="&sustenagro;EnvironmentalIndicator">
-        <rdfs:label xml:lang="en">Environmental Indicator</rdfs:label>
-        <rdfs:label xml:lang="pt">Indicador Ambiental</rdfs:label>
+        <rdfs:label xml:lang="en">Environmental indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador ambiental</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;Indicator"/>
     </owl:Class>
     
@@ -972,11 +972,11 @@
     
 
 
-    <!-- http://bio.icmc.usp.br/sustenagro#FarmAndPlant -->
+    <!-- http://bio.icmc.usp.br/sustenagro#FarmAndProvider -->
 
-    <owl:Class rdf:about="&sustenagro;FarmAndPlant">
-        <rdfs:label xml:lang="en">Farm and plant</rdfs:label>
-        <rdfs:label xml:lang="pt">Fazenda e usina</rdfs:label>
+    <owl:Class rdf:about="&sustenagro;FarmAndProvider">
+        <rdfs:label xml:lang="en">Farm and provider</rdfs:label>
+        <rdfs:label xml:lang="pt">Fazenda e fornecedor</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;ProductionUnit"/>
     </owl:Class>
     
@@ -1068,8 +1068,8 @@
     <!-- http://bio.icmc.usp.br/sustenagro#GeneralIndicator -->
 
     <owl:Class rdf:about="&sustenagro;GeneralIndicator">
-        <rdfs:label xml:lang="en">General Indicator</rdfs:label>
-        <rdfs:label xml:lang="pt">Indicador Geral</rdfs:label>
+        <rdfs:label xml:lang="en">General indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador geral</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;EnvironmentalIndicator"/>
     </owl:Class>
     
@@ -1133,8 +1133,8 @@
     <!-- http://bio.icmc.usp.br/sustenagro#HealthIndicator -->
 
     <owl:Class rdf:about="&sustenagro;HealthIndicator">
-        <rdfs:label xml:lang="en">Health Indicator</rdfs:label>
-        <rdfs:label xml:lang="pt">Indicador de Saúde</rdfs:label>
+        <rdfs:label xml:lang="en">Health indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de saúde</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;SocialIndicator"/>
     </owl:Class>
     
@@ -1520,7 +1520,7 @@
 
     <owl:Class rdf:about="&sustenagro;PlantingIndicator">
         <rdfs:label xml:lang="en">Planting indicator</rdfs:label>
-        <rdfs:label xml:lang="pt">Indicador de Plantio</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de plantio</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;EnvironmentalIndicator"/>
     </owl:Class>
     
@@ -1738,8 +1738,8 @@
     <!-- http://bio.icmc.usp.br/sustenagro#ProductivityIndicator -->
 
     <owl:Class rdf:about="&sustenagro;ProductivityIndicator">
-        <rdfs:label xml:lang="en">Productivity Indicator</rdfs:label>
-        <rdfs:label xml:lang="pt">Indicador de Produtividade</rdfs:label>
+        <rdfs:label xml:lang="en">Productivity indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de produtividade</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;EconomicIndicator"/>
     </owl:Class>
     
@@ -1900,8 +1900,8 @@
     <!-- http://bio.icmc.usp.br/sustenagro#SocialIndicator -->
 
     <owl:Class rdf:about="&sustenagro;SocialIndicator">
-        <rdfs:label xml:lang="en">Social Indicator</rdfs:label>
-        <rdfs:label xml:lang="pt">Indicador Social</rdfs:label>
+        <rdfs:label xml:lang="en">Social indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador social</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;Indicator"/>
     </owl:Class>
     
@@ -2177,7 +2177,7 @@
 
     <owl:Class rdf:about="&sustenagro;Training">
         <rdfs:label xml:lang="en">Training Indicator</rdfs:label>
-        <rdfs:label xml:lang="pt">Indicador de Treinamento</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de treinamento</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;SocialIndicator"/>
     </owl:Class>
     
@@ -2471,16 +2471,6 @@
     
 
 
-    <!-- http://dbpedia.org/ontology/Farm -->
-
-    <owl:Class rdf:about="http://dbpedia.org/ontology/Farm">
-        <rdfs:label xml:lang="en">Farm</rdfs:label>
-        <rdfs:label xml:lang="pt">Fazenda</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&sustenagro;ProductionUnit"/>
-    </owl:Class>
-    
-
-
     <!-- http://dbpedia.org/ontology/GovernmentalAdministrativeRegion -->
 
     <owl:Class rdf:about="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion">
@@ -2530,6 +2520,16 @@
     
 
 
+    <!-- http://dbpedia.org/ontology/Provider -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/Provider">
+        <rdfs:label xml:lang="en">Provider</rdfs:label>
+        <rdfs:label xml:lang="pt">Fornecedor</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;ProductionUnit"/>
+    </owl:Class>
+    
+
+
     <!-- http://dbpedia.org/ontology/Region -->
 
     <owl:Class rdf:about="http://dbpedia.org/ontology/Region">
@@ -2550,9 +2550,9 @@
     
 
 
-    <!-- http://dbpedia.org/resource/Physical_plant -->
+    <!-- http://dbpedia.org/resource/PhysicalPlant -->
 
-    <owl:Class rdf:about="http://dbpedia.org/resource/Physical_plant">
+    <owl:Class rdf:about="http://dbpedia.org/resource/PhysicalPlant">
         <rdfs:label xml:lang="en">Plant</rdfs:label>
         <rdfs:label xml:lang="pt">Usina</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;ProductionUnit"/>

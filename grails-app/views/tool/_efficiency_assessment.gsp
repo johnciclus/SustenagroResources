@@ -52,7 +52,7 @@
             <g:each var="tech" in="${technologyFeatures}">
                 <g:if test="${subClass.key == tech.subClass}">
                     <div class="form-group">
-                        <label for="<%= tech.id %>" class="col-sm-6 control-label">${tech.label}</label>
+                        <label for="<%= tech.id %>" class="col-sm-4 control-label">${tech.label}</label>
                         <g:set var="wasFilled" value="${values[tech.id] != null}" />
                         <div class="col-sm-5">
                             <g:if test="${tech.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || tech.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
@@ -66,6 +66,24 @@
                             </g:if>
                             <g:elseif test="${tech.valueType =='http://bio.icmc.usp.br/sustenagro#Real' }">
                                 <input type="text" class="form-control" name="${tech.id}" value="${values[tech.id]}">
+                            </g:elseif>
+                        </div>
+                        <div class="col-sm-2">
+                            <g:if test="${subClass.key == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField'}">
+                                <select id="<%= tech.id %>-alignment" name="<%= tech.id %>-alignment" class="form-control clear">
+                                    <option selected disabled hidden value=''></option>
+                                    <g:each in="${tecAlignment}">
+                                        <option value="${it.id}">${it.label}</option>
+                                    </g:each>
+                                </select>
+                            </g:if>
+                            <g:elseif test="${subClass.key == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'}">
+                                <select id="<%= tech.id %>-optimization" name="<%= tech.id %>-optimization" class="form-control clear">
+                                    <option selected disabled hidden value=''></option>
+                                    <g:each in="${tecOptimization}">
+                                        <option value="${it.id}">${it.label}</option>
+                                    </g:each>
+                                </select>
                             </g:elseif>
                         </div>
                         <div class="col-sm-1">
