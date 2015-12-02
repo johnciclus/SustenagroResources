@@ -220,7 +220,7 @@ class DSL {
     def sum(obj){
         float val = 0
         float num
-        println obj
+        //println obj
 
         if(obj instanceof ArrayList) {
             obj.each {
@@ -240,7 +240,7 @@ class DSL {
     def average(obj){
         float val = 0
         float num
-        println obj
+        //println obj
 
         if(obj instanceof ArrayList){
             obj.each{

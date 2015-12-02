@@ -190,30 +190,31 @@ class ToolController {
         def evaluationID = params.evaluation
         def name = getLabel(params.id)
         def values = [:]
+        def weights = [:]
         def report
         dsl._cleanProgram()
 
         if (evaluationID != null) {
 
-            getGranchildrenIntances(':EnvironmentalIndicator', evaluationID).each{
+            getGranchildrenIntances(':EnvironmentalIndicator', evaluationID, '?id ?subClass ?in ?value').each{
                 values[it.id] = it.value
             }
-            getGranchildrenIntances(':EconomicIndicator', evaluationID).each{
+            getGranchildrenIntances(':EconomicIndicator', evaluationID, '?id ?subClass ?in ?value').each{
                 values[it.id] = it.value
             }
-            getGranchildrenIntances(':SocialIndicator', evaluationID).each{
+            getGranchildrenIntances(':SocialIndicator', evaluationID, '?id ?subClass ?in ?value').each{
                 values[it.id] = it.value
             }
-            getGranchildrenIntances(':ProductionEfficiencyFeature', evaluationID).each{
+            getGranchildrenIntances(':ProductionEfficiencyFeature', evaluationID, '?id ?subClass ?in ?value ?weight').each{
                 values[it.id] = it.value
+                weights[it.id] = it.weight
             }
-            getGranchildrenIntances(':TechnologicalEfficiencyFeature', evaluationID).each{
+            getGranchildrenIntances(':TechnologicalEfficiencyFeature', evaluationID, '?id ?subClass ?in ?value ?weight').each{
                 values[it.id] = it.value
+                weights[it.id] = it.weight
             }
 
-            def data = new DataReader(slp, slp.toURI(':'+evaluationID))
-
-            dsl.data = data
+            dsl.data = new DataReader(slp, slp.toURI(':'+evaluationID))
             dsl.program()
             report = dsl.report
 
@@ -238,6 +239,7 @@ class ToolController {
                        tecAlignment: tecAlignment,
                        tecOptimization: tecOptimization,
                        values: values,
+                       weights: weights,
                        report: report])
     }
 
@@ -310,10 +312,10 @@ class ToolController {
                 }
 
                 if(it.subClass == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'){
-                    weight = ':SugarcaneProcessingOptimization'
+                    weight = "<" +params[it.id+'-optimization'] + ">"
                 }
                 else if(it.subClass == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField'){
-                    weight = ':ProductionEnvironmentAlignment'
+                    weight = "<" +params[it.id+'-alignment'] + ">"
                 }
 
                 slp.insert( "<" +it.id+'-'+evaluation_name +">"+
@@ -412,14 +414,23 @@ class ToolController {
                     "ORDER BY ?label")
     }
 
-    def getGranchildrenIntances(String cls, String evaluation){
-        slp.select('?id ?subClass ?in ?value')
-            .query("?subClass rdfs:subClassOf <"+slp.toURI(cls)+"> ."+
-                   "?id rdfs:subClassOf ?subClass."+
-                   "?in a ?id."+
-                   "?in dc:isPartOf <"+slp.toURI(evaluation)+">."+
-                   "?in :value ?value."+
-                   "FILTER( ?subClass != <"+slp.toURI(cls)+"> && ?id != <"+slp.toURI(cls)+"> && ?subClass != ?id)",
-                   "ORDER BY ?in")
+    def getGranchildrenIntances(String cls, String evaluation, String args){
+        def argsList = args.split(' ')
+
+        def query = "?subClass rdfs:subClassOf <"+slp.toURI(cls)+">."+
+                    "?id rdfs:subClassOf ?subClass."+
+                    "?in a ?id."+
+                    "?in dc:isPartOf <"+slp.toURI(evaluation)+">.";
+
+        if (argsList.contains('?value'))
+            query +="?in :value ?value.";
+
+        if (argsList.contains('?weight'))
+            query +="?in :hasWeight ?weight.";
+
+        query += "FILTER( ?subClass != <"+slp.toURI(cls)+"> && ?id != <"+slp.toURI(cls)+"> && ?subClass != ?id)"
+
+        slp.select('distinct '+args)
+            .query(query, "ORDER BY ?in")
     }
 }

@@ -340,10 +340,12 @@ class RDFSlurper {
         if (uri==null || uri == '' ) return null
         if (uri.contains(' ')) return null
         if (uri.startsWith('_:')) return uri
-        if (uri[0]==':') return _prefixes['']+uri.substring(1)
+        if (uri.startsWith(':')) return _prefixes['']+uri.substring(1)
         if (uri.startsWith('http:')) return uri
         if (uri.startsWith('urn:')) return uri
-        if (!uri.contains(':')) return _prefixes['']+ uri
+        //println '!uri.contains(:) '+uri + ' : '+ getPrefixe(uri)
+        if (!uri.contains(':')) return findPrefixe(uri)+ uri
+        println 'prexixes analyse'
         def pre = _prefixes[uri.tokenize(':')[0]]
         if (pre==null) return uri
         return pre+uri.substring(uri.indexOf(':')+1)
@@ -357,6 +359,18 @@ class RDFSlurper {
             uri.startsWith(obj)
         }
         v.key + ':' + uri.substring(v.value.size())
+    }
+
+    def findPrefixe(String name){
+        def result = null
+        def query
+        _prefixes.each {alias, uri ->
+            query = Sparql.query("select * where{<"+uri+name+"> a ?class}", this.lang)
+            if(query.size()>0){
+                result = uri
+            }
+        }
+        return result
     }
 
     def getPrefixes(){

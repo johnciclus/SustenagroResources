@@ -12,13 +12,13 @@
                     <g:if test="${subClass.key == feature.subClass}">
                         <div class="form-group">
                             <label for="<%= feature.id %>" class="col-sm-6 control-label">${feature.label}</label>
-                            <g:set var="wasFilled" value="${values[feature.id] != null}" />
+                            <g:set var="hasValue" value="${values[feature.id] != null}" />
                             <div class="col-sm-5">
                                 <g:if test="${feature.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || feature.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
                                     <g:each var="category" in="${proCategories[feature.category]}">
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" name="<%= feature.id %>" value="<%= category.id %>" <g:if test="${ wasFilled && values[feature.id] == category.id}"> checked </g:if>> <%= category.label %>
+                                                <input type="radio" name="<%= feature.id %>" value="<%= category.id %>" <g:if test="${ hasValue && values[feature.id] == category.id}"> checked </g:if>> <%= category.label %>
                                             </label>
                                         </div>
                                     </g:each>
@@ -53,13 +53,13 @@
                 <g:if test="${subClass.key == tech.subClass}">
                     <div class="form-group">
                         <label for="<%= tech.id %>" class="col-sm-4 control-label">${tech.label}</label>
-                        <g:set var="wasFilled" value="${values[tech.id] != null}" />
+                        <g:set var="hasValue" value="${values[tech.id] != null}" />
                         <div class="col-sm-5">
                             <g:if test="${tech.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || tech.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
                                 <g:each var="category" in="${tecCategories[tech.category]}">
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" name="<%= tech.id %>" value="<%= category.id %>" <g:if test="${ wasFilled && values[tech.id] == category.id}"> checked </g:if>> <%= category.label %>
+                                            <input type="radio" name="<%= tech.id %>" value="<%= category.id %>" <g:if test="${ hasValue && values[tech.id] == category.id}"> checked </g:if>> <%= category.label %>
                                         </label>
                                     </div>
                                 </g:each>
@@ -69,19 +69,24 @@
                             </g:elseif>
                         </div>
                         <div class="col-sm-2">
+                            <g:set var="hasWeight" value="${weights[tech.id] != null}" />
                             <g:if test="${subClass.key == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField'}">
                                 <select id="<%= tech.id %>-alignment" name="<%= tech.id %>-alignment" class="form-control clear">
-                                    <option selected disabled hidden value=''></option>
+                                    <g:if test="${hasWeight == false}">
+                                        <option selected disabled hidden value=''></option>
+                                    </g:if>
                                     <g:each in="${tecAlignment}">
-                                        <option value="${it.id}">${it.label}</option>
+                                        <option value="${it.id}" <g:if test="${hasWeight && weights[tech.id] == it.id}"> selected </g:if>>${it.label}</option>
                                     </g:each>
                                 </select>
                             </g:if>
                             <g:elseif test="${subClass.key == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'}">
                                 <select id="<%= tech.id %>-optimization" name="<%= tech.id %>-optimization" class="form-control clear">
-                                    <option selected disabled hidden value=''></option>
+                                    <g:if test="${hasWeight == false}">
+                                        <option selected disabled hidden value=''></option>
+                                    </g:if>
                                     <g:each in="${tecOptimization}">
-                                        <option value="${it.id}">${it.label}</option>
+                                        <option value="${it.id}" <g:if test="${hasWeight && weights[tech.id] == it.id}"> selected </g:if>>${it.label}</option>
                                     </g:each>
                                 </select>
                             </g:elseif>
