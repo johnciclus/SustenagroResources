@@ -5,35 +5,35 @@ package rdfUtils
  */
 class DataReader {
 
-    RDFSlurper slp
+    Know k
     String id
 
-    DataReader(slp, id){
-        this.slp = slp
+    DataReader(k, id){
+        this.k = k
         this.id = id
     }
 
     def findNode(String name){
-
-        def classList = name
-        def uri = slp.toURI(name)
+        def uri = k.toURI(name)
+        def classList
         def res
 
-        if(uri){
-            classList = getSuperClass(uri)
+        if(!uri){
+            res = k.select('?uri').query("?uri rdfs:label '$name'@${k.lang}.")
+            if( res.size()>0 )
+                uri = res[0].uri
+            else{
+                throw new RuntimeException("Unknown value: $name")
+            }
         }
+
+        classList = k[uri].getSuperClass()
 
         if(classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#Indicator']) || classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#ProductionEfficiencyFeature'])){
             try{
-                res = slp.select('distinct ?ind ?valueType ?value ?weight')
-                    .query("<$id> <http://purl.org/dc/terms/hasPart> ?ind." +
-                           "?ind a ?id." +
-                           "?id rdfs:subClassOf ?atribute." +
-                           "?atribute rdfs:subClassOf <$uri>."+
-                           "?ind <http://bio.icmc.usp.br/sustenagro#value> ?valueType."+
-                           "?valueType <http://bio.icmc.usp.br/sustenagro#dataValue> ?value."+
-                           "?ind :hasWeight ?weight"
-                           )
+                res = k[uri].getIndividualsValue(id)
+                res.metaClass.value = { delegate.collect { it.value } }
+                res.metaClass.valueType = { delegate.collect { it.valueType } }
             }
             catch (e){
                 res = []
@@ -41,18 +41,16 @@ class DataReader {
         }
         else if(classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyFeature'])){
             try{
-                res = slp.select('distinct ?ind ?valueType ?value')
-                        .query("<$id> <http://purl.org/dc/terms/hasPart> ?ind." +
-                        "?ind a ?id." +
-                        "?id rdfs:subClassOf ?atribute." +
-                        "?atribute rdfs:subClassOf <$uri>."+
-                        "?ind <http://bio.icmc.usp.br/sustenagro#value> ?valueType."+
-                        "?valueType <http://bio.icmc.usp.br/sustenagro#dataValue> ?value."
-                )
-                println id
+                res = k[uri].getIndividualsValueWeight(id)
+                res.metaClass.value = { delegate.collect { it.value } }
+                res.metaClass.valueType = { delegate.collect { it.valueType } }
+                res.metaClass.weight = { delegate.collect { it.weight } }
+                res.metaClass.weightType = { delegate.collect { it.weight } }
+                res.metaClass.valueXweight = { delegate.collect { it.value*it.weight } }
                 println uri
-                println res.size()
-                println res
+                println res.value()
+                println res.weight()
+                println res.valueXweight()
             }
             catch (e){
                 res = []
@@ -60,79 +58,28 @@ class DataReader {
         }
         else if(classList.contains(['subClass': 'http://dbpedia.org/ontology/MicroRegion'])){
             try {
-                res = slp.select('?map')
-                        .query("<$id> :appliedTo ?u. " +
-                        "?u dbp:Microregion ?m. " +
-                        "?m <http://dbpedia.org/property/pt/mapa> ?map."
-                )
+                res = k[id].getMap()
+                res.metaClass.map = { delegate.collect { it.map } }
             }
             catch (e) {
                 res = []
             }
-
-            if (!res.empty && res.size() == 1)
-                return res[0].map
-            else
-                throw new RuntimeException("Unknown value: $name")
         }
         else{
-            res = slp.select('?v')
-                    .query("<$id> dc:hasPart ?x." +
-                    "?x a ?cls." +
-                    "?cls rdfs:label '$name'@${slp.lang}." +
-                    "?x :value ?ind." +
-                    "?ind :dataValue ?v.")
-            if (res.empty) {
-                uri = slp.toURI(name)
-                try {
-                    res = slp
-                            .select('?v')
-                            .query("<$id> dc:hasPart ?x." +
-                            "?x a <$uri>." +
-                            "?x :value ?ind." +
-                            "?ind :dataValue ?v.")
-                }
-                catch (e) {
-                    res = []
-                }
+            try {
+                res = k.select('?value')
+                        .query("<$id> dc:hasPart ?ind." +
+                        "?ind a <$uri>." +
+                        "?ind :value ?valueType." +
+                        "?valueType :dataValue ?value.")
+            }
+            catch (e) {
+                res = []
             }
         }
 
-        if (res.empty) //throw new RuntimeException("Unknown value: $name")
-            return null
-
-        if (res.size() == 1)
-            return res[0].value
-
-        res.collect { it.value }
+        return res
     }
-
-    //    def findNode(String id, String name) {
-//        // Try to find as class label
-//        def res = slp
-//                .select('?v')
-//                .query("<$id> dc:hasPart ?x." +
-//                "?x a ?cls." +
-//                "?cls rdfs:label '$name'@${slp.lang}." +
-//                "?x :value ?ind." +
-//                "?ind :dataValue ?v.")
-//        if (res.empty) {
-//            // Try to find as class id
-//            def uri = slp.toURI(name)
-//            try {
-//                res = slp
-//                        .select('?v')
-//                        .query("<$id> dc:hasPart ?x." +
-//                        "?x a <$cls>." +
-//                        "?x :value ?ind." +
-//                        "?ind :dataValue ?v.")
-//            }
-//            catch (e) {
-//                res = []
-//            }
-//        }
-//        res
-//    }
 
     def propertyMissing(String name) {
         getAt(name)
@@ -142,9 +89,41 @@ class DataReader {
         findNode(name)
     }
 
+    /*
     def getSuperClass(String cls){
-        slp.select('?subClass')
-           .query("<"+slp.toURI(cls)+"> rdfs:subClassOf ?subClass.")
+        k.select('?subClass')
+           .query("<"+k.toURI(cls)+"> rdfs:subClassOf ?subClass.")
     }
+
+
+    def getIndividualsValue(String evaluation, String cls){
+        k.select('distinct ?ind ?valueType ?value')
+           .query("<"+k.toURI(evaluation)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+                  "?ind a ?id." +
+                  "?id rdfs:subClassOf ?subClass." +
+                  "?subClass rdfs:subClassOf <"+k.toURI(cls)+">."+
+                  "?ind <http://bio.icmc.usp.br/sustenagro#value> ?valueType."+
+                  "?valueType <http://bio.icmc.usp.br/sustenagro#dataValue> ?value.", "ORDER BY ?ind")
+    }
+
+    def getIndividualsValueWeight(String evaluation, String cls) {
+        k.select('distinct ?ind ?valueType ?value ?weightType ?weight')
+            .query("<"+k.toURI(evaluation)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+                  "?ind a ?id." +
+                  "?id rdfs:subClassOf ?subClass." +
+                  "?subClass rdfs:subClassOf <"+k.toURI(cls)+">." +
+                  "?ind <http://bio.icmc.usp.br/sustenagro#value> ?valueType." +
+                  "?valueType <http://bio.icmc.usp.br/sustenagro#dataValue> ?value." +
+                  "?ind :hasWeight ?weightType." +
+                  "?weightType <http://bio.icmc.usp.br/sustenagro#dataValue> ?weight.", "ORDER BY ?ind")
+    }
+
+    def getMap(String cls ){
+        k.select('?map')
+            .query("<$cls> :appliedTo ?u. " +
+            "?u dbp:Microregion ?m. " +
+            "?m <http://dbpedia.org/property/pt/mapa> ?map.")
+    }
+    */
 
 }

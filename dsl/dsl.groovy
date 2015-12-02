@@ -48,21 +48,17 @@ data 'evaluation'
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
-    environment = sum(evaluation.':EnvironmentalIndicator')
-    social      = sum(evaluation.':SocialIndicator')
-    economic    = sum(evaluation.':EconomicIndicator')
+    environment = sum(evaluation.':EnvironmentalIndicator'.value())
+    social      = sum(evaluation.':SocialIndicator'.value())
+    economic    = sum(evaluation.':EconomicIndicator'.value())
 
-    sustainability = (environment+social+economic)/3
+    sustainability = environment+social+economic
     
-    technologic_efficiency = evaluation.':TechnologicalEfficiencyFeature'
-    
-    cost_production_efficiency = evaluation.':ProductionEfficiencyFeature'
-    
-    environmentAvg  = average(evaluation.':EnvironmentalIndicator')
-    socialAvg       = average(evaluation.':SocialIndicator')
-    economicAvg     = average(evaluation.':EconomicIndicator')
+    TechnologicalEfficiencyInTheField = sum(evaluation.':TechnologicalEfficiencyInTheField'.valueXweight())
+    TechnologicalEfficiencyInTheIndustrial = sum(evaluation.':TechnologicalEfficiencyInTheIndustrial'.valueXweight())
+    cost_production_efficiency = sum(evaluation.':ProductionEfficiencyFeature'.value())
 
-    sustainabilityAvg = (environmentAvg+socialAvg+economicAvg)/3
+    efficiency = (TechnologicalEfficiencyInTheField+TechnologicalEfficiencyInTheIndustrial)*cost_production_efficiency
 
     //environment =   (evaluation.'BiologicalPestControl' ? 1:-1) +
     //        (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
@@ -98,12 +94,12 @@ prog {
     show 'Matrix de Avaliação'
 
     show 'Indice de Magnitude: ' + sustainability
-    show 'Indice de Segurança: ' + sustainabilityAvg
+    show 'Indice de Segurança: ' + efficiency
 
     // Matrix de sustentabilidade
     matrix([
             x: sustainability,
-            y: environmentAvg,
+            y: efficiency,
             labelX: 'Indice de Magnitude',
             labelY: 'Indice de Segurança',
             rangeX: [-4,4],
@@ -136,5 +132,5 @@ prog {
     //        y: [label: 'kkk', value = social, range: [1,9]]
 
     show 'Mapa da microregião'
-    map evaluation.'MicroRegion'
+    map evaluation.'MicroRegion'.map()
 }
