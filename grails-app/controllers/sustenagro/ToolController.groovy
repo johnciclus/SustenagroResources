@@ -44,7 +44,7 @@ class ToolController {
                         " rdfs:label '"+  params.productionunit_name+"'@pt"
 
         if(params.microregion)
-            sparql += "; dbp:Microregion <" + params.microregion + ">"
+            sparql += "; dbp:MicroRegion <" + params.microregion + ">"
 
         if(params.agriculturalefficiency)
             sparql += "; :AgriculturalEfficiency <" + params.agriculturalefficiency + ">"

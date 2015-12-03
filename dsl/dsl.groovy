@@ -49,16 +49,18 @@ data 'evaluation'
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
     environment = sum(evaluation.':EnvironmentalIndicator'.value())
-    social      = sum(evaluation.':SocialIndicator'.value())
     economic    = sum(evaluation.':EconomicIndicator'.value())
+    social      = sum(evaluation.':SocialIndicator'.value())
 
     sustainability = environment+social+economic
     
-    TechnologicalEfficiencyInTheField = sum(evaluation.':TechnologicalEfficiencyInTheField'.valueXweight())
-    TechnologicalEfficiencyInTheIndustrial = sum(evaluation.':TechnologicalEfficiencyInTheIndustrial'.valueXweight())
+    TechnologicalEfficiencyInTheFieldValue = sum(evaluation.':TechnologicalEfficiencyInTheField'.value())
+    TechnologicalEfficiencyInTheFieldWeight = sum(evaluation.':TechnologicalEfficiencyInTheField'.weight())
+    TechnologicalEfficiencyInTheIndustrialValue = sum(evaluation.':TechnologicalEfficiencyInTheIndustrial'.value())
+    TechnologicalEfficiencyInTheIndustrialWeight = sum(evaluation.':TechnologicalEfficiencyInTheIndustrial'.weight())
     cost_production_efficiency = sum(evaluation.':ProductionEfficiencyFeature'.value())
 
-    efficiency = (TechnologicalEfficiencyInTheField+TechnologicalEfficiencyInTheIndustrial)*cost_production_efficiency
+    efficiency = (TechnologicalEfficiencyInTheFieldValue+TechnologicalEfficiencyInTheFieldWeight+TechnologicalEfficiencyInTheIndustrialValue+TechnologicalEfficiencyInTheIndustrialWeight)*cost_production_efficiency
 
     //environment =   (evaluation.'BiologicalPestControl' ? 1:-1) +
     //        (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
@@ -76,8 +78,9 @@ prog {
     // THE REPORT
 
     // Just showing text
-    show '***That is the report:***'
-
+    //show '***That is the report:***'
+    show '**Avaliação da sustentabilidade e da eficiência produtiva**'
+    
     // Cada recomendação terá uma fórmula lógica que permite especificar
     // quando ela deve ser mostrada. Essas fórmulas podem ser tão complexas
     // quanto necessário. Caso o resultado da fórmula seja verdadeiro, o texto
@@ -90,34 +93,41 @@ prog {
     // recommendation environment > 3.5 || social == 7, '**Second** *option*'
     // recommendation if:(environment > 3.5 || social == 7), '**Third** *option*'
     // recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
+    
+    show 'Nome da unidade produtiva: ' + evaluation.'CurrentProductionUnit'.label()
+    show 'Caracterização dos sistemas produtivos no Centro-Sul: ' + evaluation.'CurrentProductionUnit'.productionUnit()
+    show 'Microrregião da unidade produtiva: ' + evaluation.'CurrentProductionUnit'.microregion()
+    show 'Tecnologias disponíveis: ' + evaluation.'CurrentProductionUnit'.efficiency()
+    
+    linebreak()
+    
+    show '**Matrix de Avaliação**'
 
-    show 'Matrix de Avaliação'
-
-    show 'Indice de Magnitude: ' + sustainability
-    show 'Indice de Segurança: ' + efficiency
-
+    show 'Índice da sustentabilidade: ' + sustainability
+    show 'Indice de eficiência: ' + efficiency
+    
+    recomendations = ["Cenário desfavorável, Muito baixo desempenho dos indicadores",
+                      "Cenário desfavorável, Baixo desempenho dos indicadores",
+                      "Cenário desfavorável, Médio desempenho dos indicadores",
+                      "Cenário desfavorável, Alto desempenho dos indicadores",
+                      "Cenário propício, Muito baixo desempenho dos indicadores",
+                      "Cenário propício, Baixo desempenho dos indicadores",
+                      "Cenário propício, Médio desempenho dos indicadores",
+                      "Cenário propício, Alto desempenho dos indicadores",
+                      "Cenário muito favorável, Muito baixo desempenho dos indicadores",
+                      "Cenário muito favorável, Baixo desempenho dos indicadores",
+                      "Cenário muito favorável, Médio desempenho dos indicadores",
+                      "Cenário muito favorável, Alto desempenho dos indicadores"]
+    
     // Matrix de sustentabilidade
-    matrix([
-            x: sustainability,
+    matrix([x: sustainability,
             y: efficiency,
-            labelX: 'Indice de Magnitude',
-            labelY: 'Indice de Segurança',
-            rangeX: [-4,4],
-            rangeY: [-2,2],
+            labelX: 'Indice da sustentabilidade',
+            labelY: 'Indice de eficiência',
+            rangeX: [-100,100],
+            rangeY: [-50,50],
             quadrants: [4,3],
-            recomendations: [
-                    [1, 1, "Cenário desfavorável, Muito baixo desempenho dos indicadores"],
-                    [1, 2, "Cenário desfavorável, Baixo desempenho dos indicadores"],
-                    [1, 3, "Cenário desfavorável, Médio desempenho dos indicadores"],
-                    [1, 4, "Cenário desfavorável, Alto desempenho dos indicadores"],
-                    [2, 1, "Cenário propício, Muito baixo desempenho dos indicadores"],
-                    [2, 2, "Cenário propício, Baixo desempenho dos indicadores"],
-                    [2, 3, "Cenário propício, Médio desempenho dos indicadores"],
-                    [2, 4, "Cenário propício, Alto desempenho dos indicadores"],
-                    [3, 1, "Cenário muito favorável, Muito baixo desempenho dos indicadores"],
-                    [3, 2, "Cenário muito favorável, Baixo desempenho dos indicadores"],
-                    [3, 3, "Cenário muito favorável, Médio desempenho dos indicadores"],
-                    [3, 4, "Cenário muito favorável, Alto desempenho dos indicadores"]]])
+            recomendations: recomendations])
     /*
         matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], [ 
         [0, 0, 'bla bla bla'],
@@ -130,7 +140,61 @@ prog {
     //Outra possibilidade
     //matrix  x: [label: 'kkk', value = environment, range: [1,9]],
     //        y: [label: 'kkk', value = social, range: [1,9]]
-
-    show 'Mapa da microregião'
+    
+    show '**Indicadores Ambientais**'
+    
+    table evaluation.':EnvironmentalIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
+    
+    show 'Índice ambiental: '+ environment
+    
+    linebreak()
+    
+    show '**Indicadores Econômicos**'
+    
+    table evaluation.':EconomicIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
+    
+    show 'Índice econômico: '+ economic
+    
+    linebreak()
+    
+    show '**Indicadores Sociais**'
+    
+    table evaluation.':SocialIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
+    
+    show 'Índice social: '+ social
+    
+    linebreak()
+    
+    show '**Avaliação da sustentabilidade**'
+    
+    show 'Índice da sustentabilidade '+ sustainability
+    
+    linebreak()
+    
+    show '**Eficiência da produção**'
+    
+    table evaluation.':ProductionEfficiencyFeature', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
+    
+    linebreak()
+    
+    show '**Eficiência tecnológica no campo**'
+    
+    table evaluation.':TechnologicalEfficiencyInTheField', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso']
+    
+    linebreak()
+    
+    show '**Eficiência tecnológica na industria**'
+    
+    table evaluation.':TechnologicalEfficiencyInTheIndustrial', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso']
+    
+    linebreak()
+    
+    show '**Avaliação de eficiência**'
+    
+    show 'Índice de eficiência (Índice ambiental + ): '+ efficiency
+    
+    linebreak()
+    
+    show '**Mapa da microregião**'
     map evaluation.'MicroRegion'.map()
 }

@@ -344,7 +344,7 @@ class RDFSlurper {
         if (uri.startsWith('http:')) return uri
         if (uri.startsWith('urn:')) return uri
         //println '!uri.contains(:) '+uri + ' : '
-        if (!uri.contains(':')) return findPrefixe(uri)+ uri
+        if (!uri.contains(':')) return appendPrefixe(uri)
 
         // slp.query("?id rdfs:label ?label. FILTER (STR(?label)='$cls')", '', '')
 
@@ -364,7 +364,7 @@ class RDFSlurper {
         v.key + ':' + uri.substring(v.value.size())
     }
 
-    def findPrefixe(String name){
+    def appendPrefixe(String name){
         def result = null
         def query
 
@@ -373,7 +373,7 @@ class RDFSlurper {
             query = this.query("<"+uri+name+"> a ?class")
             //println query
             if(query.size()>0){
-                result = uri
+                result = uri+name
             }
         }
         return result

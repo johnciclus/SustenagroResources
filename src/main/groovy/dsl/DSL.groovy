@@ -157,6 +157,11 @@ class DSL {
 
     def show(String txt){
         report << ['show', toHTML(txt)]
+
+    }
+
+    def linebreak(){
+        report << ['linebreak']
     }
 
     def recommendation(String txt){
@@ -187,6 +192,10 @@ class DSL {
 
     def subclass(String str){
         featureLst << ['subclass': ['rdfs:subClassOf', str]]
+    }
+
+    def table(ArrayList list, Map headers = [:]){
+        report << ['table', list, headers]
     }
 
     def matrix(Map map){

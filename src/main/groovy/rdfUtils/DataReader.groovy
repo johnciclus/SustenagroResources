@@ -15,11 +15,10 @@ class DataReader {
 
     def findNode(String name){
         def uri = k.toURI(name)
-        def classList
         def res
 
         if(!uri){
-            res = k.select('?uri').query("?uri rdfs:label '$name'@${k.lang}.")
+            res = k[id].findURI(name)
             if( res.size()>0 )
                 uri = res[0].uri
             else{
@@ -27,13 +26,11 @@ class DataReader {
             }
         }
 
-        classList = k[uri].getSuperClass()
+        def classList = k[uri].getSuperClass()
 
         if(classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#Indicator']) || classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#ProductionEfficiencyFeature'])){
             try{
-                res = k[uri].getIndividualsValue(id)
-                res.metaClass.value = { delegate.collect { it.value } }
-                res.metaClass.valueType = { delegate.collect { it.valueType } }
+                res = k[uri].getIndividualsValue(id, '?ind ?label ?valueType ?valueTypeLabel ?value')
             }
             catch (e){
                 res = []
@@ -41,16 +38,7 @@ class DataReader {
         }
         else if(classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyFeature'])){
             try{
-                res = k[uri].getIndividualsValueWeight(id)
-                res.metaClass.value = { delegate.collect { it.value } }
-                res.metaClass.valueType = { delegate.collect { it.valueType } }
-                res.metaClass.weight = { delegate.collect { it.weight } }
-                res.metaClass.weightType = { delegate.collect { it.weight } }
-                res.metaClass.valueXweight = { delegate.collect { it.value*it.weight } }
-                println uri
-                println res.value()
-                println res.weight()
-                println res.valueXweight()
+                res = k[uri].getIndividualsValueWeight(id, '?ind ?label ?valueType ?valueTypeLabel ?value ?weightType ?weightTypeLabel ?weight')
             }
             catch (e){
                 res = []
@@ -58,20 +46,7 @@ class DataReader {
         }
         else if(classList.contains(['subClass': 'http://dbpedia.org/ontology/MicroRegion'])){
             try {
-                res = k[id].getMap()
-                res.metaClass.map = { delegate.collect { it.map } }
-            }
-            catch (e) {
-                res = []
-            }
-        }
-        else{
-            try {
-                res = k.select('?value')
-                        .query("<$id> dc:hasPart ?ind." +
-                        "?ind a <$uri>." +
-                        "?ind :value ?valueType." +
-                        "?valueType :dataValue ?value.")
+                res = k[id].getMap('?map')
             }
             catch (e) {
                 res = []
@@ -86,7 +61,13 @@ class DataReader {
     }
 
     def getAt(String name) {
-        findNode(name)
+        if(name == 'CurrentProductionUnit'){
+            def res = k[id].getProductionUnity('?label ?productionUnit ?microregion ?efficiency')
+            return res
+        }
+        else{
+            findNode(name)
+        }
     }
 
     /*
