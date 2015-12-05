@@ -53,14 +53,12 @@ prog {
     social      = sum(evaluation.':SocialIndicator'.value())
 
     sustainability = environment+social+economic
-    
-    TechnologicalEfficiencyInTheFieldValue = sum(evaluation.':TechnologicalEfficiencyInTheField'.value())
-    TechnologicalEfficiencyInTheFieldWeight = sum(evaluation.':TechnologicalEfficiencyInTheField'.weight())
-    TechnologicalEfficiencyInTheIndustrialValue = sum(evaluation.':TechnologicalEfficiencyInTheIndustrial'.value())
-    TechnologicalEfficiencyInTheIndustrialWeight = sum(evaluation.':TechnologicalEfficiencyInTheIndustrial'.weight())
+
+    TechnologicalEfficiencyInTheField = sum(evaluation.':TechnologicalEfficiencyInTheField'.equation({it.value*it.weight}))
+    TechnologicalEfficiencyInTheIndustrial = sum(evaluation.':TechnologicalEfficiencyInTheIndustrial'.equation({it.value*it.weight}))
     cost_production_efficiency = sum(evaluation.':ProductionEfficiencyFeature'.value())
 
-    efficiency = (TechnologicalEfficiencyInTheFieldValue+TechnologicalEfficiencyInTheFieldWeight+TechnologicalEfficiencyInTheIndustrialValue+TechnologicalEfficiencyInTheIndustrialWeight)*cost_production_efficiency
+    efficiency = (TechnologicalEfficiencyInTheField+TechnologicalEfficiencyInTheIndustrial)*cost_production_efficiency
 
     //environment =   (evaluation.'BiologicalPestControl' ? 1:-1) +
     //        (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
