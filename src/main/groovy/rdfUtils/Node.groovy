@@ -24,7 +24,7 @@ class Node {
         k.query("?id $property <$URI>; rdfs:label ?label. optional {?id dc:description ?description}. FILTER ( ?id != <$URI> )")
     }
 
-    def getEvaluations(){
+    def getAssessments(){
         k.query("?id a :Evaluation. ?id :appliedTo <$URI>")
     }
 
@@ -109,13 +109,13 @@ class Node {
         return res
     }
 
-    def getGranchildrenIndividuals(String evaluation, String args){
+    def getGranchildrenIndividuals(String assessment, String args){
         def argsList = args.split(' ')
 
         def query = "?subClass rdfs:subClassOf <$URI>."+
                 "?id rdfs:subClassOf ?subClass. "+
                 "?ind a ?id."+
-                "?ind dc:isPartOf <"+k.toURI(evaluation)+">.";
+                "?ind dc:isPartOf <"+k.toURI(assessment)+">.";
 
         if (argsList.contains('?value'))
             query +="?ind :value ?value.";
@@ -128,10 +128,10 @@ class Node {
         k.select('distinct '+args).query(query, "ORDER BY ?ind")
     }
 
-    def getIndividualsValue(String evaluation, String args){
+    def getIndividualsValue(String assessment, String args){
         def argsList = args.split(' ')
         def res = k.select('distinct '+args)
-            .query("<"+k.toURI(evaluation)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+            .query("<"+k.toURI(assessment)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
             "?subClass rdfs:subClassOf <$URI>."+
             "?id rdfs:subClassOf ?subClass." +
             "?id rdfs:label ?label." +
@@ -149,10 +149,10 @@ class Node {
         return res
     }
 
-    def getIndividualsValueWeight(String evaluation, String args) {
+    def getIndividualsValueWeight(String assessment, String args) {
         def argsList = args.split(' ')
         def res = k.select('distinct '+args)
-                   .query("<"+k.toURI(evaluation)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+                   .query("<"+k.toURI(assessment)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
                         "?id rdfs:subClassOf <$URI>." +
                         "?id rdfs:label ?label." +
                         "?ind a ?id." +
@@ -181,33 +181,8 @@ class Node {
         res.metaClass.weight = { (delegate.size()==1)? delegate[0]['weight'] :delegate.collect { it['weight'] } }
         res.metaClass.weightType = { (delegate.size()==1)? delegate[0]['weightType'] :delegate.collect { it['weightType'] } }
         res.metaClass.equation = { eq ->
-            println 'equation'
-
-            println this
-            println delegate
-            println getOwner()
-            println getThisObject()
-            def cl = {it.value*it.weight}
-
-            println cl
-            println cl.delegate
-            println cl.getOwner()
-            println cl.getThisObject()
-
-            println eq
-            println eq.delegate
-            println eq.getOwner()
-            println eq.getThisObject()
-
-            def eq2 = eq.rehydrate(cl.delegate, cl.getOwner(), cl.getThisObject())
-
-            println eq2
-            println eq2.delegate
-            println eq2.getOwner()
-            println eq2.getThisObject()
-
             eq.resolveStrategy = Closure.DELEGATE_FIRST
-            delegate.collect(cl)
+            delegate.collect({ eq.delegate = it; eq()})
         }
         return res
     }

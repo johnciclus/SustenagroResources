@@ -20,7 +20,7 @@ class DSL {
     def slg = new Slugify()
 
     def toolIndexStack = []
-    def toolEvaluationStack = []
+    def toolAssessmentStack = []
 
     def _nameFile = ''
     def _cc
@@ -63,7 +63,7 @@ class DSL {
         featureLst = []
         report = []
         toolIndexStack = []
-        toolEvaluationStack = []
+        toolAssessmentStack = []
 
         _sandbox.register()
 

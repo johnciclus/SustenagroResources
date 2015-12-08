@@ -21,22 +21,22 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-            function loadEvaluations(){
-                $.post('/tool/evaluations',
+            function loadAssessments(){
+                $.post('/tool/assessments',
                         {'production_unit_id':  $('#production_unit_id').val()},
                         function( data ) {
-                            $('#evaluations_form').html(data);
-                            $('#evaluations_form table').bootstrapTable()
-                            $('#new_evaluation').prop('disabled', false);
+                            $('#assessments_form').html(data);
+                            $('#assessments_form table').bootstrapTable()
+                            $('#new_assessment').prop('disabled', false);
                         }
                 );
             }
 
 			if($('#production_unit_id').val()!=null){
-                loadEvaluations();
+				loadAssessments();
 			}
 			$('#production_unit_id').change( function(){
-                loadEvaluations();
+				loadAssessments();
 			});
 		</script>
 	</body>

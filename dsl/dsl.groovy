@@ -34,6 +34,7 @@ features(':ProductionUnit') {
 // todos os indicadores presentes na ontologia. Existe a opção de não
 // mostrar algum indicador. No exemplo abaixo, o indicador "co2 emission"
 // (fictício) não é mostrado.
+
 dimension ':EnvironmentalIndicator'
 //{
 //    exclude 'co2 emission'
@@ -43,35 +44,37 @@ dimension ':EconomicIndicator'
 
 dimension ':SocialIndicator'
 
-data 'evaluation'
+data 'assessment'
 
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
-    environment = sum(evaluation.':EnvironmentalIndicator'.value())
-    economic    = sum(evaluation.':EconomicIndicator'.value())
-    social      = sum(evaluation.':SocialIndicator'.value())
+    environment =   sum(assessment.':EnvironmentalIndicator'.value())
+    social      =   sum(assessment.':EconomicIndicator'.value())
+    economic    =   sum(assessment.':SocialIndicator'.value())
+    
+    sustainability = environment + social + economic
+                     
 
-    sustainability = environment+social+economic
+    TechnologicalEfficiencyInTheField = sum(assessment.':TechnologicalEfficiencyInTheField'.equation({value*weight}))
+    TechnologicalEfficiencyInTheIndustrial = sum(assessment.':TechnologicalEfficiencyInTheIndustrial'.equation({value*weight}))
+    cost_production_efficiency = sum(assessment.':ProductionEfficiencyFeature'.value())
 
-    TechnologicalEfficiencyInTheField = sum(evaluation.':TechnologicalEfficiencyInTheField'.equation({it.value*it.weight}))
-    TechnologicalEfficiencyInTheIndustrial = sum(evaluation.':TechnologicalEfficiencyInTheIndustrial'.equation({it.value*it.weight}))
-    cost_production_efficiency = sum(evaluation.':ProductionEfficiencyFeature'.value())
+    efficiency = cost_production_efficiency *
+                 (TechnologicalEfficiencyInTheField+TechnologicalEfficiencyInTheIndustrial)
 
-    efficiency = (TechnologicalEfficiencyInTheField+TechnologicalEfficiencyInTheIndustrial)*cost_production_efficiency
-
-    //environment =   (evaluation.'BiologicalPestControl' ? 1:-1) +
-    //        (evaluation.'PlanningSystematicPlanting' ? 1:-1) +
-    //        (evaluation.'StandardAerialSpraying' ? 1:-1) +
-    //        evaluation.'VinasseAndEthanolRelation'
-
+    //environment =   (assessment.'BiologicalPestControl' ? 1:-1) +
+    //        (assessment.'PlanningSystematicPlanting' ? 1:-1) +
+    //        (assessment.'StandardAerialSpraying' ? 1:-1) +
+    //        assessment.'VinasseAndEthanolRelation'
 
 
-    //economic =      2.0 * evaluation.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
-    //        evaluation.'Eficiência energética das caldeiras para cogeração de energia'
 
-    //social =        3 * evaluation.EnergyEfficiencyOfBoilersForCogeneration + 7 *
-    //        evaluation.OperationalEfficiencyPlant
+    //economic =      2.0 * assessment.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
+    //        assessment.'Eficiência energética das caldeiras para cogeração de energia'
+
+    //social =        3 * assessment.EnergyEfficiencyOfBoilersForCogeneration + 7 *
+    //        assessment.OperationalEfficiencyPlant
 
     // THE REPORT
 
@@ -92,10 +95,10 @@ prog {
     // recommendation if:(environment > 3.5 || social == 7), '**Third** *option*'
     // recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
     
-    show 'Nome da unidade produtiva: ' + evaluation.'CurrentProductionUnit'.label()
-    show 'Caracterização dos sistemas produtivos no Centro-Sul: ' + evaluation.'CurrentProductionUnit'.productionUnit()
-    show 'Microrregião da unidade produtiva: ' + evaluation.'CurrentProductionUnit'.microregion()
-    show 'Tecnologias disponíveis: ' + evaluation.'CurrentProductionUnit'.efficiency()
+    show 'Nome da unidade produtiva: ' + assessment.'CurrentProductionUnit'.label()
+    show 'Caracterização dos sistemas produtivos no Centro-Sul: ' + assessment.'CurrentProductionUnit'.productionUnit()
+    show 'Microrregião da unidade produtiva: ' + assessment.'CurrentProductionUnit'.microregion()
+    show 'Tecnologias disponíveis: ' + assessment.'CurrentProductionUnit'.efficiency()
     
     linebreak()
     
@@ -122,8 +125,8 @@ prog {
             y: efficiency,
             labelX: 'Indice da sustentabilidade',
             labelY: 'Indice de eficiência',
-            rangeX: [-100,100],
-            rangeY: [-50,50],
+            rangeX: [-50,150],
+            rangeY: [-30,60],
             quadrants: [4,3],
             recomendations: recomendations])
     /*
@@ -141,7 +144,7 @@ prog {
     
     show '**Indicadores Ambientais**'
     
-    table evaluation.':EnvironmentalIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
+    table assessment.':EnvironmentalIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
     
     show 'Índice ambiental: '+ environment
     
@@ -149,7 +152,7 @@ prog {
     
     show '**Indicadores Econômicos**'
     
-    table evaluation.':EconomicIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
+    table assessment.':EconomicIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
     
     show 'Índice econômico: '+ economic
     
@@ -157,7 +160,7 @@ prog {
     
     show '**Indicadores Sociais**'
     
-    table evaluation.':SocialIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
+    table assessment.':SocialIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
     
     show 'Índice social: '+ social
     
@@ -171,28 +174,34 @@ prog {
     
     show '**Eficiência da produção**'
     
-    table evaluation.':ProductionEfficiencyFeature', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
+    table assessment.':ProductionEfficiencyFeature', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
+    
+    show 'Índice de eficiência da produção: '+ cost_production_efficiency 
     
     linebreak()
     
     show '**Eficiência tecnológica no campo**'
     
-    table evaluation.':TechnologicalEfficiencyInTheField', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso']
+    table assessment.':TechnologicalEfficiencyInTheField', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso']
+    
+    show 'Índice de tecnológica no campo: '+ TechnologicalEfficiencyInTheField
     
     linebreak()
     
     show '**Eficiência tecnológica na industria**'
     
-    table evaluation.':TechnologicalEfficiencyInTheIndustrial', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso']
+    table assessment.':TechnologicalEfficiencyInTheIndustrial', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso']
+    
+    show 'Índice de tecnológica na industria: '+ TechnologicalEfficiencyInTheIndustrial
     
     linebreak()
     
     show '**Avaliação de eficiência**'
     
-    show 'Índice de eficiência (Índice ambiental + ): '+ efficiency
+    show 'Índice de eficiência: '+ efficiency
     
     linebreak()
     
     show '**Mapa da microregião**'
-    map evaluation.'MicroRegion'.map()
+    map assessment.'MicroRegion'.map()
 }

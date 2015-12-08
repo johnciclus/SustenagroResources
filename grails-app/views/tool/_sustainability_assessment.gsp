@@ -6,36 +6,10 @@
 
 <div id="indicator_content" class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="environmental_indicators">
-        <g:each var="subClass" in="${indSubClass.environmental}">
-            <fieldset>
-                <legend><h5>${subClass.value.label}</h5></legend>
-                <g:each var="indicator" in="${indicators.environmental}">
-                    <g:if test="${subClass.key == indicator.subClass}">
-                        <div class="form-group">
-                            <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.label}</label>
-                            <g:set var="hasValue" value="${values[indicator.id] != null}" />
-                            <div class="col-sm-5">
-                                <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
-                                    <g:each var="category" in="${indCategories[indicator.category]}">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>" <g:if test="${ hasValue && values[indicator.id] == category.id}"> checked </g:if>> <%= category.label %>
-                                            </label>
-                                        </div>
-                                    </g:each>
-                                </g:if>
-                                <g:elseif test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Real' }">
-                                    <input type="text" class="form-control" name="${indicator.id}" value="${values[indicator.id]}">
-                                </g:elseif>
-                            </div>
-                            <div class="col-sm-1">
-                                <button id="<%= indicator.id %>-clear" type="button" class="btn btn-default btn-sm clear"><span class="glyphicon glyphicon-trash"></span></button>
-                            </div>
-                        </div>
-                    </g:if>
-                </g:each>
-            </fieldset>
-        </g:each>
+        <g:render template="/widgets/indicatorList" model="${['subClasses': indSubClass[':EnvironmentalIndicator'],
+                                                              'indsInSubClasses': indicators[':EnvironmentalIndicator'],
+                                                              'values': values,
+                                                              'categories': indCategories]}" />
         <div>
             <nav>
                 <ul class="pager">
@@ -46,36 +20,10 @@
     </div>
 
     <div role="tabpanel" class="tab-pane" id="economic_indicators">
-        <g:each var="subClass" in="${indSubClass.economic}">
-            <fieldset>
-                <legend><h5>${subClass.value.label}</h5></legend>
-                <g:each var="indicator" in="${indicators.economic}">
-                    <g:if test="${subClass.key == indicator.subClass}">
-                        <div class="form-group">
-                            <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.label}</label>
-                            <g:set var="hasValue" value="${values[indicator.id] != null}" />
-                            <div class="col-sm-5">
-                                <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
-                                    <g:each var="category" in="${indCategories[indicator.category]}">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>" <g:if test="${ hasValue && values[indicator.id] == category.id}"> checked </g:if>> <%= category.label %>
-                                            </label>
-                                        </div>
-                                    </g:each>
-                                </g:if>
-                                <g:elseif test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Real' }">
-                                    <input type="text" class="form-control" name="${indicator.id}" value="${values[indicator.id]}">
-                                </g:elseif>
-                            </div>
-                            <div class="col-sm-1">
-                                <button id="<%= indicator.id %>-clear" type="button" class="btn btn-default btn-sm clear"><span class="glyphicon glyphicon-trash"></span></button>
-                            </div>
-                        </div>
-                    </g:if>
-                </g:each>
-            </fieldset>
-        </g:each>
+        <g:render template="/widgets/indicatorList" model="${['subClasses': indSubClass[':EconomicIndicator'],
+                                                              'indsInSubClasses': indicators[':EconomicIndicator'],
+                                                              'values': values,
+                                                              'categories': indCategories]}" />
         <div>
             <nav>
                 <ul class="pager">
@@ -87,36 +35,10 @@
     </div>
 
     <div role="tabpanel" class="tab-pane" id="social_indicators">
-        <g:each var="subClass" in="${indSubClass.social}">
-            <fieldset>
-                <legend><h5>${subClass.value.label}</h5></legend>
-                <g:each var="indicator" in="${indicators.social}">
-                    <g:if test="${subClass.key == indicator.subClass}">
-                        <div class="form-group">
-                        <label for="<%= indicator.id %>" class="col-sm-6 control-label">${indicator.label}</label>
-                        <g:set var="hasValue" value="${values[indicator.id] != null}" />
-                        <div class="col-sm-5">
-                            <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
-                                <g:each var="category" in="${indCategories[indicator.category]}">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="<%= indicator.id %>" value="<%= category.id %>" <g:if test="${ hasValue && values[indicator.id] == category.id}"> checked </g:if>> <%= category.label %>
-                                        </label>
-                                    </div>
-                                </g:each>
-                            </g:if>
-                            <g:elseif test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Real' }">
-                                <input type="text" class="form-control" name="${indicator.id}" value="${values[indicator.id]}">
-                            </g:elseif>
-                        </div>
-                        <div class="col-sm-1">
-                            <button id="<%= indicator.id %>-clear" type="button" class="btn btn-default btn-sm clear"><span class="glyphicon glyphicon-trash"></span></button>
-                        </div>
-                    </div>
-                    </g:if>
-                </g:each>
-            </fieldset>
-        </g:each>
+        <g:render template="/widgets/indicatorList" model="${['subClasses': indSubClass[':SocialIndicator'],
+                                                              'indsInSubClasses': indicators[':SocialIndicator'],
+                                                              'values': values,
+                                                              'categories': indCategories]}" />
         <div>
             <nav>
                 <ul class="pager">

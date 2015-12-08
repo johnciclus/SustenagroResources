@@ -25,10 +25,6 @@ class ToolController {
                     }
                 }
             }
-
-            //println Processor.process("This is ***TXTMARK***");
-            //String html = new Markdown4jProcessor().process("This is a **bold** text");
-
             render(view: 'index', model: [inputs: dsl.toolIndexStack])
         }
         else
@@ -83,21 +79,21 @@ class ToolController {
                     id: production_unit_id)
     }
 
-    def selectEvaluation(){
+    def selectAssessment(){
         def production_unit_alias = Uri.removeDomain(params.production_unit_id, 'http://bio.icmc.usp.br/sustenagro#')
-        def evaluation_name = Uri.removeDomain(params.evaluation, 'http://bio.icmc.usp.br/sustenagro#')
+        def assessment_name = Uri.removeDomain(params.assessment, 'http://bio.icmc.usp.br/sustenagro#')
 
         redirect(   action: 'assessment',
                     id: production_unit_alias,
-                    params: [evaluation: evaluation_name])
+                    params: [assessment: assessment_name])
     }
 
-    def evaluations(){
+    def assessments(){
         def production_unit_id = Uri.removeDomain(params.production_unit_id, 'http://bio.icmc.usp.br/sustenagro#')
-        def evaluations = k[production_unit_id].getLabelAppliedTo()
+        def assessments = k[production_unit_id].getLabelAppliedTo()
 
-        render( template: 'evaluations',
-                model:    [evaluations: evaluations,
+        render( template: 'assessments',
+                model:    [assessments: assessments,
                            production_unit_id: production_unit_id]);
     }
 
@@ -114,22 +110,17 @@ class ToolController {
         def tecAlignment
         def tecOptimization
 
-        indicators['environmental'] = k[':EnvironmentalIndicator'].getGrandchildren()
-        indicators['economic'] = k[':EconomicIndicator'].getGrandchildren()
-        indicators['social'] = k[':SocialIndicator'].getGrandchildren()
-
-        indCategories += propertyToList(indicators['environmental'], 'category')
-        indCategories += propertyToList(indicators['economic'], 'category')
-        indCategories += propertyToList(indicators['social'], 'category')
+        dsl.dimensions.each{
+            indicators[it] = k[it].getGrandchildren()
+            indCategories += propertyToList(indicators[it], 'category')
+            indSubClass[it] = propertyToMap(indicators[it], 'subClass')
+        }
         indCategories.each{ key, v ->
             k[key].getInstances().each{
                 v.push(it)
             }
         }
 
-        indSubClass['environmental'] = propertyToMap(indicators['environmental'], 'subClass')
-        indSubClass['economic'] = propertyToMap(indicators['economic'], 'subClass')
-        indSubClass['social'] = propertyToMap(indicators['social'], 'subClass')
         indSubClass.each{ dimension, map ->
             map.each{ key, v ->
                 v['label']= k[key].getLabel()
@@ -188,34 +179,30 @@ class ToolController {
         tecAlignment = k[':ProductionEnvironmentAlignmentCategory'].getInstances()
         tecOptimization = k[':SugarcaneProcessingOptimizationCategory'].getInstances()
 
-        def evaluationID = params.evaluation
+        def assessmentID = params.assessment
         def name = k[params.id].getLabel()
         def values = [:]
         def weights = [:]
         def report
         dsl._cleanProgram()
 
-        if (evaluationID != null) {
+        if (assessmentID != null) {
 
-            k[':EnvironmentalIndicator'].getGranchildrenIndividuals(evaluationID, '?id ?subClass ?in ?value').each{
+            dsl.dimensions.each{ String dim ->
+                k[dim].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value').each{
+                    values[it.id] = it.value
+                }
+            }
+
+            k[':ProductionEfficiencyFeature'].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value').each{
                 values[it.id] = it.value
             }
-            k[':EconomicIndicator'].getGranchildrenIndividuals(evaluationID, '?id ?subClass ?in ?value').each{
-                values[it.id] = it.value
-            }
-            k[':SocialIndicator'].getGranchildrenIndividuals(evaluationID, '?id ?subClass ?in ?value').each{
-                values[it.id] = it.value
-            }
-            k[':ProductionEfficiencyFeature'].getGranchildrenIndividuals(evaluationID, '?id ?subClass ?in ?value ?weight').each{
-                values[it.id] = it.value
-                weights[it.id] = it.weight
-            }
-            k[':TechnologicalEfficiencyFeature'].getGranchildrenIndividuals(evaluationID, '?id ?subClass ?in ?value ?weight').each{
+            k[':TechnologicalEfficiencyFeature'].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value ?weight').each{
                 values[it.id] = it.value
                 weights[it.id] = it.weight
             }
 
-            dsl.data = new DataReader(k, k.toURI(':'+evaluationID))
+            dsl.data = new DataReader(k, k.toURI(':'+assessmentID))
             dsl.program()
             report = dsl.report
 
@@ -247,10 +234,10 @@ class ToolController {
     def report() {
         def production_unit_id = params.production_unit_id
 
-        def num = k[production_unit_id].getEvaluations().size() + 1
-        def evaluation_name = production_unit_id+"-evaluation-"+num
+        def num = k[production_unit_id].getAssessments().size() + 1
+        def assessment_name = production_unit_id+"-assessment-"+num
 
-        k.insert( ":" + evaluation_name +
+        k.insert( ":" + assessment_name +
                     " rdf:type :Evaluation;"+
                     " :appliedTo :"+ production_unit_id +";"+
                     " rdfs:label 'Avaliação "+  num +"'@pt.")
@@ -272,11 +259,11 @@ class ToolController {
                     value = "<" + params[it.id] + ">"
                 }
 
-                k.insert( "<" +it.id+'-'+evaluation_name +">"+
+                k.insert( "<" +it.id+'-'+assessment_name +">"+
                             " rdf:type <"+ it.id +">;"+
-                            " dc:isPartOf :"+ evaluation_name +";"+
+                            " dc:isPartOf :"+ assessment_name +";"+
                             " :value "+  value +".")
-                k.insert( ":" + evaluation_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+evaluation_name+">.")
+                k.insert( ":" + assessment_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+assessment_name+">.")
             }
         }
 
@@ -291,11 +278,11 @@ class ToolController {
                     value = "<" + params[it.id] + ">"
                 }
 
-                k.insert( "<" +it.id+'-'+evaluation_name +">"+
+                k.insert( "<" +it.id+'-'+assessment_name +">"+
                         " rdf:type <"+ it.id +">;"+
-                        " dc:isPartOf :"+ evaluation_name +";"+
+                        " dc:isPartOf :"+ assessment_name +";"+
                         " :value "+  value +".")
-                k.insert( ":" + evaluation_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+evaluation_name+">.")
+                k.insert( ":" + assessment_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+assessment_name+">.")
 
             }
         }
@@ -319,18 +306,18 @@ class ToolController {
                     weight = "<" +params[it.id+'-alignment'] + ">"
                 }
 
-                k.insert( "<" +it.id+'-'+evaluation_name +">"+
+                k.insert( "<" +it.id+'-'+assessment_name +">"+
                         " rdf:type <"+ it.id +">;"+
-                        " dc:isPartOf :"+ evaluation_name +";"+
+                        " dc:isPartOf :"+ assessment_name +";"+
                         " :value "+ value +";"+
                         " :hasWeight "+ weight +"." )
-                k.insert( ":" + evaluation_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+evaluation_name+">.")
+                k.insert( ":" + assessment_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+assessment_name+">.")
             }
         }
 
         redirect(action: 'assessment',
                 id: params.production_unit_id,
-                params: [evaluation: evaluation_name])
+                params: [assessment: assessment_name])
     }
 
     def propertyToList = { source, property ->
