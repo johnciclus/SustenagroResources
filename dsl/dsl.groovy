@@ -28,6 +28,27 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 features(':ProductionUnit') {
     instance 'MicroRegion', 'label': "Microrregião da unidade produtiva"
     instance ':AgriculturalEfficiency', 'label': "Tecnologias disponíveis"
+    
+    // Data de fundação da unidade produção
+    // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
+    // Financiamento (crédito agrícola, custeio de maquinário, BNDES);
+    // Valor total investido em tecnologia na fase agrícola (até a fase atual)
+    // Valor total investido em tecnologia na fase industrial (até a fase atual)
+    // Valor total previsto para investimento para escoamento da produção
+    // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
+    // Ligação com outros grupos empresariais ou de investimentos
+    // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
+    
+    
+    // Identificação do sistema de produção
+    // Origem da cana (própria, fornecedor, arrendamento)
+    // Data de início e término do plantio
+    // Data de início e término da última colheita
+    // Longevidade do canvial (cana de ano, cana de ano e meio);
+    
+    // Municípios envolvidos (localização da sede)
+    
+    // Disponibilização dos resultados da avaliação: Público | privado
 }
 
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados
@@ -53,7 +74,7 @@ prog {
     social      =   sum(assessment.':EconomicIndicator'.value())
     economic    =   sum(assessment.':SocialIndicator'.value())
     
-    sustainability = environment + social + economic
+    sustainability = (environment + social + economic)/3
                      
 
     TechnologicalEfficiencyInTheField = sum(assessment.':TechnologicalEfficiencyInTheField'.equation({value*weight}))
