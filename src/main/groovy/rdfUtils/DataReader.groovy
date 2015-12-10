@@ -5,118 +5,55 @@ package rdfUtils
  */
 class DataReader {
 
-    RDFSlurper slp
-    String uri
+    Know k
+    String id
 
-    DataReader(slp, uri){
-        this.slp = slp
-        this.uri = uri
+    DataReader(k, id){
+        this.k = k
+        this.id = id
     }
 
-//    def findNode(String uri, String name) {
-//        // Try to find as class label
-//        def res = slp
-//                .select('?v')
-//                .query("<$uri> dc:hasPart ?x." +
-//                "?x a ?cls." +
-//                "?cls rdfs:label '$name'@${slp.lang}." +
-//                "?x :value ?ind." +
-//                "?ind :dataValue ?v.")
-//        if (res.empty) {
-//            // Try to find as class uri
-//            def cls = slp.toURI(name)
-//            try {
-//                res = slp
-//                        .select('?v')
-//                        .query("<$uri> dc:hasPart ?x." +
-//                        "?x a <$cls>." +
-//                        "?x :value ?ind." +
-//                        "?ind :dataValue ?v.")
-//            }
-//            catch (e) {
-//                res = []
-//            }
-//        }
-//        res
-//    }
-
     def findNode(String name){
-        def type = name
-        def cls = slp.toURI(name)
+        def uri = k.toURI(name)
         def res
-        if(cls){
-            res = slp.select('?c')
-                    .query("<$cls> rdfs:subClassOf ?c.")
-            if(res[0])
-                type = res[0].c
+
+        if(!uri){
+            res = k[id].findURI(name)
+            if( res.size()>0 )
+                uri = res[0].uri
+            else{
+                throw new RuntimeException("Unknown value: $name")
+            }
         }
-        println 'Find Node: ' + type
-        switch(type) {
-            case 'http://bio.icmc.usp.br/sustenagro#Indicator':
-                try{
-                    cls = slp.toURI(name)
-                    res = slp.select('?v')
-                            .query("<$uri> dc:hasPart ?x." +
-                            "?x a ?i." +
-                            "?i rdfs:subClassOf ?a." +
-                            "?a rdfs:subClassOf <$cls>." +
-                            "?x :value ?ind." +
-                            "?ind :dataValue ?v."
-                    )
-                }
-                catch (e){
-                    res = []
-                }
-                break
-            case 'Microregion':
-                try {
-                    res = slp.select('?map')
-                            .query("<$uri> :appliedTo ?u. " +
-                            "?u dbp:Microregion ?m. " +
-                            "?m <http://dbpedia.org/property/pt/mapa> ?map."
-                    )
-                }
-                catch (e) {
-                    res = []
-                }
 
-                if (!res.empty && res.size() == 1)
-                    return res[0].map
-                else
-                    throw new RuntimeException("Unknown value: $name")
+        def classList = k[uri].getSuperClass()
 
-                break
-
-            default:
-                res = slp.select('?v')
-                        .query("<$uri> dc:hasPart ?x." +
-                        "?x a ?cls." +
-                        "?cls rdfs:label '$name'@${slp.lang}." +
-                        "?x :value ?ind." +
-                        "?ind :dataValue ?v.")
-                if (res.empty) {
-                    cls = slp.toURI(name)
-                    try {
-                        res = slp
-                                .select('?v')
-                                .query("<$uri> dc:hasPart ?x." +
-                                "?x a <$cls>." +
-                                "?x :value ?ind." +
-                                "?ind :dataValue ?v.")
-                    }
-                    catch (e) {
-                        res = []
-                    }
-                }
-                break
+        if(classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#Indicator']) || classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#ProductionEfficiencyFeature'])){
+            try{
+                res = k[uri].getIndividualsValue(id, '?ind ?label ?valueType ?valueTypeLabel ?value')
+            }
+            catch (e){
+                res = []
+            }
         }
-        if (res.empty) //throw new RuntimeException("Unknown value: $name")
-            return 0
+        else if(classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyFeature'])){
+            try{
+                res = k[uri].getIndividualsValueWeight(id, '?ind ?label ?valueType ?valueTypeLabel ?value ?weightType ?weightTypeLabel ?weight')
+            }
+            catch (e){
+                res = []
+            }
+        }
+        else if(classList.contains(['subClass': 'http://dbpedia.org/ontology/MicroRegion'])){
+            try {
+                res = k[id].getMap('?map')
+            }
+            catch (e) {
+                res = []
+            }
+        }
 
-        if (res.size() == 1)
-            return res[0].v
-
-        res.collect { it.v }
+        return res
     }
 
     def propertyMissing(String name) {
@@ -124,6 +61,50 @@ class DataReader {
     }
 
     def getAt(String name) {
-        findNode(name)
+        if(name == 'CurrentProductionUnit'){
+            def res = k[id].getProductionUnity('?label ?productionUnit ?microregion ?efficiency')
+            return res
+        }
+        else{
+            findNode(name)
+        }
     }
+
+    /*
+    def getSuperClass(String cls){
+        k.select('?subClass')
+           .query("<"+k.toURI(cls)+"> rdfs:subClassOf ?subClass.")
+    }
+
+
+    def getIndividualsValue(String evaluation, String cls){
+        k.select('distinct ?ind ?valueType ?value')
+           .query("<"+k.toURI(evaluation)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+                  "?ind a ?id." +
+                  "?id rdfs:subClassOf ?subClass." +
+                  "?subClass rdfs:subClassOf <"+k.toURI(cls)+">."+
+                  "?ind <http://bio.icmc.usp.br/sustenagro#value> ?valueType."+
+                  "?valueType <http://bio.icmc.usp.br/sustenagro#dataValue> ?value.", "ORDER BY ?ind")
+    }
+
+    def getIndividualsValueWeight(String evaluation, String cls) {
+        k.select('distinct ?ind ?valueType ?value ?weightType ?weight')
+            .query("<"+k.toURI(evaluation)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+                  "?ind a ?id." +
+                  "?id rdfs:subClassOf ?subClass." +
+                  "?subClass rdfs:subClassOf <"+k.toURI(cls)+">." +
+                  "?ind <http://bio.icmc.usp.br/sustenagro#value> ?valueType." +
+                  "?valueType <http://bio.icmc.usp.br/sustenagro#dataValue> ?value." +
+                  "?ind :hasWeight ?weightType." +
+                  "?weightType <http://bio.icmc.usp.br/sustenagro#dataValue> ?weight.", "ORDER BY ?ind")
+    }
+
+    def getMap(String cls ){
+        k.select('?map')
+            .query("<$cls> :appliedTo ?u. " +
+            "?u dbp:Microregion ?m. " +
+            "?m <http://dbpedia.org/property/pt/mapa> ?map.")
+    }
+    */
+
 }

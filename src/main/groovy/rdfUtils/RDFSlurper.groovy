@@ -206,7 +206,7 @@ class RDFSlurper {
     //Logger log = Logger.getLogger(RDFSlurper.class);
 
     private Map<String, String> _prefixes = [:]
-    private Sparql Sparql
+    private Sparql sparql
     private String select = '*'
 
     RDFSlurper(){
@@ -217,7 +217,7 @@ class RDFSlurper {
         //g = new SparqlRepositorySailGraph(endpoint, update)
         //"http://localhost:8000/sparql/", "http://localhost:8000/update/")
         // SPARQL 1.0 or 1.1 endpoint
-        Sparql = new Sparql(endpoint: endpoint)
+        sparql = new Sparql(endpoint: endpoint)
     }
 
     RDFSlurper(String url){
@@ -228,7 +228,7 @@ class RDFSlurper {
         //g = new SparqlRepositorySailGraph(url, url)
 
         // SPARQL 1.0 or 1.1 endpoint
-        Sparql = new Sparql(endpoint: url)
+        sparql = new Sparql(endpoint: url)
 
         addDefaultNamespaces()
 
@@ -286,23 +286,23 @@ class RDFSlurper {
         def f = "$prefixes \nselect $select where {$q} ${order}"
         select = '*'
         //println f+"\n"
-        Sparql.query(f, lang)
+        sparql.query(f, lang)
     }
 
     def insert(String q, String lang = this.lang){
         def f = "$prefixes \nINSERT DATA {$q}"
         //println f
-        Sparql.update(f)
+        sparql.update(f)
     }
 
     def delete(String q){
         def f = "$prefixes \n DELETE where {$q}"
-        Sparql.update(f)
+        sparql.update(f)
     }
 
     def update(String q){
         def f = "$prefixes \n $q"
-        Sparql.update(f)
+        sparql.update(f)
     }
 
     def loadRDF(InputStream is){
@@ -340,10 +340,15 @@ class RDFSlurper {
         if (uri==null || uri == '' ) return null
         if (uri.contains(' ')) return null
         if (uri.startsWith('_:')) return uri
-        if (uri[0]==':') return _prefixes['']+uri.substring(1)
+        if (uri.startsWith(':')) return _prefixes['']+uri.substring(1)
         if (uri.startsWith('http:')) return uri
         if (uri.startsWith('urn:')) return uri
-        if (!uri.contains(':')) return _prefixes['']+ uri
+        //println '!uri.contains(:) '+uri + ' : '
+        if (!uri.contains(':')) return appendPrefixe(uri)
+
+        // slp.query("?id rdfs:label ?label. FILTER (STR(?label)='$cls')", '', '')
+
+        println 'prexixes analyse'
         def pre = _prefixes[uri.tokenize(':')[0]]
         if (pre==null) return uri
         return pre+uri.substring(uri.indexOf(':')+1)
@@ -357,6 +362,21 @@ class RDFSlurper {
             uri.startsWith(obj)
         }
         v.key + ':' + uri.substring(v.value.size())
+    }
+
+    def appendPrefixe(String name){
+        def result = null
+        def query
+
+        _prefixes.each {alias, uri ->
+            //println uri+name
+            query = this.query("<"+uri+name+"> a ?class")
+            //println query
+            if(query.size()>0){
+                result = uri+name
+            }
+        }
+        return result
     }
 
     def getPrefixes(){

@@ -16,7 +16,7 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 3. Definição dos indicadores
 4. Recomendações de sustentabilidade
 
- '''
+'''
 
 // Informações que serão lidas antes dos indicadores. No exemplo serão
 // mostradas todas as culturas, tecnologias e meios de produção que
@@ -26,7 +26,7 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // Na ontologia, location definiria as microregiões do IBGE.
 // Se a fazenda ficar em mais de uma micro-região?
 features(':ProductionUnit') {
-    instance 'Microregion', 'label': "Microrregião da unidade produtiva"
+    instance 'MicroRegion', 'label': "Microrregião da unidade produtiva"
     instance ':AgriculturalEfficiency', 'label': "Tecnologias disponíveis"
 }
 
@@ -48,15 +48,19 @@ data 'evaluation'
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
-    environment = sum(evaluation.'EnvironmentalIndicator')
-    social      = sum(evaluation.'SocialIndicator')
-    economic    = sum(evaluation.'EconomicIndicator')
+    environment = sum(evaluation.':EnvironmentalIndicator')
+    social      = sum(evaluation.':SocialIndicator')
+    economic    = sum(evaluation.':EconomicIndicator')
 
     sustainability = (environment+social+economic)/3
 
-    environmentAvg  = average(evaluation.'EnvironmentalIndicator')
-    socialAvg       = average(evaluation.'SocialIndicator')
-    economicAvg     = average(evaluation.'EconomicIndicator')
+    technologic_efficiency = evaluation.':TechnologicalEfficiencyFeature'
+
+    cost_production_efficiency = evaluation.':ProductionEfficiencyFeature'
+
+    environmentAvg  = average(evaluation.':EnvironmentalIndicator')
+    socialAvg       = average(evaluation.':SocialIndicator')
+    economicAvg     = average(evaluation.':EconomicIndicator')
 
     sustainabilityAvg = (environmentAvg+socialAvg+economicAvg)/3
 
@@ -119,7 +123,7 @@ prog {
                     [3, 3, "Cenário muito favorável, Médio desempenho dos indicadores"],
                     [3, 4, "Cenário muito favorável, Alto desempenho dos indicadores"]]])
     /*
-        matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], [ 
+        matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], [
         [0, 0, 'bla bla bla'],
         [0, 1, 'bla bla bla'],
         //quadrant2: 'bla bla bla',
@@ -132,5 +136,5 @@ prog {
     //        y: [label: 'kkk', value = social, range: [1,9]]
 
     show 'Mapa da microregião'
-    map evaluation.'Microregion'
+    map evaluation.'MicroRegion'
 }

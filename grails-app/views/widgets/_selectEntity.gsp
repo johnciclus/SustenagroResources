@@ -11,11 +11,11 @@
             </select>
         </div>
         <div class="col-sm-2">
-            <input id="new_evaluation" type="submit" class="btn btn-primary" value="Nova avaliação" disabled/>
+            <input id="new_assessment" type="submit" class="btn btn-primary" value="Nova avaliação" disabled/>
         </div>
     </div>
 </form>
 
-<div id="evaluations_form" class="section">
+<div id="assessments_form" class="section">
 
 </div>

@@ -20,7 +20,7 @@ class DSL {
     def slg = new Slugify()
 
     def toolIndexStack = []
-    def toolEvaluationStack = []
+    def toolAssessmentStack = []
 
     def _nameFile = ''
     def _cc
@@ -63,7 +63,7 @@ class DSL {
         featureLst = []
         report = []
         toolIndexStack = []
-        toolEvaluationStack = []
+        toolAssessmentStack = []
 
         _sandbox.register()
 
@@ -157,6 +157,11 @@ class DSL {
 
     def show(String txt){
         report << ['show', toHTML(txt)]
+
+    }
+
+    def linebreak(){
+        report << ['linebreak']
     }
 
     def recommendation(String txt){
@@ -187,6 +192,10 @@ class DSL {
 
     def subclass(String str){
         featureLst << ['subclass': ['rdfs:subClassOf', str]]
+    }
+
+    def table(ArrayList list, Map headers = [:]){
+        report << ['table', list, headers]
     }
 
     def matrix(Map map){
@@ -220,7 +229,7 @@ class DSL {
     def sum(obj){
         float val = 0
         float num
-        println obj
+        //println obj
 
         if(obj instanceof ArrayList) {
             obj.each {
@@ -240,7 +249,7 @@ class DSL {
     def average(obj){
         float val = 0
         float num
-        println obj
+        //println obj
 
         if(obj instanceof ArrayList){
             obj.each{

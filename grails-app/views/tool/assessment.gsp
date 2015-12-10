@@ -3,8 +3,8 @@
 <head>
     <meta name="layout" content="main"/>
     <title>SustenAgro - Tool - Assessment</title>
-    <asset:stylesheet href="jquery.bootstrap-touchspin.min.css"/>
-    <asset:javascript src="jquery.bootstrap-touchspin.min.js"/>
+    <asset:stylesheet href="bootstrap-table.min.css"/>
+    <asset:javascript src="bootstrap-table.min.js"/>
 </head>
 <body>
 <div class="row main">
@@ -44,6 +44,8 @@
     </div>
 </div>
 <script type="text/javascript">
+    $('#report table').bootstrapTable()
+
     $('.pager a').click(function(e){
         if($(this).attr('href')=='#cost_production_efficiency'){
             $(".nav-tabs a[href='#efficiency_assessment']").tab('show')

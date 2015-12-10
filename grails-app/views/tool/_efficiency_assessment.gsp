@@ -5,36 +5,10 @@
 
 <div id="efficiency_content" class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="cost_production_efficiency">
-        <g:each var="subClass" in="${proSubClass}">
-            <fieldset>
-                <legend><h5>${subClass.value.label}</h5></legend>
-                <g:each var="feature" in="${productionFeatures}">
-                    <g:if test="${subClass.key == feature.subClass}">
-                        <div class="form-group">
-                            <label for="<%= feature.id %>" class="col-sm-6 control-label">${feature.label}</label>
-                            <g:set var="wasFilled" value="${values[feature.id] != null}" />
-                            <div class="col-sm-5">
-                                <g:if test="${feature.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || feature.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
-                                    <g:each var="category" in="${proCategories[feature.category]}">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="<%= feature.id %>" value="<%= category.id %>" <g:if test="${ wasFilled && values[feature.id] == category.id}"> checked </g:if>> <%= category.label %>
-                                            </label>
-                                        </div>
-                                    </g:each>
-                                </g:if>
-                                <g:elseif test="${feature.valueType =='http://bio.icmc.usp.br/sustenagro#Real' }">
-                                    <input type="text" class="form-control" name="${feature.id}" value="${values[feature.id]}">
-                                </g:elseif>
-                            </div>
-                            <div class="col-sm-1">
-                                <button id="<%= feature.id %>-clear" type="button" class="btn btn-default btn-sm clear"><span class="glyphicon glyphicon-trash"></span></button>
-                            </div>
-                        </div>
-                    </g:if>
-                </g:each>
-            </fieldset>
-        </g:each>
+        <g:render template="/widgets/indicatorList" model="${['subClasses': proSubClass,
+                                                              'indsInSubClasses': productionFeatures,
+                                                              'values': values,
+                                                              'categories': proCategories]}" />
         <div>
             <nav>
                 <ul class="pager">
@@ -46,36 +20,15 @@
     </div>
 
     <div role="tabpanel" class="tab-pane" id="technologic_efficiency">
-    <g:each var="subClass" in="${tecSubClass}">
-        <fieldset>
-            <legend><h5>${subClass.value.label}</h5></legend>
-            <g:each var="tech" in="${technologyFeatures}">
-                <g:if test="${subClass.key == tech.subClass}">
-                    <div class="form-group">
-                        <label for="<%= tech.id %>" class="col-sm-6 control-label">${tech.label}</label>
-                        <g:set var="wasFilled" value="${values[tech.id] != null}" />
-                        <div class="col-sm-5">
-                            <g:if test="${tech.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || tech.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
-                                <g:each var="category" in="${tecCategories[tech.category]}">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="<%= tech.id %>" value="<%= category.id %>" <g:if test="${ wasFilled && values[tech.id] == category.id}"> checked </g:if>> <%= category.label %>
-                                        </label>
-                                    </div>
-                                </g:each>
-                            </g:if>
-                            <g:elseif test="${tech.valueType =='http://bio.icmc.usp.br/sustenagro#Real' }">
-                                <input type="text" class="form-control" name="${tech.id}" value="${values[tech.id]}">
-                            </g:elseif>
-                        </div>
-                        <div class="col-sm-1">
-                            <button id="<%= tech.id %>-clear" type="button" class="btn btn-default btn-sm clear"><span class="glyphicon glyphicon-trash"></span></button>
-                        </div>
-                    </div>
-                </g:if>
-            </g:each>
-        </fieldset>
-    </g:each>
+
+    <g:render template="/widgets/indicatorList" model="${[subClasses: tecSubClass,
+                                                          indsInSubClasses: technologyFeatures,
+                                                          categories: tecCategories,
+                                                          values: values,
+                                                          hasWeights: true,
+                                                          weights: weights,
+                                                          tecAlignment: tecAlignment,
+                                                          tecOptimization: tecOptimization]}" />
         <div>
             <nav>
                 <ul class="pager">

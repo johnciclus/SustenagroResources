@@ -9,13 +9,13 @@ import utils.Uri
 
 class AdminController {
 
-    def dsl
-    def slp
     def ontology
+    def dsl
+    def k
 
     def index(){
-        def indicators = getIndicators()
-        def dimensions = getDimensions()
+        def indicators = k[':Indicator'].getIndicators()
+        def dimensions = k[':Indicator'].getDimensions()
 
         Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#", '')
         Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#", '')
@@ -48,15 +48,15 @@ class AdminController {
     }
 
     def indicators(){
-        def outgoingLinks = slp.query(":${params.id_base} ?p ?o. FILTER( ?o != :${params.id_base})", '', '*')
-        def incomingLinks = slp.query("?s ?p :${params.id_base}. FILTER( ?s != :${params.id_base})", '', '*')
+        def outgoing = k[params.id_base].outgoingLinks()
+        def incoming = k[params.id_base].incomingLinks()
 
-        println outgoingLinks
-        println incomingLinks
+        println outgoing
+        println incoming
 
         if(params.id_base != params.id){
             println "different id"
-            if(incomingLinks.size() == 0){
+            if(incoming.size() == 0){
                 println "Zero incoming links"
             }
         }
@@ -81,14 +81,14 @@ class AdminController {
 
         manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
 
-        slp.removeAll()
+        k.removeAll()
 
-        slp.loadRDF(new ByteArrayInputStream(out.toByteArray()))
+        k.loadRDF(new ByteArrayInputStream(out.toByteArray()))
 
         //error not load data properties
-        //slp.g.loadRDF(new ByteArrayInputStream(out.toByteArray()), 'http://bio.icmc.usp.br/sustenagro#', 'rdf-xml', null)
+        //k.g.loadRDF(new ByteArrayInputStream(out.toByteArray()), 'http://bio.icmc.usp.br/sustenagro#', 'rdf-xml', null)
 
-        //slp.g.commit()
+        //k.g.commit()
 
         //File localFolder = new File("TestingOntology")
         //manager.addIRIMapper(new AutoIRIMapper(localFolder, true))
@@ -101,56 +101,8 @@ class AdminController {
 
     }
 
-    def getIndicator(String id){
-        slp.select("distinct ?valuetype ?label ?dimension ?attribute")
-            .query("?dimension rdfs:subClassOf :Indicator."+
-            "?attribute rdfs:subClassOf ?dimension."+
-            "$id rdfs:subClassOf ?attribute; rdfs:label ?label."+
-            "$id rdfs:subClassOf ?y."+
-            "?y  owl:onClass ?valuetype."+
-            "FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != $id )")
-    }
-
-    def getIndicators(){
-        slp.select("distinct ?id ?valuetype ?label ?dimension ?attribute")
-            .query('''?dimension rdfs:subClassOf :Indicator.
-            ?attribute rdfs:subClassOf ?dimension.
-            ?id rdfs:subClassOf ?attribute; rdfs:label ?label.
-            ?id rdfs:subClassOf ?y.
-            ?y  owl:onClass ?valuetype.
-            FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != ?id )''',
-            'ORDER BY ?id')
-    }
-
-    def getDataValues(){
-        slp.query('''?valuetype rdfs:subClassOf :Value.
-            FILTER( ?valuetype != :Value && !isBlank(?valuetype) )''')
-    }
-
-    def getDimensions(){
-        slp.select("distinct ?id ?label")
-            .query('''?id rdfs:subClassOf :Indicator.
-            ?attribute rdfs:subClassOf ?id.
-            ?indicator rdfs:subClassOf ?attribute.
-            ?id rdfs:label ?label.
-            FILTER( ?id != :Indicator && ?id != ?attribute && ?id != ?indicator && ?attribute != ?indicator)''')
-    }
-
-    def getAttributes(String dimension) {
-        slp.select("distinct ?attribute")
-            .query("?attribute rdfs:subClassOf ${dimension}."+
-            "?indicator rdfs:subClassOf ?attribute."+
-            "FILTER( ?attribute != ${dimension} && ?attribute != ?indicator)")
-    }
-
-    def getOptions(String cls) {
-        slp.query("?id rdf:type $cls. "+
-            "?id rdfs:label ?label. " +
-            "?id :dataValue ?value.")
-    }
-
     def attributes(){
-        def attr = getAttributes(':'+params['dimension'])
+        def attr = k[':'+params['dimension']].getAttributes()
         println attr
 
         Uri.simpleDomain(attr, 'http://bio.icmc.usp.br/sustenagro#')
@@ -161,22 +113,22 @@ class AdminController {
     def indicatorForm(){
         def id = params['id']
         def data = [:]
-        def result = Uri.simpleDomain(getIndicator(':'+id), "http://bio.icmc.usp.br/sustenagro#", '')
+        def result = Uri.simpleDomain(k[':'+id].getIndicator(), "http://bio.icmc.usp.br/sustenagro#", '')
 
         if(result.size() == 1){
             data['indicator'] = result[0]
             data['indicator']['id'] = id
-            data['valuetypes'] = Uri.simpleDomain(getDataValues(), "http://bio.icmc.usp.br/sustenagro#", '')
-            data['dimensions'] = Uri.simpleDomain(getDimensions(), "http://bio.icmc.usp.br/sustenagro#", '')
+            data['valuetypes'] = Uri.simpleDomain(k[':Value'].getDataValues(), "http://bio.icmc.usp.br/sustenagro#", '')
+            data['dimensions'] = Uri.simpleDomain(k[':Indicator'].getDimensions(), "http://bio.icmc.usp.br/sustenagro#", '')
             data['attributes'] = [:]
             data['options'] = [:]
 
             data['dimensions'].each{
-                data['attributes'][it.id] = Uri.simpleDomain(getAttributes(':'+it.id), "http://bio.icmc.usp.br/sustenagro#", '')
+                data['attributes'][it.id] = Uri.simpleDomain(k[':'+it.id].getAttributes(), "http://bio.icmc.usp.br/sustenagro#", '')
             }
 
             data['valuetypes'].each{
-                data['options'][it.valuetype] = Uri.simpleDomain(getOptions(':'+it.valuetype), "http://bio.icmc.usp.br/sustenagro#", '')
+                data['options'][it.valuetype] = Uri.simpleDomain(k[':'+it.valuetype].getOptions(), "http://bio.icmc.usp.br/sustenagro#", '')
             }
 
             if(data['indicator']['valuetype'] == 'Real'){
@@ -203,9 +155,9 @@ class AdminController {
 
         if(params['word']){
             def cmds = commands.findAll{ it.contains(params['word']) }
-            def identifiers = slp.select('distinct ?s').query("?s ?p ?o. FILTER regex(str(?s), 'http://bio.icmc.usp.br/sustenagro#$params.word', 'i')")
+            def identifiers = k[':Indicator'].selectSubject(params.word)
             Uri.simpleDomain(identifiers,'http://bio.icmc.usp.br/sustenagro#','')
-            def labels = slp.select('distinct ?label').query("?s rdfs:label ?label. FILTER regex(str(?label), '$params.word', 'i')")
+            def labels = k[':Indicator'].selectLabel(params.word)
             cmds.each{list.push(['name': it, 'value': it, 'score': 2000, 'meta': 'command'])}
             identifiers.each{list.push(['name': it.s, 'value': it.s, 'score': 2000, 'meta': 'identifier'])}
             labels.each{list.push(['name': it.label, 'value': it.label, 'score': 2000, 'meta': 'label'])}
@@ -216,4 +168,71 @@ class AdminController {
 
         render list as JSON
     }
+
+    /*
+    def getIndicator(String id){
+        k.select("distinct ?valuetype ?label ?dimension ?attribute")
+            .query("?dimension rdfs:subClassOf :Indicator."+
+            "?attribute rdfs:subClassOf ?dimension."+
+            "$id rdfs:subClassOf ?attribute; rdfs:label ?label."+
+            "$id rdfs:subClassOf ?y."+
+            "?y  owl:onClass ?valuetype."+
+            "FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != $id )")
+    }
+
+
+    def getIndicators(){
+        k.select("distinct ?id ?valuetype ?label ?dimension ?attribute")
+            .query('''?dimension rdfs:subClassOf :Indicator.
+            ?attribute rdfs:subClassOf ?dimension.
+            ?id rdfs:subClassOf ?attribute; rdfs:label ?label.
+            ?id rdfs:subClassOf ?y.
+            ?y  owl:onClass ?valuetype.
+            FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != ?id )''',
+            'ORDER BY ?id')
+    }
+
+    def getDataValues(){
+        k.query('''?valuetype rdfs:subClassOf :Value.
+            FILTER( ?valuetype != :Value && !isBlank(?valuetype) )''')
+    }
+
+    def getDimensions(){
+        k.select("distinct ?id ?label")
+            .query('''?id rdfs:subClassOf :Indicator.
+            ?attribute rdfs:subClassOf ?id.
+            ?indicator rdfs:subClassOf ?attribute.
+            ?id rdfs:label ?label.
+            FILTER( ?id != :Indicator && ?id != ?attribute && ?id != ?indicator && ?attribute != ?indicator)''')
+    }
+
+    def getAttributes(String dimension) {
+        k.select("distinct ?attribute")
+            .query("?attribute rdfs:subClassOf ${dimension}."+
+            "?indicator rdfs:subClassOf ?attribute."+
+            "FILTER( ?attribute != ${dimension} && ?attribute != ?indicator)")
+    }
+
+    def getOptions(String cls) {
+        k.query("?id rdf:type $cls. "+
+            "?id rdfs:label ?label. " +
+            "?id :dataValue ?value.")
+    }
+
+    def outgoingLinks(String cls){
+        k.query(":$cls ?p ?o. FILTER( ?o != :$cls)", '', '*')
+    }
+
+    def incomingLinks(String cls){
+        k.query("?s ?p :$cls. FILTER( ?s != :$cls)", '', '*')
+    }
+
+    def selectSubject(String word){
+        k.select('distinct ?s').query("?s ?p ?o. FILTER regex(str(?s), 'http://bio.icmc.usp.br/sustenagro#$word', 'i')")
+    }
+
+    def selectLabel(String word){
+        k.select('distinct ?label').query("?s rdfs:label ?label. FILTER regex(str(?label), '$word', 'i')")
+    }
+    */
 }

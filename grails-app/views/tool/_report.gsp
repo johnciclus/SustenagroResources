@@ -2,6 +2,9 @@
     <g:if test="${it[0] == 'show'}">
         <%= it[1] %>
     </g:if>
+    <g:elseif test="${it[0] == 'linebreak'}">
+        <p>&nbsp;</p>
+    </g:elseif>
     <g:elseif test="${it[0] == 'recommendation'}">
         <div class="section">
             <div class='text-primary'>Recomendação</div>
@@ -9,8 +12,33 @@
             <div><%= it[1]  %></div>
         </div>
     </g:elseif>
+    <g:elseif test="${it[0] == 'table'}">
+        <div class="section">
+            <table data-toggle="table" class="table">
+                <thead>
+                    <tr>
+                        <g:each var="col" in="${it[2]}">
+                            <th data-field="${col.key}">${col.value}</th>
+                        </g:each>
+                    </tr>
+                </thead>
+                <tbody>
+                <g:each status="i" var="row" in="${it[1]}">
+                    <tr data-index="${i}">
+                    <g:each var="col" in="${it[2]}">
+                        <td>${row[col.key]}</td>
+                    </g:each>
+                    </tr>
+                </g:each>
+                </tbody>
+            </table>
+        </div>
+    </g:elseif>
     <g:elseif test="${it[0] == 'matrix'}">
         <div class="section">
+            <div id="recomendations">
+
+            </div>
             <div id="graphic">
 
             </div>
@@ -19,12 +47,12 @@
             <script type="text/javascript">
                 var recomendations = [];
                 <g:each var="recomendation" in="${it[8]}">
-                    recomendations.push([${recomendation[0]}, ${recomendation[1]}, "${recomendation[2]}"]);
+                    recomendations.push("${recomendation}");
                 </g:each>
 
                 var result = Matrix("#graphic", {x: ${it[1]}, y: ${it[2]}, label_x: "${it[3]}", label_y: "${it[4]}", range_x: ${it[5]}, range_y: ${it[6]}, quadrants: ${it[7]}, recomendations: recomendations });
-                $("#graphic").append("<p><i>Quadrante : </i>"+result.quadrant+"</p>");
-                $("#graphic").append("<p><i>Recomendation: </i>"+result.recomendation+"</p>");
+                $("#recomendations").append("<p>Quadrante : "+result.quadrant+"</p>");
+                $("#recomendations").append("<p>Recomendação: "+result.recomendation+"</p>");
             </script>
         </div>
     </g:elseif>
