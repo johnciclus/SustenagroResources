@@ -16,6 +16,7 @@
             <li role="presentation"> <a href="#efficiency_assessment" aria-controls="efficiency_assessment" role="tab" data-toggle="tab">Avaliação da eficiência</a></li>
             <g:if test="${report != null}">
             <li role="presentation" class="active">                <a href="#report" aria-controls="report" role="tab" data-toggle="tab">        Relatório</a>         </li>
+            <li role="presentation"> <a href="#recomendation" aria-controls="recomendation" role="tab" data-toggle="tab">        Recomendação</a>         </li>
             </g:if>
         </ul>
         <form id="assessment_form" action="/tool/report" method="post" class="form-horizontal">
@@ -30,6 +31,16 @@
                 <g:if test="${report != null}">
                 <div role="tabpanel" class="tab-pane ind-content active" id="report">
                     <g:render template="report"></g:render>
+                    <div>
+                        <nav>
+                            <ul class="pager">
+                                <li><a href="#sustainability_assessment">Anterior</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane ind-content" id="recomendation">
+                    <g:render template="recomendation"></g:render>
                     <div>
                         <nav>
                             <ul class="pager">
