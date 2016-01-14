@@ -67,6 +67,8 @@ dependencies {
 
     compile 'org.apache.jena:jena:3.0.0'
     compile 'org.apache.jena:jena-arq:3.0.0'
+    compile 'org.apache.jena:jena-iri:3.0.0'
+
     compile 'net.sourceforge.owlapi:owlapi-api:4.1.0-RC2'
     compile 'net.sourceforge.owlapi:owlapi-apibinding:4.1.0-RC2'
     //compile 'com.github.jsonld-java:jsonld-java:0.5.1'
@@ -124,12 +126,14 @@ task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion
 }
 
-war {
-    from('dsl') {
-        include 'dsl.groovy'
-        include 'dsl-bk.groovy'
-        into('dsl')
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'sustenagro': 'Gradle Jar File',
+                'Implementation-Version': version
+//                'Main-Class': 'Test'
+
     }
-    baseName = 'sustenagro'
-    version =  '1'
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }

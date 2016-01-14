@@ -32,10 +32,10 @@ class ToolController {
     }
 
     def createProductionUnit() {
-
+        //println params
         def production_unit_id = new Slugify().slugify(params.productionunit_name)
 
-        String sparql = ":" + production_unit_id +
+        String sparql = "<"+ k.toURI(":" + production_unit_id) +">"+
                         " rdf:type <"+    params.productionunit_types+">;"+
                         " rdfs:label '"+  params.productionunit_name+"'@pt"
 
@@ -52,7 +52,6 @@ class ToolController {
         //"dbp:Microregion <http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos>;"
         //":AgriculturalEfficiency :HighAgriculturalEfficiency.")
 
-
         /*k.addNode(
             N(':'+production_unit_id,
             'rdf:type': k.v(params['productionunit_types']),
@@ -61,8 +60,6 @@ class ToolController {
             //'sa:culture': k.v(params['production_unit_culture']),
             //':AgriculturalEfficiency': k.v(params['production_unit_technology'])
         ))
-
-
 
         if(params['agriculturalefficiency'])
             k.g.addEdge(k.v(':' + production_unit_id), k.v(params['agriculturalefficiency']), k.toURI(':AgriculturalEfficiency'))
@@ -109,6 +106,7 @@ class ToolController {
         def tecSubClass
         def tecAlignment
         def tecOptimization
+        def technologyTypes
 
         dsl.dimensions.each{
             indicators[it] = k[it].getGrandchildren()
@@ -143,7 +141,7 @@ class ToolController {
         }
         proSubClass = proSubClass.sort{ it.value.label.toLowerCase() }
 
-        def technologyTypes = []
+        technologyTypes = []
         technologyFeatures = []
 
         switch(k[params.id].getProductionUnitType()){
@@ -153,7 +151,7 @@ class ToolController {
             case 'http://dbpedia.org/resource/PhysicalPlant':
                 technologyTypes.push(':TechnologicalEfficiencyInTheIndustrial')
                 break
-            case 'http://bio.icmc.usp.br/sustenagro#FarmAndProvider':
+            case 'http://bio.icmc.usp.br/sustenagro#PlantAndProvider':
                 technologyTypes.push(':TechnologicalEfficiencyInTheIndustrial')
                 technologyTypes.push(':TechnologicalEfficiencyInTheField')
                 break
@@ -237,7 +235,7 @@ class ToolController {
         def num = k[production_unit_id].getAssessments().size() + 1
         def assessment_name = production_unit_id+"-assessment-"+num
 
-        k.insert( ":" + assessment_name +
+        k.insert( "<"+ k.toURI(":" + assessment_name) +">"+
                     " rdf:type :Evaluation;"+
                     " :appliedTo :"+ production_unit_id +";"+
                     " rdfs:label 'Avaliação "+  num +"'@pt.")

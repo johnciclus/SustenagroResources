@@ -46,6 +46,8 @@ class DataReader {
         }
         else if(classList.contains(['subClass': 'http://dbpedia.org/ontology/MicroRegion'])){
             try {
+                println "ID"
+                println id
                 res = k[id].getMap('?map')
             }
             catch (e) {

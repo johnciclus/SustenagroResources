@@ -37,8 +37,10 @@ import org.apache.jena.query.Syntax
 import org.apache.jena.sparql.modify.UpdateProcessRemoteForm
 import org.apache.jena.update.UpdateExecutionFactory
 import org.apache.jena.update.UpdateFactory
-import org.apache.jena.update.UpdateProcessor
 import org.apache.jena.update.UpdateRequest
+import org.apache.jena.update.UpdateProcessor
+import org.apache.jena.sparql.util.Context
+import org.apache.jena.sparql.util.Symbol
 import org.apache.jena.rdf.model.Model
 import org.apache.jena.rdf.model.ModelFactory
 import org.apache.jena.shared.JenaException
@@ -365,8 +367,32 @@ class Sparql {
      * This method will attempt to use the updateEndpoint, and default to endpoint
      *
      */
-    void update(String query) {
+    void update(String sparql) {
         try {
+            UpdateRequest request = UpdateFactory.create(sparql, Syntax.syntaxARQ)
+            UpdateProcessor up = UpdateExecutionFactory.createRemoteForm(request, endpoint);
+            up.execute();
+        } catch (Exception e) {
+            System.err.println("Error $endpoint $queryString ${e.getMessage()}");
+            e.printStackTrace();
+        }
+        //Context ctx = new Context()
+        //println "Sparql encode"
+        //println URLEncoder.encode(sparql)
+
+        //ctx.set(Symbol.create('update'), URLEncoder.encode(sparql))
+        //UpdateProcessRemoteForm processor = new UpdateProcessRemoteForm(request, endpoint, ctx)
+
+        //UpdateProcessor up = UpdateExecutionFactory.createRemote(request, endpoint)
+        //up.execute()
+        /*try {
+            println up.execute()
+        }
+        catch (JenaException e) {
+            log.error "Error executing update with ${sparql}", e
+        }/*
+
+        /*try {
             HttpContext httpContext = new BasicHttpContext()
             CredentialsProvider provider = new BasicCredentialsProvider()
             //provider.setCredentials(new AuthScope(AuthScope.ANY_HOST,
@@ -375,7 +401,7 @@ class Sparql {
 
             UpdateRequest request = UpdateFactory.create()
 
-            request.add(query)
+            request.add(sparql)
 
             def ep = (updateEndpoint != null) ? updateEndpoint: endpoint
 
@@ -385,9 +411,9 @@ class Sparql {
             processor.execute()
 
         } catch (JenaException e) {
-            log.error "Error executing update with ${query}", e
+            log.error "Error executing update with ${sparql}", e
             throw new SparqlException(e)
-        }
+        }*/
     }
 
     /**

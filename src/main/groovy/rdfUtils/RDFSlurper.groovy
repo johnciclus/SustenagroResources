@@ -302,6 +302,7 @@ class RDFSlurper {
 
     def update(String q){
         def f = "$prefixes \n $q"
+        //println f
         sparql.update(f)
     }
 

@@ -559,14 +559,14 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -969,15 +969,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;ProductivityAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1292,15 +1292,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;RegulatoryAttendanceAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1552,15 +1552,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;InvestmentsAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1630,15 +1630,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;ProductivityAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1772,15 +1772,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;ProductivityAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1796,15 +1796,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;EnergyAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1881,15 +1881,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;PlantingAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1949,15 +1949,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;SoilsAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;PlantingPlanConsideringThePrecursorUseOfAreaCategory"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;PlantingPlanConsideringThePrecursorUseOfAreaCategory"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2174,15 +2174,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;ProductivityAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2226,15 +2226,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;ProductivityAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;ProductivityOfSugarcanePerHectareCategory"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;ProductivityOfSugarcanePerHectareCategory"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2311,15 +2311,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;PlantingAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2423,15 +2423,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;ProductivityAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2457,15 +2457,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;JobsAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2793,15 +2793,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;ProductivityAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;TotalRecoverableSugarIndexCategory"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;TotalRecoverableSugarIndexCategory"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2866,15 +2866,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;HarvestAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2900,15 +2900,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;SafetyAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;ExistNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;ExistNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2934,15 +2934,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;SoilsAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2958,15 +2958,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;PlantingAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3054,15 +3054,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;SubProductsAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;YesNo"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3163,15 +3163,15 @@
         <rdfs:subClassOf rdf:resource="&sustenagro;SubProductsAttribute"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;value"/>
-                <owl:onClass rdf:resource="&sustenagro;UseOfVinasseToFertigationCategory"/>
+                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
+                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&sustenagro;hasWeight"/>
-                <owl:onClass rdf:resource="&sustenagro;IndicatorWeight"/>
+                <owl:onProperty rdf:resource="&sustenagro;value"/>
+                <owl:onClass rdf:resource="&sustenagro;UseOfVinasseToFertigationCategory"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4577,8 +4577,8 @@
     <owl:NamedIndividual rdf:about="&sustenagro;MechanizedHarvest">
         <rdf:type rdf:resource="&sustenagro;HarvestTypeUsedCategory"/>
         <rdfs:label xml:lang="en">Mechanized</rdfs:label>
+        <rdfs:label xml:lang="pt">Mecanizado</rdfs:label>
         <dataValue rdf:datatype="&xsd;double">2.0</dataValue>
-        <rdfs:comment xml:lang="pt">Mecanizado</rdfs:comment>
     </owl:NamedIndividual>
     
 
