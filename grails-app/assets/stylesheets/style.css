@@ -17,6 +17,28 @@ body {
 	font-family: Georgia, "Times New Roman", Times, serif;
 }
 
+@media (min-width: 768px){
+	.container {
+		width: auto;
+	}
+}
+
+@media (min-width: 992px){
+	.container {
+		width: 970px;
+	}
+}
+
+@media (min-width: 1200px){
+	.container {
+		width: 1170px;
+	}
+}
+
+fieldset{
+	margin-bottom: 22px;
+}
+
 .full {
   background: url(/assets/sugarcane.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -31,7 +53,7 @@ body {
 	padding-left: 0px;
 	padding-right: 0px;
 	
-	background-color: rgba(255, 255, 255, 0.95);
+	background-color: rgba(255, 255, 255, 0.96);
 	border: 1px solid #dddddd;
 }
 
@@ -47,7 +69,7 @@ body {
   margin: 0px;
   text-align: center;  
   
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 1.0);
 	border-top: 1px solid #dddddd;
 }
 
@@ -65,7 +87,7 @@ body {
 }
 
 .content, .left-content, .right-content{
-	background-color: rgba(255, 255, 255, 0.4);
+	background-color: rgba(255, 255, 255, 1.00);
 	text-align: justify;
 }
 
@@ -90,32 +112,12 @@ body {
 	margin-bottom: 30px;
 }
 
-#toolContent{
-	padding: 20px;
-	background-color: #ffffff;
-	border-bottom: 	1px solid #dddddd;
-	border-left: 		1px solid #dddddd;
-	border-right: 	1px solid #dddddd;
-}
-
-#toolContent ul, #toolContent ol{
-	margin-left: 20px;
-}
-
-#toolContent table{
-	border: 1px solid #dddddd;
-}
-
-#toolContent .btn-group{
-	margin-bottom: 20px; 
-}
-
 .editor {
-    height: 800px;
-    border: 1px solid #DDD;
-    border-radius: 4px;
-    border-bottom-right-radius: 0px;
-    margin-top: 5px;
+	height: 800px;
+	border: 1px solid #DDD;
+	border-radius: 4px;
+	border-bottom-right-radius: 0px;
+	margin-top: 5px;
 }
 
 .input-xs {
@@ -126,30 +128,12 @@ body {
 	border-radius: 3px;
 }
 
-#map-canvas {
-	height: 600px;
-	margin: 0;
-	padding: 0;
-}
-
 .ind-content{
 	padding: 15px 0px;
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
 	background-color: #fff;
-}
-
-#indicator_tabs, #indicator_content, #indicator_editor, #efficiency_tabs, #efficiency_content {
-	padding: 0px 15px;
-}
-
-.spinner {
-	width: 100px;
-}
-
-.spinner input {
-	text-align: right;
 }
 
 .input-group-btn-vertical {
@@ -190,19 +174,63 @@ body {
 	padding: 15px 0px;
 }
 
-#indicator_content .form-group, #indicator_editor .form-group, #efficiency_content .form-group, #efficiency_content .form-group{
-	margin-bottom: 25px;
-}
-
 .clear{
 	margin-top: 9px;
 }
 
-#assessment_tab > li > a{
-	background-color: #eeeeee;
-	border: 1px solid #ddd;
+.form-inline-block{
+	display: inline-block;
+	margin: 0 2px;
 }
 
+.input-text-lg{
+	font-size: 13px;
+}
+
+.ace_error-line{
+	position: absolute;
+	background: rgba(228, 53, 58, 0.75);
+	z-index:40;
+}
+
+#toolContent{
+	padding: 20px;
+	background-color: #fff;
+	border-bottom: 	1px solid #ddd;
+	border-left: 	1px solid #ddd;
+	border-right: 	1px solid #ddd;
+}
+
+#toolContent ul, #toolContent ol{
+	margin-left: 20px;
+}
+
+#toolContent table{
+	border: 1px solid #dddddd;
+}
+
+#toolContent .btn-group{
+	margin-bottom: 20px; 
+}
+
+#map-canvas {
+	height: 600px;
+	margin: 0;
+	padding: 0;
+}
+
+#indicator_tabs, #indicator_content, #indicator_editor, #efficiency_tabs, #efficiency_content {
+	padding: 0px 15px;
+}
+
+#indicator_content .form-group, #indicator_editor .form-group, #efficiency_content .form-group, #efficiency_content .form-group{
+	margin-bottom: 25px;
+}
+
+#assessment_tab > li > a{
+	background-color: #eee;
+	border: 1px solid #ddd;
+}
 
 #assessment_tab > .active > a{
 	color: #ffffff;
@@ -220,22 +248,5 @@ body {
     margin: 0 auto;
 }
 
-.form-inline-block{
-	display: inline-block;
-    margin: 0 2px;
-}
 
-.input-text-lg{
-	font-size: 13px;
-}
-
-.ace_error-line{
-	position: absolute;
-	background: rgba(228, 53, 58, 0.75);
-	z-index:40;
-}
-
-fieldset{
-	margin-bottom: 22px;
-}
 

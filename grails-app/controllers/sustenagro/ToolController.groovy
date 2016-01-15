@@ -109,7 +109,7 @@ class ToolController {
         def technologyTypes
 
         dsl.dimensions.each{
-            indicators[it] = k[it].getGrandchildren()
+            indicators[it] = k[it].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
             indCategories += propertyToList(indicators[it], 'category')
             indSubClass[it] = propertyToMap(indicators[it], 'subClass')
         }
@@ -126,7 +126,7 @@ class ToolController {
             indSubClass[dimension] = map.sort{ it.value.label.toLowerCase() }
         }
 
-        productionFeatures = k[':ProductionEfficiencyFeature'].getGrandchildren()
+        productionFeatures = k[':ProductionEfficiencyFeature'].getGrandchildren('?id ?label ?subClass ?category ?valueType')
 
         proCategories = propertyToList(productionFeatures, 'category')
         proCategories.each{ key, v ->
@@ -187,7 +187,7 @@ class ToolController {
         if (assessmentID != null) {
 
             dsl.dimensions.each{ String dim ->
-                k[dim].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value').each{
+                k[dim].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value ?weight').each{
                     values[it.id] = it.value
                 }
             }
@@ -243,7 +243,7 @@ class ToolController {
         def indicators = []
 
         dsl.dimensions.each{
-            indicators += k[it].getGrandchildren()
+            indicators += k[it].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
         }
 
         def value
@@ -265,7 +265,7 @@ class ToolController {
             }
         }
 
-        def productionFeatures = k[':ProductionEfficiencyFeature'].getGrandchildren()
+        def productionFeatures = k[':ProductionEfficiencyFeature'].getGrandchildren('?id ?label ?subClass ?category ?valueType')
 
         productionFeatures.each{
             if(params[it.id]){
@@ -285,7 +285,7 @@ class ToolController {
             }
         }
 
-        def TechnologicalEfficiency = k[':TechnologicalEfficiencyFeature'].getGrandchildren()
+        def TechnologicalEfficiency = k[':TechnologicalEfficiencyFeature'].getGrandchildren('?id ?label ?subClass ?category ?valueType')
         def weight
 
         TechnologicalEfficiency.each{

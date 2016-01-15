@@ -28,7 +28,7 @@ class DataReader {
 
         def classList = k[uri].getSuperClass()
 
-        if(classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#Indicator']) || classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#ProductionEfficiencyFeature'])){
+        if(classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#ProductionEfficiencyFeature'])){
             try{
                 res = k[uri].getIndividualsValue(id, '?ind ?label ?valueType ?valueTypeLabel ?value')
             }
@@ -36,9 +36,17 @@ class DataReader {
                 res = []
             }
         }
+        else if(classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#Indicator'])){
+            try{
+                res = k[uri].getIndividualsValueWeight(id, '?ind ?label ?valueType ?valueTypeLabel ?value ?weight')
+            }
+            catch (e){
+                res = []
+            }
+        }
         else if(classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyFeature'])){
             try{
-                res = k[uri].getIndividualsValueWeight(id, '?ind ?label ?valueType ?valueTypeLabel ?value ?weightType ?weightTypeLabel ?weight')
+                res = k[uri].getIndividualsFeatureValueWeight(id, '?ind ?label ?valueType ?valueTypeLabel ?value ?weightType ?weightTypeLabel ?weight')
             }
             catch (e){
                 res = []
