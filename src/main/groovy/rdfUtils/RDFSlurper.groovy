@@ -240,9 +240,7 @@ class RDFSlurper {
         //g.loadRDF(new FileInputStream(file), 'http://biomac.icmc.usp.br/sustenagro#', 'rdf-xml', null)
     }
 
-    def removeAll(String data){
-        delete("?s ?p ?o")
-    }
+
 
     //    def sparql(String q) {
     //        def ret = []
@@ -277,34 +275,6 @@ class RDFSlurper {
     }
     */
 
-    def select(str){
-        select = str
-        this
-    }
-
-    def query(String q, String order='', String lang = this.lang) {
-        def f = "$prefixes \nselect $select where {$q} ${order}"
-        select = '*'
-        //println f+"\n"
-        sparql.query(f, lang)
-    }
-
-    def insert(String q, String lang = this.lang){
-        def f = "$prefixes \nINSERT DATA {$q}"
-        //println f
-        sparql.update(f)
-    }
-
-    def delete(String q){
-        def f = "$prefixes \n DELETE where {$q}"
-        sparql.update(f)
-    }
-
-    def update(String q){
-        def f = "$prefixes \n $q"
-        //println f
-        sparql.update(f)
-    }
 
     def loadRDF(InputStream is){
         Model m = ModelFactory.createDefaultModel()
@@ -475,18 +445,6 @@ class RDFSlurper {
                 break
         }
         return result
-    }
-
-    def existOntology(String uri){
-        def existOnt = false
-        def result = query("?o rdf:type owl:Ontology")
-
-        result.each{
-            if(it.o == uri)
-                existOnt = true
-        }
-
-        existOnt
     }
 
 }

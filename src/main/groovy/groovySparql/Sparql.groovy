@@ -34,13 +34,10 @@ import org.apache.jena.query.QuerySolution
 import org.apache.jena.query.QuerySolutionMap
 import org.apache.jena.query.ResultSet
 import org.apache.jena.query.Syntax
-import org.apache.jena.sparql.modify.UpdateProcessRemoteForm
 import org.apache.jena.update.UpdateExecutionFactory
 import org.apache.jena.update.UpdateFactory
 import org.apache.jena.update.UpdateRequest
 import org.apache.jena.update.UpdateProcessor
-import org.apache.jena.sparql.util.Context
-import org.apache.jena.sparql.util.Symbol
 import org.apache.jena.rdf.model.Model
 import org.apache.jena.rdf.model.ModelFactory
 import org.apache.jena.shared.JenaException
@@ -445,6 +442,7 @@ class Sparql {
     }
 
     def query(String sparql, String lang) {
+        println lang
         Query query = QueryFactory.create(sparql, Syntax.syntaxARQ)
         QueryExecution qe = QueryExecutionFactory.sparqlService(endpoint, query)
 
@@ -470,7 +468,6 @@ class Sparql {
             }
         }*/
 
-
         def res = []
         try {
             QuerySolution sol
@@ -479,11 +476,13 @@ class Sparql {
             String varName
             RDFNode varNode
             Literal literal
+            boolean existingRow
 
             for (ResultSet rs = qe.execSelect(); rs.hasNext();) {
                 sol = rs.nextSolution()
                 row = [:]
                 add = true
+                existingRow = false
 
                 for (Iterator<String> varNames = sol.varNames(); varNames.hasNext();) {
                     varName = varNames.next()
@@ -492,20 +491,33 @@ class Sparql {
                     if(varNode.isLiteral())
                         literal = varNode.asLiteral()
 
-                    row.put(varName, (varNode.isLiteral() ? literal.value : varNode.toString()))
+                    if(varName != 'label' || literal.language == lang)
+                        row.put(varName, (varNode.isLiteral() ? literal.value : varNode.toString()))
+
+                    else if(lang == '*' && varNode.isLiteral() && literal.getLanguage()){
+
+                        if(row?.id && !res?.empty && (res.last().id == row.id)){
+                            res.last().put(varName+'@'+literal.getLanguage(), literal.getString())
+                            existingRow = true
+                        }
+                        else{
+                            row.put(varName+'@'+literal.getLanguage(), literal.getString())
+                        }
+                    }
+
+                    //println varNode.isLiteral()
+                    //println (varNode.isLiteral() ? literal.value : varNode.toString())
 
                     if (lang!='' &&
                         varNode.isLiteral() &&
                         literal.language!=null &&
-                        literal.language.size()>1 &&
-                        literal.language!=lang) add= false
+                        literal.language.size()>1 && literal.language!=lang) add = false
 
-                    if(lang == '*' && varNode.isLiteral() && literal.getLanguage()){
-                        row[varName] = literal.getString()+'@'+literal.getLanguage()
+                    if (lang=='*' &&
+                        varNode.isLiteral() &&
+                        literal.language!=null && !existingRow)
                         add = true
-                    }
                 }
-                //println 'row: '+row
                 if (add)
                     res.push(row)
                 //closure.delegate = row

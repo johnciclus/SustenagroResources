@@ -10,7 +10,7 @@
 	</head>
 	<body>
         <div class="row main">
-			<div id="content" class="col-sm-12 content">
+			<div id="content" class="col-md-12 content">
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#dsl">DSL Main</a></li>
 					<li><a data-toggle="tab" href="#indicators">Indicators Editor</a></li>
@@ -105,7 +105,7 @@
 					</div>
 					<div id="indicators" class="tab-pane fade">
 						<div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-sm-4 col-xs-6">
                                 <g:each var="el" in="${dimensions}">
                                     <div class="panel-group" id="accordion-${el.id}">
                                         <div class="panel panel-default">
@@ -119,7 +119,7 @@
                                                     <div class="list-group">
                                                     <g:each status="i" var="row" in="${indicators}">
                                                         <g:if test="${ row.dimension == el.id}">
-                                                            <button id="${row.id}" type="button" class="list-group-item indicator">${row.label}</button>
+                                                            <button id="${row.id}" type="button" class="list-group-item indicator">${row['label@pt']}</button>
                                                         </g:if>
                                                     </g:each>
                                                     </div>
@@ -129,7 +129,7 @@
                                     </div>
                                 </g:each>
                             </div>
-                            <div id="indicator_editor" class="col-sm-9">
+                            <div id="indicator_editor" class="col-md-9 col-sm-8 col-xs-6">
 
                             </div>
                             <script type="application/javascript">

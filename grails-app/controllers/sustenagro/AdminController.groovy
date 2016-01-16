@@ -115,6 +115,8 @@ class AdminController {
         def data = [:]
         def result = Uri.simpleDomain(k[':'+id].getIndicator(), "http://bio.icmc.usp.br/sustenagro#", '')
 
+        println result
+
         if(result.size() == 1){
             data['indicator'] = result[0]
             data['indicator']['id'] = id

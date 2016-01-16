@@ -230,18 +230,18 @@ class Node {
             "<$URI> rdfs:subClassOf ?attribute; rdfs:label ?label."+
             "<$URI> rdfs:subClassOf ?y."+
             "?y  owl:onClass ?valuetype."+
-            "FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != <$URI> )")
+            "FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != <$URI> )",'','*')
     }
 
     def getIndicators(){
         k.select("distinct ?id ?valuetype ?label ?dimension ?attribute")
-         .query('''?dimension rdfs:subClassOf :Indicator.
-            ?attribute rdfs:subClassOf ?dimension.
+         .query("?dimension rdfs:subClassOf <$URI>. "+
+         '''?attribute rdfs:subClassOf ?dimension.
             ?id rdfs:subClassOf ?attribute; rdfs:label ?label.
             ?id rdfs:subClassOf ?y.
-            ?y  owl:onClass ?valuetype.
-            FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != ?id )''',
-            'ORDER BY ?id')
+            ?y  owl:onClass ?valuetype.'''+
+            "FILTER( ?dimension != <$URI> && ?dimension != ?attribute && ?attribute != ?id )",
+            'ORDER BY ?id','*')
     }
 
     def getDataValues(){

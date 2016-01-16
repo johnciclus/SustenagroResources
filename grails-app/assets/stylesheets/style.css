@@ -193,6 +193,10 @@ fieldset{
 	z-index:40;
 }
 
+.list-group-item{
+	width: 100%;
+}
+
 #toolContent{
 	padding: 20px;
 	background-color: #fff;
