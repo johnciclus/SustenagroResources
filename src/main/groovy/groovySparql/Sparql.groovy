@@ -442,7 +442,6 @@ class Sparql {
     }
 
     def query(String sparql, String lang) {
-        println lang
         Query query = QueryFactory.create(sparql, Syntax.syntaxARQ)
         QueryExecution qe = QueryExecutionFactory.sparqlService(endpoint, query)
 
@@ -471,7 +470,7 @@ class Sparql {
         def res = []
         try {
             QuerySolution sol
-            Map<String, Object> row
+            Map<String, Object> row, last = [:]
             boolean add
             String varName
             RDFNode varNode
@@ -482,7 +481,6 @@ class Sparql {
                 sol = rs.nextSolution()
                 row = [:]
                 add = true
-                existingRow = false
 
                 for (Iterator<String> varNames = sol.varNames(); varNames.hasNext();) {
                     varName = varNames.next()
@@ -495,14 +493,7 @@ class Sparql {
                         row.put(varName, (varNode.isLiteral() ? literal.value : varNode.toString()))
 
                     else if(lang == '*' && varNode.isLiteral() && literal.getLanguage()){
-
-                        if(row?.id && !res?.empty && (res.last().id == row.id)){
-                            res.last().put(varName+'@'+literal.getLanguage(), literal.getString())
-                            existingRow = true
-                        }
-                        else{
-                            row.put(varName+'@'+literal.getLanguage(), literal.getString())
-                        }
+                        row.put(varName+'@'+literal.getLanguage(), literal.getString())
                     }
 
                     //println varNode.isLiteral()
@@ -512,12 +503,31 @@ class Sparql {
                         varNode.isLiteral() &&
                         literal.language!=null &&
                         literal.language.size()>1 && literal.language!=lang) add = false
-
-                    if (lang=='*' &&
-                        varNode.isLiteral() &&
-                        literal.language!=null && !existingRow)
-                        add = true
                 }
+
+                if (lang=='*'){
+                    existingRow = true
+                    row.each{ key, value ->
+                        if(!key.startsWith('label')){
+                            existingRow = existingRow && (last[key] == value)
+                            if(!existingRow) return true
+                        }
+                    }
+
+                    if(existingRow){
+                        row.each{ key, value ->
+                            if(key.startsWith('label')){
+                                last.put(key, value)
+                            }
+                        }
+                        add = false
+                    }
+                    else{
+                        add = true
+                    }
+                    last = row
+                }
+
                 if (add)
                     res.push(row)
                 //closure.delegate = row

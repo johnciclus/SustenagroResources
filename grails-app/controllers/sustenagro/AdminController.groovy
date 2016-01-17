@@ -147,7 +147,7 @@ class AdminController {
                            dimensions: data['dimensions'],
                            attributes: data['attributes'],
                            options: data['options'],
-                           ind_tags: ['id', 'label', 'dimension', 'attribute', 'valuetype']
+                           ind_tags: ['id', 'label@en', 'label@pt', 'dimension', 'attribute', 'valuetype']
                 ]);
     }
 
