@@ -34,11 +34,10 @@ import org.apache.jena.query.QuerySolution
 import org.apache.jena.query.QuerySolutionMap
 import org.apache.jena.query.ResultSet
 import org.apache.jena.query.Syntax
-import org.apache.jena.sparql.modify.UpdateProcessRemoteForm
 import org.apache.jena.update.UpdateExecutionFactory
 import org.apache.jena.update.UpdateFactory
-import org.apache.jena.update.UpdateProcessor
 import org.apache.jena.update.UpdateRequest
+import org.apache.jena.update.UpdateProcessor
 import org.apache.jena.rdf.model.Model
 import org.apache.jena.rdf.model.ModelFactory
 import org.apache.jena.shared.JenaException
@@ -365,8 +364,32 @@ class Sparql {
      * This method will attempt to use the updateEndpoint, and default to endpoint
      *
      */
-    void update(String query) {
+    void update(String sparql) {
         try {
+            UpdateRequest request = UpdateFactory.create(sparql, Syntax.syntaxARQ)
+            UpdateProcessor up = UpdateExecutionFactory.createRemoteForm(request, endpoint);
+            up.execute();
+        } catch (Exception e) {
+            System.err.println("Error $endpoint $queryString ${e.getMessage()}");
+            e.printStackTrace();
+        }
+        //Context ctx = new Context()
+        //println "Sparql encode"
+        //println URLEncoder.encode(sparql)
+
+        //ctx.set(Symbol.create('update'), URLEncoder.encode(sparql))
+        //UpdateProcessRemoteForm processor = new UpdateProcessRemoteForm(request, endpoint, ctx)
+
+        //UpdateProcessor up = UpdateExecutionFactory.createRemote(request, endpoint)
+        //up.execute()
+        /*try {
+            println up.execute()
+        }
+        catch (JenaException e) {
+            log.error "Error executing update with ${sparql}", e
+        }/*
+
+        /*try {
             HttpContext httpContext = new BasicHttpContext()
             CredentialsProvider provider = new BasicCredentialsProvider()
             //provider.setCredentials(new AuthScope(AuthScope.ANY_HOST,
@@ -375,7 +398,7 @@ class Sparql {
 
             UpdateRequest request = UpdateFactory.create()
 
-            request.add(query)
+            request.add(sparql)
 
             def ep = (updateEndpoint != null) ? updateEndpoint: endpoint
 
@@ -385,9 +408,9 @@ class Sparql {
             processor.execute()
 
         } catch (JenaException e) {
-            log.error "Error executing update with ${query}", e
+            log.error "Error executing update with ${sparql}", e
             throw new SparqlException(e)
-        }
+        }*/
     }
 
     /**
@@ -444,15 +467,15 @@ class Sparql {
             }
         }*/
 
-
         def res = []
         try {
             QuerySolution sol
-            Map<String, Object> row
+            Map<String, Object> row, last = [:]
             boolean add
             String varName
             RDFNode varNode
             Literal literal
+            boolean existingRow
 
             for (ResultSet rs = qe.execSelect(); rs.hasNext();) {
                 sol = rs.nextSolution()
@@ -466,20 +489,45 @@ class Sparql {
                     if(varNode.isLiteral())
                         literal = varNode.asLiteral()
 
-                    row.put(varName, (varNode.isLiteral() ? literal.value : varNode.toString()))
+                    if(varName != 'label' || literal.language == lang)
+                        row.put(varName, (varNode.isLiteral() ? literal.value : varNode.toString()))
+
+                    else if(lang == '*' && varNode.isLiteral() && literal.getLanguage()){
+                        row.put(varName+'@'+literal.getLanguage(), literal.getString())
+                    }
+
+                    //println varNode.isLiteral()
+                    //println (varNode.isLiteral() ? literal.value : varNode.toString())
 
                     if (lang!='' &&
                         varNode.isLiteral() &&
                         literal.language!=null &&
-                        literal.language.size()>1 &&
-                        literal.language!=lang) add= false
+                        literal.language.size()>1 && literal.language!=lang) add = false
+                }
 
-                    if(lang == '*' && varNode.isLiteral() && literal.getLanguage()){
-                        row[varName] = literal.getString()+'@'+literal.getLanguage()
+                if (lang=='*'){
+                    existingRow = true
+                    row.each{ key, value ->
+                        if(!key.startsWith('label')){
+                            existingRow = existingRow && (last[key] == value)
+                            if(!existingRow) return true
+                        }
+                    }
+
+                    if(existingRow){
+                        row.each{ key, value ->
+                            if(key.startsWith('label')){
+                                last.put(key, value)
+                            }
+                        }
+                        add = false
+                    }
+                    else{
                         add = true
                     }
+                    last = row
                 }
-                //println 'row: '+row
+
                 if (add)
                     res.push(row)
                 //closure.delegate = row

@@ -70,9 +70,9 @@ data 'assessment'
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
-    environment =   sum(assessment.':EnvironmentalIndicator'.value())
-    social      =   sum(assessment.':EconomicIndicator'.value())
-    economic    =   sum(assessment.':SocialIndicator'.value())
+    environment =   sum(assessment.':EnvironmentalIndicator'.equation({value*weight}))
+    social      =   sum(assessment.':SocialIndicator'.equation({value*weight}))
+    economic    =   sum(assessment.':EconomicIndicator'.equation({value*weight}))
     
     sustainability = (environment + social + economic)/3
                      
@@ -165,7 +165,7 @@ prog {
     
     show '**Indicadores Ambientais**'
     
-    table assessment.':EnvironmentalIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
+    table assessment.':EnvironmentalIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso']
     
     show 'Índice ambiental: '+ environment
     
@@ -173,7 +173,7 @@ prog {
     
     show '**Indicadores Econômicos**'
     
-    table assessment.':EconomicIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
+    table assessment.':EconomicIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso']
     
     show 'Índice econômico: '+ economic
     
@@ -181,7 +181,7 @@ prog {
     
     show '**Indicadores Sociais**'
     
-    table assessment.':SocialIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
+    table assessment.':SocialIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso']
     
     show 'Índice social: '+ social
     

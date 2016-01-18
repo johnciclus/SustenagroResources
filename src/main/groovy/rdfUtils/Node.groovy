@@ -67,19 +67,28 @@ class Node {
         return res
     }
 
-    def getGrandchildren(){
-        k.select('distinct ?id ?label ?subClass ?category ?valueType')
-                .query("?subClass rdfs:subClassOf <$URI>."+
-                     '''?id rdfs:subClassOf ?subClass; rdfs:label ?label.
-                        ?id rdfs:subClassOf ?y.
-                        ?y owl:onClass ?category.
-                        ?category rdfs:subClassOf ?valueType. '''+
-                       "FILTER(?subClass != <$URI> && ?subClass != ?id && (?valueType = :Categorical || ?valueType = :Real))",
-                       "ORDER BY ?label")
+    def getGrandchildren(String args){
+        def argsList = args.split(' ')
+        def query = "?subClass rdfs:subClassOf <$URI>. "+
+                    "?id rdfs:subClassOf ?subClass"
+
+        if (argsList.contains('?label'))
+            query +="; rdfs:label ?label";
+
+        if (argsList.contains('?weight'))
+            query +="; :weight ?weight";
+
+        query +='''. ?id rdfs:subClassOf ?y.
+                     ?y owl:onClass ?category.
+                     ?category rdfs:subClassOf ?valueType. '''+
+                "FILTER(?subClass != <$URI> && ?subClass != ?id && (?valueType = :Categorical || ?valueType = :Real))"
+
+        k.select('distinct '+args).query(query, "ORDER BY ?label")
     }
 
     def getProductionUnity(String args){
         def argsList = args.split(' ')
+
         def res = k.select('distinct '+args)
             .query("<$URI> :appliedTo ?ins." +
             "?ins rdfs:label ?label."+
@@ -149,7 +158,34 @@ class Node {
         return res
     }
 
-    def getIndividualsValueWeight(String assessment, String args) {
+    def getIndividualsValueWeight(String assessment, String args){
+        def argsList = args.split(' ')
+        def res = k.select('distinct '+args)
+                .query("<"+k.toURI(assessment)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+                "?subClass rdfs:subClassOf <$URI>."+
+                "?id rdfs:subClassOf ?subClass." +
+                "?id rdfs:label ?label." +
+                "?id :weight ?weight." +
+                "?ind a ?id." +
+                "?ind <http://bio.icmc.usp.br/sustenagro#value> ?valueType."+
+                "?valueType <http://bio.icmc.usp.br/sustenagro#dataValue> ?value."+
+                "?valueType rdfs:label ?valueTypeLabel."+
+                "FILTER( ?subClass != ?id && ?subClass != <$URI> )", "ORDER BY ?label")
+
+        res.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
+        res.metaClass.label = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
+        res.metaClass.value = { (delegate.size()==1)? delegate[0]['value'] :delegate.collect { it['value'] } }
+        res.metaClass.valueType = { (delegate.size()==1)? delegate[0]['valueType'] :delegate.collect { it['valueType'] } }
+        res.metaClass.valueTypeLabel = { (delegate.size()==1)? delegate[0]['valueTypeLabel'] :delegate.collect { it['valueTypeLabel'] } }
+        res.metaClass.weight = { (delegate.size()==1)? delegate[0]['weight'] :delegate.collect { it['weight'] } }
+        res.metaClass.equation = { eq ->
+            eq.resolveStrategy = Closure.DELEGATE_FIRST
+            delegate.collect({ eq.delegate = it; eq()})
+        }
+        return res
+    }
+
+    def getIndividualsFeatureValueWeight(String assessment, String args) {
         def argsList = args.split(' ')
         def res = k.select('distinct '+args)
                    .query("<"+k.toURI(assessment)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
@@ -194,18 +230,18 @@ class Node {
             "<$URI> rdfs:subClassOf ?attribute; rdfs:label ?label."+
             "<$URI> rdfs:subClassOf ?y."+
             "?y  owl:onClass ?valuetype."+
-            "FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != <$URI> )")
+            "FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != <$URI> )",'','*')
     }
 
     def getIndicators(){
         k.select("distinct ?id ?valuetype ?label ?dimension ?attribute")
-         .query('''?dimension rdfs:subClassOf :Indicator.
-            ?attribute rdfs:subClassOf ?dimension.
+         .query("?dimension rdfs:subClassOf <$URI>. "+
+         '''?attribute rdfs:subClassOf ?dimension.
             ?id rdfs:subClassOf ?attribute; rdfs:label ?label.
             ?id rdfs:subClassOf ?y.
-            ?y  owl:onClass ?valuetype.
-            FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != ?id )''',
-            'ORDER BY ?id')
+            ?y  owl:onClass ?valuetype.'''+
+            "FILTER( ?dimension != <$URI> && ?dimension != ?attribute && ?attribute != ?id )",
+            'ORDER BY ?id','*')
     }
 
     def getDataValues(){
