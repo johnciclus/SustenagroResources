@@ -19,6 +19,7 @@ class AdminController {
 
         Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#", '')
         Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#", '')
+        println indicators
 
         OutputStream out = new ByteArrayOutputStream()
         ontology.getManager().saveOntology(ontology.getOntology(), new ManchesterSyntaxDocumentFormat(), out)
@@ -48,16 +49,33 @@ class AdminController {
     }
 
     def indicators(){
-        def outgoing = k[params.id_base].outgoingLinks()
-        def incoming = k[params.id_base].incomingLinks()
-
-        println outgoing
-        println incoming
+        def id = params.id_base
+        def incoming = k[id].incomingLinks()
+        def outgoing = k[id].outgoingLinks()
 
         if(params.id_base != params.id){
             println "different id"
+            println incoming
+            println outgoing
             if(incoming.size() == 0){
                 println "Zero incoming links"
+            }
+        }
+
+        def indicator = k[id].getIndicator()
+        Uri.simpleDomain(indicator, "http://bio.icmc.usp.br/sustenagro#", '')
+
+        def lang
+
+        indicator[0].each{ key, value ->
+            if(indicator[0][key] != params[key]){
+                if(key.startsWith('label')){
+                    lang = key.getAt((key.indexOf('@')+1)..(key.size()-1))
+                    k.update("DELETE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label}\n" +
+                             "INSERT {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label \""+params[key]+"\"@$lang}\n" +
+                             "WHERE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label. \nFILTER (lang(?label) = '$lang')}")
+
+                }
             }
         }
 
@@ -114,8 +132,6 @@ class AdminController {
         def id = params['id']
         def data = [:]
         def result = Uri.simpleDomain(k[':'+id].getIndicator(), "http://bio.icmc.usp.br/sustenagro#", '')
-
-        println result
 
         if(result.size() == 1){
             data['indicator'] = result[0]
