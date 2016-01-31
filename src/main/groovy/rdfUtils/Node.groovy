@@ -234,12 +234,13 @@ class Node {
     }
 
     def getIndicators(){
-        k.select("distinct ?id ?valuetype ?label ?dimension ?attribute")
+        k.select("distinct ?id ?valuetype ?label ?dimension ?weight ?attribute")
          .query("?dimension rdfs:subClassOf <$URI>. "+
          '''?attribute rdfs:subClassOf ?dimension.
             ?id rdfs:subClassOf ?attribute; rdfs:label ?label.
             ?id rdfs:subClassOf ?y.
-            ?y  owl:onClass ?valuetype.'''+
+            ?y  owl:onClass ?valuetype.
+            ?id :weight ?weight.'''+
             "FILTER( ?dimension != <$URI> && ?dimension != ?attribute && ?attribute != ?id )",
             'ORDER BY ?id','*')
     }
@@ -272,11 +273,11 @@ class Node {
     }
 
     def outgoingLinks(){
-        k.query("<$URI> ?p ?o. FILTER( ?o != <$URI>)", '', '*')
+        k.query("<$URI> ?p ?o", '', '*')
     }
 
     def incomingLinks(){
-        k.query("?s ?p <$URI>. FILTER( ?s != <$URI>)", '', '*')
+        k.query("?s ?p <$URI>", '', '*')
     }
 
     def selectSubject(String word){
