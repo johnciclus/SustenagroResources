@@ -26,3 +26,6 @@ if(Environment.current == Environment.DEVELOPMENT) {
         logger("StackTrace", ERROR, ['FULL_STACKTRACE'], false )
     }
 }
+
+//see http://logback.qos.ch/manual/groovy.html for more info
+logger('org.springframework.boot.autoconfigure.security', INFO)
