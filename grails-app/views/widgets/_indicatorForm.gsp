@@ -1,6 +1,7 @@
 <form id="indicator_form" action="/admin/indicators" method="post" class="form-horizontal">
     <div class="form-group">
-        <input type="hidden" id="id_base" name="id_base" value="${indicator.id}">
+        <input type="hidden" id="${_csrf.parameterName}" name="${_csrf.parameterName}" value="${_csrf.token}"}/>
+        <input type="hidden" id="id_base" name="id_base" value="${indicator.id}"/>
         <g:each var="tag" in="${ind_tags}">
             <label for="${tag}" class="col-sm-4 control-label">${tag.capitalize()}</label>
             <div class="col-sm-8">

@@ -140,7 +140,8 @@
                                     $(this).addClass('active');
 
                                     $.post('/admin/indicatorForm',
-                                        {'id':  id },
+                                        {'id':  id ,
+                                         '${_csrf.parameterName}': '${_csrf.token}'},
                                         function(data){
                                             $("#indicator_editor").html(data)
                                             $("#valuetype-table").bootstrapTable()

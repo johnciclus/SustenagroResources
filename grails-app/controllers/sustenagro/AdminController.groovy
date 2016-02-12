@@ -19,7 +19,7 @@ class AdminController {
 
         Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#", '')
         Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#", '')
-        println indicators
+        //println indicators
 
         OutputStream out = new ByteArrayOutputStream()
         ontology.getManager().saveOntology(ontology.getOntology(), new ManchesterSyntaxDocumentFormat(), out)

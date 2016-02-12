@@ -49,8 +49,8 @@
                         <li <g:if test="${controllerName == 'contact'}"> class="active" </g:if> ><a href="/contact">Contato</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                      <li class="active"><a href="./">Inicie sessão</a></li>
-                      <li><a href="../navbar-static-top/">Cadastre-se</a></li>
+                      <li class="active"><a href="/login">Inicie sessão</a></li>
+                      <li><a href="/login">Cadastre-se</a></li>
                     </ul>
                   </div>
                 </div>
