@@ -6,8 +6,8 @@
 </head>
 <body>
 <div class="row main">
-    <div>
-        <form name="f" action="/login" method="POST">
+    <div class="col-sm-8 col-sm-offset-2">
+        <form name="f" action="/login" method="POST" class="form-horizontal">
             <fieldset>
                 <legend>Please Login</legend>
                 <g:if test="${params.error}">
@@ -22,23 +22,21 @@
                 </g:if>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <div class="form-group">
-                    <label for="username" class="col-sm-offset-2 col-sm-4 control-label">Username</label>
-                    <div class="col-sm-4">
+                    <label for="username" class="col-sm-4 control-label">Username</label>
+                    <div class="col-sm-6">
                         <input type="text" id="username" name="username" class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password" class="col-sm-offset-2 col-sm-4 control-label">Password</label>
-                    <div class="col-sm-4">
+                    <label for="password" class="col-sm-4 control-label">Password</label>
+                    <div class="col-sm-6">
                         <input type="password" id="password" name="password" class="form-control"/>
                     </div>
                 </div>
-                    <button type="submit" class="btn btn-default">Log in</button>
+                <div class="form-group col-sm-12 text-center">
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                </div>
             </fieldset>
-        </form>
-        <form name="logout" action="/logout" method="POST">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <input type="submit" class="btn btn-default" value="logout">
         </form>
     </div>
 </div>

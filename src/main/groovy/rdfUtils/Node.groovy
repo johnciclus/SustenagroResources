@@ -256,7 +256,7 @@ class Node {
             ?attribute rdfs:subClassOf ?id.
             ?indicator rdfs:subClassOf ?attribute.
             ?id rdfs:label ?label.
-            FILTER( ?id != :Indicator && ?id != ?attribute && ?id != ?indicator && ?attribute != ?indicator)''')
+            FILTER( ?id != :Indicator && ?id != ?attribute && ?id != ?indicator && ?attribute != ?indicator)''', "ORDER BY ?label")
     }
 
     def getAttributes() {

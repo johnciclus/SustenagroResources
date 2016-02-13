@@ -7,7 +7,7 @@
     <body>
         <div class="row main">
             <div class="col-sm-5 col-sm-offset-1 left-content">
-                <h5 class="text-primary page-header">Introdução</h5> 
+                <h5 class="text-primary page-header">Introdução</h5>
                 <p>O projeto tem por finalidade equacionar as principais questões referentes aos sistemas produtivos agrícolas de modo a possibilitar a utilização racional dos recursos naturais para suprir as necessidades presentes e garantir o suprimento das gerações futuras.</p>
                 <h5 class="text-primary page-header">Meta geral</h5> 
                 <p>Fornecer informação técnica validada para embasar a formulação de políticas públicas no setor agrícola.</p>

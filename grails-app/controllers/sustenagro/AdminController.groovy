@@ -19,7 +19,6 @@ class AdminController {
 
         Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#", '')
         Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#", '')
-        //println indicators
 
         OutputStream out = new ByteArrayOutputStream()
         ontology.getManager().saveOntology(ontology.getOntology(), new ManchesterSyntaxDocumentFormat(), out)
@@ -48,17 +47,36 @@ class AdminController {
         redirect(action: 'index')
     }
 
-    def indicators(){
+    def updateIndicator(){
         def id = params.id_base
-        def incoming = k[id].incomingLinks()
-        def outgoing = k[id].outgoingLinks()
 
         if(params.id_base != params.id){
-            println "different id"
-            println incoming
-            println outgoing
+            def incoming = k[id].incomingLinks()
+            def outgoing = k[id].outgoingLinks()
+
+            println params
+
             if(incoming.size() == 0){
                 println "Zero incoming links"
+            }
+            else{
+                def weight = 0
+                outgoing.each{
+                    if(it.p == 'http://bio.icmc.usp.br/sustenagro#weight'){
+                        weight = it.o
+                    }
+                }
+
+                String sparql = "<"+ k.toURI(":" + params.id) +">"+
+                        " rdf:type <http://bio.icmc.usp.br/sustenagro#Indicator>; "+
+                        " rdfs:subClassOf <"+ k.toURI(":" + params.attribute) +">; "+
+                        " rdf:type owl:Class; "+
+                        " rdf:type owl:NamedIndividual; "+
+                        " <http://bio.icmc.usp.br/sustenagro#weight> "+weight
+
+
+
+                k.insert(sparql)
             }
         }
 
