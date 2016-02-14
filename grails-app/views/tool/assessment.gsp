@@ -12,7 +12,8 @@
         <p>Unidade produtiva atual: <b>${production_unit.name}</b> </p>
 
         <ul id="assessment_tab" class="nav nav-tabs">
-            <li role="presentation" <g:if test="${report == null}"> class="active" </g:if>> <a href="#sustainability_assessment" aria-controls="sustainability_assessment" role="tab" data-toggle="tab">Avaliação da sustentabilidade</a></li>
+            <li role="presentation" <g:if test="${report == null}"> class="active" </g:if>> <a href="#characterization" aria-controls="characterization" role="tab" data-toggle="tab">Caracterização da unidade produtiva</a></li>
+            <li role="presentation"> <a href="#sustainability_assessment" aria-controls="sustainability_assessment" role="tab" data-toggle="tab">Avaliação da sustentabilidade</a></li>
             <li role="presentation"> <a href="#efficiency_assessment" aria-controls="efficiency_assessment" role="tab" data-toggle="tab">Avaliação da eficiência</a></li>
             <g:if test="${report != null}">
             <li role="presentation" class="active">                <a href="#report" aria-controls="report" role="tab" data-toggle="tab">        Relatório</a>         </li>
@@ -20,9 +21,13 @@
             </g:if>
         </ul>
         <form id="assessment_form" action="/tool/report" method="post" class="form-horizontal">
+            <input type="hidden" id="${_csrf.parameterName}" name="${_csrf.parameterName}" value="${_csrf.token}"}/>
             <input type="hidden" name="production_unit_id" value="${production_unit.id}">
             <div id="assessment_content" class="tab-content">
-                <div role="tabpanel" class="tab-pane ind-content <g:if test='${report == null}'>active</g:if>"  id="sustainability_assessment">
+                <div role="tabpanel" class="tab-pane ind-content <g:if test='${report == null}'>active</g:if>" id="characterization">
+                    <g:render template="characterization"></g:render>
+                </div>
+                <div role="tabpanel" class="tab-pane ind-content"  id="sustainability_assessment">
                     <g:render template="sustainability_assessment"></g:render>
                 </div>
                 <div role="tabpanel" class="tab-pane ind-content"  id="efficiency_assessment">

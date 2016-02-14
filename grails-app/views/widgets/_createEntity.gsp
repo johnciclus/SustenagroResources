@@ -1,5 +1,6 @@
 <h5 class="text-primary">Cadastrar nova unidade produtiva para realizar avaliação</h5>
 <form id="create_form" action="/tool/createProductionUnit" method="post" class="form-horizontal">
+    <input type="hidden" id="${_csrf.parameterName}" name="${_csrf.parameterName}" value="${_csrf.token}"}/>
     <g:if test="${widgets}">
         <g:each var="widget" in="${widgets}">
             <div class="form-group">
