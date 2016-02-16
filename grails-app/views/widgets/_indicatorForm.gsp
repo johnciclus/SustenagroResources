@@ -1,4 +1,4 @@
-<form id="indicator_form" action="/admin/indicators" method="post" class="form-horizontal">
+<form id="indicator_form" action="/admin/updateIndicator" method="post" class="form-horizontal">
     <div class="form-group">
         <input type="hidden" id="${_csrf.parameterName}" name="${_csrf.parameterName}" value="${_csrf.token}"}/>
         <input type="hidden" id="id_base" name="id_base" value="${indicator.id}"/>

@@ -309,7 +309,8 @@ class ToolController {
                         " rdf:type <"+ it.id +">;"+
                         " dc:isPartOf :"+ assessment_name +";"+
                         " :value "+ value +";"+
-                        " :hasWeight "+ weight +"." )
+                        " :hasWeight \""+ weight +"\"^^xsd:double ." )
+
                 k.insert( ":" + assessment_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+assessment_name+">.")
             }
         }

@@ -241,8 +241,7 @@ class Node {
             ?id rdfs:subClassOf ?y.
             ?y  owl:onClass ?valuetype.
             ?id :weight ?weight.'''+
-            "FILTER( ?dimension != <$URI> && ?dimension != ?attribute && ?attribute != ?id )",
-            'ORDER BY ?id','*')
+            "FILTER( ?dimension != <$URI> && ?dimension != ?attribute && ?attribute != ?id )",'ORDER BY ?id','*')
     }
 
     def getDataValues(){
@@ -256,7 +255,7 @@ class Node {
             ?attribute rdfs:subClassOf ?id.
             ?indicator rdfs:subClassOf ?attribute.
             ?id rdfs:label ?label.
-            FILTER( ?id != :Indicator && ?id != ?attribute && ?id != ?indicator && ?attribute != ?indicator)''')
+            FILTER( ?id != :Indicator && ?id != ?attribute && ?id != ?indicator && ?attribute != ?indicator)''', "ORDER BY ?label")
     }
 
     def getAttributes() {

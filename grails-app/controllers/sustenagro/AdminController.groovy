@@ -19,7 +19,6 @@ class AdminController {
 
         Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#", '')
         Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#", '')
-        //println indicators
 
         OutputStream out = new ByteArrayOutputStream()
         ontology.getManager().saveOntology(ontology.getOntology(), new ManchesterSyntaxDocumentFormat(), out)
@@ -48,17 +47,59 @@ class AdminController {
         redirect(action: 'index')
     }
 
-    def indicators(){
+    def updateIndicator(){
         def id = params.id_base
-        def incoming = k[id].incomingLinks()
-        def outgoing = k[id].outgoingLinks()
 
         if(params.id_base != params.id){
-            println "different id"
-            println incoming
-            println outgoing
+            def incoming = k[id].incomingLinks()
+            def outgoing = k[id].outgoingLinks()
+
+            println params
+
             if(incoming.size() == 0){
                 println "Zero incoming links"
+            }
+            else{
+                def labels = [:]
+                def weight = 0
+                def subClass = []
+                def type = []
+
+                println outgoing
+
+                outgoing.each{
+                    if(it.p == 'http://bio.icmc.usp.br/sustenagro#weight')
+                        weight = it.o
+                    if(it.p.startsWith('http://www.w3.org/2000/01/rdf-schema#subClassOf') && !it.o.startsWith('http://'))
+                        subClass.push(it.o)
+                    if(it.p.startsWith('http://www.w3.org/1999/02/22-rdf-syntax-ns#type') && !it.o.startsWith('http://'))
+                        type.push(it.o)
+                }
+
+                def valuetype = (subClass - type)[0]
+                println valuetype
+
+                params.each{ key, value ->
+                    if(key.startsWith('label@')) {
+                        labels[key.substring(key.indexOf('@')+1)] = value
+                    }
+                }
+
+                String sparql = "<"+ k.toURI(":" + params.id) +">"+
+                        " rdf:type <http://bio.icmc.usp.br/sustenagro#Indicator>; "+
+                        " rdfs:subClassOf <"+ k.toURI(":" + params.attribute) +">; "+
+                        " rdf:type owl:Class; "+
+                        " rdf:type owl:NamedIndividual; "+
+                        " <http://bio.icmc.usp.br/sustenagro#weight> \""+weight+"\"^^xsd:double; "+
+                        " rdfs:subClassOf _:"+valuetype+"; "
+
+                labels.each{ key, value ->
+                    sparql += " rdfs:label \""+value+"\"@"+key+"; "
+                }
+
+                println sparql
+
+                k.insert(sparql)
             }
         }
 

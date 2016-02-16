@@ -356,7 +356,6 @@ class Sparql {
         m
     }
 
-
     /**
      * <code>update</code>
      * @param query - SPARQL Update query

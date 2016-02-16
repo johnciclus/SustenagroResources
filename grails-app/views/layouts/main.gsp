@@ -50,7 +50,13 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                       <li class="active"><a href="/login">Inicie sessão</a></li>
-                      <li><a href="/login">Cadastre-se</a></li>
+                      <!--<li><a href="/login">Cadastre-se</a></li>-->
+                      <li>
+                        <form name="logout" action="/logout" method="POST">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <input type="submit" class="btn btn-default" value="logout">
+                        </form>
+                      </li>
                     </ul>
                   </div>
                 </div>
