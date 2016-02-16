@@ -23,7 +23,8 @@
 		<script type="text/javascript">
             function loadAssessments(){
                 $.post('/tool/assessments',
-                        {'production_unit_id':  $('#production_unit_id').val()},
+                        {'${_csrf.parameterName}': '${_csrf.token}',
+						 'production_unit_id':  $('#production_unit_id').val()},
                         function( data ) {
                             $('#assessments_form').html(data);
                             $('#assessments_form table').bootstrapTable()

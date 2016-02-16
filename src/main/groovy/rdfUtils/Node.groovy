@@ -134,6 +134,11 @@ class Node {
 
         query += "FILTER( ?subClass != <$URI> && ?id != <$URI> && ?subClass != ?id)"
 
+        println 'Args'
+        println args
+        println 'Query'
+        println query
+
         k.select('distinct '+args).query(query, "ORDER BY ?ind")
     }
 
@@ -224,11 +229,12 @@ class Node {
     }
 
     def getIndicator(){
-        k.select("distinct ?valuetype ?label ?dimension ?attribute")
+        k.select("distinct ?valuetype ?label ?weight ?dimension ?attribute ")
             .query("?dimension rdfs:subClassOf :Indicator."+
             "?attribute rdfs:subClassOf ?dimension."+
             "<$URI> rdfs:subClassOf ?attribute; rdfs:label ?label."+
             "<$URI> rdfs:subClassOf ?y."+
+            "<$URI> :weight ?weight."+
             "?y  owl:onClass ?valuetype."+
             "FILTER( ?dimension != :Indicator && ?dimension != ?attribute && ?attribute != <$URI> )",'','*')
     }

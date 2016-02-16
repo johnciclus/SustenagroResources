@@ -1,6 +1,7 @@
 <h5 class="text-primary">Selecionar unidade produtiva</h5>
 <form id="select_production_units" action="/tool/selectProductionUnit" method="post" class="form-horizontal" >
     <div class="form-group">
+        <input type="hidden" id="${_csrf.parameterName}" name="${_csrf.parameterName}" value="${_csrf.token}"}/>
         <label for="production_unit_id" class="col-sm-4 control-label">Unidade produtiva</label>
         <div class="col-sm-6">
             <select id="production_unit_id" name="production_unit_id" class="form-control">
