@@ -122,7 +122,7 @@ class ToolController {
 
         indSubClass.each{ dimension, map ->
             map.each{ key, v ->
-                v['label']= k[key].getLabel()
+                v['label'] = k[key].label
             }
             indSubClass[dimension] = map.sort{ it.value.label.toLowerCase() }
         }
