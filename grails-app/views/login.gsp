@@ -20,7 +20,6 @@
                         You have been logged out.
                     </div>
                 </g:if>
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <div class="form-group">
                     <label for="username" class="col-sm-4 control-label">Username</label>
                     <div class="col-sm-6">

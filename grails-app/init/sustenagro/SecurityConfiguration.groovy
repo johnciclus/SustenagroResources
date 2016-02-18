@@ -1,5 +1,5 @@
 package sustenagro
-
+/*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
@@ -36,4 +36,4 @@ class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
             .withUser("user").password("pwd").roles("USER", "ADMIN");
     }
-}
+}*/
