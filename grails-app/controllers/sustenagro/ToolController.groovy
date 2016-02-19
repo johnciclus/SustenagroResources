@@ -122,7 +122,7 @@ class ToolController {
 
         indSubClass.each{ dimension, map ->
             map.each{ key, v ->
-                v['label']= k[key].getLabel()
+                v['label'] = k[key].label
             }
             indSubClass[dimension] = map.sort{ it.value.label.toLowerCase() }
         }
@@ -230,7 +230,7 @@ class ToolController {
                        report: report])
     }
 
-    def report() {
+    def report(){
         def production_unit_id = params.production_unit_id
 
         def num = k[production_unit_id].getAssessments().size() + 1

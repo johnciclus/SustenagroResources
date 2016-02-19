@@ -20,6 +20,10 @@ out
 .gradle
 gradle
 
+# Ignore Blazegraph
+bigdata.jnl
+blazegraph.jar
+
 *.DS_Store
 
 *.log

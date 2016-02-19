@@ -53,7 +53,6 @@
                       <!--<li><a href="/login">Cadastre-se</a></li>-->
                       <li>
                         <form name="logout" action="/logout" method="POST">
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <input type="submit" class="btn btn-default" value="logout">
                         </form>
                       </li>

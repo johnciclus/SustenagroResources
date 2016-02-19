@@ -38,7 +38,7 @@ class AdminController {
         render response as XML
     }
 
-    def dslReset() {
+    def dslReset(){
         def file = new File('dsl/dsl.groovy')
         file.write(new File('dsl/dsl-bk.groovy').text)
 
@@ -51,75 +51,52 @@ class AdminController {
         def id = params.id_base
 
         if(params.id_base != params.id){
-            def incoming = k[id].incomingLinks()
-            def outgoing = k[id].outgoingLinks()
+            def labels = [:]
 
-            println params
-
-            if(incoming.size() == 0){
-                println "Zero incoming links"
-            }
-            else{
-                def labels = [:]
-                def weight = 0
-                def subClass = []
-                def type = []
-
-                println outgoing
-
-                outgoing.each{
-                    if(it.p == 'http://bio.icmc.usp.br/sustenagro#weight')
-                        weight = it.o
-                    if(it.p.startsWith('http://www.w3.org/2000/01/rdf-schema#subClassOf') && !it.o.startsWith('http://'))
-                        subClass.push(it.o)
-                    if(it.p.startsWith('http://www.w3.org/1999/02/22-rdf-syntax-ns#type') && !it.o.startsWith('http://'))
-                        type.push(it.o)
+            params.each{ key, value ->
+                if(key.startsWith('label@')) {
+                    labels[key.substring(key.indexOf('@')+1)] = value
                 }
+            }
 
-                def valuetype = (subClass - type)[0]
-                println valuetype
+            String sparql = "<"+ k.toURI(":" + params.id) +">"+
+                    " rdf:type <http://bio.icmc.usp.br/sustenagro#Indicator>; "+
+                    " rdfs:subClassOf <"+ k.toURI(":" + params.attribute) +">; "+
+                    " rdf:type owl:Class; "+
+                    " rdf:type owl:NamedIndividual; "+
+                    " <http://bio.icmc.usp.br/sustenagro#weight> \""+params.weight+"\"^^xsd:double; "
 
-                params.each{ key, value ->
-                    if(key.startsWith('label@')) {
-                        labels[key.substring(key.indexOf('@')+1)] = value
+            labels.each{ key, value ->
+                sparql += " rdfs:label \""+value+"\"@"+key+"; "
+            }
+
+            sparql += " rdfs:subClassOf _:b. "+
+                      " _:b owl:onClass <"+ k.toURI(":" + params.valuetype) +">"
+
+            println sparql
+
+            k.insert(sparql)
+
+            //k.delete()
+        }
+        else{
+            def indicator = k[id].getIndicator()
+            Uri.simpleDomain(indicator, "http://bio.icmc.usp.br/sustenagro#", '')
+
+            def lang
+
+            indicator[0].each{ key, value ->
+                if(indicator[0][key] != params[key]){
+                    if(key.startsWith('label')){
+                        lang = key.getAt((key.indexOf('@')+1)..(key.size()-1))
+                        k.update("DELETE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label}\n" +
+                                "INSERT {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label \""+params[key]+"\"@$lang}\n" +
+                                "WHERE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label. \nFILTER (lang(?label) = '$lang')}")
+
                     }
                 }
-
-                String sparql = "<"+ k.toURI(":" + params.id) +">"+
-                        " rdf:type <http://bio.icmc.usp.br/sustenagro#Indicator>; "+
-                        " rdfs:subClassOf <"+ k.toURI(":" + params.attribute) +">; "+
-                        " rdf:type owl:Class; "+
-                        " rdf:type owl:NamedIndividual; "+
-                        " <http://bio.icmc.usp.br/sustenagro#weight> \""+weight+"\"^^xsd:double; "+
-                        " rdfs:subClassOf _:"+valuetype+"; "
-
-                labels.each{ key, value ->
-                    sparql += " rdfs:label \""+value+"\"@"+key+"; "
-                }
-
-                println sparql
-
-                k.insert(sparql)
             }
         }
-
-        def indicator = k[id].getIndicator()
-        Uri.simpleDomain(indicator, "http://bio.icmc.usp.br/sustenagro#", '')
-
-        def lang
-
-        indicator[0].each{ key, value ->
-            if(indicator[0][key] != params[key]){
-                if(key.startsWith('label')){
-                    lang = key.getAt((key.indexOf('@')+1)..(key.size()-1))
-                    k.update("DELETE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label}\n" +
-                             "INSERT {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label \""+params[key]+"\"@$lang}\n" +
-                             "WHERE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label. \nFILTER (lang(?label) = '$lang')}")
-
-                }
-            }
-        }
-
         def respond = ['result': 'ok']
 
         render respond as JSON
@@ -174,6 +151,8 @@ class AdminController {
         def data = [:]
         def result = Uri.simpleDomain(k[':'+id].getIndicator(), "http://bio.icmc.usp.br/sustenagro#", '')
 
+        println result
+
         if(result.size() == 1){
             data['indicator'] = result[0]
             data['indicator']['id'] = id
@@ -204,7 +183,7 @@ class AdminController {
                            dimensions: data['dimensions'],
                            attributes: data['attributes'],
                            options: data['options'],
-                           ind_tags: ['id', 'label@en', 'label@pt', 'dimension', 'attribute', 'valuetype']
+                           ind_tags: ['id', 'label@en', 'label@pt', 'weight', 'dimension', 'attribute', 'valuetype']
                 ]);
     }
 

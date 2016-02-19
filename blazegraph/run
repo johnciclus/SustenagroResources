@@ -1,0 +1,3 @@
+#!/bin/bash
+
+java -server -Xmx4g -Dbigdata.propertyFile=RWStore2.properties -jar blazegraph.jar
