@@ -70,16 +70,24 @@ data 'assessment'
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
-    environment =   sum(assessment.':EnvironmentalIndicator'.equation({value*weight}))
-    social      =   sum(assessment.':SocialIndicator'.equation({value*weight}))
-    economic    =   sum(assessment.':EconomicIndicator'.equation({value*weight}))
+    environment =   weightedSum(assessment.':EnvironmentalIndicator')
+    social      =   weightedSum(assessment.':SocialIndicator')
+    economic    =   weightedSum(assessment.':EconomicIndicator')
+
+    //environment =   sum(assessment.':EnvironmentalIndicator'.equation({value*weight}))
+    //social      =   sum(assessment.':SocialIndicator'.equation({value*weight}))
+    //economic    =   sum(assessment.':EconomicIndicator'.equation({value*weight}))
 
     sustainability = (environment + social + economic)/3
 
+    cost_production_efficiency = sum(assessment.':ProductionEfficiencyFeature')
+    //cost_production_efficiency = sum(assessment.':ProductionEfficiencyFeature'.value())
 
-    TechnologicalEfficiencyInTheField = sum(assessment.':TechnologicalEfficiencyInTheField'.equation({value*weight}))
-    TechnologicalEfficiencyInTheIndustrial = sum(assessment.':TechnologicalEfficiencyInTheIndustrial'.equation({value*weight}))
-    cost_production_efficiency = sum(assessment.':ProductionEfficiencyFeature'.value())
+    TechnologicalEfficiencyInTheField = weightedSum(assessment.':TechnologicalEfficiencyInTheField')
+    TechnologicalEfficiencyInTheIndustrial = weightedSum(assessment.':TechnologicalEfficiencyInTheIndustrial')
+
+    //TechnologicalEfficiencyInTheField = sum(assessment.':TechnologicalEfficiencyInTheField'.equation({value*weight}))
+    //TechnologicalEfficiencyInTheIndustrial = sum(assessment.':TechnologicalEfficiencyInTheIndustrial'.equation({value*weight}))
 
     efficiency = cost_production_efficiency *
             (TechnologicalEfficiencyInTheField+TechnologicalEfficiencyInTheIndustrial)
@@ -151,7 +159,7 @@ prog {
             quadrants: [4,3],
             recomendations: recomendations])
     /*
-        matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], [ 
+        matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], [
         [0, 0, 'bla bla bla'],
         [0, 1, 'bla bla bla'],
         //quadrant2: 'bla bla bla',

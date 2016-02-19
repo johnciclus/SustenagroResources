@@ -411,6 +411,16 @@
     <owl:Class rdf:about="&sustenagro;AgriculturalEfficiency">
         <rdfs:label xml:lang="en">Agricultural efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência agrícola</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#AgriculturalFeature -->
+
+    <owl:Class rdf:about="&sustenagro;AgriculturalFeature">
+        <rdfs:label xml:lang="en">Agricultural feature</rdfs:label>
+        <rdfs:label xml:lang="pt">Característica agrícola</rdfs:label>
     </owl:Class>
     
 
@@ -465,6 +475,7 @@
     <owl:Class rdf:about="&sustenagro;AgriculturalProductionSystem">
         <rdfs:label xml:lang="en">Agricultural production system</rdfs:label>
         <rdfs:label xml:lang="pt">Sistema de produção agrícola</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
     </owl:Class>
     
 
@@ -565,6 +576,7 @@
     <owl:Class rdf:about="&sustenagro;AvailabilityOfEvaluationResults">
         <rdfs:label xml:lang="en">Availability of evaluations results</rdfs:label>
         <rdfs:label xml:lang="pt">Disponibilização dos resultados da avaliação</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
     </owl:Class>
     
 
@@ -731,6 +743,7 @@
     <owl:Class rdf:about="&sustenagro;CanavialLongevity">
         <rdfs:label xml:lang="en">Canavial Longevity</rdfs:label>
         <rdfs:label xml:lang="pt">Longevidade do canvial</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
     </owl:Class>
     
 
@@ -2469,6 +2482,7 @@
     <owl:Class rdf:about="&sustenagro;SugarcaneSource">
         <rdfs:label xml:lang="en">Sugarcane source</rdfs:label>
         <rdfs:label xml:lang="pt">Origem da cana</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
     </owl:Class>
     
 

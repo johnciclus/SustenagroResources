@@ -89,16 +89,27 @@ class Node {
     def getProductionUnity(String args){
         def argsList = args.split(' ')
 
-        def res = k.select('distinct '+args)
-            .query("<$URI> :appliedTo ?ins." +
-            "?ins rdfs:label ?label."+
-            "?ins rdf:type ?productionUnitType."+
-            "?productionUnitType rdfs:label ?productionUnit."+
-            "?ins :AgriculturalEfficiency ?efficiencyType."+
-            "?efficiencyType rdfs:label ?efficiency."+
-            "?ins dbp:MicroRegion ?microregionType." +
-            "?microregionType rdfs:label ?microregion."+
-            "FILTER( ?productionUnitType != :ProductionUnit )")
+        def query = "<$URI> :appliedTo ?ins."
+
+        if (argsList.contains('?label'))
+            query += "?ins rdfs:label ?label.";
+
+        if (argsList.contains('?productionUnit'))
+            query += "?ins rdf:type ?productionUnitType."+
+                     "?productionUnitType rdfs:label ?productionUnit.";
+
+        if (argsList.contains('?efficiency'))
+            query += "?ins :AgriculturalEfficiency ?efficiencyType."+
+                     "?efficiencyType rdfs:label ?efficiency.";
+
+        if (argsList.contains('?microregion'))
+            query += "?ins dbp:MicroRegion ?microregionType." +
+                     "?microregionType rdfs:label ?microregion.";
+
+        if (argsList.contains('?productionUnit'))
+            query += "FILTER( ?productionUnitType != :ProductionUnit )"
+
+        def res = k.select('distinct '+args).query(query)
 
         /*def id
         argsList.each {
@@ -110,10 +121,14 @@ class Node {
             }
         }*/
 
-        res.metaClass['label'] = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
-        res.metaClass['productionUnit'] = { (delegate.size()==1)? delegate[0]['productionUnit'] :delegate.collect { it['productionUnit'] } }
-        res.metaClass['microregion'] = { (delegate.size()==1)? delegate[0]['microregion'] :delegate.collect { it['microregion'] } }
-        res.metaClass['efficiency'] = { (delegate.size()==1)? delegate[0]['efficiency'] :delegate.collect { it['efficiency'] } }
+        if (argsList.contains('?label'))
+            res.metaClass['label'] = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
+        if (argsList.contains('?productionUnit'))
+            res.metaClass['productionUnit'] = { (delegate.size()==1)? delegate[0]['productionUnit'] :delegate.collect { it['productionUnit'] } }
+        if (argsList.contains('?microregion'))
+            res.metaClass['microregion'] = { (delegate.size()==1)? delegate[0]['microregion'] :delegate.collect { it['microregion'] } }
+        if (argsList.contains('?efficiency'))
+            res.metaClass['efficiency'] = { (delegate.size()==1)? delegate[0]['efficiency'] :delegate.collect { it['efficiency'] } }
 
         return res
     }
@@ -123,23 +138,21 @@ class Node {
 
         def query = "?subClass rdfs:subClassOf <$URI>."+
                 "?id rdfs:subClassOf ?subClass. "+
-                "?ind a ?id."+
-                "?ind dc:isPartOf <"+k.toURI(assessment)+">.";
+                "?in a ?id."+
+                "?in dc:isPartOf <"+k.toURI(assessment)+">.";
 
         if (argsList.contains('?value'))
-            query +="?ind :value ?value.";
+            query +="?in :value ?value.";
 
         if (argsList.contains('?weight'))
-            query +="?ind :hasWeight ?weight.";
+            query +="?in :hasWeight ?weight.";
 
         query += "FILTER( ?subClass != <$URI> && ?id != <$URI> && ?subClass != ?id)"
 
-        println 'Args'
-        println args
-        println 'Query'
-        println query
+        //println 'Query'
+        //println 'select distinct '+args+ ' where '+query
 
-        k.select('distinct '+args).query(query, "ORDER BY ?ind")
+        k.select('distinct '+args).query(query, "ORDER BY ?in")
     }
 
     def getIndividualsValue(String assessment, String args){

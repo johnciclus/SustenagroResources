@@ -9,7 +9,7 @@
 <body>
 <div class="row main">
     <div id="content" class="col-sm-10 col-sm-offset-1 content">
-        <p>Unidade produtiva atual: <b>${production_unit.name}</b> </p>
+        <p>Unidade produtiva atual: <b>${production_unit.name}</b></p>
 
         <ul id="assessment_tab" class="nav nav-tabs">
             <li role="presentation" <g:if test="${report == null}"> class="active" </g:if>> <a href="#sustainability_assessment" aria-controls="sustainability_assessment" role="tab" data-toggle="tab">Avaliação da sustentabilidade</a></li>

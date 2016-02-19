@@ -187,6 +187,7 @@ class DSL {
         if(textMap.label)
             argLst['label'] = textMap.label
 
+        println clsName
         featureLst << ['id': id, 'widget': 'instance', 'request': ['a', clsName], 'args': argLst]
     }
 
@@ -228,13 +229,13 @@ class DSL {
 
     def sum(obj){
         float val = 0
-        float num
+        float value
         //println obj
 
         if(obj instanceof ArrayList) {
             obj.each {
-                num = (it.getClass() == Boolean ? (it ? 1 : -1) : it)
-                val += (float) num
+                value = (it.value.getClass() == Boolean ? (it.value ? 1 : -1) : it.value)
+                val += (float) value
             }
             return val
         }
@@ -244,6 +245,22 @@ class DSL {
         else if(obj instanceof Double || obj instanceof Integer){
             return obj
         }
+    }
+
+    def weightedSum(obj){
+        float val = 0
+        float value
+        float weight
+
+        if(obj instanceof ArrayList) {
+            obj.each {
+                value = (it.value.getClass() == Boolean ? (it.value ? 1 : -1) : it.value)
+                weight = (it.weight.getClass() == Boolean ? (it.weight ? 1 : -1) : it.weight)
+                val += (float) value*weight
+            }
+        }
+
+        return val
     }
 
     def average(obj){
