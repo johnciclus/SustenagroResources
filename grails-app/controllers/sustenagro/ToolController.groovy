@@ -287,7 +287,7 @@ class ToolController {
         }
 
         def TechnologicalEfficiency = k[':TechnologicalEfficiencyFeature'].getGrandchildren('?id ?label ?subClass ?category ?valueType')
-        def weight
+        def weighted
 
         TechnologicalEfficiency.each{
             if(params[it.id]){
@@ -299,17 +299,17 @@ class ToolController {
                 }
 
                 if(it.subClass == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'){
-                    weight = "<" +params[it.id+'-optimization'] + ">"
+                    weighted = "<" +params[it.id+'-optimization'] + ">"
                 }
                 else if(it.subClass == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField'){
-                    weight = "<" +params[it.id+'-alignment'] + ">"
+                    weighted = "<" +params[it.id+'-alignment'] + ">"
                 }
 
                 k.insert( "<" +it.id+'-'+assessment_name +">"+
                         " rdf:type <"+ it.id +">;"+
                         " dc:isPartOf :"+ assessment_name +";"+
                         " :value "+ value +";"+
-                        " :hasWeight \""+ weight +"\"^^xsd:double ." )
+                        " :hasWeight "+ weighted +"." )
 
                 k.insert( ":" + assessment_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+assessment_name+">.")
             }

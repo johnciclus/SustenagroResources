@@ -25,11 +25,23 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // a interface só mostra uma opção (sem possibilidade de escolha)
 // Na ontologia, location definiria as microregiões do IBGE.
 // Se a fazenda ficar em mais de uma micro-região?
+
+// Identificação do sistema de produção e da unidade de produção
 features(':ProductionUnit') {
+    // Origem da cana (própria, fornecedor, arrendamento)
+    instance ':SugarcaneSource', 'label': "Origem da cana"
+    
+    // Microrregião produtora
     instance 'MicroRegion', 'label': "Microrregião da unidade produtiva"
-    instance ':AgriculturalEfficiency', 'label': "Tecnologias disponíveis"
+    
+    // Eficiência agricola
+    //instance ':AgriculturalEfficiency', 'label': "Tecnologias disponíveis"
+    
+    // Municípios envolvidos (localização da sede)
     
     // Data de fundação da unidade produção
+    instance ':FoundationDate', 'label': "Data de fundação da unidade produção"
+    
     // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
     // Financiamento (crédito agrícola, custeio de maquinário, BNDES);
     // Valor total investido em tecnologia na fase agrícola (até a fase atual)
@@ -39,14 +51,9 @@ features(':ProductionUnit') {
     // Ligação com outros grupos empresariais ou de investimentos
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
     
-    
-    // Identificação do sistema de produção
-    // Origem da cana (própria, fornecedor, arrendamento)
     // Data de início e término do plantio
     // Data de início e término da última colheita
     // Longevidade do canvial (cana de ano, cana de ano e meio);
-    
-    // Municípios envolvidos (localização da sede)
     
     // Disponibilização dos resultados da avaliação: Público | privado
 }
@@ -70,16 +77,24 @@ data 'assessment'
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
-    environment =   sum(assessment.':EnvironmentalIndicator'.equation({value*weight}))
-    social      =   sum(assessment.':SocialIndicator'.equation({value*weight}))
-    economic    =   sum(assessment.':EconomicIndicator'.equation({value*weight}))
+    environment =   weightedSum(assessment.':EnvironmentalIndicator')
+    social      =   weightedSum(assessment.':SocialIndicator')
+    economic    =   weightedSum(assessment.':EconomicIndicator')
+    
+    //environment =   sum(assessment.':EnvironmentalIndicator'.equation({value*weight}))
+    //social      =   sum(assessment.':SocialIndicator'.equation({value*weight}))
+    //economic    =   sum(assessment.':EconomicIndicator'.equation({value*weight}))
     
     sustainability = (environment + social + economic)/3
-                     
+    
+    cost_production_efficiency = sum(assessment.':ProductionEfficiencyFeature')
+    //cost_production_efficiency = sum(assessment.':ProductionEfficiencyFeature'.value())
 
-    TechnologicalEfficiencyInTheField = sum(assessment.':TechnologicalEfficiencyInTheField'.equation({value*weight}))
-    TechnologicalEfficiencyInTheIndustrial = sum(assessment.':TechnologicalEfficiencyInTheIndustrial'.equation({value*weight}))
-    cost_production_efficiency = sum(assessment.':ProductionEfficiencyFeature'.value())
+    TechnologicalEfficiencyInTheField = weightedSum(assessment.':TechnologicalEfficiencyInTheField')
+    TechnologicalEfficiencyInTheIndustrial = weightedSum(assessment.':TechnologicalEfficiencyInTheIndustrial')
+    
+    //TechnologicalEfficiencyInTheField = sum(assessment.':TechnologicalEfficiencyInTheField'.equation({value*weight}))
+    //TechnologicalEfficiencyInTheIndustrial = sum(assessment.':TechnologicalEfficiencyInTheIndustrial'.equation({value*weight}))
 
     efficiency = cost_production_efficiency *
                  (TechnologicalEfficiencyInTheField+TechnologicalEfficiencyInTheIndustrial)
@@ -119,7 +134,7 @@ prog {
     show 'Nome da unidade produtiva: ' + assessment.'CurrentProductionUnit'.label()
     show 'Caracterização dos sistemas produtivos no Centro-Sul: ' + assessment.'CurrentProductionUnit'.productionUnit()
     show 'Microrregião da unidade produtiva: ' + assessment.'CurrentProductionUnit'.microregion()
-    show 'Tecnologias disponíveis: ' + assessment.'CurrentProductionUnit'.efficiency()
+    //show 'Tecnologias disponíveis: ' + assessment.'CurrentProductionUnit'.efficiency()
     
     linebreak()
     
