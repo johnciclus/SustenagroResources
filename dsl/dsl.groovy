@@ -29,33 +29,56 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // Identificação do sistema de produção e da unidade de produção
 features(':ProductionUnit') {
     // Origem da cana (própria, fornecedor, arrendamento)
-    instance ':SugarcaneSource', 'label': "Origem da cana"
-    
+    instance ':SugarcaneSource', 'rdf:type', 'label': "Origem da cana"   
+
     // Microrregião produtora
-    instance 'MicroRegion', 'label': "Microrregião da unidade produtiva"
-    
-    // Eficiência agricola
-    //instance ':AgriculturalEfficiency', 'label': "Tecnologias disponíveis"
-    
+    instance 'MicroRegion', 'rdf:type', 'label': "Microrregião da unidade produtiva"
+
     // Municípios envolvidos (localização da sede)
-    
+
     // Data de fundação da unidade produção
-    instance ':FoundationDate', 'label': "Data de fundação da unidade produção"
+    instance ':EstablishmentDate',  'label': "Data de fundação da unidade produção"
     
     // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
-    // Financiamento (crédito agrícola, custeio de maquinário, BNDES);
-    // Valor total investido em tecnologia na fase agrícola (até a fase atual)
-    // Valor total investido em tecnologia na fase industrial (até a fase atual)
-    // Valor total previsto para investimento para escoamento da produção
-    // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
-    // Ligação com outros grupos empresariais ou de investimentos
-    // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
+    instance ':InnovationDevelopmentProjects', 'label': "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)"
     
-    // Data de início e término do plantio
-    // Data de início e término da última colheita
+    //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
+    instance ':Financing', 'label': "Financiamento (crédito agrícola, custeio de maquinário, BNDES)"
+    
+    // Valor total investido em tecnologia na fase agrícola (até a fase atual)
+    instance ':TotalValueInvestedInTechnologicInAgriculturalPhase', 'label': "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
+    
+    // Valor total investido em tecnologia na fase industrial (até a fase atual)
+    instance ':TotalValueInvestedInTechnologicInIndustrialPhase', 'label': "Valor total investido em tecnologia na fase industrial (até a fase atual)"
+
+    // Valor total previsto para investimento para escoamento da produção
+    instance ':TotalValuePlaneedForInvestmentToProductionDrainage', 'label': "Valor total previsto para investimento para escoamento da produção"
+
+    // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
+    instance ':PartnershipsForResearchOrImprovementOfTheSystem', 'label': "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)"
+
+    //Ligação com outros grupos empresariais ou de investimentos
+    instance ':LinkWithOtherBusinessOrInvestmentGroups', 'label': "Ligação com outros grupos empresariais ou de investimentos"
+
+    // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
+
+    // Data de início do plantio
+    instance ':BeginningOfPlantingDate', 'label': "Data de início do plantio"
+
+    // Data de término do plantio
+    instance ':FinishOfPlantingDate', 'label': "Data de término do plantio"
+
+    // Data de início da colheita
+    instance ':BeginningOfHarvestDate', 'label': "Data de início da colheita"
+
+    // Data de término da colheita
+    instance ':FinishOfHarvestDate', 'rdf:type', 'label': "Data de término da colheita"
+
     // Longevidade do canvial (cana de ano, cana de ano e meio);
     
+    
     // Disponibilização dos resultados da avaliação: Público | privado
+    instance ':AvailabilityOfEvaluationResults', 'rdf:type', 'label': "Disponibilização dos resultados da avaliação"
 }
 
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados

@@ -46,6 +46,9 @@
         <Class IRI="AccidentsIncidenceCategory"/>
     </Declaration>
     <Declaration>
+        <Class IRI="Acknowledge"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="AdequacyOfBoilers"/>
     </Declaration>
     <Declaration>
@@ -62,9 +65,6 @@
     </Declaration>
     <Declaration>
         <Class IRI="AgriculturalCuttingTypeCategory"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="AgriculturalEfficiency"/>
     </Declaration>
     <Declaration>
         <Class IRI="AgriculturalFeature"/>
@@ -98,6 +98,9 @@
     </Declaration>
     <Declaration>
         <Class IRI="AttendanceToSprayingRestriction"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Audio"/>
     </Declaration>
     <Declaration>
         <Class IRI="AvailabilityOfEvaluationResults"/>
@@ -181,6 +184,18 @@
         <Class IRI="CropPlanning"/>
     </Declaration>
     <Declaration>
+        <Class IRI="DataType"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Date"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="DateTime"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Decimal"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="EconomicIndicator"/>
     </Declaration>
     <Declaration>
@@ -214,6 +229,9 @@
         <Class IRI="EnvironmentalIndicator"/>
     </Declaration>
     <Declaration>
+        <Class IRI="EstablishmentDate"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="Evaluation"/>
     </Declaration>
     <Declaration>
@@ -241,13 +259,13 @@
         <Class IRI="Financing"/>
     </Declaration>
     <Declaration>
-        <Class IRI="FoundationDate"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="FulfillmentOfLaborLaws"/>
     </Declaration>
     <Declaration>
         <Class IRI="GeneralAttribute"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="GeoLocation"/>
     </Declaration>
     <Declaration>
         <Class IRI="GovernmentSubsidy"/>
@@ -274,6 +292,9 @@
         <Class IRI="HealthAttribute"/>
     </Declaration>
     <Declaration>
+        <Class IRI="Image"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="Indicator"/>
     </Declaration>
     <Declaration>
@@ -284,6 +305,9 @@
     </Declaration>
     <Declaration>
         <Class IRI="InitiativesOrActionsThatPromoteTheLocalCommunityWell-Being"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="InputWidget"/>
     </Declaration>
     <Declaration>
         <Class IRI="Integer"/>
@@ -341,6 +365,12 @@
     </Declaration>
     <Declaration>
         <Class IRI="OperationalEfficiencyCategory"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Output"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="OutputWidget"/>
     </Declaration>
     <Declaration>
         <Class IRI="PlanToExpandProductionViaImprovedProductivity"/>
@@ -493,6 +523,12 @@
         <Class IRI="SafetyAttribute"/>
     </Declaration>
     <Declaration>
+        <Class IRI="SelectMultiple"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="SelectOne"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="SharingOfRisksBetweenSuppliersAndProductionPlant"/>
     </Declaration>
     <Declaration>
@@ -500,6 +536,9 @@
     </Declaration>
     <Declaration>
         <Class IRI="SoilsAttribute"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="String"/>
     </Declaration>
     <Declaration>
         <Class IRI="SubProductsAttribute"/>
@@ -640,6 +679,9 @@
         <Class IRI="VarietiesCategory"/>
     </Declaration>
     <Declaration>
+        <Class IRI="Video"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="VinasseAndEthanolRelationCategory"/>
     </Declaration>
     <Declaration>
@@ -665,6 +707,9 @@
     </Declaration>
     <Declaration>
         <Class IRI="Weighted"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Widget"/>
     </Declaration>
     <Declaration>
         <Class IRI="YesNo"/>
@@ -701,12 +746,6 @@
     </Declaration>
     <Declaration>
         <Class IRI="http://dbpedia.org/resource/PhysicalPlant"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.w3.org/2006/time#Instant"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.w3.org/2006/time#Interval"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="appliedTo"/>
@@ -1567,6 +1606,10 @@
         <Class IRI="Categorical"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="Acknowledge"/>
+        <Class IRI="DataType"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="AdequacyOfBoilers"/>
         <Class IRI="TechnologicalEfficiencyInTheIndustrial"/>
     </SubClassOf>
@@ -1617,10 +1660,6 @@
     <SubClassOf>
         <Class IRI="AgriculturalCuttingTypeCategory"/>
         <Class IRI="Categorical"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="AgriculturalEfficiency"/>
-        <Class IRI="AgriculturalFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="AgriculturalManagement"/>
@@ -1703,6 +1742,10 @@
             <ObjectProperty IRI="value"/>
             <Class IRI="YesNo"/>
         </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Audio"/>
+        <Class IRI="DataType"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="AvailabilityOfEvaluationResults"/>
@@ -1890,6 +1933,18 @@
         </ObjectExactCardinality>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="Date"/>
+        <Class IRI="DataType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="DateTime"/>
+        <Class IRI="DataType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Decimal"/>
+        <Class IRI="DataType"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="EconomicIndicator"/>
         <Class IRI="Indicator"/>
     </SubClassOf>
@@ -1969,6 +2024,14 @@
         <Class IRI="Indicator"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="EstablishmentDate"/>
+        <Class IRI="AgriculturalFeature"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="EstablishmentDate"/>
+        <Class IRI="Date"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="ExistNo"/>
         <Class IRI="Boolean"/>
     </SubClassOf>
@@ -2018,8 +2081,8 @@
         <Class IRI="Categorical"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="FoundationDate"/>
-        <Class IRI="http://www.w3.org/2006/time#Instant"/>
+        <Class IRI="Financing"/>
+        <Class IRI="AgriculturalFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="FulfillmentOfLaborLaws"/>
@@ -2035,6 +2098,10 @@
     <SubClassOf>
         <Class IRI="GeneralAttribute"/>
         <Class IRI="EnvironmentalIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="GeoLocation"/>
+        <Class IRI="DataType"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="GovernmentSubsidy"/>
@@ -2068,7 +2135,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="HarvestRange"/>
-        <Class IRI="http://www.w3.org/2006/time#Interval"/>
+        <Class IRI="AgriculturalFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="HarvestTypeUsed"/>
@@ -2088,6 +2155,10 @@
     <SubClassOf>
         <Class IRI="HealthAttribute"/>
         <Class IRI="SocialIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="Image"/>
+        <Class IRI="DataType"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="Indicator"/>
@@ -2114,6 +2185,10 @@
             <ObjectProperty IRI="value"/>
             <Class IRI="YesNo"/>
         </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="InputWidget"/>
+        <Class IRI="Widget"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="Integer"/>
@@ -2241,6 +2316,14 @@
         <Class IRI="Categorical"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="Output"/>
+        <Class IRI="DataType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="OutputWidget"/>
+        <Class IRI="Widget"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="PlanToExpandProductionViaImprovedProductivity"/>
         <Class IRI="ProductivityAttribute"/>
     </SubClassOf>
@@ -2339,7 +2422,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="PlantingRange"/>
-        <Class IRI="http://www.w3.org/2006/time#Interval"/>
+        <Class IRI="AgriculturalFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="PoliticalVariable"/>
@@ -2446,6 +2529,14 @@
             <ObjectProperty IRI="value"/>
             <Class IRI="YesNo"/>
         </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="ProductionUnit"/>
+        <Class IRI="AgriculturalFeature"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="ProductionUnit"/>
+        <Class IRI="SelectOne"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="ProductivityAttribute"/>
@@ -2601,6 +2692,14 @@
         <Class IRI="SocialIndicator"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="SelectMultiple"/>
+        <Class IRI="DataType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SelectOne"/>
+        <Class IRI="DataType"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="SharingOfRisksBetweenSuppliersAndProductionPlant"/>
         <Class IRI="ProductivityAttribute"/>
     </SubClassOf>
@@ -2618,6 +2717,10 @@
     <SubClassOf>
         <Class IRI="SoilsAttribute"/>
         <Class IRI="EnvironmentalIndicator"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="String"/>
+        <Class IRI="DataType"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="SubProductsAttribute"/>
@@ -2676,6 +2779,10 @@
     <SubClassOf>
         <Class IRI="SugarcaneSource"/>
         <Class IRI="AgriculturalFeature"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="SugarcaneSource"/>
+        <Class IRI="SelectOne"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="SugarcaneTransportOptimizationForIndustry"/>
@@ -2936,6 +3043,10 @@
         <Class IRI="Categorical"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="Video"/>
+        <Class IRI="DataType"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="VinasseAndEthanolRelationCategory"/>
         <Class IRI="Categorical"/>
     </SubClassOf>
@@ -3010,6 +3121,14 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Class IRI="AgriculturalFeature"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Class IRI="SelectOne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
         <Class IRI="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion"/>
     </SubClassOf>
     <SubClassOf>
@@ -3036,16 +3155,6 @@
         <Class IRI="http://dbpedia.org/resource/PhysicalPlant"/>
         <Class IRI="ProductionUnit"/>
     </SubClassOf>
-    <DisjointClasses>
-        <Class IRI="AgriculturalEfficiency"/>
-        <Class IRI="AgriculturalProductionSystem"/>
-        <Class IRI="Evaluation"/>
-        <Class IRI="Indicator"/>
-        <Class IRI="ProductionFeature"/>
-        <Class IRI="ProductionUnit"/>
-        <Class IRI="Value"/>
-        <Class IRI="http://dbpedia.org/ontology/Place"/>
-    </DisjointClasses>
     <ClassAssertion>
         <Class IRI="VinasseAndEthanolRelationCategory"/>
         <NamedIndividual IRI="Above18"/>
@@ -3287,10 +3396,6 @@
         <NamedIndividual IRI="High"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="AgriculturalEfficiency"/>
-        <NamedIndividual IRI="HighAgriculturalEfficiency"/>
-    </ClassAssertion>
-    <ClassAssertion>
         <Class IRI="BoilerEfficiencyCategory"/>
         <NamedIndividual IRI="HighEfficiency"/>
     </ClassAssertion>
@@ -3363,10 +3468,6 @@
         <NamedIndividual IRI="Low"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="AgriculturalEfficiency"/>
-        <NamedIndividual IRI="LowAgriculturalEfficiency"/>
-    </ClassAssertion>
-    <ClassAssertion>
         <Class IRI="BoilerEfficiencyCategory"/>
         <NamedIndividual IRI="LowEfficiency"/>
     </ClassAssertion>
@@ -3429,10 +3530,6 @@
     <ClassAssertion>
         <Class IRI="IntensityCategory"/>
         <NamedIndividual IRI="Medium"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="AgriculturalEfficiency"/>
-        <NamedIndividual IRI="MediumAgriculturalEfficiency"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="BoilerEfficiencyCategory"/>
@@ -5386,16 +5483,6 @@
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>AgriculturalEfficiency</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Agricultural efficiency</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>AgriculturalEfficiency</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Eficiência agrícola</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>AgriculturalFeature</IRI>
         <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Agricultural feature</Literal>
     </AnnotationAssertion>
@@ -6311,6 +6398,16 @@
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>EstablishmentDate</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Data de fundação</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>EstablishmentDate</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Establishment date</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>Evaluation</IRI>
         <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Avaliação</Literal>
     </AnnotationAssertion>
@@ -6473,16 +6570,6 @@
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>FormulatedWithoutConsideringTheRealityOfTheFieldOrProducer</IRI>
         <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Formulated without considering the reality of the field or producer</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>FoundationDate</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Data de fundação</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>FoundationDate</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Foundation date</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty IRI="weight"/>
@@ -10118,26 +10205,6 @@
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <AbbreviatedIRI>terms:title</AbbreviatedIRI>
         <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">título</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://www.w3.org/2006/time#Instant</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Instant</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://www.w3.org/2006/time#Instant</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Instante</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://www.w3.org/2006/time#Interval</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Interval</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://www.w3.org/2006/time#Interval</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">intervalo</Literal>
     </AnnotationAssertion>
     <AnnotationPropertyRange>
         <AnnotationProperty abbreviatedIRI="terms:title"/>

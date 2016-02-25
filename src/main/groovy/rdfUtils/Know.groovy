@@ -112,6 +112,9 @@ class Know {
         def existOnt = false
         def result = query("?o rdf:type owl:Ontology")
 
+        println "******** Result ********"
+        println result
+
         result.each{
             if(it.o == uri)
                 existOnt = true

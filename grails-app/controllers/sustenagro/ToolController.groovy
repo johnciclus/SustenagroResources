@@ -10,26 +10,23 @@ class ToolController {
     def k
 
     def index() {
-        if(k.existOntology("http://bio.icmc.usp.br/sustenagro#")){
-            dsl.toolIndexStack.each{ command ->
-                if(command.request){
-                    command.request.each{ key, args ->
-                        if(key!='widgets'){
-                            command.args[key] = k[args[1]].getLabelDescription(args[0])
-                        }
-                        else if(key=='widgets'){
-                            args.each{ subKey, subArgs ->
-                                //command.args.widgets[subKey]['args']['data'] = getLabelDescription(subArgs[1], subArgs[0])
-                                command.args.widgets[subKey]['args']['data'] = k[subArgs[1]].getLabelDescription(subArgs[0])
-                            }
+        dsl.toolIndexStack.each{ command ->
+            //println command
+            if(command.request){
+                command.request.each{ key, args ->
+                    if(key!='widgets'){
+                        command.args[key] = k[args[1]].getLabelDescription(args[0].toString())
+                    }
+                    else if(key=='widgets'){
+                        args.each{ subKey, subArgs ->
+                            //command.args.widgets[subKey]['args']['data'] = getLabelDescription(subArgs[1], subArgs[0])
+                            command.args.widgets[subKey]['args']['data'] = k[subArgs[1]].getLabelDescription(subArgs[0].toString())
                         }
                     }
                 }
             }
-            render(view: 'index', model: [inputs: dsl.toolIndexStack])
         }
-        else
-            redirect(uri: "/")
+        render(view: 'index', model: [inputs: dsl.toolIndexStack])
     }
 
     def createProductionUnit() {
@@ -88,7 +85,7 @@ class ToolController {
 
     def assessments(){
         def production_unit_id = Uri.removeDomain(params.production_unit_id, 'http://bio.icmc.usp.br/sustenagro#')
-        def assessments = k[production_unit_id].getLabelAppliedTo()
+        def assessments = k[production_unit_id].labelAppliedTo
 
         render( template: 'assessments',
                 model:    [assessments: assessments,
@@ -138,7 +135,7 @@ class ToolController {
 
         proSubClass = propertyToMap(productionFeatures, 'subClass')
         proSubClass.each{ key, v ->
-            v['label']= k[key].getLabel()
+            v['label']= k[key].label
         }
         proSubClass = proSubClass.sort{ it.value.label.toLowerCase() }
 
@@ -171,7 +168,7 @@ class ToolController {
 
         tecSubClass = propertyToMap(technologyFeatures, 'subClass')
         tecSubClass.each{ key, v ->
-            v['label']= k[key].getLabel()
+            v['label']= k[key].label
         }
         tecSubClass = tecSubClass.sort{ it.value.label.toLowerCase() }
 
@@ -179,7 +176,7 @@ class ToolController {
         tecOptimization = k[':SugarcaneProcessingOptimizationCategory'].getInstances()
 
         def assessmentID = params.assessment
-        def name = k[params.id].getLabel()
+        def name = k[params.id].label
         def values = [:]
         def weights = [:]
         def report
@@ -335,89 +332,4 @@ class ToolController {
         }
         return map
     }
-
-    /*def getLabel(String cls){
-        k.query("<"+k.toURI(cls)+"> rdfs:label ?label.")[0].label
-    }
-
-    def getLabelAppliedTo(String cls){
-        k.query("?id :appliedTo <"+k.toURI(cls)+">. ?id rdfs:label ?label")
-    }
-
-    def getLabelDataValue(String cls){
-        k.query("?id a <"+k.toURI(cls)+">; rdfs:label ?label; :dataValue ?dataValue")
-    }
-
-    def getEvaluations(String cls){
-        k.query("?id a :Evaluation. ?id :appliedTo <"+k.toURI(cls)+">")
-    }
-
-    def getLabelDescription(String cls, String property) {
-        def uri = '<'+k.toURI(cls)+'>'
-        def result = k.query("$uri rdfs:label ?label. optional {$uri dc:description ?description}")
-
-        if (result.size == 0) {
-            try{
-                result = k.query("?id rdfs:label ?label. FILTER (STR(?label)='$cls')", '', '')
-                if (result.size > 0){
-                    uri = "<${result[0].id}>"
-                }
-            }
-            catch(RuntimeException e){
-                new RuntimeException("Unknown label: $cls")
-            }
-        }
-        return k.query("?id $property $uri; rdfs:label ?label. optional {?id dc:description ?description}. FILTER ( ?id != $uri )")
-    }
-
-    def getProductionUnitType(String ind){
-        k.query("<"+k.toURI(ind)+"> rdf:type ?type. FILTER(?type != :ProductionUnit)")[0].type
-    }
-
-    def getInstances(String cls){
-        k.select('distinct ?id ?label')
-            .query("?id a <"+k.toURI(cls)+">; rdfs:label ?label.",
-            "ORDER BY ?label")
-    }
-
-    def getChildren(String cls){
-        k.select('distinct ?id ?label ?category ?valueType')
-            .query('?id rdfs:subClassOf <'+k.toURI(cls)+'''> ; rdfs:label ?label.
-                ?id rdfs:subClassOf ?y.
-                ?y owl:onClass ?category.
-                ?category rdfs:subClassOf ?valueType. '''+
-                "FILTER(?valueType = :Categorical || ?valueType = :Real)",
-                "ORDER BY ?label")
-    }
-
-    def getGrandchildren(String cls){
-        k.select('distinct ?id ?label ?subClass ?category ?valueType')
-            .query('?subClass rdfs:subClassOf <'+k.toURI(cls)+'''> .
-                    ?id rdfs:subClassOf ?subClass; rdfs:label ?label.
-                    ?id rdfs:subClassOf ?y.
-                    ?y owl:onClass ?category.
-                    ?category rdfs:subClassOf ?valueType. '''+
-                    "FILTER(?subClass != <"+k.toURI(cls)+"> && ?subClass != ?id && (?valueType = :Categorical || ?valueType = :Real))",
-                    "ORDER BY ?label")
-    }
-
-    def getGranchildrenIndividuals(String cls, String evaluation, String args){
-        def argsList = args.split(' ')
-
-        def query = "?subClass rdfs:subClassOf <"+k.toURI(cls)+">."+
-                    "?id rdfs:subClassOf ?subClass."+
-                    "?ind a ?id."+
-                    "?ind dc:isPartOf <"+k.toURI(evaluation)+">.";
-
-        if (argsList.contains('?value'))
-            query +="?ind :value ?value.";
-
-        if (argsList.contains('?weight'))
-            query +="?ind :hasWeight ?weight.";
-
-        query += "FILTER( ?subClass != <"+k.toURI(cls)+"> && ?id != <"+k.toURI(cls)+"> && ?subClass != ?id)"
-
-        k.select('distinct '+args)
-            .query(query, "ORDER BY ?ind")
-    }*/
 }

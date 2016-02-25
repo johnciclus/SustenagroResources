@@ -5,6 +5,8 @@ import org.codehaus.groovy.control.CompilerConfiguration
 import org.pegdown.PegDownProcessor
 import com.github.slugify.Slugify
 import org.kohsuke.groovy.sandbox.SandboxTransformer
+import rdfUtils.Know
+import utils.Uri
 
 /**
  * Created by dilvan on 7/14/15.
@@ -28,9 +30,11 @@ class DSL {
 
     def _sandbox
     def _script
+    def _k
+
     static md = new PegDownProcessor()
 
-    DSL(String file){
+    DSL(String file, Know k){
         // Create CompilerConfiguration and assign
         // the DelegatingScript class as the base script class.
         _cc = new CompilerConfiguration()
@@ -45,7 +49,7 @@ class DSL {
         //_shell = new GroovyShell(this.class.classLoader, binding, cc)
 
         _nameFile = file
-
+        _k = k
         _script = (DelegatingScript) _shell.parse(new File(_nameFile).text)
         _script.setDelegate(this)
 
@@ -107,6 +111,15 @@ class DSL {
         //println ''
     }
 
+    def description(String str){
+        toolIndexStack.push(['widget': 'description', 'args': ['description': toHTML(str)]])
+        //println 'toolIndexStack'
+        //println toolIndexStack
+        //println ''
+        //println  Processor.process(description, true)
+        //println new PegDownProcessor().markdownToHtml(description)
+    }
+
     def data(String str){
         data = str
         props[str]
@@ -116,14 +129,7 @@ class DSL {
         props[data]= obj
     }
 
-    def description(String str){
-        toolIndexStack.push(['widget': 'description', 'args': ['description': toHTML(str)]])
-        //println 'toolIndexStack'
-        //println toolIndexStack
-        //println ''
-        //println  Processor.process(description, true)
-        //println new PegDownProcessor().markdownToHtml(description)
-    }
+
 
     def features(String clsName, Closure closure){
         def clsId = slg.slugify(clsName)
@@ -134,7 +140,7 @@ class DSL {
         argLst['widgets']       = [:]
         featureLst              = []
 
-        featureLst.push(['id': clsId+'_name', 'widget': 'name', 'args': ['id': clsId+'_name', 'label': 'Nome da unidade produtiva']])
+        featureLst.push(['id': clsId+'_name', 'widget': 'string', 'args': ['id': clsId+'_name', 'label': 'Nome da unidade produtiva']])
         featureLst.push(['id': clsId+'_types', 'widget': 'instance', 'request': ['rdfs:subClassOf', clsName], 'args': ['id': clsId+'_types', 'label': 'Caracterização dos sistemas produtivos no Centro-Sul']])
         closure()
 
@@ -147,6 +153,28 @@ class DSL {
 
         toolIndexStack.push(['widget': 'selectEntity', 'request': ['production_units': ['a', ':ProductionUnit']], 'args': [:]])
         toolIndexStack.push(['widget': 'createEntity', 'request': requestLst, 'args': argLst])
+    }
+
+    def instance(Map textMap = [:], String clsName, String prop = ''){
+
+        def widget = Uri.simpleDomain(_k[clsName].getDataType(), "http://bio.icmc.usp.br/sustenagro#", '')[0]['dataType']
+        def id = slg.slugify(clsName)
+        def args = [:]
+        def request = []
+
+        if(prop?.trim()){
+            request = [prop, clsName]
+        }
+        else(
+            request = []
+        )
+
+        args['id'] = id
+        if(textMap.label)
+            args['label'] = textMap.label
+
+        featureLst << ['id': id, 'widget': widget.toLowerCase(), 'request': request, 'args': args]
+        println featureLst.last()
     }
 
 //    def recommendation(Map map, String txt){
@@ -178,17 +206,6 @@ class DSL {
 
     def recommendation(Map map, String txt){
         if (map['if']) report << ['recommendation', toHTML(txt)]
-    }
-
-    def instance(Map textMap = [:], String clsName){
-        def id = slg.slugify(clsName)
-        def argLst = [:]
-        argLst['id'] = id
-        if(textMap.label)
-            argLst['label'] = textMap.label
-
-        println clsName
-        featureLst << ['id': id, 'widget': 'instance', 'request': ['a', clsName], 'args': argLst]
     }
 
     def subclass(String str){

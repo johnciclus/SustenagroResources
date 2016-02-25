@@ -319,6 +319,14 @@
     
 
 
+    <!-- http://bio.icmc.usp.br/sustenagro#Acknowledge -->
+
+    <owl:Class rdf:about="&sustenagro;Acknowledge">
+        <rdfs:subClassOf rdf:resource="&sustenagro;DataType"/>
+    </owl:Class>
+    
+
+
     <!-- http://bio.icmc.usp.br/sustenagro#AdequacyOfBoilers -->
 
     <owl:Class rdf:about="&sustenagro;AdequacyOfBoilers">
@@ -402,16 +410,6 @@
         <rdfs:label xml:lang="en">Agricultural cutting type category</rdfs:label>
         <rdfs:label xml:lang="pt">Categoria de tipo de corte</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
-    </owl:Class>
-    
-
-
-    <!-- http://bio.icmc.usp.br/sustenagro#AgriculturalEfficiency -->
-
-    <owl:Class rdf:about="&sustenagro;AgriculturalEfficiency">
-        <rdfs:label xml:lang="en">Agricultural efficiency</rdfs:label>
-        <rdfs:label xml:lang="pt">Eficiência agrícola</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
     </owl:Class>
     
 
@@ -571,12 +569,21 @@
     
 
 
+    <!-- http://bio.icmc.usp.br/sustenagro#Audio -->
+
+    <owl:Class rdf:about="&sustenagro;Audio">
+        <rdfs:subClassOf rdf:resource="&sustenagro;DataType"/>
+    </owl:Class>
+    
+
+
     <!-- http://bio.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResults -->
 
     <owl:Class rdf:about="&sustenagro;AvailabilityOfEvaluationResults">
         <rdfs:label xml:lang="en">Availability of evaluations results</rdfs:label>
         <rdfs:label xml:lang="pt">Disponibilização dos resultados da avaliação</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;SelectOne"/>
     </owl:Class>
     
 
@@ -641,6 +648,28 @@
         <rdfs:label xml:lang="en">Bagasse destination category</rdfs:label>
         <rdfs:label xml:lang="pt">Categoria de destinação do bagaço</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#BeginningOfHarvestDate -->
+
+    <owl:Class rdf:about="&sustenagro;BeginningOfHarvestDate">
+        <rdfs:label xml:lang="en">Beginning of harvest date</rdfs:label>
+        <rdfs:label xml:lang="pt">Data de início da colheita</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Date"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;HarvestDates"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#BeginningOfPlantingDate -->
+
+    <owl:Class rdf:about="&sustenagro;BeginningOfPlantingDate">
+        <rdfs:label xml:lang="en">Beginning of planting date</rdfs:label>
+        <rdfs:label xml:lang="pt">Data de início do plantio</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Date"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;PlantingDates"/>
     </owl:Class>
     
 
@@ -716,6 +745,7 @@
             </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;DataType"/>
     </owl:Class>
     
 
@@ -744,6 +774,7 @@
         <rdfs:label xml:lang="en">Canavial Longevity</rdfs:label>
         <rdfs:label xml:lang="pt">Longevidade do canvial</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;SelectOne"/>
     </owl:Class>
     
 
@@ -930,6 +961,36 @@
     
 
 
+    <!-- http://bio.icmc.usp.br/sustenagro#DataType -->
+
+    <owl:Class rdf:about="&sustenagro;DataType"/>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#Date -->
+
+    <owl:Class rdf:about="&sustenagro;Date">
+        <rdfs:subClassOf rdf:resource="&sustenagro;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#DateTime -->
+
+    <owl:Class rdf:about="&sustenagro;DateTime">
+        <rdfs:subClassOf rdf:resource="&sustenagro;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#Decimal -->
+
+    <owl:Class rdf:about="&sustenagro;Decimal">
+        <rdfs:subClassOf rdf:resource="&sustenagro;DataType"/>
+    </owl:Class>
+    
+
+
     <!-- http://bio.icmc.usp.br/sustenagro#EconomicIndicator -->
 
     <owl:Class rdf:about="&sustenagro;EconomicIndicator">
@@ -1079,6 +1140,17 @@
     
 
 
+    <!-- http://bio.icmc.usp.br/sustenagro#EstablishmentDate -->
+
+    <owl:Class rdf:about="&sustenagro;EstablishmentDate">
+        <rdfs:label xml:lang="en">Establishment date</rdfs:label>
+        <rdfs:label xml:lang="pt">Data de fundação</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Date"/>
+    </owl:Class>
+    
+
+
     <!-- http://bio.icmc.usp.br/sustenagro#Evaluation -->
 
     <owl:Class rdf:about="&sustenagro;Evaluation">
@@ -1185,16 +1257,30 @@
     <owl:Class rdf:about="&sustenagro;Financing">
         <rdfs:label xml:lang="en">Financing</rdfs:label>
         <rdfs:label xml:lang="pt">Financiamento</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;String"/>
     </owl:Class>
     
 
 
-    <!-- http://bio.icmc.usp.br/sustenagro#FoundationDate -->
+    <!-- http://bio.icmc.usp.br/sustenagro#FinishOfHarvestDate -->
 
-    <owl:Class rdf:about="&sustenagro;FoundationDate">
-        <rdfs:label xml:lang="en">Foundation date</rdfs:label>
-        <rdfs:label xml:lang="pt">Data de fundação</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2006/time#Instant"/>
+    <owl:Class rdf:about="&sustenagro;FinishOfHarvestDate">
+        <rdfs:label xml:lang="en">Finish of harvest date</rdfs:label>
+        <rdfs:label xml:lang="pt">data de término da colheita</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Date"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;HarvestDates"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#FinishOfPlantingDate -->
+
+    <owl:Class rdf:about="&sustenagro;FinishOfPlantingDate">
+        <rdfs:label xml:lang="en">Finish of planting date</rdfs:label>
+        <rdfs:label xml:lang="pt">Data de término da colheita</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Date"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;PlantingDates"/>
     </owl:Class>
     
 
@@ -1223,6 +1309,14 @@
         <rdfs:label xml:lang="en">General attribute</rdfs:label>
         <rdfs:label xml:lang="pt">Atributo geral</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;EnvironmentalIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#GeoLocation -->
+
+    <owl:Class rdf:about="&sustenagro;GeoLocation">
+        <rdfs:subClassOf rdf:resource="&sustenagro;DataType"/>
     </owl:Class>
     
 
@@ -1282,12 +1376,22 @@
     
 
 
+    <!-- http://bio.icmc.usp.br/sustenagro#HarvestDates -->
+
+    <owl:Class rdf:about="&sustenagro;HarvestDates">
+        <rdfs:label xml:lang="en">Harvest dates</rdfs:label>
+        <rdfs:label xml:lang="pt">Datas da colheita</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
+    </owl:Class>
+    
+
+
     <!-- http://bio.icmc.usp.br/sustenagro#HarvestRange -->
 
     <owl:Class rdf:about="&sustenagro;HarvestRange">
         <rdfs:label xml:lang="en">Harvest range</rdfs:label>
         <rdfs:label xml:lang="pt">Faixa da colheita</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2006/time#Interval"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
     </owl:Class>
     
 
@@ -1326,6 +1430,14 @@
         <rdfs:label xml:lang="en">Health attribute</rdfs:label>
         <rdfs:label xml:lang="pt">Atributo de saúde</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;SocialIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#Image -->
+
+    <owl:Class rdf:about="&sustenagro;Image">
+        <rdfs:subClassOf rdf:resource="&sustenagro;DataType"/>
     </owl:Class>
     
 
@@ -1377,6 +1489,25 @@
             </owl:Restriction>
         </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#InnovationDevelopmentProjects -->
+
+    <owl:Class rdf:about="&sustenagro;InnovationDevelopmentProjects">
+        <rdfs:label xml:lang="en">Innovation and/or development projects</rdfs:label>
+        <rdfs:label xml:lang="pt">Projetos de inovação e/ou desenvolvimento (BNDES, Finep)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;String"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#InputWidget -->
+
+    <owl:Class rdf:about="&sustenagro;InputWidget">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Widget"/>
     </owl:Class>
     
 
@@ -1492,6 +1623,17 @@
     
 
 
+    <!-- http://bio.icmc.usp.br/sustenagro#LinkWithOtherBusinessOrInvestmentGroups -->
+
+    <owl:Class rdf:about="&sustenagro;LinkWithOtherBusinessOrInvestmentGroups">
+        <rdfs:label xml:lang="en">Link with other business groups or investment</rdfs:label>
+        <rdfs:label xml:lang="pt">Ligação com outros grupos empresariais ou de investimentos</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;String"/>
+    </owl:Class>
+    
+
+
     <!-- http://bio.icmc.usp.br/sustenagro#Logistic -->
 
     <owl:Class rdf:about="&sustenagro;Logistic">
@@ -1602,22 +1744,12 @@
     
 
 
-    <!-- http://bio.icmc.usp.br/sustenagro#OneAndHalfYear -->
+    <!-- http://bio.icmc.usp.br/sustenagro#Number -->
 
-    <owl:Class rdf:about="&sustenagro;OneAndHalfYear">
-        <rdfs:label xml:lang="en">One and half year</rdfs:label>
-        <rdfs:label xml:lang="pt">Um ano e meio</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&sustenagro;CanavialLongevity"/>
-    </owl:Class>
-    
-
-
-    <!-- http://bio.icmc.usp.br/sustenagro#OneYear -->
-
-    <owl:Class rdf:about="&sustenagro;OneYear">
-        <rdfs:label xml:lang="en">One year</rdfs:label>
-        <rdfs:label xml:lang="pt">Um ano</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&sustenagro;CanavialLongevity"/>
+    <owl:Class rdf:about="&sustenagro;Number">
+        <rdfs:label xml:lang="en">Number</rdfs:label>
+        <rdfs:label xml:lang="pt">Número</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;DataType"/>
     </owl:Class>
     
 
@@ -1628,6 +1760,33 @@
         <rdfs:label xml:lang="en">Operational efficiency category</rdfs:label>
         <rdfs:label xml:lang="pt">Categoria eficiência operacional</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;Categorical"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#Output -->
+
+    <owl:Class rdf:about="&sustenagro;Output">
+        <rdfs:subClassOf rdf:resource="&sustenagro;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#OutputWidget -->
+
+    <owl:Class rdf:about="&sustenagro;OutputWidget">
+        <rdfs:subClassOf rdf:resource="&sustenagro;Widget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#PartnershipsForResearchOrImprovementOfTheSystem -->
+
+    <owl:Class rdf:about="&sustenagro;PartnershipsForResearchOrImprovementOfTheSystem">
+        <rdfs:label xml:lang="en">Partnerships for research or improvement of the system</rdfs:label>
+        <rdfs:label xml:lang="pt">Parcerias para pesquisa ou aprimoramento do sistema</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Text"/>
     </owl:Class>
     
 
@@ -1779,6 +1938,16 @@
     
 
 
+    <!-- http://bio.icmc.usp.br/sustenagro#PlantingDates -->
+
+    <owl:Class rdf:about="&sustenagro;PlantingDates">
+        <rdfs:label xml:lang="en">Planting dates</rdfs:label>
+        <rdfs:label xml:lang="pt">Datas do plantio</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
+    </owl:Class>
+    
+
+
     <!-- http://bio.icmc.usp.br/sustenagro#PlantingPlanConsideringThePrecursorUseOfArea -->
 
     <owl:Class rdf:about="&sustenagro;PlantingPlanConsideringThePrecursorUseOfArea">
@@ -1812,7 +1981,7 @@
     <owl:Class rdf:about="&sustenagro;PlantingRange">
         <rdfs:label xml:lang="en">Planting range</rdfs:label>
         <rdfs:label xml:lang="pt">Faixa do plantio</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2006/time#Interval"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
     </owl:Class>
     
 
@@ -2040,6 +2209,8 @@
     <owl:Class rdf:about="&sustenagro;ProductionUnit">
         <rdfs:label xml:lang="en">Production unity</rdfs:label>
         <rdfs:label xml:lang="pt">Unidade de produção</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;SelectOne"/>
     </owl:Class>
     
 
@@ -2319,6 +2490,22 @@
     
 
 
+    <!-- http://bio.icmc.usp.br/sustenagro#SelectMultiple -->
+
+    <owl:Class rdf:about="&sustenagro;SelectMultiple">
+        <rdfs:subClassOf rdf:resource="&sustenagro;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#SelectOne -->
+
+    <owl:Class rdf:about="&sustenagro;SelectOne">
+        <rdfs:subClassOf rdf:resource="&sustenagro;DataType"/>
+    </owl:Class>
+    
+
+
     <!-- http://bio.icmc.usp.br/sustenagro#SharingOfRisksBetweenSuppliersAndProductionPlant -->
 
     <owl:Class rdf:about="&sustenagro;SharingOfRisksBetweenSuppliersAndProductionPlant">
@@ -2353,6 +2540,14 @@
         <rdfs:label xml:lang="en">Soils attribute</rdfs:label>
         <rdfs:label xml:lang="pt">Atributo solos</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;EnvironmentalIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#String -->
+
+    <owl:Class rdf:about="&sustenagro;String">
+        <rdfs:subClassOf rdf:resource="&sustenagro;DataType"/>
     </owl:Class>
     
 
@@ -2483,6 +2678,7 @@
         <rdfs:label xml:lang="en">Sugarcane source</rdfs:label>
         <rdfs:label xml:lang="pt">Origem da cana</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;SelectOne"/>
     </owl:Class>
     
 
@@ -2562,6 +2758,16 @@
     
 
 
+    <!-- http://bio.icmc.usp.br/sustenagro#Text -->
+
+    <owl:Class rdf:about="&sustenagro;Text">
+        <rdfs:label xml:lang="en">Text</rdfs:label>
+        <rdfs:label xml:lang="pt">Texto</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;DataType"/>
+    </owl:Class>
+    
+
+
     <!-- http://bio.icmc.usp.br/sustenagro#TotalRecoverableSugarIndex -->
 
     <owl:Class rdf:about="&sustenagro;TotalRecoverableSugarIndex">
@@ -2595,6 +2801,7 @@
     <owl:Class rdf:about="&sustenagro;TotalValue">
         <rdfs:label xml:lang="en">Total value</rdfs:label>
         <rdfs:label xml:lang="pt">Valor total</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
     </owl:Class>
     
 
@@ -2604,6 +2811,7 @@
     <owl:Class rdf:about="&sustenagro;TotalValueInvestedInTechnologicInAgriculturalPhase">
         <rdfs:label xml:lang="en">Total value invested in technologic in agricultural phase</rdfs:label>
         <rdfs:label xml:lang="pt">Valor total investido em tecnologia na fase agrícola (até a fase atual)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Number"/>
         <rdfs:subClassOf rdf:resource="&sustenagro;TotalValue"/>
     </owl:Class>
     
@@ -2614,6 +2822,7 @@
     <owl:Class rdf:about="&sustenagro;TotalValueInvestedInTechnologicInIndustrialPhase">
         <rdfs:label xml:lang="en">Total value invested in technologic in industrial phase</rdfs:label>
         <rdfs:label xml:lang="pt">Valor total investido em tecnologia na fase industrial (até a fase atual)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Number"/>
         <rdfs:subClassOf rdf:resource="&sustenagro;TotalValue"/>
     </owl:Class>
     
@@ -2624,6 +2833,7 @@
     <owl:Class rdf:about="&sustenagro;TotalValuePlaneedForInvestmentToProductionDrainage">
         <rdfs:label xml:lang="en">Total value planeed for investment to production drainage</rdfs:label>
         <rdfs:label xml:lang="pt">Valor total previsto para investimento para escoamento da produção</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;Number"/>
         <rdfs:subClassOf rdf:resource="&sustenagro;TotalValue"/>
     </owl:Class>
     
@@ -2975,6 +3185,14 @@
     
 
 
+    <!-- http://bio.icmc.usp.br/sustenagro#Video -->
+
+    <owl:Class rdf:about="&sustenagro;Video">
+        <rdfs:subClassOf rdf:resource="&sustenagro;DataType"/>
+    </owl:Class>
+    
+
+
     <!-- http://bio.icmc.usp.br/sustenagro#VinasseAndEthanolRelationCategory -->
 
     <owl:Class rdf:about="&sustenagro;VinasseAndEthanolRelationCategory">
@@ -3092,12 +3310,26 @@
     
 
 
+    <!-- http://bio.icmc.usp.br/sustenagro#Widget -->
+
+    <owl:Class rdf:about="&sustenagro;Widget"/>
+    
+
+
     <!-- http://bio.icmc.usp.br/sustenagro#YesNo -->
 
     <owl:Class rdf:about="&sustenagro;YesNo">
         <rdfs:label xml:lang="en">Yes/No</rdfs:label>
         <rdfs:label xml:lang="pt">Sim/Não</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;Boolean"/>
+    </owl:Class>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#bootstrapString -->
+
+    <owl:Class rdf:about="&sustenagro;bootstrapString">
+        <rdfs:subClassOf rdf:resource="&sustenagro;InputWidget"/>
     </owl:Class>
     
 
@@ -3137,6 +3369,8 @@
     <owl:Class rdf:about="http://dbpedia.org/ontology/MicroRegion">
         <rdfs:label xml:lang="en">Microregion</rdfs:label>
         <rdfs:label xml:lang="pt">Microrregião</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro;AgriculturalFeature"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro;SelectOne"/>
         <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion"/>
     </owl:Class>
     
@@ -3207,24 +3441,6 @@
         <rdfs:label xml:lang="en">Plant</rdfs:label>
         <rdfs:label xml:lang="pt">Usina</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro;ProductionUnit"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.w3.org/2006/time#Instant -->
-
-    <owl:Class rdf:about="http://www.w3.org/2006/time#Instant">
-        <rdfs:label xml:lang="en">Instant</rdfs:label>
-        <rdfs:label xml:lang="pt">Instante</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://www.w3.org/2006/time#Interval -->
-
-    <owl:Class rdf:about="http://www.w3.org/2006/time#Interval">
-        <rdfs:label xml:lang="en">Interval</rdfs:label>
-        <rdfs:label xml:lang="pt">intervalo</rdfs:label>
     </owl:Class>
     
 
@@ -3913,7 +4129,6 @@
     <!-- http://bio.icmc.usp.br/sustenagro#HighAgriculturalEfficiency -->
 
     <owl:NamedIndividual rdf:about="&sustenagro;HighAgriculturalEfficiency">
-        <rdf:type rdf:resource="&sustenagro;AgriculturalEfficiency"/>
         <rdfs:label xml:lang="en">High Agricultural Efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Alta Eficiência Agrícola</rdfs:label>
         <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
@@ -4123,7 +4338,6 @@
     <!-- http://bio.icmc.usp.br/sustenagro#LowAgriculturalEfficiency -->
 
     <owl:NamedIndividual rdf:about="&sustenagro;LowAgriculturalEfficiency">
-        <rdf:type rdf:resource="&sustenagro;AgriculturalEfficiency"/>
         <rdfs:label xml:lang="en">Low Agricultural Efficiecy</rdfs:label>
         <rdfs:label xml:lang="pt">Baixa Eficiência Agrícola</rdfs:label>
         <dataValue rdf:datatype="&xsd;double">-1.0</dataValue>
@@ -4312,7 +4526,6 @@
     <!-- http://bio.icmc.usp.br/sustenagro#MediumAgriculturalEfficiency -->
 
     <owl:NamedIndividual rdf:about="&sustenagro;MediumAgriculturalEfficiency">
-        <rdf:type rdf:resource="&sustenagro;AgriculturalEfficiency"/>
         <rdfs:label xml:lang="en">Medium Agricultural Efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência Agrícola Média</rdfs:label>
         <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
@@ -4439,6 +4652,26 @@
         <rdfs:label xml:lang="en">Null</rdfs:label>
         <rdfs:label xml:lang="pt">Nula</rdfs:label>
         <dataValue rdf:datatype="&xsd;double">0.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#OneAndHalfYear -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;OneAndHalfYear">
+        <rdf:type rdf:resource="&sustenagro;CanavialLongevity"/>
+        <rdfs:label xml:lang="en">One and half year</rdfs:label>
+        <rdfs:label xml:lang="pt">Cana de um ano e meio</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#OneYear -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;OneYear">
+        <rdf:type rdf:resource="&sustenagro;CanavialLongevity"/>
+        <rdfs:label xml:lang="en">One year</rdfs:label>
+        <rdfs:label xml:lang="pt">Um ano</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -5071,6 +5304,16 @@
     
 
 
+    <!-- http://bio.icmc.usp.br/sustenagro#private -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;private">
+        <rdf:type rdf:resource="&sustenagro;AvailabilityOfEvaluationResults"/>
+        <rdfs:label xml:lang="en">Private</rdfs:label>
+        <rdfs:label xml:lang="pt">Privado</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://bio.icmc.usp.br/sustenagro#producedForOwnConsumption -->
 
     <owl:NamedIndividual rdf:about="&sustenagro;producedForOwnConsumption">
@@ -5078,6 +5321,16 @@
         <rdfs:label xml:lang="en">Produced for own consumption</rdfs:label>
         <rdfs:label xml:lang="pt">Produz para consumo próprio</rdfs:label>
         <dataValue rdf:datatype="&xsd;double">1.0</dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#public -->
+
+    <owl:NamedIndividual rdf:about="&sustenagro;public">
+        <rdf:type rdf:resource="&sustenagro;AvailabilityOfEvaluationResults"/>
+        <rdfs:label xml:lang="en">Public</rdfs:label>
+        <rdfs:label xml:lang="pt">Público</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -5861,30 +6114,6 @@
         <rdfs:label xml:lang="en">Adequate destination of vinasse</rdfs:label>
         <rdfs:label xml:lang="pt">Adequada destinação da vinhaça</rdfs:label>
         <weight rdf:datatype="&xsd;double">2.0</weight>
-    </rdf:Description>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // General axioms
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&sustenagro;AgriculturalEfficiency"/>
-            <rdf:Description rdf:about="&sustenagro;AgriculturalProductionSystem"/>
-            <rdf:Description rdf:about="&sustenagro;Evaluation"/>
-            <rdf:Description rdf:about="&sustenagro;Indicator"/>
-            <rdf:Description rdf:about="&sustenagro;ProductionFeature"/>
-            <rdf:Description rdf:about="&sustenagro;ProductionUnit"/>
-            <rdf:Description rdf:about="&sustenagro;Value"/>
-            <rdf:Description rdf:about="http://dbpedia.org/ontology/Place"/>
-        </owl:members>
     </rdf:Description>
 </rdf:RDF>
 

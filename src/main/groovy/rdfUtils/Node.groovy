@@ -47,6 +47,11 @@ class Node {
          .query("<$URI> rdfs:subClassOf ?subClass.")
     }
 
+    def getDataType(){
+        k.select('?dataType')
+         .query("<$URI> rdfs:subClassOf ?dataType. ?dataType rdfs:subClassOf :DataType. FILTER (?dataType != :DataType && ?dataType != <$URI>)")
+    }
+
     def getChildren(){
         k.select('distinct ?id ?label ?category ?valueType')
                 .query("?id rdfs:subClassOf <$URI>; rdfs:label ?label."+
