@@ -5,7 +5,6 @@ import org.pegdown.PegDownProcessor
 import com.github.slugify.Slugify
 import org.kohsuke.groovy.sandbox.SandboxTransformer
 import rdfUtils.Know
-import utils.Uri
 
 /**
  * Created by dilvan on 7/14/15.
@@ -25,7 +24,6 @@ class DSL {
     def _nameFile = ''
     def _cc
     def _shell
-
     def _sandbox
     def _script
     def _k
@@ -48,6 +46,7 @@ class DSL {
 
         _nameFile = file
         _k = k
+
         _script = (DelegatingScript) _shell.parse(new File(_nameFile).text)
         _script.setDelegate(this)
         viewsStack['tool'] = [:]
@@ -128,7 +127,6 @@ class DSL {
     }
 
     def features(String clsName, Closure closure){
-        def id = slg.slugify(clsName)
         def requestLst          = [:]
         requestLst['widgets']   = [:]
         def argLst              = [:]
@@ -143,19 +141,19 @@ class DSL {
             argLst['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
         }
 
-        println _k.getBasePrefix()
+        argLst['entity'] = clsName
 
-        viewsStack['tool']['index'].push(['widget': 'selectEntity', 'request': ['production_units': ['a', ':ProductionUnit']], 'args': [:]])
+        viewsStack['tool']['index'].push(['widget': 'selectEntity', 'request': ['production_units': ['a', clsName]], 'args': ['entity': clsName]])
         viewsStack['tool']['index'].push(['widget': 'createEntity', 'request': requestLst, 'args': argLst])
     }
 
     def instance(Map args = [:], String clsName, String prop = ''){
-        def id = slg.slugify(clsName)
-        def widget = _k[clsName].getDataType().shortURI().toLowerCase()
-        def request = (prop?.trim()) ? [prop, clsName] : []
+        def id = _k.shortURI(clsName)
         args['id'] = id
-        //println id + ' ' + widget
-        featureLst << ['id': id, 'widget': widget, 'request': request, 'args': args]
+        featureLst << ['id': id,
+                       'widget': _k[clsName].getDataType().shortURI().toLowerCase(),
+                       'request': (prop?.trim()) ? [prop, clsName] : [],
+                       'args': args]
     }
 
 //    def recommendation(Map map, String txt){

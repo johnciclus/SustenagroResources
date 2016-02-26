@@ -28,33 +28,35 @@ class ToolController {
         render(view: 'index', model: [inputs: dsl.viewsStack[controllerName][actionName]])
     }
 
-    def createProductionUnit() {
-        def id
-        def featureID
+    def createEntity() {
+        def id, name, type, featuresID
 
-        if(params['productionunitname'] && params['productionunittype']){
-            id = new Slugify().slugify(params.productionunitname)
+        if(params['entity']) {
+            name = k.shortURI(params['entity']+'Name')
+            type = k.shortURI(params['entity']+'Type')
+            featuresID = k[params['entity']].getFeaturesURI()
 
-            String sparql = "<"+ k.toURI(":" + id) +">"+
-                    " rdf:type <"+    params.productionunittype+">;"+
-                    " rdfs:label '"+  params.productionunitname+"'@pt"
+            if (params[name] && params[type]) {
+                id = new Slugify().slugify(params[name])
 
-            if(params.microregion)
-                sparql += "; dbp:MicroRegion <" + params.microregion + ">"
+                String sparql = "<" + k.toURI(":"+id) + ">" +
+                        "rdf:type <" + params[type] + ">;" +
+                        "rdfs:label '" + params[name] + "'@pt;" +
+                        "rdfs:label '" + params[name] + "'@en"
 
-            if(params.agriculturalefficiency)
-                sparql += "; :AgriculturalEfficiency <" + params.agriculturalefficiency + ">"
-
-            sparql += "."
-
-            k[':AgriculturalProductionUnitFeature'].getSubClass().shortURI().each{
-                featureID = it.toLowerCase()
-                if(params[featureID]){
-                    println featureID + ' : ' + params[featureID]
+                k[featuresID].getSubClass().shortURI().each {
+                    if (params[it]) {
+                        sparql += ";<${k.shortToURI(it)}> '" + params[it] + "'@pt"
+                    }
                 }
-            }
+                sparql += "."
 
-            k.insert(sparql)
+                sparql.split(';').each{
+                    println it
+                }
+
+                k.insert(sparql)
+            }
         }
 
 

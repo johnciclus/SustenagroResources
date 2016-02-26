@@ -28,13 +28,11 @@ class Know {
         addNamespace('dc','http://purl.org/dc/terms/')
         addNamespace('dbp','http://dbpedia.org/ontology/')
         addNamespace('dbpr','http://dbpedia.org/resource/')
-        addNamespace('','http://bio.icmc.usp.br/sustenagro#')
+        addNamespace('','http://semantic.icmc.usp.br/sustenagro#')
     }
 
     def addNamespace(String prefix, String namespace){
         _prefixes.put(prefix, namespace)
-        // Method not working with SparqlRepositorySailGraph
-        //g.addNamespace(prefix, namespace)
     }
 
     def propertyMissing(String name){
@@ -79,32 +77,48 @@ class Know {
         delete("?s ?p ?o")
     }
 
-    def toURI(String uri){
-        if (uri==null || uri == '' ) return null
-        if (uri.contains(' ')) return null
-        if (uri.startsWith('_:')) return uri
-        if (uri.startsWith(':')) return _prefixes['']+uri.substring(1)
-        if (uri.startsWith('http:')) return uri
-        if (uri.startsWith('urn:')) return uri
-        //println '!uri.contains(:) '+uri + ' : '
-        if (!uri.contains(':')) return appendPrefixe(uri)
+    def toURI(String id){
+        if (id==null || id == '' ) return null
+        if (id.contains(' ')) return null
+        if (id.startsWith('_:')) return id
+        if (id.startsWith(':')) return _prefixes['']+id.substring(1)
+        if (id.startsWith('http:')) return id
+        if (id.startsWith('urn:')) return id
+        //println '!id.contains(:) '+id + ' : '
+        if (!id.contains(':')) return searchPrefix(id).uri+id
 
         // slp.query("?id rdfs:label ?label. FILTER (STR(?label)='$cls')", '', '')
 
         println 'prexixes analyse'
-        def pre = _prefixes[uri.tokenize(':')[0]]
-        if (pre==null) return uri
-        return pre+uri.substring(uri.indexOf(':')+1)
+        def pre = _prefixes[id.split(':')[0]]
+        if (pre==null) return id
+        return pre+id.substring(id.indexOf(':')+1)
     }
 
-    def fromURI(String uri){
-        if (uri==null) return null
-        if (uri.startsWith('_:')) return uri
-        if (!uri.startsWith('http:')) return uri
+    def fromURI(String uidri){
+        if (id==null) return null
+        if (id.startsWith('_:')) return id
+        if (!id.startsWith('http:')) return id
         def v = _prefixes.find { key, obj ->
-            uri.startsWith(obj)
+            id.startsWith(obj)
         }
-        v.key + ':' + uri.substring(v.value.size())
+        v.key + ':' + id.substring(v.value.size())
+    }
+
+    def shortURI(String id){
+        if (id==null || id == '' ) return null
+        if (id.contains(' ')) return null
+        if (id.startsWith('_:')) return id.substring(2)
+        if (id.startsWith(':')) return '-'+id.substring(1)
+        if (!id.contains(':')) return searchPrefix(id).alias+'-'+id
+
+    }
+
+    def shortToURI(String id){
+        if (id==null || id == '' ) return null
+        if (id.contains(' ')) return null
+        if (id.contains('-')) return _prefixes[id.split('-')[0]]+id.substring(1)
+        if (!id.contains('-'))  return '_:'+id
     }
 
     def existOntology(String uri){
@@ -122,17 +136,16 @@ class Know {
         existOnt
     }
 
-    def appendPrefixe(String name){
-        def result = null
+    def searchPrefix(String name){
         def query
-
-        _prefixes.each {alias, uri ->
-            //println uri+name
+        def result = []
+        _prefixes.find {alias, uri ->
             query = this.query("<"+uri+name+"> a ?class")
-            //println query
             if(query.size()>0){
-                result = uri+name
+                result = ['alias' : alias, 'uri': uri]
+                return true
             }
+            return false
         }
         return result
     }
@@ -148,13 +161,10 @@ class Know {
     }
 
     def getBasePrefix(){
-        if(_prefixes[''])
-            return _prefixes['']
-        return null
+        return _prefixes['']
     }
 
     def setLang(String lg){
         lang = lg
     }
-
 }

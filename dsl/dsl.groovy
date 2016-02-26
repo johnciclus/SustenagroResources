@@ -1,3 +1,5 @@
+
+
 //                          Decisioner
 
 // Esta DSL descreve como o aplicativo será gerado. Ele é em inglês pois
@@ -28,9 +30,10 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 
 // Caracterização dos sistemas produtivos no Centro-Sul 
 features(':ProductionUnit') {
+
     // Production unit name 
     instance ':ProductionUnitName', 'label': "Nome da unidade produtiva"
-    
+
     // Production unit type
     instance ':ProductionUnitType', 'rdfs:subClassOf', 'label': "Tipo da unidade produtiva"
     
@@ -90,8 +93,9 @@ features(':ProductionUnit') {
     
     // Disponibilização dos resultados da avaliação: Público | privado
     instance ':AvailabilityOfEvaluationResults', 'rdf:type', 'label': "Disponibilização dos resultados da avaliação"
-}
 
+}
+/*
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados
 // todos os indicadores presentes na ontologia. Existe a opção de não
 // mostrar algum indicador. No exemplo abaixo, o indicador "co2 emission"
@@ -199,15 +203,15 @@ prog {
             rangeY: [-30,60],
             quadrants: [4,3],
             recomendations: recomendations])
-    /*
-        matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], [ 
-        [0, 0, 'bla bla bla'],
-        [0, 1, 'bla bla bla'],
-        //quadrant2: 'bla bla bla',
-        ...
-    ]
 
-    */
+    //    matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], [
+    //    [0, 0, 'bla bla bla'],
+    //    [0, 1, 'bla bla bla'],
+    //    //quadrant2: 'bla bla bla',
+    //    ...
+    //    ]
+
+
     //Outra possibilidade
     //matrix  x: [label: 'kkk', value = environment, range: [1,9]],
     //        y: [label: 'kkk', value = social, range: [1,9]]
@@ -275,3 +279,5 @@ prog {
     show '**Mapa da microregião**'
     map assessment.'MicroRegion'.map()
 }
+
+*/

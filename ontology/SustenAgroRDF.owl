@@ -10,12 +10,12 @@
 
 
 <Ontology xmlns="http://www.w3.org/2002/07/owl#"
-     xml:base="http://bio.icmc.usp.br/sustenagro#"
+     xml:base="http://semantic.icmc.usp.br/sustenagro#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     ontologyIRI="http://bio.icmc.usp.br/sustenagro#">
+     ontologyIRI="http://semantic.icmc.usp.br/sustenagro#">
     <Prefix name="" IRI="http://bio.icmc.usp.br/sustenagro#"/>
     <Prefix name="pt" IRI="http://dbpedia.org/property/pt/"/>
     <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
@@ -24,6 +24,39 @@
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
     <Prefix name="terms" IRI="http://purl.org/dc/terms/"/>
     <Prefix name="sustenagro" IRI="http://bio.icmc.usp.br/sustenagro#"/>
+    <Declaration>
+        <Class IRI="http://dbpedia.org/ontology/AdministrativeRegion"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://dbpedia.org/ontology/Country"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://dbpedia.org/ontology/Place"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://dbpedia.org/ontology/PopulatedPlace"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://dbpedia.org/ontology/Prefecture"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://dbpedia.org/ontology/Provider"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://dbpedia.org/ontology/Region"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://dbpedia.org/ontology/State"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://dbpedia.org/resource/PhysicalPlant"/>
+    </Declaration>
     <Declaration>
         <Class IRI="AbsoluteEmissionsOfGreenhouseGases"/>
     </Declaration>
@@ -77,9 +110,6 @@
     </Declaration>
     <Declaration>
         <Class IRI="AgriculturalProductionSystem"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
     </Declaration>
     <Declaration>
         <Class IRI="AtmosphereAttribute"/>
@@ -232,6 +262,9 @@
         <Class IRI="EnergyAttribute"/>
     </Declaration>
     <Declaration>
+        <Class IRI="Entity"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="EnvironmentalIndicator"/>
     </Declaration>
     <Declaration>
@@ -245,6 +278,9 @@
     </Declaration>
     <Declaration>
         <Class IRI="ExistenceOfTrainingProgramsAndTrainingToWorkers"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="Feature"/>
     </Declaration>
     <Declaration>
         <Class IRI="FeatureWeight"/>
@@ -485,6 +521,12 @@
     </Declaration>
     <Declaration>
         <Class IRI="ProductionFeature"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="ProductionUnit"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="ProductionUnitFeature"/>
     </Declaration>
     <Declaration>
         <Class IRI="ProductionUnitName"/>
@@ -748,39 +790,6 @@
         <Class IRI="bootstrapString"/>
     </Declaration>
     <Declaration>
-        <Class IRI="http://dbpedia.org/ontology/AdministrativeRegion"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://dbpedia.org/ontology/Country"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://dbpedia.org/ontology/Place"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://dbpedia.org/ontology/PopulatedPlace"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://dbpedia.org/ontology/Prefecture"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://dbpedia.org/ontology/Provider"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://dbpedia.org/ontology/Region"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://dbpedia.org/ontology/State"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://dbpedia.org/resource/PhysicalPlant"/>
-    </Declaration>
-    <Declaration>
         <ObjectProperty IRI="appliedTo"/>
     </Declaration>
     <Declaration>
@@ -796,13 +805,208 @@
         <ObjectProperty IRI="value"/>
     </Declaration>
     <Declaration>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
+    </Declaration>
+    <Declaration>
         <DataProperty IRI="dataValue"/>
     </Declaration>
     <Declaration>
         <DataProperty IRI="weight"/>
     </Declaration>
     <Declaration>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Adamantina"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Amparo"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Andradina"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Araraquara"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Araçatuba"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Assis"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Auriflama"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Avaré"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Bananal"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Barretos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Batatais"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Bauru"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Birigüi"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Botucatu"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Bragança_Paulista"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Campinas"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Campos_do_Jordão"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Capão_Bonito"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Caraguatatuba"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Catanduva"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Dracena"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Fernandópolis"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Franca"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Franco_da_Rocha"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Guaratinguetá"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Guarulhos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itanhaém"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itapecerica_da_Serra"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itapetininga"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itapeva"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Ituverava"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jaboticabal"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jales"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jaú"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jundiaí"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Limeira"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Lins"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Marília"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Mogi_das_Cruzes"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Moji_Mirim"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Nhandeara"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Novo_Horizonte"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Osasco"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Ourinhos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Paraibuna_e_Paraitinga"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Paulínia"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Piedade"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Piracicaba"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Pirassununga"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Presidente_Prudente"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Registro"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Ribeirão_Preto"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Rio_Claro"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Santos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Sorocaba"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_Joaquim_da_Barra"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_José_do_Rio_Preto"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_João_da_Boa_Vista"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_Paulo"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Tatuí"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Tupã"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Votuporanga"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/São_Paulo"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="Above18"/>
@@ -1339,208 +1543,16 @@
         <NamedIndividual IRI="85tnha"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Adamantina"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Amparo"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Andradina"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Araraquara"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Araçatuba"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Assis"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Auriflama"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Avaré"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Bananal"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Barretos"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Batatais"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Bauru"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Birigüi"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Botucatu"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Bragança_Paulista"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Campinas"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Campos_do_Jordão"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Capão_Bonito"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Caraguatatuba"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Catanduva"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Dracena"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Fernandópolis"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Franca"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Franco_da_Rocha"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Guaratinguetá"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Guarulhos"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itanhaém"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itapecerica_da_Serra"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itapetininga"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itapeva"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Ituverava"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jaboticabal"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jales"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jaú"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jundiaí"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Limeira"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Lins"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Marília"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Mogi_das_Cruzes"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Moji_Mirim"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Nhandeara"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Novo_Horizonte"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Osasco"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Ourinhos"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Paraibuna_e_Paraitinga"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Paulínia"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Piedade"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Piracicaba"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Pirassununga"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Presidente_Prudente"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Registro"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Ribeirão_Preto"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Rio_Claro"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Santos"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Sorocaba"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_Joaquim_da_Barra"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_José_do_Rio_Preto"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_João_da_Boa_Vista"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_Paulo"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Tatuí"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Tupã"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Votuporanga"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/São_Paulo"/>
-    </Declaration>
-    <Declaration>
-        <AnnotationProperty IRI="weight"/>
-    </Declaration>
-    <Declaration>
         <AnnotationProperty abbreviatedIRI="terms:description"/>
     </Declaration>
     <Declaration>
         <AnnotationProperty abbreviatedIRI="terms:title"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="features"/>
+    </Declaration>
+    <Declaration>
+        <AnnotationProperty IRI="weight"/>
     </Declaration>
     <Declaration>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -1601,6 +1613,54 @@
             <Class IRI="Value"/>
         </ObjectSomeValuesFrom>
     </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="http://dbpedia.org/ontology/AdministrativeRegion"/>
+        <Class IRI="http://dbpedia.org/ontology/Region"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://dbpedia.org/ontology/Country"/>
+        <Class IRI="http://dbpedia.org/ontology/PopulatedPlace"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion"/>
+        <Class IRI="http://dbpedia.org/ontology/AdministrativeRegion"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Class IRI="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Class IRI="ProductionUnitFeature"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Class IRI="SelectOne"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://dbpedia.org/ontology/PopulatedPlace"/>
+        <Class IRI="http://dbpedia.org/ontology/Place"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://dbpedia.org/ontology/Prefecture"/>
+        <Class IRI="http://dbpedia.org/ontology/PopulatedPlace"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://dbpedia.org/ontology/Provider"/>
+        <Class IRI="ProductionUnitType"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://dbpedia.org/ontology/Region"/>
+        <Class IRI="http://dbpedia.org/ontology/PopulatedPlace"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://dbpedia.org/ontology/State"/>
+        <Class IRI="http://dbpedia.org/ontology/PopulatedPlace"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://dbpedia.org/resource/PhysicalPlant"/>
+        <Class IRI="ProductionUnitType"/>
+    </SubClassOf>
     <SubClassOf>
         <Class IRI="AbsoluteEmissionsOfGreenhouseGases"/>
         <Class IRI="AtmosphereAttribute"/>
@@ -1734,7 +1794,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="AgriculturalProductionSystem"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="AgriculturalProductionSystem"/>
@@ -1798,7 +1858,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="AvailabilityOfEvaluationResults"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="AvailabilityOfEvaluationResults"/>
@@ -1902,7 +1962,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="CanavialLongevity"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="CanavialLongevity"/>
@@ -2102,11 +2162,11 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="EstablishmentDate"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="Date"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="EstablishmentDate"/>
-        <Class IRI="Date"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="ExistNo"/>
@@ -2159,7 +2219,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="Financing"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="Financing"/>
@@ -2232,11 +2292,11 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="HarvestDates"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="HarvestRange"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="HarvestTypeUsed"/>
@@ -2289,7 +2349,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="InnovationDevelopmentProjects"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="InnovationDevelopmentProjects"/>
@@ -2354,7 +2414,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="LinkWithOtherBusinessOrInvestmentGroups"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="LinkWithOtherBusinessOrInvestmentGroups"/>
@@ -2438,7 +2498,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="PartnershipsForResearchOrImprovementOfTheSystem"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="PartnershipsForResearchOrImprovementOfTheSystem"/>
@@ -2528,7 +2588,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="PlantingDates"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="PlantingPlanConsideringThePrecursorUseOfArea"/>
@@ -2547,7 +2607,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="PlantingRange"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="PoliticalVariable"/>
@@ -2656,8 +2716,16 @@
         </ObjectExactCardinality>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="ProductionUnit"/>
+        <Class IRI="Entity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="ProductionUnitFeature"/>
+        <Class IRI="Feature"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="ProductionUnitName"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="ProductionUnitName"/>
@@ -2665,7 +2733,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="ProductionUnitType"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="ProductionUnitType"/>
@@ -2911,7 +2979,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="SugarcaneSource"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="SugarcaneSource"/>
@@ -2976,7 +3044,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="TotalValue"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
+        <Class IRI="ProductionUnitFeature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="TotalValueInvestedInTechnologicInAgriculturalPhase"/>
@@ -3264,54 +3332,266 @@
         <Class IRI="bootstrapString"/>
         <Class IRI="InputWidget"/>
     </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://dbpedia.org/ontology/AdministrativeRegion"/>
-        <Class IRI="http://dbpedia.org/ontology/Region"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://dbpedia.org/ontology/Country"/>
-        <Class IRI="http://dbpedia.org/ontology/PopulatedPlace"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion"/>
-        <Class IRI="http://dbpedia.org/ontology/AdministrativeRegion"/>
-    </SubClassOf>
-    <SubClassOf>
+    <ClassAssertion>
         <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
-        <Class IRI="AgriculturalProductionUnitFeature"/>
-    </SubClassOf>
-    <SubClassOf>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Adamantina"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
-        <Class IRI="SelectOne"/>
-    </SubClassOf>
-    <SubClassOf>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Amparo"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
-        <Class IRI="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://dbpedia.org/ontology/PopulatedPlace"/>
-        <Class IRI="http://dbpedia.org/ontology/Place"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://dbpedia.org/ontology/Prefecture"/>
-        <Class IRI="http://dbpedia.org/ontology/PopulatedPlace"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://dbpedia.org/ontology/Provider"/>
-        <Class IRI="ProductionUnitType"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://dbpedia.org/ontology/Region"/>
-        <Class IRI="http://dbpedia.org/ontology/PopulatedPlace"/>
-    </SubClassOf>
-    <SubClassOf>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Andradina"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Araraquara"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Araçatuba"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Assis"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Auriflama"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Avaré"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Bananal"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Barretos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Batatais"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Bauru"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Birigüi"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Botucatu"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Bragança_Paulista"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Campinas"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Campos_do_Jordão"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Capão_Bonito"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Caraguatatuba"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Catanduva"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Dracena"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Fernandópolis"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Franca"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Franco_da_Rocha"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Guaratinguetá"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Guarulhos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itanhaém"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itapecerica_da_Serra"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itapetininga"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itapeva"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Ituverava"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jaboticabal"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jales"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jaú"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jundiaí"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Limeira"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Lins"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Marília"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Mogi_das_Cruzes"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Moji_Mirim"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Nhandeara"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Novo_Horizonte"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Osasco"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Ourinhos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Paraibuna_e_Paraitinga"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Paulínia"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Piedade"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Piracicaba"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Pirassununga"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Presidente_Prudente"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Registro"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Ribeirão_Preto"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Rio_Claro"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Santos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Sorocaba"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_Joaquim_da_Barra"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_José_do_Rio_Preto"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_João_da_Boa_Vista"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_Paulo"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Tatuí"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Tupã"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Votuporanga"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="http://dbpedia.org/ontology/State"/>
-        <Class IRI="http://dbpedia.org/ontology/PopulatedPlace"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://dbpedia.org/resource/PhysicalPlant"/>
-        <Class IRI="ProductionUnitType"/>
-    </SubClassOf>
+        <NamedIndividual IRI="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </ClassAssertion>
     <ClassAssertion>
         <Class IRI="VinasseAndEthanolRelationCategory"/>
         <NamedIndividual IRI="Above18"/>
@@ -3996,266 +4276,326 @@
         <Class IRI="ProductivityOfSugarcanePerHectareCategory"/>
         <NamedIndividual IRI="85tnha"/>
     </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Adamantina"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/db/SaoPaulo_Micro_Adamantina.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Amparo"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/df/SaoPaulo_Micro_Amparo.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Andradina"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/6/65/SaoPaulo_Micro_Andradina.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Araraquara"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/d1/SaoPaulo_Micro_Araraquara.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Araçatuba"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/4/46/SaoPaulo_Micro_Aracatuba.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Assis"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/4/46/SaoPaulo_Micro_Assis.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Auriflama"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/4/42/SaoPaulo_Micro_Auriflama.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Avaré"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/6/62/SaoPaulo_Micro_Avare.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Bananal"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/8/83/SaoPaulo_Micro_Bananal.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Barretos"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/e0/SaoPaulo_Micro_Barretos.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Batatais"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/2d/SaoPaulo_Micro_Batatais.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Bauru"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/d4/SaoPaulo_Micro_Bauru.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Birigüi"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/b/be/SaoPaulo_Micro_Birigui.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Botucatu"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/5/56/SaoPaulo_Micro_Botucatu.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Bragança_Paulista"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/0/0f/SaoPaulo_Micro_BragancaPaulista.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Campinas"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/9/9f/SaoPaulo_Micro_Campinas.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Campos_do_Jordão"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/a/a6/SaoPaulo_Micro_CamposdoJordao.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Capão_Bonito"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/9/96/SaoPaulo_Micro_CampaoBonito.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Caraguatatuba"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/a/a9/SaoPaulo_Micro_Caraguatatuba.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Catanduva"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/22/SaoPaulo_Micro_Catanduva.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Dracena"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/4/42/SaoPaulo_Micro_Dracena.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Fernandópolis"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/4/4f/SaoPaulo_Micro_Fernandopolis.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Franca"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/3/36/SaoPaulo_Micro_Franca.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Franco_da_Rocha"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/0/05/SaoPaulo_Micro_FrancodaRocha.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Guaratinguetá"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/b/bc/SaoPaulo_Micro_Guaratingueta.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Guarulhos"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/a/a2/SaoPaulo_Micro_Guarulhos.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itanhaém"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/7/7b/SaoPaulo_Micro_Itanhaem.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itapecerica_da_Serra"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/f/ff/SaoPaulo_Micro_ItapecericadaSerra.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itapetininga"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/25/SaoPaulo_Micro_Itapetininga.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itapeva"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/9/9e/SaoPaulo_Micro_Itapeva.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Ituverava"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/7/73/SaoPaulo_Micro_Ituverava.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jaboticabal"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/e3/SaoPaulo_Micro_Jaboticabal.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jales"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/2b/SaoPaulo_Micro_Jales.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jaú"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/5/56/SaoPaulo_Micro_Jau.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jundiaí"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/ec/SaoPaulo_Micro_Jundiai.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Limeira"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/7/75/SaoPaulo_Micro_Limeira.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Lins"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/e6/SaoPaulo_Micro_Lins.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Marília"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/b/b0/SaoPaulo_Micro_Marilia.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Mogi_das_Cruzes"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/6/61/SaoPaulo_Micro_MogidasCruzes.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Moji_Mirim"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/eb/SaoPaulo_Micro_MojiMirim.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Nhandeara"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/5/5b/SaoPaulo_Micro_Nhandeara.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Novo_Horizonte"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/df/SaoPaulo_Micro_NovoHorizonte.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Osasco"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/3/3d/SaoPaulo_Micro_Osasco.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Ourinhos"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/8/8b/SaoPaulo_Micro_Ourinhos.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Paraibuna_e_Paraitinga"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/1/1f/SaoPaulo_Micro_ParaibunaParaitinga.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Paulínia"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/9/90/SaoPaulo_Micro_Paulinia.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Piedade"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/a/a7/SaoPaulo_Micro_Piedade.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Piracicaba"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/8/80/SaoPaulo_Micro_Piracicaba.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Pirassununga"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/d1/SaoPaulo_Micro_Pirassununga.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Presidente_Prudente"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/b/b8/SaoPaulo_Micro_PresidentePrudente.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Registro"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/5/50/SaoPaulo_Micro_Registro.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Ribeirão_Preto"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/dd/SaoPaulo_Micro_RibeiraoPreto.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Rio_Claro"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/dd/SaoPaulo_Micro_RioClaro.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Santos"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/f/f8/SaoPaulo_Micro_Santos.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Sorocaba"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/26/SaoPaulo_Micro_Sorocaba.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/ef/SaoPaulo_Micro_SaoCarlos.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_Joaquim_da_Barra"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/6/65/SaoPaulo_Micro_SaoJoaquimdaBarra.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_José_do_Rio_Preto"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/6/68/SaoPaulo_Micro_SaoJosedoRioPreto.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/a/ac/SaoPaulo_Micro_SaoJosedosCampos.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_João_da_Boa_Vista"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/26/SaoPaulo_Micro_SaoJoaodaBoaVista.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_Paulo"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/3/37/SaoPaulo_Micro_SaoPaulo.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Tatuí"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/0/0c/SaoPaulo_Micro_Tatui.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Tupã"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/MicroRegion"/>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/b/ba/SaoPaulo_Micro_Tupa.svg</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="pt:mapa"/>
         <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Votuporanga"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="http://dbpedia.org/ontology/State"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/São_Paulo"/>
-    </ClassAssertion>
+        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/7/78/SaoPaulo_Micro_Votuporanga.svg</Literal>
+    </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="dataValue"/>
         <NamedIndividual IRI="Above18"/>
@@ -5071,326 +5411,6 @@
         <NamedIndividual IRI="85tnha"/>
         <Literal datatypeIRI="&xsd;double">1.0</Literal>
     </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Adamantina"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/db/SaoPaulo_Micro_Adamantina.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Amparo"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/df/SaoPaulo_Micro_Amparo.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Andradina"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/6/65/SaoPaulo_Micro_Andradina.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Araraquara"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/d1/SaoPaulo_Micro_Araraquara.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Araçatuba"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/4/46/SaoPaulo_Micro_Aracatuba.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Assis"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/4/46/SaoPaulo_Micro_Assis.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Auriflama"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/4/42/SaoPaulo_Micro_Auriflama.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Avaré"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/6/62/SaoPaulo_Micro_Avare.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Bananal"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/8/83/SaoPaulo_Micro_Bananal.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Barretos"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/e0/SaoPaulo_Micro_Barretos.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Batatais"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/2d/SaoPaulo_Micro_Batatais.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Bauru"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/d4/SaoPaulo_Micro_Bauru.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Birigüi"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/b/be/SaoPaulo_Micro_Birigui.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Botucatu"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/5/56/SaoPaulo_Micro_Botucatu.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Bragança_Paulista"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/0/0f/SaoPaulo_Micro_BragancaPaulista.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Campinas"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/9/9f/SaoPaulo_Micro_Campinas.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Campos_do_Jordão"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/a/a6/SaoPaulo_Micro_CamposdoJordao.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Capão_Bonito"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/9/96/SaoPaulo_Micro_CampaoBonito.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Caraguatatuba"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/a/a9/SaoPaulo_Micro_Caraguatatuba.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Catanduva"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/22/SaoPaulo_Micro_Catanduva.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Dracena"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/4/42/SaoPaulo_Micro_Dracena.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Fernandópolis"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/4/4f/SaoPaulo_Micro_Fernandopolis.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Franca"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/3/36/SaoPaulo_Micro_Franca.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Franco_da_Rocha"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/0/05/SaoPaulo_Micro_FrancodaRocha.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Guaratinguetá"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/b/bc/SaoPaulo_Micro_Guaratingueta.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Guarulhos"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/a/a2/SaoPaulo_Micro_Guarulhos.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itanhaém"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/7/7b/SaoPaulo_Micro_Itanhaem.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itapecerica_da_Serra"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/f/ff/SaoPaulo_Micro_ItapecericadaSerra.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itapetininga"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/25/SaoPaulo_Micro_Itapetininga.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Itapeva"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/9/9e/SaoPaulo_Micro_Itapeva.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Ituverava"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/7/73/SaoPaulo_Micro_Ituverava.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jaboticabal"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/e3/SaoPaulo_Micro_Jaboticabal.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jales"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/2b/SaoPaulo_Micro_Jales.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jaú"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/5/56/SaoPaulo_Micro_Jau.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Jundiaí"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/ec/SaoPaulo_Micro_Jundiai.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Limeira"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/7/75/SaoPaulo_Micro_Limeira.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Lins"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/e6/SaoPaulo_Micro_Lins.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Marília"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/b/b0/SaoPaulo_Micro_Marilia.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Mogi_das_Cruzes"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/6/61/SaoPaulo_Micro_MogidasCruzes.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Moji_Mirim"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/eb/SaoPaulo_Micro_MojiMirim.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Nhandeara"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/5/5b/SaoPaulo_Micro_Nhandeara.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Novo_Horizonte"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/df/SaoPaulo_Micro_NovoHorizonte.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Osasco"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/3/3d/SaoPaulo_Micro_Osasco.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Ourinhos"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/8/8b/SaoPaulo_Micro_Ourinhos.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Paraibuna_e_Paraitinga"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/1/1f/SaoPaulo_Micro_ParaibunaParaitinga.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Paulínia"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/9/90/SaoPaulo_Micro_Paulinia.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Piedade"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/a/a7/SaoPaulo_Micro_Piedade.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Piracicaba"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/8/80/SaoPaulo_Micro_Piracicaba.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Pirassununga"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/d1/SaoPaulo_Micro_Pirassununga.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Presidente_Prudente"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/b/b8/SaoPaulo_Micro_PresidentePrudente.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Registro"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/5/50/SaoPaulo_Micro_Registro.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Ribeirão_Preto"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/dd/SaoPaulo_Micro_RibeiraoPreto.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Rio_Claro"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/d/dd/SaoPaulo_Micro_RioClaro.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Santos"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/f/f8/SaoPaulo_Micro_Santos.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Sorocaba"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/26/SaoPaulo_Micro_Sorocaba.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/e/ef/SaoPaulo_Micro_SaoCarlos.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_Joaquim_da_Barra"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/6/65/SaoPaulo_Micro_SaoJoaquimdaBarra.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_José_do_Rio_Preto"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/6/68/SaoPaulo_Micro_SaoJosedoRioPreto.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/a/ac/SaoPaulo_Micro_SaoJosedosCampos.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_João_da_Boa_Vista"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/2/26/SaoPaulo_Micro_SaoJoaodaBoaVista.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_São_Paulo"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/3/37/SaoPaulo_Micro_SaoPaulo.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Tatuí"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/0/0c/SaoPaulo_Micro_Tatui.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Tupã"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/b/ba/SaoPaulo_Micro_Tupa.svg</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty abbreviatedIRI="pt:mapa"/>
-        <NamedIndividual IRI="http://pt.dbpedia.org/resource/Microrregião_de_Votuporanga"/>
-        <Literal datatypeIRI="&rdf;PlainLiteral">https://upload.wikimedia.org/wikipedia/commons/7/78/SaoPaulo_Micro_Votuporanga.svg</Literal>
-    </DataPropertyAssertion>
     <SubObjectPropertyOf>
         <ObjectProperty IRI="uniqueValue"/>
         <ObjectProperty IRI="value"/>
@@ -5424,6 +5444,776 @@
         <DataProperty IRI="weight"/>
         <Datatype abbreviatedIRI="xsd:double"/>
     </DataPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/AdministrativeRegion</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Administrative region</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/AdministrativeRegion</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Região administrativa</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/Country</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Country</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/Country</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">País</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/GovernmentalAdministrativeRegion</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Governmental administrative region</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/GovernmentalAdministrativeRegion</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Região administrativa governamental</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/MicroRegion</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/MicroRegion</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/Place</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Lugar</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/Place</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Place</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/PopulatedPlace</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Lugar povoado</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/PopulatedPlace</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Populate place</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/Prefecture</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Prefecture</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/Prefecture</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Prefeitura</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/Provider</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Fornecedor</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/Provider</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Provider</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/Region</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Region</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/Region</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Região</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/State</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Estado</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/ontology/State</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">State</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/resource/PhysicalPlant</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Plant</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://dbpedia.org/resource/PhysicalPlant</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Usina</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Adamantina</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Adamantina Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Adamantina</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Adamantina</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Amparo</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Amparo Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Amparo</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microregião de Amparo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Andradina</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Andradina Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Andradina</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Andradina</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Araraquara</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Araraquara Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Araraquara</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Araraquara</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Araçatuba</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Araçatuba Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Araçatuba</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Araçatuba</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Assis</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Assis Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Assis</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Assis</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Auriflama</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Auriflama Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Auriflama</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Auriflama</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Avaré</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Avaré Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Avaré</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Avaré</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Bananal</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bananal Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Bananal</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Bananal</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Barretos</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Barretos Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Barretos</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Barretos</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Batatais</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Batatais Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Batatais</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Batatais</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Bauru</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bauru Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Bauru</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Bauru</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Birigüi</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Birigüi Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Birigüi</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Birigüi</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Botucatu</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Botucatu Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Botucatu</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Botucatu</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Bragança_Paulista</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bragança Paulista Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Bragança_Paulista</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Bragança Paulista</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Campinas</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Campinas Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Campinas</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Campinas</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Campos_do_Jordão</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Campos do Jordão Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Campos_do_Jordão</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Campos do Jordão</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Capão_Bonito</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Capão Bonito Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Capão_Bonito</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Capão Bonito</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Caraguatatuba</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Caraguatatuba Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Caraguatatuba</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Caraguatatuba</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Catanduva</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Catanduva Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Catanduva</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Catanduva</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Dracena</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Dracena Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Dracena</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Dracena</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Fernandópolis</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Fernandópolis Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Fernandópolis</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Fernandópolis</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Franca</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Franca Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Franca</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Franca</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Franco_da_Rocha</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Franco da Rocha Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Franco_da_Rocha</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Franco da Rocha</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Guaratinguetá</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Guaratinguetá Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Guaratinguetá</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Guaratinguetá</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Guarulhos</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Guarulhos Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Guarulhos</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Guarulhos</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itanhaém</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Itanhaém Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itanhaém</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Itanhaém</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itapecerica_da_Serra</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Itapecerica da Serra Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itapecerica_da_Serra</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Itapecerica da Serra</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itapetininga</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Itapetininga Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itapetininga</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Itapetininga</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itapeva</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Itapeva Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itapeva</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Itapeva</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Ituverava</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Ituverava Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Ituverava</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Ituverava</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jaboticabal</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Jaboticabal Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jaboticabal</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Jaboticabal</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jales</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Jales Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jales</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Jales</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jaú</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Jaú Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jaú</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Jaú</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jundiaí</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Jundiaí Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jundiaí</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Jundiaí</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Limeira</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Limeira Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Limeira</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Limeira</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Lins</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Lins Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Lins</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Lins</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Marília</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Marília Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Marília</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Marília</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Mogi_das_Cruzes</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Mogi das Cruzes</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Mogi_das_Cruzes</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Mogi das Cruzes Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Moji_Mirim</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Mogi Mirim</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Moji_Mirim</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Mogi Mirim Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Nhandeara</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Nhandeara</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Nhandeara</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Nhandeara Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Novo_Horizonte</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Novo Horizonte</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Novo_Horizonte</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Novo Horizonte Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Osasco</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Osasco</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Osasco</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Osasco Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Ourinhos</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Ourinhos</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Ourinhos</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Ourinhos Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Paraibuna_e_Paraitinga</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Paraibuna/Paraitinga</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Paraibuna_e_Paraitinga</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Paraibuna/Paraitinga Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Paulínia</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Paulínia</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Paulínia</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Paulínia Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Piedade</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Piedade</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Piedade</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Piedade Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Piracicaba</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Piracicaba</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Piracicaba</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Piracicaba Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Pirassununga</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Pirassununga</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Pirassununga</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Pirassununga Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Presidente_Prudente</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Presidente Prudente</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Presidente_Prudente</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Presidente Prudente Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Registro</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Registro</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Registro</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Registro Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Ribeirão_Preto</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Ribeirão Preto</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Ribeirão_Preto</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Ribeirão Preto Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Rio_Claro</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Rio Claro</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Rio_Claro</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Rio Claro Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Santos</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Santos</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Santos</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Santos Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Sorocaba</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Sorocaba</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Sorocaba</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Sorocaba Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São Carlos</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São Carlos Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_Joaquim_da_Barra</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São Joaquim da Barra</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_Joaquim_da_Barra</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São Joaquim da Barra Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_José_do_Rio_Preto</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São José do Rio Preto</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_José_do_Rio_Preto</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São José do Rio Preto Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São José dos Campos</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São José dos Campos Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_João_da_Boa_Vista</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São João da Boa Vista</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_João_da_Boa_Vista</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São João da Boa Vista Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_Paulo</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São Paulo</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_Paulo</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São Paulo Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Tatuí</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Tatuí</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Tatuí</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Tatuí Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Tupã</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Tupã</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Tupã</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Tupã Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Votuporanga</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Votuporanga</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Votuporanga</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Votuporanga Microregion</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>terms:description</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">description</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>terms:description</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">descrição</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>terms:title</AbbreviatedIRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">title</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <AbbreviatedIRI>terms:title</AbbreviatedIRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">título</Literal>
+    </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>Above18</IRI>
@@ -5698,16 +6488,6 @@
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>AgriculturalProductionSystem</IRI>
         <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Sistema de produção agrícola</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>AgriculturalProductionUnitFeature</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Agricultural production unit feature</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>AgriculturalProductionUnitFeature</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Característica de unidade de produção agrícola</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -6318,6 +7098,16 @@
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>CropPlanning</IRI>
         <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Planejamento de safra</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="sustenagro:features"/>
+        <IRI>DataType</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Datatype</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="sustenagro:features"/>
+        <IRI>DataType</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Tipo de dado</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -8305,6 +9095,31 @@
         <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Production feature</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
+        <AnnotationProperty IRI="features"/>
+        <IRI>ProductionUnit</IRI>
+        <IRI>ProductionUnitFeature</IRI>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ProductionUnit</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Production unit</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ProductionUnit</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Unidade produtiva</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ProductionUnitFeature</IRI>
+        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Característica de unidade de produtiva</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>ProductionUnitFeature</IRI>
+        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Production unit feature</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>ProductionUnitName</IRI>
         <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Nome da unidade produtiva</Literal>
@@ -9748,776 +10563,6 @@
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>85tnha</IRI>
         <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">85 Ton/ha</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/AdministrativeRegion</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Administrative region</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/AdministrativeRegion</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Região administrativa</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/Country</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Country</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/Country</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">País</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/GovernmentalAdministrativeRegion</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Governmental administrative region</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/GovernmentalAdministrativeRegion</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Região administrativa governamental</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/MicroRegion</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/MicroRegion</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/Place</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Lugar</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/Place</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Place</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/PopulatedPlace</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Lugar povoado</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/PopulatedPlace</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Populate place</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/Prefecture</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Prefecture</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/Prefecture</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Prefeitura</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/Provider</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Fornecedor</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/Provider</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Provider</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/Region</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Region</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/Region</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Região</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/State</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Estado</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/ontology/State</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">State</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/resource/PhysicalPlant</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Plant</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://dbpedia.org/resource/PhysicalPlant</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Usina</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Adamantina</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Adamantina Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Adamantina</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Adamantina</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Amparo</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Amparo Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Amparo</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microregião de Amparo</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Andradina</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Andradina Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Andradina</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Andradina</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Araraquara</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Araraquara Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Araraquara</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Araraquara</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Araçatuba</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Araçatuba Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Araçatuba</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Araçatuba</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Assis</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Assis Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Assis</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Assis</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Auriflama</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Auriflama Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Auriflama</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Auriflama</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Avaré</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Avaré Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Avaré</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Avaré</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Bananal</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bananal Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Bananal</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Bananal</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Barretos</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Barretos Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Barretos</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Barretos</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Batatais</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Batatais Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Batatais</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Batatais</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Bauru</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bauru Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Bauru</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Bauru</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Birigüi</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Birigüi Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Birigüi</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Birigüi</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Botucatu</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Botucatu Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Botucatu</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Botucatu</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Bragança_Paulista</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Bragança Paulista Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Bragança_Paulista</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Bragança Paulista</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Campinas</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Campinas Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Campinas</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Campinas</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Campos_do_Jordão</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Campos do Jordão Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Campos_do_Jordão</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Campos do Jordão</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Capão_Bonito</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Capão Bonito Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Capão_Bonito</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Capão Bonito</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Caraguatatuba</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Caraguatatuba Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Caraguatatuba</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Caraguatatuba</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Catanduva</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Catanduva Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Catanduva</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Catanduva</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Dracena</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Dracena Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Dracena</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Dracena</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Fernandópolis</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Fernandópolis Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Fernandópolis</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Fernandópolis</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Franca</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Franca Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Franca</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Franca</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Franco_da_Rocha</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Franco da Rocha Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Franco_da_Rocha</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Franco da Rocha</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Guaratinguetá</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Guaratinguetá Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Guaratinguetá</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Guaratinguetá</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Guarulhos</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Guarulhos Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Guarulhos</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Guarulhos</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itanhaém</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Itanhaém Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itanhaém</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Itanhaém</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itapecerica_da_Serra</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Itapecerica da Serra Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itapecerica_da_Serra</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Itapecerica da Serra</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itapetininga</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Itapetininga Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itapetininga</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Itapetininga</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itapeva</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Itapeva Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Itapeva</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Itapeva</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Ituverava</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Ituverava Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Ituverava</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Ituverava</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jaboticabal</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Jaboticabal Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jaboticabal</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Jaboticabal</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jales</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Jales Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jales</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Jales</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jaú</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Jaú Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jaú</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Jaú</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jundiaí</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Jundiaí Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Jundiaí</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Jundiaí</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Limeira</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Limeira Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Limeira</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Limeira</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Lins</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Lins Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Lins</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Lins</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Marília</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Marília Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Marília</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Marília</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Mogi_das_Cruzes</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Mogi das Cruzes</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Mogi_das_Cruzes</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Mogi das Cruzes Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Moji_Mirim</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Mogi Mirim</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Moji_Mirim</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Mogi Mirim Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Nhandeara</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Nhandeara</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Nhandeara</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Nhandeara Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Novo_Horizonte</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Novo Horizonte</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Novo_Horizonte</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Novo Horizonte Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Osasco</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Osasco</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Osasco</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Osasco Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Ourinhos</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Ourinhos</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Ourinhos</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Ourinhos Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Paraibuna_e_Paraitinga</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Paraibuna/Paraitinga</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Paraibuna_e_Paraitinga</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Paraibuna/Paraitinga Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Paulínia</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Paulínia</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Paulínia</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Paulínia Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Piedade</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Piedade</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Piedade</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Piedade Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Piracicaba</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Piracicaba</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Piracicaba</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Piracicaba Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Pirassununga</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Pirassununga</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Pirassununga</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Pirassununga Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Presidente_Prudente</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Presidente Prudente</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Presidente_Prudente</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Presidente Prudente Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Registro</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Registro</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Registro</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Registro Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Ribeirão_Preto</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Ribeirão Preto</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Ribeirão_Preto</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Ribeirão Preto Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Rio_Claro</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Rio Claro</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Rio_Claro</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Rio Claro Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Santos</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Santos</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Santos</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Santos Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Sorocaba</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Sorocaba</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Sorocaba</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Sorocaba Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São Carlos</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São Carlos Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_Joaquim_da_Barra</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São Joaquim da Barra</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_Joaquim_da_Barra</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São Joaquim da Barra Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_José_do_Rio_Preto</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São José do Rio Preto</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_José_do_Rio_Preto</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São José do Rio Preto Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São José dos Campos</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São José dos Campos Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_João_da_Boa_Vista</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São João da Boa Vista</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_João_da_Boa_Vista</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São João da Boa Vista Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_Paulo</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de São Paulo</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_São_Paulo</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">São Paulo Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Tatuí</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Tatuí</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Tatuí</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Tatuí Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Tupã</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Tupã</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Tupã</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Tupã Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Votuporanga</IRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">Microrregião de Votuporanga</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>http://pt.dbpedia.org/resource/Microrregião_de_Votuporanga</IRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">Votuporanga Microregion</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <AbbreviatedIRI>terms:description</AbbreviatedIRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">description</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <AbbreviatedIRI>terms:description</AbbreviatedIRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">descrição</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <AbbreviatedIRI>terms:title</AbbreviatedIRI>
-        <Literal xml:lang="en" datatypeIRI="&rdf;PlainLiteral">title</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <AbbreviatedIRI>terms:title</AbbreviatedIRI>
-        <Literal xml:lang="pt" datatypeIRI="&rdf;PlainLiteral">título</Literal>
     </AnnotationAssertion>
     <AnnotationPropertyRange>
         <AnnotationProperty abbreviatedIRI="terms:title"/>

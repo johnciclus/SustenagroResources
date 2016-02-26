@@ -55,7 +55,7 @@ class Node {
             def uris = delegate.collect {
                 if(it.subClass instanceof String){
                     prefixes.each{ key, value ->
-                        it.subClass = it.subClass.replace(value, '')
+                        it.subClass = it.subClass.replace(value, key+'-')
                     }
                 }
                 it.subClass
@@ -65,7 +65,11 @@ class Node {
             else
                 return uris
         }
-        return res
+
+        if(res.size()==1)
+            return res[0].subClass
+        else
+            return res
     }
 
     def getDataType(){
@@ -317,6 +321,9 @@ class Node {
     def getAttributes() {
         k.select("distinct ?attribute").query("?attribute rdfs:subClassOf <$URI>. ?indicator rdfs:subClassOf ?attribute. FILTER( ?attribute != <$URI> && ?attribute != ?indicator)")
     }
+    def getAttrs() {
+
+    }
 
     def getOptions() {
         k.query("?id rdf:type <$URI>. ?id rdfs:label ?label. ?id :dataValue ?value.")
@@ -330,6 +337,30 @@ class Node {
         k.query("?s ?p <$URI>", '', '*')
     }
 
+    def getFeaturesURI(){
+        def res = k.select('?featuresURI').query("<$URI> :features ?featuresURI.")
+        def prefixes = k.getPrefixesMap()
+
+        res.metaClass.shortURI = {
+            def uris = delegate.collect {
+                if(it.featuresURI instanceof String){
+                    prefixes.each{ key, value ->
+                        it.featuresURI = it.featuresURI.replace(value, key+'-')
+                    }
+                }
+                it.featuresURI
+            }
+            if(uris.size()==1)
+                return uris[0]
+            else
+                return uris
+        }
+        if(res.size()==1)
+            return res[0].featuresURI
+        else
+            return res
+    }
+
     def selectSubject(String word){
         k.select('distinct ?s').query("?s ?p ?o. FILTER regex(str(?s), 'http://bio.icmc.usp.br/sustenagro#$word', 'i')")
     }
@@ -340,5 +371,9 @@ class Node {
 
     def findURI(String label){
         k.select('distinct ?uri').query("?uri rdfs:label '$label'@${k.lang}.")
+    }
+
+    def shortURI(){
+
     }
 }
