@@ -1,6 +1,5 @@
 package dsl
 
-//import com.github.rjeschke.txtmark.Processor
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.pegdown.PegDownProcessor
 import com.github.slugify.Slugify
@@ -12,6 +11,7 @@ import utils.Uri
  * Created by dilvan on 7/14/15.
  */
 class DSL {
+    def viewsStack = [:]
     def featureLst = []
     def dimensions = []
     def report = []
@@ -20,8 +20,6 @@ class DSL {
     def props = [:]
 
     def slg = new Slugify()
-
-    def toolIndexStack = []
     def toolAssessmentStack = []
 
     def _nameFile = ''
@@ -52,6 +50,8 @@ class DSL {
         _k = k
         _script = (DelegatingScript) _shell.parse(new File(_nameFile).text)
         _script.setDelegate(this)
+        viewsStack['tool'] = [:]
+        viewsStack['tool']['index'] = []
 
         // Run DSL script.
         try {
@@ -66,7 +66,10 @@ class DSL {
         dimensions = []
         featureLst = []
         report = []
-        toolIndexStack = []
+
+        viewsStack = [:]
+        viewsStack['tool'] = [:]
+        viewsStack['tool']['index'] = []
         toolAssessmentStack = []
 
         _sandbox.register()
@@ -105,17 +108,12 @@ class DSL {
     }
 
     def title(String str){
-        toolIndexStack.push(['widget': 'title', 'args': ['title': str]])
-        //println 'toolIndexStack'
-        //println toolIndexStack
-        //println ''
+        viewsStack['tool']['index'].push(['widget': 'title', 'args': ['title': str]])
     }
 
     def description(String str){
-        toolIndexStack.push(['widget': 'description', 'args': ['description': toHTML(str)]])
-        //println 'toolIndexStack'
-        //println toolIndexStack
-        //println ''
+        viewsStack['tool']['index'].push(['widget': 'description', 'args': ['description': toHTML(str)]])
+
         //println  Processor.process(description, true)
         //println new PegDownProcessor().markdownToHtml(description)
     }
@@ -129,19 +127,13 @@ class DSL {
         props[data]= obj
     }
 
-
-
     def features(String clsName, Closure closure){
-        def clsId = slg.slugify(clsName)
-
+        def id = slg.slugify(clsName)
         def requestLst          = [:]
         requestLst['widgets']   = [:]
         def argLst              = [:]
         argLst['widgets']       = [:]
         featureLst              = []
-
-        featureLst.push(['id': clsId+'_name', 'widget': 'string', 'args': ['id': clsId+'_name', 'label': 'Nome da unidade produtiva']])
-        featureLst.push(['id': clsId+'_types', 'widget': 'instance', 'request': ['rdfs:subClassOf', clsName], 'args': ['id': clsId+'_types', 'label': 'Caracterização dos sistemas produtivos no Centro-Sul']])
         closure()
 
         featureLst.each{
@@ -151,30 +143,19 @@ class DSL {
             argLst['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
         }
 
-        toolIndexStack.push(['widget': 'selectEntity', 'request': ['production_units': ['a', ':ProductionUnit']], 'args': [:]])
-        toolIndexStack.push(['widget': 'createEntity', 'request': requestLst, 'args': argLst])
+        println _k.getBasePrefix()
+
+        viewsStack['tool']['index'].push(['widget': 'selectEntity', 'request': ['production_units': ['a', ':ProductionUnit']], 'args': [:]])
+        viewsStack['tool']['index'].push(['widget': 'createEntity', 'request': requestLst, 'args': argLst])
     }
 
-    def instance(Map textMap = [:], String clsName, String prop = ''){
-
-        def widget = Uri.simpleDomain(_k[clsName].getDataType(), "http://bio.icmc.usp.br/sustenagro#", '')[0]['dataType']
+    def instance(Map args = [:], String clsName, String prop = ''){
         def id = slg.slugify(clsName)
-        def args = [:]
-        def request = []
-
-        if(prop?.trim()){
-            request = [prop, clsName]
-        }
-        else(
-            request = []
-        )
-
+        def widget = _k[clsName].getDataType().shortURI().toLowerCase()
+        def request = (prop?.trim()) ? [prop, clsName] : []
         args['id'] = id
-        if(textMap.label)
-            args['label'] = textMap.label
-
-        featureLst << ['id': id, 'widget': widget.toLowerCase(), 'request': request, 'args': args]
-        println featureLst.last()
+        //println id + ' ' + widget
+        featureLst << ['id': id, 'widget': widget, 'request': request, 'args': args]
     }
 
 //    def recommendation(Map map, String txt){

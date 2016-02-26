@@ -43,13 +43,46 @@ class Node {
     }
 
     def getSuperClass(){
-        k.select('?subClass')
-         .query("<$URI> rdfs:subClassOf ?subClass.")
+        k.select('?superClass').query("<$URI> rdfs:subClassOf ?superClass. FILTER(?superClass != <$URI>)")
+    }
+
+    def getSubClass(){
+        def res = k.select('?subClass').query("?subClass rdfs:subClassOf <$URI>. FILTER(?subClass != <$URI>)")
+
+        def prefixes = k.getPrefixesMap()
+
+        res.metaClass.shortURI = {
+            def uris = delegate.collect {
+                if(it.subClass instanceof String){
+                    prefixes.each{ key, value ->
+                        it.subClass = it.subClass.replace(value, '')
+                    }
+                }
+                it.subClass
+            }
+            if(uris.size()==1)
+                return uris[0]
+            else
+                return uris
+        }
+        return res
     }
 
     def getDataType(){
-        k.select('?dataType')
-         .query("<$URI> rdfs:subClassOf ?dataType. ?dataType rdfs:subClassOf :DataType. FILTER (?dataType != :DataType && ?dataType != <$URI>)")
+        def res = k.select('?dataType').query("<$URI> rdfs:subClassOf ?dataType. ?dataType rdfs:subClassOf :DataType. FILTER (?dataType != :DataType && ?dataType != <$URI>)")
+        //println k.getPrefixesMap()
+
+        res.metaClass.shortURI = {
+            def uris = delegate.collect {
+                if(it.dataType instanceof String)
+                    it.dataType = it.dataType.replace(k.getBasePrefix(), '')
+            }
+            if(uris.size()==1)
+                return uris[0]
+            else
+                return uris
+        }
+        return res
     }
 
     def getChildren(){
@@ -223,8 +256,8 @@ class Node {
                         "?weightType <http://bio.icmc.usp.br/sustenagro#dataValue> ?weight."+
                         "FILTER( ?id != <$URI> )", "ORDER BY ?label")
 
-        def id
-        /*argsList.each{
+        /*def id
+        argsList.each{
             id = it.substring(1)
             println id
             res.metaClass[id] = {
@@ -274,8 +307,7 @@ class Node {
     }
 
     def getDimensions(){
-        k.select("distinct ?id ?label")
-         .query('''?id rdfs:subClassOf :Indicator.
+        k.select("distinct ?id ?label").query('''?id rdfs:subClassOf :Indicator.
             ?attribute rdfs:subClassOf ?id.
             ?indicator rdfs:subClassOf ?attribute.
             ?id rdfs:label ?label.
@@ -283,16 +315,11 @@ class Node {
     }
 
     def getAttributes() {
-        k.select("distinct ?attribute")
-            .query("?attribute rdfs:subClassOf <$URI>."+
-            "?indicator rdfs:subClassOf ?attribute."+
-            "FILTER( ?attribute != <$URI> && ?attribute != ?indicator)")
+        k.select("distinct ?attribute").query("?attribute rdfs:subClassOf <$URI>. ?indicator rdfs:subClassOf ?attribute. FILTER( ?attribute != <$URI> && ?attribute != ?indicator)")
     }
 
     def getOptions() {
-        k.query("?id rdf:type <$URI>. "+
-                "?id rdfs:label ?label. " +
-                "?id :dataValue ?value.")
+        k.query("?id rdf:type <$URI>. ?id rdfs:label ?label. ?id :dataValue ?value.")
     }
 
     def outgoingLinks(){

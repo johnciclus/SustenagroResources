@@ -19,7 +19,7 @@ class Know {
         setLang('pt')
     }
 
-    def addDefaultNamespaces() {
+    def addDefaultNamespaces(){
         addNamespace('rdf','http://www.w3.org/1999/02/22-rdf-syntax-ns#')
         addNamespace('rdfs','http://www.w3.org/2000/01/rdf-schema#')
         addNamespace('owl','http://www.w3.org/2002/07/owl#')
@@ -27,6 +27,7 @@ class Know {
         addNamespace('foaf','http://xmlns.com/foaf/0.1/')
         addNamespace('dc','http://purl.org/dc/terms/')
         addNamespace('dbp','http://dbpedia.org/ontology/')
+        addNamespace('dbpr','http://dbpedia.org/resource/')
         addNamespace('','http://bio.icmc.usp.br/sustenagro#')
     }
 
@@ -36,17 +37,15 @@ class Know {
         //g.addNamespace(prefix, namespace)
     }
 
-    def propertyMissing(String name) {
+    def propertyMissing(String name){
         getAt(name)
     }
 
-    def getAt(String name) {
+    def getAt(String name){
         findNode(name)
     }
 
-    def findNode(String name) {
-        //println name
-        //println toURI(name)
+    def findNode(String name){
         new Node(this, toURI(name))
     }
 
@@ -55,7 +54,7 @@ class Know {
         this
     }
 
-    def query(String q, String order = '', String lang = this.lang) {
+    def query(String q, String order = '', String lang = this.lang){
         def f = "$prefixes \nselect $select where {$q} ${order}"
         select = '*'
         sparql.query(f, lang)
@@ -142,6 +141,16 @@ class Know {
         def str = ''
         _prefixes.each {key, obj -> str += "PREFIX $key: <$obj>\n"}
         str
+    }
+
+    def getPrefixesMap(){
+        return _prefixes
+    }
+
+    def getBasePrefix(){
+        if(_prefixes[''])
+            return _prefixes['']
+        return null
     }
 
     def setLang(String lg){

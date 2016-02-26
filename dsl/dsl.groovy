@@ -26,8 +26,19 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // Na ontologia, location definiria as microregiões do IBGE.
 // Se a fazenda ficar em mais de uma micro-região?
 
-// Identificação do sistema de produção e da unidade de produção
+// Caracterização dos sistemas produtivos no Centro-Sul 
 features(':ProductionUnit') {
+    // Production unit name 
+    instance ':ProductionUnitName', 'label': "Nome da unidade produtiva"
+    
+    // Production unit type
+    instance ':ProductionUnitType', 'rdfs:subClassOf', 'label': "Tipo da unidade produtiva"
+    
+    // Agricultural production system
+    instance ':AgriculturalProductionSystem', 'rdfs:subClassOf', 'label': "Sistema de produção agrícola"
+    
+    //Identificação do sistema de produção 
+    
     // Origem da cana (própria, fornecedor, arrendamento)
     instance ':SugarcaneSource', 'rdf:type', 'label': "Origem da cana"   
 
@@ -40,7 +51,7 @@ features(':ProductionUnit') {
     instance ':EstablishmentDate',  'label': "Data de fundação da unidade produção"
     
     // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
-    instance ':InnovationDevelopmentProjects', 'label': "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)"
+    instance ':InnovationDevelopmentProjects', 'label': "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", 'placeholder': "Descrição"
     
     //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
     instance ':Financing', 'label': "Financiamento (crédito agrícola, custeio de maquinário, BNDES)"
@@ -75,7 +86,7 @@ features(':ProductionUnit') {
     instance ':FinishOfHarvestDate', 'rdf:type', 'label': "Data de término da colheita"
 
     // Longevidade do canvial (cana de ano, cana de ano e meio);
-    
+    instance 'CanavialLongevity', 'rdf:type', 'label': "Longevidade do canvial"
     
     // Disponibilização dos resultados da avaliação: Público | privado
     instance ':AvailabilityOfEvaluationResults', 'rdf:type', 'label': "Disponibilização dos resultados da avaliação"

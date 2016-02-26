@@ -28,7 +28,7 @@ class DataReader {
 
         def classList = k[uri].getSuperClass()
 
-        if(classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#ProductionEfficiencyFeature'])){
+        if(classList.contains(['superClass': 'http://bio.icmc.usp.br/sustenagro#ProductionEfficiencyFeature'])){
             try{
                 res = k[uri].getIndividualsValue(id, '?ind ?label ?valueType ?valueTypeLabel ?value')
             }
@@ -36,7 +36,7 @@ class DataReader {
                 res = []
             }
         }
-        else if(classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#Indicator'])){
+        else if(classList.contains(['superClass': 'http://bio.icmc.usp.br/sustenagro#Indicator'])){
             try{
                 res = k[uri].getIndividualsValueWeight(id, '?ind ?label ?valueType ?valueTypeLabel ?value ?weight')
             }
@@ -44,7 +44,7 @@ class DataReader {
                 res = []
             }
         }
-        else if(classList.contains(['subClass': 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyFeature'])){
+        else if(classList.contains(['superClass': 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyFeature'])){
             try{
                 res = k[uri].getIndividualsFeatureValueWeight(id, '?ind ?label ?valueType ?valueTypeLabel ?value ?weightType ?weightTypeLabel ?weight')
             }
@@ -52,7 +52,7 @@ class DataReader {
                 res = []
             }
         }
-        else if(classList.contains(['subClass': 'http://dbpedia.org/ontology/MicroRegion'])){
+        else if(classList.contains(['superClass': 'http://dbpedia.org/ontology/MicroRegion'])){
             try {
                 println "ID"
                 println id
@@ -80,42 +80,4 @@ class DataReader {
             findNode(name)
         }
     }
-
-    /*
-    def getSuperClass(String cls){
-        k.select('?subClass')
-           .query("<"+k.toURI(cls)+"> rdfs:subClassOf ?subClass.")
-    }
-
-
-    def getIndividualsValue(String evaluation, String cls){
-        k.select('distinct ?ind ?valueType ?value')
-           .query("<"+k.toURI(evaluation)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
-                  "?ind a ?id." +
-                  "?id rdfs:subClassOf ?subClass." +
-                  "?subClass rdfs:subClassOf <"+k.toURI(cls)+">."+
-                  "?ind <http://bio.icmc.usp.br/sustenagro#value> ?valueType."+
-                  "?valueType <http://bio.icmc.usp.br/sustenagro#dataValue> ?value.", "ORDER BY ?ind")
-    }
-
-    def getIndividualsValueWeight(String evaluation, String cls) {
-        k.select('distinct ?ind ?valueType ?value ?weightType ?weight')
-            .query("<"+k.toURI(evaluation)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
-                  "?ind a ?id." +
-                  "?id rdfs:subClassOf ?subClass." +
-                  "?subClass rdfs:subClassOf <"+k.toURI(cls)+">." +
-                  "?ind <http://bio.icmc.usp.br/sustenagro#value> ?valueType." +
-                  "?valueType <http://bio.icmc.usp.br/sustenagro#dataValue> ?value." +
-                  "?ind :hasWeight ?weightType." +
-                  "?weightType <http://bio.icmc.usp.br/sustenagro#dataValue> ?weight.", "ORDER BY ?ind")
-    }
-
-    def getMap(String cls ){
-        k.select('?map')
-            .query("<$cls> :appliedTo ?u. " +
-            "?u dbp:Microregion ?m. " +
-            "?m <http://dbpedia.org/property/pt/mapa> ?map.")
-    }
-    */
-
 }

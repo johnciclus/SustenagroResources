@@ -10,8 +10,7 @@ class ToolController {
     def k
 
     def index() {
-        dsl.toolIndexStack.each{ command ->
-            //println command
+        dsl.viewsStack[controllerName][actionName].each{ command ->
             if(command.request){
                 command.request.each{ key, args ->
                     if(key!='widgets'){
@@ -26,26 +25,38 @@ class ToolController {
                 }
             }
         }
-        render(view: 'index', model: [inputs: dsl.toolIndexStack])
+        render(view: 'index', model: [inputs: dsl.viewsStack[controllerName][actionName]])
     }
 
     def createProductionUnit() {
-        //println params
-        def production_unit_id = new Slugify().slugify(params.productionunit_name)
+        def id
+        def featureID
 
-        String sparql = "<"+ k.toURI(":" + production_unit_id) +">"+
-                        " rdf:type <"+    params.productionunit_types+">;"+
-                        " rdfs:label '"+  params.productionunit_name+"'@pt"
+        if(params['productionunitname'] && params['productionunittype']){
+            id = new Slugify().slugify(params.productionunitname)
 
-        if(params.microregion)
-            sparql += "; dbp:MicroRegion <" + params.microregion + ">"
+            String sparql = "<"+ k.toURI(":" + id) +">"+
+                    " rdf:type <"+    params.productionunittype+">;"+
+                    " rdfs:label '"+  params.productionunitname+"'@pt"
 
-        if(params.agriculturalefficiency)
-            sparql += "; :AgriculturalEfficiency <" + params.agriculturalefficiency + ">"
+            if(params.microregion)
+                sparql += "; dbp:MicroRegion <" + params.microregion + ">"
 
-        sparql += "."
+            if(params.agriculturalefficiency)
+                sparql += "; :AgriculturalEfficiency <" + params.agriculturalefficiency + ">"
 
-        k.insert(sparql)
+            sparql += "."
+
+            k[':AgriculturalProductionUnitFeature'].getSubClass().shortURI().each{
+                featureID = it.toLowerCase()
+                if(params[featureID]){
+                    println featureID + ' : ' + params[featureID]
+                }
+            }
+
+            k.insert(sparql)
+        }
+
 
         //"dbp:Microregion <http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos>;"
         //":AgriculturalEfficiency :HighAgriculturalEfficiency.")
@@ -64,7 +75,7 @@ class ToolController {
 
         k.g.commit()*/
         //k.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
-        redirect(action: 'assessment', id: production_unit_id)
+        redirect(action: 'assessment', id: id)
     }
 
     def selectProductionUnit(){
