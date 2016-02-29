@@ -3,6 +3,7 @@ grails:
     profile: web
     codegen:
         defaultPackage: sustenagro
+
 #security:
 #    user:
 #        password: 'password'

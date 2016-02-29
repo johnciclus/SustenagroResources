@@ -1,17 +1,17 @@
-package rdfUtils
+package semantics
 
 import groovySparql.Sparql
 
 /**
  * Created by john on 12/2/15.
  */
-
 class Know {
 
     private Map<String, String> _prefixes = [:]
     private Sparql sparql
     private String select = '*'
     private String lang = 'en'
+    def DSL = [:]
 
     public Know(String url){
         sparql = new Sparql(endpoint: url)

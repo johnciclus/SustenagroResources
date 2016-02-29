@@ -1,7 +1,7 @@
 package sustenagro
 
 import com.github.slugify.Slugify
-import rdfUtils.DataReader
+import semantics.DataReader
 import utils.Uri
 
 class ToolController {

@@ -2,23 +2,22 @@ package dsl
 
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
-import rdfUtils.Know
+import semantics.Know
 
 /**
  * Created by john on 26/02/16.
  */
 class GUIDSL {
-    def _nameFile = ''
-    def _cc
     def _shell
     def _sandbox
     def _script
     def _k
+    def dataTypeToWidget = [:]
 
     def GUIDSL(String file, Know k){
         // Create CompilerConfiguration and assign
         // the DelegatingScript class as the base script class.
-        _cc = new CompilerConfiguration()
+        def _cc = new CompilerConfiguration()
         _cc.addCompilationCustomizers(new SandboxTransformer())
         _cc.setScriptBaseClass(DelegatingScript.class.getName())
 
@@ -28,15 +27,15 @@ class GUIDSL {
 
         // Configure the GroovyShell and pass the compiler configuration.
         //_shell = new GroovyShell(this.class.classLoader, binding, cc)
-
-        _nameFile = file
         _k = k
 
-        _script = (DelegatingScript) _shell.parse(new File(_nameFile).text)
+
+        _script = (DelegatingScript) _shell.parse(new File(file).text)
         _script.setDelegate(this)
 
         // Run DSL script.
         try {
+            _k.DSL['gui'] = this
             _script.run()
         }
         finally {
@@ -78,5 +77,9 @@ class GUIDSL {
             _sandbox.unregister()
         }
         return response
+    }
+
+    def dataType(Map args = [:], String id){
+        dataTypeToWidget[id] = args['widget']
     }
 }

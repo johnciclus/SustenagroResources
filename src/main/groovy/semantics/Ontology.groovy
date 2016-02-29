@@ -1,4 +1,4 @@
-package rdfUtils
+package semantics
 
 import org.semanticweb.owlapi.model.OWLOntology
 import org.semanticweb.owlapi.model.OWLOntologyManager

@@ -1,4 +1,4 @@
-package rdfUtils
+package semantics
 
 import spock.lang.Shared
 import spock.lang.Specification

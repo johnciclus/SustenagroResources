@@ -1,4 +1,4 @@
-package rdfUtils
+package semantics
 
 /**
  * Created by john on 10/17/15.

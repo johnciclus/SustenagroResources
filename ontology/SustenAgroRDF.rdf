@@ -167,6 +167,17 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasAgriculturalProductionSystem -->
+
+    <owl:ObjectProperty rdf:about="&sustenagro2;hasAgriculturalProductionSystem">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">Agricultural production system</rdfs:label>
+        <rdfs:label xml:lang="pt">Sistema de produção agrícola</rdfs:label>
+        <rdfs:range rdf:resource="&sustenagro2;SimpleCategory"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#hasWeight -->
 
     <owl:ObjectProperty rdf:about="&sustenagro2;hasWeight">
@@ -590,7 +601,6 @@
         <rdfs:label xml:lang="en">Agricultural production system</rdfs:label>
         <rdfs:label xml:lang="pt">Sistema de produção agrícola</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro2;ProductionUnitFeature"/>
-        <rdfs:subClassOf rdf:resource="&sustenagro2;SelectOne"/>
     </owl:Class>
     
 
@@ -1858,6 +1868,16 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#MultipleCategory -->
+
+    <owl:Class rdf:about="&sustenagro2;MultipleCategory">
+        <rdfs:label xml:lang="en">Multiple category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoría múltiple</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro2;Categorical"/>
+    </owl:Class>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#NaturalRecoveryAndInducedAreas -->
 
     <owl:Class rdf:about="&sustenagro2;NaturalRecoveryAndInducedAreas">
@@ -2341,7 +2361,7 @@
     <owl:Class rdf:about="&sustenagro2;ProductionUnit">
         <rdfs:label xml:lang="en">Production unit</rdfs:label>
         <rdfs:label xml:lang="pt">Unidade produtiva</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&sustenagro2;Entity"/>
+        <rdfs:subClassOf rdf:resource="&sustenagro2;Unity"/>
         <sustenagro2:features rdf:resource="&sustenagro2;ProductionUnitFeature"/>
     </owl:Class>
     
@@ -2684,6 +2704,16 @@
             </owl:Restriction>
         </rdfs:subClassOf>
         <sustenagro2:weight rdf:datatype="&xsd;double">2.0</sustenagro2:weight>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#SimpleCategory -->
+
+    <owl:Class rdf:about="&sustenagro2;SimpleCategory">
+        <rdfs:label xml:lang="en">Simple category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoría simple</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sustenagro2;Categorical"/>
     </owl:Class>
     
 
@@ -3055,6 +3085,15 @@
         <rdfs:label xml:lang="en">True/False</rdfs:label>
         <rdfs:label xml:lang="pt">Verdadeiro/Falso</rdfs:label>
         <rdfs:subClassOf rdf:resource="&sustenagro2;Boolean"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#Unity -->
+
+    <owl:Class rdf:about="&sustenagro2;Unity">
+        <rdfs:label xml:lang="en">Unit</rdfs:label>
+        <rdfs:label xml:lang="pt">Unidade</rdfs:label>
     </owl:Class>
     
 

@@ -1,4 +1,4 @@
-package rdfUtils
+package semantics
 
 /**
  * Created by john on 12/2/15.
@@ -323,6 +323,15 @@ class Node {
     }
     def getAttrs() {
 
+    }
+
+    def getRange() {
+        def res = k.select("distinct ?range").query("<$URI> rdfs:range ?range.")
+
+        if(res.size()==1)
+            return res[0].range
+        else
+            return res
     }
 
     def getOptions() {
