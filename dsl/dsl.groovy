@@ -29,71 +29,70 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // Se a fazenda ficar em mais de uma micro-região?
 
 // Caracterização dos sistemas produtivos no Centro-Sul 
-features(':ProductionUnit') {
+unity(':ProductionUnit') {
 
     // Production unit name 
-    instance ':ProductionUnitName', 'label': "Nome da unidade produtiva"
+    //instance ':ProductionUnitName', 'label': "Nome da unidade produtiva"
 
     // Production unit type
-    instance ':ProductionUnitType', 'rdfs:subClassOf', 'label': "Tipo da unidade produtiva"
-    
+    //instance ':ProductionUnitType', 'rdfs:subClassOf', 'label': "Tipo da unidade produtiva"
+
     // Agricultural production system
-    instance ':AgriculturalProductionSystem', 'rdfs:subClassOf', 'label': "Sistema de produção agrícola"
-    
-    //Identificação do sistema de produção 
-    
+    feature ':hasAgriculturalProductionSystem', 'rdfs:subClassOf', 'label': "Sistema de produção agrícola"
+
+    //Identificação do sistema de produção
+
     // Origem da cana (própria, fornecedor, arrendamento)
-    instance ':SugarcaneSource', 'rdf:type', 'label': "Origem da cana"   
+    // instance ':SugarcaneSource', 'rdf:type', 'label': "Origem da cana"
 
     // Microrregião produtora
-    instance 'MicroRegion', 'rdf:type', 'label': "Microrregião da unidade produtiva"
+    // instance 'MicroRegion', 'rdf:type', 'label': "Microrregião da unidade produtiva"
 
     // Municípios envolvidos (localização da sede)
 
     // Data de fundação da unidade produção
-    instance ':EstablishmentDate',  'label': "Data de fundação da unidade produção"
-    
+    // instance ':EstablishmentDate',  'label': "Data de fundação da unidade produção"
+
     // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
-    instance ':InnovationDevelopmentProjects', 'label': "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", 'placeholder': "Descrição"
-    
+    // instance ':InnovationDevelopmentProjects', 'label': "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", 'placeholder': "Descrição"
+
     //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
-    instance ':Financing', 'label': "Financiamento (crédito agrícola, custeio de maquinário, BNDES)"
-    
+    // instance ':Financing', 'label': "Financiamento (crédito agrícola, custeio de maquinário, BNDES)"
+
     // Valor total investido em tecnologia na fase agrícola (até a fase atual)
-    instance ':TotalValueInvestedInTechnologicInAgriculturalPhase', 'label': "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
-    
+    // instance ':TotalValueInvestedInTechnologicInAgriculturalPhase', 'label': "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
+
     // Valor total investido em tecnologia na fase industrial (até a fase atual)
-    instance ':TotalValueInvestedInTechnologicInIndustrialPhase', 'label': "Valor total investido em tecnologia na fase industrial (até a fase atual)"
+    // instance ':TotalValueInvestedInTechnologicInIndustrialPhase', 'label': "Valor total investido em tecnologia na fase industrial (até a fase atual)"
 
     // Valor total previsto para investimento para escoamento da produção
-    instance ':TotalValuePlaneedForInvestmentToProductionDrainage', 'label': "Valor total previsto para investimento para escoamento da produção"
+    // instance ':TotalValuePlaneedForInvestmentToProductionDrainage', 'label': "Valor total previsto para investimento para escoamento da produção"
 
     // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
-    instance ':PartnershipsForResearchOrImprovementOfTheSystem', 'label': "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)"
+    // instance ':PartnershipsForResearchOrImprovementOfTheSystem', 'label': "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)"
 
     //Ligação com outros grupos empresariais ou de investimentos
-    instance ':LinkWithOtherBusinessOrInvestmentGroups', 'label': "Ligação com outros grupos empresariais ou de investimentos"
+    // instance ':LinkWithOtherBusinessOrInvestmentGroups', 'label': "Ligação com outros grupos empresariais ou de investimentos"
 
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
 
     // Data de início do plantio
-    instance ':BeginningOfPlantingDate', 'label': "Data de início do plantio"
+    // instance ':BeginningOfPlantingDate', 'label': "Data de início do plantio"
 
     // Data de término do plantio
-    instance ':FinishOfPlantingDate', 'label': "Data de término do plantio"
+    // instance ':FinishOfPlantingDate', 'label': "Data de término do plantio"
 
     // Data de início da colheita
-    instance ':BeginningOfHarvestDate', 'label': "Data de início da colheita"
+    // instance ':BeginningOfHarvestDate', 'label': "Data de início da colheita"
 
     // Data de término da colheita
-    instance ':FinishOfHarvestDate', 'rdf:type', 'label': "Data de término da colheita"
+    // instance ':FinishOfHarvestDate', 'rdf:type', 'label': "Data de término da colheita"
 
     // Longevidade do canvial (cana de ano, cana de ano e meio);
-    instance 'CanavialLongevity', 'rdf:type', 'label': "Longevidade do canvial"
-    
-    // Disponibilização dos resultados da avaliação: Público | privado
-    instance ':AvailabilityOfEvaluationResults', 'rdf:type', 'label': "Disponibilização dos resultados da avaliação"
+    // instance 'CanavialLongevity', 'rdf:type', 'label': "Longevidade do canvial"
 
+    // Disponibilização dos resultados da avaliação: Público | privado
+    // instance ':AvailabilityOfEvaluationResults', 'rdf:type', 'label': "Disponibilização dos resultados da avaliação"
 }
 /*
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados
@@ -118,19 +117,19 @@ prog {
     environment =   weightedSum(assessment.':EnvironmentalIndicator')
     social      =   weightedSum(assessment.':SocialIndicator')
     economic    =   weightedSum(assessment.':EconomicIndicator')
-    
+
     //environment =   sum(assessment.':EnvironmentalIndicator'.equation({value*weight}))
     //social      =   sum(assessment.':SocialIndicator'.equation({value*weight}))
     //economic    =   sum(assessment.':EconomicIndicator'.equation({value*weight}))
-    
+
     sustainability = (environment + social + economic)/3
-    
+
     cost_production_efficiency = sum(assessment.':ProductionEfficiencyFeature')
     //cost_production_efficiency = sum(assessment.':ProductionEfficiencyFeature'.value())
 
     TechnologicalEfficiencyInTheField = weightedSum(assessment.':TechnologicalEfficiencyInTheField')
     TechnologicalEfficiencyInTheIndustrial = weightedSum(assessment.':TechnologicalEfficiencyInTheIndustrial')
-    
+
     //TechnologicalEfficiencyInTheField = sum(assessment.':TechnologicalEfficiencyInTheField'.equation({value*weight}))
     //TechnologicalEfficiencyInTheIndustrial = sum(assessment.':TechnologicalEfficiencyInTheIndustrial'.equation({value*weight}))
 
@@ -155,7 +154,7 @@ prog {
     // Just showing text
     //show '***That is the report:***'
     show '**Avaliação da sustentabilidade e da eficiência produtiva**'
-    
+
     // Cada recomendação terá uma fórmula lógica que permite especificar
     // quando ela deve ser mostrada. Essas fórmulas podem ser tão complexas
     // quanto necessário. Caso o resultado da fórmula seja verdadeiro, o texto
@@ -168,19 +167,19 @@ prog {
     // recommendation environment > 3.5 || social == 7, '**Second** *option*'
     // recommendation if:(environment > 3.5 || social == 7), '**Third** *option*'
     // recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
-    
+
     show 'Nome da unidade produtiva: ' + assessment.'CurrentProductionUnit'.label()
     show 'Caracterização dos sistemas produtivos no Centro-Sul: ' + assessment.'CurrentProductionUnit'.productionUnit()
     show 'Microrregião da unidade produtiva: ' + assessment.'CurrentProductionUnit'.microregion()
     //show 'Tecnologias disponíveis: ' + assessment.'CurrentProductionUnit'.efficiency()
-    
+
     linebreak()
-    
+
     show '**Matrix de Avaliação**'
 
     show 'Índice da sustentabilidade: ' + sustainability
     show 'Indice de eficiência: ' + efficiency
-    
+
     recomendations = ["Cenário desfavorável, Muito baixo desempenho dos indicadores",
                       "Cenário desfavorável, Baixo desempenho dos indicadores",
                       "Cenário desfavorável, Médio desempenho dos indicadores",
@@ -193,7 +192,7 @@ prog {
                       "Cenário muito favorável, Baixo desempenho dos indicadores",
                       "Cenário muito favorável, Médio desempenho dos indicadores",
                       "Cenário muito favorável, Alto desempenho dos indicadores"]
-    
+
     // Matrix de sustentabilidade
     matrix([x: sustainability,
             y: efficiency,
@@ -215,67 +214,67 @@ prog {
     //Outra possibilidade
     //matrix  x: [label: 'kkk', value = environment, range: [1,9]],
     //        y: [label: 'kkk', value = social, range: [1,9]]
-    
+
     show '**Indicadores Ambientais**'
-    
+
     table assessment.':EnvironmentalIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso']
-    
+
     show 'Índice ambiental: '+ environment
-    
+
     linebreak()
-    
+
     show '**Indicadores Econômicos**'
-    
+
     table assessment.':EconomicIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso']
-    
+
     show 'Índice econômico: '+ economic
-    
+
     linebreak()
-    
+
     show '**Indicadores Sociais**'
-    
+
     table assessment.':SocialIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso']
-    
+
     show 'Índice social: '+ social
-    
+
     linebreak()
-    
+
     show '**Avaliação da sustentabilidade**'
-    
+
     show 'Índice da sustentabilidade '+ sustainability
-    
+
     linebreak()
-    
+
     show '**Eficiência da produção**'
-    
+
     table assessment.':ProductionEfficiencyFeature', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
-    
-    show 'Índice de eficiência da produção: '+ cost_production_efficiency 
-    
+
+    show 'Índice de eficiência da produção: '+ cost_production_efficiency
+
     linebreak()
-    
+
     show '**Eficiência tecnológica no campo**'
-    
+
     table assessment.':TechnologicalEfficiencyInTheField', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso']
-    
+
     show 'Índice de tecnológica no campo: '+ TechnologicalEfficiencyInTheField
-    
+
     linebreak()
-    
+
     show '**Eficiência tecnológica na industria**'
-    
+
     table assessment.':TechnologicalEfficiencyInTheIndustrial', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso']
-    
+
     show 'Índice de tecnológica na industria: '+ TechnologicalEfficiencyInTheIndustrial
-    
+
     linebreak()
-    
+
     show '**Avaliação de eficiência**'
-    
+
     show 'Índice de eficiência: '+ efficiency
-    
+
     linebreak()
-    
+
     show '**Mapa da microregião**'
     map assessment.'MicroRegion'.map()
 }

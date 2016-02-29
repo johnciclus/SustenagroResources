@@ -1,6 +1,8 @@
 //  dataType 'DataTypeID', 'widgetName'
 
-//dataType  'Date', 'Date'
+//dataType  'xsd:date', widget: 'date'
+
+dataType 'http://semantic.icmc.usp.br/sustenagro#SimpleCategory', widget: 'selectOne'
 
 /*
 view('tool/index'){

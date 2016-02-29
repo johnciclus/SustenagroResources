@@ -1,7 +1,7 @@
 package dsl
 
 import org.kohsuke.groovy.sandbox.GroovyValueFilter
-import rdfUtils.DataReader
+import semantics.DataReader
 
 /**
  * Created by john on 09/09/15.
@@ -25,6 +25,8 @@ class DSLSandbox extends GroovyValueFilter{
             Binding,
             ArrayList,
             Object[],
-            DataReader
+            LinkedHashMap,
+            DataReader,
+            Unity
     ] as Set
 }
