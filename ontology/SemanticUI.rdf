@@ -1,0 +1,3358 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY terms "http://purl.org/dc/terms/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY pt "http://dbpedia.org/property/pt/" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY semanticUI "http://purl.org/biodiv/semanticUI#" >
+    <!ENTITY sustenagro "http://bio.icmc.usp.br/sustenagro#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://&semanticUI;"
+     xml:base="http://http://purl.org/biodiv/semanticUI"
+     xmlns:pt="http://dbpedia.org/property/pt/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:semanticUI="http://purl.org/biodiv/semanticUI#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:sustenagro="http://bio.icmc.usp.br/sustenagro#">
+    <owl:Ontology rdf:about="http://purl.org/biodiv/semanticUI#"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://bio.icmc.usp.br/sustenagro#features -->
+
+    <owl:AnnotationProperty rdf:about="&sustenagro;features"/>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#features -->
+
+    <owl:AnnotationProperty rdf:about="&semanticUI;features"/>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#weight -->
+
+    <owl:AnnotationProperty rdf:about="&semanticUI;weight">
+        <rdfs:domain rdf:resource="&semanticUI;Indicator"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.org/dc/terms/description -->
+
+    <owl:AnnotationProperty rdf:about="&terms;description">
+        <rdfs:label xml:lang="en">description</rdfs:label>
+        <rdfs:label xml:lang="pt">descrição</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://purl.org/dc/terms/title -->
+
+    <owl:AnnotationProperty rdf:about="&terms;title">
+        <rdfs:label xml:lang="en">title</rdfs:label>
+        <rdfs:label xml:lang="pt">título</rdfs:label>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#label -->
+
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral -->
+
+    <rdfs:Datatype rdf:about="&rdf;PlainLiteral"/>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#Literal -->
+
+    <rdfs:Datatype rdf:about="&rdfs;Literal"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#boolean -->
+
+    <rdfs:Datatype rdf:about="&xsd;boolean"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#double -->
+
+    <rdfs:Datatype rdf:about="&xsd;double"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#integer -->
+
+    <rdfs:Datatype rdf:about="&xsd;integer"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#string -->
+
+    <rdfs:Datatype rdf:about="&xsd;string"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#real -->
+
+    <rdfs:Datatype rdf:about="&owl;real"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#appliedTo -->
+
+    <owl:ObjectProperty rdf:about="&semanticUI;appliedTo">
+        <rdfs:label xml:lang="en">applied to</rdfs:label>
+        <rdfs:label xml:lang="pt">aplicado a</rdfs:label>
+        <rdfs:domain rdf:resource="&semanticUI;Evaluation"/>
+        <rdfs:range rdf:resource="&semanticUI;ProductionUnitType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#compose -->
+
+    <owl:ObjectProperty rdf:about="&semanticUI;compose">
+        <rdfs:label xml:lang="en">compose</rdfs:label>
+        <rdfs:label xml:lang="pt">compõe</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#uniqueValue -->
+
+    <owl:ObjectProperty rdf:about="&semanticUI;uniqueValue">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="&semanticUI;value"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#value -->
+
+    <owl:ObjectProperty rdf:about="&semanticUI;value">
+        <rdfs:label xml:lang="en">value</rdfs:label>
+        <rdfs:label xml:lang="pt">valor</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://dbpedia.org/property/pt/mapa -->
+
+    <owl:DatatypeProperty rdf:about="&pt;mapa"/>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#dataValue -->
+
+    <owl:DatatypeProperty rdf:about="&semanticUI;dataValue">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">data value</rdfs:label>
+        <rdfs:label xml:lang="pt">valor do dado</rdfs:label>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasWeight -->
+
+    <owl:DatatypeProperty rdf:about="&semanticUI;hasWeight">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&owl;real"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#weight -->
+
+    <owl:DatatypeProperty rdf:about="&semanticUI;weight">
+        <rdfs:range rdf:resource="&xsd;double"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://dbpedia.org/ontology/AdministrativeRegion -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/AdministrativeRegion">
+        <rdfs:label xml:lang="en">Administrative region</rdfs:label>
+        <rdfs:label xml:lang="pt">Região administrativa</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Region"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/Country -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/Country">
+        <rdfs:label xml:lang="en">Country</rdfs:label>
+        <rdfs:label xml:lang="pt">País</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/GovernmentalAdministrativeRegion -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion">
+        <rdfs:label xml:lang="en">Governmental administrative region</rdfs:label>
+        <rdfs:label xml:lang="pt">Região administrativa governamental</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/AdministrativeRegion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/MicroRegion -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/MicroRegion">
+        <rdfs:label xml:lang="en">Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/GovernmentalAdministrativeRegion"/>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitFeature"/>
+        <rdfs:subClassOf rdf:resource="&semanticUI;SelectOne"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/Place -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/Place">
+        <rdfs:label xml:lang="en">Place</rdfs:label>
+        <rdfs:label xml:lang="pt">Lugar</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/PopulatedPlace -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/PopulatedPlace">
+        <rdfs:label xml:lang="en">Populate place</rdfs:label>
+        <rdfs:label xml:lang="pt">Lugar povoado</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/Place"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/Prefecture -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/Prefecture">
+        <rdfs:label xml:lang="en">Prefecture</rdfs:label>
+        <rdfs:label xml:lang="pt">Prefeitura</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/Provider -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/Provider">
+        <rdfs:label xml:lang="en">Provider</rdfs:label>
+        <rdfs:label xml:lang="pt">Fornecedor</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/Region -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/Region">
+        <rdfs:label xml:lang="en">Region</rdfs:label>
+        <rdfs:label xml:lang="pt">Região</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/ontology/State -->
+
+    <owl:Class rdf:about="http://dbpedia.org/ontology/State">
+        <rdfs:label xml:lang="en">State</rdfs:label>
+        <rdfs:label xml:lang="pt">Estado</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/>
+    </owl:Class>
+    
+
+
+    <!-- http://dbpedia.org/resource/PhysicalPlant -->
+
+    <owl:Class rdf:about="http://dbpedia.org/resource/PhysicalPlant">
+        <rdfs:label xml:lang="en">Plant</rdfs:label>
+        <rdfs:label xml:lang="pt">Usina</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Acknowledge -->
+
+    <owl:Class rdf:about="&semanticUI;Acknowledge">
+        <rdfs:subClassOf rdf:resource="&semanticUI;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#AgriculturalProductionSystem -->
+
+    <owl:Class rdf:about="&semanticUI;AgriculturalProductionSystem">
+        <rdfs:label xml:lang="en">Agricultural production system</rdfs:label>
+        <rdfs:label xml:lang="pt">Sistema de produção agrícola</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitFeature"/>
+        <rdfs:subClassOf rdf:resource="&semanticUI;SelectOne"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Audio -->
+
+    <owl:Class rdf:about="&semanticUI;Audio">
+        <rdfs:subClassOf rdf:resource="&semanticUI;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#AvailabilityOfEvaluationResults -->
+
+    <owl:Class rdf:about="&semanticUI;AvailabilityOfEvaluationResults">
+        <rdfs:label xml:lang="en">Availability of evaluations results</rdfs:label>
+        <rdfs:label xml:lang="pt">Disponibilização dos resultados da avaliação</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitFeature"/>
+        <rdfs:subClassOf rdf:resource="&semanticUI;SelectOne"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Boolean -->
+
+    <owl:Class rdf:about="&semanticUI;Boolean">
+        <rdfs:label xml:lang="en">Boolean</rdfs:label>
+        <rdfs:label xml:lang="pt">Boleana</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;dataValue"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;boolean"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Categorical"/>
+        <rdfs:subClassOf rdf:resource="&semanticUI;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#CanavialLongevity -->
+
+    <owl:Class rdf:about="&semanticUI;CanavialLongevity">
+        <rdfs:label xml:lang="en">Canavial Longevity</rdfs:label>
+        <rdfs:label xml:lang="pt">Longevidade do canvial</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitFeature"/>
+        <rdfs:subClassOf rdf:resource="&semanticUI;SelectOne"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Categorical -->
+
+    <owl:Class rdf:about="&semanticUI;Categorical">
+        <rdfs:label xml:lang="en">Categorical</rdfs:label>
+        <rdfs:label xml:lang="pt">Categórico</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Value"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#DataType -->
+
+    <owl:Class rdf:about="&semanticUI;DataType">
+        <sustenagro:features xml:lang="en">Datatype</sustenagro:features>
+        <sustenagro:features xml:lang="pt">Tipo de dado</sustenagro:features>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Date -->
+
+    <owl:Class rdf:about="&semanticUI;Date">
+        <rdfs:subClassOf rdf:resource="&semanticUI;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#DateTime -->
+
+    <owl:Class rdf:about="&semanticUI;DateTime">
+        <rdfs:subClassOf rdf:resource="&semanticUI;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Decimal -->
+
+    <owl:Class rdf:about="&semanticUI;Decimal">
+        <rdfs:subClassOf rdf:resource="&semanticUI;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Evaluation -->
+
+    <owl:Class rdf:about="&semanticUI;Evaluation">
+        <rdfs:label xml:lang="en">Evaluation</rdfs:label>
+        <rdfs:label xml:lang="pt">Avaliação</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ExistNo -->
+
+    <owl:Class rdf:about="&semanticUI;ExistNo">
+        <rdfs:label xml:lang="en">Exist/No exist</rdfs:label>
+        <rdfs:label xml:lang="pt">Existe/Não existe</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Boolean"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Feature -->
+
+    <owl:Class rdf:about="&semanticUI;Feature"/>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Financing -->
+
+    <owl:Class rdf:about="&semanticUI;Financing">
+        <rdfs:label xml:lang="en">Financing</rdfs:label>
+        <rdfs:label xml:lang="pt">Financiamento</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitFeature"/>
+        <rdfs:subClassOf rdf:resource="&semanticUI;String"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#GeoLocation -->
+
+    <owl:Class rdf:about="&semanticUI;GeoLocation">
+        <rdfs:subClassOf rdf:resource="&semanticUI;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#HarvestDates -->
+
+    <owl:Class rdf:about="&semanticUI;HarvestDates">
+        <rdfs:label xml:lang="en">Harvest dates</rdfs:label>
+        <rdfs:label xml:lang="pt">Datas da colheita</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitFeature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#HarvestRange -->
+
+    <owl:Class rdf:about="&semanticUI;HarvestRange">
+        <rdfs:label xml:lang="en">Harvest range</rdfs:label>
+        <rdfs:label xml:lang="pt">Faixa da colheita</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitFeature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Image -->
+
+    <owl:Class rdf:about="&semanticUI;Image">
+        <rdfs:subClassOf rdf:resource="&semanticUI;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#InnovationDevelopmentProjects -->
+
+    <owl:Class rdf:about="&semanticUI;InnovationDevelopmentProjects">
+        <rdfs:label xml:lang="en">Innovation and/or development projects</rdfs:label>
+        <rdfs:label xml:lang="pt">Projetos de inovação e/ou desenvolvimento (BNDES, Finep)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitFeature"/>
+        <rdfs:subClassOf rdf:resource="&semanticUI;String"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#InputWidget -->
+
+    <owl:Class rdf:about="&semanticUI;InputWidget">
+        <rdfs:subClassOf rdf:resource="&semanticUI;Widget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Integer -->
+
+    <owl:Class rdf:about="&semanticUI;Integer">
+        <rdfs:label xml:lang="en">Integer</rdfs:label>
+        <rdfs:label xml:lang="pt">Inteiro</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;dataValue"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;integer"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Real"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#LinkWithOtherBusinessOrInvestmentGroups -->
+
+    <owl:Class rdf:about="&semanticUI;LinkWithOtherBusinessOrInvestmentGroups">
+        <rdfs:label xml:lang="en">Link with other business groups or investment</rdfs:label>
+        <rdfs:label xml:lang="pt">Ligação com outros grupos empresariais ou de investimentos</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitFeature"/>
+        <rdfs:subClassOf rdf:resource="&semanticUI;String"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Number -->
+
+    <owl:Class rdf:about="&semanticUI;Number">
+        <rdfs:label xml:lang="en">Number</rdfs:label>
+        <rdfs:label xml:lang="pt">Número</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Output -->
+
+    <owl:Class rdf:about="&semanticUI;Output">
+        <rdfs:subClassOf rdf:resource="&semanticUI;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#OutputWidget -->
+
+    <owl:Class rdf:about="&semanticUI;OutputWidget">
+        <rdfs:subClassOf rdf:resource="&semanticUI;Widget"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#PlantAndProvider -->
+
+    <owl:Class rdf:about="&semanticUI;PlantAndProvider">
+        <rdfs:label xml:lang="en">Plant and provider</rdfs:label>
+        <rdfs:label xml:lang="pt">Usina e fornecedor</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#PlantingDates -->
+
+    <owl:Class rdf:about="&semanticUI;PlantingDates">
+        <rdfs:label xml:lang="en">Planting dates</rdfs:label>
+        <rdfs:label xml:lang="pt">Datas do plantio</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitFeature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#PlantingRange -->
+
+    <owl:Class rdf:about="&semanticUI;PlantingRange">
+        <rdfs:label xml:lang="en">Planting range</rdfs:label>
+        <rdfs:label xml:lang="pt">Faixa do plantio</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitFeature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#PositiveNegative -->
+
+    <owl:Class rdf:about="&semanticUI;PositiveNegative">
+        <rdfs:label xml:lang="en">Positive/Negative</rdfs:label>
+        <rdfs:label xml:lang="pt">Positivo/Negativo</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Boolean"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ProductionUnitFeature -->
+
+    <owl:Class rdf:about="&semanticUI;ProductionUnitFeature">
+        <rdfs:label xml:lang="en">Production unit feature</rdfs:label>
+        <rdfs:label xml:lang="pt">Característica de unidade de produtiva</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Feature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ProductionUnitName -->
+
+    <owl:Class rdf:about="&semanticUI;ProductionUnitName">
+        <rdfs:label xml:lang="en">Production unit name</rdfs:label>
+        <rdfs:label xml:lang="pt">Nome da unidade produtiva</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitFeature"/>
+        <rdfs:subClassOf rdf:resource="&semanticUI;String"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ProductionUnitType -->
+
+    <owl:Class rdf:about="&semanticUI;ProductionUnitType">
+        <rdfs:label xml:lang="en">Production unity type</rdfs:label>
+        <rdfs:label xml:lang="pt">Tipo de unidade de produção</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitFeature"/>
+        <rdfs:subClassOf rdf:resource="&semanticUI;SelectOne"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Real -->
+
+    <owl:Class rdf:about="&semanticUI;Real">
+        <rdfs:label xml:lang="en">Real</rdfs:label>
+        <rdfs:label xml:lang="pt">Real</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Value"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#SelectMultiple -->
+
+    <owl:Class rdf:about="&semanticUI;SelectMultiple">
+        <rdfs:subClassOf rdf:resource="&semanticUI;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#SelectOne -->
+
+    <owl:Class rdf:about="&semanticUI;SelectOne">
+        <rdfs:subClassOf rdf:resource="&semanticUI;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#String -->
+
+    <owl:Class rdf:about="&semanticUI;String">
+        <rdfs:subClassOf rdf:resource="&semanticUI;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#SugarcaneProductionSystem -->
+
+    <owl:Class rdf:about="&semanticUI;SugarcaneProductionSystem">
+        <rdfs:label xml:lang="en">Sugarcane production system</rdfs:label>
+        <rdfs:label xml:lang="pt">Sistema de produção de cana-de-açucar</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;AgriculturalProductionSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#SugarcaneSource -->
+
+    <owl:Class rdf:about="&semanticUI;SugarcaneSource">
+        <rdfs:label xml:lang="en">Sugarcane source</rdfs:label>
+        <rdfs:label xml:lang="pt">Origem da cana</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitFeature"/>
+        <rdfs:subClassOf rdf:resource="&semanticUI;SelectOne"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Text -->
+
+    <owl:Class rdf:about="&semanticUI;Text">
+        <rdfs:label xml:lang="en">Text</rdfs:label>
+        <rdfs:label xml:lang="pt">Texto</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#TotalValue -->
+
+    <owl:Class rdf:about="&semanticUI;TotalValue">
+        <rdfs:label xml:lang="en">Total value</rdfs:label>
+        <rdfs:label xml:lang="pt">Valor total</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;ProductionUnitFeature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#TotalValueInvestedInTechnologicInAgriculturalPhase -->
+
+    <owl:Class rdf:about="&semanticUI;TotalValueInvestedInTechnologicInAgriculturalPhase">
+        <rdfs:label xml:lang="en">Total value invested in technologic in agricultural phase</rdfs:label>
+        <rdfs:label xml:lang="pt">Valor total investido em tecnologia na fase agrícola (até a fase atual)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Number"/>
+        <rdfs:subClassOf rdf:resource="&semanticUI;TotalValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#TotalValueInvestedInTechnologicInIndustrialPhase -->
+
+    <owl:Class rdf:about="&semanticUI;TotalValueInvestedInTechnologicInIndustrialPhase">
+        <rdfs:label xml:lang="en">Total value invested in technologic in industrial phase</rdfs:label>
+        <rdfs:label xml:lang="pt">Valor total investido em tecnologia na fase industrial (até a fase atual)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Number"/>
+        <rdfs:subClassOf rdf:resource="&semanticUI;TotalValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#TotalValuePlaneedForInvestmentToProductionDrainage -->
+
+    <owl:Class rdf:about="&semanticUI;TotalValuePlaneedForInvestmentToProductionDrainage">
+        <rdfs:label xml:lang="en">Total value planeed for investment to production drainage</rdfs:label>
+        <rdfs:label xml:lang="pt">Valor total previsto para investimento para escoamento da produção</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Number"/>
+        <rdfs:subClassOf rdf:resource="&semanticUI;TotalValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#TrueFalse -->
+
+    <owl:Class rdf:about="&semanticUI;TrueFalse">
+        <rdfs:label xml:lang="en">True/False</rdfs:label>
+        <rdfs:label xml:lang="pt">Verdadeiro/Falso</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Boolean"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Unity -->
+
+    <owl:Class rdf:about="&semanticUI;Unity"/>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Value -->
+
+    <owl:Class rdf:about="&semanticUI;Value">
+        <rdfs:label xml:lang="en">Value</rdfs:label>
+        <rdfs:label xml:lang="pt">Valor</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Video -->
+
+    <owl:Class rdf:about="&semanticUI;Video">
+        <rdfs:subClassOf rdf:resource="&semanticUI;DataType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Weighted -->
+
+    <owl:Class rdf:about="&semanticUI;Weighted">
+        <rdfs:label xml:lang="en">Weighted</rdfs:label>
+        <rdfs:label xml:lang="pt">Ponderado</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;hasWeight"/>
+                <owl:someValuesFrom rdf:resource="&owl;real"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Value"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Widget -->
+
+    <owl:Class rdf:about="&semanticUI;Widget"/>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#YesNo -->
+
+    <owl:Class rdf:about="&semanticUI;YesNo">
+        <rdfs:label xml:lang="en">Yes/No</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim/Não</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Boolean"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Adamantina -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Adamantina">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Adamantina Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Adamantina</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/db/SaoPaulo_Micro_Adamantina.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Amparo -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Amparo">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Amparo Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microregião de Amparo</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/df/SaoPaulo_Micro_Amparo.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Andradina -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Andradina">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Andradina Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Andradina</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/6/65/SaoPaulo_Micro_Andradina.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Araraquara -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Araraquara">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Araraquara Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Araraquara</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/d1/SaoPaulo_Micro_Araraquara.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Araçatuba -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Araçatuba">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Araçatuba Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Araçatuba</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/4/46/SaoPaulo_Micro_Aracatuba.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Assis -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Assis">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Assis Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Assis</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/4/46/SaoPaulo_Micro_Assis.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Auriflama -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Auriflama">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Auriflama Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Auriflama</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/4/42/SaoPaulo_Micro_Auriflama.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Avaré -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Avaré">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Avaré Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Avaré</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/6/62/SaoPaulo_Micro_Avare.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Bananal -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Bananal">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Bananal Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Bananal</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/8/83/SaoPaulo_Micro_Bananal.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Barretos -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Barretos">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Barretos Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Barretos</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/e/e0/SaoPaulo_Micro_Barretos.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Batatais -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Batatais">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Batatais Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Batatais</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/2/2d/SaoPaulo_Micro_Batatais.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Bauru -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Bauru">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Bauru Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Bauru</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/d4/SaoPaulo_Micro_Bauru.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Birigüi -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Birigüi">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Birigüi Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Birigüi</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/b/be/SaoPaulo_Micro_Birigui.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Botucatu -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Botucatu">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Botucatu Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Botucatu</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/5/56/SaoPaulo_Micro_Botucatu.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Bragança_Paulista -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Bragança_Paulista">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Bragança Paulista Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Bragança Paulista</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/0/0f/SaoPaulo_Micro_BragancaPaulista.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Campinas -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Campinas">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Campinas Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Campinas</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/9/9f/SaoPaulo_Micro_Campinas.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Campos_do_Jordão -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Campos_do_Jordão">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Campos do Jordão Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Campos do Jordão</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/a/a6/SaoPaulo_Micro_CamposdoJordao.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Capão_Bonito -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Capão_Bonito">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Capão Bonito Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Capão Bonito</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/9/96/SaoPaulo_Micro_CampaoBonito.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Caraguatatuba -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Caraguatatuba">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Caraguatatuba Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Caraguatatuba</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/a/a9/SaoPaulo_Micro_Caraguatatuba.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Catanduva -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Catanduva">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Catanduva Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Catanduva</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/2/22/SaoPaulo_Micro_Catanduva.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Dracena -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Dracena">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Dracena Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Dracena</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/4/42/SaoPaulo_Micro_Dracena.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Fernandópolis -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Fernandópolis">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Fernandópolis Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Fernandópolis</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/4/4f/SaoPaulo_Micro_Fernandopolis.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Franca -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Franca">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Franca Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Franca</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/3/36/SaoPaulo_Micro_Franca.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Franco_da_Rocha -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Franco_da_Rocha">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Franco da Rocha Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Franco da Rocha</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/0/05/SaoPaulo_Micro_FrancodaRocha.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Guaratinguetá -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Guaratinguetá">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Guaratinguetá Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Guaratinguetá</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/b/bc/SaoPaulo_Micro_Guaratingueta.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Guarulhos -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Guarulhos">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Guarulhos Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Guarulhos</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/a/a2/SaoPaulo_Micro_Guarulhos.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Itanhaém -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itanhaém">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Itanhaém Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Itanhaém</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/7/7b/SaoPaulo_Micro_Itanhaem.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Itapecerica_da_Serra -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itapecerica_da_Serra">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Itapecerica da Serra Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Itapecerica da Serra</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/f/ff/SaoPaulo_Micro_ItapecericadaSerra.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Itapetininga -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itapetininga">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Itapetininga Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Itapetininga</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/2/25/SaoPaulo_Micro_Itapetininga.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Itapeva -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itapeva">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Itapeva Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Itapeva</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/9/9e/SaoPaulo_Micro_Itapeva.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Ituverava -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ituverava">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Ituverava Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Ituverava</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/7/73/SaoPaulo_Micro_Ituverava.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Jaboticabal -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Jaboticabal">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Jaboticabal Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Jaboticabal</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/e/e3/SaoPaulo_Micro_Jaboticabal.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Jales -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Jales">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Jales Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Jales</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/2/2b/SaoPaulo_Micro_Jales.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Jaú -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Jaú">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Jaú Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Jaú</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/5/56/SaoPaulo_Micro_Jau.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Jundiaí -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Jundiaí">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Jundiaí Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Jundiaí</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/e/ec/SaoPaulo_Micro_Jundiai.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Limeira -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Limeira">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Limeira Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Limeira</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/7/75/SaoPaulo_Micro_Limeira.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Lins -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Lins">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Lins Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Lins</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/e/e6/SaoPaulo_Micro_Lins.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Marília -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Marília">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Marília Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Marília</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/b/b0/SaoPaulo_Micro_Marilia.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Mogi_das_Cruzes -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Mogi_das_Cruzes">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Mogi das Cruzes Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Mogi das Cruzes</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/6/61/SaoPaulo_Micro_MogidasCruzes.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Moji_Mirim -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Moji_Mirim">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Mogi Mirim Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Mogi Mirim</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/e/eb/SaoPaulo_Micro_MojiMirim.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Nhandeara -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Nhandeara">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Nhandeara Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Nhandeara</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/5/5b/SaoPaulo_Micro_Nhandeara.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Novo_Horizonte -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Novo_Horizonte">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Novo Horizonte Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Novo Horizonte</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/df/SaoPaulo_Micro_NovoHorizonte.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Osasco -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Osasco">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Osasco Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Osasco</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/3/3d/SaoPaulo_Micro_Osasco.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Ourinhos -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ourinhos">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Ourinhos Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Ourinhos</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/8/8b/SaoPaulo_Micro_Ourinhos.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Paraibuna_e_Paraitinga -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Paraibuna_e_Paraitinga">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Paraibuna/Paraitinga Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Paraibuna/Paraitinga</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/1/1f/SaoPaulo_Micro_ParaibunaParaitinga.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Paulínia -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Paulínia">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Paulínia Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Paulínia</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/9/90/SaoPaulo_Micro_Paulinia.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Piedade -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Piedade">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Piedade Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Piedade</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/a/a7/SaoPaulo_Micro_Piedade.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Piracicaba -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Piracicaba">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Piracicaba Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Piracicaba</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/8/80/SaoPaulo_Micro_Piracicaba.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Pirassununga -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Pirassununga">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Pirassununga Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Pirassununga</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/d1/SaoPaulo_Micro_Pirassununga.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Presidente_Prudente -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Presidente_Prudente">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Presidente Prudente Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Presidente Prudente</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/b/b8/SaoPaulo_Micro_PresidentePrudente.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Registro -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Registro">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Registro Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Registro</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/5/50/SaoPaulo_Micro_Registro.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Ribeirão_Preto -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ribeirão_Preto">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Ribeirão Preto Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Ribeirão Preto</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/dd/SaoPaulo_Micro_RibeiraoPreto.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Rio_Claro -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Rio_Claro">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Rio Claro Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Rio Claro</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/d/dd/SaoPaulo_Micro_RioClaro.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Santos -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Santos">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Santos Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Santos</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/f/f8/SaoPaulo_Micro_Santos.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Sorocaba -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Sorocaba">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Sorocaba Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Sorocaba</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/2/26/SaoPaulo_Micro_Sorocaba.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">São Carlos Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São Carlos</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/e/ef/SaoPaulo_Micro_SaoCarlos.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_Joaquim_da_Barra -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Joaquim_da_Barra">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">São Joaquim da Barra Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São Joaquim da Barra</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/6/65/SaoPaulo_Micro_SaoJoaquimdaBarra.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_José_do_Rio_Preto -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_José_do_Rio_Preto">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">São José do Rio Preto Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São José do Rio Preto</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/6/68/SaoPaulo_Micro_SaoJosedoRioPreto.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">São José dos Campos Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São José dos Campos</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/a/ac/SaoPaulo_Micro_SaoJosedosCampos.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_João_da_Boa_Vista -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_João_da_Boa_Vista">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">São João da Boa Vista Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São João da Boa Vista</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/2/26/SaoPaulo_Micro_SaoJoaodaBoaVista.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_Paulo -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Paulo">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">São Paulo Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São Paulo</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/3/37/SaoPaulo_Micro_SaoPaulo.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Tatuí -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Tatuí">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Tatuí Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Tatuí</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/0/0c/SaoPaulo_Micro_Tatui.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Tupã -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Tupã">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Tupã Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Tupã</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/b/ba/SaoPaulo_Micro_Tupa.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Votuporanga -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Votuporanga">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/MicroRegion"/>
+        <rdfs:label xml:lang="en">Votuporanga Microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Votuporanga</rdfs:label>
+        <pt:mapa>https://upload.wikimedia.org/wikipedia/commons/7/78/SaoPaulo_Micro_Votuporanga.svg</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/São_Paulo -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/São_Paulo">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/State"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Above18 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Above18">
+        <rdfs:label xml:lang="en">Above 18</rdfs:label>
+        <rdfs:label xml:lang="pt">Acima de 18</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#AccessToInternalMarketNo -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;AccessToInternalMarketNo">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#AccessToInternalMarketYes -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;AccessToInternalMarketYes">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">3.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#AccessToInternationalMarketNo -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;AccessToInternationalMarketNo">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#AccessToInternationalMarketYes -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;AccessToInternationalMarketYes">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">3.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#AdaptedAndResistantVarieties -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;AdaptedAndResistantVarieties">
+        <rdfs:label xml:lang="en">Adapted and resistant varieties</rdfs:label>
+        <rdfs:label xml:lang="pt">Variedades adaptadas e resistentes</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#AdaptedVarieties -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;AdaptedVarieties">
+        <rdfs:label xml:lang="en">Adapted varieties</rdfs:label>
+        <rdfs:label xml:lang="pt">Variedades adaptadas</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#AdequateDestinationOfVinasse -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;AdequateDestinationOfVinasse"/>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#AdequateDestinationOfVinasseWeigth -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;AdequateDestinationOfVinasseWeigth">
+        <semanticUI:weight rdf:datatype="&xsd;double">2.0</semanticUI:weight>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#AdhesionAndUseOfInnovations -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;AdhesionAndUseOfInnovations">
+        <rdfs:label xml:lang="en">Adhesion and use of innovations</rdfs:label>
+        <rdfs:label xml:lang="pt">Adesão e uso das Inovações</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#AppropiateDisposal -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;AppropiateDisposal">
+        <rdfs:label xml:lang="en">Appropriate disposal</rdfs:label>
+        <rdfs:label xml:lang="pt">Descarte adequado</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Appropriate-WithReducedVisibleAndInvisibleLosses -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Appropriate-WithReducedVisibleAndInvisibleLosses">
+        <rdfs:label xml:lang="en">Appropriate - with reduced visible and invisible losses</rdfs:label>
+        <rdfs:label xml:lang="pt">Adequada - com redução de perdas visíveis e invisíveis</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#AttendanceProtocolsNo -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;AttendanceProtocolsNo">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#AttendanceProtocolsYes -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;AttendanceProtocolsYes">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#BagasseAndStrawDestinationNo -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;BagasseAndStrawDestinationNo">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#BagasseAndStrawDestinationYes -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;BagasseAndStrawDestinationYes">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Below10 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Below10">
+        <rdfs:label xml:lang="en">Below 10</rdfs:label>
+        <rdfs:label xml:lang="pt">Abaixo de 10</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Between10-18 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Between10-18">
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Between80-90 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Between80-90">
+        <rdfs:label xml:lang="en">Between 80% and 90%</rdfs:label>
+        <rdfs:label xml:lang="pt">Entre 80% e 90%</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#BusinessNascent -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;BusinessNascent">
+        <rdfs:label xml:lang="en">Business nascent</rdfs:label>
+        <rdfs:label xml:lang="pt">Empresa nascente</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ByEvaporationUsingElectricity -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ByEvaporationUsingElectricity">
+        <rdfs:label xml:lang="en">By evaporation using electricity</rdfs:label>
+        <rdfs:label xml:lang="pt">Por evaporação empregando energia elétrica</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#CleaningWithWaterAndWaterReuse -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;CleaningWithWaterAndWaterReuse">
+        <rdfs:label xml:lang="en">Cleaning with water and water reuse</rdfs:label>
+        <rdfs:label xml:lang="pt">Limpeza com água e reutilização da água</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#CleaningWithWaterWithoutReuse -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;CleaningWithWaterWithoutReuse">
+        <rdfs:label xml:lang="en">Cleaning with water without reuse</rdfs:label>
+        <rdfs:label xml:lang="pt">Limpeza com água sem reutilização</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ClosedCircuit -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ClosedCircuit">
+        <rdfs:label xml:lang="en">Closed circuit</rdfs:label>
+        <rdfs:label xml:lang="pt">Circuito fechado</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Commercial -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Commercial">
+        <rdfs:label xml:lang="en">Commercial</rdfs:label>
+        <rdfs:label xml:lang="pt">Comercial</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ComplianceToCommitmentNo -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ComplianceToCommitmentNo">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ComplianceToCommitmentYes -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ComplianceToCommitmentYes">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ComplianceToZoningNo -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ComplianceToZoningNo">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ComplianceToZoningYes -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ComplianceToZoningYes">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ConditionedByDemand -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ConditionedByDemand">
+        <rdfs:label xml:lang="en">Conditioned by demand</rdfs:label>
+        <rdfs:label xml:lang="pt">Condicionada pela demanda (Desfavorável)</rdfs:label>
+        <pt:mapa rdf:datatype="&xsd;double">-1.0</pt:mapa>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ConditionedByTheOffer -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ConditionedByTheOffer">
+        <rdfs:label xml:lang="en">Conditioned by the offer</rdfs:label>
+        <rdfs:label xml:lang="pt">Condicionada pela oferta</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ContainmentTankForFertigationOrBiodigestion -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ContainmentTankForFertigationOrBiodigestion">
+        <rdfs:label xml:lang="en">Containment tank for fertigation or Biodigestion for the production of electricity</rdfs:label>
+        <rdfs:label xml:lang="pt">Tanque de contenção para fertirrigação ou de biodigestão para produção de energia elétrica</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ConventionalVarieties -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ConventionalVarieties">
+        <rdfs:label xml:lang="en">Conventional varieties</rdfs:label>
+        <rdfs:label xml:lang="pt">Variedades convencionais</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#DifficultyOfAdhesionAndUseOfInnovations -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;DifficultyOfAdhesionAndUseOfInnovations">
+        <rdfs:label xml:lang="en">Difficulty of adhesion and use of innovations</rdfs:label>
+        <rdfs:label xml:lang="pt">Dificuldade de adesão e uso das Inovações</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#DirectAlignment -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;DirectAlignment">
+        <rdfs:label xml:lang="en">Direct</rdfs:label>
+        <rdfs:label xml:lang="pt">Direta</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#DirectOptimization -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;DirectOptimization">
+        <rdfs:label xml:lang="en">Direct</rdfs:label>
+        <rdfs:label xml:lang="pt">Direta</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#DirectedToInnovationWithCostReduction -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;DirectedToInnovationWithCostReduction">
+        <rdfs:label xml:lang="en">Directed to innovation with cost reduction</rdfs:label>
+        <rdfs:label xml:lang="pt">Direcionada para inovação com redução de custo</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#DoNotUse -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;DoNotUse">
+        <rdfs:label xml:lang="en">Do not use</rdfs:label>
+        <rdfs:label xml:lang="pt">Não usa</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#DoesNotMeet -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;DoesNotMeet">
+        <rdfs:label xml:lang="en">Does not meet</rdfs:label>
+        <rdfs:label xml:lang="pt">Não atende</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#DoesNotSupplyTheAuto-demandOrIsPartial -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;DoesNotSupplyTheAuto-demandOrIsPartial">
+        <rdfs:label xml:lang="en">Does not supply the auto-demand or is partial</rdfs:label>
+        <rdfs:label xml:lang="pt">Não supre a própria demanda ou esta é parcial</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#DoesNotUseGasReductionTechnique -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;DoesNotUseGasReductionTechnique">
+        <rdfs:label xml:lang="en">Does not use gas reduction technique</rdfs:label>
+        <rdfs:label xml:lang="pt">Não emprega nenhuma técnica de redução de gases</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#DontExist -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;DontExist">
+        <rdf:type rdf:resource="&semanticUI;ExistNo"/>
+        <rdfs:label xml:lang="en">Doesn&apos;t Exist</rdfs:label>
+        <rdfs:label xml:lang="pt">Não Existe</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#DryCleaningOfSugarcane -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;DryCleaningOfSugarcane">
+        <rdfs:label xml:lang="en">Dry cleaning of sugarcane</rdfs:label>
+        <rdfs:label xml:lang="pt">Limpeza da cana a seco</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ElectricityProductionNo -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ElectricityProductionNo">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#EmploymentForFertigationBiogas -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;EmploymentForFertigationBiogas">
+        <rdfs:label xml:lang="en">Employment for fertigation / Biogas</rdfs:label>
+        <rdfs:label xml:lang="pt">Emprego para fertirrigação / Biogás</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Eq15.83 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Eq15.83">
+        <rdfs:label xml:lang="en">= 15.83</rdfs:label>
+        <rdfs:label xml:lang="pt">= 15,83</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#EqualOrLowestOf50km -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;EqualOrLowestOf50km">
+        <rdfs:label xml:lang="en">Equal or lowest of 50 km</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor ou igual a 50 km</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Exist -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Exist">
+        <rdf:type rdf:resource="&semanticUI;ExistNo"/>
+        <rdfs:label xml:lang="en">Exist</rdfs:label>
+        <rdfs:label xml:lang="pt">Existe</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Export -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Export">
+        <rdfs:label xml:lang="en">Export</rdfs:label>
+        <rdfs:label xml:lang="pt">Exportação</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#False -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;False">
+        <rdf:type rdf:resource="&semanticUI;TrueFalse"/>
+        <rdfs:label xml:lang="en">False</rdfs:label>
+        <rdfs:label xml:lang="pt">Falso</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#FiberValueEqualOrHigher -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;FiberValueEqualOrHigher">
+        <rdfs:label xml:lang="en">Equal or higher</rdfs:label>
+        <rdfs:label xml:lang="pt">Igual ou superior</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#FiberValueLowest -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;FiberValueLowest">
+        <rdfs:label xml:lang="en">Lowest</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ForTheSector -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ForTheSector">
+        <rdfs:label xml:lang="en">For the Sector</rdfs:label>
+        <rdfs:label xml:lang="pt">Para o setor</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#FormulatedWithoutConsideringTheRealityOfTheFieldOrProducer -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;FormulatedWithoutConsideringTheRealityOfTheFieldOrProducer">
+        <rdfs:label xml:lang="en">Formulated without considering the reality of the field or producer</rdfs:label>
+        <rdfs:label xml:lang="pt">Formuladas sem considerar a realidade do campo ou do produtor</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#GreaterThan85tnha -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;GreaterThan85tnha">
+        <rdfs:label xml:lang="en">Greater than 85 Tn/ha</rdfs:label>
+        <rdfs:label xml:lang="pt">Maior que 85 Ton/ha</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#GreaterThan91 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;GreaterThan91">
+        <rdfs:label xml:lang="en">Greater than 91%</rdfs:label>
+        <rdfs:label xml:lang="pt">Maior que 91%</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Gt1000 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Gt1000">
+        <rdfs:label xml:lang="en">&gt; 1,000.00</rdfs:label>
+        <rdfs:label xml:lang="pt">&gt; 1.000,00</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Gt15.83 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Gt15.83">
+        <rdfs:label xml:lang="en">&gt; 15.83</rdfs:label>
+        <rdfs:label xml:lang="pt">&gt; 15,83</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Gt2.5Mtons -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Gt2.5Mtons">
+        <rdfs:label xml:lang="en">Grinding capacity higher than 2.5 million tons/harvest</rdfs:label>
+        <rdfs:label xml:lang="pt">Capacidade de moagem superior a 2,5 milhões de ton/safra</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Gt85ton -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Gt85ton">
+        <rdfs:label xml:lang="en">&gt; 85 ton/ha</rdfs:label>
+        <rdfs:label xml:lang="pt">&gt; 85 ton/ha</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Gt90 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Gt90">
+        <rdfs:label xml:lang="en">&gt; 90%</rdfs:label>
+        <rdfs:label xml:lang="pt">&gt; 90%</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#High -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;High">
+        <rdfs:label xml:lang="en">High</rdfs:label>
+        <rdfs:label xml:lang="pt">Alta</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#HighAgriculturalEfficiency -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;HighAgriculturalEfficiency">
+        <rdfs:label xml:lang="en">High Agricultural Efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Alta Eficiência Agrícola</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+        <terms:description xml:lang="en">Planting and harvesting mechanization</terms:description>
+        <terms:description xml:lang="pt">Mecanização do plantio e colheita</terms:description>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#HighEfficiency -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;HighEfficiency">
+        <rdfs:label xml:lang="en">High efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Eficiência alta</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#HigherOf50km -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;HigherOf50km">
+        <rdfs:label xml:lang="en">Higher of 50 km</rdfs:label>
+        <rdfs:label xml:lang="pt">Maior 50 km</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ImproperDisposalOfBagasse -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ImproperDisposalOfBagasse">
+        <rdfs:label xml:lang="en">Improper disposal of bagasse</rdfs:label>
+        <rdfs:label xml:lang="pt">Descarte inadequado do bagaço</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#InReplacementOfAreasOfNativeForests -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;InReplacementOfAreasOfNativeForests">
+        <rdfs:label xml:lang="en">In replacement of areas of native forests</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a áreas de matas nativas</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#InReplacementOfDegradedAreas -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;InReplacementOfDegradedAreas">
+        <rdfs:label xml:lang="en">In replacement of degraded areas</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a áreas degradadas</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">3.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#InReplacementOfFoodCrops -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;InReplacementOfFoodCrops">
+        <rdfs:label xml:lang="en">In replacement of food crops</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a culturas alimentares</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#InReplacementOfPasture -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;InReplacementOfPasture">
+        <rdfs:label xml:lang="en">In replacement of pasture</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a pasto</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#InReplacementOfSugarcaneAndSimilarCultures -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;InReplacementOfSugarcaneAndSimilarCultures">
+        <rdfs:label xml:lang="en">In replacement of cane and similar cultures</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a cana e culturas similares</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#InadequateDisposal -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;InadequateDisposal">
+        <rdfs:label xml:lang="en">Inadequate disposal</rdfs:label>
+        <rdfs:label xml:lang="pt">Descarte Inadequado</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Inappropriate-IncreaseOfProductionCosts -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Inappropriate-IncreaseOfProductionCosts">
+        <rdfs:label xml:lang="en">Inappropiate - increase of production costs</rdfs:label>
+        <rdfs:label xml:lang="pt">Inadequada – aumento de custos de produção</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#IndirectAlignment -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;IndirectAlignment">
+        <rdfs:label xml:lang="en">Indirect</rdfs:label>
+        <rdfs:label xml:lang="pt">Indireta</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#IndirectOptimization -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;IndirectOptimization">
+        <rdfs:label xml:lang="en">Indirect</rdfs:label>
+        <rdfs:label xml:lang="pt">Indireta</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Interval1.0-2.5Mtons -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Interval1.0-2.5Mtons">
+        <rdfs:label xml:lang="en">Grinding capacity between 1.0 and 2.5 million tons/harvest</rdfs:label>
+        <rdfs:label xml:lang="pt">Capacidade de moagem entre 1,0 e 2,5 milhões de toneladas/safra</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ItProducesAndReuse -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ItProducesAndReuse">
+        <rdfs:label xml:lang="en">It produces and reuse</rdfs:label>
+        <rdfs:label xml:lang="pt">Produz e reutilizá</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ItProducesReuseAndReturn -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ItProducesReuseAndReturn">
+        <rdfs:label xml:lang="en">It produces, reuse and return water to environment</rdfs:label>
+        <rdfs:label xml:lang="pt">Produz, reutiliza e devolve água para o ambiente</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#LeaseOrigin -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;LeaseOrigin">
+        <rdf:type rdf:resource="&semanticUI;SugarcaneSource"/>
+        <rdfs:label xml:lang="en">Lease origin</rdfs:label>
+        <rdfs:label xml:lang="pt">Origem do arrendamento</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#LessEfficientBoilers -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;LessEfficientBoilers">
+        <rdfs:label xml:lang="en">Less efficient boilers (low pressure)</rdfs:label>
+        <rdfs:label xml:lang="pt">Caldeiras menos eficientes (de baixa pressão)</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Low -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Low">
+        <rdfs:label xml:lang="en">Low</rdfs:label>
+        <rdfs:label xml:lang="pt">Baixa</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#LowAgriculturalEfficiency -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;LowAgriculturalEfficiency">
+        <rdfs:label xml:lang="en">Low Agricultural Efficiecy</rdfs:label>
+        <rdfs:label xml:lang="pt">Baixa Eficiência Agrícola</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+        <terms:description xml:lang="en">Semi mechanized planting</terms:description>
+        <terms:description xml:lang="pt">Semimecanização do plantio</terms:description>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#LowEfficiency -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;LowEfficiency">
+        <rdfs:label xml:lang="en">Low Efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Baixa eficiência</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-3.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#LowerThan64tnha -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;LowerThan64tnha">
+        <rdfs:label xml:lang="en">Lower than 64 Tn/Ha</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor que 64 Ton/ha</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#LowerThan79 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;LowerThan79">
+        <rdfs:label xml:lang="en">Lower than 79%</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor que 79%</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Lt15.83 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Lt15.83">
+        <rdfs:label xml:lang="en">&lt; 15.83</rdfs:label>
+        <rdfs:label xml:lang="pt">&lt; 15,83</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Lt1Mtons -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Lt1Mtons">
+        <rdfs:label xml:lang="en">Grinding capacity lower than 1.0 million tons/harvest</rdfs:label>
+        <rdfs:label xml:lang="pt">Capacidade de Moagem inferior a 1 milhão de toneladas/safra</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Lt64ton -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Lt64ton">
+        <rdfs:label xml:lang="en">&lt; 64 ton/ha</rdfs:label>
+        <rdfs:label xml:lang="pt">&lt; 64 ton/ha</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Lt724 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Lt724">
+        <rdfs:label xml:lang="en">&lt; 724.00</rdfs:label>
+        <rdfs:label xml:lang="pt">&lt; 724,00</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Lt80 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Lt80">
+        <rdfs:label xml:lang="en">&lt; 80%</rdfs:label>
+        <rdfs:label xml:lang="pt">&lt; 80%</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ManualCuttingType -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ManualCuttingType">
+        <rdfs:label xml:lang="en">Manual</rdfs:label>
+        <rdfs:label xml:lang="pt">Manual</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ManualHarverst -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ManualHarverst">
+        <rdfs:label xml:lang="en">Manual</rdfs:label>
+        <rdfs:label xml:lang="pt">Manual</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ManualInSuitableAreasToMechanization -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ManualInSuitableAreasToMechanization">
+        <rdfs:label xml:lang="en">Manual in suitable areas to mechanization</rdfs:label>
+        <rdfs:label xml:lang="pt">Manual em áreas aptas a mecanização</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ManualPlantation -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ManualPlantation">
+        <rdfs:label xml:lang="en">Manual</rdfs:label>
+        <rdfs:label xml:lang="pt">Manual</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#MechanizedCuttingType -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;MechanizedCuttingType">
+        <rdfs:label xml:lang="en">Mechanized</rdfs:label>
+        <rdfs:label xml:lang="pt">Mecanizado</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#MechanizedHarvest -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;MechanizedHarvest">
+        <rdfs:label xml:lang="en">Mechanized</rdfs:label>
+        <rdfs:label xml:lang="pt">Mecanizado</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#MechanizedPlantation -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;MechanizedPlantation">
+        <rdfs:label xml:lang="en">Mechanized</rdfs:label>
+        <rdfs:label xml:lang="pt">Mecanizado</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Medium -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Medium">
+        <rdfs:label xml:lang="en">Medium</rdfs:label>
+        <rdfs:label xml:lang="pt">Média</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#MediumAgriculturalEfficiency -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;MediumAgriculturalEfficiency">
+        <rdfs:label xml:lang="en">Medium Agricultural Efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Eficiência Agrícola Média</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+        <terms:description xml:lang="en">Mechanization of planting but not harvest</terms:description>
+        <terms:description xml:lang="pt">Mecanização do plantio mas não da colheita</terms:description>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#MediumEfficiency -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;MediumEfficiency">
+        <rdfs:label xml:lang="en">Medium efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Eficiência média</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#MeetsDeterminedValues -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;MeetsDeterminedValues">
+        <rdfs:label xml:lang="en">Meets determined values</rdfs:label>
+        <rdfs:label xml:lang="pt">Atende aos valores determinados</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#MonitoringOfFlowNo -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;MonitoringOfFlowNo">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#MonitoringOfFlowYes -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;MonitoringOfFlowYes">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#MoreEfficientBoilers -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;MoreEfficientBoilers">
+        <rdfs:label xml:lang="en">More efficient boilers (new and more pressure)</rdfs:label>
+        <rdfs:label xml:lang="pt">Caldeiras mais eficientes (novas e com maior pressão)</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Negative -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Negative">
+        <rdf:type rdf:resource="&semanticUI;PositiveNegative"/>
+        <rdfs:label xml:lang="en">Negative</rdfs:label>
+        <rdfs:label xml:lang="pt">Negativo</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#No -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;No">
+        <rdf:type rdf:resource="&semanticUI;YesNo"/>
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#NoOrPartialSupply -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;NoOrPartialSupply">
+        <rdfs:label xml:lang="en">Does not supply own demand or demand is partial</rdfs:label>
+        <rdfs:label xml:lang="pt">Não supre a própria demanda ou esta é parcial</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#NotUses -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;NotUses">
+        <rdfs:label xml:lang="en">Not use</rdfs:label>
+        <rdfs:label xml:lang="pt">Não usa</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#NullAlignment -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;NullAlignment">
+        <rdfs:label xml:lang="en">Null</rdfs:label>
+        <rdfs:label xml:lang="pt">Nula</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#NullOptimization -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;NullOptimization">
+        <rdfs:label xml:lang="en">Null</rdfs:label>
+        <rdfs:label xml:lang="pt">Nula</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#OneAndHalfYear -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;OneAndHalfYear">
+        <rdf:type rdf:resource="&semanticUI;CanavialLongevity"/>
+        <rdfs:label xml:lang="en">One and half year</rdfs:label>
+        <rdfs:label xml:lang="pt">Cana de um ano e meio</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#OneYear -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;OneYear">
+        <rdf:type rdf:resource="&semanticUI;CanavialLongevity"/>
+        <rdfs:label xml:lang="en">One year</rdfs:label>
+        <rdfs:label xml:lang="pt">Um ano</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#OpenCircuit -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;OpenCircuit">
+        <rdfs:label xml:lang="en">Open circuit</rdfs:label>
+        <rdfs:label xml:lang="pt">Circuito aberto</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#OwnOrigin -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;OwnOrigin">
+        <rdf:type rdf:resource="&semanticUI;SugarcaneSource"/>
+        <rdfs:label xml:lang="en">Own origin</rdfs:label>
+        <rdfs:label xml:lang="pt">Origem própria</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#PartialUsage -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;PartialUsage">
+        <rdfs:label xml:lang="en">Partial usage</rdfs:label>
+        <rdfs:label xml:lang="pt">Uso parcial</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#PartiallyClosedCircuit -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;PartiallyClosedCircuit">
+        <rdfs:label xml:lang="en">Partially closed circuit</rdfs:label>
+        <rdfs:label xml:lang="pt">Circuito parcialmente fechado</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#PlanningOfHarvestFromNo -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;PlanningOfHarvestFromNo">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Positive -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Positive">
+        <rdf:type rdf:resource="&semanticUI;PositiveNegative"/>
+        <rdfs:label xml:lang="en">Positive</rdfs:label>
+        <rdfs:label xml:lang="pt">Positivo</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#PreBuddedSeedling -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;PreBuddedSeedling">
+        <rdfs:label xml:lang="en">Pre-budded seedling</rdfs:label>
+        <rdfs:label xml:lang="pt">Muda Pré-brotada (MPB)</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#PreparationPlantationAutomatedOrSystemInformationBasedMaintenance -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;PreparationPlantationAutomatedOrSystemInformationBasedMaintenance">
+        <rdfs:label xml:lang="en">Preparation / Plantation / Automated Or System Information Based Maintenance</rdfs:label>
+        <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial (automatizados ou empregando sistemas de informação? Por ex sensoriamento remoto ou agricultura de precisão)</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#PreparationPlantationManualMaintenance -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;PreparationPlantationManualMaintenance">
+        <rdfs:label xml:lang="en">Preparation / Plantation / Manual Sugarcane Maintenance according to constraints of the size of the area and slope</rdfs:label>
+        <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial manual em função de restrições do tamanho da área e declividade</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#PreparationPlantationMechanizedMaintenance -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;PreparationPlantationMechanizedMaintenance">
+        <rdfs:label xml:lang="en">Preparation / Plantation / Mechanized Maintenance of sugarcane field</rdfs:label>
+        <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial usando mecanização</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#PreparationPlantationMechanizedMaintenanceInSuitableAreas -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;PreparationPlantationMechanizedMaintenanceInSuitableAreas">
+        <rdfs:label xml:lang="en">Preparation / Plantation / Manual maintenance of sugarcane field in suitable areas to mechanization</rdfs:label>
+        <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial manual em áreas aptas a mecanização</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#PricePoliciesNo -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;PricePoliciesNo">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#PricePoliciesYes -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;PricePoliciesYes">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ProduceForConsumptionAndSale -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ProduceForConsumptionAndSale">
+        <rdfs:label xml:lang="en">Produce for consumption and sale</rdfs:label>
+        <rdfs:label xml:lang="pt">Produz para consumo e venda</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ProducersOrPlantsOrganizationNo -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ProducersOrPlantsOrganizationNo">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ProducersOrPlantsOrganizationYes -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ProducersOrPlantsOrganizationYes">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ProducesWaterButNotReuse -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ProducesWaterButNotReuse">
+        <rdfs:label xml:lang="en">It produces water in sugarcane processing, but not reincorporate in the process</rdfs:label>
+        <rdfs:label xml:lang="pt">Produz água no processamento da cana, mas nao a reincorpora no processo</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ReplacingAreasOfNativeForests -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ReplacingAreasOfNativeForests">
+        <rdfs:label xml:lang="en">Replacing areas of native forests</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a áreas de matas nativas</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ReplacingDegradedAreas -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ReplacingDegradedAreas">
+        <rdfs:label xml:lang="en">Replacing degraded areas</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a áreas degradadas</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">3.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ReplacingFoodCrops -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ReplacingFoodCrops">
+        <rdfs:label xml:lang="en">Replacing food crops</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a culturas alimentares</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ReplacingPasture -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ReplacingPasture">
+        <rdfs:label xml:lang="en">Replacing pasture</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a pasto</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ReplacingSugarcaneAndSimilarCultures -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ReplacingSugarcaneAndSimilarCultures">
+        <rdfs:label xml:lang="en">Replacing sugarcane and similar cultures</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a cana-de-açucar e culturas similares</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#ReuseInTheField -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;ReuseInTheField">
+        <rdfs:label xml:lang="en">Reuse in the field</rdfs:label>
+        <rdfs:label xml:lang="pt">Reutilização no campo</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#SelfConsumption -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;SelfConsumption">
+        <rdfs:label xml:lang="en">Self Consumption</rdfs:label>
+        <rdfs:label xml:lang="pt">Auto Consumo</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#SemimechanizedHarvest -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;SemimechanizedHarvest">
+        <rdfs:label xml:lang="en">Semi-mechanized</rdfs:label>
+        <rdfs:label xml:lang="pt">Semimecanizado</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#SemimechanizedPlantation -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;SemimechanizedPlantation">
+        <rdfs:label xml:lang="en">Semimechanized</rdfs:label>
+        <rdfs:label xml:lang="pt">Semimecanizado</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#StandardAerialSprayingWeigth -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;StandardAerialSprayingWeigth">
+        <semanticUI:weight rdf:datatype="&xsd;double">2.0</semanticUI:weight>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#SugarcaneValueEqualOrHigher -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;SugarcaneValueEqualOrHigher">
+        <rdfs:label xml:lang="en">Equal or higher</rdfs:label>
+        <rdfs:label xml:lang="pt">Igual ou superior</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#SugarcaneValueLowest -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;SugarcaneValueLowest">
+        <rdfs:label xml:lang="en">Lowest</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#SupplierOrigin -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;SupplierOrigin">
+        <rdf:type rdf:resource="&semanticUI;SugarcaneSource"/>
+        <rdfs:label xml:lang="en">Supplier origin</rdfs:label>
+        <rdfs:label xml:lang="pt">Origem do fornecedor</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#SuppliesAllSellSurplus -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;SuppliesAllSellSurplus">
+        <rdfs:label xml:lang="en">Fully supplies itself and sells the surplus</rdfs:label>
+        <rdfs:label xml:lang="pt">Supre totalmente e comercializa o excedente</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#SuppliesFullyAndMarketTheSurplus -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;SuppliesFullyAndMarketTheSurplus">
+        <rdfs:label xml:lang="en">Supplies fully and market the surplus</rdfs:label>
+        <rdfs:label xml:lang="pt">Supre totalmente e comercializa o excedente</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#SuppliesFullyHisOwnDemand -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;SuppliesFullyHisOwnDemand">
+        <rdfs:label xml:lang="en">Supplies fully his own demand</rdfs:label>
+        <rdfs:label xml:lang="pt">Supre totalmente a própria demanda</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#SupplyAll -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;SupplyAll">
+        <rdfs:label xml:lang="en">Supply all own demand</rdfs:label>
+        <rdfs:label xml:lang="pt">Supre totalmente a própria demanda</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#TotalUsage -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;TotalUsage">
+        <rdfs:label xml:lang="en">Total usage</rdfs:label>
+        <rdfs:label xml:lang="pt">Uso total</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#TraditionalConcentrationEmployingBiotechnology -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;TraditionalConcentrationEmployingBiotechnology">
+        <rdfs:label xml:lang="en">Traditional concentration employing biotechnology</rdfs:label>
+        <rdfs:label xml:lang="pt">Concentração tradicional empregando biotecnologia (Utilização das cepas mais resistentes)</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#True -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;True">
+        <rdf:type rdf:resource="&semanticUI;TrueFalse"/>
+        <rdfs:label xml:lang="en">True</rdfs:label>
+        <rdfs:label xml:lang="pt">Verdadeiro</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#UpperHighEfficiency -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;UpperHighEfficiency">
+        <rdfs:label xml:lang="en">Upper high efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Eficiência alta superior</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#UpperLowEfficiency -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;UpperLowEfficiency">
+        <rdfs:label xml:lang="en">Upper low efficiency</rdfs:label>
+        <rdfs:label xml:lang="pt">Eficiência baixa superior</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#UseOfMoreResistantStrainsNo -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;UseOfMoreResistantStrainsNo">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#UseOfMoreResistantStrainsYes -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;UseOfMoreResistantStrainsYes">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#UseOfSugarcaneForElectricityProduction -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;UseOfSugarcaneForElectricityProduction">
+        <rdfs:label xml:lang="en">Use of sugarcane / biomass for plant dedicated the electricity production</rdfs:label>
+        <rdfs:label xml:lang="pt">Uso de cana energia / biomassa para usina voltada a produção de energia elétrica</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#UseOfSugarcaneWithMoreSucrose -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;UseOfSugarcaneWithMoreSucrose">
+        <rdfs:label xml:lang="en">Use of sugarcane with more sucrose for sugar production</rdfs:label>
+        <rdfs:label xml:lang="pt">Uso de cana com mais sacarose para produção açúcar</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#UseOfSystemsReducingEmissions -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;UseOfSystemsReducingEmissions">
+        <rdfs:label xml:lang="en">Use of systems reducing emissions</rdfs:label>
+        <rdfs:label xml:lang="pt">Emprego de sistemas redutores de emissões de gases</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#UseOfTechniquesForBiologicalPestControlWeight -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;UseOfTechniquesForBiologicalPestControlWeight">
+        <semanticUI:weight rdf:datatype="&xsd;double">2.0</semanticUI:weight>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#UseOrSaleOfBagasse -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;UseOrSaleOfBagasse">
+        <rdfs:label xml:lang="en">Use or sale of bagasse to produce electricity</rdfs:label>
+        <rdfs:label xml:lang="pt">Emprego ou venda do bagaço para produção de energia elétrica</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Uses -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Uses">
+        <rdfs:label xml:lang="en">Use</rdfs:label>
+        <rdfs:label xml:lang="pt">Usa</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#VinasseDisposalInTheEnvironment -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;VinasseDisposalInTheEnvironment">
+        <rdfs:label xml:lang="en">Vinasse disposal in the environment</rdfs:label>
+        <rdfs:label xml:lang="pt">Descarte da vinhaça no ambiente</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#WithSeedling -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;WithSeedling">
+        <rdfs:label xml:lang="en">With seedling</rdfs:label>
+        <rdfs:label xml:lang="pt">Com muda</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#Yes -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;Yes">
+        <rdf:type rdf:resource="&semanticUI;YesNo"/>
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#YesWithAdaptationOfArea -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;YesWithAdaptationOfArea">
+        <rdfs:label xml:lang="en">Yes with adaptation to the zise of the area</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim com adequação ao tamanho da área</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">2.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#YesWithoutConsideringArea -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;YesWithoutConsideringArea">
+        <rdfs:label xml:lang="en">Yes without considering the size of the area</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim sem considerar o tamanho da área</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#inappropriateDisposal -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;inappropriateDisposal">
+        <rdfs:label xml:lang="en">Inappropriate disposal</rdfs:label>
+        <rdfs:label xml:lang="pt">Descarte inadequado</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#interval64-74ton -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;interval64-74ton">
+        <rdfs:label xml:lang="en">64 - 74 ton/ha</rdfs:label>
+        <rdfs:label xml:lang="pt">64 - 74 ton/ha</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#interval724-890 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;interval724-890">
+        <rdfs:label xml:lang="en">75 - 81 ton/ha</rdfs:label>
+        <rdfs:label xml:lang="pt">75 - 81 ton/ha</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#interval80-90 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;interval80-90">
+        <rdfs:label xml:lang="en">80% - 90%</rdfs:label>
+        <rdfs:label xml:lang="pt">80% - 90%</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#interval82-85ton -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;interval82-85ton">
+        <rdfs:label xml:lang="en">81 - 85 ton/ha</rdfs:label>
+        <rdfs:label xml:lang="pt">81 - 85 ton/ha</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#interval891-1000 -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;interval891-1000">
+        <rdfs:label xml:lang="en">890.00 - 1,000.00</rdfs:label>
+        <rdfs:label xml:lang="pt">890,00 - 1.000,00</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#private -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;private">
+        <rdf:type rdf:resource="&semanticUI;AvailabilityOfEvaluationResults"/>
+        <rdfs:label xml:lang="en">Private</rdfs:label>
+        <rdfs:label xml:lang="pt">Privado</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#producedForOwnConsumption -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;producedForOwnConsumption">
+        <rdfs:label xml:lang="en">Produced for own consumption</rdfs:label>
+        <rdfs:label xml:lang="pt">Produz para consumo próprio</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#public -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;public">
+        <rdf:type rdf:resource="&semanticUI;AvailabilityOfEvaluationResults"/>
+        <rdfs:label xml:lang="en">Public</rdfs:label>
+        <rdfs:label xml:lang="pt">Público</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#130to139kg -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;130to139kg">
+        <rdfs:label xml:lang="en">130 to 139 kg</rdfs:label>
+        <rdfs:label xml:lang="pt">130 a 139 kg</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#140to145kg -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;140to145kg">
+        <rdfs:label xml:lang="en">140 to 145 kg</rdfs:label>
+        <rdfs:label xml:lang="pt">140 a 145 kg</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#74-64tnha -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;74-64tnha">
+        <rdfs:label xml:lang="en">74-64 Tn/ha</rdfs:label>
+        <rdfs:label xml:lang="pt">74-64 Ton/ha</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#81-75tnha -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;81-75tnha">
+        <rdfs:label xml:lang="en">81-75 Tn/ha</rdfs:label>
+        <rdfs:label xml:lang="pt">81-75 Ton/ha</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">0.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#85tnha -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;85tnha">
+        <rdfs:label xml:lang="en">85 Tn/ha</rdfs:label>
+        <rdfs:label xml:lang="pt">85 Ton/ha</rdfs:label>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+
