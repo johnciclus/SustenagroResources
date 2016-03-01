@@ -28,13 +28,22 @@ class ToolController {
         render(view: 'index', model: [inputs: dsl.viewsStack[controllerName][actionName]])
     }
 
-    def createEntity() {
-        def id, name, type, featuresID
+    def createUnity() {
+        def id, name, type
+        println params
+        if(params['unity']) {
+            name = k.shortURI(params['unity']+'Name')
+            type = k.shortURI(params['unity']+'Type')
 
-        if(params['entity']) {
-            name = k.shortURI(params['entity']+'Name')
-            type = k.shortURI(params['entity']+'Type')
-            featuresID = k[params['entity']].getFeaturesURI()
+            def unityParams = dsl.viewsStack['tool']['index'].find{ it['widget'] == 'createUnity' }
+            println "Request"
+            unityParams.request.each{key, value ->
+                println key + ' : ' + value
+            }
+            println "Args"
+            unityParams.args.each{key, value ->
+                println key + ' : ' + value
+            }
 
             if (params[name] && params[type]) {
                 id = new Slugify().slugify(params[name])
@@ -44,11 +53,11 @@ class ToolController {
                         "rdfs:label '" + params[name] + "'@pt;" +
                         "rdfs:label '" + params[name] + "'@en"
 
-                k[featuresID].getSubClass().shortURI().each {
-                    if (params[it]) {
-                        sparql += ";<${k.shortToURI(it)}> '" + params[it] + "'@pt"
-                    }
-                }
+                //k[featuresID].getSubClass().shortURI().each {
+                //    if (params[it]) {
+                //        sparql += ";<${k.shortToURI(it)}> '" + params[it] + "'@pt"
+                //    }
+                //}
                 sparql += "."
 
                 sparql.split(';').each{

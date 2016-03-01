@@ -5,7 +5,7 @@
 		<title>SustenAgro - Admin</title>
 		<asset:javascript src="ace-min-noconflict/ace.js"/>
         <asset:javascript src="ace-min-noconflict/ext-language_tools.js"/>
-        <asset:javascript src="bootstrap-table.min.js"/>
+        <asset:javascript src="bootstrap-table-old.min.js"/>
         <asset:stylesheet href="bootstrap-table.min.css"/>
 	</head>
 	<body>

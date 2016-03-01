@@ -30,69 +30,88 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 
 // Caracterização dos sistemas produtivos no Centro-Sul 
 unity(':ProductionUnit') {
+    //feature, subclass or instance
 
     // Production unit name 
-    //instance ':ProductionUnitName', 'label': "Nome da unidade produtiva"
+    feature ':hasProductionUnitName', label: "Nome da unidade produtiva", placeholder: "Nome"
 
     // Production unit type
-    //instance ':ProductionUnitType', 'rdfs:subClassOf', 'label': "Tipo da unidade produtiva"
+    //feature ':hasProductionUnitType', 'rdfs:subClassOf', 'label': "Tipo da unidade produtiva"
+    subclass ':hasProductionUnitType', label: "Tipo da unidade produtiva", header: "Opções", multipleSelection: true
 
     // Agricultural production system
-    feature ':hasAgriculturalProductionSystem', 'rdfs:subClassOf', 'label': "Sistema de produção agrícola"
+    //feature ':hasAgriculturalProductionSystem', 'rdfs:subClassOf', 'label': "Sistema de produção agrícola"
+    instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções"
 
     //Identificação do sistema de produção
 
     // Origem da cana (própria, fornecedor, arrendamento)
-    // instance ':SugarcaneSource', 'rdf:type', 'label': "Origem da cana"
+    //feature ':hasSugarcaneSource', 'rdf:type', 'label': "Origem da cana"
+    instance  ':hasSugarcaneSource', label: "Origem da cana", header: "Opções"
 
     // Microrregião produtora
-    // instance 'MicroRegion', 'rdf:type', 'label': "Microrregião da unidade produtiva"
+    // feature 'MicroRegion', 'rdf:type', 'label': "Microrregião da unidade produtiva"
+    instance ':hasMicroRegion', object: "MicroRegion", label: "Microrregião da unidade produtiva", header: "Opções"
 
     // Municípios envolvidos (localização da sede)
 
     // Data de fundação da unidade produção
     // instance ':EstablishmentDate',  'label': "Data de fundação da unidade produção"
+    feature ':hasEstablishmentDate', label: "Data de fundação da unidade produção"
 
     // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
-    // instance ':InnovationDevelopmentProjects', 'label': "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", 'placeholder': "Descrição"
+    // instance ':hasInnovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
+    feature ':hasInnovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
 
     //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
     // instance ':Financing', 'label': "Financiamento (crédito agrícola, custeio de maquinário, BNDES)"
+    feature ':hasFinancing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição"
 
     // Valor total investido em tecnologia na fase agrícola (até a fase atual)
     // instance ':TotalValueInvestedInTechnologicInAgriculturalPhase', 'label': "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
+    feature ':hasTotalValueInvestedInTechnologicInAgriculturalPhase', label: "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
 
     // Valor total investido em tecnologia na fase industrial (até a fase atual)
     // instance ':TotalValueInvestedInTechnologicInIndustrialPhase', 'label': "Valor total investido em tecnologia na fase industrial (até a fase atual)"
+    feature ':hasTotalValueInvestedInTechnologicInIndustrialPhase', label: "Valor total investido em tecnologia na fase industrial (até a fase atual)"
 
     // Valor total previsto para investimento para escoamento da produção
     // instance ':TotalValuePlaneedForInvestmentToProductionDrainage', 'label': "Valor total previsto para investimento para escoamento da produção"
+    feature ':hasTotalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
 
     // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
-    // instance ':PartnershipsForResearchOrImprovementOfTheSystem', 'label': "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)"
+    // instance ':PartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)"
+    feature ':hasPartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)", widget: 'text', placeholder: "Descrição"
 
     //Ligação com outros grupos empresariais ou de investimentos
     // instance ':LinkWithOtherBusinessOrInvestmentGroups', 'label': "Ligação com outros grupos empresariais ou de investimentos"
+    feature ':hasLinkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos"
 
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
 
     // Data de início do plantio
     // instance ':BeginningOfPlantingDate', 'label': "Data de início do plantio"
+    feature ':hasBeginningOfPlantingDate', label: "Data de início do plantio"
 
     // Data de término do plantio
     // instance ':FinishOfPlantingDate', 'label': "Data de término do plantio"
+    feature ':hasFinishOfPlantingDate', label: "Data de término do plantio"
 
     // Data de início da colheita
     // instance ':BeginningOfHarvestDate', 'label': "Data de início da colheita"
+    feature ':hasBeginningOfHarvestDate', label: "Data de início da colheita"
 
     // Data de término da colheita
-    // instance ':FinishOfHarvestDate', 'rdf:type', 'label': "Data de término da colheita"
+    //instance ':FinishOfHarvestDate', label: "Data de término da colheita"
+    feature ':hasFinishOfHarvestDate', label: "Data de término da colheita"
 
     // Longevidade do canvial (cana de ano, cana de ano e meio);
     // instance 'CanavialLongevity', 'rdf:type', 'label': "Longevidade do canvial"
+    instance ':hasCanavialLongevity', label: "Longevidade do canvial", header: "Opções"
 
     // Disponibilização dos resultados da avaliação: Público | privado
     // instance ':AvailabilityOfEvaluationResults', 'rdf:type', 'label': "Disponibilização dos resultados da avaliação"
+    instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções"
 }
 /*
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados

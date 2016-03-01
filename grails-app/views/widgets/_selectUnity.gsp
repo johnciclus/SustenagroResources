@@ -5,7 +5,7 @@
         <div class="col-sm-6">
             <select id="production_unit_id" name="production_unit_id" class="form-control">
                 <option selected disabled hidden value=''></option>
-                <g:each in="${production_units}">
+                <g:each in="${units}">
                     <option value="${it.id}">${it.label}</option>
                 </g:each>
             </select>

@@ -3,7 +3,7 @@ package dsl
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.pegdown.PegDownProcessor
 import org.kohsuke.groovy.sandbox.SandboxTransformer
-import semantics.Know
+import org.springframework.context.ApplicationContext
 
 /**
  * Created by dilvan on 7/14/15.
@@ -11,7 +11,6 @@ import semantics.Know
 
 class DSL {
     def viewsStack = [:]
-    def featureLst = []
     def dimensions = []
     def report = []
     Closure program
@@ -23,11 +22,10 @@ class DSL {
     def _shell
     def _sandbox
     def _script
-    def _k
-    Know k
+    def _ctx
     static md = new PegDownProcessor()
 
-    DSL(String file, Know k){
+    DSL(String file, ApplicationContext applicationContext){
         // Create CompilerConfiguration and assign
         // the DelegatingScript class as the base script class.
         def _cc = new CompilerConfiguration()
@@ -41,7 +39,7 @@ class DSL {
         // Configure the GroovyShell and pass the compiler configuration.
         //_shell = new GroovyShell(this.class.classLoader, binding, cc)
 
-        _k = k
+        _ctx = applicationContext
 
         _script = (DelegatingScript) _shell.parse(new File(file).text)
         _script.setDelegate(this)
@@ -50,7 +48,6 @@ class DSL {
 
         // Run DSL script.
         try {
-            _k.DSL['dsl'] = this
             _script.run()
         }
         finally {
@@ -60,7 +57,6 @@ class DSL {
 
     def reLoad(String code){
         dimensions = []
-        featureLst = []
         report = []
 
         viewsStack = [:]
@@ -125,17 +121,17 @@ class DSL {
 
     def unity(String clsName, Closure closure){
         def requestLst          = [:]
-        requestLst['widgets']   = [:]
         def argLst              = [:]
-        argLst['widgets']       = [:]
-        featureLst              = []
-
-        def unity = new Unity(clsName, _k)
+        def featureLst          = []
+        def unity = new Unity(clsName, _ctx)
 
         closure.resolveStrategy = Closure.DELEGATE_FIRST
         closure.delegate = unity
+        closure()
 
-        featureLst << closure()
+        requestLst['widgets']   = [:]
+        argLst['widgets']       = [:]
+        featureLst.addAll(unity.featureLst)
 
         featureLst.each{
             if(it.request) {
@@ -144,10 +140,10 @@ class DSL {
             argLst['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
         }
 
-        argLst['entity'] = clsName
+        argLst['unity'] = clsName
 
-        viewsStack['tool']['index'].push(['widget': 'selectEntity', 'request': ['production_units': ['a', clsName]], 'args': ['entity': clsName]])
-        viewsStack['tool']['index'].push(['widget': 'createEntity', 'request': requestLst, 'args': argLst])
+        //viewsStack['tool']['index'].push(['widget': 'selectUnity', 'request': ['units': ['a', clsName]], 'args': ['unity': clsName]])
+        viewsStack['tool']['index'].push(['widget': 'createUnity', 'request': requestLst, 'args': argLst])
     }
 //    def recommendation(Map map, String txt){
 //        recommendations << [map['if'],txt]
@@ -179,10 +175,6 @@ class DSL {
     def recommendation(Map map, String txt){
         if (map['if']) report << ['recommendation', toHTML(txt)]
     }
-
-    /*def subclass(String str){
-        featureLst << ['subclass': ['rdfs:subClassOf', str]]
-    }*/
 
     def table(ArrayList list, Map headers = [:]){
         report << ['table', list, headers]

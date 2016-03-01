@@ -1,6 +1,6 @@
 <h5 class="text-primary">Cadastrar nova unidade produtiva para realizar avaliação</h5>
-<form id="create_form" action="/tool/createEntity" method="post" class="form-horizontal">
-    <input id="entity" name="entity" type="hidden" value="${entity}"/>
+<form id="create_form" action="/tool/createUnity" method="post" class="form-horizontal">
+    <input id="unity" name="unity" type="hidden" value="${unity}"/>
     <g:if test="${widgets}">
         <g:each var="widget" in="${widgets}">
             <div class="form-group">
