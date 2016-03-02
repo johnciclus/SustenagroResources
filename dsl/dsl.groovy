@@ -114,9 +114,9 @@ unity(':ProductionUnit') {
 
 selectUnity(':ProductionUnit', title: "Selecionar unidade produtiva", label : "Unidade produtiva", submit_label: "Nova avaliação")
 
-createUnity(':ProductionUnit', tile: "Cadastrar nova unidade produtiva para realizar avaliação")
+createUnity(':ProductionUnit', title: "Cadastrar nova unidade produtiva para realizar avaliação", submit_label: "Cadastrar")
 
-/*
+
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados
 // todos os indicadores presentes na ontologia. Existe a opção de não
 // mostrar algum indicador. No exemplo abaixo, o indicador "co2 emission"
@@ -132,7 +132,7 @@ dimension ':EconomicIndicator'
 dimension ':SocialIndicator'
 
 data 'assessment'
-
+/*
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {

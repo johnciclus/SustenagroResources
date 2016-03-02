@@ -9,16 +9,17 @@ class Unity {
     def _ctx
     def features = []
     def model = []
+    def k
+    def gui
 
     Unity(String id, ApplicationContext applicationContext){
         _id = id
         _ctx = applicationContext
+        k = _ctx.getBean('k')
+        gui = _ctx.getBean('gui')
     }
 
     def feature(Map args = [:], String id, String prop = ''){
-        def k = _ctx.getBean('k')
-        def gui = _ctx.getBean('gui')
-
         def uri = k.toURI(id)
         def featureId = k.shortURI(uri)
         def range = k[uri].range

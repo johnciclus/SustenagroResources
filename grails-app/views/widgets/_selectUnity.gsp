@@ -1,12 +1,12 @@
-<g:render template="/widgets/title" model="${args}"/>
+<g:render template="/widgets/title" model="[title: title]"/>
 
-<form id="select_production_units" action="/tool/selectProductionUnit" method="post" class="form-horizontal" >
+<form id="select_production_units" action="/tool/selectUnity" method="post" class="form-horizontal" >
     <div class="form-group">
         <label for="production_unit_id" class="col-sm-4 control-label">${label}</label>
         <div class="col-sm-6">
             <select id="production_unit_id" name="production_unit_id" class="form-control">
                 <option selected disabled hidden value=''></option>
-                <g:each in="${units}">
+                <g:each in="${unities}">
                     <option value="${it.id}">${it.label}</option>
                 </g:each>
             </select>

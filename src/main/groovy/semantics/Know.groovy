@@ -85,9 +85,9 @@ class Know {
             if (id.startsWith('urn:')) return id
             if (id.startsWith(':')) return _prefixes['']+id.substring(1)
             if (id.contains(':')){
-                def pre = _prefixes[id.split(':')[0]]
-                if(pre?.trim())
-                    return pre+id.substring(id.indexOf(':')+1)
+                def prefix = _prefixes[id.split(':')[0]]
+                if(prefix?.trim())
+                    return prefix+id.substring(id.indexOf(':')+1)
                 return null
             }
             println 'prexixes analyse'
@@ -110,20 +110,34 @@ class Know {
 
     def shortURI(String id){
         if (id==null || id == '' ) return null
-        if (id.contains(' ')) return null
-        if (id.startsWith('_:')) return id.substring(2)
-        if (id.startsWith(':')) return '-'+id.substring(1)
-        if (id.startsWith('http:') || !id.contains(':')){
-            def prefix = searchPrefix(id)
-            return prefix.alias+'-'+id.replace(prefix.uri,'')
+        if (!id.contains(' ')){
+            if (id.startsWith('_:')) return id.substring(2)
+            if (id.startsWith(':')) return '-'+id.substring(1)
+            if (id.startsWith('http:') || !id.contains(':')){
+                def prefix = searchPrefix(id)
+                return prefix.alias+'-'+id.replace(prefix.uri,'')
+            }
+        }
+        else{
+            return null
         }
     }
 
     def shortToURI(String id){
         if (id==null || id == '' ) return null
-        if (id.contains(' ')) return null
-        if (id.contains('-')) return _prefixes[id.split('-')[0]]+id.substring(1)
-        if (!id.contains('-'))  return '_:'+id
+        if (!id.contains(' ')){
+            if (id.startsWith('_:') || id.startsWith('http:') || id.startsWith('urn:')) return id
+            if (id.startsWith(':')) return toURI(id)
+            if (id.contains('-')){
+                def prefix = searchPrefix(id)
+                return prefix.uri+id.substring(id.indexOf('-')+1)
+            }
+            else
+                return '_:'+id
+        }
+        else{
+            return null
+        }
     }
 
     def existOntology(String uri){
@@ -145,7 +159,7 @@ class Know {
         def query
         def result = []
         _prefixes.find{key, value ->
-            if(name.startsWith(value)) {
+            if(name.startsWith(key) || name.startsWith(value)) {
                 result = [alias : key, 'uri': value]
                 return true
             }

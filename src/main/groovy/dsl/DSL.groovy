@@ -24,6 +24,8 @@ class DSL {
     def _sandbox
     def _script
     def _ctx
+    def k
+
     static md = new PegDownProcessor()
 
     DSL(String file, ApplicationContext applicationContext){
@@ -41,6 +43,8 @@ class DSL {
         //_shell = new GroovyShell(this.class.classLoader, binding, cc)
 
         _ctx = applicationContext
+
+        k = _ctx.getBean('k')
 
         _script = (DelegatingScript) _shell.parse(new File(file).text)
         _script.setDelegate(this)
@@ -100,16 +104,60 @@ class DSL {
         return response
     }
 
-    def title(String str){
-        viewsMap['tool']['index'].push(['widget': 'title', 'args': ['title': str]])
+    def title(String arg){
+        viewsMap['tool']['index'].push(['widget': 'title', 'args': ['title': arg]])
     }
 
-    def description(String str){
-        viewsMap['tool']['index'].push(['widget': 'description', 'args': ['description': toHTML(str)]])
+    def description(String arg){
+        viewsMap['tool']['index'].push(['widget': 'description', 'args': ['description': toHTML(arg)]])
 
         //println  Processor.process(description, true)
         //println new PegDownProcessor().markdownToHtml(description)
     }
+
+    def unity(String id, Closure closure){
+        String uri = k.toURI(id)
+        def unity = new Unity(uri, _ctx)
+
+        closure.resolveStrategy = Closure.DELEGATE_FIRST
+        closure.delegate = unity
+        closure()
+
+        unityMap[uri] = unity
+    }
+
+    def selectUnity(Map args = [:], String id){
+        def uri = k.toURI(id)
+        def request = ['unities': ['a', uri]]
+        def shortId = k.shortURI(uri)
+        args['unity']= uri
+
+        println uri
+        println shortId
+
+        viewsMap['tool']['index'].push(['widget': 'selectUnity', 'request': request, args: args])
+    }
+
+    def createUnity(Map args = [:], String id){
+        def uri = k.toURI(id)
+        def requestLst        = [:]
+        requestLst['widgets'] = [:]
+        args['widgets']       = [:]
+        args['unity']         = uri
+
+        unityMap[uri].features.each{
+            if(it.request) {
+                requestLst['widgets'][it.id] = it.request
+            }
+            args['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
+        }
+
+        viewsMap['tool']['index'].push(['widget': 'createUnity', 'request': requestLst, 'args': args])
+    }
+
+//    def recommendation(Map map, String txt){
+//        recommendations << [map['if'],txt]
+//    }
 
     def data(String str){
         data = str
@@ -118,39 +166,6 @@ class DSL {
 
     def setData(obj){
         props[data]= obj
-    }
-
-    def unity(String id, Closure closure){
-        def unity = new Unity(id, _ctx)
-
-        closure.resolveStrategy = Closure.DELEGATE_FIRST
-        closure.delegate = unity
-        closure()
-
-        unityMap[id] = unity
-    }
-//    def recommendation(Map map, String txt){
-//        recommendations << [map['if'],txt]
-//    }
-    def selectUnity(Map args = [:], String id){
-        args['unity']= id
-        viewsMap['tool']['index'].push(['widget': 'selectUnity', 'request': ['units': ['a', id]], args: args])
-    }
-
-    def createUnity(Map args = [:], String id){
-        def requestLst          = [:]
-        requestLst['widgets']   = [:]
-        args['widgets']       = [:]
-        args['unity']         = id
-
-        unityMap[id].features.each{
-            if(it.request) {
-                requestLst['widgets'][it.id] = it.request
-            }
-            args['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
-        }
-
-        viewsMap['tool']['index'].push(['widget': 'createUnity', 'request': requestLst, 'args': args])
     }
 
     static toHTML(String txt) {md.markdownToHtml(txt)}
@@ -193,7 +208,7 @@ class DSL {
     }
 
     def dimension(String cls) {
-        dimensions << cls
+        dimensions << k.toURI(cls)
     }
 
     def prog(Closure c){

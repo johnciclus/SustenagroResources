@@ -29,7 +29,7 @@ class ToolController {
     }
 
     def createUnity() {
-        def id
+        def id = ''
         def name = k.shortURI(':hasName')
         def type = k.shortURI(':hasType')
 
@@ -37,32 +37,24 @@ class ToolController {
 
             def node = new Node(k, '')
             def unityParams = [:]
-            def features = dsl.unityMap[params['unity']].model
+
+            def features = dsl.unityMap[k.shortToURI(params['unity'])].model
 
             features.each{ feature ->
                 if(params[feature.id]){
-                    unityParams[feature.id] = params[feature.id]
+                    unityParams[feature.id] = [value: params[feature.id], dataType: feature.dataType]
                 }
             }
 
             id = new Slugify().slugify(params[name])
-            node.insertUnity(id, unityParams, features)
+            node.insertUnity(id, unityParams)
         }
 
         //k.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
         redirect(action: 'assessment', id: id)
     }
 
-    def assessments(){
-        def production_unit_id = Uri.removeDomain(params.production_unit_id, 'http://bio.icmc.usp.br/sustenagro#')
-        def assessments = k[production_unit_id].labelAppliedTo
-
-        render( template: 'assessments',
-                model:    [assessments: assessments,
-                           production_unit_id: production_unit_id]);
-    }
-
-    def selectProductionUnit(){
+    def selectUnity(){
         def production_unit_id = Uri.removeDomain(params.production_unit_id, 'http://bio.icmc.usp.br/sustenagro#')
 
         redirect(   action: 'assessment',
@@ -78,8 +70,6 @@ class ToolController {
                     params: [assessment: assessment_name])
     }
 
-
-
     def assessment() {
         def indicators = [:]
         def indCategories = [:]
@@ -94,11 +84,16 @@ class ToolController {
         def tecOptimization
         def technologyTypes
 
+        println dsl.dimensions
+
         dsl.dimensions.each{
             indicators[it] = k[it].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
             indCategories += propertyToList(indicators[it], 'category')
             indSubClass[it] = propertyToMap(indicators[it], 'subClass')
         }
+
+        println indicators
+        //here
         indCategories.each{ key, v ->
             k[key].getInstances().each{
                 v.push(it)
@@ -213,6 +208,19 @@ class ToolController {
                        values: values,
                        weights: weights,
                        report: report])
+    }
+
+    def assessments(){
+
+        //def id = Uri.removeDomain(params.id, 'http://bio.icmc.usp.br/sustenagro#')
+        //println id
+        println params.id
+
+        //def assessments = k[id].labelAppliedTo
+
+        //render( template: 'assessments',
+        //.        model:    [assessments: assessments,
+        //                   production_unit_id: production_unit_id]);
     }
 
     def report(){
