@@ -2,10 +2,15 @@
 
 //dataType  "xsd:date", widget: "date"
 
+dataType "rdfs:Literal", widget: "string"
 dataType "owl:real", widget: "number"
+dataType "xsd:int", widget: "number"
+dataType "xsd:integer", widget: "number"
+dataType "xsd:float", widget: "number"
 dataType "xsd:date", widget: "date"
 dataType "xsd:string", widget: "string"
 dataType "xsd:language", widget: "string"
+dataType "xsd:boolean", widget: "category"
 dataType ":SimpleCategory", widget: "category"
 dataType ":ProductionUnit", widget: "category"
 dataType ":SugarcaneSourceCategory", widget: "category"

@@ -1,5 +1,3 @@
-
-
 //                          Decisioner
 
 // Esta DSL descreve como o aplicativo será gerado. Ele é em inglês pois
@@ -33,11 +31,11 @@ unity(':ProductionUnit') {
     //feature, subclass or instance
 
     // Production unit name 
-    feature ':hasProductionUnitName', label: "Nome da unidade produtiva", placeholder: "Nome"
+    feature ':hasName', label: "Nome da unidade produtiva", placeholder: "Nome"
 
     // Production unit type
     //feature ':hasProductionUnitType', 'rdfs:subClassOf', 'label': "Tipo da unidade produtiva"
-    subclass ':hasProductionUnitType', label: "Tipo da unidade produtiva", header: "Opções", multipleSelection: true
+    subclass ':hasType', label: "Tipo da unidade produtiva", header: "Opções", multipleSelection: true
 
     // Agricultural production system
     //feature ':hasAgriculturalProductionSystem', 'rdfs:subClassOf', 'label': "Sistema de produção agrícola"
@@ -51,7 +49,7 @@ unity(':ProductionUnit') {
 
     // Microrregião produtora
     // feature 'MicroRegion', 'rdf:type', 'label': "Microrregião da unidade produtiva"
-    instance ':hasMicroRegion', object: "MicroRegion", label: "Microrregião da unidade produtiva", header: "Opções"
+    instance ':hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
 
     // Municípios envolvidos (localização da sede)
 
@@ -113,6 +111,11 @@ unity(':ProductionUnit') {
     // instance ':AvailabilityOfEvaluationResults', 'rdf:type', 'label': "Disponibilização dos resultados da avaliação"
     instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções"
 }
+
+selectUnity(':ProductionUnit', title: "Selecionar unidade produtiva", label : "Unidade produtiva", submit_label: "Nova avaliação")
+
+createUnity(':ProductionUnit', tile: "Cadastrar nova unidade produtiva para realizar avaliação")
+
 /*
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados
 // todos os indicadores presentes na ontologia. Existe a opção de não

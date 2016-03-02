@@ -7,7 +7,7 @@ import groovySparql.Sparql
  */
 class Know {
 
-    private Map<String, String> _prefixes = [:]
+    private Map _prefixes = [:]
     private Sparql sparql
     private String select = '*'
     private String lang = 'en'
@@ -79,20 +79,23 @@ class Know {
 
     def toURI(String id){
         if (id==null || id == '' ) return null
-        if (id.contains(' ')) return null
-        if (id.startsWith('_:')) return id
-        if (id.startsWith(':')) return _prefixes['']+id.substring(1)
-        if (id.startsWith('http:')) return id
-        if (id.startsWith('urn:')) return id
-        //println '!id.contains(:) '+id + ' : '
-        if (!id.contains(':')) return searchPrefix(id).uri+id
-
-        // slp.query("?id rdfs:label ?label. FILTER (STR(?label)='$cls')", '', '')
-
-        println 'prexixes analyse'
-        def pre = _prefixes[id.split(':')[0]]
-        if (pre==null) return id
-        return pre+id.substring(id.indexOf(':')+1)
+        if (!id.contains(' ')){
+            if (id.startsWith('_:')) return id
+            if (id.startsWith('http:')) return id
+            if (id.startsWith('urn:')) return id
+            if (id.startsWith(':')) return _prefixes['']+id.substring(1)
+            if (id.contains(':')){
+                def pre = _prefixes[id.split(':')[0]]
+                if(pre?.trim())
+                    return pre+id.substring(id.indexOf(':')+1)
+                return null
+            }
+            println 'prexixes analyse'
+            if (!id.contains(':')) return searchPrefix(id).uri+id
+        }
+        else{
+            return null
+        }
     }
 
     def fromURI(String uidri){
@@ -110,8 +113,10 @@ class Know {
         if (id.contains(' ')) return null
         if (id.startsWith('_:')) return id.substring(2)
         if (id.startsWith(':')) return '-'+id.substring(1)
-        if (!id.contains(':')) return searchPrefix(id).alias+'-'+id
-
+        if (id.startsWith('http:') || !id.contains(':')){
+            def prefix = searchPrefix(id)
+            return prefix.alias+'-'+id.replace(prefix.uri,'')
+        }
     }
 
     def shortToURI(String id){
@@ -139,13 +144,21 @@ class Know {
     def searchPrefix(String name){
         def query
         def result = []
-        _prefixes.find {alias, uri ->
-            query = this.query("<"+uri+name+"> a ?class")
-            if(query.size()>0){
-                result = ['alias' : alias, 'uri': uri]
+        _prefixes.find{key, value ->
+            if(name.startsWith(value)) {
+                result = [alias : key, 'uri': value]
                 return true
             }
-            return false
+        }
+        if(result.empty) {
+            println "Heavy costly!"
+            _prefixes.find{ key, value ->
+                query = this.query("<" + value + name + "> a ?class")
+                if (query.size() > 0) {
+                    result = [alias: key, 'uri': value]
+                }
+                return true
+            }
         }
         return result
     }
@@ -166,5 +179,14 @@ class Know {
 
     def setLang(String lg){
         lang = lg
+    }
+
+    def getLang(){
+        return lang
+    }
+    def isURI(String id){
+        if(id != null && id != '' && !id.contains(" ") && id.startsWith('http://'))
+            return true
+        return false
     }
 }

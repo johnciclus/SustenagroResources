@@ -2,15 +2,15 @@ package sustenagro
 
 import com.github.slugify.Slugify
 import semantics.DataReader
+import semantics.Node
 import utils.Uri
 
 class ToolController {
     def dsl
-
     def k
 
     def index() {
-        dsl.viewsStack[controllerName][actionName].each{ command ->
+        dsl.viewsMap[controllerName][actionName].each{ command ->
             if(command.request){
                 command.request.each{ key, args ->
                     if(key!='widgets'){
@@ -25,68 +25,41 @@ class ToolController {
                 }
             }
         }
-        render(view: 'index', model: [inputs: dsl.viewsStack[controllerName][actionName]])
+        render(view: 'index', model: [inputs: dsl.viewsMap[controllerName][actionName]])
     }
 
     def createUnity() {
-        def id, name, type
-        println params
-        if(params['unity']) {
-            name = k.shortURI(params['unity']+'Name')
-            type = k.shortURI(params['unity']+'Type')
+        def id
+        def name = k.shortURI(':hasName')
+        def type = k.shortURI(':hasType')
 
-            def unityParams = dsl.viewsStack['tool']['index'].find{ it['widget'] == 'createUnity' }
-            println "Request"
-            unityParams.request.each{key, value ->
-                println key + ' : ' + value
-            }
-            println "Args"
-            unityParams.args.each{key, value ->
-                println key + ' : ' + value
-            }
+        if(params['unity'] && params[name] && params[type]) {
 
-            if (params[name] && params[type]) {
-                id = new Slugify().slugify(params[name])
+            def node = new Node(k, '')
+            def unityParams = [:]
+            def features = dsl.unityMap[params['unity']].model
 
-                String sparql = "<" + k.toURI(":"+id) + ">" +
-                        "rdf:type <" + params[type] + ">;" +
-                        "rdfs:label '" + params[name] + "'@pt;" +
-                        "rdfs:label '" + params[name] + "'@en"
-
-                //k[featuresID].getSubClass().shortURI().each {
-                //    if (params[it]) {
-                //        sparql += ";<${k.shortToURI(it)}> '" + params[it] + "'@pt"
-                //    }
-                //}
-                sparql += "."
-
-                sparql.split(';').each{
-                    println it
+            features.each{ feature ->
+                if(params[feature.id]){
+                    unityParams[feature.id] = params[feature.id]
                 }
-
-                k.insert(sparql)
             }
+
+            id = new Slugify().slugify(params[name])
+            node.insertUnity(id, unityParams, features)
         }
 
-
-        //"dbp:Microregion <http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos>;"
-        //":AgriculturalEfficiency :HighAgriculturalEfficiency.")
-
-        /*k.addNode(
-            N(':'+production_unit_id,
-            'rdf:type': k.v(params['productionunit_types']),
-            'rdfs:label': params['productionunit_name']
-            //'dbp:Microregion': k.v(params['production_unit_microregion']),
-            //'sa:culture': k.v(params['production_unit_culture']),
-            //':AgriculturalEfficiency': k.v(params['production_unit_technology'])
-        ))
-
-        if(params['agriculturalefficiency'])
-            k.g.addEdge(k.v(':' + production_unit_id), k.v(params['agriculturalefficiency']), k.toURI(':AgriculturalEfficiency'))
-
-        k.g.commit()*/
         //k.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
         redirect(action: 'assessment', id: id)
+    }
+
+    def assessments(){
+        def production_unit_id = Uri.removeDomain(params.production_unit_id, 'http://bio.icmc.usp.br/sustenagro#')
+        def assessments = k[production_unit_id].labelAppliedTo
+
+        render( template: 'assessments',
+                model:    [assessments: assessments,
+                           production_unit_id: production_unit_id]);
     }
 
     def selectProductionUnit(){
@@ -105,14 +78,7 @@ class ToolController {
                     params: [assessment: assessment_name])
     }
 
-    def assessments(){
-        def production_unit_id = Uri.removeDomain(params.production_unit_id, 'http://bio.icmc.usp.br/sustenagro#')
-        def assessments = k[production_unit_id].labelAppliedTo
 
-        render( template: 'assessments',
-                model:    [assessments: assessments,
-                           production_unit_id: production_unit_id]);
-    }
 
     def assessment() {
         def indicators = [:]

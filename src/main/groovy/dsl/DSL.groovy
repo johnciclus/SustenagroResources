@@ -10,7 +10,8 @@ import org.springframework.context.ApplicationContext
  */
 
 class DSL {
-    def viewsStack = [:]
+    def viewsMap = [:]
+    def unityMap = [:]
     def dimensions = []
     def report = []
     Closure program
@@ -43,8 +44,8 @@ class DSL {
 
         _script = (DelegatingScript) _shell.parse(new File(file).text)
         _script.setDelegate(this)
-        viewsStack['tool'] = [:]
-        viewsStack['tool']['index'] = []
+        viewsMap['tool'] = [:]
+        viewsMap['tool']['index'] = []
 
         // Run DSL script.
         try {
@@ -59,9 +60,9 @@ class DSL {
         dimensions = []
         report = []
 
-        viewsStack = [:]
-        viewsStack['tool'] = [:]
-        viewsStack['tool']['index'] = []
+        viewsMap = [:]
+        viewsMap['tool'] = [:]
+        viewsMap['tool']['index'] = []
         toolAssessmentStack = []
 
         _sandbox.register()
@@ -100,11 +101,11 @@ class DSL {
     }
 
     def title(String str){
-        viewsStack['tool']['index'].push(['widget': 'title', 'args': ['title': str]])
+        viewsMap['tool']['index'].push(['widget': 'title', 'args': ['title': str]])
     }
 
     def description(String str){
-        viewsStack['tool']['index'].push(['widget': 'description', 'args': ['description': toHTML(str)]])
+        viewsMap['tool']['index'].push(['widget': 'description', 'args': ['description': toHTML(str)]])
 
         //println  Processor.process(description, true)
         //println new PegDownProcessor().markdownToHtml(description)
@@ -119,35 +120,38 @@ class DSL {
         props[data]= obj
     }
 
-    def unity(String clsName, Closure closure){
-        def requestLst          = [:]
-        def argLst              = [:]
-        def featureLst          = []
-        def unity = new Unity(clsName, _ctx)
+    def unity(String id, Closure closure){
+        def unity = new Unity(id, _ctx)
 
         closure.resolveStrategy = Closure.DELEGATE_FIRST
         closure.delegate = unity
         closure()
 
-        requestLst['widgets']   = [:]
-        argLst['widgets']       = [:]
-        featureLst.addAll(unity.featureLst)
-
-        featureLst.each{
-            if(it.request) {
-                requestLst['widgets'][it.id] = it.request
-            }
-            argLst['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
-        }
-
-        argLst['unity'] = clsName
-
-        //viewsStack['tool']['index'].push(['widget': 'selectUnity', 'request': ['units': ['a', clsName]], 'args': ['unity': clsName]])
-        viewsStack['tool']['index'].push(['widget': 'createUnity', 'request': requestLst, 'args': argLst])
+        unityMap[id] = unity
     }
 //    def recommendation(Map map, String txt){
 //        recommendations << [map['if'],txt]
 //    }
+    def selectUnity(Map args = [:], String id){
+        args['unity']= id
+        viewsMap['tool']['index'].push(['widget': 'selectUnity', 'request': ['units': ['a', id]], args: args])
+    }
+
+    def createUnity(Map args = [:], String id){
+        def requestLst          = [:]
+        requestLst['widgets']   = [:]
+        args['widgets']       = [:]
+        args['unity']         = id
+
+        unityMap[id].features.each{
+            if(it.request) {
+                requestLst['widgets'][it.id] = it.request
+            }
+            args['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
+        }
+
+        viewsMap['tool']['index'].push(['widget': 'createUnity', 'request': requestLst, 'args': args])
+    }
 
     static toHTML(String txt) {md.markdownToHtml(txt)}
 

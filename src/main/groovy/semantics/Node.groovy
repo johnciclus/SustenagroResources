@@ -321,6 +321,7 @@ class Node {
     def getAttributes() {
         k.select("distinct ?attribute").query("?attribute rdfs:subClassOf <$URI>. ?indicator rdfs:subClassOf ?attribute. FILTER( ?attribute != <$URI> && ?attribute != ?indicator)")
     }
+
     def getAttrs() {
 
     }
@@ -382,7 +383,66 @@ class Node {
         k.select('distinct ?uri').query("?uri rdfs:label '$label'@${k.lang}.")
     }
 
-    def shortURI(){
+    def insertUnity(String id, Map params, ArrayList features){
+        String sparql = "<" + k.toURI(":"+id) + "> ";
 
+        def name = k.shortURI(':hasName')
+        def type = k.shortURI(':hasType')
+
+        if(params[type].class.isArray()){
+            params[type].each{
+                sparql += "rdf:type <" + it + ">;"
+            }
+        }
+        else{
+            sparql += "rdf:type <" + params[type] + ">;"
+        }
+
+        features.each{ feature ->
+            if(params[feature.id]){
+                if(feature.id == name){
+                    sparql += "rdfs:label '" + params[name] + "'@pt;" +
+                            "rdfs:label '" + params[name] + "'@en"
+                }
+                else if(feature.id != type){
+
+                    switch (feature.dataType){
+                        case k.toURI('xsd:date'):
+                            sparql += ";<${k.shortToURI(feature.id)}> \"" + params[feature.id] + "\"^^xsd:date "
+                            println feature.id+" owl:date"
+                            break
+                        case k.toURI('xsd:float'):
+                            sparql += ";<${k.shortToURI(feature.id)}> \"" + params[feature.id] + "\"^^xsd:float "
+                            println feature.id+" xsd:float"
+                            break
+                        case k.toURI('rdfs:Literal'):
+                            sparql += ";<${k.shortToURI(feature.id)}> '" + params[feature.id] + "'@"+ k.lang+" "
+                            println feature.id+" rdfs:Literal"
+                            break
+                        default:
+                            println "Default: "+feature.id+" : "+params[feature.id]
+                            if(k.isURI(params[feature.id]))
+                                sparql += ";<${k.shortToURI(feature.id)}> <" + params[feature.id] + ">"
+                            else
+                                sparql += ";<${k.shortToURI(feature.id)}> '" + params[feature.id] + "'@pt"
+
+                            break
+                    }
+                }
+            }
+        }
+
+        sparql += '.'
+
+        //def unityParams = dsl.viewsMap['tool']['index'].find{ it['widget'] == 'createUnity' }
+
+        sparql.split(';').each{
+            println it
+        }
+
+        k.insert(sparql)
     }
+
 }
+
+// slp.query("?id rdfs:label ?label. FILTER (STR(?label)='$cls')", '', '')

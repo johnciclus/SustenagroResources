@@ -1,4 +1,4 @@
-<h5 class="text-primary">Cadastrar nova unidade produtiva para realizar avaliação</h5>
+<h5 class="text-primary">Cadastrar nova unidade produtiva para realizar avaliação.</h5>
 <form id="create_form" action="/tool/createUnity" method="post" class="form-horizontal">
     <input id="unity" name="unity" type="hidden" value="${unity}"/>
     <g:if test="${widgets}">
