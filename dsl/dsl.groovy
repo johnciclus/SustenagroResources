@@ -28,14 +28,13 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 
 // Caracterização dos sistemas produtivos no Centro-Sul 
 unity(':ProductionUnit') {
-    //feature, subclass or instance
+    //feature or instance
 
-    // Production unit name 
+    // Production unit name
     feature ':hasName', label: "Nome da unidade produtiva", placeholder: "Nome"
 
     // Production unit type
-    //feature ':hasProductionUnitType', 'rdfs:subClassOf', 'label': "Tipo da unidade produtiva"
-    subclass ':hasType', label: "Tipo da unidade produtiva", header: "Opções", multipleSelection: true
+    type label: "Tipo da unidade produtiva", header: "Opções", multipleSelection: true
 
     // Agricultural production system
     //feature ':hasAgriculturalProductionSystem', 'rdfs:subClassOf', 'label': "Sistema de produção agrícola"
@@ -83,7 +82,7 @@ unity(':ProductionUnit') {
 
     //Ligação com outros grupos empresariais ou de investimentos
     // instance ':LinkWithOtherBusinessOrInvestmentGroups', 'label': "Ligação com outros grupos empresariais ou de investimentos"
-    feature ':hasLinkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos"
+    feature ':hasLinkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos", placeholder: "Descrição"
 
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
 

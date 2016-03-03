@@ -22,10 +22,10 @@ class Unity {
     def feature(Map args = [:], String id, String prop = ''){
         def uri = k.toURI(id)
         def featureId = k.shortURI(uri)
-        def range = k[uri].range
-
+        def range = (id != _id)? k[uri].range : uri
         def dataType = (range)? range : 'http://www.w3.org/2001/XMLSchema#string'
         def widget
+
         if(args['widget']){
             widget = args['widget']
         }
@@ -53,7 +53,7 @@ class Unity {
                         args: args]
     }
 
-    def subclass(Map args = [:], String id){
+    def type(Map args = [:], String id=_id){
         feature(args, id, 'rdfs:subClassOf')
     }
 

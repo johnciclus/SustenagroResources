@@ -383,19 +383,18 @@ class Node {
         k.select('distinct ?uri').query("?uri rdfs:label '$label'@${k.lang}.")
     }
 
-    def insertUnity(String id, Map params){
+    def insertUnity(String id, Object type, Map params){
         String sparql = "<" + k.toURI(":"+id) + "> ";
 
         def name = k.shortURI(':hasName')
-        def type = k.shortURI(':hasType')
 
-        if(params[type].value.class.isArray()){
-            params[type].value.each{
+        if(type.class.isArray()){
+            type.each{
                 sparql += "rdf:type <" + it + ">;"
             }
         }
-        else{
-            sparql += "rdf:type <" + params[type].value + ">;"
+        else if(type.getClass() == String){
+            sparql += "rdf:type <" + type + ">;"
         }
 
         params.each{ key, feature ->
@@ -403,39 +402,48 @@ class Node {
                 sparql += "rdfs:label '" + params[name].value + "'@pt;" +
                         "rdfs:label '" + params[name].value + "'@en"
             }
-            else if(key != type){
-                switch (feature.dataType){
-                    case k.toURI('xsd:date'):
-                        sparql += ";<${k.shortToURI(key)}> \"" + feature.value + "\"^^xsd:date "
-                        //println feature.id+" owl:date"
-                        break
-                    case k.toURI('xsd:float'):
-                        sparql += ";<${k.shortToURI(key)}> \"" + feature.value + "\"^^xsd:float "
-                        //println feature.id+" xsd:float"
-                        break
-                    case k.toURI('rdfs:Literal'):
+            switch (feature.dataType){
+                case k.toURI('xsd:date'):
+                    sparql += ";<${k.shortToURI(key)}> \"" + feature.value + "\"^^xsd:date "
+                    //println feature.id+" owl:date"
+                    break
+                case k.toURI('xsd:double'):
+                    sparql += ";<${k.shortToURI(key)}> \"" + feature.value + "\"^^xsd:double "
+                    //println feature.id+" xsd:float"
+                    break
+                case k.toURI('xsd:float'):
+                    sparql += ";<${k.shortToURI(key)}> \"" + feature.value + "\"^^xsd:float "
+                    //println feature.id+" xsd:float"
+                    break
+                case k.toURI('owl:real'):
+                    sparql += ";<${k.shortToURI(key)}> \"" + feature.value + "\"^^owl:real "
+                    //println feature.id+" xsd:float"
+                    break
+                case k.toURI('rdfs:Literal'):
+                    sparql += ";<${k.shortToURI(key)}> '" + feature.value + "'@"+ k.lang+" "
+                    //println feature.id+" rdfs:Literal"
+                    break
+                default:
+
+                    // Implement for arraylist
+                    if(k.isURI(feature.value))
+                        sparql += ";<${k.shortToURI(key)}> <" + feature.value + ">"
+                    else{
+                        println "Default: "+key+" : "+feature.value
                         sparql += ";<${k.shortToURI(key)}> '" + feature.value + "'@"+ k.lang+" "
-                        //println feature.id+" rdfs:Literal"
-                        break
-                    default:
-                        if(k.isURI(feature.value))
-                            sparql += ";<${k.shortToURI(key)}> <" + feature.value + ">"
-                        else{
-                            println "Default: "+key+" : "+feature.value
-                            sparql += ";<${k.shortToURI(key)}> '" + feature.value + "'@"+ k.lang+" "
-                        }
-                        break
-                }
+                    }
+                    break
             }
+
         }
 
         sparql += '.'
 
         //def unityParams = dsl.viewsMap['tool']['index'].find{ it['widget'] == 'createUnity' }
 
-        /*sparql.split(';').each{
-            println it
-        }*/
+        //sparql.split(';').each{
+        //    println it
+        //}
 
         k.insert(sparql)
     }

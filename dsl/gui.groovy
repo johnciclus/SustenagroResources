@@ -2,6 +2,8 @@
 
 //dataType  "xsd:date", widget: "date"
 
+//default widget: 'category',
+
 dataType "rdfs:Literal", widget: "string"
 dataType "owl:real", widget: "number"
 dataType "xsd:int", widget: "number"
@@ -17,7 +19,7 @@ dataType ":SugarcaneSourceCategory", widget: "category"
 dataType ":CanavialLongevityCategory", widget: "category"
 dataType ":AgriculturalProductionSystemCategory", widget: "category"
 dataType ":AvailabilityOfEvaluationResultsCategory", widget: "category"
-dataType "dbp:MicroRegion", widget: "category"
+dataType "http://dbpedia.org/page/Microregion_(Brazil)", widget: "category"
 
 /*
 view("tool/index"){

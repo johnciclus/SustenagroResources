@@ -31,23 +31,23 @@ class ToolController {
     def createUnity() {
         def id = ''
         def name = k.shortURI(':hasName')
-        def type = k.shortURI(':hasType')
+        def type = k.shortURI(params['unity'])
 
         if(params['unity'] && params[name] && params[type]) {
 
             def node = new Node(k, '')
-            def unityParams = [:]
+            def unityFeatures = [:]
 
             def features = dsl.unityMap[k.shortToURI(params['unity'])].model
 
             features.each{ feature ->
-                if(params[feature.id]){
-                    unityParams[feature.id] = [value: params[feature.id], dataType: feature.dataType]
+                if(params[feature.id] && feature.id != type){
+                    unityFeatures[feature.id] = [value: params[feature.id], dataType: feature.dataType]
                 }
             }
 
             id = new Slugify().slugify(params[name])
-            node.insertUnity(id, unityParams)
+            node.insertUnity(id, params[type], unityFeatures)
         }
 
         //k.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
@@ -87,6 +87,7 @@ class ToolController {
         println dsl.dimensions
 
         dsl.dimensions.each{
+            println it
             indicators[it] = k[it].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
             indCategories += propertyToList(indicators[it], 'category')
             indSubClass[it] = propertyToMap(indicators[it], 'subClass')

@@ -198,9 +198,19 @@ class Know {
     def getLang(){
         return lang
     }
-    def isURI(String id){
-        if(id != null && id != '' && !id.contains(" ") && id.startsWith('http://'))
-            return true
+    def isURI(Object id){
+        if(id.getClass() == String){
+            if(id != null && id != '' && !id.contains(" ") && id.startsWith('http://'))
+                return true
+            return false
+        }
+        else if(id.class.isArray()){
+            def isArray = true
+            id.each{
+                isArray = (it != null && it != '' && !it.contains(" ") && it.startsWith('http://')) ? isArray && true : isArray && false
+            }
+            return isArray
+        }
         return false
     }
 }

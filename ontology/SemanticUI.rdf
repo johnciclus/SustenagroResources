@@ -218,7 +218,6 @@
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label xml:lang="en">data value</rdfs:label>
         <rdfs:label xml:lang="pt">valor do dado</rdfs:label>
-        <rdfs:comment></rdfs:comment>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     

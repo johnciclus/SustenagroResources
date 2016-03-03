@@ -9,13 +9,18 @@
            data-single-select=false
         <g:if test="${data.size()>5}">
            data-height="240"
+        </g:if>
+        <g:if test="${header == null}">
+           data-show-header=false
         </g:if>>
+
         <thead>
-        <tr>
-            <th></th>
-            <th data-field="name">${header}</th>
-        </tr>
+            <tr>
+                <th></th>
+                <th data-field="name">${header}</th>
+            </tr>
         </thead>
+
         <tbody>
         <g:each status="i" var="row" in="${data}">
             <tr data-index="${i}">

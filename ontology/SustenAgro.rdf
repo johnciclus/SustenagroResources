@@ -42,12 +42,6 @@
     
 
 
-    <!-- http://bio.icmc.usp.br/sustenagro#features -->
-
-    <owl:AnnotationProperty rdf:about="&sustenagro;features"/>
-    
-
-
     <!-- http://purl.org/dc/terms/description -->
 
     <owl:AnnotationProperty rdf:about="&terms;description">
@@ -67,17 +61,17 @@
     
 
 
-    <!-- http://semantic.icmc.usp.br/sustenagro#features -->
-
-    <owl:AnnotationProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#features"/>
-    
-
-
     <!-- http://semantic.icmc.usp.br/sustenagro#weight -->
 
     <owl:AnnotationProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#weight">
         <rdfs:domain rdf:resource="http://semantic.icmc.usp.br/sustenagro#Indicator"/>
     </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#comment -->
+
+    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
     
 
 
@@ -110,9 +104,21 @@
     
 
 
+    <!-- http://www.w3.org/2001/XMLSchema#anyURI -->
+
+    <rdfs:Datatype rdf:about="&xsd;anyURI"/>
+    
+
+
     <!-- http://www.w3.org/2001/XMLSchema#boolean -->
 
     <rdfs:Datatype rdf:about="&xsd;boolean"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#date -->
+
+    <rdfs:Datatype rdf:about="&xsd;date"/>
     
 
 
@@ -125,6 +131,12 @@
     <!-- http://www.w3.org/2001/XMLSchema#double -->
 
     <rdfs:Datatype rdf:about="&xsd;double"/>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#float -->
+
+    <rdfs:Datatype rdf:about="&xsd;float"/>
     
 
 
@@ -157,6 +169,12 @@
     
 
 
+    <!-- http://purl.org/biodiv/semanticUI#value -->
+
+    <owl:ObjectProperty rdf:about="&semanticUI;value"/>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#appliedTo -->
 
     <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#appliedTo">
@@ -175,10 +193,71 @@
     
 
 
-    <!-- http://semantic.icmc.usp.br/sustenagro#hasMicroregion -->
+    <!-- http://semantic.icmc.usp.br/sustenagro#has -->
 
-    <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasMicroregion">
+    <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#has">
+        <rdfs:comment xml:lang="en">has</rdfs:comment>
+        <rdfs:comment xml:lang="pt">tem</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasAgriculturalProductionSystem -->
+
+    <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasAgriculturalProductionSystem">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has agricultural production system</rdfs:label>
+        <rdfs:label xml:lang="pt">Tem sistema de produção agrícola</rdfs:label>
+        <rdfs:range rdf:resource="http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory"/>
+        <rdfs:subPropertyOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#has"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasAvailabilityOfEvaluationResults -->
+
+    <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasAvailabilityOfEvaluationResults">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has availability of evaluations results</rdfs:label>
+        <rdfs:label xml:lang="pt">Tem disponibilização dos resultados da avaliação</rdfs:label>
+        <rdfs:range rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
+        <rdfs:subPropertyOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#has"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasCanavialLongevity -->
+
+    <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasCanavialLongevity">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has canavial longevity</rdfs:label>
+        <rdfs:label xml:lang="pt">Tem longevidade do canvial</rdfs:label>
+        <rdfs:range rdf:resource="http://semantic.icmc.usp.br/sustenagro#CanavialLongevityCategory"/>
+        <rdfs:subPropertyOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#has"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasMicroRegion -->
+
+    <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasMicroRegion">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">Tem microregion</rdfs:label>
+        <rdfs:range rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:subPropertyOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#has"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasSugarcaneSource -->
+
+    <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasSugarcaneSource">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has sugarcane source</rdfs:label>
+        <rdfs:label xml:lang="pt">Tem origem da cana</rdfs:label>
+        <rdfs:range rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
+        <rdfs:subPropertyOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#has"/>
     </owl:ObjectProperty>
     
 
@@ -187,6 +266,7 @@
 
     <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasWeight">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&semanticUI;Value"/>
     </owl:ObjectProperty>
     
 
@@ -213,29 +293,157 @@
 
     <!-- http://dbpedia.org/property/pt/mapa -->
 
-    <owl:DatatypeProperty rdf:about="&pt;mapa"/>
-    
-
-
-    <!-- http://semantic.icmc.usp.br/sustenagro#established -->
-
-    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#established">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    <owl:DatatypeProperty rdf:about="&pt;mapa">
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://semantic.icmc.usp.br/sustenagro#name -->
+    <!-- http://purl.org/biodiv/semanticUI#dataValue -->
 
-    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#name"/>
+    <owl:DatatypeProperty rdf:about="&semanticUI;dataValue"/>
     
 
 
-    <!-- http://semantic.icmc.usp.br/sustenagro#weight -->
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasBeginningOfHarvestDate -->
 
-    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#weight">
-        <rdfs:range rdf:resource="&xsd;double"/>
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasBeginningOfHarvestDate">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has beginning of harvest date</rdfs:label>
+        <rdfs:label xml:lang="pt">Tem data de início da colheita</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;date"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasBeginningOfPlantingDate -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasBeginningOfPlantingDate">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has beginning of planting date</rdfs:label>
+        <rdfs:label xml:lang="pt">tem data de início da colheita</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;date"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasEstablishmentDate -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasEstablishmentDate">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has establishment date</rdfs:label>
+        <rdfs:label xml:lang="pt">tem data de fundação da unidade produção</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;date"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasFinancing -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasFinancing">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has financing</rdfs:label>
+        <rdfs:label xml:lang="pt">tem financiamento (crédito agrícola, custeio de maquinário, BNDES)</rdfs:label>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasFinishOfHarvestDate -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasFinishOfHarvestDate">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has finish of harvest date</rdfs:label>
+        <rdfs:label xml:lang="pt">tem data de término da colheita</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;date"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasFinishOfPlantingDate -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasFinishOfPlantingDate">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has finish of planting date</rdfs:label>
+        <rdfs:label xml:lang="pt">Tem data de término do plantio</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;date"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasInnovationDevelopmentProjects -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasInnovationDevelopmentProjects">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has innovation development projects</rdfs:label>
+        <rdfs:label xml:lang="pt">Tem projetos de inovação e/ou desenvolvimento (BNDES, Finep)</rdfs:label>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasLinkWithOtherBusinessOrInvestmentGroups -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasLinkWithOtherBusinessOrInvestmentGroups">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has link with other business groups or investment</rdfs:label>
+        <rdfs:label xml:lang="pt">Tem ligação com outros grupos empresariais ou de investimentos</rdfs:label>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasName -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasName">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has name</rdfs:label>
+        <rdfs:label xml:lang="pt">tem nome</rdfs:label>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasPartnershipsForResearchOrImprovementOfTheSystem -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasPartnershipsForResearchOrImprovementOfTheSystem">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has partnerships for research or improvement of the system</rdfs:label>
+        <rdfs:label xml:lang="pt">Tem parcerias para pesquisa ou aprimoramento do sistema</rdfs:label>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasTotalValueInvestedInTechnologicInAgriculturalPhase -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasTotalValueInvestedInTechnologicInAgriculturalPhase">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has total value invested in technologicIn agricultural phase</rdfs:label>
+        <rdfs:label xml:lang="pt">Tem valor total investido em tecnologia na fase agrícola (até a fase atual)</rdfs:label>
+        <rdfs:range rdf:resource="&owl;real"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasTotalValueInvestedInTechnologicInIndustrialPhase -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasTotalValueInvestedInTechnologicInIndustrialPhase">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has total value invested in technologic in industrial phase</rdfs:label>
+        <rdfs:label xml:lang="pt">tem valor total investido em tecnologia na fase industrial (até a fase atual)</rdfs:label>
+        <rdfs:range rdf:resource="&owl;real"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasTotalValuePlaneedForInvestmentToProductionDrainage -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasTotalValuePlaneedForInvestmentToProductionDrainage">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has total value planeed for investment to production drainage</rdfs:label>
+        <rdfs:label xml:lang="pt">Valor total previsto para investimento para escoamento da produção</rdfs:label>
+        <rdfs:range rdf:resource="&owl;real"/>
     </owl:DatatypeProperty>
     
 
@@ -261,6 +469,12 @@
     
 
 
+    <!-- http://dbpedia.org/page/Microregion_(Brazil) -->
+
+    <owl:Class rdf:about="http://dbpedia.org/page/Microregion_(Brazil)"/>
+    
+
+
     <!-- http://dbpedia.org/resource/PhysicalPlant -->
 
     <owl:Class rdf:about="http://dbpedia.org/resource/PhysicalPlant">
@@ -273,7 +487,9 @@
 
     <!-- http://purl.org/biodiv/semanticUI#Boolean -->
 
-    <rdf:Description rdf:about="&semanticUI;Boolean">
+    <owl:Class rdf:about="&semanticUI;Boolean">
+        <rdfs:label xml:lang="en">Boolean</rdfs:label>
+        <rdfs:label xml:lang="pt">Boleana</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semanticUI;dataValue"/>
@@ -281,7 +497,7 @@
                 <owl:onDataRange rdf:resource="&xsd;boolean"/>
             </owl:Restriction>
         </owl:equivalentClass>
-    </rdf:Description>
+    </owl:Class>
     
 
 
@@ -303,12 +519,25 @@
     
 
 
+    <!-- http://purl.org/biodiv/semanticUI#Value -->
+
+    <owl:Class rdf:about="&semanticUI;Value"/>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#AbsoluteEmissionsOfGreenhouseGases -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#AbsoluteEmissionsOfGreenhouseGases">
         <rdfs:label xml:lang="en">Absolute emissions of greenhouse gases (GEE) or associated gases</rdfs:label>
         <rdfs:label xml:lang="pt">Emissões absolutas de gases de efeito estufa (GEE) ou gases associados</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#AtmosphereAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#AbsoluteEmissionsOfGreenhouseGasesCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">3.0</weight>
     </owl:Class>
     
@@ -330,6 +559,13 @@
         <rdfs:label xml:lang="en">Access to the internal market (function of incentives and/or public policy)</rdfs:label>
         <rdfs:label xml:lang="pt">Acesso ao mercado interno (função de incentivos e/ou políticas públicas)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#MarketVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#AccessToInternalMarketCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -350,6 +586,13 @@
         <rdfs:label xml:lang="en">Access to the international market (function of the attendance to international certifications)</rdfs:label>
         <rdfs:label xml:lang="pt">Acesso ao mercado internacional (função do atendimento a certificações internacionais)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#MarketVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#AccessToInternationalMarketCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -380,6 +623,13 @@
         <rdfs:label xml:lang="en">Adequacy of boilers</rdfs:label>
         <rdfs:label xml:lang="pt">Adequação das caldeiras</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#AdequacyOfBoilersCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -397,7 +647,17 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#AdequateDestinationOfVinasse -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#AdequateDestinationOfVinasse">
+        <rdfs:label xml:lang="en">Adequate destination of vinasse</rdfs:label>
+        <rdfs:label xml:lang="pt">Adequada destinação da vinhaça</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#GeneralAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
 
@@ -408,6 +668,13 @@
         <rdfs:label xml:lang="en">Adequate structure for installation or expansion of water reuse (closed circuit)</rdfs:label>
         <rdfs:label xml:lang="pt">Estrutura adequada para instalação ou ampliação do reuso da água (circuito fechado)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#WaterAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">3.0</weight>
     </owl:Class>
     
@@ -419,6 +686,13 @@
         <rdfs:label xml:lang="en">Agricultural cutting type</rdfs:label>
         <rdfs:label xml:lang="pt">Tipo de corte agrícola</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#AgriculturalCuttingTypeCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -439,6 +713,13 @@
         <rdfs:label xml:lang="en">Agricultural management</rdfs:label>
         <rdfs:label xml:lang="pt">Manejo agrícola</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#AgriculturalManagementCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -459,7 +740,24 @@
         <rdfs:label xml:lang="en">Agricultural planning observing management techniques and planting and harvesting seasons</rdfs:label>
         <rdfs:label xml:lang="pt">Planejamento agrícola observando as técnicas de manejo e épocas de plantio e colheita</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductivityAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory">
+        <rdfs:label xml:lang="en">Agricultural production system category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria de sistema de produção agrícola</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Categorical"/>
     </owl:Class>
     
 
@@ -480,6 +778,13 @@
         <rdfs:label xml:lang="en">Atmospheric pollutants emission</rdfs:label>
         <rdfs:label xml:lang="pt">Emissão de poluentes atmosféricos</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#AtmosphericPollutantsEmissionCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -500,6 +805,13 @@
         <rdfs:label xml:lang="en">Attendance of requirements of adequate equipment usage for pesticide application according to regulatory norm 31</rdfs:label>
         <rdfs:label xml:lang="pt">Atendimento de requisitos de uso de equipamento adequado para aplicação de agrotóxicos de acordo com a Norma Reguladora 31</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#HealthAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -511,6 +823,13 @@
         <rdfs:label xml:lang="en">Attendance to Law No. 7.802 / 1989 which provides for the transport, storage, marketing, waste disposal and pesticide packaging and the like.</rdfs:label>
         <rdfs:label xml:lang="pt">Atendimento a Lei n°7.802/1989 que dispõe sobre o transporte, armazenamento, comercialização, destino final dos resíduos e embalagens de agrotóxicos e afins.</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SoilsAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -522,7 +841,24 @@
         <rdfs:label xml:lang="en">Attendance to restriction on aerial spraying for applying maturing (Joint Normative Instruction 1/2012/DAS/MAPA)</rdfs:label>
         <rdfs:label xml:lang="pt">Atendimento à restrição da pulverização aérea para aplicação de maturadores (Instrução Normativa Conjunta 1/2012//DAS/MAPA)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#GeneralAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory">
+        <rdfs:label xml:lang="en">Availability of evaluations results category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria da disponibilização dos resultados da avaliação</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Categorical"/>
     </owl:Class>
     
 
@@ -543,6 +879,13 @@
         <rdfs:label xml:lang="en">Bagasse and straw destination for 2nd generation ethanol production</rdfs:label>
         <rdfs:label xml:lang="pt">Destinação do bagaço e palha para produção de etanol de 2nd geração</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#BagasseAndStrawDestinationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -563,6 +906,13 @@
         <rdfs:label xml:lang="en">Bagasse destination</rdfs:label>
         <rdfs:label xml:lang="pt">Destinação do bagaço</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#BagasseDestinationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -613,6 +963,13 @@
         <rdfs:label xml:lang="en">Infrastructure available for the production of second and third generation biofuels</rdfs:label>
         <rdfs:label xml:lang="pt">Infraestrutura disponível para produção de biocombustíveis de segunda e terceira geração</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#IndustrialUnityAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -634,7 +991,24 @@
         <rdfs:label xml:lang="en">Have fuel stocks in order to regulate supply  / demand and prices of ethanol (buffer stocks)</rdfs:label>
         <rdfs:label xml:lang="pt">Ter estoques de combustível de modo a regular oferta/demanda do etanol e preços (estoques reguladores)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#CostAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#CanavialLongevityCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#CanavialLongevityCategory">
+        <rdfs:label xml:lang="en">Canavial longevity category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria de longevidade do canavial</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Categorical"/>
     </owl:Class>
     
 
@@ -645,6 +1019,13 @@
         <rdfs:label xml:lang="en">Circuit closing</rdfs:label>
         <rdfs:label xml:lang="pt">Fechamento do circuito</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#CircuitClosingCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -685,6 +1066,13 @@
         <rdfs:label xml:lang="en">Compliance with state environmental protocols</rdfs:label>
         <rdfs:label xml:lang="pt">Atendimento a protocolos ambientais estaduais</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#PoliticalVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#ComplianceProtocolsCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -705,6 +1093,13 @@
         <rdfs:label xml:lang="en">Compliance with agricultural and economic zoning (AEZ)</rdfs:label>
         <rdfs:label xml:lang="pt">Atendimento ao zoneamento agrícola e econômico (ZAE)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#PoliticalVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#ComplianceToZoningCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -715,6 +1110,13 @@
         <rdfs:label xml:lang="en">Compliance with current environmental legislation</rdfs:label>
         <rdfs:label xml:lang="pt">Cumprimento da Legislação ambiental vigente</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#BiodiversityAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -726,6 +1128,13 @@
         <rdfs:label xml:lang="en">Compliance with the national commitment to good working conditions (NR&apos;s)</rdfs:label>
         <rdfs:label xml:lang="pt">Atendimento ao compromisso nacional para adequação às boas condições de trabalho (NR´s)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#PoliticalVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#ComplianceToCommitmentCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -736,6 +1145,13 @@
         <rdfs:label xml:lang="en">Compliance with regulatory norm 24 which deals with employee welfare</rdfs:label>
         <rdfs:label xml:lang="pt">Cumprimento a Norma Regulamentadora 24 que trata do bem-estar do trabalhador</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#HealthAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -757,6 +1173,13 @@
         <rdfs:label xml:lang="en">Crop planning</rdfs:label>
         <rdfs:label xml:lang="pt">Planejamento de safra</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductivityAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -778,6 +1201,13 @@
         <rdfs:label xml:lang="en">Electricity production</rdfs:label>
         <rdfs:label xml:lang="pt">Produção de energia elétrica</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#ElectricityProductionCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -798,6 +1228,13 @@
         <rdfs:label xml:lang="en">Bioelectricity production for own consumption and export</rdfs:label>
         <rdfs:label xml:lang="pt">Produção de bioeletricidade para consumo próprio e exportação</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#EnergyAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#ElectricityProductionForOwnConsumptionAndExportCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">3.0</weight>
     </owl:Class>
     
@@ -819,6 +1256,13 @@
         <rdfs:label xml:lang="en">Emission control in accordance with resolutions CONAMA 382/2006 and 436/2011</rdfs:label>
         <rdfs:label xml:lang="pt">Controle de emissões de acordo com as resoluções CONAMA 382/2006 e 436/2011</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#AtmosphereAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">3.0</weight>
     </owl:Class>
     
@@ -830,6 +1274,13 @@
         <rdfs:label xml:lang="en">Employment formalization</rdfs:label>
         <rdfs:label xml:lang="pt">Formalização de emprego</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#JobsAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#EmploymentFormalizationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -851,6 +1302,13 @@
         <rdfs:label xml:lang="en">Employment of adequate irrigation to water use policy</rdfs:label>
         <rdfs:label xml:lang="pt">Emprego de irrigação adequado a política de uso da água</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#WaterAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -892,6 +1350,13 @@
         <rdfs:label xml:lang="en">Existence of training programs and training to workers</rdfs:label>
         <rdfs:label xml:lang="pt">Existência de programas de capacitação e treinamento ao trabalhador</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TrainingAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#ExistNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -903,6 +1368,13 @@
         <rdfs:label xml:lang="en">Fiber value</rdfs:label>
         <rdfs:label xml:lang="pt">Valor da fibra</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneQuality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#FiberValueCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -923,6 +1395,13 @@
         <rdfs:label xml:lang="en">Filtercake and ashes destination</rdfs:label>
         <rdfs:label xml:lang="pt">Destinação de torta de filtro e cinza</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#FiltercakeAndAshesDestinationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -943,6 +1422,13 @@
         <rdfs:label xml:lang="en">Fulfillment of labor laws in accordance with law #5.889/73 plus the law #11.718/2008 that deal with labor relations in the rural sector</rdfs:label>
         <rdfs:label xml:lang="pt">Cumprimento das leis trabalhistas de acordo com a Lei N°5.889/73* acrescida da Lei N° 11.718/2008* que tratam das relações de trabalho no setor rural.</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#RegulatoryAttendanceAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -964,6 +1450,13 @@
         <rdfs:label xml:lang="en">Government subsidy</rdfs:label>
         <rdfs:label xml:lang="pt">Subsídio do governo</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#PoliticalVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#GovernmentSubsidyCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -984,6 +1477,13 @@
         <rdfs:label xml:lang="en">Gradual replacement of diesel use by renewable fuel in the fleet</rdfs:label>
         <rdfs:label xml:lang="pt">Substituição gradativa do uso de diesel por combustível renovável na frota</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#EnergyAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1025,6 +1525,13 @@
         <rdfs:label xml:lang="en">Harvest type used (manual or mechanized)</rdfs:label>
         <rdfs:label xml:lang="pt">Tipo de colheta utilizada (manual ou mecanizada)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#HarvestAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#HarvestTypeUsedCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1033,8 +1540,8 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#HarvestTypeUsedCategory -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#HarvestTypeUsedCategory">
-        <rdfs:label xml:lang="en">Categoria de tipo de colheita utilizada (Manual ou Mecanizada)</rdfs:label>
         <rdfs:label xml:lang="en">Harvest type used category (Manual or Mechanized)</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria de tipo de colheita utilizada (Manual ou Mecanizada)</rdfs:label>
         <rdfs:subClassOf rdf:resource="&semanticUI;Categorical"/>
     </owl:Class>
     
@@ -1076,6 +1583,13 @@
         <rdfs:label xml:lang="en">Initiatives or actions that promote the local community well-being according to the standards of corporate social responsibility (CSR)</rdfs:label>
         <rdfs:label xml:lang="pt">Iniciativas ou ações que promovam o bem-estar da comunidade local de acordo com as normas de Responsabilidade Social Empresarial (RSE)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#RegulatoryAttendanceAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1097,6 +1611,13 @@
         <rdfs:label xml:lang="en">Investment relationship between machines versus sugarcane production and return on assets</rdfs:label>
         <rdfs:label xml:lang="pt">Relação entre investimento de máquinas versus produção de cana e retorno do imobilizado</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#CostAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#PositiveNegative"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1118,6 +1639,13 @@
         <rdfs:label xml:lang="en">Investments in new technologies and industrial processes which contribute a cleaner and sustainable production</rdfs:label>
         <rdfs:label xml:lang="pt">Investimentos em novas tecnologias e processos industriais que favoreçam uma produção mais limpa e sustentável</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#InvestmentsAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1129,6 +1657,13 @@
         <rdfs:label xml:lang="en">It own or grants for water catchment according to current regulations</rdfs:label>
         <rdfs:label xml:lang="pt">Possui ou outorga para captação de água segundo a norma vigente</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#WaterAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1170,6 +1705,13 @@
         <rdfs:label xml:lang="en">Logistics planning of the field sugarcane to the plant</rdfs:label>
         <rdfs:label xml:lang="pt">Planejamento logístico da cana do campo para a usina</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductivityAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1181,6 +1723,13 @@
         <rdfs:label xml:lang="en">Logistic proximity of the sugarcane planting area to the plant (up to 50 Km away)</rdfs:label>
         <rdfs:label xml:lang="pt">Proximidade logística da área de plantio da cana em relação a usina (até 50 Km de distância)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Logistic"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#LogisticsProximityCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1221,6 +1770,13 @@
         <rdfs:label xml:lang="en">Monitoring of sugarcane loading and unloading flow</rdfs:label>
         <rdfs:label xml:lang="pt">Monitoramento do fluxo de carregamento e descarregamento da cana-de-açucar</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Logistic"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#MonitoringOfFlowCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1231,6 +1787,13 @@
         <rdfs:label xml:lang="en">Natural recovery and induced areas (reforestation)</rdfs:label>
         <rdfs:label xml:lang="pt">Áreas em recuperação natural e induzida (reflorestamento)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#BiodiversityAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1252,6 +1815,13 @@
         <rdfs:label xml:lang="en">Plan to expand production via improved productivity</rdfs:label>
         <rdfs:label xml:lang="pt">Plano de expansão da produção via melhoria da produtividade</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductivityAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1263,6 +1833,13 @@
         <rdfs:label xml:lang="en">Plan to replacement of old boilers with more efficient boilers for cogeneration</rdfs:label>
         <rdfs:label xml:lang="pt">Plano de substituição das caldeiras antigas por caldeiras mais eficientes para cogeração de energia</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#EnergyAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1274,6 +1851,13 @@
         <rdfs:label xml:lang="en">Planning of harvest front (machinery)</rdfs:label>
         <rdfs:label xml:lang="pt">Planejamento da frente de colheita (maquinário)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Logistic"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#PlanningOfHarvestFrontCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1294,6 +1878,13 @@
         <rdfs:label xml:lang="en">Planning the production environment in accordance with pedological or edaphic aptitude</rdfs:label>
         <rdfs:label xml:lang="pt">Planejamento do ambiente de produção segundo aptidão pedológica ou edáfica</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SoilsAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1305,6 +1896,13 @@
         <rdfs:label xml:lang="en">Plantation plan according to the regional features (production environment)</rdfs:label>
         <rdfs:label xml:lang="pt">Plano de plantio de acordo com as caracteristícas regionais (ambiente de produção)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#PlantingAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1316,6 +1914,13 @@
         <rdfs:label xml:lang="en">Plantation type used</rdfs:label>
         <rdfs:label xml:lang="pt">Tipo de plantio utilizado</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#PlantingAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#PlantationTypeUsedCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1357,6 +1962,13 @@
         <rdfs:label xml:lang="en">Planting plan considering the precursor use of area</rdfs:label>
         <rdfs:label xml:lang="pt">Plano de plantio considerando o uso precursor da área</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SoilsAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#PlantingPlanConsideringThePrecursorUseOfAreaCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1396,7 +2008,7 @@
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#PositiveNegative">
         <rdfs:label xml:lang="en">Positive/Negative</rdfs:label>
-        <rdfs:label xml:lang="en">Positivo/Negativo</rdfs:label>
+        <rdfs:label xml:lang="pt">Positivo/Negativo</rdfs:label>
         <rdfs:subClassOf rdf:resource="&semanticUI;Boolean"/>
     </owl:Class>
     
@@ -1408,6 +2020,13 @@
         <rdfs:label xml:lang="en">Presence of innovations in the field</rdfs:label>
         <rdfs:label xml:lang="pt">Presença de inovações no campo</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#PresenceOfInnovationsInTheFieldCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1428,6 +2047,13 @@
         <rdfs:label xml:lang="en">Price equalization policy (tanking and off season)</rdfs:label>
         <rdfs:label xml:lang="pt">Política de equalização de preços (tancagem e entre safra)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#PriceEqualizationPolicyCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1448,6 +2074,13 @@
         <rdfs:label xml:lang="en">Price policies applied to the sector (agricultural harvest financing)</rdfs:label>
         <rdfs:label xml:lang="pt">Políticas de preço aplicadas ao setor (mínimo, financiamento de safra agrícola)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#MarketVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#PricePoliciesCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1468,6 +2101,13 @@
         <rdfs:label xml:lang="en">Producers or plants organization</rdfs:label>
         <rdfs:label xml:lang="pt">Organização de produtores ou de usinas</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProducersOrPlantsOrganizationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1488,6 +2128,13 @@
         <rdfs:label xml:lang="en">Production and reuse of water from sugarcane processing</rdfs:label>
         <rdfs:label xml:lang="pt">Produção e reutilização de água a partir do processamento da cana-de-açucar</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionAndReuseOfWaterFromSugarcaneProcessingCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1528,6 +2175,13 @@
         <rdfs:label xml:lang="en">Production evaluation (Ethanol / Sugar / Bioelectricity) based on market-decision and / or prices</rdfs:label>
         <rdfs:label xml:lang="pt">Avaliação da produção (etanol/açúcar/bioeletricidade) com base na decisão de mercado e/ou preços</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductivityAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1549,6 +2203,12 @@
         <rdfs:label xml:lang="en">Production unit</rdfs:label>
         <rdfs:label xml:lang="pt">Unidade produtiva</rdfs:label>
         <rdfs:subClassOf rdf:resource="&semanticUI;EvaluationObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasName"/>
+                <owl:someValuesFrom rdf:resource="&rdfs;Literal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1578,6 +2238,13 @@
         <rdfs:label xml:lang="en">Productivity of sugarcane per hectare</rdfs:label>
         <rdfs:label xml:lang="pt">Produtividade de cana-de-açucar por hectare</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductivityAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductivityOfSugarcanePerHectareCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1599,6 +2266,13 @@
         <rdfs:label xml:lang="en">Protection plan and conservation of remaining areas / protected (Permanent Protection Areas, Legal Reserve)</rdfs:label>
         <rdfs:label xml:lang="pt">Plano de proteção e conservação de áreas remanescentes/protegidas (Áreas de Proteção Permanente, Reserva Legal)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#BiodiversityAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1620,6 +2294,13 @@
         <rdfs:label xml:lang="en">Public policies for the sector</rdfs:label>
         <rdfs:label xml:lang="pt">Políticas públicas para o setor</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#PoliticalVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#PublicPoliciesCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1630,6 +2311,13 @@
         <rdfs:label xml:lang="en">Rational use of inputs</rdfs:label>
         <rdfs:label xml:lang="pt">Uso racional de insumos</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#PlantingAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1641,6 +2329,13 @@
         <rdfs:label xml:lang="en">Raw material diversification with improved inputs</rdfs:label>
         <rdfs:label xml:lang="pt">Diversificação da matéria prima com insumos melhorados</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#RawMaterialDiversificationWithImprovedInputsCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1661,6 +2356,13 @@
         <rdfs:label xml:lang="en">Reducing water consumption in sugarcane processing</rdfs:label>
         <rdfs:label xml:lang="pt">Redução do consumo de água no processamento da cana</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#WaterAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">3.0</weight>
     </owl:Class>
     
@@ -1672,6 +2374,13 @@
         <rdfs:label xml:lang="en">Reduction in water consumption</rdfs:label>
         <rdfs:label xml:lang="pt">Redução de consumo de água</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#ReductionInWaterConsumptionCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1692,6 +2401,13 @@
         <rdfs:label xml:lang="en">Reform and / or rotation crop for the next harvest</rdfs:label>
         <rdfs:label xml:lang="pt">Reforma e/ou rotação de cultura para a próxima safra.</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductivityAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1713,6 +2429,13 @@
         <rdfs:label xml:lang="en">Remuneration compatible with agreed minimum wage between union and plant</rdfs:label>
         <rdfs:label xml:lang="pt">Remuneração compatível com piso salarial acordado entre sindicato e usina</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#JobsAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1724,6 +2447,13 @@
         <rdfs:label xml:lang="en">Renewal of area with sugarcane using rotation with food crops</rdfs:label>
         <rdfs:label xml:lang="pt">Renovação da área com cana utilizando rotação com culturas alimentares</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#PlantingAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">3.0</weight>
     </owl:Class>
     
@@ -1735,6 +2465,13 @@
         <rdfs:label xml:lang="en">Reuse of straw coming from the harvest for ground cover</rdfs:label>
         <rdfs:label xml:lang="pt">Reutilização da palhada ou palhiço oriundo da colheita para cobertura do solo</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SoilsAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1756,6 +2493,13 @@
         <rdfs:label xml:lang="en">Sharing of risks between suppliers and production plant</rdfs:label>
         <rdfs:label xml:lang="pt">Compartilhamento dos riscos de produção entre fornecedores e usina</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductivityAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1797,6 +2541,13 @@
         <rdfs:label xml:lang="en">Sugarcane mechanization</rdfs:label>
         <rdfs:label xml:lang="pt">Mecanização da cana</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneMechanizationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1817,6 +2568,13 @@
         <rdfs:label xml:lang="en">Sugarcane planting</rdfs:label>
         <rdfs:label xml:lang="pt">Plantio de cana</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcanePlantingCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1861,12 +2619,29 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory">
+        <rdfs:label xml:lang="en">Sugarcane source category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria do origem da cana</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Categorical"/>
+    </owl:Class>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#SugarcaneTransportOptimizationForIndustry -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SugarcaneTransportOptimizationForIndustry">
         <rdfs:label xml:lang="en">Sugarcane transport optimization for industry</rdfs:label>
         <rdfs:label xml:lang="pt">Otimização do transporte da cana para a indústria</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#CostAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1888,6 +2663,13 @@
         <rdfs:label xml:lang="en">Sugarcane value in ATR</rdfs:label>
         <rdfs:label xml:lang="pt">Valor da cana em ATR</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneQuality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneValueCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1928,6 +2710,13 @@
         <rdfs:label xml:lang="en">ATR index (total recoverable sugar) per ton of sugarcane</rdfs:label>
         <rdfs:label xml:lang="pt">Índice de ATR (açúcares totais recuperáveis) por tonelada de cana-de-açucar</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductivityAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#TotalRecoverableSugarIndexCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1959,6 +2748,13 @@
         <rdfs:label xml:lang="en">Traffic control</rdfs:label>
         <rdfs:label xml:lang="pt">Controle de tráfego</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#HarvestAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1980,6 +2776,13 @@
         <rdfs:label xml:lang="en">Training routine in worker safety</rdfs:label>
         <rdfs:label xml:lang="pt">Rotina de treinamento em segurança do trabalhador</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SafetyAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#ExistNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -1998,9 +2801,16 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#UseOfAdequateTerracingToTheSoilSlopeAndHarvestMechanization -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#UseOfAdequateTerracingToTheSoilSlopeAndHarvestMechanization">
-        <rdfs:label xml:lang="en">use of terracing adequate to the soil slope and harvest mechanization</rdfs:label>
+        <rdfs:label xml:lang="en">Use of terracing adequate to the soil slope and harvest mechanization</rdfs:label>
         <rdfs:label xml:lang="pt">Uso de terraceamento adequado a declividade do solo e mecanização da colheita</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SoilsAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -2012,6 +2822,13 @@
         <rdfs:label xml:lang="en">Use of adequate variety to the climate and soil conditions</rdfs:label>
         <rdfs:label xml:lang="pt">Emprego de variedade adequada às condições de clima e solo</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#PlantingAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">3.0</weight>
     </owl:Class>
     
@@ -2023,6 +2840,13 @@
         <rdfs:label xml:lang="en">Use of burning in areas with higher slope of 12%</rdfs:label>
         <rdfs:label xml:lang="pt">Uso de queima em áreas com declive acima de 12%</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#HarvestAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -2034,6 +2858,13 @@
         <rdfs:label xml:lang="en">Use of burning in areas with lower slope of 12%</rdfs:label>
         <rdfs:label xml:lang="pt">Uso de queima em áreas com declive inferior a 12%</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#HarvestAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -2045,6 +2876,13 @@
         <rdfs:label xml:lang="en">Use of cake fIlter in the organic manure in area with sugarcane</rdfs:label>
         <rdfs:label xml:lang="pt">Uso de torta de filtro na adubação orgânica em área com cana (plantio, soca, reforma)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SoilsAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -2056,6 +2894,13 @@
         <rdfs:label xml:lang="en">Use of filter cake which partially replaced mineral fertilizer</rdfs:label>
         <rdfs:label xml:lang="pt">Uso de torta de filtro em substituição parcial a adubação mineral</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SubProductsAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -2067,6 +2912,13 @@
         <rdfs:label xml:lang="en">Use of more resistant strains to the ethanol concentration</rdfs:label>
         <rdfs:label xml:lang="pt">Utilização de cepas mais resistentes a concentração do etanol</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#UseOfMoreResistantStrainsToTheEthanolConcentrationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2087,6 +2939,13 @@
         <rdfs:label xml:lang="en">Use of techniques for biological pest control</rdfs:label>
         <rdfs:label xml:lang="pt">Emprego de técnicas para controle biológico de pragas</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#GeneralAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#UseOfTechniquesForBiologicalPestControlCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -2108,6 +2967,13 @@
         <rdfs:label xml:lang="en">Use of techniques of green manure</rdfs:label>
         <rdfs:label xml:lang="pt">Emprego de técnicas de adubação verde</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SoilsAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -2119,6 +2985,13 @@
         <rdfs:label xml:lang="en">Use of vinasse to fertigation (which partially replaced mineral fertilizer)</rdfs:label>
         <rdfs:label xml:lang="pt">Uso da vinhaça para fertirrigação (em substituição parcial a adubação mineral)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SubProductsAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#UseOfVinasseToFertigationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -2140,6 +3013,13 @@
         <rdfs:label xml:lang="en">Former use of the area (soil)</rdfs:label>
         <rdfs:label xml:lang="pt">Uso precursor da área (solo)</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#PoliticalVariable"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#UsePrecursorOfTheAreaCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2154,12 +3034,49 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#UserEconomicAttribute -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#UserEconomicAttribute">
+        <rdfs:label xml:lang="en">Atributo econômico de usuário</rdfs:label>
+        <rdfs:label xml:lang="en">User economic attribute</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#EconomicIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#UserEnvironmentalAttribute -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#UserEnvironmentalAttribute">
+        <rdfs:label xml:lang="en">User environmental attribute</rdfs:label>
+        <rdfs:label xml:lang="pt">Atributo ambiental de usuário</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#EnvironmentalIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#UserSocialAttribute -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#UserSocialAttribute">
+        <rdfs:label xml:lang="en">User social attribute</rdfs:label>
+        <rdfs:label xml:lang="pt">Atributo social de usuário</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SocialIndicator"/>
+    </owl:Class>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#UsesOrInvestestInMoreResistantYeast -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#UsesOrInvestestInMoreResistantYeast">
         <rdfs:label xml:lang="en">Uses or invests in more resistant yeast for better efficiency in ethanol production</rdfs:label>
         <rdfs:label xml:lang="pt">Utiliza ou investe em leveduras mais resistentes para melhor eficiência na produção de etanol</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#IndustrialUnityAttribute"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#YesNo"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:Class>
     
@@ -2171,6 +3088,13 @@
         <rdfs:label xml:lang="en">Varieties</rdfs:label>
         <rdfs:label xml:lang="pt">Variedades</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#VarietiesCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2201,6 +3125,13 @@
         <rdfs:label xml:lang="en">Vinasse concentration</rdfs:label>
         <rdfs:label xml:lang="pt">Concentração da vinhaça</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#VinasseConcentrationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2221,6 +3152,13 @@
         <rdfs:label xml:lang="en">Vinasse destination</rdfs:label>
         <rdfs:label xml:lang="pt">Destinação da vinhaca</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#VinasseDestinationCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2241,6 +3179,13 @@
         <rdfs:label xml:lang="en">Vinasse use</rdfs:label>
         <rdfs:label xml:lang="pt">Uso da vinhaça</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:onClass rdf:resource="http://semantic.icmc.usp.br/sustenagro#VinasseUseCategory"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2352,20 +3297,6 @@
         <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#VarietiesCategory"/>
         <rdfs:label xml:lang="en">Adapted varieties</rdfs:label>
         <rdfs:label xml:lang="pt">Variedades adaptadas</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://semantic.icmc.usp.br/sustenagro#AdequateDestinationOfVinasse -->
-
-    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#AdequateDestinationOfVinasse"/>
-    
-
-
-    <!-- http://semantic.icmc.usp.br/sustenagro#AdequateDestinationOfVinasseWeigth -->
-
-    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#AdequateDestinationOfVinasseWeigth">
-        <weight rdf:datatype="&xsd;double">2.0</weight>
     </owl:NamedIndividual>
     
 
@@ -2902,17 +3833,6 @@
     
 
 
-    <!-- http://semantic.icmc.usp.br/sustenagro#HighAgriculturalEfficiency -->
-
-    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#HighAgriculturalEfficiency">
-        <rdfs:label xml:lang="en">High Agricultural Efficiency</rdfs:label>
-        <rdfs:label xml:lang="pt">Alta Eficiência Agrícola</rdfs:label>
-        <terms:description xml:lang="en">Planting and harvesting mechanization</terms:description>
-        <terms:description xml:lang="pt">Mecanização do plantio e colheita</terms:description>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://semantic.icmc.usp.br/sustenagro#HighEfficiency -->
 
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#HighEfficiency">
@@ -3066,6 +3986,7 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#LeaseOrigin -->
 
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#LeaseOrigin">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
         <rdfs:label xml:lang="en">Lease origin</rdfs:label>
         <rdfs:label xml:lang="pt">Origem do arrendamento</rdfs:label>
     </owl:NamedIndividual>
@@ -3088,17 +4009,6 @@
         <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#IntensityCategory"/>
         <rdfs:label xml:lang="en">Low</rdfs:label>
         <rdfs:label xml:lang="pt">Baixa</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://semantic.icmc.usp.br/sustenagro#LowAgriculturalEfficiency -->
-
-    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#LowAgriculturalEfficiency">
-        <rdfs:label xml:lang="en">Low Agricultural Efficiecy</rdfs:label>
-        <rdfs:label xml:lang="pt">Baixa Eficiência Agrícola</rdfs:label>
-        <terms:description xml:lang="en">Semi mechanized planting</terms:description>
-        <terms:description xml:lang="pt">Semimecanização do plantio</terms:description>
     </owl:NamedIndividual>
     
 
@@ -3263,17 +4173,6 @@
     
 
 
-    <!-- http://semantic.icmc.usp.br/sustenagro#MediumAgriculturalEfficiency -->
-
-    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#MediumAgriculturalEfficiency">
-        <rdfs:label xml:lang="en">Medium Agricultural Efficiency</rdfs:label>
-        <rdfs:label xml:lang="pt">Eficiência Agrícola Média</rdfs:label>
-        <terms:description xml:lang="en">Mechanization of planting but not harvest</terms:description>
-        <terms:description xml:lang="pt">Mecanização do plantio mas não da colheita</terms:description>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://semantic.icmc.usp.br/sustenagro#MediumEfficiency -->
 
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#MediumEfficiency">
@@ -3388,6 +4287,7 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#OneAndHalfYear -->
 
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#OneAndHalfYear">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#CanavialLongevityCategory"/>
         <rdfs:label xml:lang="en">One and half year</rdfs:label>
         <rdfs:label xml:lang="pt">Cana de um ano e meio</rdfs:label>
     </owl:NamedIndividual>
@@ -3397,6 +4297,7 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#OneYear -->
 
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#OneYear">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#CanavialLongevityCategory"/>
         <rdfs:label xml:lang="en">One year</rdfs:label>
         <rdfs:label xml:lang="pt">Um ano</rdfs:label>
     </owl:NamedIndividual>
@@ -3416,6 +4317,7 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#OwnOrigin -->
 
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#OwnOrigin">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
         <rdfs:label xml:lang="en">Own origin</rdfs:label>
         <rdfs:label xml:lang="pt">Origem própria</rdfs:label>
     </owl:NamedIndividual>
@@ -3663,10 +4565,12 @@
     
 
 
-    <!-- http://semantic.icmc.usp.br/sustenagro#StandardAerialSprayingWeigth -->
+    <!-- http://semantic.icmc.usp.br/sustenagro#SugarcaneProductionSystem -->
 
-    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#StandardAerialSprayingWeigth">
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#SugarcaneProductionSystem">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory"/>
+        <rdfs:label xml:lang="en">Sugarcane production system</rdfs:label>
+        <rdfs:label xml:lang="pt">Sistema de produção de cana-de-açucar</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3694,6 +4598,7 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#SupplierOrigin -->
 
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#SupplierOrigin">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
         <rdfs:label xml:lang="en">Supplier origin</rdfs:label>
         <rdfs:label xml:lang="pt">Origem do fornecedor</rdfs:label>
     </owl:NamedIndividual>
@@ -3841,14 +4746,6 @@
     
 
 
-    <!-- http://semantic.icmc.usp.br/sustenagro#UseOfTechniquesForBiologicalPestControlWeight -->
-
-    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#UseOfTechniquesForBiologicalPestControlWeight">
-        <weight rdf:datatype="&xsd;double">2.0</weight>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://semantic.icmc.usp.br/sustenagro#UseOrSaleOfBagasse -->
 
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#UseOrSaleOfBagasse">
@@ -3982,6 +4879,7 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#private -->
 
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#private">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
         <rdfs:label xml:lang="en">Private</rdfs:label>
         <rdfs:label xml:lang="pt">Privado</rdfs:label>
     </owl:NamedIndividual>
@@ -4001,6 +4899,7 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#public -->
 
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#public">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
         <rdfs:label xml:lang="en">Public</rdfs:label>
         <rdfs:label xml:lang="pt">Público</rdfs:label>
     </owl:NamedIndividual>
@@ -4065,10 +4964,9 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#AdequateDestinationOfVinasse">
-        <rdfs:label xml:lang="en">Adequate destination of vinasse</rdfs:label>
-        <rdfs:label xml:lang="pt">Adequada destinação da vinhaça</rdfs:label>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+    <rdf:Description rdf:about="&dc;date">
+        <rdfs:label xml:lang="en">date</rdfs:label>
+        <rdfs:label xml:lang="pt">data</rdfs:label>
     </rdf:Description>
 </rdf:RDF>
 
