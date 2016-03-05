@@ -71,9 +71,6 @@ class ToolController {
     }
 
     def assessment() {
-        def indicators = [:]
-        def indCategories = [:]
-        def indSubClass = [:]
         def features = [:]
         def feaCategories = [:]
         def feaSubClass = [:]
@@ -81,36 +78,29 @@ class ToolController {
         def tecCategories = [:]
         def tecSubClass = [:]
 
-        def tecAlignment
-        def tecOptimization
         def technologyTypes
 
         dsl.dimensions.each{
-            indicators[it] = k[it].getGrandchildren('?id ?label ?subClass ?subClassLabel ?category ?valueType ?weight')
-            indSubClass[it] = indicators[it].subClassMap('?subClassLabel')
-            indCategories += indicators[it].categoryList()
-        }
-
-        indCategories.each{ key, v ->
-            k[key].getIndividualsIdLabel().each{
-                v.push(it)
-            }
+            features[it] = k[it].getGrandchildren('?id ?label ?subClass ?subClassLabel ?category ?valueType ?weight')
+            feaSubClass[it] = features[it].subClassMap('?subClassLabel')
+            feaCategories += features[it].categoryList()
         }
 
         dsl.featureMap.each{
-            features[it.key] = k[it.key].getGrandchildren('?id ?label ?subClass ?subClassLabel ?category ?valueType')
-            feaSubClass[it.key] = features[it.key].subClassMap('?subClassLabel')
-            feaCategories += features[it.key].categoryList()
+            features[it.key] = [:]
+            features[it.key]['subClass'] = [:]
+            //features[it.key] = k[it.key].getGrandchildren('?id ?label ?subClass ?subClassLabel ?category ?valueType')
+            //feaSubClass[it.key] = features[it.key].subClassMap('?subClassLabel')
+            //feaCategories += features[it.key].categoryList()
         }
 
-        feaCategories.each{ key, v ->
-            k[key].getIndividualsIdLabel().each{
-                v.push(it)
-            }
-        }
+        feaCategories[k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
+        feaCategories[k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
 
         def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
         technologyTypes = fea.evalObject(k.toURI([params.id]))
+
+        //features[k.toURI(':TechnologicalEfficiencyFeature'] =
 
         technologyTypes.each{ type ->
             def childen = k[type].getChildren('?id ?label ?category ?valueType')
@@ -125,37 +115,59 @@ class ToolController {
             }
         }
 
-        tecAlignment = k[':ProductionEnvironmentAlignmentCategory'].getIndividualsIdLabel()
-        tecOptimization = k[':SugarcaneProcessingOptimizationCategory'].getIndividualsIdLabel()
+        feaCategories.each{ key, v ->
+            k[key].getIndividualsIdLabel().each{
+                v.push(it)
+            }
+        }
 
-
-        println "Indicators"
-        println indicators
-
-        println "IndCategories"
-        println indCategories
-
-        println "IndSubClass"
-        println indSubClass
-/*
         println "features"
-        println features
+        features.each{ feature ->
+            println feature.key
+            feature.value.each{
+                println "\t "+it
+            }
+        }
 
-        println "feaCategories"
-        println feaCategories
+        println "Categories"
+        feaCategories.each{ category ->
+            println category.key
+            category.value.each{
+                println "\t "+it
+            }
+        }
 
-        println "feaSubClass"
-        println feaSubClass
- */
+        println "SubClass"
+        feaSubClass.each{ subClass ->
+            println subClass.key
+            subClass.value.each{
+                println "\t "+it
+            }
+        }
+
         println "technologyFeatures"
-        println technologyFeatures
+        technologyFeatures.each{ feature ->
+            println feature.key
+            feature.value.each{
+                println "\t "+it
+            }
+        }
 
         println "tecCategories"
-        println tecCategories
+        tecCategories.each{ category ->
+            println category.key
+            category.value.each{
+                println "\t "+it
+            }
+        }
 
         println "tecSubClass"
-        println tecSubClass
-
+        tecSubClass.each{ subClass ->
+            println subClass.key
+            subClass.value.each{
+                println "\t "+it
+            }
+        }
 
         def assessmentID = params.assessment
         def name = k[':'+params.id].label
@@ -192,8 +204,7 @@ class ToolController {
             //file.write(page.toString())
         }
         */
-        println tecAlignment
-        println tecOptimization
+
 
         println params.id
         println name
@@ -201,10 +212,6 @@ class ToolController {
 
         render(view: 'assessment',
                model: [evaluationObject: [id: params.id, name: name],
-                       indicators: indicators,
-                       indSubClass: indSubClass,
-                       indCategories: indCategories,
-
                        features: features,
                        feaSubClass: feaSubClass,
                        feaCategories: feaCategories,
@@ -212,9 +219,6 @@ class ToolController {
                        technologyFeatures: technologyFeatures,
                        tecSubClass: tecSubClass,
                        tecCategories: tecCategories,
-
-                       tecAlignment: tecAlignment,
-                       tecOptimization: tecOptimization,
 
                        values: values,
                        weights: weights,

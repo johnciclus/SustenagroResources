@@ -28,9 +28,10 @@
                                                                   values: values,
                                                                   hasWeights: true,
                                                                   weights: weights,
-                                                                  tecAlignment: tecAlignment,
-                                                                  tecOptimization: tecOptimization ]}" />
+                                                                  userWeight: feaCategories['http://semantic.icmc.usp.br/sustenagro#ProductionEnvironmentAlignmentCategory'],
+                                                                  userWeightLabel: 'alignment']}" />
         </g:if>
+
         <g:if test="${tecSubClass['http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial']}">
             <g:render template="/widgets/indicatorList" model="${[subClasses: tecSubClass['http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'],
                                                                   indsInSubClasses: technologyFeatures['http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'],
@@ -38,8 +39,8 @@
                                                                   values: values,
                                                                   hasWeights: true,
                                                                   weights: weights,
-                                                                  tecAlignment: tecAlignment,
-                                                                  tecOptimization: tecOptimization ]}" />
+                                                                  userWeight: feaCategories['http://semantic.icmc.usp.br/sustenagro#SugarcaneProcessingOptimizationCategory'],
+                                                                  userWeightLabel: 'optimization']}" />
         </g:if>
         <div>
             <nav>

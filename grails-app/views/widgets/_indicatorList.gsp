@@ -1,4 +1,4 @@
-<g:if test="${hasWeights}">
+<g:if test="${userWeight}">
     <g:set var="firstColWidth" value="4" />
 </g:if>
 <g:else>
@@ -27,30 +27,18 @@
                             <input type="text" class="form-control" name="${indicator.id}" value="${values[indicator.id]}">
                         </g:elseif>
                     </div>
-                    <g:if test="${hasWeights}">
-                    <div class="col-sm-2">
-                        <g:set var="hasWeight" value="${weights[indicator.id] != null}" />
-                        <g:if test="${subClass.key == 'http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField'}">
-                            <select id="<%= indicator.id %>-alignment" name="<%= indicator.id %>-alignment" class="form-control clear">
+                    <g:if test="${userWeight}">
+                        <div class="col-sm-2">
+                            <g:set var="hasWeight" value="${weights[indicator.id] != null}" />
+                            <select id="<%= indicator.id %>-<%=userWeightLabel%>>" name="<%= indicator.id %>-<%=userWeightLabel%>" class="form-control clear">
                                 <g:if test="${hasWeight == false}">
                                     <option selected disabled hidden value=''></option>
                                 </g:if>
-                                <g:each in="${tecAlignment}">
+                                <g:each in="${userWeight}">
                                     <option value="${it.id}" <g:if test="${hasWeight && weights[indicator.id] == it.id}"> selected </g:if>>${it.label}</option>
                                 </g:each>
                             </select>
-                        </g:if>
-                        <g:elseif test="${subClass.key == 'http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'}">
-                            <select id="<%= indicator.id %>-optimization" name="<%= indicator.id %>-optimization" class="form-control clear">
-                                <g:if test="${hasWeight == false}">
-                                    <option selected disabled hidden value=''></option>
-                                </g:if>
-                                <g:each in="${tecOptimization}">
-                                    <option value="${it.id}" <g:if test="${hasWeight && weights[indicator.id] == it.id}"> selected </g:if>>${it.label}</option>
-                                </g:each>
-                            </select>
-                        </g:elseif>
-                    </div>
+                        </div>
                     </g:if>
                     <div class="col-sm-1">
                         <button id="<%= indicator.id %>-clear" type="button" class="btn btn-default btn-sm clear"><span class="glyphicon glyphicon-trash"></span></button>
