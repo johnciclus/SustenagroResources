@@ -127,12 +127,34 @@ class Node {
         //k.select('?superClass').query("<$URI> rdfs:subClassOf ?superClass. FILTER(?superClass != <$URI>)")
     }
 
-    def getSubClass(){
-        def res = k.select('?subClass').query("?subClass rdfs:subClassOf <$URI>. FILTER(?subClass != <$URI>)")
+    def getSubClass(String args='', Map params = [:]){
+        def argsList = args.tokenize(' ?')
+        def query = ''
+        def result
+
+        argsList.each{
+            if(argsList.contains('label'))
+                query += "?subClass rdfs:label ?label."
+        }
+
+        query += "?subClass rdfs:subClassOf <$URI>." +
+                "?subSubClass rdfs:subClassOf ?subClass."+
+                "FILTER(?subClass != <$URI> && ?subClass != ?subSubClass)"
+
+        def arg = ''
+
+        if(argsList.size()>0){
+            arg = "?" + ['label', 'subClass'].join(" ?");
+            //println arg;
+        }
+
+        result = k.select('distinct ?subClass '+arg).query(query)
+
+        println query
 
         def prefixes = k.getPrefixesMap()
 
-        res.metaClass.shortURI = {
+        /*res.metaClass.shortURI = {
             def uris = delegate.collect {
                 if(it.subClass instanceof String){
                     prefixes.each{ key, value ->
@@ -150,7 +172,9 @@ class Node {
         if(res.size()==1)
             return res[0].subClass
         else
-            return res
+            return res*/
+
+        result
     }
 
     def getGrandchildren(String args){

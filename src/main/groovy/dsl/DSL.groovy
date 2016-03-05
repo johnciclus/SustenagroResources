@@ -13,7 +13,7 @@ class DSL {
     def viewsMap = [:]
     def evaluationObjectMap = [:]
     def featureMap = [:]
-    def dimensions = []
+    def dimensionsMap = [:]
 
     def report = []
     Closure program
@@ -63,7 +63,7 @@ class DSL {
     }
 
     def reLoad(String code){
-        dimensions = []
+        dimensionsMap = [:]
         report = []
 
         viewsMap = [:]
@@ -157,10 +157,14 @@ class DSL {
         viewsMap['tool']['index'].push(['widget': 'createUnity', 'request': requestLst, 'args': args])
     }
 
-    def dimension(String arg, Closure closure = {}) {
+    def dimension(String id, Closure closure = {}) {
+        String uri = k.toURI(id)
+        def feature = new Feature(uri, _ctx)
+        closure.resolveStrategy = Closure.DELEGATE_FIRST
+        closure.delegate = feature
         closure()
 
-        dimensions << k.toURI(arg)
+        dimensionsMap[uri] = feature
     }
 
     def productionFeature(String id, Closure closure = {}){

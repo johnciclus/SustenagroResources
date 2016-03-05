@@ -4,13 +4,6 @@ package utils
  * Created by john on 20/07/15.
  */
 class Uri {
-    def static removeDomain(String uri, String dom){
-        return uri[dom.length() - uri.length() .. -1]
-    }
-
-    def static addDomain(String uri, String dom){
-        return dom + uri
-    }
 
     def static simpleDomain(ArrayList list, String dom, String prefix=":"){
         list.each{ el ->
@@ -29,6 +22,22 @@ class Uri {
             }
         }
         return list
+    }
+
+    def static printTree(Object object, int level=-1){
+        if(object.getClass() == LinkedHashMap){
+            level++
+            object.each{
+                print "\t"*level + it.key + " : "
+                if(it.value.getClass() != LinkedHashMap) {
+                    println it.value
+                }
+                else{
+                    println ""
+                    printTree(it.value, level)
+                }
+            }
+        }
     }
 
 }

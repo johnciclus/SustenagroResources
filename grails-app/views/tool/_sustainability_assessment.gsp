@@ -6,10 +6,9 @@
 
 <div id="indicator_content" class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="environmental_indicators">
-        <g:render template="/widgets/indicatorList" model="${['subClasses': feaSubClass['http://semantic.icmc.usp.br/sustenagro#EnvironmentalIndicator'],
-                                                              'indsInSubClasses': features['http://semantic.icmc.usp.br/sustenagro#EnvironmentalIndicator'],
+        <g:render template="/widgets/indicatorList" model="${['subClasses': features['http://semantic.icmc.usp.br/sustenagro#EnvironmentalIndicator'].subClass,
                                                               'values': values,
-                                                              'categories': feaCategories]}" />
+                                                              'categories': categories]}" />
         <div>
             <nav>
                 <ul class="pager">
@@ -20,10 +19,9 @@
     </div>
 
     <div role="tabpanel" class="tab-pane" id="economic_indicators">
-        <g:render template="/widgets/indicatorList" model="${['subClasses': feaSubClass['http://semantic.icmc.usp.br/sustenagro#EconomicIndicator'],
-                                                              'indsInSubClasses': features['http://semantic.icmc.usp.br/sustenagro#EconomicIndicator'],
+        <g:render template="/widgets/indicatorList" model="${['subClasses': features['http://semantic.icmc.usp.br/sustenagro#EconomicIndicator'].subClass,
                                                               'values': values,
-                                                              'categories': feaCategories]}" />
+                                                              'categories': categories]}" />
         <div>
             <nav>
                 <ul class="pager">
@@ -35,10 +33,9 @@
     </div>
 
     <div role="tabpanel" class="tab-pane" id="social_indicators">
-        <g:render template="/widgets/indicatorList" model="${['subClasses': feaSubClass['http://semantic.icmc.usp.br/sustenagro#SocialIndicator'],
-                                                              'indsInSubClasses': features['http://semantic.icmc.usp.br/sustenagro#SocialIndicator'],
+        <g:render template="/widgets/indicatorList" model="${['subClasses': features['http://semantic.icmc.usp.br/sustenagro#SocialIndicator'].subClass,
                                                               'values': values,
-                                                              'categories': feaCategories]}" />
+                                                              'categories': categories]}" />
         <div>
             <nav>
                 <ul class="pager">
