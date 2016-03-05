@@ -11,8 +11,10 @@ import org.springframework.context.ApplicationContext
 
 class DSL {
     def viewsMap = [:]
-    def unityMap = [:]
+    def evaluationObjectMap = [:]
+    def featureMap = [:]
     def dimensions = []
+
     def report = []
     Closure program
     def data
@@ -115,15 +117,15 @@ class DSL {
         //println new PegDownProcessor().markdownToHtml(description)
     }
 
-    def unity(String id, Closure closure){
+    def evaluationObject(String id, Closure closure){
         String uri = k.toURI(id)
-        def unity = new Unity(uri, _ctx)
+        def object = new EvaluationObject(uri, _ctx)
 
         closure.resolveStrategy = Closure.DELEGATE_FIRST
-        closure.delegate = unity
+        closure.delegate = object
         closure()
 
-        unityMap[uri] = unity
+        evaluationObjectMap[uri] = object
     }
 
     def selectUnity(Map args = [:], String id){
@@ -132,8 +134,8 @@ class DSL {
         def shortId = k.shortURI(uri)
         args['unity']= uri
 
-        println uri
-        println shortId
+        //println uri
+        //println shortId
 
         viewsMap['tool']['index'].push(['widget': 'selectUnity', 'request': request, args: args])
     }
@@ -145,7 +147,7 @@ class DSL {
         args['widgets']       = [:]
         args['unity']         = uri
 
-        unityMap[uri].features.each{
+        evaluationObjectMap[uri].features.each{
             if(it.request) {
                 requestLst['widgets'][it.id] = it.request
             }
@@ -154,6 +156,24 @@ class DSL {
 
         viewsMap['tool']['index'].push(['widget': 'createUnity', 'request': requestLst, 'args': args])
     }
+
+    def dimension(String arg, Closure closure = {}) {
+        closure()
+
+        dimensions << k.toURI(arg)
+    }
+
+    def productionFeature(String id, Closure closure = {}){
+        String uri = k.toURI(id)
+        def feature = new Feature(uri, _ctx)
+
+        closure.resolveStrategy = Closure.DELEGATE_FIRST
+        closure.delegate = feature
+        closure()
+
+        featureMap[uri] = feature
+    }
+
 
 //    def recommendation(Map map, String txt){
 //        recommendations << [map['if'],txt]
@@ -207,9 +227,7 @@ class DSL {
         report << ['map', url]
     }
 
-    def dimension(String cls) {
-        dimensions << k.toURI(cls)
-    }
+
 
     def prog(Closure c){
         program = c

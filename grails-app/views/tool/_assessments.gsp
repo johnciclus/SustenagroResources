@@ -1,6 +1,6 @@
 <h5 class="text-primary">Selecionar avaliação</h5>
 <form id="select_assessment" action="/tool/selectAssessment" method="post" class="form-horizontal" >
-    <input type="hidden" name="production_unit_id" value="http://bio.icmc.usp.br/sustenagro#${production_unit_id}">
+    <input type="hidden" name="production_unit_id" value="http://bio.icmc.usp.br/sustenagro#${production_unit}">
     <div class="form-group">
         <label for="assessment" class="col-sm-4 control-label">Avaliações</label>
         <div class="col-sm-8">

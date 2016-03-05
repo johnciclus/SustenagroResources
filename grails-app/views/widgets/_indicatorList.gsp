@@ -7,14 +7,14 @@
 
 <g:each var="subClass" in="${subClasses}">
     <fieldset>
-        <legend><h5>${subClass.value.label}</h5></legend>
+        <legend><h5>${subClass.value.subClassLabel}</h5></legend>
         <g:each var="indicator" in="${indsInSubClasses}">
             <g:if test="${subClass.key == indicator.subClass}">
                 <div class="form-group">
                     <label for="<%= indicator.id %>" class="col-sm-${firstColWidth} control-label">${indicator.label}</label>
                     <g:set var="hasValue" value="${values[indicator.id] != null}" />
                     <div class="col-sm-5">
-                        <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Categorical'}">
+                        <g:if test="${indicator.valueType =='http://bio.icmc.usp.br/sustenagro#Boolean' || indicator.valueType =='http://purl.org/biodiv/semanticUI#Categorical'}">
                             <g:each var="category" in="${categories[indicator.category]}">
                                 <div class="radio">
                                     <label>
@@ -30,7 +30,7 @@
                     <g:if test="${hasWeights}">
                     <div class="col-sm-2">
                         <g:set var="hasWeight" value="${weights[indicator.id] != null}" />
-                        <g:if test="${subClass.key == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField'}">
+                        <g:if test="${subClass.key == 'http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField'}">
                             <select id="<%= indicator.id %>-alignment" name="<%= indicator.id %>-alignment" class="form-control clear">
                                 <g:if test="${hasWeight == false}">
                                     <option selected disabled hidden value=''></option>
@@ -40,7 +40,7 @@
                                 </g:each>
                             </select>
                         </g:if>
-                        <g:elseif test="${subClass.key == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'}">
+                        <g:elseif test="${subClass.key == 'http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'}">
                             <select id="<%= indicator.id %>-optimization" name="<%= indicator.id %>-optimization" class="form-control clear">
                                 <g:if test="${hasWeight == false}">
                                     <option selected disabled hidden value=''></option>

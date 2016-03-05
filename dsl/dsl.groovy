@@ -27,7 +27,7 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // Se a fazenda ficar em mais de uma micro-região?
 
 // Caracterização dos sistemas produtivos no Centro-Sul 
-unity(':ProductionUnit') {
+evaluationObject(':ProductionUnit') {
     //feature or instance
 
     // Production unit name
@@ -50,11 +50,19 @@ unity(':ProductionUnit') {
     // feature 'MicroRegion', 'rdf:type', 'label': "Microrregião da unidade produtiva"
     instance ':hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
 
-    // Municípios envolvidos (localização da sede)
-
     // Data de fundação da unidade produção
     // instance ':EstablishmentDate',  'label': "Data de fundação da unidade produção"
     feature ':hasEstablishmentDate', label: "Data de fundação da unidade produção"
+
+    // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
+    // instance ':PartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)"
+    feature ':hasPartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)", widget: 'text', placeholder: "Descrição"
+
+    //Ligação com outros grupos empresariais ou de investimentos
+    // instance ':LinkWithOtherBusinessOrInvestmentGroups', 'label': "Ligação com outros grupos empresariais ou de investimentos"
+    feature ':hasLinkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos", placeholder: "Descrição"
+
+    // Municípios envolvidos (localização da sede)
 
     // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
     // instance ':hasInnovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
@@ -75,14 +83,6 @@ unity(':ProductionUnit') {
     // Valor total previsto para investimento para escoamento da produção
     // instance ':TotalValuePlaneedForInvestmentToProductionDrainage', 'label': "Valor total previsto para investimento para escoamento da produção"
     feature ':hasTotalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
-
-    // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
-    // instance ':PartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)"
-    feature ':hasPartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)", widget: 'text', placeholder: "Descrição"
-
-    //Ligação com outros grupos empresariais ou de investimentos
-    // instance ':LinkWithOtherBusinessOrInvestmentGroups', 'label': "Ligação com outros grupos empresariais ou de investimentos"
-    feature ':hasLinkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos", placeholder: "Descrição"
 
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
 
@@ -129,6 +129,17 @@ dimension ':EnvironmentalIndicator'
 dimension ':EconomicIndicator'
 
 dimension ':SocialIndicator'
+
+productionFeature ':ProductionEfficiencyFeature'
+
+productionFeature ':TechnologicalEfficiencyFeature', {
+    conditional ":ProductionUnit", 'http://dbpedia.org/ontology/Provider', {
+        include ':TechnologicalEfficiencyInTheField'
+    }
+    conditional ":ProductionUnit", 'http://dbpedia.org/resource/PhysicalPlant', {
+        include ':TechnologicalEfficiencyInTheIndustrial'
+    }
+}
 
 data 'assessment'
 /*

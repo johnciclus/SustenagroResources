@@ -9,7 +9,7 @@
 <body>
 <div class="row main">
     <div id="content" class="col-sm-10 col-sm-offset-1 content">
-        <p>Unidade produtiva atual: <b>${production_unit.name}</b></p>
+        <p>Unidade produtiva atual: <b>${evaluationObject.name}</b></p>
 
         <ul id="assessment_tab" class="nav nav-tabs">
             <li role="presentation" <g:if test="${report == null}"> class="active" </g:if>> <a href="#sustainability_assessment" aria-controls="sustainability_assessment" role="tab" data-toggle="tab">Avaliação da sustentabilidade</a></li>
@@ -20,7 +20,7 @@
             </g:if>
         </ul>
         <form id="assessment_form" action="/tool/report" method="post" class="form-horizontal">
-            <input type="hidden" name="production_unit_id" value="${production_unit.id}">
+            <input type="hidden" name="production_unit_id" value="${evaluationObject.id}">
             <div id="assessment_content" class="tab-content">
                 <div role="tabpanel" class="tab-pane ind-content <g:if test='${report == null}'>active</g:if>"  id="sustainability_assessment">
                     <g:render template="sustainability_assessment"></g:render>

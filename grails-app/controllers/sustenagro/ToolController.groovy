@@ -38,11 +38,11 @@ class ToolController {
             def node = new Node(k, '')
             def unityFeatures = [:]
 
-            def features = dsl.unityMap[k.shortToURI(params['unity'])].model
+            def features = dsl.evaluationObjectMap[k.shortToURI(params['unity'])].model
 
             features.each{ feature ->
                 if(params[feature.id] && feature.id != type){
-                    unityFeatures[feature.id] = [value: params[feature.id], dataType: feature.dataType]
+                    unityFeatures[k.shortToURI(feature.id)] = [value: params[feature.id], dataType: feature.dataType]
                 }
             }
 
@@ -74,98 +74,97 @@ class ToolController {
         def indicators = [:]
         def indCategories = [:]
         def indSubClass = [:]
-        def productionFeatures
-        def proCategories
-        def proSubClass
-        def technologyFeatures
-        def tecCategories
-        def tecSubClass
+        def features = [:]
+        def feaCategories = [:]
+        def feaSubClass = [:]
+        def technologyFeatures = [:]
+        def tecCategories = [:]
+        def tecSubClass = [:]
+
         def tecAlignment
         def tecOptimization
         def technologyTypes
 
-        println dsl.dimensions
-
         dsl.dimensions.each{
-            println it
-            indicators[it] = k[it].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
-            indCategories += propertyToList(indicators[it], 'category')
-            indSubClass[it] = propertyToMap(indicators[it], 'subClass')
+            indicators[it] = k[it].getGrandchildren('?id ?label ?subClass ?subClassLabel ?category ?valueType ?weight')
+            indSubClass[it] = indicators[it].subClassMap('?subClassLabel')
+            indCategories += indicators[it].categoryList()
         }
 
-        println indicators
-        //here
         indCategories.each{ key, v ->
-            k[key].getInstances().each{
+            k[key].getIndividualsIdLabel().each{
                 v.push(it)
             }
         }
 
-        indSubClass.each{ dimension, map ->
-            map.each{ key, v ->
-                v['label'] = k[key].label
-            }
-            indSubClass[dimension] = map.sort{ it.value.label.toLowerCase() }
+        dsl.featureMap.each{
+            features[it.key] = k[it.key].getGrandchildren('?id ?label ?subClass ?subClassLabel ?category ?valueType')
+            feaSubClass[it.key] = features[it.key].subClassMap('?subClassLabel')
+            feaCategories += features[it.key].categoryList()
         }
 
-        productionFeatures = k[':ProductionEfficiencyFeature'].getGrandchildren('?id ?label ?subClass ?category ?valueType')
-
-        proCategories = propertyToList(productionFeatures, 'category')
-        proCategories.each{ key, v ->
-            k[key].getInstances().each{
+        feaCategories.each{ key, v ->
+            k[key].getIndividualsIdLabel().each{
                 v.push(it)
             }
         }
 
-        proSubClass = propertyToMap(productionFeatures, 'subClass')
-        proSubClass.each{ key, v ->
-            v['label']= k[key].label
-        }
-        proSubClass = proSubClass.sort{ it.value.label.toLowerCase() }
-
-        technologyTypes = []
-        technologyFeatures = []
-
-        switch(k[params.id].getProductionUnitType()){
-            case 'http://dbpedia.org/ontology/Provider':
-                technologyTypes.push(':TechnologicalEfficiencyInTheField')
-                break
-            case 'http://dbpedia.org/resource/PhysicalPlant':
-                technologyTypes.push(':TechnologicalEfficiencyInTheIndustrial')
-                break
-            case 'http://bio.icmc.usp.br/sustenagro#PlantAndProvider':
-                technologyTypes.push(':TechnologicalEfficiencyInTheIndustrial')
-                technologyTypes.push(':TechnologicalEfficiencyInTheField')
-                break
-        }
+        def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
+        technologyTypes = fea.evalObject(k.toURI([params.id]))
 
         technologyTypes.each{ type ->
-            technologyFeatures.addAll(k[type].getChildren().each{it.subClass = k.toURI(type)})
+            def childen = k[type].getChildren('?id ?label ?category ?valueType')
+            technologyFeatures[type] = childen
+            tecSubClass[type] = childen.subClassMap('?subClassLabel')
+            tecCategories += childen.categoryList()
         }
 
-        tecCategories = propertyToList(technologyFeatures, 'category')
         tecCategories.each{ key, v ->
-            k[key].getInstances().each{
+            k[key].getIndividualsIdLabel().each{
                 v.push(it)
             }
         }
 
-        tecSubClass = propertyToMap(technologyFeatures, 'subClass')
-        tecSubClass.each{ key, v ->
-            v['label']= k[key].label
-        }
-        tecSubClass = tecSubClass.sort{ it.value.label.toLowerCase() }
+        tecAlignment = k[':ProductionEnvironmentAlignmentCategory'].getIndividualsIdLabel()
+        tecOptimization = k[':SugarcaneProcessingOptimizationCategory'].getIndividualsIdLabel()
 
-        tecAlignment = k[':ProductionEnvironmentAlignmentCategory'].getInstances()
-        tecOptimization = k[':SugarcaneProcessingOptimizationCategory'].getInstances()
+
+        println "Indicators"
+        println indicators
+
+        println "IndCategories"
+        println indCategories
+
+        println "IndSubClass"
+        println indSubClass
+/*
+        println "features"
+        println features
+
+        println "feaCategories"
+        println feaCategories
+
+        println "feaSubClass"
+        println feaSubClass
+ */
+        println "technologyFeatures"
+        println technologyFeatures
+
+        println "tecCategories"
+        println tecCategories
+
+        println "tecSubClass"
+        println tecSubClass
+
 
         def assessmentID = params.assessment
-        def name = k[params.id].label
+        def name = k[':'+params.id].label
         def values = [:]
         def weights = [:]
         def report
-        dsl._cleanProgram()
 
+        dsl._cleanProgram()
+        /*
         if (assessmentID != null) {
 
             dsl.dimensions.each{ String dim ->
@@ -192,20 +191,31 @@ class ToolController {
             //def file = new File("reports/${evaluationID}.html")
             //file.write(page.toString())
         }
+        */
+        println tecAlignment
+        println tecOptimization
+
+        println params.id
+        println name
+
 
         render(view: 'assessment',
-               model: [production_unit: [id: params.id, name: name],
+               model: [evaluationObject: [id: params.id, name: name],
                        indicators: indicators,
-                       indCategories: indCategories,
                        indSubClass: indSubClass,
-                       productionFeatures: productionFeatures,
-                       proCategories: proCategories,
-                       proSubClass: proSubClass,
+                       indCategories: indCategories,
+
+                       features: features,
+                       feaSubClass: feaSubClass,
+                       feaCategories: feaCategories,
+
                        technologyFeatures: technologyFeatures,
-                       tecCategories: tecCategories,
                        tecSubClass: tecSubClass,
+                       tecCategories: tecCategories,
+
                        tecAlignment: tecAlignment,
                        tecOptimization: tecOptimization,
+
                        values: values,
                        weights: weights,
                        report: report])
@@ -260,9 +270,9 @@ class ToolController {
             }
         }
 
-        def productionFeatures = k[':ProductionEfficiencyFeature'].getGrandchildren('?id ?label ?subClass ?category ?valueType')
+        def features = k[':ProductionEfficiencyFeature'].getGrandchildren('?id ?label ?subClass ?category ?valueType')
 
-        productionFeatures.each{
+        features.each{
             if(params[it.id]){
                 if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
                     value = k.dataSchema(Integer.parseInt(params[it.id]))
@@ -314,19 +324,5 @@ class ToolController {
                 params: [assessment: assessment_name])
     }
 
-    def propertyToList = { source, property ->
-        def map = [:]
-        source.each{
-            map[it[property]] = []
-        }
-        return map
-    }
 
-    def propertyToMap = { source, property ->
-        def map = [:]
-        source.each{
-            map[it[property]] = [:]
-        }
-        return map
-    }
 }

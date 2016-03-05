@@ -1499,26 +1499,6 @@
     
 
 
-    <!-- http://semantic.icmc.usp.br/sustenagro#HarvestDates -->
-
-    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#HarvestDates">
-        <rdfs:label xml:lang="en">Harvest dates</rdfs:label>
-        <rdfs:label xml:lang="pt">Datas da colheita</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionUnitFeature"/>
-    </owl:Class>
-    
-
-
-    <!-- http://semantic.icmc.usp.br/sustenagro#HarvestRange -->
-
-    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#HarvestRange">
-        <rdfs:label xml:lang="en">Harvest range</rdfs:label>
-        <rdfs:label xml:lang="pt">Faixa da colheita</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionUnitFeature"/>
-    </owl:Class>
-    
-
-
     <!-- http://semantic.icmc.usp.br/sustenagro#HarvestTypeUsed -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#HarvestTypeUsed">
@@ -1685,6 +1665,16 @@
         <rdfs:label xml:lang="en">Jobs attribute</rdfs:label>
         <rdfs:label xml:lang="pt">Atributo de trabalho</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SocialIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#Literal -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#Literal">
+        <rdfs:label xml:lang="en">Literal</rdfs:label>
+        <rdfs:label xml:lang="pt">Literal</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Value"/>
     </owl:Class>
     
 
@@ -1946,16 +1936,6 @@
     
 
 
-    <!-- http://semantic.icmc.usp.br/sustenagro#PlantingDates -->
-
-    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#PlantingDates">
-        <rdfs:label xml:lang="en">Planting dates</rdfs:label>
-        <rdfs:label xml:lang="pt">Datas do plantio</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionUnitFeature"/>
-    </owl:Class>
-    
-
-
     <!-- http://semantic.icmc.usp.br/sustenagro#PlantingPlanConsideringThePrecursorUseOfArea -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#PlantingPlanConsideringThePrecursorUseOfArea">
@@ -1980,16 +1960,6 @@
         <rdfs:label xml:lang="en">Planting plan considering the precursor use of area category</rdfs:label>
         <rdfs:label xml:lang="pt">Categoria de plano de plantio considerando o uso precursor da área</rdfs:label>
         <rdfs:subClassOf rdf:resource="&semanticUI;Categorical"/>
-    </owl:Class>
-    
-
-
-    <!-- http://semantic.icmc.usp.br/sustenagro#PlantingRange -->
-
-    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#PlantingRange">
-        <rdfs:label xml:lang="en">Planting range</rdfs:label>
-        <rdfs:label xml:lang="pt">Faixa do plantio</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionUnitFeature"/>
     </owl:Class>
     
 
@@ -2209,15 +2179,6 @@
                 <owl:someValuesFrom rdf:resource="&rdfs;Literal"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://semantic.icmc.usp.br/sustenagro#ProductionUnitFeature -->
-
-    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ProductionUnitFeature">
-        <rdfs:label xml:lang="en">Production unit feature</rdfs:label>
-        <rdfs:label xml:lang="pt">Característica de unidade de produtiva</rdfs:label>
     </owl:Class>
     
 
@@ -2728,16 +2689,6 @@
         <rdfs:label xml:lang="en">Total recoverable sugar index category</rdfs:label>
         <rdfs:label xml:lang="pt">Categoria do índice de açúcares totais recuperáveis</rdfs:label>
         <rdfs:subClassOf rdf:resource="&semanticUI;Categorical"/>
-    </owl:Class>
-    
-
-
-    <!-- http://semantic.icmc.usp.br/sustenagro#TotalValue -->
-
-    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#TotalValue">
-        <rdfs:label xml:lang="en">Total value</rdfs:label>
-        <rdfs:label xml:lang="pt">Valor total</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionUnitFeature"/>
     </owl:Class>
     
 

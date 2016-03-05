@@ -28,6 +28,8 @@ class Know {
         addNamespace('dc','http://purl.org/dc/terms/')
         addNamespace('dbp','http://dbpedia.org/ontology/')
         addNamespace('dbpr','http://dbpedia.org/resource/')
+        addNamespace('pt','http://dbpedia.org/property/pt/')
+        addNamespace('ui','http://purl.org/biodiv/semanticUI#')
         addNamespace('','http://semantic.icmc.usp.br/sustenagro#')
     }
 

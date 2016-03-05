@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContext
 /**
  * Created by john on 27/02/16.
  */
-class Unity {
+class EvaluationObject {
     def _id
     def _ctx
     def features = []
@@ -12,7 +12,7 @@ class Unity {
     def k
     def gui
 
-    Unity(String id, ApplicationContext applicationContext){
+    EvaluationObject(String id, ApplicationContext applicationContext){
         _id = id
         _ctx = applicationContext
         k = _ctx.getBean('k')
@@ -57,7 +57,7 @@ class Unity {
         feature(args, id, 'rdfs:subClassOf')
     }
 
-    def instance(Map args = [:], String id){
+    def instance(Map args = [:], String id){  //automatize if ID is Object Property or Data Property
         feature(args, id, 'rdf:type')
     }
 }

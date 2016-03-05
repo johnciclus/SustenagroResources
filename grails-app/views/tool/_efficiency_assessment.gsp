@@ -5,10 +5,10 @@
 
 <div id="efficiency_content" class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="cost_production_efficiency">
-        <g:render template="/widgets/indicatorList" model="${['subClasses': proSubClass,
-                                                              'indsInSubClasses': productionFeatures,
+        <g:render template="/widgets/indicatorList" model="${['subClasses': feaSubClass['http://semantic.icmc.usp.br/sustenagro#ProductionEfficiencyFeature'],
+                                                              'indsInSubClasses': features['http://semantic.icmc.usp.br/sustenagro#ProductionEfficiencyFeature'],
                                                               'values': values,
-                                                              'categories': proCategories]}" />
+                                                              'categories': feaCategories]}" />
         <div>
             <nav>
                 <ul class="pager">
@@ -21,14 +21,26 @@
 
     <div role="tabpanel" class="tab-pane" id="technologic_efficiency">
 
-    <g:render template="/widgets/indicatorList" model="${[subClasses: tecSubClass,
-                                                          indsInSubClasses: technologyFeatures,
-                                                          categories: tecCategories,
-                                                          values: values,
-                                                          hasWeights: true,
-                                                          weights: weights,
-                                                          tecAlignment: tecAlignment,
-                                                          tecOptimization: tecOptimization]}" />
+        <g:if test="${tecSubClass['http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField']}">
+            <g:render template="/widgets/indicatorList" model="${[subClasses: tecSubClass['http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField'],
+                                                                  indsInSubClasses: technologyFeatures['http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField'],
+                                                                  categories: tecCategories,
+                                                                  values: values,
+                                                                  hasWeights: true,
+                                                                  weights: weights,
+                                                                  tecAlignment: tecAlignment,
+                                                                  tecOptimization: tecOptimization ]}" />
+        </g:if>
+        <g:if test="${tecSubClass['http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial']}">
+            <g:render template="/widgets/indicatorList" model="${[subClasses: tecSubClass['http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'],
+                                                                  indsInSubClasses: technologyFeatures['http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'],
+                                                                  categories: tecCategories,
+                                                                  values: values,
+                                                                  hasWeights: true,
+                                                                  weights: weights,
+                                                                  tecAlignment: tecAlignment,
+                                                                  tecOptimization: tecOptimization ]}" />
+        </g:if>
         <div>
             <nav>
                 <ul class="pager">
