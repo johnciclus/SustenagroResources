@@ -36,7 +36,7 @@
             </div>
             </g:if>
             <div class="col-sm-1">
-                <button id="<%= feature.value.id %>-clear" type="button" class="btn btn-default btn-sm clear"><span class="glyphicon glyphicon-trash"></span></button>
+                <g:render template="/widgets/clearButton" model="[id: feature.value.id]"/>
             </div>
         </div>
         </g:each>

@@ -26,6 +26,8 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // Na ontologia, location definiria as microregiões do IBGE.
 // Se a fazenda ficar em mais de uma micro-região?
 
+data 'assessment'
+
 // Caracterização dos sistemas produtivos no Centro-Sul 
 evaluationObject(':ProductionUnit') {
     //feature or instance
@@ -34,80 +36,63 @@ evaluationObject(':ProductionUnit') {
     feature ':hasName', label: "Nome da unidade produtiva", placeholder: "Nome"
 
     // Production unit type
-    type label: "Tipo da unidade produtiva", header: "Opções", multipleSelection: true
+    type label: "Tipo da unidade produtiva", header: "Opções"
 
     // Agricultural production system
-    //feature ':hasAgriculturalProductionSystem', 'rdfs:subClassOf', 'label': "Sistema de produção agrícola"
     instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções"
 
     //Identificação do sistema de produção
 
     // Origem da cana (própria, fornecedor, arrendamento)
-    //feature ':hasSugarcaneSource', 'rdf:type', 'label': "Origem da cana"
     instance  ':hasSugarcaneSource', label: "Origem da cana", header: "Opções"
 
     // Microrregião produtora
-    // feature 'MicroRegion', 'rdf:type', 'label': "Microrregião da unidade produtiva"
     instance ':hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
 
     // Data de fundação da unidade produção
-    // instance ':EstablishmentDate',  'label': "Data de fundação da unidade produção"
     feature ':hasEstablishmentDate', label: "Data de fundação da unidade produção"
 
     // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
-    // instance ':PartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)"
-    feature ':hasPartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)", widget: 'text', placeholder: "Descrição"
+    feature ':hasPartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)", widget: 'textAreaForm', placeholder: "Descrição"
 
     //Ligação com outros grupos empresariais ou de investimentos
-    // instance ':LinkWithOtherBusinessOrInvestmentGroups', 'label': "Ligação com outros grupos empresariais ou de investimentos"
     feature ':hasLinkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos", placeholder: "Descrição"
 
     // Municípios envolvidos (localização da sede)
 
     // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
-    // instance ':hasInnovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
     feature ':hasInnovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
 
     //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
-    // instance ':Financing', 'label': "Financiamento (crédito agrícola, custeio de maquinário, BNDES)"
     feature ':hasFinancing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição"
 
     // Valor total investido em tecnologia na fase agrícola (até a fase atual)
-    // instance ':TotalValueInvestedInTechnologicInAgriculturalPhase', 'label': "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
     feature ':hasTotalValueInvestedInTechnologicInAgriculturalPhase', label: "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
 
     // Valor total investido em tecnologia na fase industrial (até a fase atual)
-    // instance ':TotalValueInvestedInTechnologicInIndustrialPhase', 'label': "Valor total investido em tecnologia na fase industrial (até a fase atual)"
     feature ':hasTotalValueInvestedInTechnologicInIndustrialPhase', label: "Valor total investido em tecnologia na fase industrial (até a fase atual)"
 
     // Valor total previsto para investimento para escoamento da produção
-    // instance ':TotalValuePlaneedForInvestmentToProductionDrainage', 'label': "Valor total previsto para investimento para escoamento da produção"
     feature ':hasTotalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
 
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
 
     // Data de início do plantio
-    // instance ':BeginningOfPlantingDate', 'label': "Data de início do plantio"
     feature ':hasBeginningOfPlantingDate', label: "Data de início do plantio"
 
     // Data de término do plantio
-    // instance ':FinishOfPlantingDate', 'label': "Data de término do plantio"
     feature ':hasFinishOfPlantingDate', label: "Data de término do plantio"
 
     // Data de início da colheita
-    // instance ':BeginningOfHarvestDate', 'label': "Data de início da colheita"
     feature ':hasBeginningOfHarvestDate', label: "Data de início da colheita"
 
     // Data de término da colheita
-    //instance ':FinishOfHarvestDate', label: "Data de término da colheita"
     feature ':hasFinishOfHarvestDate', label: "Data de término da colheita"
 
     // Longevidade do canvial (cana de ano, cana de ano e meio);
-    // instance 'CanavialLongevity', 'rdf:type', 'label': "Longevidade do canvial"
     instance ':hasCanavialLongevity', label: "Longevidade do canvial", header: "Opções"
 
     // Disponibilização dos resultados da avaliação: Público | privado
-    // instance ':AvailabilityOfEvaluationResults', 'rdf:type', 'label': "Disponibilização dos resultados da avaliação"
     instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções"
 }
 
@@ -141,7 +126,13 @@ productionFeature ':TechnologicalEfficiencyFeature', {
     }
 }
 
-data 'assessment'
+assessment('ui:Analysis'){
+    paragraph "Unidade produtiva atual: **" + assessment.'CurrentProductionUnit' + "**"
+    tabs('assessment'){
+
+    }
+}
+
 /*
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.

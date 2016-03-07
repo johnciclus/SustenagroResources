@@ -7,8 +7,8 @@ import org.springframework.context.ApplicationContext
 class EvaluationObject {
     def _id
     def _ctx
-    def features = []
-    def model = []
+    def model
+    def widgets
     def k
     def gui
 
@@ -17,6 +17,8 @@ class EvaluationObject {
         _ctx = applicationContext
         k = _ctx.getBean('k')
         gui = _ctx.getBean('gui')
+        model = []
+        widgets = []
     }
 
     def feature(Map args = [:], String id, String prop = ''){
@@ -24,33 +26,26 @@ class EvaluationObject {
         def featureId = k.shortURI(uri)
         def range = (id != _id)? k[uri].range : uri
         def dataType = (range)? range : 'http://www.w3.org/2001/XMLSchema#string'
-        def widget
-
-        if(args['widget']){
-            widget = args['widget']
-        }
-        else{
-            gui['dataTypeToWidget'].find{ key, value ->
-                if(k.toURI(key) == dataType){
-                    widget = value
-                    return true
-                }
-            }
-        }
         def request = (prop?.trim())? [prop, dataType] : []
+        def widget = (args['widget'])? args['widget'] : gui['dataTypeToWidget'].find { k.toURI(it.key) == dataType }.value
 
-        widget = (widget)? widget.toLowerCase() : 'string'
-        args['id'] = featureId
+        widget = (widget)? widget : 'textForm'
 
-        if(widget == 'category')
+        if((id == _id) && prop == 'rdfs:subClassOf')
+            widget = 'multipleCategoryForm'
+
+        if(widget == 'categoryForm')
             args['selectType'] = (args['multipleSelection'])? 'checkbox' : 'radio'
 
-        model << [id: featureId, dataType: dataType]
+        args['id'] = featureId
 
-        features << [ id: featureId,
-                        widget: widget,
-                        request: request,
-                        args: args]
+        model << [id: featureId,
+                  dataType: dataType]
+
+        widgets << [ id: featureId,
+                     widget: widget,
+                     request: request,
+                     args: args]
     }
 
     def type(Map args = [:], String id=_id){

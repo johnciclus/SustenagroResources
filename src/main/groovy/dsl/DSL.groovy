@@ -1,9 +1,9 @@
 package dsl
 
 import org.codehaus.groovy.control.CompilerConfiguration
-import org.pegdown.PegDownProcessor
 import org.kohsuke.groovy.sandbox.SandboxTransformer
 import org.springframework.context.ApplicationContext
+import semantics.DataReader
 
 /**
  * Created by dilvan on 7/14/15.
@@ -14,21 +14,19 @@ class DSL {
     def evaluationObjectMap = [:]
     def featureMap = [:]
     def dimensionsMap = [:]
+    def analyzesMap = [:]
 
     def report = []
     Closure program
     def data
     def props = [:]
 
-    def toolAssessmentStack = []
-
     def _shell
     def _sandbox
     def _script
     def _ctx
     def k
-
-    static md = new PegDownProcessor()
+    static md
 
     DSL(String file, ApplicationContext applicationContext){
         // Create CompilerConfiguration and assign
@@ -47,11 +45,14 @@ class DSL {
         _ctx = applicationContext
 
         k = _ctx.getBean('k')
+        md = _ctx.getBean('md')
+        //data = new DataReader(k, '')
 
         _script = (DelegatingScript) _shell.parse(new File(file).text)
         _script.setDelegate(this)
         viewsMap['tool'] = [:]
         viewsMap['tool']['index'] = []
+        viewsMap['tool']['assessment'] = []
 
         // Run DSL script.
         try {
@@ -69,7 +70,7 @@ class DSL {
         viewsMap = [:]
         viewsMap['tool'] = [:]
         viewsMap['tool']['index'] = []
-        toolAssessmentStack = []
+        viewsMap['tool']['assessment'] = []
 
         _sandbox.register()
 
@@ -117,6 +118,10 @@ class DSL {
         //println new PegDownProcessor().markdownToHtml(description)
     }
 
+    def paragraph(String arg){
+        viewsMap['tool']['assessment'].push(['widget': 'paragraph', 'args': ['text': arg]])
+    }
+
     def evaluationObject(String id, Closure closure){
         String uri = k.toURI(id)
         def object = new EvaluationObject(uri, _ctx)
@@ -147,7 +152,7 @@ class DSL {
         args['widgets']       = [:]
         args['unity']         = uri
 
-        evaluationObjectMap[uri].features.each{
+        evaluationObjectMap[uri].widgets.each{
             if(it.request) {
                 requestLst['widgets'][it.id] = it.request
             }
@@ -186,10 +191,36 @@ class DSL {
     def data(String str){
         data = str
         props[str]
+        printData()
+    }
+
+    def printData(){
+        println 'data'
+        println data
+        println 'props'
+        println props
     }
 
     def setData(obj){
         props[data]= obj
+        printData()
+    }
+
+    def assessment(String id, Closure closure){
+        String uri = k.toURI(id)
+
+        def requestLst        = [:]
+        requestLst['widgets'] = [:]
+        def args              = [:]
+        args['widgets']       = [:]
+
+        def object = new Analysis(uri, _ctx)
+
+        closure.resolveStrategy = Closure.DELEGATE_FIRST
+        closure.delegate = object
+
+        analyzesMap[uri] = [object: object,
+                            closure: closure]
     }
 
     static toHTML(String txt) {md.markdownToHtml(txt)}
@@ -231,10 +262,17 @@ class DSL {
         report << ['map', url]
     }
 
-
-
     def prog(Closure c){
         program = c
+    }
+
+    def _runAnalyse(){
+        def uri = 'http://purl.org/biodiv/semanticUI#Analysis'
+        def analyse = analyzesMap[uri]
+        println analyse
+        data = new DataReader(k, uri)
+        analyse.closure()
+        viewsMap['tool']['assessment'] = analyse.object.widgets
     }
 
     def _cleanProgram(){

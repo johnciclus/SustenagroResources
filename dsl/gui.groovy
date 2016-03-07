@@ -4,22 +4,22 @@
 
 //default widget: 'category',
 
-dataType "rdfs:Literal", widget: "string"
-dataType "owl:real", widget: "number"
-dataType "xsd:int", widget: "number"
-dataType "xsd:integer", widget: "number"
-dataType "xsd:float", widget: "number"
-dataType "xsd:date", widget: "date"
-dataType "xsd:string", widget: "string"
-dataType "xsd:language", widget: "string"
-dataType "xsd:boolean", widget: "category"
-dataType ":SimpleCategory", widget: "category"
-dataType ":ProductionUnit", widget: "category"
-dataType ":SugarcaneSourceCategory", widget: "category"
-dataType ":CanavialLongevityCategory", widget: "category"
-dataType ":AgriculturalProductionSystemCategory", widget: "category"
-dataType ":AvailabilityOfEvaluationResultsCategory", widget: "category"
-dataType "http://dbpedia.org/page/Microregion_(Brazil)", widget: "category"
+dataType "rdfs:Literal", widget: "textForm"
+dataType "owl:real", widget: "numberForm"
+dataType "xsd:int", widget: "numberForm"
+dataType "xsd:integer", widget: "numberForm"
+dataType "xsd:float", widget: "numberForm"
+dataType "xsd:date", widget: "dateForm"
+dataType "xsd:string", widget: "textForm"
+dataType "xsd:language", widget: "textForm"
+dataType "xsd:boolean", widget: "categoryForm"
+dataType ":SimpleCategory", widget: "categoryForm"
+dataType ":ProductionUnit", widget: "categoryForm"
+dataType ":SugarcaneSourceCategory", widget: "categoryForm"
+dataType ":CanavialLongevityCategory", widget: "categoryForm"
+dataType ":AgriculturalProductionSystemCategory", widget: "categoryForm"
+dataType ":AvailabilityOfEvaluationResultsCategory", widget: "categoryForm"
+dataType "http://dbpedia.org/page/Microregion_(Brazil)", widget: "categoryForm"
 
 /*
 view("tool/index"){

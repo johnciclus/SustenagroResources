@@ -196,8 +196,8 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#has -->
 
     <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#has">
-        <rdfs:comment xml:lang="en">has</rdfs:comment>
-        <rdfs:comment xml:lang="pt">tem</rdfs:comment>
+        <rdfs:label xml:lang="en">has</rdfs:label>
+        <rdfs:label xml:lang="pt">tem</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -294,6 +294,7 @@
     <!-- http://dbpedia.org/property/pt/mapa -->
 
     <owl:DatatypeProperty rdf:about="&pt;mapa">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:range rdf:resource="&xsd;anyURI"/>
     </owl:DatatypeProperty>
     
@@ -302,6 +303,16 @@
     <!-- http://purl.org/biodiv/semanticUI#dataValue -->
 
     <owl:DatatypeProperty rdf:about="&semanticUI;dataValue"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <rdf:Description rdf:about="&dc;date">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">date</rdfs:label>
+        <rdfs:label xml:lang="pt">data</rdfs:label>
+    </rdf:Description>
     
 
 
@@ -4904,21 +4915,6 @@
         <rdfs:label xml:lang="en">85 Tn/ha</rdfs:label>
         <rdfs:label xml:lang="pt">85 Ton/ha</rdfs:label>
     </owl:NamedIndividual>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotations
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    <rdf:Description rdf:about="&dc;date">
-        <rdfs:label xml:lang="en">date</rdfs:label>
-        <rdfs:label xml:lang="pt">data</rdfs:label>
-    </rdf:Description>
 </rdf:RDF>
 
 

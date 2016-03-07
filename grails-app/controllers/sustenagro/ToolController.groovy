@@ -8,6 +8,7 @@ import utils.Uri
 class ToolController {
     def dsl
     def k
+    def md
 
     def index() {
         dsl.viewsMap[controllerName][actionName].each{ command ->
@@ -33,21 +34,22 @@ class ToolController {
         def name = k.shortURI(':hasName')
         def type = k.shortURI(params['unity'])
 
-        if(params['unity'] && params[name] && params[type]) {
+        if(params['unity'] && params[name] && params[type]){
 
             def node = new Node(k, '')
-            def unityFeatures = [:]
+            def unityInstances = [:]
 
-            def features = dsl.evaluationObjectMap[k.shortToURI(params['unity'])].model
+            def instances = dsl.evaluationObjectMap[k.shortToURI(params['unity'])].model
 
-            features.each{ feature ->
-                if(params[feature.id] && feature.id != type){
-                    unityFeatures[k.shortToURI(feature.id)] = [value: params[feature.id], dataType: feature.dataType]
+            instances.each{ ins ->
+                if(params[ins.id] && ins.id != type){
+                    unityInstances[k.shortToURI(ins.id)] = [value: params[ins.id], dataType: ins.dataType]
                 }
             }
 
             id = new Slugify().slugify(params[name])
-            node.insertUnity(id, params[type], unityFeatures)
+            println id
+            node.insertUnity(id, params[type], unityInstances)
         }
 
         //k.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
@@ -71,12 +73,12 @@ class ToolController {
     }
 
     def assessment() {
-        def features = [:]
-        def categories = [:]
-        def grandChildren
-        def technologyTypes
 
-        dsl.dimensionsMap.each{ feature ->
+        dsl._cleanProgram()
+        dsl._runAnalyse()
+
+/*
+       dsl.dimensionsMap.each{ feature ->
             features[feature.key] = ['subClass': [:]]
             grandChildren = k[feature.key].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
             k[feature.key].getSubClass('?label').each{ subClass ->
@@ -107,19 +109,17 @@ class ToolController {
         categories[k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
         categories[k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
 
+        def method = 'getIndividualsIdLabel'
+
         categories.each { key, v ->
-            k[key].getIndividualsIdLabel().each {
+            k[key]."${method}"().each{            //getIndividualsIdLabel().each {
                 v.push(it)
             }
         }
 
-        def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
-        technologyTypes = fea.evalObject(k.toURI([params.id]))
-
         println "* Tree *"
         Uri.printTree(features)
 
-        /*
         println "Categories"
         categories.each{ category ->
             println category.key
@@ -127,15 +127,28 @@ class ToolController {
                 println "\t "+it
             }
         }
-        */
-        /*
+
+
+        def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
+        def technologyTypes = fea.evalObject(k.toURI([params.id]))
         def assessmentID = params.assessment
-        def name = k[':'+params.id].label
+        def uri = k.toURI(':'+params.id)
+        def name = k[uri].label
         def values = [:]
         def weights = [:]
         def report
 
+        println uri
+        println assessmentID
+
         dsl._cleanProgram()
+
+        dsl.data = new DataReader(k, uri)
+        dsl.assessmentProgram()
+        dsl.viewsMap['tool']['assessment'] = dsl.analyzesMap['http://purl.org/biodiv/semanticUI#Analysis'].widgets
+
+        //Closure within map for reference it
+
 
         if (assessmentID != null) {
 
@@ -165,25 +178,16 @@ class ToolController {
         }
         */
 
-        def name = k[':'+params.id].label
-        def values = [:]
-        def weights = [:]
-        def report
+        dsl.viewsMap[controllerName][actionName].each { command ->
+            println command
+        }
 
-        println params.id
-
-        render(view: 'assessment',
-               model: [evaluationObject: [id: params.id, name: name],
-                       features: features,
-                       categories: categories,
-                       technologyTypes: technologyTypes,
-
-                       values: values,
-                       weights: weights,
-                       report: report])
+        render(view: 'assessment', model: [inputs: dsl.viewsMap[controllerName][actionName]])
+                       //evaluationObject: [id: params.id, name: name]])
+                       //values: values,
+                       //weights: weights,
+                       //report: report])
     }
-
-
 
     def assessments(){
         def id = k.shortURI(params.id)

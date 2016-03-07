@@ -42,6 +42,8 @@ class Node {
 
         result = k.query(query)
 
+        //println result
+
         if(argsList.contains('label')){
             result = result.collect{ it['label']}
         }
@@ -507,9 +509,9 @@ class Node {
     }
 
     def insertUnity(String id, Object type, Map params){
-        String sparql = "<" + k.toURI(":"+id) + "> ";
-
         def name = k.toURI(':hasName')
+
+        String sparql = "<" + k.toURI(":"+id) + "> "
 
         if(type.class.isArray()){
             type.each{
@@ -520,10 +522,8 @@ class Node {
             sparql += "rdf:type <" + type + ">;"
         }
 
-
-        sparql += "rdfs:label '" + params[name].value + "'@pt;" +
+        sparql += "rdfs:label '" + params[name].value + "'@pt;"+
                   "rdfs:label '" + params[name].value + "'@en"
-
 
         params.each{ key, feature ->
             switch (feature.dataType){

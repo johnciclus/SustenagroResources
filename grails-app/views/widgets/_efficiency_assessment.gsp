@@ -7,7 +7,7 @@
     <div role="tabpanel" class="tab-pane active" id="cost_production_efficiency">
         <g:render template="/widgets/indicatorList" model="${['subClasses': features['http://semantic.icmc.usp.br/sustenagro#ProductionEfficiencyFeature'].subClass,
                                                               'categories': categories,
-                                                              'values': values
+                                                              'values'    : values
                                                               ]}" />
         <div>
             <nav>
@@ -24,8 +24,8 @@
         <g:each var="type" in="${technologyTypes}">
             <g:render template="/widgets/indicatorList" model="${[subClasses: [type: features['http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyFeature']['subClass'][type]],
                                                                   categories: categories,
-                                                                  values: values,
-                                                                  weights: weights,
+                                                                  values    : values,
+                                                                  weights   : weights,
                                                                   userWeight: categories['http://semantic.icmc.usp.br/sustenagro#ProductionEnvironmentAlignmentCategory'],
                                                                   userWeightLabel: 'alignment']}" />
         </g:each>

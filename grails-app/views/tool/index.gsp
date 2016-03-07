@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<div class="row main">
-			<div  id="content" class="col-sm-10 col-sm-offset-1 content">
+			<div id="content" class="col-sm-10 col-sm-offset-1 content">
                 <g:each in="${inputs}">
                     <div class="section">
                         <g:render template="/widgets/${it.widget}" model="${it.args}" />
