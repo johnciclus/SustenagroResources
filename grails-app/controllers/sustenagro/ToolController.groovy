@@ -75,7 +75,7 @@ class ToolController {
     def assessment() {
 
         dsl._cleanProgram()
-        dsl._runAnalyse()
+        dsl._runAnalyse(params.id)
 
 /*
        dsl.dimensionsMap.each{ feature ->

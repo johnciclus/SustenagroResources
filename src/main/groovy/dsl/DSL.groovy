@@ -266,11 +266,14 @@ class DSL {
         program = c
     }
 
-    def _runAnalyse(){
-        def uri = 'http://purl.org/biodiv/semanticUI#Analysis'
-        def analyse = analyzesMap[uri]
+    def _runAnalyse(String id){
+        def uri = k.toURI(id)
+        def analyse = analyzesMap['http://purl.org/biodiv/semanticUI#Analysis']
+        println "ID"
+        println id
+        println uri
         println analyse
-        data = new DataReader(k, uri)
+        setData(new DataReader(k, uri))
         analyse.closure()
         viewsMap['tool']['assessment'] = analyse.object.widgets
     }
