@@ -63,6 +63,8 @@ class Sparql {
     Model model
     String user
     String pass
+    protected Query query
+    protected QueryExecution qe
 
     // Apache Jena config parameter for setting HTTP timeout
     private final String timeoutParam = 'timeout'
@@ -441,17 +443,25 @@ class Sparql {
     }
 
     def query(String sparql, String lang) {
-        Query query = QueryFactory.create(sparql, Syntax.syntaxARQ)
-        QueryExecution qe = QueryExecutionFactory.sparqlService(endpoint, query)
+        def res = []
 
-        /*
+        try{
+            query = QueryFactory.create(sparql)
+        }
+        catch (all){
+            println 'Exception'
+        }
+
+        qe = QueryExecutionFactory.sparqlService(endpoint, query)
+
+            /*
          * Some explanation here - ARQ can provide a QE based on a pure
          * SPARQL service endpoint, or a Jena model, plus you can still
          * do remote queries with the model using the in-SPARQL "service"
          * keyword.
          */
 
-        /*if (model) {
+            /*if (model) {
             qe = QueryExecutionFactory.create(query, model)
         } else {
             if (!endpoint) {
@@ -465,9 +475,7 @@ class Sparql {
                 ((QueryEngineHTTP) qe).setBasicAuthentication(user, pass?.toCharArray())
             }
         }*/
-
-        def res = []
-        try {
+        try{
             QuerySolution sol
             Map<String, Object> row, last = [:]
             boolean add
@@ -485,43 +493,42 @@ class Sparql {
                     varName = varNames.next()
                     varNode = sol.get(varName)
 
-                    if(varNode.isLiteral())
+                    if (varNode.isLiteral())
                         literal = varNode.asLiteral()
 
-                    if(varName != 'label' || literal.language == lang)
+                    if (varName != 'label' || literal.language == lang)
                         row.put(varName, (varNode.isLiteral() ? literal.value : varNode.toString()))
 
-                    else if(lang == '*' && varNode.isLiteral() && literal.getLanguage()){
-                        row.put(varName+'@'+literal.getLanguage(), literal.getString())
+                    else if (lang == '*' && varNode.isLiteral() && literal.getLanguage()) {
+                        row.put(varName + '@' + literal.getLanguage(), literal.getString())
                     }
 
                     //println varNode.isLiteral()
                     //println (varNode.isLiteral() ? literal.value : varNode.toString())
 
-                    if (lang!='' &&
-                        varNode.isLiteral() &&
-                        literal.language!=null &&
-                        literal.language.size()>1 && literal.language!=lang) add = false
+                    if (lang != '' &&
+                            varNode.isLiteral() &&
+                            literal.language != null &&
+                            literal.language.size() > 1 && literal.language != lang) add = false
                 }
 
-                if (lang=='*'){
+                if (lang == '*') {
                     existingRow = true
-                    row.each{ key, value ->
-                        if(!key.startsWith('label')){
+                    row.each { key, value ->
+                        if (!key.startsWith('label')) {
                             existingRow = existingRow && (last[key] == value)
-                            if(!existingRow) return true
+                            if (!existingRow) return true
                         }
                     }
 
-                    if(existingRow){
-                        row.each{ key, value ->
-                            if(key.startsWith('label')){
+                    if (existingRow) {
+                        row.each { key, value ->
+                            if (key.startsWith('label')) {
                                 last.put(key, value)
                             }
                         }
                         add = false
-                    }
-                    else{
+                    } else {
                         add = true
                     }
                     last = row

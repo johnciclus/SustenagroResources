@@ -1,4 +1,4 @@
-package rdfUtils
+package semantics
 
 //import com.tinkerpop.blueprints.Vertex
 //import com.tinkerpop.blueprints.impls.sail.SailTokens

@@ -1,39 +1,39 @@
 package dsl
 
-//import com.github.rjeschke.txtmark.Processor
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.pegdown.PegDownProcessor
-import com.github.slugify.Slugify
 import org.kohsuke.groovy.sandbox.SandboxTransformer
+import org.springframework.context.ApplicationContext
 
 /**
  * Created by dilvan on 7/14/15.
  */
+
 class DSL {
-    def featureLst = []
-    def dimensions = []
+    def viewsMap = [:]
+    def evaluationObjectMap = [:]
+    def featureMap = [:]
+    def dimensionsMap = [:]
+
     def report = []
     Closure program
     def data
     def props = [:]
 
-    def slg = new Slugify()
-
-    def toolIndexStack = []
     def toolAssessmentStack = []
 
-    def _nameFile = ''
-    def _cc
     def _shell
-
     def _sandbox
     def _script
+    def _ctx
+    def k
+
     static md = new PegDownProcessor()
 
-    DSL(String file){
+    DSL(String file, ApplicationContext applicationContext){
         // Create CompilerConfiguration and assign
         // the DelegatingScript class as the base script class.
-        _cc = new CompilerConfiguration()
+        def _cc = new CompilerConfiguration()
         _cc.addCompilationCustomizers(new SandboxTransformer())
         _cc.setScriptBaseClass(DelegatingScript.class.getName())
 
@@ -44,10 +44,14 @@ class DSL {
         // Configure the GroovyShell and pass the compiler configuration.
         //_shell = new GroovyShell(this.class.classLoader, binding, cc)
 
-        _nameFile = file
+        _ctx = applicationContext
 
-        _script = (DelegatingScript) _shell.parse(new File(_nameFile).text)
+        k = _ctx.getBean('k')
+
+        _script = (DelegatingScript) _shell.parse(new File(file).text)
         _script.setDelegate(this)
+        viewsMap['tool'] = [:]
+        viewsMap['tool']['index'] = []
 
         // Run DSL script.
         try {
@@ -59,10 +63,12 @@ class DSL {
     }
 
     def reLoad(String code){
-        dimensions = []
-        featureLst = []
+        dimensionsMap = [:]
         report = []
-        toolIndexStack = []
+
+        viewsMap = [:]
+        viewsMap['tool'] = [:]
+        viewsMap['tool']['index'] = []
         toolAssessmentStack = []
 
         _sandbox.register()
@@ -100,12 +106,82 @@ class DSL {
         return response
     }
 
-    def title(String str){
-        toolIndexStack.push(['widget': 'title', 'args': ['title': str]])
-        //println 'toolIndexStack'
-        //println toolIndexStack
-        //println ''
+    def title(String arg){
+        viewsMap['tool']['index'].push(['widget': 'title', 'args': ['title': arg]])
     }
+
+    def description(String arg){
+        viewsMap['tool']['index'].push(['widget': 'description', 'args': ['description': toHTML(arg)]])
+
+        //println  Processor.process(description, true)
+        //println new PegDownProcessor().markdownToHtml(description)
+    }
+
+    def evaluationObject(String id, Closure closure){
+        String uri = k.toURI(id)
+        def object = new EvaluationObject(uri, _ctx)
+
+        closure.resolveStrategy = Closure.DELEGATE_FIRST
+        closure.delegate = object
+        closure()
+
+        evaluationObjectMap[uri] = object
+    }
+
+    def selectUnity(Map args = [:], String id){
+        def uri = k.toURI(id)
+        def request = ['unities': ['a', uri]]
+        def shortId = k.shortURI(uri)
+        args['unity']= uri
+
+        //println uri
+        //println shortId
+
+        viewsMap['tool']['index'].push(['widget': 'selectUnity', 'request': request, args: args])
+    }
+
+    def createUnity(Map args = [:], String id){
+        def uri = k.toURI(id)
+        def requestLst        = [:]
+        requestLst['widgets'] = [:]
+        args['widgets']       = [:]
+        args['unity']         = uri
+
+        evaluationObjectMap[uri].features.each{
+            if(it.request) {
+                requestLst['widgets'][it.id] = it.request
+            }
+            args['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
+        }
+
+        viewsMap['tool']['index'].push(['widget': 'createUnity', 'request': requestLst, 'args': args])
+    }
+
+    def dimension(String id, Closure closure = {}) {
+        String uri = k.toURI(id)
+        def feature = new Feature(uri, _ctx)
+        closure.resolveStrategy = Closure.DELEGATE_FIRST
+        closure.delegate = feature
+        closure()
+
+        dimensionsMap[uri] = feature
+    }
+
+    def productionFeature(String id, Closure closure = {}){
+        String uri = k.toURI(id)
+        def feature = new Feature(uri, _ctx)
+
+        closure.resolveStrategy = Closure.DELEGATE_FIRST
+        closure.delegate = feature
+        closure()
+
+        featureMap[uri] = feature
+    }
+
+
+//    def recommendation(Map map, String txt){
+//        recommendations << [map['if'],txt]
+//    }
 
     def data(String str){
         data = str
@@ -115,43 +191,6 @@ class DSL {
     def setData(obj){
         props[data]= obj
     }
-
-    def description(String str){
-        toolIndexStack.push(['widget': 'description', 'args': ['description': toHTML(str)]])
-        //println 'toolIndexStack'
-        //println toolIndexStack
-        //println ''
-        //println  Processor.process(description, true)
-        //println new PegDownProcessor().markdownToHtml(description)
-    }
-
-    def features(String clsName, Closure closure){
-        def clsId = slg.slugify(clsName)
-
-        def requestLst          = [:]
-        requestLst['widgets']   = [:]
-        def argLst              = [:]
-        argLst['widgets']       = [:]
-        featureLst              = []
-
-        featureLst.push(['id': clsId+'_name', 'widget': 'name', 'args': ['id': clsId+'_name', 'label': 'Nome da unidade produtiva']])
-        featureLst.push(['id': clsId+'_types', 'widget': 'instance', 'request': ['rdfs:subClassOf', clsName], 'args': ['id': clsId+'_types', 'label': 'Caracterização dos sistemas produtivos no Centro-Sul']])
-        closure()
-
-        featureLst.each{
-            if(it.request) {
-                requestLst['widgets'][it.id] = it.request
-            }
-            argLst['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
-        }
-
-        toolIndexStack.push(['widget': 'selectEntity', 'request': ['production_units': ['a', ':ProductionUnit']], 'args': [:]])
-        toolIndexStack.push(['widget': 'createEntity', 'request': requestLst, 'args': argLst])
-    }
-
-//    def recommendation(Map map, String txt){
-//        recommendations << [map['if'],txt]
-//    }
 
     static toHTML(String txt) {md.markdownToHtml(txt)}
 
@@ -180,21 +219,6 @@ class DSL {
         if (map['if']) report << ['recommendation', toHTML(txt)]
     }
 
-    def instance(Map textMap = [:], String clsName){
-        def id = slg.slugify(clsName)
-        def argLst = [:]
-        argLst['id'] = id
-        if(textMap.label)
-            argLst['label'] = textMap.label
-
-        println clsName
-        featureLst << ['id': id, 'widget': 'instance', 'request': ['a', clsName], 'args': argLst]
-    }
-
-    def subclass(String str){
-        featureLst << ['subclass': ['rdfs:subClassOf', str]]
-    }
-
     def table(ArrayList list, Map headers = [:]){
         report << ['table', list, headers]
     }
@@ -207,9 +231,7 @@ class DSL {
         report << ['map', url]
     }
 
-    def dimension(String cls) {
-        dimensions << cls
-    }
+
 
     def prog(Closure c){
         program = c

@@ -5,10 +5,10 @@
 
 <div id="efficiency_content" class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="cost_production_efficiency">
-        <g:render template="/widgets/indicatorList" model="${['subClasses': proSubClass,
-                                                              'indsInSubClasses': productionFeatures,
-                                                              'values': values,
-                                                              'categories': proCategories]}" />
+        <g:render template="/widgets/indicatorList" model="${['subClasses': features['http://semantic.icmc.usp.br/sustenagro#ProductionEfficiencyFeature'].subClass,
+                                                              'categories': categories,
+                                                              'values': values
+                                                              ]}" />
         <div>
             <nav>
                 <ul class="pager">
@@ -21,14 +21,23 @@
 
     <div role="tabpanel" class="tab-pane" id="technologic_efficiency">
 
-    <g:render template="/widgets/indicatorList" model="${[subClasses: tecSubClass,
-                                                          indsInSubClasses: technologyFeatures,
-                                                          categories: tecCategories,
-                                                          values: values,
-                                                          hasWeights: true,
-                                                          weights: weights,
-                                                          tecAlignment: tecAlignment,
-                                                          tecOptimization: tecOptimization]}" />
+        <g:each var="type" in="${technologyTypes}">
+            <g:render template="/widgets/indicatorList" model="${[subClasses: [type: features['http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyFeature']['subClass'][type]],
+                                                                  categories: categories,
+                                                                  values: values,
+                                                                  weights: weights,
+                                                                  userWeight: categories['http://semantic.icmc.usp.br/sustenagro#ProductionEnvironmentAlignmentCategory'],
+                                                                  userWeightLabel: 'alignment']}" />
+        </g:each>
+
+        <!--
+        userWeight: categories['http://semantic.icmc.usp.br/sustenagro#ProductionEnvironmentAlignmentCategory',
+                                                                  userWeightLabel: 'alignment'
+
+        userWeight: categories['http://semantic.icmc.usp.br/sustenagro#SugarcaneProcessingOptimizationCategory',
+                                                                  userWeightLabel: 'optimization'
+
+        -->
         <div>
             <nav>
                 <ul class="pager">
