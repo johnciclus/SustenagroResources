@@ -11,6 +11,10 @@ class ToolController {
     def md
 
     def index() {
+
+        println "* Index Tree *"
+        Uri.printTree(dsl.viewsMap[controllerName][actionName])
+
         dsl.viewsMap[controllerName][actionName].each{ command ->
             if(command.request){
                 command.request.each{ key, args ->
@@ -48,7 +52,6 @@ class ToolController {
             }
 
             id = new Slugify().slugify(params[name])
-            println id
             node.insertUnity(id, params[type], unityInstances)
         }
 
@@ -72,11 +75,7 @@ class ToolController {
                     params: [assessment: assessment_name])
     }
 
-    def assessment() {
-
-        dsl._cleanProgram()
-        dsl._runAnalyse(params.id)
-
+    def assessment(){
 /*
        dsl.dimensionsMap.each{ feature ->
             features[feature.key] = ['subClass': [:]]
@@ -177,9 +176,24 @@ class ToolController {
             //file.write(page.toString())
         }
         */
+        dsl._cleanViews()
+        dsl._evalIndividuals(params.id)
 
-        dsl.viewsMap[controllerName][actionName].each { command ->
+        dsl.viewsMap[controllerName][actionName].each{ command ->
             println command
+            if(command.request){
+                command.request.each{ key, args ->
+                    if(key!='widgets'){
+                        command.args[key] = k[args[1]].getLabelDescription(args[0].toString())
+                    }
+                    else if(key=='widgets'){
+                        args.each{ subKey, subArgs ->
+                            //command.args.widgets[subKey]['args']['data'] = getLabelDescription(subArgs[1], subArgs[0])
+                            command.args.widgets[subKey]['args']['data'] = k[subArgs[1]].getLabelDescription(subArgs[0].toString())
+                        }
+                    }
+                }
+            }
         }
 
         render(view: 'assessment', model: [inputs: dsl.viewsMap[controllerName][actionName]])

@@ -26,8 +26,6 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // Na ontologia, location definiria as microregiões do IBGE.
 // Se a fazenda ficar em mais de uma micro-região?
 
-data 'assessment'
-
 // Caracterização dos sistemas produtivos no Centro-Sul 
 evaluationObject(':ProductionUnit') {
     //feature or instance
@@ -126,10 +124,12 @@ productionFeature ':TechnologicalEfficiencyFeature', {
     }
 }
 
-assessment('ui:Analysis'){
-    paragraph "Unidade produtiva atual: **" + assessment.'CurrentProductionUnit' + "**"
-    tabs('assessment'){
+individual 'Production_Unit', ':ProductionUnit'
 
+assessment('ui:Analysis'){
+    paragraph "Unidade produtiva atual: **" + Production_Unit.label + "**"
+    tabs('assessment'){
+        tab('')
     }
 }
 

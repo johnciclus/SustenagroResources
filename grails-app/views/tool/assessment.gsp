@@ -11,6 +11,11 @@
     <div id="content" class="col-sm-10 col-sm-offset-1 content">
         <g:each in="${inputs}">
             <g:render template="/widgets/${it.widget}" model="${it.args}" />
+            <g:if test="${it.widgets}">
+                <g:each var="subWidget" in="${it.widgets}">
+                    <g:render template="/widgets/${subWidget.widget}" model="${subWidget.args}" />
+                </g:each>
+            </g:if>
         </g:each>
     </div>
 

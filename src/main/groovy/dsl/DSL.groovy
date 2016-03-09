@@ -3,7 +3,7 @@ package dsl
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
 import org.springframework.context.ApplicationContext
-import semantics.DataReader
+import semantics.Node
 
 /**
  * Created by dilvan on 7/14/15.
@@ -15,22 +15,30 @@ class DSL {
     def featureMap = [:]
     def dimensionsMap = [:]
     def analyzesMap = [:]
-
     def report = []
-    Closure program
+
     def data
     def props = [:]
+    Closure program
 
-    def _shell
+    GroovyShell _shell
     def _sandbox
     def _script
     def _ctx
-    def k
-    static md
+    def _k
+    static _md
 
     DSL(String file, ApplicationContext applicationContext){
         // Create CompilerConfiguration and assign
         // the DelegatingScript class as the base script class.
+        _ctx = applicationContext
+        _k = _ctx.getBean('k')
+        _md = _ctx.getBean('md')
+
+        viewsMap['tool'] = [:]
+        viewsMap['tool']['index'] = []
+        viewsMap['tool']['assessment'] = []
+
         def _cc = new CompilerConfiguration()
         _cc.addCompilationCustomizers(new SandboxTransformer())
         _cc.setScriptBaseClass(DelegatingScript.class.getName())
@@ -42,17 +50,8 @@ class DSL {
         // Configure the GroovyShell and pass the compiler configuration.
         //_shell = new GroovyShell(this.class.classLoader, binding, cc)
 
-        _ctx = applicationContext
-
-        k = _ctx.getBean('k')
-        md = _ctx.getBean('md')
-        //data = new DataReader(k, '')
-
         _script = (DelegatingScript) _shell.parse(new File(file).text)
         _script.setDelegate(this)
-        viewsMap['tool'] = [:]
-        viewsMap['tool']['index'] = []
-        viewsMap['tool']['assessment'] = []
 
         // Run DSL script.
         try {
@@ -63,14 +62,17 @@ class DSL {
         }
     }
 
-    def reLoad(String code){
-        dimensionsMap = [:]
-        report = []
-
+    def reload(String code){
         viewsMap = [:]
         viewsMap['tool'] = [:]
         viewsMap['tool']['index'] = []
         viewsMap['tool']['assessment'] = []
+
+        evaluationObjectMap = [:]
+        featureMap = [:]
+        dimensionsMap = [:]
+        analyzesMap = [:]
+        report = []
 
         _sandbox.register()
 
@@ -81,6 +83,7 @@ class DSL {
         //}
 
         _script = (DelegatingScript) _shell.parse(code)
+        _shell
         _script.setDelegate(this)
 
         def response  = [:]
@@ -123,7 +126,7 @@ class DSL {
     }
 
     def evaluationObject(String id, Closure closure){
-        String uri = k.toURI(id)
+        String uri = _k.toURI(id)
         def object = new EvaluationObject(uri, _ctx)
 
         closure.resolveStrategy = Closure.DELEGATE_FIRST
@@ -134,9 +137,9 @@ class DSL {
     }
 
     def selectUnity(Map args = [:], String id){
-        def uri = k.toURI(id)
+        def uri = _k.toURI(id)
         def request = ['unities': ['a', uri]]
-        def shortId = k.shortURI(uri)
+        def shortId = _k.shortURI(uri)
         args['unity']= uri
 
         //println uri
@@ -146,7 +149,7 @@ class DSL {
     }
 
     def createUnity(Map args = [:], String id){
-        def uri = k.toURI(id)
+        def uri = _k.toURI(id)
         def requestLst        = [:]
         requestLst['widgets'] = [:]
         args['widgets']       = [:]
@@ -163,7 +166,7 @@ class DSL {
     }
 
     def dimension(String id, Closure closure = {}) {
-        String uri = k.toURI(id)
+        String uri = _k.toURI(id)
         def feature = new Feature(uri, _ctx)
         closure.resolveStrategy = Closure.DELEGATE_FIRST
         closure.delegate = feature
@@ -173,7 +176,7 @@ class DSL {
     }
 
     def productionFeature(String id, Closure closure = {}){
-        String uri = k.toURI(id)
+        String uri = _k.toURI(id)
         def feature = new Feature(uri, _ctx)
 
         closure.resolveStrategy = Closure.DELEGATE_FIRST
@@ -191,23 +194,42 @@ class DSL {
     def data(String str){
         data = str
         props[str]
-        printData()
-    }
-
-    def printData(){
-        println 'data'
-        println data
-        println 'props'
-        println props
     }
 
     def setData(obj){
         props[data]= obj
-        printData()
+    }
+
+    def individual(String key, String uri){
+        props[key]= _k.toURI(uri)
+    }
+
+    /*
+    def propertyMissing(String str, arg) {
+        props[str] = arg
+    }
+
+    def propertyMissing(String arg) {
+        props[arg]
+    }
+    */
+
+    def propertyMissing(String str, arg) {
+        props[str] = arg
+    }
+
+    def propertyMissing(String key) {
+        //props[str]
+        new Node(_k, _k.toURI(props[key]))
+    }
+
+    def printData(){
+        println 'props'
+        println props
     }
 
     def assessment(String id, Closure closure){
-        String uri = k.toURI(id)
+        String uri = _k.toURI(id)
 
         def requestLst        = [:]
         requestLst['widgets'] = [:]
@@ -223,7 +245,7 @@ class DSL {
                             closure: closure]
     }
 
-    static toHTML(String txt) {md.markdownToHtml(txt)}
+    static toHTML(String txt) {_md.markdownToHtml(txt)}
 
     def show(String txt){
         report << ['show', toHTML(txt)]
@@ -266,28 +288,39 @@ class DSL {
         program = c
     }
 
-    def _runAnalyse(String id){
-        def uri = k.toURI(id)
-        def analyse = analyzesMap['http://purl.org/biodiv/semanticUI#Analysis']
-        println "ID"
-        println id
-        println uri
-        println analyse
-        setData(new DataReader(k, uri))
-        analyse.closure()
-        viewsMap['tool']['assessment'] = analyse.object.widgets
+    def _evalIndividuals(String id){
+        def uri = _k.toURI(':'+id)
+        def types = _k[uri].getType()
+
+        analyzesMap.each{ analyseKey, analyse ->
+            props.each{ key, value ->
+                types.each{
+                    if(it == value){
+                        props[key] = uri
+                        analyse.closure()
+                        props[key] = value
+                    }
+                }
+            }
+            viewsMap['tool']['assessment'] = analyse.object.widgets
+        }
+        println "Run Analyse"
+
+        println "Analizes map size "+analyzesMap.size()
+        //println props
     }
 
-    def _cleanProgram(){
+    def _cleanViews(){
+        viewsMap = [:]
+        viewsMap['tool'] = [:]
+        viewsMap['tool']['index'] = []
+        viewsMap['tool']['assessment'] = []
         report = []
-    }
 
-    def propertyMissing(String str, arg) {
-        props[str] = arg
-    }
-
-    def propertyMissing(String str) {
-        props[str]
+        analyzesMap.each{ analyseKey, analyse ->
+            analyse.object.widgets = []
+            analyse.object.model = []
+        }
     }
 
     def sum(obj){

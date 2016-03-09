@@ -11,6 +11,7 @@ class AdminController {
 
     def ontology
     def dsl
+    def gui
     def k
 
     def index(){
@@ -31,7 +32,7 @@ class AdminController {
     }
 
     def dsl(){
-        def response = dsl.reLoad(params['code'])
+        def response = dsl.reload(params['code'])
 
         if(response.status == 'ok')
             new File('dsl/dsl.groovy').write(params['code'])
@@ -41,20 +42,29 @@ class AdminController {
 
     def dslReset(){
         def file = new File('dsl/dsl.groovy')
-        file.write(new File('dsl/dsl-bk.groovy').text)
+        file.write(new File('dsl/dsl-backup.groovy').text)
 
-        def response = dsl.reLoad(file.text)
+        def response = dsl.reload(file.text)
 
         redirect(action: 'index')
     }
 
     def gui(){
-        println params
-        def response  = [:]
+        def response  = gui.reload(params['code'])
 
-        response.status = 'ok'
+        if(response.status == 'ok')
+            new File('dsl/gui.groovy').write(params['code'])
 
         render response as XML
+    }
+
+    def guiReset(){
+        def file = new File('dsl/gui.groovy')
+        file.write(new File('dsl/gui-backup.groovy').text)
+
+        def response = gui.reload(file.text)
+
+        redirect(action: 'index')
     }
 
     def updateIndicator(){

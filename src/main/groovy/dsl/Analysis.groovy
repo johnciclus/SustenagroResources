@@ -77,6 +77,7 @@ class Analysis {
             }
         }
 
+        /*
         println "* Tree *"
         Uri.printTree(features)
 
@@ -87,22 +88,33 @@ class Analysis {
                 println "\t "+it
             }
         }
+        */
+
+        def subWidgets = []
+        subWidgets.push(closure())
 
         def request = []    //prop -> value
+        args['id'] = id
 
         model << [  id: _id,
                     features: features,
                     categories: categories,
                     technologyTypes: technologyTypes]
 
-        widgets << [id: id,
-                    widget: 'tabs',
+        widgets << [widget: 'tabs',
+                    widgets: subWidgets,
                     request: request,
-                    args: args, ]
+                    args: args ]
 
         //<input type="hidden" name="production_unit_id" value="${evaluationObject.id}">
         //<g:render template="/widgets/tabs" model="${model}" />
 
+    }
+
+    def tab(String id='', Map args = [:]){
+        return [widget: 'tab',
+                 request: [],
+                 args: args]
     }
 
     static toHTML(String txt) {md.markdownToHtml(txt)}

@@ -12,9 +12,12 @@ class GUIDSL {
     def _sandbox
     def _script
     def _ctx
-    def dataTypeToWidget = [:]
+    def dataTypeToWidget
 
     def GUIDSL(String file, ApplicationContext applicationContext){
+
+        dataTypeToWidget = [:]
+
         // Create CompilerConfiguration and assign
         // the DelegatingScript class as the base script class.
         def _cc = new CompilerConfiguration()
@@ -41,7 +44,10 @@ class GUIDSL {
         }
     }
 
-    def reLoad(String code){
+    def reload(String code){
+
+        dataTypeToWidget = [:]
+
         _sandbox.register()
 
         //def stack = code.tokenize("\n")
