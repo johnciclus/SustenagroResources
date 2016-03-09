@@ -75,7 +75,7 @@ class DataReader {
             println 'CurrentProductionUnit'
             //println id
             //println k[id].getLabel()
-            //def res = k[id].getProductionUnity('?label ?productionUnit ?microregion ')
+            //def res = k[id].getProductionEvaluationObject('?label ?productionUnit ?microregion ')
             return k[id].getLabel()
         }
         else{

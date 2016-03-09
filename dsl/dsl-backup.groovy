@@ -96,9 +96,9 @@ evaluationObject(':ProductionUnit') {
     instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções"
 }
 
-selectUnity(':ProductionUnit', title: "Selecionar unidade produtiva", label : "Unidade produtiva", submit_label: "Nova avaliação")
+selectEvaluationObject(':ProductionUnit', title: "Selecionar unidade produtiva", label : "Unidade produtiva", submit_label: "Nova avaliação")
 
-createUnity(':ProductionUnit', title: "Cadastrar nova unidade produtiva para realizar avaliação", submit_label: "Cadastrar")
+createEvaluationObject(':ProductionUnit', title: "Cadastrar nova unidade produtiva para realizar avaliação", submit_label: "Cadastrar")
 
 
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados

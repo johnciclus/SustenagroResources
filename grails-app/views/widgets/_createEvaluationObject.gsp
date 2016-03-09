@@ -2,6 +2,6 @@
 
 <g:render template="/widgets/formCreateEvaluationObject"
           model="[id: 'create_form',
-                  action: '/tool/createUnity',
+                  action: '/tool/createEvaluationObject',
                   method: 'post',
                   formClass: 'form-horizontal']"/>

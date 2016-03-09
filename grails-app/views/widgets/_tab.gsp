@@ -1,5 +1,5 @@
-<li role="presentation" class="active">
-    <a href="#sustainability_assessment" aria-controls="sustainability_assessment" role="tab" data-toggle="tab">
-        Avaliação da sustentabilidade
+<li role="presentation" class="<%=widgetClass%>">
+    <a href="#<%=id%>" aria-controls="<%=id%>" role="tab" data-toggle="tab">
+        <%=label%>
     </a>
 </li>

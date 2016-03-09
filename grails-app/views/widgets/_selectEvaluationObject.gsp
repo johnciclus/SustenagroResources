@@ -1,6 +1,6 @@
 <g:render template="/widgets/title" model="[title: title]"/>
 
-<form id="select_production_units" action="/tool/selectUnity" method="post" class="form-horizontal" >
+<form id="select_production_units" action="/tool/selectEvaluationObject" method="post" class="form-horizontal" >
     <div class="form-group">
         <label for="production_unit_id" class="col-sm-4 control-label">${label}</label>
         <div class="col-sm-6">

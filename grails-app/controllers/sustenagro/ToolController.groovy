@@ -12,7 +12,7 @@ class ToolController {
 
     def index() {
 
-        println "* Index Tree *"
+        println "* Index Tree ${dsl.viewsMap[controllerName][actionName].size()}*"
         Uri.printTree(dsl.viewsMap[controllerName][actionName])
 
         dsl.viewsMap[controllerName][actionName].each{ command ->
@@ -33,33 +33,33 @@ class ToolController {
         render(view: 'index', model: [inputs: dsl.viewsMap[controllerName][actionName]])
     }
 
-    def createUnity() {
+    def createEvaluationObject() {
         def id = ''
-        def name = k.shortURI(':hasName')
-        def type = k.shortURI(params['unity'])
+        def name = k.toURI(':hasName')
+        def type = k.toURI(params['evaluationObject'])
 
-        if(params['unity'] && params[name] && params[type]){
+        if(params['evaluationObject'] && params[name] && params[type]){
 
             def node = new Node(k, '')
-            def unityInstances = [:]
+            def evaluationObjectInstances = [:]
 
-            def instances = dsl.evaluationObjectMap[k.shortToURI(params['unity'])].model
+            def instances = dsl.evaluationObjectMap[k.shortToURI(params['evaluationObject'])].model
 
             instances.each{ ins ->
                 if(params[ins.id] && ins.id != type){
-                    unityInstances[k.shortToURI(ins.id)] = [value: params[ins.id], dataType: ins.dataType]
+                    evaluationObjectInstances[k.shortToURI(ins.id)] = [value: params[ins.id], dataType: ins.dataType]
                 }
             }
 
             id = new Slugify().slugify(params[name])
-            node.insertUnity(id, params[type], unityInstances)
+            node.insertEvaluationObject(id, params[type], evaluationObjectInstances)
         }
 
         //k.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
         redirect(action: 'assessment', id: id)
     }
 
-    def selectUnity(){
+    def selectEvaluationObject(){
         def production_unit_id = k.shortURI(params.production_unit_id)
 
         redirect(   action: 'assessment',
@@ -176,7 +176,7 @@ class ToolController {
             //file.write(page.toString())
         }
         */
-        dsl._cleanViews()
+        dsl._cleanView(controllerName, actionName)
         dsl._evalIndividuals(params.id)
 
         dsl.viewsMap[controllerName][actionName].each{ command ->
@@ -303,6 +303,5 @@ class ToolController {
                 id: params.production_unit_id,
                 params: [assessment: assessment_name])
     }
-
 
 }

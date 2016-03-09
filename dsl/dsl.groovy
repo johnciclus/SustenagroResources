@@ -27,13 +27,14 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // Se a fazenda ficar em mais de uma micro-região?
 
 // Caracterização dos sistemas produtivos no Centro-Sul 
-evaluationObject(':ProductionUnit') {
-    //feature or instance
+evaluationObject ':ProductionUnit', {
+    //type or instance
 
     // Production unit name
-    feature ':hasName', label: "Nome da unidade produtiva", placeholder: "Nome"
+    instance ':hasName', label: "Nome da unidade produtiva", placeholder: "Nome"
 
     // Production unit type
+    // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
     type label: "Tipo da unidade produtiva", header: "Opções"
 
     // Agricultural production system
@@ -48,44 +49,42 @@ evaluationObject(':ProductionUnit') {
     instance ':hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
 
     // Data de fundação da unidade produção
-    feature ':hasEstablishmentDate', label: "Data de fundação da unidade produção"
+    instance ':hasEstablishmentDate', label: "Data de fundação da unidade produção"
 
     // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
-    feature ':hasPartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)", widget: 'textAreaForm', placeholder: "Descrição"
+    instance ':hasPartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)", widget: 'textAreaForm', placeholder: "Descrição"
 
     //Ligação com outros grupos empresariais ou de investimentos
-    feature ':hasLinkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos", placeholder: "Descrição"
+    instance ':hasLinkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos", placeholder: "Descrição"
 
     // Municípios envolvidos (localização da sede)
 
     // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
-    feature ':hasInnovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
+    instance ':hasInnovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
 
     //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
-    feature ':hasFinancing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição"
+    instance ':hasFinancing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição"
 
     // Valor total investido em tecnologia na fase agrícola (até a fase atual)
-    feature ':hasTotalValueInvestedInTechnologicInAgriculturalPhase', label: "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
+    instance ':hasTotalValueInvestedInTechnologicInAgriculturalPhase', label: "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
 
     // Valor total investido em tecnologia na fase industrial (até a fase atual)
-    feature ':hasTotalValueInvestedInTechnologicInIndustrialPhase', label: "Valor total investido em tecnologia na fase industrial (até a fase atual)"
+    instance ':hasTotalValueInvestedInTechnologicInIndustrialPhase', label: "Valor total investido em tecnologia na fase industrial (até a fase atual)"
 
     // Valor total previsto para investimento para escoamento da produção
-    feature ':hasTotalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
-
-    // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
+    instance ':hasTotalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
 
     // Data de início do plantio
-    feature ':hasBeginningOfPlantingDate', label: "Data de início do plantio"
+    instance ':hasBeginningOfPlantingDate', label: "Data de início do plantio"
 
     // Data de término do plantio
-    feature ':hasFinishOfPlantingDate', label: "Data de término do plantio"
+    instance ':hasFinishOfPlantingDate', label: "Data de término do plantio"
 
     // Data de início da colheita
-    feature ':hasBeginningOfHarvestDate', label: "Data de início da colheita"
+    instance ':hasBeginningOfHarvestDate', label: "Data de início da colheita"
 
     // Data de término da colheita
-    feature ':hasFinishOfHarvestDate', label: "Data de término da colheita"
+    instance ':hasFinishOfHarvestDate', label: "Data de término da colheita"
 
     // Longevidade do canvial (cana de ano, cana de ano e meio);
     instance ':hasCanavialLongevity', label: "Longevidade do canvial", header: "Opções"
@@ -94,9 +93,9 @@ evaluationObject(':ProductionUnit') {
     instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções"
 }
 
-selectUnity(':ProductionUnit', title: "Selecionar unidade produtiva", label : "Unidade produtiva", submit_label: "Nova avaliação")
+selectEvaluationObject ':ProductionUnit', title: "Selecionar unidade produtiva", label : "Unidade produtiva", submit_label: "Nova avaliação"
 
-createUnity(':ProductionUnit', title: "Cadastrar nova unidade produtiva para realizar avaliação", submit_label: "Cadastrar")
+createEvaluationObject ':ProductionUnit', title: "Cadastrar nova unidade produtiva para realizar avaliação", submit_label: "Cadastrar"
 
 
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados
@@ -126,10 +125,21 @@ productionFeature ':TechnologicalEfficiencyFeature', {
 
 individual 'Production_Unit', ':ProductionUnit'
 
-assessment('ui:Analysis'){
+assessment 'ui:Analysis', {
     paragraph "Unidade produtiva atual: **" + Production_Unit.label + "**"
-    tabs('assessment'){
-        tab('')
+    tabs 'assessment', previousLabel: 'Anterior', nextLabel: 'Próximo', {
+        
+        tab 'sustainability_assessment', label: 'Avaliação da sustentabilidade', widgetClass: 'active', {
+            
+        }
+        
+        tab 'efficiency_assessment', label: 'Avaliação da eficiência' {
+            
+        }
+        
+        tab 'report', label: 'Relatório'
+        
+        tab 'recomendation', label: 'Recomendação'
     }
 }
 

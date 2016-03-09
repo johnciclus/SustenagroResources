@@ -14,6 +14,7 @@ class Analysis {
     def model
     def widgets
     def dsl
+    def tabs
     static md
 
     Analysis(String id, ApplicationContext applicationContext){
@@ -24,20 +25,22 @@ class Analysis {
         md = _ctx.getBean('md')
         model = []
         widgets = []
+        tabs = []
     }
 
     def paragraph(String arg){
         widgets << ['widget': 'paragraph', 'args': ['text': toHTML(arg)]]
     }
 
-    def tabs(String id, Closure closure = {}){
+    def tabs(Map args = [:], String id, Closure closure = {}){
         def features = [:]
         def categories = [:]
         def technologyTypes = []
         def grandChildren
-        def args = [:]
+        //def args = [:]
         dsl = _ctx.getBean('dsl')
 
+        /*
         dsl.dimensionsMap.each{ feature ->
             features[feature.key] = ['subClass': [:]]
             grandChildren = k[feature.key].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
@@ -90,11 +93,32 @@ class Analysis {
         }
         */
 
-        def subWidgets = []
-        subWidgets.push(closure())
 
-        def request = []    //prop -> value
+        def request = []
         args['id'] = id
+        args['widgets'] = [:]
+        closure()
+
+        tabs.eachWithIndex{ tab, index ->
+            args['widgets'][tab.id] = tab.widget
+        }
+
+        for(int i=0; i < tabs.size(); i++){
+            if(i == 0 ){
+                args['widgets'][tabs[i].id].args['next'] = tabs[i+1].id
+                args['widgets'][tabs[i].id].args['nextLabel'] = args['nextLabel']
+            }
+            else if(i == (tabs.size()-1)){
+                args['widgets'][tabs[i].id].args['previous'] = tabs[i-1].id
+                args['widgets'][tabs[i].id].args['previousLabel'] = args['previousLabel']
+            }
+            else{
+                args['widgets'][tabs[i].id].args['previous'] = tabs[i-1].id
+                args['widgets'][tabs[i].id].args['next'] = tabs[i+1].id
+                args['widgets'][tabs[i].id].args['previousLabel'] = args['previousLabel']
+                args['widgets'][tabs[i].id].args['nextLabel'] = args['nextLabel']
+            }
+        }
 
         model << [  id: _id,
                     features: features,
@@ -102,7 +126,6 @@ class Analysis {
                     technologyTypes: technologyTypes]
 
         widgets << [widget: 'tabs',
-                    widgets: subWidgets,
                     request: request,
                     args: args ]
 
@@ -111,10 +134,12 @@ class Analysis {
 
     }
 
-    def tab(String id='', Map args = [:]){
-        return [widget: 'tab',
-                 request: [],
-                 args: args]
+    def tab(Map args = [:], String id='', Closure closure = {}){
+        args['id'] = id
+
+        tabs << [id: id, widget: [widget: 'tab',
+                                 request: [],
+                                 args: args]]
     }
 
     static toHTML(String txt) {md.markdownToHtml(txt)}

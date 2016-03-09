@@ -136,24 +136,24 @@ class DSL {
         evaluationObjectMap[uri] = object
     }
 
-    def selectUnity(Map args = [:], String id){
+    def selectEvaluationObject(Map args = [:], String id){
         def uri = _k.toURI(id)
         def request = ['unities': ['a', uri]]
         def shortId = _k.shortURI(uri)
-        args['unity']= uri
+        args['evaluationObject']= uri
 
         //println uri
         //println shortId
 
-        viewsMap['tool']['index'].push(['widget': 'selectUnity', 'request': request, args: args])
+        viewsMap['tool']['index'].push(['widget': 'selectEvaluationObject', 'request': request, args: args])
     }
 
-    def createUnity(Map args = [:], String id){
+    def createEvaluationObject(Map args = [:], String id){
         def uri = _k.toURI(id)
         def requestLst        = [:]
         requestLst['widgets'] = [:]
         args['widgets']       = [:]
-        args['unity']         = uri
+        args['evaluationObject']         = uri
 
         evaluationObjectMap[uri].widgets.each{
             if(it.request) {
@@ -162,7 +162,7 @@ class DSL {
             args['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
         }
 
-        viewsMap['tool']['index'].push(['widget': 'createUnity', 'request': requestLst, 'args': args])
+        viewsMap['tool']['index'].push(['widget': 'createEvaluationObject', 'request': requestLst, 'args': args])
     }
 
     def dimension(String id, Closure closure = {}) {
@@ -310,11 +310,12 @@ class DSL {
         //println props
     }
 
-    def _cleanViews(){
-        viewsMap = [:]
-        viewsMap['tool'] = [:]
-        viewsMap['tool']['index'] = []
-        viewsMap['tool']['assessment'] = []
+    def _cleanView(String controller, String action){
+
+        if(controller?.trim() && controller?.trim()){
+            println "clean "+ controller + " - " + action
+            //viewsMap[controller][action] = []
+        }
         report = []
 
         analyzesMap.each{ analyseKey, analyse ->

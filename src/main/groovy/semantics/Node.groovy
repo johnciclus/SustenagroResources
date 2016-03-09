@@ -15,12 +15,16 @@ class Node {
         this.patterns.put('type', "<$URI> rdf:type ?type. ")
         this.patterns.put('label', "<$URI> rdfs:label ?label. ")
         this.patterns.put('superClass.', "<$URI> rdfs:subClassOf ?superClass. ")
+        this.patterns.put('range', "<$URI> rdfs:range ?range. ")
     }
 
     def getAttr(String args='', Map params = [:]) {
         def argsList = args.tokenize(' ?')
+        def select = ''
         def query = ''
+        def order = ''
         def result
+
 
         //println argsList
         argsList.each{
@@ -40,14 +44,23 @@ class Node {
 
         //println query
 
-        result = k.query(query)
+        if(argsList.contains('label')){
+            order = 'order by ?label'
+        }
+        else if(argsList.size()==1){
+            order = 'order by ?'+argsList[0]
+        }
+
+        select = 'distinct '
+        argsList.each{
+            select += '?'+it
+        }
+
+        result = k.select(select).query(query, order)
 
         //println result
 
-        if(argsList.contains('label')){
-            result = result.collect{ it['label']}
-        }
-        else if(argsList.size()==1){
+        if(argsList.size()==1){
             result = result.collect{ it[argsList[0]]}
         }
 
@@ -60,6 +73,11 @@ class Node {
 
     def getType(Map params = [:]){
         getAttr('?type', params)
+    }
+
+    def getRange(Map params = [:]) {
+        //def res = k.select("distinct ?range").query("<$URI> rdfs:range ?range.")
+        getAttr('?range', params)
     }
 
     def getDataType(){
@@ -89,14 +107,7 @@ class Node {
         return res
     }
 
-    def getRange() {
-        def res = k.select("distinct ?range").query("<$URI> rdfs:range ?range.")
 
-        if(res.size()==1)
-            return res[0].range
-        else
-            return res
-    }
 
     def getLabelDescription(String property) {
         k.query("?id $property <$URI>; rdfs:label ?label. optional {?id dc:description ?description}. FILTER ( ?id != <$URI> )")
@@ -270,7 +281,7 @@ class Node {
         res
     }
 
-    def getProductionUnity(String args){
+    def getEvaluationObject(String args){
         def argsList = args.split(' ')
 
         def query = "<$URI> :appliedTo ?ins."
@@ -508,7 +519,7 @@ class Node {
         k.select('distinct ?uri').query("?uri rdfs:label '$label'@${k.lang}.")
     }
 
-    def insertUnity(String id, Object type, Map params){
+    def insertEvaluationObject(String id, Object type, Map params){
         def name = k.toURI(':hasName')
 
         String sparql = "<" + k.toURI(":"+id) + "> "
@@ -563,7 +574,7 @@ class Node {
 
         sparql += '.'
 
-        //def unityParams = dsl.viewsMap['tool']['index'].find{ it['widget'] == 'createUnity' }
+        //def evaluationObjectParams = dsl.viewsMap['tool']['index'].find{ it['widget'] == 'createEvaluationObject' }
 
         //sparql.split(';').each{
         //    println it

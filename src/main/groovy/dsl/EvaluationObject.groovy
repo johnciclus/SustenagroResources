@@ -21,13 +21,23 @@ class EvaluationObject {
         widgets = []
     }
 
-    def feature(Map args = [:], String id, String prop = ''){
+    def instance(Map args = [:], String id, String prop = ''){
         def uri = k.toURI(id)
-        def featureId = k.shortURI(uri)
+        //def featureId = k.shortURI(uri)
         def range = (id != _id)? k[uri].range : uri
-        def dataType = (range)? range : 'http://www.w3.org/2001/XMLSchema#string'
-        def request = (prop?.trim())? [prop, dataType] : []
+        def dataType = (range)? range : k.toURI('xsd:string')
         def widget = (args['widget'])? args['widget'] : gui['dataTypeToWidget'].find { k.toURI(it.key) == dataType }.value
+        def request = []
+
+        if(prop?.trim()){
+            request = [prop, dataType]
+        }
+        else{
+            if(k[uri].type.contains(k.toURI('owl:ObjectProperty'))){
+                prop = 'rdf:type'
+                request = [prop, dataType]
+            }
+        }
 
         widget = (widget)? widget : 'textForm'
 
@@ -37,22 +47,21 @@ class EvaluationObject {
         if(widget == 'categoryForm')
             args['selectType'] = (args['multipleSelection'])? 'checkbox' : 'radio'
 
-        args['id'] = featureId
+        args['id'] = uri
 
-        model << [id: featureId,
+        //println uri
+
+        model << [id: uri,
                   dataType: dataType]
 
-        widgets << [ id: featureId,
+        widgets << [ id: uri,
                      widget: widget,
                      request: request,
                      args: args]
     }
 
     def type(Map args = [:], String id=_id){
-        feature(args, id, 'rdfs:subClassOf')
+        instance(args, id, 'rdfs:subClassOf')
     }
 
-    def instance(Map args = [:], String id){  //automatize if ID is Object Property or Data Property
-        feature(args, id, 'rdf:type')
-    }
 }
