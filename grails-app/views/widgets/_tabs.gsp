@@ -10,7 +10,9 @@
     <div id="<%=id%>_content" class="tab-content">
         <g:if test="${widgets}">
             <g:each status="i" var="widget" in="${widgets}">
-                <g:render template="/widgets/${widget.value.widget}Panel" model="${widget.value.args}" />
+                <g:if test="${widget.value.widget == 'tab'}">
+                    <g:render template="/widgets/tabPanel" model="${widget.value.args}" />
+                </g:if>
             </g:each>
         </g:if>
     </div>

@@ -13,8 +13,10 @@ class Analysis {
     def gui
     def model
     def widgets
-    def dsl
     def tabs
+    def ref
+    def dsl
+
     static md
 
     Analysis(String id, ApplicationContext applicationContext){
@@ -26,80 +28,28 @@ class Analysis {
         model = []
         widgets = []
         tabs = []
+        ref = widgets
     }
 
     def paragraph(String arg){
         widgets << ['widget': 'paragraph', 'args': ['text': toHTML(arg)]]
     }
 
-    def tabs(Map args = [:], String id, Closure closure = {}){
-        def features = [:]
-        def categories = [:]
-        def technologyTypes = []
-        def grandChildren
-        //def args = [:]
-        dsl = _ctx.getBean('dsl')
-
-        /*
-        dsl.dimensionsMap.each{ feature ->
-            features[feature.key] = ['subClass': [:]]
-            grandChildren = k[feature.key].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
-            k[feature.key].getSubClass('?label').each{ subClass ->
-                features[feature.key]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
-                grandChildren.each{
-                    if(it.subClass == subClass.subClass) {
-                        features[feature.key]['subClass'][subClass.subClass]['subClass'][it.id] = it
-                    }
-                }
-            }
-            categories += grandChildren.categoryList()
-        }
-
-        dsl.featureMap.each{ feature ->
-            features[feature.key] = ['subClass': [:]]
-            grandChildren = k[feature.key].getGrandchildren('?id ?label ?subClass ?category ?valueType')
-            k[feature.key].getSubClass('?label').each{ subClass ->
-                features[feature.key]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
-                grandChildren.each{
-                    if(it.subClass == subClass.subClass) {
-                        features[feature.key]['subClass'][subClass.subClass]['subClass'][it.id] = it
-                    }
-                }
-            }
-            categories += grandChildren.categoryList()
-        }
-
-        categories[k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
-        categories[k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
-
-        def method = 'getIndividualsIdLabel'
-
-        categories.each { key, v ->
-            k[key]."${method}"().each{            //getIndividualsIdLabel().each {
-                v.push(it)
-            }
-        }
-
-        /*
-        println "* Tree *"
-        Uri.printTree(features)
-
-        println "Categories"
-        categories.each{ category ->
-            println category.key
-            category.value.each{
-                println "\t "+it
-            }
-        }
-        */
-
-
+    def tabs(Map args, String id, Closure closure = {}){
         def request = []
+        //dsl = _ctx.getBean('dsl')
         args['id'] = id
         args['widgets'] = [:]
+
+        println id
+        println closure.owner
+        println closure.delegate
+        println closure.thisObject
+        println ''
+
         closure()
 
-        tabs.eachWithIndex{ tab, index ->
+        tabs.each{ tab ->
             args['widgets'][tab.id] = tab.widget
         }
 
@@ -120,26 +70,45 @@ class Analysis {
             }
         }
 
-        model << [  id: _id,
-                    features: features,
-                    categories: categories,
-                    technologyTypes: technologyTypes]
+        model << [  id: _id]
 
-        widgets << [widget: 'tabs',
-                    request: request,
-                    args: args ]
+        widgets <<   [widget: 'tabs',
+                      request: request,
+                      args: args ]
 
         //<input type="hidden" name="production_unit_id" value="${evaluationObject.id}">
         //<g:render template="/widgets/tabs" model="${model}" />
+    }
 
+    def tabs(String id, Closure closure = {}){
+        tabs([:], id, closure)
     }
 
     def tab(Map args = [:], String id='', Closure closure = {}){
         args['id'] = id
+        args['widgets'] = [:]
 
-        tabs << [id: id, widget: [widget: 'tab',
-                                 request: [],
-                                 args: args]]
+        println id
+        println closure.owner
+        println closure.delegate
+        println closure.thisObject
+        println ''
+
+        closure(args['widgets'])
+
+        /*
+        widgets.eachWithIndex{ widget, index ->
+            args['widgets'][widget.id] = widget.widget
+        }
+        */
+
+        tabs <<  [id: id, widget:  [widget: 'tab',
+                                    request: [],
+                                    args: args ]]
+    }
+
+    def indicatorList(String id){
+        println "Indicator list "
     }
 
     static toHTML(String txt) {md.markdownToHtml(txt)}

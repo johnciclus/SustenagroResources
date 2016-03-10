@@ -103,18 +103,18 @@ createEvaluationObject ':ProductionUnit', title: "Cadastrar nova unidade produti
 // mostrar algum indicador. No exemplo abaixo, o indicador "co2 emission"
 // (fictício) não é mostrado.
 
-dimension ':EnvironmentalIndicator'
+indicators ':EnvironmentalIndicator'
 //{
 //    exclude 'co2 emission'
 //}
 
-dimension ':EconomicIndicator'
+indicators ':EconomicIndicator'
 
-dimension ':SocialIndicator'
+indicators ':SocialIndicator'
 
-productionFeature ':ProductionEfficiencyFeature'
+indicators ':ProductionEfficiencyFeature'
 
-productionFeature ':TechnologicalEfficiencyFeature', {
+indicators ':TechnologicalEfficiencyFeature', {
     conditional ":ProductionUnit", 'http://dbpedia.org/ontology/Provider', {
         include ':TechnologicalEfficiencyInTheField'
     }
@@ -130,10 +130,13 @@ assessment 'ui:Analysis', {
     tabs 'assessment', previousLabel: 'Anterior', nextLabel: 'Próximo', {
         
         tab 'sustainability_assessment', label: 'Avaliação da sustentabilidade', widgetClass: 'active', {
-            
+            //tabs 'sustainability', {
+            indicatorList ':EnvironmentalIndicator'
+                
+            //}
         }
         
-        tab 'efficiency_assessment', label: 'Avaliação da eficiência' {
+        tab 'efficiency_assessment', label: 'Avaliação da eficiência', {
             
         }
         

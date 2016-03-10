@@ -13,7 +13,7 @@ class DSL {
     def viewsMap = [:]
     def evaluationObjectMap = [:]
     def featureMap = [:]
-    def dimensionsMap = [:]
+    //def dimensionsMap = [:]
     def analyzesMap = [:]
     def report = []
 
@@ -165,7 +165,7 @@ class DSL {
         viewsMap['tool']['index'].push(['widget': 'createEvaluationObject', 'request': requestLst, 'args': args])
     }
 
-    def dimension(String id, Closure closure = {}) {
+    /*def dimension(String id, Closure closure = {}) {
         String uri = _k.toURI(id)
         def feature = new Feature(uri, _ctx)
         closure.resolveStrategy = Closure.DELEGATE_FIRST
@@ -176,6 +176,18 @@ class DSL {
     }
 
     def productionFeature(String id, Closure closure = {}){
+        String uri = _k.toURI(id)
+        def feature = new Feature(uri, _ctx)
+
+        closure.resolveStrategy = Closure.DELEGATE_FIRST
+        closure.delegate = feature
+        closure()
+
+        featureMap[uri] = feature
+    }
+    */
+
+    def indicators(String id, Closure closure = {}){
         String uri = _k.toURI(id)
         def feature = new Feature(uri, _ctx)
 

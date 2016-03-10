@@ -179,8 +179,10 @@ class ToolController {
         dsl._cleanView(controllerName, actionName)
         dsl._evalIndividuals(params.id)
 
+        println "* Index Tree ${dsl.viewsMap[controllerName][actionName].size()}*"
+        Uri.printTree(dsl.viewsMap[controllerName][actionName])
+
         dsl.viewsMap[controllerName][actionName].each{ command ->
-            println command
             if(command.request){
                 command.request.each{ key, args ->
                     if(key!='widgets'){
