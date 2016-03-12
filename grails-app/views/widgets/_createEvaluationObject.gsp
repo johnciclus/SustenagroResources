@@ -1,4 +1,4 @@
-<g:render template="/widgets/title" model="[title: title]"/>
+<g:render template="/widgets/title" model="[text: title]"/>
 
 <g:render template="/widgets/formCreateEvaluationObject"
           model="[id: 'create_form',

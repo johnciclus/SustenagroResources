@@ -8,7 +8,7 @@ class Feature {
     def _id
     def _ctx
     def k
-    def gui
+    //def gui
     def model = []
     def features = [:]
     def categories = [:]
@@ -18,12 +18,12 @@ class Feature {
         _id = id
         _ctx = applicationContext
         k = _ctx.getBean('k')
-        gui = _ctx.getBean('gui')
+        //gui = _ctx.getBean('gui')
 
         def uri = k.toURI(id)
         def grandChildren
 
-        features[uri] = ['subClass': [:]]
+        features[uri] = ['label': k[uri].label, 'subClass': [:]]
         grandChildren = k[uri].getGrandchildren('?id ?label ?subClass ?category ?valueType')
         k[uri].getSubClass('?label').each{ subClass ->
             features[uri]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
@@ -120,8 +120,13 @@ class Feature {
         }
         return asserts
     }
+    def cleanCategories(){
+        categories = [:]
+    }
 
     def updateCategories(){
+
+
         categories[k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
         categories[k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
 

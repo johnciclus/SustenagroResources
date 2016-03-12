@@ -1,5 +1,8 @@
 <div role="tabpanel" class="tab-pane ind-content <%=widgetClass%>"  id="<%=id%>">
-    <g:render template="/widgets/${id}"></g:render>
+    <g:if test="${widgets}">
+        <g:render template="/widgets/${widgets[id].widget}" model="${widgets[id].args}"/>
+    </g:if>
+
     <div>
         <nav>
             <ul class="pager">

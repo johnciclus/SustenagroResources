@@ -10,12 +10,11 @@ import semantics.Node
  */
 
 class DSL {
-    def viewsMap = [:]
-    def evaluationObjectMap = [:]
     def featureMap = [:]
-    //def dimensionsMap = [:]
     def analyzesMap = [:]
     def report = []
+
+    def evaluationObjectInstance
 
     def data
     def props = [:]
@@ -26,6 +25,7 @@ class DSL {
     def _script
     def _ctx
     def _k
+    def _gui
     static _md
 
     DSL(String file, ApplicationContext applicationContext){
@@ -33,11 +33,8 @@ class DSL {
         // the DelegatingScript class as the base script class.
         _ctx = applicationContext
         _k = _ctx.getBean('k')
+        _gui = _ctx.getBean('gui')
         _md = _ctx.getBean('md')
-
-        viewsMap['tool'] = [:]
-        viewsMap['tool']['index'] = []
-        viewsMap['tool']['assessment'] = []
 
         def _cc = new CompilerConfiguration()
         _cc.addCompilationCustomizers(new SandboxTransformer())
@@ -63,16 +60,11 @@ class DSL {
     }
 
     def reload(String code){
-        viewsMap = [:]
-        viewsMap['tool'] = [:]
-        viewsMap['tool']['index'] = []
-        viewsMap['tool']['assessment'] = []
-
-        evaluationObjectMap = [:]
         featureMap = [:]
-        dimensionsMap = [:]
         analyzesMap = [:]
         report = []
+
+        evaluationObjectInstance = null
 
         _sandbox.register()
 
@@ -110,21 +102,6 @@ class DSL {
         return response
     }
 
-    def title(String arg){
-        viewsMap['tool']['index'].push(['widget': 'title', 'args': ['title': arg]])
-    }
-
-    def description(String arg){
-        viewsMap['tool']['index'].push(['widget': 'description', 'args': ['description': toHTML(arg)]])
-
-        //println  Processor.process(description, true)
-        //println new PegDownProcessor().markdownToHtml(description)
-    }
-
-    def paragraph(String arg){
-        viewsMap['tool']['assessment'].push(['widget': 'paragraph', 'args': ['text': arg]])
-    }
-
     def evaluationObject(String id, Closure closure){
         String uri = _k.toURI(id)
         def object = new EvaluationObject(uri, _ctx)
@@ -133,36 +110,7 @@ class DSL {
         closure.delegate = object
         closure()
 
-        evaluationObjectMap[uri] = object
-    }
-
-    def selectEvaluationObject(Map args = [:], String id){
-        def uri = _k.toURI(id)
-        def request = ['unities': ['a', uri]]
-        def shortId = _k.shortURI(uri)
-        args['evaluationObject']= uri
-
-        //println uri
-        //println shortId
-
-        viewsMap['tool']['index'].push(['widget': 'selectEvaluationObject', 'request': request, args: args])
-    }
-
-    def createEvaluationObject(Map args = [:], String id){
-        def uri = _k.toURI(id)
-        def requestLst        = [:]
-        requestLst['widgets'] = [:]
-        args['widgets']       = [:]
-        args['evaluationObject']         = uri
-
-        evaluationObjectMap[uri].widgets.each{
-            if(it.request) {
-                requestLst['widgets'][it.id] = it.request
-            }
-            args['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
-        }
-
-        viewsMap['tool']['index'].push(['widget': 'createEvaluationObject', 'request': requestLst, 'args': args])
+        evaluationObjectInstance = object
     }
 
     /*def dimension(String id, Closure closure = {}) {
@@ -198,11 +146,6 @@ class DSL {
         featureMap[uri] = feature
     }
 
-
-//    def recommendation(Map map, String txt){
-//        recommendations << [map['if'],txt]
-//    }
-
     def data(String str){
         data = str
         props[str]
@@ -212,27 +155,38 @@ class DSL {
         props[data]= obj
     }
 
+    def setData(String str, obj){
+        props[str]= obj
+    }
+
+    def getData(String str){
+        props[str]
+    }
+
     def individual(String key, String uri){
         props[key]= _k.toURI(uri)
     }
 
-    /*
-    def propertyMissing(String str, arg) {
-        props[str] = arg
-    }
-
-    def propertyMissing(String arg) {
-        props[arg]
-    }
-    */
-
-    def propertyMissing(String str, arg) {
-        props[str] = arg
+    def propertyMissing(String key, arg) {
+        props[key] = arg
     }
 
     def propertyMissing(String key) {
-        //props[str]
-        new Node(_k, _k.toURI(props[key]))
+        props[key]
+        //new Node(_k, _k.toURI(props[key]))
+    }
+
+    def methodMissing(String key, args){
+        if(args.getClass() == Object[]){
+            if(args.size()==1){
+                if(args[0].getClass() == String)
+                    props[key] = _toHTML(args[0])
+                else
+                    props[key] = args[0]
+            }
+            else
+                props[key] = args
+        }
     }
 
     def printData(){
@@ -257,10 +211,10 @@ class DSL {
                             closure: closure]
     }
 
-    static toHTML(String txt) {_md.markdownToHtml(txt)}
+    static _toHTML(String txt) {_md.markdownToHtml(txt)}
 
     def show(String txt){
-        report << ['show', toHTML(txt)]
+        report << ['show', _toHTML(txt)]
 
     }
 
@@ -269,19 +223,19 @@ class DSL {
     }
 
     def recommendation(String txt){
-        report << ['recommendation', toHTML(txt)]
+        report << ['recommendation', _toHTML(txt)]
     }
 
     def recommendation(boolean c, String txt){
-        if (c) report << ['recommendation', toHTML(txt)]
+        if (c) report << ['recommendation', _toHTML(txt)]
     }
 
     def recommendation(Map map){
-        if (map.if) report << ['recommendation', toHTML(map.show)]
+        if (map.if) report << ['recommendation', _toHTML(map.show)]
     }
 
     def recommendation(Map map, String txt){
-        if (map['if']) report << ['recommendation', toHTML(txt)]
+        if (map['if']) report << ['recommendation', _toHTML(txt)]
     }
 
     def table(ArrayList list, Map headers = [:]){
@@ -300,6 +254,22 @@ class DSL {
         program = c
     }
 
+    def _clean(String controller, String action){
+
+        if(controller?.trim() && controller?.trim()){
+            _gui.viewsMap[controller][action] = []
+        }
+
+        /*
+        report = []
+
+        analyzesMap.each{ analyseKey, analyse ->
+            analyse.object.widgets = []
+            analyse.object.model = []
+        }
+        */
+    }
+
     def _evalIndividuals(String id){
         def uri = _k.toURI(':'+id)
         def types = _k[uri].getType()
@@ -314,26 +284,12 @@ class DSL {
                     }
                 }
             }
-            viewsMap['tool']['assessment'] = analyse.object.widgets
+            //_gui.viewsMap['tool']['assessment'] = analyse.object.widgets
         }
         println "Run Analyse"
 
         println "Analizes map size "+analyzesMap.size()
         //println props
-    }
-
-    def _cleanView(String controller, String action){
-
-        if(controller?.trim() && controller?.trim()){
-            println "clean "+ controller + " - " + action
-            //viewsMap[controller][action] = []
-        }
-        report = []
-
-        analyzesMap.each{ analyseKey, analyse ->
-            analyse.object.widgets = []
-            analyse.object.model = []
-        }
     }
 
     def sum(obj){
@@ -391,4 +347,31 @@ class DSL {
             return obj
         }
     }
+
+    /*
+       def title(String arg) {
+           setData('title', arg)
+       }
+
+       def description(String arg){
+           setData('description', _toHTML(arg))
+           //def gui = _ctx.getBean('gui')
+           //gui.viewsMap['tool']['index'].push(['widget': 'description', 'args': ['description': _toHTML(arg)]])
+
+           //println  Processor.process(description, true)
+           //println new PegDownProcessor().markdownToHtml(description)
+       }
+
+
+       def paragraph(String arg){
+           //def gui = _ctx.getBean('gui')
+           //gui.viewsMap['tool']['assessment'].push(['widget': 'paragraph', 'args': ['text': arg]])
+       }
+
+       def recommendation(Map map, String txt){
+           recommendations << [map['if'],txt]
+       }
+       */
+
 }
+

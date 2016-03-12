@@ -1,3 +1,3 @@
 <div class="aling-ol">
-    ${raw(description)}
+    ${raw(text)}
 </div>

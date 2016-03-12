@@ -163,7 +163,7 @@ class Node {
 
         result = k.select('distinct ?subClass '+arg).query(query)
 
-        println query
+        //println query
 
         def prefixes = k.getPrefixesMap()
 

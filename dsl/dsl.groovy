@@ -93,10 +93,6 @@ evaluationObject ':ProductionUnit', {
     instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções"
 }
 
-selectEvaluationObject ':ProductionUnit', title: "Selecionar unidade produtiva", label : "Unidade produtiva", submit_label: "Nova avaliação"
-
-createEvaluationObject ':ProductionUnit', title: "Cadastrar nova unidade produtiva para realizar avaliação", submit_label: "Cadastrar"
-
 
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados
 // todos os indicadores presentes na ontologia. Existe a opção de não
@@ -123,28 +119,7 @@ indicators ':TechnologicalEfficiencyFeature', {
     }
 }
 
-individual 'Production_Unit', ':ProductionUnit'
-
-assessment 'ui:Analysis', {
-    paragraph "Unidade produtiva atual: **" + Production_Unit.label + "**"
-    tabs 'assessment', previousLabel: 'Anterior', nextLabel: 'Próximo', {
-        
-        tab 'sustainability_assessment', label: 'Avaliação da sustentabilidade', widgetClass: 'active', {
-            //tabs 'sustainability', {
-            indicatorList ':EnvironmentalIndicator'
-                
-            //}
-        }
-        
-        tab 'efficiency_assessment', label: 'Avaliação da eficiência', {
-            
-        }
-        
-        tab 'report', label: 'Relatório'
-        
-        tab 'recomendation', label: 'Recomendação'
-    }
-}
+//individual 'Production_Unit', ':ProductionUnit'
 
 /*
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada

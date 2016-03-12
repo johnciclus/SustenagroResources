@@ -52,7 +52,10 @@ class EvaluationObject {
         //println uri
 
         model << [id: uri,
-                  dataType: dataType]
+                  range: range,
+                  dataType: dataType,
+                  prop: prop,
+                  args: args]
 
         widgets << [ id: uri,
                      widget: widget,
@@ -62,6 +65,10 @@ class EvaluationObject {
 
     def type(Map args = [:], String id=_id){
         instance(args, id, 'rdfs:subClassOf')
+    }
+
+    def getURI(){
+        return k.toURI(_id)
     }
 
 }

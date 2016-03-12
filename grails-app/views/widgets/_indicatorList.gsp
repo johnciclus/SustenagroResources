@@ -13,7 +13,7 @@
                     <g:each var="option" in="${categories[feature.value.category]}">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="<%= feature.value.id %>" value="<%= option.id %>" <g:if test="${ hasValue && values[feature.value.id] == option.id}"> checked </g:if>> <%= option.label %>
+                                <input type="radio" name="<%= feature.value.id %>" value="<%= option.id %>" <g:if test="${hasValue && values[feature.value.id] == option.id}"> checked </g:if>> <%= option.label %>
                             </label>
                         </div>
                     </g:each>

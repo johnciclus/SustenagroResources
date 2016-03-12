@@ -21,7 +21,21 @@ dataType ":AgriculturalProductionSystemCategory", widget: "categoryForm"
 dataType ":AvailabilityOfEvaluationResultsCategory", widget: "categoryForm"
 dataType "http://dbpedia.org/page/Microregion_(Brazil)", widget: "categoryForm"
 
+widgetAttributes 'selectEvaluationObject', title: "Selecionar unidade produtiva", label : "Unidade produtiva", submit_label: "Nova avaliação"
+
+widgetAttributes 'createEvaluationObject', title: "Cadastrar nova unidade produtiva para realizar avaliação", submit_label: "Cadastrar"
+
+widgetAttributes 'assessment/paragraph', text: "Unidade produtiva atual: "
+
+widgetAttributes 'tabs', previousLabel: 'Anterior', nextLabel: 'Próximo', tabs: [[label: 'Avaliação da sustentabilidade',   widget: 'sustainability_assessment'],
+                                                                                 [label: 'Avaliação da eficiência',         widget: 'efficiency_assessment'],
+                                                                                 [label: 'Relatório',                       widget: 'report'],
+                                                                                 [label: 'Recomendação',                    widget: 'recomendation']]
+
+
+
 /*
+
 view("tool/index"){
     title "Avaliação da sustentabilidade na agricultura"
 
@@ -32,14 +46,29 @@ view("tool/index"){
 3. Definição dos indicadores
 4. Recomendações de sustentabilidade"""
 
-    selectEntity ":ProductionUnit", label : "Selecionar unidade produtiva"
+    
+    selectEvaluationObject ':ProductionUnit', title: "Selecionar unidade produtiva", label : "Unidade produtiva", submit_label: "Nova avaliação"
 
-    createEntity ":ProductionUnit", label : "Cadastrar nova unidade produtiva para realizar avaliação", {
-
-    }
+    createEvaluationObject ':ProductionUnit', title: "Cadastrar nova unidade produtiva para realizar avaliação", submit_label: "Cadastrar"
 }
 
 view("tool/assessments"){
+    paragraph "Unidade produtiva atual: **" + Production_Unit.label + "**"
+    tabs 'assessment', previousLabel: 'Anterior', nextLabel: 'Próximo', {
+        tab 'sustainability_assessment', label: 'Avaliação da sustentabilidade', widgetClass: 'active', {
+            //tabs 'sustainability', {
+            indicatorList ':EnvironmentalIndicator'
 
+            //}
+        }
+
+        tab 'efficiency_assessment', label: 'Avaliação da eficiência', {
+
+        }
+
+        tab 'report', label: 'Relatório'
+
+        tab 'recomendation', label: 'Recomendação'
+    }
 }
 */

@@ -10,7 +10,7 @@ class Analysis {
     def _id
     def _ctx
     def k
-    def gui
+    //def gui
     def model
     def widgets
     def tabs
@@ -23,7 +23,7 @@ class Analysis {
         _id = id
         _ctx = applicationContext
         k = _ctx.getBean('k')
-        gui = _ctx.getBean('gui')
+        //gui = _ctx.getBean('gui')
         md = _ctx.getBean('md')
         model = []
         widgets = []
@@ -32,7 +32,9 @@ class Analysis {
     }
 
     def paragraph(String arg){
+        println 'Paragraph test'
         widgets << ['widget': 'paragraph', 'args': ['text': toHTML(arg)]]
+        println widgets
     }
 
     def tabs(Map args, String id, Closure closure = {}){
@@ -47,8 +49,15 @@ class Analysis {
         println closure.thisObject
         println ''
 
-        closure()
+        def refTmp = ref
+        ref = args['widgets']
+        closure()               //closure(args['widgets'])
+        println args
+        ref = refTmp
 
+
+
+        /*
         tabs.each{ tab ->
             args['widgets'][tab.id] = tab.widget
         }
@@ -71,6 +80,7 @@ class Analysis {
         }
 
         model << [  id: _id]
+        */
 
         widgets <<   [widget: 'tabs',
                       request: request,
@@ -94,7 +104,12 @@ class Analysis {
         println closure.thisObject
         println ''
 
-        closure(args['widgets'])
+        def refTmp = ref
+        ref = args['widgets']
+        closure()
+        println args
+        ref = refTmp
+
 
         /*
         widgets.eachWithIndex{ widget, index ->
@@ -102,15 +117,23 @@ class Analysis {
         }
         */
 
-        tabs <<  [id: id, widget:  [widget: 'tab',
-                                    request: [],
-                                    args: args ]]
-    }
+        ref[id] = [widget: 'tab',
+                   request: [],
+                   args: args]
 
-    def indicatorList(String id){
-        println "Indicator list "
-    }
+        /*tabs <<  [id: id, widget:  [widget: 'tab',
+                            request: [],
+                            args: args ]]
+        */
+}
 
-    static toHTML(String txt) {md.markdownToHtml(txt)}
+def indicatorList(String id){
+    println "Indicator list "
+    ref[id] = [widget: 'paragraph',
+               request: [],
+               args: [text: "Indicator list "]]
+}
+
+static toHTML(String txt) {md.markdownToHtml(txt)}
 
 }

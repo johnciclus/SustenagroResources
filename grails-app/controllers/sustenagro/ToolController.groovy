@@ -7,30 +7,23 @@ import utils.Uri
 
 class ToolController {
     def dsl
+    def gui
     def k
     def md
+    def slugify
 
     def index() {
 
-        println "* Index Tree ${dsl.viewsMap[controllerName][actionName].size()}*"
-        Uri.printTree(dsl.viewsMap[controllerName][actionName])
+        println dsl.evaluationObjectInstance.getURI()
+        dsl._clean(controllerName, actionName)
+        gui.selectEvaluationObject(gui.widgetAttrs['selectEvaluationObject'], dsl.evaluationObjectInstance.getURI())
+        gui.createEvaluationObject(gui.widgetAttrs['createEvaluationObject'], dsl.evaluationObjectInstance.getURI())
+        gui._requestData(controllerName, actionName)
 
-        dsl.viewsMap[controllerName][actionName].each{ command ->
-            if(command.request){
-                command.request.each{ key, args ->
-                    if(key!='widgets'){
-                        command.args[key] = k[args[1]].getLabelDescription(args[0].toString())
-                    }
-                    else if(key=='widgets'){
-                        args.each{ subKey, subArgs ->
-                            //command.args.widgets[subKey]['args']['data'] = getLabelDescription(subArgs[1], subArgs[0])
-                            command.args.widgets[subKey]['args']['data'] = k[subArgs[1]].getLabelDescription(subArgs[0].toString())
-                        }
-                    }
-                }
-            }
-        }
-        render(view: 'index', model: [inputs: dsl.viewsMap[controllerName][actionName]])
+        //println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
+        //Uri.printTree(gui.viewsMap[controllerName][actionName])
+
+        render(view: 'index', model: [data: dsl.props, inputs: gui.viewsMap[controllerName][actionName]])
     }
 
     def createEvaluationObject() {
@@ -41,42 +34,45 @@ class ToolController {
         if(params['evaluationObject'] && params[name] && params[type]){
 
             def node = new Node(k, '')
-            def evaluationObjectInstances = [:]
 
-            def instances = dsl.evaluationObjectMap[k.shortToURI(params['evaluationObject'])].model
+            def propertyInstances = [:]
+
+            def instances = dsl.evaluationObjectInstance.model
 
             instances.each{ ins ->
                 if(params[ins.id] && ins.id != type){
-                    evaluationObjectInstances[k.shortToURI(ins.id)] = [value: params[ins.id], dataType: ins.dataType]
+                    propertyInstances[k.shortToURI(ins.id)] = [value: params[ins.id], dataType: ins.dataType]
                 }
             }
 
-            id = new Slugify().slugify(params[name])
-            node.insertEvaluationObject(id, params[type], evaluationObjectInstances)
+            id = slugify.slugify(params[name])
+            node.insertEvaluationObject(id, params[type], propertyInstances)
         }
 
         //k.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
         redirect(action: 'assessment', id: id)
     }
 
-    def selectEvaluationObject(){
-        def production_unit_id = k.shortURI(params.production_unit_id)
-
-        redirect(   action: 'assessment',
-                    id: production_unit_id)
-    }
-
-    def selectAssessment(){
-        def production_unit_alias = k.shortURI(params.production_unit_id)
-        def assessment_name = k.shortURI(params.assessment)
-
-        redirect(   action: 'assessment',
-                    id: production_unit_alias,
-                    params: [assessment: assessment_name])
-    }
-
     def assessment(){
-/*
+        def uri = k.toURI(':'+params.id)
+
+        dsl._clean(controllerName, actionName)
+        gui.paragraph([text: gui.widgetAttrs['assessment/paragraph'].text + '**'+ k[uri].label + '**'])
+        gui.tabs(gui.widgetAttrs['tabs'], 'assessment')
+
+        gui._requestData(controllerName, actionName)
+
+        println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
+        Uri.printTree(gui.viewsMap[controllerName][actionName])
+
+        render(view: 'assessment', model: [data: dsl.props, inputs: gui.viewsMap[controllerName][actionName]])
+
+
+        /*
+        *
+        *
+        * */
+        /*
        dsl.dimensionsMap.each{ feature ->
             features[feature.key] = ['subClass': [:]]
             grandChildren = k[feature.key].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
@@ -176,33 +172,24 @@ class ToolController {
             //file.write(page.toString())
         }
         */
-        dsl._cleanView(controllerName, actionName)
-        dsl._evalIndividuals(params.id)
 
-        println "* Index Tree ${dsl.viewsMap[controllerName][actionName].size()}*"
-        Uri.printTree(dsl.viewsMap[controllerName][actionName])
 
-        dsl.viewsMap[controllerName][actionName].each{ command ->
-            if(command.request){
-                command.request.each{ key, args ->
-                    if(key!='widgets'){
-                        command.args[key] = k[args[1]].getLabelDescription(args[0].toString())
-                    }
-                    else if(key=='widgets'){
-                        args.each{ subKey, subArgs ->
-                            //command.args.widgets[subKey]['args']['data'] = getLabelDescription(subArgs[1], subArgs[0])
-                            command.args.widgets[subKey]['args']['data'] = k[subArgs[1]].getLabelDescription(subArgs[0].toString())
-                        }
-                    }
-                }
-            }
-        }
+    }
 
-        render(view: 'assessment', model: [inputs: dsl.viewsMap[controllerName][actionName]])
-                       //evaluationObject: [id: params.id, name: name]])
-                       //values: values,
-                       //weights: weights,
-                       //report: report])
+    def selectEvaluationObject(){
+        def id = k.shortURI(params.production_unit_id)
+
+        redirect(   action: 'assessment',
+                    id: id)
+    }
+
+    def selectAssessment(){
+        def id = k.shortURI(params.production_unit_id)
+        def name = k.shortURI(params.assessment)
+
+        redirect(   action: 'assessment',
+                id: id,
+                params: [assessment: name])
     }
 
     def assessments(){

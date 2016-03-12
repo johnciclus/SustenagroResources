@@ -1,4 +1,4 @@
-<g:render template="/widgets/title" model="[title: title]"/>
+<g:render template="/widgets/title" model="[text: title]"/>
 
 <form id="select_production_units" action="/tool/selectEvaluationObject" method="post" class="form-horizontal" >
     <div class="form-group">
@@ -6,7 +6,7 @@
         <div class="col-sm-6">
             <select id="production_unit_id" name="production_unit_id" class="form-control">
                 <option selected disabled hidden value=''></option>
-                <g:each in="${unities}">
+                <g:each in="${evaluationObjects}">
                     <option value="${it.id}">${it.label}</option>
                 </g:each>
             </select>
