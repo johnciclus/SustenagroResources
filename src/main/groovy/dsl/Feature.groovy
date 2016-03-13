@@ -8,17 +8,14 @@ class Feature {
     def _id
     def _ctx
     def k
-    //def gui
     def model = []
     def features = [:]
     def categories = [:]
-    def technologyTypes = []
 
     Feature(String id, ApplicationContext applicationContext){
         _id = id
         _ctx = applicationContext
         k = _ctx.getBean('k')
-        //gui = _ctx.getBean('gui')
 
         def uri = k.toURI(id)
         def grandChildren
@@ -33,8 +30,30 @@ class Feature {
                 }
             }
         }
+        def categoriesTmp = grandChildren.categoryList()
+        def method = 'getIndividualsIdLabel'
+
+        categoriesTmp.each{ key, value ->
+            categories[key] = k[key]."${method}"()
+        }
+
+        //categories[k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
+        //categories[k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
+
+        /*
         categories += grandChildren.categoryList()
 
+        categories[k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
+        categories[k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
+
+        def method = 'getIndividualsIdLabel'
+
+        categories.each { key, value ->
+            value = k[key]."${method}"().each{            //getIndividualsIdLabel().each {
+                value.push(it)
+            }
+        }
+        */
         //def args = [:]
         /*
         dsl.dimensionsMap.each{ feature ->
@@ -119,23 +138,5 @@ class Feature {
                         }
         }
         return asserts
-    }
-    def cleanCategories(){
-        categories = [:]
-    }
-
-    def updateCategories(){
-
-
-        categories[k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
-        categories[k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
-
-        def method = 'getIndividualsIdLabel'
-
-        categories.each { key, v ->
-            k[key]."${method}"().each{            //getIndividualsIdLabel().each {
-                v.push(it)
-            }
-        }
     }
 }

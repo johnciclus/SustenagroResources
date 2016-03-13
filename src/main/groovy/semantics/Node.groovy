@@ -122,7 +122,7 @@ class Node {
     }
 
     def getAssessments(){
-        k.query("?id a :Evaluation. ?id :appliedTo <$URI>")
+        k.query("?id a ui:Analysis. ?id :appliedTo <$URI>")
     }
 
     def getIndividualsIdLabel(){
@@ -519,7 +519,7 @@ class Node {
         k.select('distinct ?uri').query("?uri rdfs:label '$label'@${k.lang}.")
     }
 
-    def insertEvaluationObject(String id, Object type, Map params){
+    def insertEvaluationObject(String id, Object type, Map properties = [:]){
         def name = k.toURI(':hasName')
 
         String sparql = "<" + k.toURI(":"+id) + "> "
@@ -533,39 +533,33 @@ class Node {
             sparql += "rdf:type <" + type + ">;"
         }
 
-        sparql += "rdfs:label '" + params[name].value + "'@pt;"+
-                  "rdfs:label '" + params[name].value + "'@en"
+        sparql += "rdfs:label '" + properties[name].value + "'@pt;"+
+                  "rdfs:label '" + properties[name].value + "'@en"
 
-        params.each{ key, feature ->
-            switch (feature.dataType){
+        properties.each{ key, property ->
+            switch (property.dataType){
                 case k.toURI('xsd:date'):
-                    sparql += ";<${k.shortToURI(key)}> \"" + feature.value + "\"^^xsd:date "
-                    //println feature.id+" owl:date"
+                    sparql += ";<${k.shortToURI(key)}> \"" + property.value + "\"^^xsd:date "
                     break
                 case k.toURI('xsd:double'):
-                    sparql += ";<${k.shortToURI(key)}> \"" + feature.value + "\"^^xsd:double "
-                    //println feature.id+" xsd:float"
+                    sparql += ";<${k.shortToURI(key)}> \"" + property.value + "\"^^xsd:double "
                     break
                 case k.toURI('xsd:float'):
-                    sparql += ";<${k.shortToURI(key)}> \"" + feature.value + "\"^^xsd:float "
-                    //println feature.id+" xsd:float"
+                    sparql += ";<${k.shortToURI(key)}> \"" + property.value + "\"^^xsd:float "
                     break
                 case k.toURI('owl:real'):
-                    sparql += ";<${k.shortToURI(key)}> \"" + feature.value + "\"^^owl:real "
-                    //println feature.id+" xsd:float"
+                    sparql += ";<${k.shortToURI(key)}> \"" + property.value + "\"^^owl:real "
                     break
                 case k.toURI('rdfs:Literal'):
-                    sparql += ";<${k.shortToURI(key)}> '" + feature.value + "'@"+ k.lang+" "
-                    //println feature.id+" rdfs:Literal"
+                    sparql += ";<${k.shortToURI(key)}> '" + property.value + "'@"+ k.lang+" "
                     break
                 default:
-
                     // Implement for arraylist
-                    if(k.isURI(feature.value))
-                        sparql += ";<${k.shortToURI(key)}> <" + feature.value + ">"
+                    if(k.isURI(property.value))
+                        sparql += ";<${k.shortToURI(key)}> <" + property.value + ">"
                     else{
-                        println "Default: "+key+" : "+feature.value
-                        sparql += ";<${k.shortToURI(key)}> '" + feature.value + "'@"+ k.lang+" "
+                        println "Default: "+key+" : "+property.value
+                        sparql += ";<${k.shortToURI(key)}> '" + property.value + "'@"+ k.lang+" "
                     }
                     break
             }
@@ -574,12 +568,33 @@ class Node {
 
         sparql += '.'
 
-        //def evaluationObjectParams = dsl.viewsMap['tool']['index'].find{ it['widget'] == 'createEvaluationObject' }
-
         //sparql.split(';').each{
         //    println it
         //}
 
+        k.insert(sparql)
+    }
+
+    def insertAnalysis(String id, Map properties = [:]){
+        String sparql = "<" + k.toURI(id) + "> "+
+                        "rdf:type ui:Analysis;"
+
+        properties.each { key, property ->
+            switch (k[key].range) {
+                case k.toURI('rdfs:Literal'):
+                    sparql += ";<${k.toURI(key)}> '" + property + "'@" + k.lang + " "
+                    break
+                default:
+                    // Implement for arraylist
+                    if(k.isURI(property))
+                        sparql += ";<${k.shortToURI(key)}> <" + property.value + ">"
+                    else{
+                        println "Default: "+key+" : "+property.value
+                        sparql += ";<${k.shortToURI(key)}> '" + property.value + "'@"+ k.lang+" "
+                    }
+                    break
+            }
+        }
         k.insert(sparql)
     }
 

@@ -14,10 +14,9 @@ class ToolController {
 
     def index() {
 
-        println dsl.evaluationObjectInstance.getURI()
         dsl._clean(controllerName, actionName)
         gui.selectEvaluationObject(gui.widgetAttrs['selectEvaluationObject'], dsl.evaluationObjectInstance.getURI())
-        gui.createEvaluationObject(gui.widgetAttrs['createEvaluationObject'], dsl.evaluationObjectInstance.getURI())
+        gui.createEvaluationObject(gui.widgetAttrs['createEvaluationObject'], dsl.evaluationObjectInstance.widgets, dsl.evaluationObjectInstance.getURI())
         gui._requestData(controllerName, actionName)
 
         //println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
@@ -29,14 +28,12 @@ class ToolController {
     def createEvaluationObject() {
         def id = ''
         def name = k.toURI(':hasName')
-        def type = k.toURI(params['evaluationObject'])
+        def type = k.toURI(params['evalObjType'])
 
-        if(params['evaluationObject'] && params[name] && params[type]){
+        if(params['evalObjType'] && params[name] && params[type]){
 
             def node = new Node(k, '')
-
             def propertyInstances = [:]
-
             def instances = dsl.evaluationObjectInstance.model
 
             instances.each{ ins ->
@@ -55,86 +52,41 @@ class ToolController {
 
     def assessment(){
         def uri = k.toURI(':'+params.id)
+        def data = [:]
+        data['indicators'] = [:]
+        data['categories'] = [:]
+
+        dsl.featureMap.each{ key, feature ->
+            feature.features.each{
+                data['indicators'][it.key] = it.value
+            }
+            data['categories'] += feature.categories
+        }
+
+        data['values'] = [:]
+        data['weights'] = [:]
+        data['submitLabel'] = gui.widgetAttrs['tabs'].submitLabel
 
         dsl._clean(controllerName, actionName)
-        gui.paragraph([text: gui.widgetAttrs['assessment/paragraph'].text + '**'+ k[uri].label + '**'])
-        gui.tabs(gui.widgetAttrs['tabs'], 'assessment')
-
+        gui.paragraph([text: gui.widgetAttrs['paragraph'].text + '**'+ k[uri].label + '**'])
+        gui.tabs(gui.widgetAttrs['tabs'], ['tab_0': data], uri)
         gui._requestData(controllerName, actionName)
 
-        println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
-        Uri.printTree(gui.viewsMap[controllerName][actionName])
+        //println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
+        //Uri.printTree(gui.viewsMap[controllerName][actionName])
+
+        def assessmentID
+        if(params.assessment)
+            assessmentID = k.toURI(params.assessment)
+        //println assessmentID
 
         render(view: 'assessment', model: [data: dsl.props, inputs: gui.viewsMap[controllerName][actionName]])
 
-
         /*
-        *
-        *
-        * */
-        /*
-       dsl.dimensionsMap.each{ feature ->
-            features[feature.key] = ['subClass': [:]]
-            grandChildren = k[feature.key].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
-            k[feature.key].getSubClass('?label').each{ subClass ->
-                features[feature.key]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
-                grandChildren.each{
-                    if(it.subClass == subClass.subClass) {
-                        features[feature.key]['subClass'][subClass.subClass]['subClass'][it.id] = it
-                    }
-                }
-            }
-            categories += grandChildren.categoryList()
-        }
-
-        dsl.featureMap.each{ feature ->
-            features[feature.key] = ['subClass': [:]]
-            grandChildren = k[feature.key].getGrandchildren('?id ?label ?subClass ?category ?valueType')
-            k[feature.key].getSubClass('?label').each{ subClass ->
-                features[feature.key]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
-                grandChildren.each{
-                    if(it.subClass == subClass.subClass) {
-                        features[feature.key]['subClass'][subClass.subClass]['subClass'][it.id] = it
-                    }
-                }
-            }
-            categories += grandChildren.categoryList()
-        }
-
-        categories[k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
-        categories[k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
-
-        def method = 'getIndividualsIdLabel'
-
-        categories.each { key, v ->
-            k[key]."${method}"().each{            //getIndividualsIdLabel().each {
-                v.push(it)
-            }
-        }
-
-        println "* Tree *"
-        Uri.printTree(features)
-
-        println "Categories"
-        categories.each{ category ->
-            println category.key
-            category.value.each{
-                println "\t "+it
-            }
-        }
-
-
         def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
         def technologyTypes = fea.evalObject(k.toURI([params.id]))
-        def assessmentID = params.assessment
-        def uri = k.toURI(':'+params.id)
         def name = k[uri].label
-        def values = [:]
-        def weights = [:]
         def report
-
-        println uri
-        println assessmentID
 
         dsl._cleanProgram()
 
@@ -172,8 +124,98 @@ class ToolController {
             //file.write(page.toString())
         }
         */
+    }
 
+    def report(){
+        def evalObjInstance = k.toURI(params.evalObjInstance)
+        def num = k[evalObjInstance].getAssessments().size() + 1
+        def name = evalObjInstance.substring(evalObjInstance.lastIndexOf('#')+1)
+        def id = evalObjInstance+"-assessment-"+num
+        def properties = [:]
 
+        properties[k.toURI('rdfs:label')] = k['ui:Analysis'].label+ " " + num
+        properties[k.toURI(':appliedTo')] = evalObjInstance
+
+        def node = new Node(k, '')
+        node.insertAnalysis(id, properties)
+
+        def indicators = []
+
+        dsl.dimensions.each{
+            indicators += k[it].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
+        }
+
+        def value
+
+        indicators.each{
+            if(params[it.id]){
+                if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
+                    value = k.dataSchema(Integer.parseInt(params[it.id]))
+                }
+                else{
+                    value = "<" + params[it.id] + ">"
+                }
+
+                k.insert( "<" +it.id+'-'+name +">"+
+                        " rdf:type <"+ it.id +">;"+
+                        " dc:isPartOf :"+ name +";"+
+                        " :value "+  value +".")
+                k.insert( ":" + name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+name+">.")
+            }
+        }
+
+        def features = k[':ProductionEfficiencyFeature'].getGrandchildren('?id ?label ?subClass ?category ?valueType')
+
+        features.each{
+            if(params[it.id]){
+                if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
+                    value = k.dataSchema(Integer.parseInt(params[it.id]))
+                }
+                else{
+                    value = "<" + params[it.id] + ">"
+                }
+
+                k.insert( "<" +it.id+'-'+name +">"+
+                        " rdf:type <"+ it.id +">;"+
+                        " dc:isPartOf :"+ name +";"+
+                        " :value "+  value +".")
+                k.insert( ":" + name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+name+">.")
+
+            }
+        }
+
+        def TechnologicalEfficiency = k[':TechnologicalEfficiencyFeature'].getGrandchildren('?id ?label ?subClass ?category ?valueType')
+        def weighted
+
+        TechnologicalEfficiency.each{
+            if(params[it.id]){
+                if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
+                    value = k.dataSchema(Integer.parseInt(params[it.id]))
+                }
+                else{
+                    value = "<" + params[it.id] + ">"
+                }
+
+                if(it.subClass == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'){
+                    weighted = "<" +params[it.id+'-optimization'] + ">"
+                }
+                else if(it.subClass == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField'){
+                    weighted = "<" +params[it.id+'-alignment'] + ">"
+                }
+
+                k.insert( "<" +it.id+'-'+name +">"+
+                        " rdf:type <"+ it.id +">;"+
+                        " dc:isPartOf :"+ name +";"+
+                        " :value "+ value +";"+
+                        " :hasWeight "+ weighted +"." )
+
+                k.insert( ":" + name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+name+">.")
+            }
+        }
+
+        redirect(action: 'assessment',
+                id: params.production_unit_id,
+                params: [assessment: name])
     }
 
     def selectEvaluationObject(){
@@ -202,95 +244,4 @@ class ToolController {
                 model:    [assessments: assessments,
                            production_unit_id: id]);
     }
-
-    def report(){
-        def production_unit_id = params.production_unit_id
-
-        def num = k[production_unit_id].getAssessments().size() + 1
-        def assessment_name = production_unit_id+"-assessment-"+num
-
-        k.insert( "<"+ k.toURI(":" + assessment_name) +">"+
-                    " rdf:type :Evaluation;"+
-                    " :appliedTo :"+ production_unit_id +";"+
-                    " rdfs:label 'Avaliação "+  num +"'@pt.")
-
-        def indicators = []
-
-        dsl.dimensions.each{
-            indicators += k[it].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
-        }
-
-        def value
-
-        indicators.each{
-            if(params[it.id]){
-                if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
-                    value = k.dataSchema(Integer.parseInt(params[it.id]))
-                }
-                else{
-                    value = "<" + params[it.id] + ">"
-                }
-
-                k.insert( "<" +it.id+'-'+assessment_name +">"+
-                            " rdf:type <"+ it.id +">;"+
-                            " dc:isPartOf :"+ assessment_name +";"+
-                            " :value "+  value +".")
-                k.insert( ":" + assessment_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+assessment_name+">.")
-            }
-        }
-
-        def features = k[':ProductionEfficiencyFeature'].getGrandchildren('?id ?label ?subClass ?category ?valueType')
-
-        features.each{
-            if(params[it.id]){
-                if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
-                    value = k.dataSchema(Integer.parseInt(params[it.id]))
-                }
-                else{
-                    value = "<" + params[it.id] + ">"
-                }
-
-                k.insert( "<" +it.id+'-'+assessment_name +">"+
-                        " rdf:type <"+ it.id +">;"+
-                        " dc:isPartOf :"+ assessment_name +";"+
-                        " :value "+  value +".")
-                k.insert( ":" + assessment_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+assessment_name+">.")
-
-            }
-        }
-
-        def TechnologicalEfficiency = k[':TechnologicalEfficiencyFeature'].getGrandchildren('?id ?label ?subClass ?category ?valueType')
-        def weighted
-
-        TechnologicalEfficiency.each{
-            if(params[it.id]){
-                if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
-                    value = k.dataSchema(Integer.parseInt(params[it.id]))
-                }
-                else{
-                    value = "<" + params[it.id] + ">"
-                }
-
-                if(it.subClass == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'){
-                    weighted = "<" +params[it.id+'-optimization'] + ">"
-                }
-                else if(it.subClass == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField'){
-                    weighted = "<" +params[it.id+'-alignment'] + ">"
-                }
-
-                k.insert( "<" +it.id+'-'+assessment_name +">"+
-                        " rdf:type <"+ it.id +">;"+
-                        " dc:isPartOf :"+ assessment_name +";"+
-                        " :value "+ value +";"+
-                        " :hasWeight "+ weighted +"." )
-
-                k.insert( ":" + assessment_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+assessment_name+">.")
-            }
-        }
-
-        redirect(action: 'assessment',
-                id: params.production_unit_id,
-                params: [assessment: assessment_name])
-    }
-
 }

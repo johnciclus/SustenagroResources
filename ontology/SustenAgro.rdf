@@ -178,8 +178,10 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#appliedTo -->
 
     <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#appliedTo">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label xml:lang="en">applied to</rdfs:label>
         <rdfs:label xml:lang="pt">aplicado a</rdfs:label>
+        <rdfs:range rdf:resource="&semanticUI;EvaluationObject"/>
     </owl:ObjectProperty>
     
 

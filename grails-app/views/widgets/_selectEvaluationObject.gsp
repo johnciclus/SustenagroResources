@@ -12,7 +12,7 @@
             </select>
         </div>
         <div class="col-sm-2">
-            <input id="new_assessment" type="submit" class="btn btn-primary" value="${submit_label}" disabled/>
+            <input id="new_assessment" type="submit" class="btn btn-primary" value="${submitLabel}" disabled/>
         </div>
     </div>
 </form>

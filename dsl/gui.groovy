@@ -21,17 +21,16 @@ dataType ":AgriculturalProductionSystemCategory", widget: "categoryForm"
 dataType ":AvailabilityOfEvaluationResultsCategory", widget: "categoryForm"
 dataType "http://dbpedia.org/page/Microregion_(Brazil)", widget: "categoryForm"
 
-widgetAttributes 'selectEvaluationObject', title: "Selecionar unidade produtiva", label : "Unidade produtiva", submit_label: "Nova avaliação"
+widgetAttributes 'selectEvaluationObject', title: "Selecionar unidade produtiva", label : "Unidade produtiva", submitLabel: "Nova avaliação"
 
-widgetAttributes 'createEvaluationObject', title: "Cadastrar nova unidade produtiva para realizar avaliação", submit_label: "Cadastrar"
+widgetAttributes 'createEvaluationObject', title: "Cadastrar nova unidade produtiva para realizar avaliação", submitLabel: "Cadastrar"
 
-widgetAttributes 'assessment/paragraph', text: "Unidade produtiva atual: "
+widgetAttributes 'paragraph', text: "Unidade produtiva atual: "
 
-widgetAttributes 'tabs', previousLabel: 'Anterior', nextLabel: 'Próximo', tabs: [[label: 'Avaliação da sustentabilidade',   widget: 'sustainability_assessment'],
-                                                                                 [label: 'Avaliação da eficiência',         widget: 'efficiency_assessment'],
-                                                                                 [label: 'Relatório',                       widget: 'report'],
-                                                                                 [label: 'Recomendação',                    widget: 'recomendation']]
-
+widgetAttributes 'tabs', id:'assessment', submitLabel: 'Avaliar', previousLabel: 'Anterior', nextLabel: 'Próximo', tabs:  [[label: 'Avaliação da sustentabilidade',  widget: 'sustainability_assessment']]
+                                                                                                                        // [label: 'Avaliação da eficiência',         widget: 'efficiency_assessment'],
+                                                                                                                        // [label: 'Relatório',                       widget: 'report'],
+                                                                                                                        // [label: 'Recomendação',                    widget: 'recomendation']]
 
 
 /*

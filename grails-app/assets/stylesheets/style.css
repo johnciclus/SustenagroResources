@@ -171,7 +171,7 @@ fieldset{
 }
 
 .tab-content>.tab-pane {
-	padding: 15px 0px;
+	padding: 15px 15px;
 }
 
 .clear{
@@ -217,12 +217,6 @@ fieldset{
 	margin-bottom: 20px; 
 }
 
-#map-canvas {
-	height: 600px;
-	margin: 0;
-	padding: 0;
-}
-
 #indicator_tabs, #indicator_content, #indicator_editor, #efficiency_tabs, #efficiency_content {
 	padding: 0px 15px;
 }
@@ -251,6 +245,13 @@ fieldset{
     display: block;
     margin: 0 auto;
 }
+
+#map-canvas {
+    height: 600px;
+    margin: 0;
+    padding: 0;
+}
+
 
 
 
