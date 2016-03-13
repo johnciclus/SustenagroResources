@@ -15,12 +15,16 @@ class Node {
         this.patterns.put('type', "<$URI> rdf:type ?type. ")
         this.patterns.put('label', "<$URI> rdfs:label ?label. ")
         this.patterns.put('superClass.', "<$URI> rdfs:subClassOf ?superClass. ")
+        this.patterns.put('range', "<$URI> rdfs:range ?range. ")
     }
 
     def getAttr(String args='', Map params = [:]) {
         def argsList = args.tokenize(' ?')
+        def select = ''
         def query = ''
+        def order = ''
         def result
+
 
         //println argsList
         argsList.each{
@@ -40,12 +44,23 @@ class Node {
 
         //println query
 
-        result = k.query(query)
-
         if(argsList.contains('label')){
-            result = result.collect{ it['label']}
+            order = 'order by ?label'
         }
         else if(argsList.size()==1){
+            order = 'order by ?'+argsList[0]
+        }
+
+        select = 'distinct '
+        argsList.each{
+            select += '?'+it
+        }
+
+        result = k.select(select).query(query, order)
+
+        //println result
+
+        if(argsList.size()==1){
             result = result.collect{ it[argsList[0]]}
         }
 
@@ -58,6 +73,11 @@ class Node {
 
     def getType(Map params = [:]){
         getAttr('?type', params)
+    }
+
+    def getRange(Map params = [:]) {
+        //def res = k.select("distinct ?range").query("<$URI> rdfs:range ?range.")
+        getAttr('?range', params)
     }
 
     def getDataType(){
@@ -87,14 +107,7 @@ class Node {
         return res
     }
 
-    def getRange() {
-        def res = k.select("distinct ?range").query("<$URI> rdfs:range ?range.")
 
-        if(res.size()==1)
-            return res[0].range
-        else
-            return res
-    }
 
     def getLabelDescription(String property) {
         k.query("?id $property <$URI>; rdfs:label ?label. optional {?id dc:description ?description}. FILTER ( ?id != <$URI> )")
@@ -109,7 +122,7 @@ class Node {
     }
 
     def getAssessments(){
-        k.query("?id a :Evaluation. ?id :appliedTo <$URI>")
+        k.query("?id a ui:Analysis. ?id :appliedTo <$URI>")
     }
 
     def getIndividualsIdLabel(){
@@ -150,7 +163,7 @@ class Node {
 
         result = k.select('distinct ?subClass '+arg).query(query)
 
-        println query
+        //println query
 
         def prefixes = k.getPrefixesMap()
 
@@ -268,7 +281,7 @@ class Node {
         res
     }
 
-    def getProductionUnity(String args){
+    def getEvaluationObject(String args){
         def argsList = args.split(' ')
 
         def query = "<$URI> :appliedTo ?ins."
@@ -506,10 +519,10 @@ class Node {
         k.select('distinct ?uri').query("?uri rdfs:label '$label'@${k.lang}.")
     }
 
-    def insertUnity(String id, Object type, Map params){
-        String sparql = "<" + k.toURI(":"+id) + "> ";
-
+    def insertEvaluationObject(String id, Object type, Map properties = [:]){
         def name = k.toURI(':hasName')
+
+        String sparql = "<" + k.toURI(":"+id) + "> "
 
         if(type.class.isArray()){
             type.each{
@@ -520,41 +533,33 @@ class Node {
             sparql += "rdf:type <" + type + ">;"
         }
 
+        sparql += "rdfs:label '" + properties[name].value + "'@pt;"+
+                  "rdfs:label '" + properties[name].value + "'@en"
 
-        sparql += "rdfs:label '" + params[name].value + "'@pt;" +
-                  "rdfs:label '" + params[name].value + "'@en"
-
-
-        params.each{ key, feature ->
-            switch (feature.dataType){
+        properties.each{ key, property ->
+            switch (property.dataType){
                 case k.toURI('xsd:date'):
-                    sparql += ";<${k.shortToURI(key)}> \"" + feature.value + "\"^^xsd:date "
-                    //println feature.id+" owl:date"
+                    sparql += ";<${k.shortToURI(key)}> \"" + property.value + "\"^^xsd:date "
                     break
                 case k.toURI('xsd:double'):
-                    sparql += ";<${k.shortToURI(key)}> \"" + feature.value + "\"^^xsd:double "
-                    //println feature.id+" xsd:float"
+                    sparql += ";<${k.shortToURI(key)}> \"" + property.value + "\"^^xsd:double "
                     break
                 case k.toURI('xsd:float'):
-                    sparql += ";<${k.shortToURI(key)}> \"" + feature.value + "\"^^xsd:float "
-                    //println feature.id+" xsd:float"
+                    sparql += ";<${k.shortToURI(key)}> \"" + property.value + "\"^^xsd:float "
                     break
                 case k.toURI('owl:real'):
-                    sparql += ";<${k.shortToURI(key)}> \"" + feature.value + "\"^^owl:real "
-                    //println feature.id+" xsd:float"
+                    sparql += ";<${k.shortToURI(key)}> \"" + property.value + "\"^^owl:real "
                     break
                 case k.toURI('rdfs:Literal'):
-                    sparql += ";<${k.shortToURI(key)}> '" + feature.value + "'@"+ k.lang+" "
-                    //println feature.id+" rdfs:Literal"
+                    sparql += ";<${k.shortToURI(key)}> '" + property.value + "'@"+ k.lang+" "
                     break
                 default:
-
                     // Implement for arraylist
-                    if(k.isURI(feature.value))
-                        sparql += ";<${k.shortToURI(key)}> <" + feature.value + ">"
+                    if(k.isURI(property.value))
+                        sparql += ";<${k.shortToURI(key)}> <" + property.value + ">"
                     else{
-                        println "Default: "+key+" : "+feature.value
-                        sparql += ";<${k.shortToURI(key)}> '" + feature.value + "'@"+ k.lang+" "
+                        println "Default: "+key+" : "+property.value
+                        sparql += ";<${k.shortToURI(key)}> '" + property.value + "'@"+ k.lang+" "
                     }
                     break
             }
@@ -563,12 +568,33 @@ class Node {
 
         sparql += '.'
 
-        //def unityParams = dsl.viewsMap['tool']['index'].find{ it['widget'] == 'createUnity' }
-
         //sparql.split(';').each{
         //    println it
         //}
 
+        k.insert(sparql)
+    }
+
+    def insertAnalysis(String id, Map properties = [:]){
+        String sparql = "<" + k.toURI(id) + "> "+
+                        "rdf:type ui:Analysis;"
+
+        properties.each { key, property ->
+            switch (k[key].range) {
+                case k.toURI('rdfs:Literal'):
+                    sparql += ";<${k.toURI(key)}> '" + property + "'@" + k.lang + " "
+                    break
+                default:
+                    // Implement for arraylist
+                    if(k.isURI(property))
+                        sparql += ";<${k.shortToURI(key)}> <" + property.value + ">"
+                    else{
+                        println "Default: "+key+" : "+property.value
+                        sparql += ";<${k.shortToURI(key)}> '" + property.value + "'@"+ k.lang+" "
+                    }
+                    break
+            }
+        }
         k.insert(sparql)
     }
 

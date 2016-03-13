@@ -200,6 +200,7 @@ class Know {
     def getLang(){
         return lang
     }
+
     def isURI(Object id){
         if(id.getClass() == String){
             if(id != null && id != '' && !id.contains(" ") && id.startsWith('http://'))

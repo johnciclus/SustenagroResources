@@ -72,9 +72,11 @@ class DataReader {
 
     def getAt(String name) {
         if(name == 'CurrentProductionUnit'){
-            println id
-            def res = k[id].getProductionUnity('?label ?productionUnit ?microregion ')
-            return res
+            println 'CurrentProductionUnit'
+            //println id
+            //println k[id].getLabel()
+            //def res = k[id].getProductionEvaluationObject('?label ?productionUnit ?microregion ')
+            return k[id].getLabel()
         }
         else{
             findNode(name)

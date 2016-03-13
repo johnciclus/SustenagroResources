@@ -25,31 +25,81 @@ description '''O processo de avaliação da sustentabilidade é composto pelas s
 // a interface só mostra uma opção (sem possibilidade de escolha)
 // Na ontologia, location definiria as microregiões do IBGE.
 // Se a fazenda ficar em mais de uma micro-região?
-features(':ProductionUnit') {
-    instance 'MicroRegion', 'label': "Microrregião da unidade produtiva"
-    instance ':AgriculturalEfficiency', 'label': "Tecnologias disponíveis"
+
+data 'assessment'
+
+// Caracterização dos sistemas produtivos no Centro-Sul
+evaluationObject(':ProductionUnit') {
+    //feature or instance
+
+    // Production unit name
+    feature ':hasName', label: "Nome da unidade produtiva", placeholder: "Nome"
+
+    // Production unit type
+    type label: "Tipo da unidade produtiva", header: "Opções"
+
+    // Agricultural production system
+    instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções"
+
+    //Identificação do sistema de produção
+
+    // Origem da cana (própria, fornecedor, arrendamento)
+    instance  ':hasSugarcaneSource', label: "Origem da cana", header: "Opções"
+
+    // Microrregião produtora
+    instance ':hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
 
     // Data de fundação da unidade produção
-    // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
-    // Financiamento (crédito agrícola, custeio de maquinário, BNDES);
-    // Valor total investido em tecnologia na fase agrícola (até a fase atual)
-    // Valor total investido em tecnologia na fase industrial (até a fase atual)
-    // Valor total previsto para investimento para escoamento da produção
+    feature ':hasEstablishmentDate', label: "Data de fundação da unidade produção"
+
     // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
-    // Ligação com outros grupos empresariais ou de investimentos
-    // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
+    feature ':hasPartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)", widget: 'textAreaForm', placeholder: "Descrição"
 
-
-    // Identificação do sistema de produção
-    // Origem da cana (própria, fornecedor, arrendamento)
-    // Data de início e término do plantio
-    // Data de início e término da última colheita
-    // Longevidade do canvial (cana de ano, cana de ano e meio);
+    //Ligação com outros grupos empresariais ou de investimentos
+    feature ':hasLinkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos", placeholder: "Descrição"
 
     // Municípios envolvidos (localização da sede)
 
+    // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
+    feature ':hasInnovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
+
+    //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
+    feature ':hasFinancing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição"
+
+    // Valor total investido em tecnologia na fase agrícola (até a fase atual)
+    feature ':hasTotalValueInvestedInTechnologicInAgriculturalPhase', label: "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
+
+    // Valor total investido em tecnologia na fase industrial (até a fase atual)
+    feature ':hasTotalValueInvestedInTechnologicInIndustrialPhase', label: "Valor total investido em tecnologia na fase industrial (até a fase atual)"
+
+    // Valor total previsto para investimento para escoamento da produção
+    feature ':hasTotalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
+
+    // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
+
+    // Data de início do plantio
+    feature ':hasBeginningOfPlantingDate', label: "Data de início do plantio"
+
+    // Data de término do plantio
+    feature ':hasFinishOfPlantingDate', label: "Data de término do plantio"
+
+    // Data de início da colheita
+    feature ':hasBeginningOfHarvestDate', label: "Data de início da colheita"
+
+    // Data de término da colheita
+    feature ':hasFinishOfHarvestDate', label: "Data de término da colheita"
+
+    // Longevidade do canvial (cana de ano, cana de ano e meio);
+    instance ':hasCanavialLongevity', label: "Longevidade do canvial", header: "Opções"
+
     // Disponibilização dos resultados da avaliação: Público | privado
+    instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções"
 }
+
+selectEvaluationObject(':ProductionUnit', title: "Selecionar unidade produtiva", label : "Unidade produtiva", submitLabel: "Nova avaliação")
+
+createEvaluationObject(':ProductionUnit', title: "Cadastrar nova unidade produtiva para realizar avaliação", submitLabel: "Cadastrar")
+
 
 // Cada dimensão que será mostrada. Em cada dimensão, serão mostrados
 // todos os indicadores presentes na ontologia. Existe a opção de não
@@ -65,8 +115,25 @@ dimension ':EconomicIndicator'
 
 dimension ':SocialIndicator'
 
-data 'assessment'
+productionFeature ':ProductionEfficiencyFeature'
 
+productionFeature ':TechnologicalEfficiencyFeature', {
+    conditional ":ProductionUnit", 'http://dbpedia.org/ontology/Provider', {
+        include ':TechnologicalEfficiencyInTheField'
+    }
+    conditional ":ProductionUnit", 'http://dbpedia.org/resource/PhysicalPlant', {
+        include ':TechnologicalEfficiencyInTheIndustrial'
+    }
+}
+
+assessment('ui:Analysis'){
+    paragraph "Unidade produtiva atual: **" + assessment.'CurrentProductionUnit' + "**"
+    tabs('assessment'){
+
+    }
+}
+
+/*
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
@@ -90,7 +157,7 @@ prog {
     //TechnologicalEfficiencyInTheIndustrial = sum(assessment.':TechnologicalEfficiencyInTheIndustrial'.equation({value*weight}))
 
     efficiency = cost_production_efficiency *
-            (TechnologicalEfficiencyInTheField+TechnologicalEfficiencyInTheIndustrial)
+                 (TechnologicalEfficiencyInTheField+TechnologicalEfficiencyInTheIndustrial)
 
     //environment =   (assessment.'BiologicalPestControl' ? 1:-1) +
     //        (assessment.'PlanningSystematicPlanting' ? 1:-1) +
@@ -127,7 +194,7 @@ prog {
     show 'Nome da unidade produtiva: ' + assessment.'CurrentProductionUnit'.label()
     show 'Caracterização dos sistemas produtivos no Centro-Sul: ' + assessment.'CurrentProductionUnit'.productionUnit()
     show 'Microrregião da unidade produtiva: ' + assessment.'CurrentProductionUnit'.microregion()
-    show 'Tecnologias disponíveis: ' + assessment.'CurrentProductionUnit'.efficiency()
+    //show 'Tecnologias disponíveis: ' + assessment.'CurrentProductionUnit'.efficiency()
 
     linebreak()
 
@@ -158,15 +225,15 @@ prog {
             rangeY: [-30,60],
             quadrants: [4,3],
             recomendations: recomendations])
-    /*
-        matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], [
-        [0, 0, 'bla bla bla'],
-        [0, 1, 'bla bla bla'],
-        //quadrant2: 'bla bla bla',
-        ...
-    ]
 
-    */
+    //    matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], [
+    //    [0, 0, 'bla bla bla'],
+    //    [0, 1, 'bla bla bla'],
+    //    //quadrant2: 'bla bla bla',
+    //    ...
+    //    ]
+
+
     //Outra possibilidade
     //matrix  x: [label: 'kkk', value = environment, range: [1,9]],
     //        y: [label: 'kkk', value = social, range: [1,9]]
@@ -234,3 +301,5 @@ prog {
     show '**Mapa da microregião**'
     map assessment.'MicroRegion'.map()
 }
+
+*/

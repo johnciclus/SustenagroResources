@@ -52,7 +52,7 @@
                                 });
                                 session.setMode("ace/mode/groovy");
 
-								document.getElementById('dslEditor').style.fontSize='13px';
+								document.getElementById('dslEditor').style.fontSize='14px';
 
                                 var dslCompleter = {
                                     getCompletions: function(editor, session, pos, prefix, callback) {
@@ -136,7 +136,7 @@
                                 });
                                 session.setMode("ace/mode/groovy");
 
-                                document.getElementById('guiEditor').style.fontSize='13px';
+                                document.getElementById('guiEditor').style.fontSize='14px';
 
                                 var guiCompleter = {
                                     getCompletions: function(editor, session, pos, prefix, callback) {

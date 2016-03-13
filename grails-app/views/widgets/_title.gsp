@@ -1,1 +1,1 @@
-<h5 class="text-primary">${title}</h5>
+<h5 class="text-primary"><%=text%></h5>

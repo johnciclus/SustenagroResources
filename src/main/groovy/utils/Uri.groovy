@@ -38,6 +38,19 @@ class Uri {
                 }
             }
         }
+        else if(object.getClass() == ArrayList){
+            level++
+            object.eachWithIndex{ it, index ->
+                print "\t"*level + '['+index+"] : "
+                if(it.getClass() != LinkedHashMap) {
+                    println it
+                }
+                else{
+                    println ""
+                    printTree(it, level)
+                }
+            }
+        }
     }
 
 }

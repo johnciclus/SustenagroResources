@@ -13,7 +13,7 @@
                     <g:each var="option" in="${categories[feature.value.category]}">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="<%= feature.value.id %>" value="<%= option.id %>" <g:if test="${ hasValue && values[feature.value.id] == option.id}"> checked </g:if>> <%= option.label %>
+                                <input type="radio" name="<%= feature.value.id %>" value="<%= option.id %>" <g:if test="${hasValue && values[feature.value.id] == option.id}"> checked </g:if>> <%= option.label %>
                             </label>
                         </div>
                     </g:each>
@@ -36,7 +36,7 @@
             </div>
             </g:if>
             <div class="col-sm-1">
-                <button id="<%= feature.value.id %>-clear" type="button" class="btn btn-default btn-sm clear"><span class="glyphicon glyphicon-trash"></span></button>
+                <g:render template="/widgets/clearButton" model="[id: feature.value.id]"/>
             </div>
         </div>
         </g:each>

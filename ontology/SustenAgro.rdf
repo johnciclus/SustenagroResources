@@ -178,8 +178,10 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#appliedTo -->
 
     <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#appliedTo">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label xml:lang="en">applied to</rdfs:label>
         <rdfs:label xml:lang="pt">aplicado a</rdfs:label>
+        <rdfs:range rdf:resource="&semanticUI;EvaluationObject"/>
     </owl:ObjectProperty>
     
 
@@ -196,8 +198,8 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#has -->
 
     <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#has">
-        <rdfs:comment xml:lang="en">has</rdfs:comment>
-        <rdfs:comment xml:lang="pt">tem</rdfs:comment>
+        <rdfs:label xml:lang="en">has</rdfs:label>
+        <rdfs:label xml:lang="pt">tem</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -262,15 +264,6 @@
     
 
 
-    <!-- http://semantic.icmc.usp.br/sustenagro#hasWeight -->
-
-    <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasWeight">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:range rdf:resource="&semanticUI;Value"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://semantic.icmc.usp.br/sustenagro#uniqueValue -->
 
     <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#uniqueValue">
@@ -294,6 +287,7 @@
     <!-- http://dbpedia.org/property/pt/mapa -->
 
     <owl:DatatypeProperty rdf:about="&pt;mapa">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:range rdf:resource="&xsd;anyURI"/>
     </owl:DatatypeProperty>
     
@@ -302,6 +296,16 @@
     <!-- http://purl.org/biodiv/semanticUI#dataValue -->
 
     <owl:DatatypeProperty rdf:about="&semanticUI;dataValue"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <rdf:Description rdf:about="&dc;date">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">date</rdfs:label>
+        <rdfs:label xml:lang="pt">data</rdfs:label>
+    </rdf:Description>
     
 
 
@@ -2641,6 +2645,12 @@
         <rdfs:label xml:lang="en">Technological efficiency feature</rdfs:label>
         <rdfs:label xml:lang="pt">Característica de eficiência tecnológica</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionFeature"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&semanticUI;value"/>
+                <owl:someValuesFrom rdf:resource="&semanticUI;Weighted"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4904,21 +4914,6 @@
         <rdfs:label xml:lang="en">85 Tn/ha</rdfs:label>
         <rdfs:label xml:lang="pt">85 Ton/ha</rdfs:label>
     </owl:NamedIndividual>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Annotations
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    <rdf:Description rdf:about="&dc;date">
-        <rdfs:label xml:lang="en">date</rdfs:label>
-        <rdfs:label xml:lang="pt">data</rdfs:label>
-    </rdf:Description>
 </rdf:RDF>
 
 

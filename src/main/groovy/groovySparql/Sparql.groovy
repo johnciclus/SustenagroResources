@@ -493,6 +493,9 @@ class Sparql {
                     varName = varNames.next()
                     varNode = sol.get(varName)
 
+                    //println varName + ": " +varNode + (varNode.isLiteral())? 'Literal' : 'Not Literal'
+
+
                     if (varNode.isLiteral())
                         literal = varNode.asLiteral()
 
@@ -507,9 +510,9 @@ class Sparql {
                     //println (varNode.isLiteral() ? literal.value : varNode.toString())
 
                     if (lang != '' &&
-                            varNode.isLiteral() &&
-                            literal.language != null &&
-                            literal.language.size() > 1 && literal.language != lang) add = false
+                        varNode.isLiteral() &&
+                        literal.language != null &&
+                        literal.language.size() > 1 && literal.language != lang) add = false
                 }
 
                 if (lang == '*') {

@@ -183,6 +183,16 @@
     
 
 
+    <!-- http://purl.org/biodiv/semanticUI#hasWeight -->
+
+    <owl:ObjectProperty rdf:about="&semanticUI;hasWeight">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has weight</rdfs:label>
+        <rdfs:label xml:lang="pt">tem peso</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://purl.org/biodiv/semanticUI#value -->
 
     <owl:ObjectProperty rdf:about="&semanticUI;value">
@@ -219,17 +229,6 @@
         <rdfs:label xml:lang="en">data value</rdfs:label>
         <rdfs:label xml:lang="pt">valor do dado</rdfs:label>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/biodiv/semanticUI#hasWeight -->
-
-    <owl:DatatypeProperty rdf:about="&semanticUI;hasWeight">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label xml:lang="en">has weight</rdfs:label>
-        <rdfs:label xml:lang="pt">tem peso</rdfs:label>
-        <rdfs:range rdf:resource="&owl;real"/>
     </owl:DatatypeProperty>
     
 
@@ -457,7 +456,7 @@
         <owl:equivalentClass>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&semanticUI;hasWeight"/>
-                <owl:someValuesFrom rdf:resource="&owl;real"/>
+                <owl:someValuesFrom rdf:resource="&semanticUI;Categorical"/>
             </owl:Restriction>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="&semanticUI;Value"/>

@@ -1,4 +1,4 @@
 <g:render template="/widgets/input" model="[id: id,
-                                            type: 'date',
+                                            type: 'password',
                                             widgetClass: 'form-control',
                                             placeholder: placeholder]" />

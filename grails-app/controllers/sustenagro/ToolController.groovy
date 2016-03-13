@@ -7,135 +7,95 @@ import utils.Uri
 
 class ToolController {
     def dsl
+    def gui
     def k
+    def md
+    def slugify
 
     def index() {
-        dsl.viewsMap[controllerName][actionName].each{ command ->
-            if(command.request){
-                command.request.each{ key, args ->
-                    if(key!='widgets'){
-                        command.args[key] = k[args[1]].getLabelDescription(args[0].toString())
-                    }
-                    else if(key=='widgets'){
-                        args.each{ subKey, subArgs ->
-                            //command.args.widgets[subKey]['args']['data'] = getLabelDescription(subArgs[1], subArgs[0])
-                            command.args.widgets[subKey]['args']['data'] = k[subArgs[1]].getLabelDescription(subArgs[0].toString())
-                        }
-                    }
-                }
-            }
-        }
-        render(view: 'index', model: [inputs: dsl.viewsMap[controllerName][actionName]])
+
+        dsl._clean(controllerName, actionName)
+        gui.selectEvaluationObject(gui.widgetAttrs['selectEvaluationObject'], dsl.evaluationObjectInstance.getURI())
+        gui.createEvaluationObject(gui.widgetAttrs['createEvaluationObject'], dsl.evaluationObjectInstance.widgets, dsl.evaluationObjectInstance.getURI())
+        gui._requestData(controllerName, actionName)
+
+        //println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
+        //Uri.printTree(gui.viewsMap[controllerName][actionName])
+
+        render(view: 'index', model: [data: dsl.props, inputs: gui.viewsMap[controllerName][actionName]])
     }
 
-    def createUnity() {
+    def createEvaluationObject() {
         def id = ''
-        def name = k.shortURI(':hasName')
-        def type = k.shortURI(params['unity'])
+        def name = k.toURI(':hasName')
+        def type = k.toURI(params['evalObjType'])
 
-        if(params['unity'] && params[name] && params[type]) {
+        if(params['evalObjType'] && params[name] && params[type]){
 
             def node = new Node(k, '')
-            def unityFeatures = [:]
+            def propertyInstances = [:]
+            def instances = dsl.evaluationObjectInstance.model
 
-            def features = dsl.evaluationObjectMap[k.shortToURI(params['unity'])].model
-
-            features.each{ feature ->
-                if(params[feature.id] && feature.id != type){
-                    unityFeatures[k.shortToURI(feature.id)] = [value: params[feature.id], dataType: feature.dataType]
+            instances.each{ ins ->
+                if(params[ins.id] && ins.id != type){
+                    propertyInstances[k.shortToURI(ins.id)] = [value: params[ins.id], dataType: ins.dataType]
                 }
             }
 
-            id = new Slugify().slugify(params[name])
-            node.insertUnity(id, params[type], unityFeatures)
+            id = slugify.slugify(params[name])
+            node.insertEvaluationObject(id, params[type], propertyInstances)
         }
 
         //k.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
         redirect(action: 'assessment', id: id)
     }
 
-    def selectUnity(){
-        def production_unit_id = k.shortURI(params.production_unit_id)
+    def assessment(){
+        def uri = k.toURI(':'+params.id)
+        def data = [:]
+        data['indicators'] = [:]
+        data['categories'] = [:]
 
-        redirect(   action: 'assessment',
-                    id: production_unit_id)
-    }
-
-    def selectAssessment(){
-        def production_unit_alias = k.shortURI(params.production_unit_id)
-        def assessment_name = k.shortURI(params.assessment)
-
-        redirect(   action: 'assessment',
-                    id: production_unit_alias,
-                    params: [assessment: assessment_name])
-    }
-
-    def assessment() {
-        def features = [:]
-        def categories = [:]
-        def grandChildren
-        def technologyTypes
-
-        dsl.dimensionsMap.each{ feature ->
-            features[feature.key] = ['subClass': [:]]
-            grandChildren = k[feature.key].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
-            k[feature.key].getSubClass('?label').each{ subClass ->
-                features[feature.key]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
-                grandChildren.each{
-                    if(it.subClass == subClass.subClass) {
-                        features[feature.key]['subClass'][subClass.subClass]['subClass'][it.id] = it
-                    }
-                }
+        dsl.featureMap.each{ key, feature ->
+            feature.features.each{
+                data['indicators'][it.key] = it.value
             }
-            categories += grandChildren.categoryList()
+            data['categories'] += feature.categories
         }
 
-        dsl.featureMap.each{ feature ->
-            features[feature.key] = ['subClass': [:]]
-            grandChildren = k[feature.key].getGrandchildren('?id ?label ?subClass ?category ?valueType')
-            k[feature.key].getSubClass('?label').each{ subClass ->
-                features[feature.key]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
-                grandChildren.each{
-                    if(it.subClass == subClass.subClass) {
-                        features[feature.key]['subClass'][subClass.subClass]['subClass'][it.id] = it
-                    }
-                }
-            }
-            categories += grandChildren.categoryList()
-        }
+        data['values'] = [:]
+        data['weights'] = [:]
+        data['submitLabel'] = gui.widgetAttrs['tabs'].submitLabel
 
-        categories[k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
-        categories[k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
+        dsl._clean(controllerName, actionName)
+        gui.paragraph([text: gui.widgetAttrs['paragraph'].text + '**'+ k[uri].label + '**'])
+        gui.tabs(gui.widgetAttrs['tabs'], ['tab_0': data], uri)
+        gui._requestData(controllerName, actionName)
 
-        categories.each { key, v ->
-            k[key].getIndividualsIdLabel().each {
-                v.push(it)
-            }
-        }
+        //println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
+        //Uri.printTree(gui.viewsMap[controllerName][actionName])
 
+        def assessmentID
+        if(params.assessment)
+            assessmentID = k.toURI(params.assessment)
+        //println assessmentID
+
+        render(view: 'assessment', model: [data: dsl.props, inputs: gui.viewsMap[controllerName][actionName]])
+
+        /*
         def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
-        technologyTypes = fea.evalObject(k.toURI([params.id]))
-
-        println "* Tree *"
-        Uri.printTree(features)
-
-        /*
-        println "Categories"
-        categories.each{ category ->
-            println category.key
-            category.value.each{
-                println "\t "+it
-            }
-        }
-        */
-        /*
-        def assessmentID = params.assessment
-        def name = k[':'+params.id].label
-        def values = [:]
-        def weights = [:]
+        def technologyTypes = fea.evalObject(k.toURI([params.id]))
+        def name = k[uri].label
         def report
 
         dsl._cleanProgram()
+
+        dsl.data = new DataReader(k, uri)
+        dsl.assessmentProgram()
+        dsl.viewsMap['tool']['assessment'] = dsl.analyzesMap['http://purl.org/biodiv/semanticUI#Analysis'].widgets
+
+        //Closure within map for reference it
+
 
         if (assessmentID != null) {
 
@@ -164,48 +124,20 @@ class ToolController {
             //file.write(page.toString())
         }
         */
-
-        def name = k[':'+params.id].label
-        def values = [:]
-        def weights = [:]
-        def report
-
-        println params.id
-
-        render(view: 'assessment',
-               model: [evaluationObject: [id: params.id, name: name],
-                       features: features,
-                       categories: categories,
-                       technologyTypes: technologyTypes,
-
-                       values: values,
-                       weights: weights,
-                       report: report])
-    }
-
-
-
-    def assessments(){
-        def id = k.shortURI(params.id)
-        println params.id
-
-        def assessments = k[id].labelAppliedTo
-
-        render( template: 'assessments',
-                model:    [assessments: assessments,
-                           production_unit_id: id]);
     }
 
     def report(){
-        def production_unit_id = params.production_unit_id
+        def evalObjInstance = k.toURI(params.evalObjInstance)
+        def num = k[evalObjInstance].getAssessments().size() + 1
+        def name = evalObjInstance.substring(evalObjInstance.lastIndexOf('#')+1)
+        def id = evalObjInstance+"-assessment-"+num
+        def properties = [:]
 
-        def num = k[production_unit_id].getAssessments().size() + 1
-        def assessment_name = production_unit_id+"-assessment-"+num
+        properties[k.toURI('rdfs:label')] = k['ui:Analysis'].label+ " " + num
+        properties[k.toURI(':appliedTo')] = evalObjInstance
 
-        k.insert( "<"+ k.toURI(":" + assessment_name) +">"+
-                    " rdf:type :Evaluation;"+
-                    " :appliedTo :"+ production_unit_id +";"+
-                    " rdfs:label 'Avaliação "+  num +"'@pt.")
+        def node = new Node(k, '')
+        node.insertAnalysis(id, properties)
 
         def indicators = []
 
@@ -224,11 +156,11 @@ class ToolController {
                     value = "<" + params[it.id] + ">"
                 }
 
-                k.insert( "<" +it.id+'-'+assessment_name +">"+
-                            " rdf:type <"+ it.id +">;"+
-                            " dc:isPartOf :"+ assessment_name +";"+
-                            " :value "+  value +".")
-                k.insert( ":" + assessment_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+assessment_name+">.")
+                k.insert( "<" +it.id+'-'+name +">"+
+                        " rdf:type <"+ it.id +">;"+
+                        " dc:isPartOf :"+ name +";"+
+                        " :value "+  value +".")
+                k.insert( ":" + name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+name+">.")
             }
         }
 
@@ -243,11 +175,11 @@ class ToolController {
                     value = "<" + params[it.id] + ">"
                 }
 
-                k.insert( "<" +it.id+'-'+assessment_name +">"+
+                k.insert( "<" +it.id+'-'+name +">"+
                         " rdf:type <"+ it.id +">;"+
-                        " dc:isPartOf :"+ assessment_name +";"+
+                        " dc:isPartOf :"+ name +";"+
                         " :value "+  value +".")
-                k.insert( ":" + assessment_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+assessment_name+">.")
+                k.insert( ":" + name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+name+">.")
 
             }
         }
@@ -271,20 +203,45 @@ class ToolController {
                     weighted = "<" +params[it.id+'-alignment'] + ">"
                 }
 
-                k.insert( "<" +it.id+'-'+assessment_name +">"+
+                k.insert( "<" +it.id+'-'+name +">"+
                         " rdf:type <"+ it.id +">;"+
-                        " dc:isPartOf :"+ assessment_name +";"+
+                        " dc:isPartOf :"+ name +";"+
                         " :value "+ value +";"+
                         " :hasWeight "+ weighted +"." )
 
-                k.insert( ":" + assessment_name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+assessment_name+">.")
+                k.insert( ":" + name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+name+">.")
             }
         }
 
         redirect(action: 'assessment',
                 id: params.production_unit_id,
-                params: [assessment: assessment_name])
+                params: [assessment: name])
     }
 
+    def selectEvaluationObject(){
+        def id = k.shortURI(params.production_unit_id)
 
+        redirect(   action: 'assessment',
+                    id: id)
+    }
+
+    def selectAssessment(){
+        def id = k.shortURI(params.production_unit_id)
+        def name = k.shortURI(params.assessment)
+
+        redirect(   action: 'assessment',
+                id: id,
+                params: [assessment: name])
+    }
+
+    def assessments(){
+        def id = k.shortURI(params.id)
+        println params.id
+
+        def assessments = k[id].labelAppliedTo
+
+        render( template: 'assessments',
+                model:    [assessments: assessments,
+                           production_unit_id: id]);
+    }
 }
