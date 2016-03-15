@@ -222,21 +222,13 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#dataValue -->
+    <!-- http://purl.org/biodiv/semanticUI#hasDataValue -->
 
-    <owl:DatatypeProperty rdf:about="&semanticUI;dataValue">
+    <owl:DatatypeProperty rdf:about="&semanticUI;hasDataValue">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label xml:lang="en">data value</rdfs:label>
-        <rdfs:label xml:lang="pt">valor do dado</rdfs:label>
+        <rdfs:label xml:lang="en">has data value</rdfs:label>
+        <rdfs:label xml:lang="pt">tem valor do dado</rdfs:label>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/dc/elements/1.1/date -->
-
-    <owl:DatatypeProperty rdf:about="&dc;date">
-        <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
     
 
@@ -413,7 +405,7 @@
         <rdfs:label xml:lang="pt">Inteiro</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&semanticUI;dataValue"/>
+                <owl:onProperty rdf:resource="&semanticUI;hasDataValue"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;integer"/>
             </owl:Restriction>
@@ -1256,7 +1248,7 @@
         <rdf:type rdf:resource="&semanticUI;Boolean"/>
         <rdfs:label xml:lang="en">False</rdfs:label>
         <rdfs:label xml:lang="pt">Falso</rdfs:label>
-        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
+        <semanticUI:hasDataValue rdf:datatype="&xsd;double">-1.0</semanticUI:hasDataValue>
     </owl:NamedIndividual>
     
 
@@ -1267,7 +1259,7 @@
         <rdf:type rdf:resource="&semanticUI;Boolean"/>
         <rdfs:label xml:lang="en">True</rdfs:label>
         <rdfs:label xml:lang="pt">Verdadeiro</rdfs:label>
-        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
+        <semanticUI:hasDataValue rdf:datatype="&xsd;double">1.0</semanticUI:hasDataValue>
     </owl:NamedIndividual>
 </rdf:RDF>
 

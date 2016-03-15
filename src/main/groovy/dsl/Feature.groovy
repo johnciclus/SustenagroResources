@@ -21,7 +21,7 @@ class Feature {
         def grandChildren
 
         features[uri] = ['label': k[uri].label, 'subClass': [:]]
-        grandChildren = k[uri].getGrandchildren('?id ?label ?subClass ?category ?valueType')
+        grandChildren = k[uri].getGrandchildren('?id ?label ?subClass ?category ?valueType')            //'?id ?label ?subClass ?category ?valueType ?weight'
         k[uri].getSubClass('?label').each{ subClass ->
             features[uri]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
             grandChildren.each{

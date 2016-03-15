@@ -139,12 +139,27 @@ class ToolController {
         def node = new Node(k, '')
         node.insertAnalysis(id, properties)
 
-        def indicators = []
+        def indicators = [:]
 
-        dsl.dimensions.each{
-            indicators += k[it].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
+        println "Params"
+        params.each{
+            println it.key + " " + it.value
         }
 
+        println "Indicators"
+        dsl.featureMap.each{ key, feature ->
+            feature.features.each{ dimKey, dimension ->
+                dimension.each{
+                    it.value.subClass.each{ indKey, indicator ->
+                        println indicator
+                    }
+                }
+                //indicators[it.key] = it.value
+            }
+            //data['categories'] += feature.categories
+        }
+
+        /*
         def value
 
         indicators.each{
@@ -212,7 +227,7 @@ class ToolController {
                 k.insert( ":" + name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+name+">.")
             }
         }
-
+        */
         redirect(action: 'assessment',
                 id: params.production_unit_id,
                 params: [assessment: name])
