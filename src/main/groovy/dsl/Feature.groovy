@@ -139,4 +139,27 @@ class Feature {
         }
         return asserts
     }
+
+    def getIndividuals(){
+        def individuals = [:]
+        features.each{ key, feautre ->
+            feautre.subClass.each{ subClassKey, subClass ->
+                subClass.subClass.each{
+                    individuals[it.key] = it.value
+                }
+            }
+        }
+        return individuals
+    }
+    def getIndividualKeys(){
+        def individuals = []
+        features.each{ key, feature ->
+            feature.subClass.each{ subClassKey, subClass ->
+                subClass.subClass.each{
+                    individuals.push(it.key)
+                }
+            }
+        }
+        return individuals
+    }
 }

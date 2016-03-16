@@ -81,6 +81,7 @@ class Know {
 
     def toURI(String id){
         if (id==null || id == '' ) return null
+        if (id == ':') return null
         if (!id.contains(' ')){
             if (id.startsWith('_:')) return id
             if (id.startsWith('http:')) return id
@@ -92,7 +93,7 @@ class Know {
                     return prefix+id.substring(id.indexOf(':')+1)
                 return null
             }
-            println 'prexixes analyse'
+            println 'prexixes analyse: '+id
             if (!id.contains(':')) return searchPrefix(id).uri+id
         }
         else{

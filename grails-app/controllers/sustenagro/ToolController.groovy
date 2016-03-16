@@ -53,6 +53,12 @@ class ToolController {
     def assessment(){
         def uri = k.toURI(':'+params.id)
         def data = [:]
+        def analyseUri
+        def report
+
+        if(params.analysis){
+            analyseUri = k.toURI(":"+params.analysis)
+        }
         data['indicators'] = [:]
         data['categories'] = [:]
 
@@ -75,10 +81,12 @@ class ToolController {
         //println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
         //Uri.printTree(gui.viewsMap[controllerName][actionName])
 
-        def assessmentID
-        if(params.assessment)
-            assessmentID = k.toURI(params.assessment)
-        //println assessmentID
+
+        if(analyseUri?.trim()){
+            dsl.setData(new DataReader(k, analyseUri))
+            dsl.program()
+            report = dsl.report
+        }
 
         render(view: 'assessment', model: [data: dsl.props, inputs: gui.viewsMap[controllerName][actionName]])
 
@@ -88,14 +96,11 @@ class ToolController {
         def name = k[uri].label
         def report
 
-        dsl._cleanProgram()
-
         dsl.data = new DataReader(k, uri)
         dsl.assessmentProgram()
         dsl.viewsMap['tool']['assessment'] = dsl.analyzesMap['http://purl.org/biodiv/semanticUI#Analysis'].widgets
 
         //Closure within map for reference it
-
 
         if (assessmentID != null) {
 
@@ -130,34 +135,29 @@ class ToolController {
         def evalObjInstance = k.toURI(params.evalObjInstance)
         def num = k[evalObjInstance].getAssessments().size() + 1
         def name = evalObjInstance.substring(evalObjInstance.lastIndexOf('#')+1)
-        def id = evalObjInstance+"-assessment-"+num
+        def analysisId = name+"-assessment-"+num
         def properties = [:]
+        def node = new Node(k, '')
+        def individualKeys = []
+        def featureInstances = [:]
+        def uri = ''
 
         properties[k.toURI('rdfs:label')] = k['ui:Analysis'].label+ " " + num
         properties[k.toURI(':appliedTo')] = evalObjInstance
 
-        def node = new Node(k, '')
-        node.insertAnalysis(id, properties)
-
-        def indicators = [:]
-
-        println "Params"
-        params.each{
-            println it.key + " " + it.value
+        dsl.featureMap.each{
+            individualKeys += it.value.getIndividualKeys()
         }
 
-        println "Indicators"
-        dsl.featureMap.each{ key, feature ->
-            feature.features.each{ dimKey, dimension ->
-                dimension.each{
-                    it.value.subClass.each{ indKey, indicator ->
-                        println indicator
-                    }
-                }
-                //indicators[it.key] = it.value
+        individualKeys.each{
+            uri = k.shortToURI(it)
+            if(params[uri]){
+                featureInstances[uri] = params[uri]
             }
-            //data['categories'] += feature.categories
         }
+
+        node.insertAnalysis(analysisId, properties, featureInstances)
+
 
         /*
         def value
@@ -229,8 +229,8 @@ class ToolController {
         }
         */
         redirect(action: 'assessment',
-                id: params.production_unit_id,
-                params: [assessment: name])
+                id: name,
+                params: [analysis: analysisId])
     }
 
     def selectEvaluationObject(){

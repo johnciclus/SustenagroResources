@@ -168,15 +168,18 @@ class DSL {
     }
 
     def propertyMissing(String key, arg) {
+        println "propertyMissing: key, arg "+key+"->"+props[key]
         props[key] = arg
     }
 
     def propertyMissing(String key) {
+        println "propertyMissing: key "+key+"->"+props[key]
         props[key]
         //new Node(_k, _k.toURI(props[key]))
     }
 
     def methodMissing(String key, args){
+        println "methodMissing"
         if(args.getClass() == Object[]){
             if(args.size()==1){
                 if(args[0].getClass() == String)
@@ -255,14 +258,12 @@ class DSL {
     }
 
     def _clean(String controller, String action){
-
-        if(controller?.trim() && controller?.trim()){
+        if(controller?.trim() && action?.trim()){
             _gui.viewsMap[controller][action] = []
+            report = []
         }
 
         /*
-        report = []
-
         analyzesMap.each{ analyseKey, analyse ->
             analyse.object.widgets = []
             analyse.object.model = []
@@ -313,17 +314,21 @@ class DSL {
     }
 
     def weightedSum(obj){
-        float val = 0
+        float val = 0.0
         float value
         float weight
 
         if(obj instanceof ArrayList) {
             obj.each {
                 value = (it.value.getClass() == Boolean ? (it.value ? 1 : -1) : it.value)
-                weight = (it.weight.getClass() == Boolean ? (it.weight ? 1 : -1) : it.weight)
-                val += (float) value*weight
+                //weight = (it.weight.getClass() == Boolean ? (it.weight ? 1 : -1) : it.weight)
+                //val += (float) value*weight
+                val += val
             }
         }
+
+        //println "Weighted sum"
+        println val
 
         return val
     }

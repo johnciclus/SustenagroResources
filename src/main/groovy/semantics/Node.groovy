@@ -14,7 +14,7 @@ class Node {
 
         this.patterns.put('type', "<$URI> rdf:type ?type. ")
         this.patterns.put('label', "<$URI> rdfs:label ?label. ")
-        this.patterns.put('superClass.', "<$URI> rdfs:subClassOf ?superClass. ")
+        this.patterns.put('superClass', "<$URI> rdfs:subClassOf ?superClass. ")
         this.patterns.put('range', "<$URI> rdfs:range ?range. ")
     }
 
@@ -24,7 +24,6 @@ class Node {
         def query = ''
         def order = ''
         def result
-
 
         //println argsList
         argsList.each{
@@ -107,14 +106,12 @@ class Node {
         return res
     }
 
-
-
     def getLabelDescription(String property) {
         k.query("?id $property <$URI>; rdfs:label ?label. optional {?id dc:description ?description}. FILTER ( ?id != <$URI> )")
     }
 
     def getLabelDataValue(){
-        k.query("?id a <$URI>; rdfs:label ?label; ui:dataValue ?dataValue")
+        k.query("?id a <$URI>; rdfs:label ?label; ui:hasDataValue ?dataValue")
     }
 
     def getLabelAppliedTo(){
@@ -132,11 +129,11 @@ class Node {
     }
 
     def getOptions() {
-        k.query("?id rdf:type <$URI>. ?id rdfs:label ?label. ?id ui:dataValue ?value.")
+        k.query("?id rdf:type <$URI>. ?id rdfs:label ?label. ?id ui:hasDataValue ?value.")
     }
 
     def getSuperClass(Map params = [:]){
-        getAttr('?superClass', ['FILTER', "?superClass != <$URI>"])
+        getAttr('?superClass', ['FILTER': "?superClass != <$URI>"])
         //k.select('?superClass').query("<$URI> rdfs:subClassOf ?superClass. FILTER(?superClass != <$URI>)")
     }
 
@@ -350,18 +347,21 @@ class Node {
         k.select('distinct '+args).query(query, "ORDER BY ?in")
     }
 
-    def getIndividualsValue(String assessment, String args){
+    def getIndividualsValue(String id, String args){
         def argsList = args.split(' ')
-        def res = k.select('distinct '+args)
-            .query("<"+k.toURI(assessment)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
-            "?subClass rdfs:subClassOf <$URI>."+
-            "?id rdfs:subClassOf ?subClass." +
-            "?id rdfs:label ?label." +
-            "?ind a ?id." +
-            "?ind <http://bio.icmc.usp.br/sustenagro#value> ?valueType."+
-            "?valueType ui:dataValue ?value."+
-            "?valueType rdfs:label ?valueTypeLabel."+
-            "FILTER( ?subClass != ?id && ?subClass != <$URI> )", "ORDER BY ?label")
+
+        def sparql =    "<"+k.toURI(id)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+                        "?subClass rdfs:subClassOf <$URI>."+
+                        "?id rdfs:subClassOf ?subClass." +
+                        "?id rdfs:label ?label." +
+                        "?ind a ?id." +
+                        "?ind ui:value ?valueType."+
+                        "?valueType ui:hasDataValue ?value."+
+                        "?valueType rdfs:label ?valueTypeLabel."+
+                        "FILTER( ?subClass != ?id && ?subClass != <$URI> )"
+
+        println sparql
+        def res = k.select('distinct '+args).query(sparql, "ORDER BY ?label")
 
         res.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
         res.metaClass.label = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
@@ -380,8 +380,8 @@ class Node {
                 "?id rdfs:label ?label." +
                 "?id :weight ?weight." +
                 "?ind a ?id." +
-                "?ind <http://bio.icmc.usp.br/sustenagro#value> ?valueType."+
-                "?valueType ui:dataValue ?value."+
+                "?ind ui:value ?valueType."+
+                "?valueType ui:hasDataValue ?value."+
                 "?valueType rdfs:label ?valueTypeLabel."+
                 "FILTER( ?subClass != ?id && ?subClass != <$URI> )", "ORDER BY ?label")
 
@@ -405,12 +405,12 @@ class Node {
                         "?id rdfs:subClassOf <$URI>." +
                         "?id rdfs:label ?label." +
                         "?ind a ?id." +
-                        "?ind <http://bio.icmc.usp.br/sustenagro#value> ?valueType." +
-                        "?valueType ui:dataValue ?value." +
+                        "?ind ui:value ?valueType." +
+                        "?valueType ui:hasDataValue ?value." +
                         "?valueType rdfs:label ?valueTypeLabel."+
                         "?ind :hasWeight ?weightType." +
                         "?weightType rdfs:label ?weightTypeLabel."+
-                        "?weightType ui:dataValue ?weight."+
+                        "?weightType ui:hasDataValue ?weight."+
                         "FILTER( ?id != <$URI> )", "ORDER BY ?label")
 
         /*def id
@@ -508,7 +508,7 @@ class Node {
     }
 
     def selectSubject(String word){
-        k.select('distinct ?s').query("?s ?p ?o. FILTER regex(str(?s), 'http://bio.icmc.usp.br/sustenagro#$word', 'i')")
+        k.select('distinct ?s').query("?s ?p ?o. FILTER regex(str(?s), ':$word', 'i')")
     }
 
     def selectLabel(String word){
@@ -575,8 +575,9 @@ class Node {
         k.insert(sparql)
     }
 
-    def insertAnalysis(String id, Map properties = [:]){
-        String sparql = "<" + k.toURI(id) + "> "+
+    def insertAnalysis(String id, Map properties = [:], Map individuals = [:]){
+        def analysisId = k.toURI(":"+id)
+        String sparql = "<" + analysisId + "> "+
                         "rdf:type ui:Analysis;"
 
         properties.each { key, property ->
@@ -595,6 +596,21 @@ class Node {
                     break
             }
         }
+        k.insert(sparql)
+
+        sparql = ''
+
+        individuals.each{
+            sparql +=   " <" +it.key+'-'+id +">"+
+                        " rdf:type <"+ it.key +">"+
+                        "; dc:isPartOf <"+ analysisId + ">" +
+                        "; ui:value <"+  it.value +">."
+
+            sparql +=   " <" +analysisId + ">" +
+                        " dc:hasPart <" + it.key +'-'+ id +">."
+
+        }
+
         k.insert(sparql)
     }
 

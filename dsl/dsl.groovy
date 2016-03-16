@@ -119,16 +119,15 @@ indicators ':TechnologicalEfficiencyFeature', {
     }
 }
 
-//individual 'Production_Unit', ':ProductionUnit'
+data 'assessment'
 
-/*
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
 prog {
     environment =   weightedSum(assessment.':EnvironmentalIndicator')
-    social      =   weightedSum(assessment.':SocialIndicator')
     economic    =   weightedSum(assessment.':EconomicIndicator')
-
+    social      =   weightedSum(assessment.':SocialIndicator')
+    
     //environment =   sum(assessment.':EnvironmentalIndicator'.equation({value*weight}))
     //social      =   sum(assessment.':SocialIndicator'.equation({value*weight}))
     //economic    =   sum(assessment.':EconomicIndicator'.equation({value*weight}))
@@ -179,9 +178,9 @@ prog {
     // recommendation if:(environment > 3.5 || social == 7), '**Third** *option*'
     // recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
 
-    show 'Nome da unidade produtiva: ' + assessment.'CurrentProductionUnit'.label()
-    show 'Caracterização dos sistemas produtivos no Centro-Sul: ' + assessment.'CurrentProductionUnit'.productionUnit()
-    show 'Microrregião da unidade produtiva: ' + assessment.'CurrentProductionUnit'.microregion()
+    //show 'Nome da unidade produtiva: ' + assessment.'CurrentProductionUnit'.label()
+    //show 'Caracterização dos sistemas produtivos no Centro-Sul: ' + assessment.'CurrentProductionUnit'.productionUnit()
+    //show 'Microrregião da unidade produtiva: ' + assessment.'CurrentProductionUnit'.microregion()
     //show 'Tecnologias disponíveis: ' + assessment.'CurrentProductionUnit'.efficiency()
 
     linebreak()
@@ -287,7 +286,5 @@ prog {
     linebreak()
 
     show '**Mapa da microregião**'
-    map assessment.'MicroRegion'.map()
+    //map assessment.'MicroRegion'.map()
 }
-
-*/
