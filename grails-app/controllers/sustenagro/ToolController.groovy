@@ -81,11 +81,10 @@ class ToolController {
         //println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
         //Uri.printTree(gui.viewsMap[controllerName][actionName])
 
-
         if(analyseUri?.trim()){
             dsl.setData(new DataReader(k, analyseUri))
             dsl.program()
-            report = dsl.report
+            gui.renderReport(dsl.report)
         }
 
         render(view: 'assessment', model: [data: dsl.props, inputs: gui.viewsMap[controllerName][actionName]])

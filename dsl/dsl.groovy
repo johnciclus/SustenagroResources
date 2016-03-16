@@ -163,7 +163,7 @@ prog {
 
     // Just showing text
     //show '***That is the report:***'
-    show '**Avaliação da sustentabilidade e da eficiência produtiva**'
+    paragraph '''**Avaliação da sustentabilidade e da eficiência produtiva** '''
 
     // Cada recomendação terá uma fórmula lógica que permite especificar
     // quando ela deve ser mostrada. Essas fórmulas podem ser tão complexas
@@ -185,10 +185,10 @@ prog {
 
     linebreak()
 
-    show '**Matrix de Avaliação**'
+    paragraph '**Matrix de Avaliação**'
 
-    show 'Índice da sustentabilidade: ' + sustainability
-    show 'Indice de eficiência: ' + efficiency
+    paragraph 'Índice da sustentabilidade: ' + sustainability
+    paragraph 'Indice de eficiência: ' + efficiency
 
     recomendations = ["Cenário desfavorável, Muito baixo desempenho dos indicadores",
                       "Cenário desfavorável, Baixo desempenho dos indicadores",
@@ -225,66 +225,66 @@ prog {
     //matrix  x: [label: 'kkk', value = environment, range: [1,9]],
     //        y: [label: 'kkk', value = social, range: [1,9]]
 
-    show '**Indicadores Ambientais**'
+    paragraph '**Indicadores Ambientais**'
 
     table assessment.':EnvironmentalIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso']
 
-    show 'Índice ambiental: '+ environment
+    paragraph 'Índice ambiental: '+ environment
 
     linebreak()
 
-    show '**Indicadores Econômicos**'
+    paragraph '**Indicadores Econômicos**'
 
     table assessment.':EconomicIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso']
 
-    show 'Índice econômico: '+ economic
+    paragraph 'Índice econômico: '+ economic
 
     linebreak()
 
-    show '**Indicadores Sociais**'
+    paragraph '**Indicadores Sociais**'
 
     table assessment.':SocialIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso']
 
-    show 'Índice social: '+ social
+    paragraph 'Índice social: '+ social
 
     linebreak()
 
-    show '**Avaliação da sustentabilidade**'
+    paragraph '**Avaliação da sustentabilidade**'
 
-    show 'Índice da sustentabilidade '+ sustainability
+    paragraph 'Índice da sustentabilidade '+ sustainability
 
     linebreak()
 
-    show '**Eficiência da produção**'
+    paragraph '**Eficiência da produção**'
 
     table assessment.':ProductionEfficiencyFeature', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
 
-    show 'Índice de eficiência da produção: '+ cost_production_efficiency
+    paragraph 'Índice de eficiência da produção: '+ cost_production_efficiency
 
     linebreak()
 
-    show '**Eficiência tecnológica no campo**'
+    paragraph '**Eficiência tecnológica no campo**'
 
     table assessment.':TechnologicalEfficiencyInTheField', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso']
 
-    show 'Índice de tecnológica no campo: '+ TechnologicalEfficiencyInTheField
+    paragraph 'Índice de tecnológica no campo: '+ TechnologicalEfficiencyInTheField
 
     linebreak()
 
-    show '**Eficiência tecnológica na industria**'
+    paragraph '**Eficiência tecnológica na industria**'
 
     table assessment.':TechnologicalEfficiencyInTheIndustrial', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso']
 
-    show 'Índice de tecnológica na industria: '+ TechnologicalEfficiencyInTheIndustrial
+    paragraph 'Índice de tecnológica na industria: '+ TechnologicalEfficiencyInTheIndustrial
 
     linebreak()
 
-    show '**Avaliação de eficiência**'
+    paragraph '**Avaliação de eficiência**'
 
-    show 'Índice de eficiência: '+ efficiency
+    paragraph 'Índice de eficiência: '+ efficiency
 
     linebreak()
 
-    show '**Mapa da microregião**'
-    //map assessment.'MicroRegion'.map()
+    paragraph '**Mapa da microregião**'
+    //map assessment.'Microregion_(Brazil)'.map()
 }

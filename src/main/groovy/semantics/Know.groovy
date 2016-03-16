@@ -161,16 +161,16 @@ class Know {
     def searchPrefix(String name){
         def query
         def result = []
-        _prefixes.find{key, value ->
+        /*_prefixes.find{key, value ->
             if(name.startsWith(key) || name.startsWith(value)) {
                 result = [alias : key, 'uri': value]
                 return true
             }
-        }
+        }*/
         if(result.empty) {
             println "Heavy costly!"
             _prefixes.find{ key, value ->
-                query = this.query("<" + value + name + "> a ?class")
+                query = sparql.query("<" + value + name + "> a ?class")
                 if (query.size() > 0) {
                     result = [alias: key, 'uri': value]
                 }

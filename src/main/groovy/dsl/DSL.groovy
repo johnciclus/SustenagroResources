@@ -168,18 +168,17 @@ class DSL {
     }
 
     def propertyMissing(String key, arg) {
-        println "propertyMissing: key, arg "+key+"->"+props[key]
+        //println "propertyMissing: key, arg "+key+"->"+arg
         props[key] = arg
     }
 
     def propertyMissing(String key) {
-        println "propertyMissing: key "+key+"->"+props[key]
         props[key]
         //new Node(_k, _k.toURI(props[key]))
     }
 
     def methodMissing(String key, args){
-        println "methodMissing"
+        //println "methodMissing"
         if(args.getClass() == Object[]){
             if(args.size()==1){
                 if(args[0].getClass() == String)
@@ -216,9 +215,8 @@ class DSL {
 
     static _toHTML(String txt) {_md.markdownToHtml(txt)}
 
-    def show(String txt){
-        report << ['show', _toHTML(txt)]
-
+    def paragraph(String txt){
+        report << ['paragraph', _toHTML(txt)]
     }
 
     def linebreak(){
@@ -323,12 +321,9 @@ class DSL {
                 value = (it.value.getClass() == Boolean ? (it.value ? 1 : -1) : it.value)
                 //weight = (it.weight.getClass() == Boolean ? (it.weight ? 1 : -1) : it.weight)
                 //val += (float) value*weight
-                val += val
+                val += value
             }
         }
-
-        //println "Weighted sum"
-        println val
 
         return val
     }

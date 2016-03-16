@@ -215,6 +215,33 @@ class GUIDSL {
 
     }
 
+    def renderReport(ArrayList report){
+        report.each{
+            switch(it[0]){
+                case 'paragraph':
+                    viewsMap['tool']['assessment'].push(['widget': 'paragraph', 'args': [text: _toHTML(it[1])]])
+                    break
+                case 'linebreak':
+                    viewsMap['tool']['assessment'].push(['widget': 'linebreak'])
+                    break
+                case 'recommendation':
+                    println it
+                    viewsMap['tool']['assessment'].push(['widget': 'paragraph', 'args': [text: _toHTML('Recomendação: '+ it[1])]])
+                    break
+                case 'table':
+                    viewsMap['tool']['assessment'].push(['widget': 'tableReport', 'args': [header: it[2], data: it[1]]])
+                    break
+                case 'map':
+                    viewsMap['tool']['assessment'].push(['widget': 'map', 'args': [map_url: it[1]]])
+                    break
+                case 'matrix':
+                    viewsMap['tool']['assessment'].push(['widget': 'matrix', 'args': [x: it[1], y: it[2], label_x: it[3], label_y: it[4], range_x: it[5], range_y: it[6], quadrants: it[7], recomendations: []]])
+                    break
+
+            }
+        }
+    }
+
     def _requestData(String controllerName, String actionName){
         viewsMap[controllerName][actionName].each{ command ->
             if(command.request){

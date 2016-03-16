@@ -17,6 +17,9 @@ class DataReader {
         def uri = k.toURI(name)
         def res
 
+        println name
+        println uri
+
         if(!uri){
             res = k[id].findURI(name)
             if( res.size()>0 )
@@ -37,14 +40,6 @@ class DataReader {
                 res = []
             }
         }
-        else if(classList.contains(k.toURI(':TechnologicalEfficiencyFeature'))){
-            try{
-                res = k[uri].getIndividualsFeatureValueWeight(id, '?ind ?label ?valueType ?valueTypeLabel ?value ?weightType ?weightTypeLabel ?weight')
-            }
-            catch (e){
-                res = []
-            }
-        }
         else if(classList.contains(k.toURI('ui:Feature'))){
             try{
                 res = k[uri].getIndividualsValue(id, '?ind ?label ?valueType ?valueTypeLabel ?value')
@@ -53,10 +48,19 @@ class DataReader {
                 res = []
             }
         }
+        else if(classList.contains(k.toURI(':TechnologicalEfficiencyFeature'))){
+            try{
+                res = k[uri].getIndividualsFeatureValueWeight(id, '?ind ?label ?valueType ?valueTypeLabel ?value ?weightType ?weightTypeLabel ?weight')
+            }
+            catch (e){
+                res = []
+            }
+        }
+
         else if(classList.contains(k.toURI('dbp:MicroRegion'))){
             try {
-                println "uri"
-                println uri
+                //println "uri"
+                //println uri
                 res = k[uri].getMap('?map')
             }
             catch (e) {
@@ -64,9 +68,9 @@ class DataReader {
             }
         }
 
-        println uri
-        println classList
-        println res
+        //println uri
+        //println classList
+        //println res
 
         return res
     }

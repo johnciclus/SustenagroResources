@@ -360,7 +360,7 @@ class Node {
                         "?valueType rdfs:label ?valueTypeLabel."+
                         "FILTER( ?subClass != ?id && ?subClass != <$URI> )"
 
-        println sparql
+        //println sparql
         def res = k.select('distinct '+args).query(sparql, "ORDER BY ?label")
 
         res.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
