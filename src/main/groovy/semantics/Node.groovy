@@ -325,13 +325,13 @@ class Node {
         return res
     }
 
-    def getGranchildrenIndividuals(String assessment, String args){
+    def getGranchildrenIndividuals(String analysis, String args){
         def argsList = args.split(' ')
 
         def query = "?subClass rdfs:subClassOf <$URI>."+
                 "?id rdfs:subClassOf ?subClass. "+
                 "?in a ?id."+
-                "?in dc:isPartOf <"+k.toURI(assessment)+">.";
+                "?in dc:isPartOf <"+k.toURI(analysis)+">.";
 
         if (argsList.contains('?value'))
             query +="?in :value ?value.";
@@ -371,10 +371,10 @@ class Node {
         return res
     }
 
-    def getIndividualsValueWeight(String assessment, String args){
+    def getIndividualsValueWeight(String analysis, String args){
         def argsList = args.split(' ')
         def res = k.select('distinct '+args)
-                .query("<"+k.toURI(assessment)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+                .query("<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
                 "?subClass rdfs:subClassOf <$URI>."+
                 "?id rdfs:subClassOf ?subClass." +
                 "?id rdfs:label ?label." +
@@ -398,10 +398,10 @@ class Node {
         return res
     }
 
-    def getIndividualsFeatureValueWeight(String assessment, String args) {
+    def getIndividualsFeatureValueWeight(String analysis, String args) {
         def argsList = args.split(' ')
         def res = k.select('distinct '+args)
-                   .query("<"+k.toURI(assessment)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+                   .query("<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
                         "?id rdfs:subClassOf <$URI>." +
                         "?id rdfs:label ?label." +
                         "?ind a ?id." +

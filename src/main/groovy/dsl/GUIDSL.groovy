@@ -16,11 +16,15 @@ class GUIDSL {
     def _k
     def widgetAttrs
     def contanst
+    def controller
+    def action
 
     static _md
 
     def viewsMap
     def dataTypeToWidget
+
+    def props = [:]
 
     def GUIDSL(String file, ApplicationContext applicationContext){
 
@@ -35,7 +39,8 @@ class GUIDSL {
         viewsMap = [:]
         viewsMap['tool'] = [:]
         viewsMap['tool']['index'] = []
-        viewsMap['tool']['assessment'] = []
+        viewsMap['tool']['analysis'] = []
+        viewsMap['tool']['scenario'] = []
 
         // Create CompilerConfiguration and assign
         // the DelegatingScript class as the base script class.
@@ -70,7 +75,8 @@ class GUIDSL {
         viewsMap = [:]
         viewsMap['tool'] = [:]
         viewsMap['tool']['index'] = []
-        viewsMap['tool']['assessment'] = []
+        viewsMap['tool']['analysis'] = []
+        viewsMap['tool']['scenario'] = []
 
         _sandbox.register()
 
@@ -129,7 +135,7 @@ class GUIDSL {
         //println uri
         //println shortId
 
-        viewsMap['tool']['index'].push(['widget': 'selectEvaluationObject', 'request': request, args: args])
+        viewsMap[controller][action].push(['widget': 'selectEvaluationObject', 'request': request, args: args])
     }
 
     def createEvaluationObject(Map args = [:], ArrayList widgets = [], String evaluationObjectId){
@@ -146,11 +152,54 @@ class GUIDSL {
             args['widgets'][it.id] = ['widget': it.widget, 'args': it.args]
         }
 
-        viewsMap['tool']['index'].push(['widget': 'createEvaluationObject', 'request': requestLst, 'args': args])
+        viewsMap[controller][action].push(['widget': 'createEvaluationObject', 'request': requestLst, 'args': args])
     }
 
     def paragraph(Map args = [:]){
-        viewsMap['tool']['assessment'].push(['widget': 'paragraph', 'args': [text: _toHTML(args['text'])]])
+        viewsMap[controller][action].push(['widget': 'paragraph', 'args': [text: _toHTML(args['text'])]])
+    }
+
+    def paragraph(String txt){
+        //report << ['paragraph', _toHTML(txt)]
+        viewsMap[controller][action].push(['widget': 'paragraph', 'args': [text: _toHTML(txt)]])
+    }
+
+    def linebreak(){
+        //report << ['linebreak']
+        viewsMap[controller][action].push(['widget': 'linebreak'])
+    }
+
+    def recommendation(String txt){
+        //report << ['recommendation', _toHTML(txt)]
+        viewsMap[controller][action].push(['widget': 'paragraph', 'args': [text: _toHTML('Recomendação: '+ txt)]])
+
+    }
+
+    def recommendation(boolean c, String txt){
+        //if (c) report << ['recommendation', _toHTML(txt)]
+    }
+
+    def recommendation(Map map){
+        //if (map.if) report << ['recommendation', _toHTML(map.show)]
+    }
+
+    def recommendation(Map map, String txt){
+        //if (map['if']) report << ['recommendation', _toHTML(txt)]
+    }
+
+    def table(ArrayList list, Map headers = [:]){
+        //report << ['table', list, headers]
+        viewsMap[controller][action].push(['widget': 'tableReport', 'args': [header: headers, data: list]])
+    }
+
+    def map(String url){
+        //report << ['map', url]
+        viewsMap[controller][action].push(['widget': 'map', 'args': [map_url: url]])
+    }
+
+    def matrix(Map map){
+        //report << ['matrix', map.x, map.y, map.labelX, map.labelY, map.rangeX, map.rangeY, map.quadrants, map.recomendations]
+        viewsMap[controller][action].push(['widget': 'matrix', 'args': [x: map.x, y: map.y, label_x: map.labelX, label_y: map.labelY, range_x: map.rangeX, range_y: map.rangeY, quadrants: map.quadrants, recomendations: map.recomendations]])
     }
 
     def tabs(Map extArgs = [:], Map data = [:], String evaluationObjectId){
@@ -160,16 +209,18 @@ class GUIDSL {
 
         args['evalObjInstance']  = uri
 
-        args['id'] = 'assessment'
+        args['id'] = 'analysis'
         args['tabs'] = [:]
         args['widgets'] = [:]
 
-        extArgs['tabs'].eachWithIndex{ it, int i ->
-            args['tabs'][tab_prefix+i] = ['widget': 'tab', args: [id: tab_prefix+i, label: it.label]]
-            args['widgets'][tab_prefix+i] = ['widget': it.widget, args: [id: tab_prefix+i, label: it.label]]
+        data.individuals.eachWithIndex{ it, int i ->
+            args['tabs'][tab_prefix+i] = ['widget': 'tab', args: [id: tab_prefix+i, label: it.value.label]]
+            args['widgets'][tab_prefix+i] = [args: [id: tab_prefix+i, label: it.value.label, data: it.value.subClass, values: data.values, weights: data.weights]]
         }
+
         args['tabs'][tab_prefix+'0'].args['widgetClass'] = 'active'
         args['widgets'][tab_prefix+'0'].args['widgetClass'] = 'active'
+        args['widgets'][tab_prefix+(data.individuals.size()-1)].args['submitLabel'] = extArgs['submitLabel']
 
         args['widgets'].eachWithIndex{ widget, int i ->
             if(i > 0 ){
@@ -182,13 +233,24 @@ class GUIDSL {
             }
         }
 
-        data.each{ tab ->
+        Uri.printTree(data)
+
+        /*
+        extArgs['tabs'].eachWithIndex{ it, int i ->
+            args['tabs'][tab_prefix+i] = ['widget': 'tab', args: [id: tab_prefix+i, label: it.label]]
+            args['widgets'][tab_prefix+i] = ['widget': it.widget, args: [id: tab_prefix+i, label: it.label]]
+        }
+        */
+
+        /*data.each{ tab ->
             tab.value.each { key, value ->
                 args['widgets'][tab.key].args[key] = value
             }
-        }
+        }*/
 
-        viewsMap['tool']['assessment'].push(['widget': 'tabs', 'args': args])
+
+
+        viewsMap[controller][action].push(['widget': 'tabs', 'args': args])
 
         /*
 
@@ -215,30 +277,21 @@ class GUIDSL {
 
     }
 
-    def renderReport(ArrayList report){
-        report.each{
-            switch(it[0]){
-                case 'paragraph':
-                    viewsMap['tool']['assessment'].push(['widget': 'paragraph', 'args': [text: _toHTML(it[1])]])
-                    break
-                case 'linebreak':
-                    viewsMap['tool']['assessment'].push(['widget': 'linebreak'])
-                    break
-                case 'recommendation':
-                    println it
-                    viewsMap['tool']['assessment'].push(['widget': 'paragraph', 'args': [text: _toHTML('Recomendação: '+ it[1])]])
-                    break
-                case 'table':
-                    viewsMap['tool']['assessment'].push(['widget': 'tableReport', 'args': [header: it[2], data: it[1]]])
-                    break
-                case 'map':
-                    viewsMap['tool']['assessment'].push(['widget': 'map', 'args': [map_url: it[1]]])
-                    break
-                case 'matrix':
-                    viewsMap['tool']['assessment'].push(['widget': 'matrix', 'args': [x: it[1], y: it[2], label_x: it[3], label_y: it[4], range_x: it[5], range_y: it[6], quadrants: it[7], recomendations: []]])
-                    break
+    def individual(String key, String uri){
+        props[key]= _k.toURI(uri)
+    }
 
+    def methodMissing(String key, args){
+        //println "methodMissing"
+        if(args.getClass() == Object[]){
+            if(args.size()==1){
+                if(args[0].getClass() == String)
+                    props[key] = _toHTML(args[0])
+                else
+                    props[key] = args[0]
             }
+            else
+                props[key] = args
         }
     }
 
@@ -258,6 +311,11 @@ class GUIDSL {
                 }
             }
         }
+    }
+
+    def _setView(String controllerName, String actionName){
+        this.controller = controllerName
+        this.action = actionName
     }
 
     static _toHTML(String txt) {_md.markdownToHtml(txt)}

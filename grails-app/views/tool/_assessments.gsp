@@ -2,12 +2,12 @@
 <form id="select_assessment" action="/tool/selectAssessment" method="post" class="form-horizontal" >
     <input type="hidden" name="production_unit_id" value="http://bio.icmc.usp.br/sustenagro#${production_unit}">
     <div class="form-group">
-        <label for="assessment" class="col-sm-4 control-label">Avaliações</label>
+        <label for="analysis" class="col-sm-4 control-label">Avaliações</label>
         <div class="col-sm-8">
             <table data-toggle="table"
                    data-click-to-select="true"
                    data-height="240"
-                   data-select-item-name="assessment">
+                   data-select-item-name="analysis">
                 <thead>
                 <tr>
                     <th></th>
@@ -17,7 +17,7 @@
                 <tbody>
                     <g:each status="i" var="it" in="${assessments}">
                         <tr data-index="${i}">
-                            <td><input data-index="${i}" type="radio" name="assessment" value="${it.id}"></td>
+                            <td><input data-index="${i}" type="radio" name="analysis" value="${it.id}"></td>
                             <td>${it.label}</td>
                         </tr>
                     </g:each>

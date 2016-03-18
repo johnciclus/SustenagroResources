@@ -10,7 +10,6 @@ class Feature {
     def k
     def model = []
     def features = [:]
-    def categories = [:]
 
     Feature(String id, ApplicationContext applicationContext){
         _id = id
@@ -27,15 +26,16 @@ class Feature {
             grandChildren.each{
                 if(it.subClass == subClass.subClass) {
                     features[uri]['subClass'][subClass.subClass]['subClass'][it.id] = it
+                    features[uri]['subClass'][subClass.subClass]['subClass'][it.id]['categoryIndividuals'] = k[it.category].getIndividualsIdLabel()
                 }
             }
         }
-        def categoriesTmp = grandChildren.categoryList()
-        def method = 'getIndividualsIdLabel'
+        //def categoriesTmp = grandChildren.categoryList()
+        //def method = 'getIndividualsIdLabel'
 
-        categoriesTmp.each{ key, value ->
-            categories[key] = k[key]."${method}"()
-        }
+        //categoriesTmp.each{ key, value ->
+        //    categories[key] = k[key]."${method}"()
+        //}
 
         //categories[k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
         //categories[k.toURI(':SugarcaneProcessingOptimizationCategory')] = []

@@ -12,7 +12,6 @@ import semantics.Node
 class DSL {
     def featureMap = [:]
     def analyzesMap = [:]
-    def report = []
 
     def evaluationObjectInstance
 
@@ -62,7 +61,6 @@ class DSL {
     def reload(String code){
         featureMap = [:]
         analyzesMap = [:]
-        report = []
 
         evaluationObjectInstance = null
 
@@ -113,17 +111,7 @@ class DSL {
         evaluationObjectInstance = object
     }
 
-    /*def dimension(String id, Closure closure = {}) {
-        String uri = _k.toURI(id)
-        def feature = new Feature(uri, _ctx)
-        closure.resolveStrategy = Closure.DELEGATE_FIRST
-        closure.delegate = feature
-        closure()
-
-        dimensionsMap[uri] = feature
-    }
-
-    def productionFeature(String id, Closure closure = {}){
+    def feature(String id, Closure closure = {}){
         String uri = _k.toURI(id)
         def feature = new Feature(uri, _ctx)
 
@@ -132,163 +120,10 @@ class DSL {
         closure()
 
         featureMap[uri] = feature
-    }
-    */
-
-    def indicators(String id, Closure closure = {}){
-        String uri = _k.toURI(id)
-        def feature = new Feature(uri, _ctx)
-
-        closure.resolveStrategy = Closure.DELEGATE_FIRST
-        closure.delegate = feature
-        closure()
-
-        featureMap[uri] = feature
-    }
-
-    def data(String str){
-        data = str
-        props[str]
-    }
-
-    def setData(obj){
-        props[data]= obj
-    }
-
-    def setData(String str, obj){
-        props[str]= obj
-    }
-
-    def getData(String str){
-        props[str]
-    }
-
-    def individual(String key, String uri){
-        props[key]= _k.toURI(uri)
-    }
-
-    def propertyMissing(String key, arg) {
-        //println "propertyMissing: key, arg "+key+"->"+arg
-        props[key] = arg
-    }
-
-    def propertyMissing(String key) {
-        props[key]
-        //new Node(_k, _k.toURI(props[key]))
-    }
-
-    def methodMissing(String key, args){
-        //println "methodMissing"
-        if(args.getClass() == Object[]){
-            if(args.size()==1){
-                if(args[0].getClass() == String)
-                    props[key] = _toHTML(args[0])
-                else
-                    props[key] = args[0]
-            }
-            else
-                props[key] = args
-        }
-    }
-
-    def printData(){
-        println 'props'
-        println props
-    }
-
-    def assessment(String id, Closure closure){
-        String uri = _k.toURI(id)
-
-        def requestLst        = [:]
-        requestLst['widgets'] = [:]
-        def args              = [:]
-        args['widgets']       = [:]
-
-        def object = new Analysis(uri, _ctx)
-
-        closure.resolveStrategy = Closure.DELEGATE_FIRST
-        closure.delegate = object
-
-        analyzesMap[uri] = [object: object,
-                            closure: closure]
-    }
-
-    static _toHTML(String txt) {_md.markdownToHtml(txt)}
-
-    def paragraph(String txt){
-        report << ['paragraph', _toHTML(txt)]
-    }
-
-    def linebreak(){
-        report << ['linebreak']
-    }
-
-    def recommendation(String txt){
-        report << ['recommendation', _toHTML(txt)]
-    }
-
-    def recommendation(boolean c, String txt){
-        if (c) report << ['recommendation', _toHTML(txt)]
-    }
-
-    def recommendation(Map map){
-        if (map.if) report << ['recommendation', _toHTML(map.show)]
-    }
-
-    def recommendation(Map map, String txt){
-        if (map['if']) report << ['recommendation', _toHTML(txt)]
-    }
-
-    def table(ArrayList list, Map headers = [:]){
-        report << ['table', list, headers]
-    }
-
-    def matrix(Map map){
-        report << ['matrix', map.x, map.y, map.labelX, map.labelY, map.rangeX, map.rangeY, map.quadrants, map.recomendations]
-    }
-
-    def map(String url){
-        report << ['map', url]
     }
 
     def prog(Closure c){
         program = c
-    }
-
-    def _clean(String controller, String action){
-        if(controller?.trim() && action?.trim()){
-            _gui.viewsMap[controller][action] = []
-            report = []
-        }
-
-        /*
-        analyzesMap.each{ analyseKey, analyse ->
-            analyse.object.widgets = []
-            analyse.object.model = []
-        }
-        */
-    }
-
-    def _evalIndividuals(String id){
-        def uri = _k.toURI(':'+id)
-        def types = _k[uri].getType()
-
-        analyzesMap.each{ analyseKey, analyse ->
-            props.each{ key, value ->
-                types.each{
-                    if(it == value){
-                        props[key] = uri
-                        analyse.closure()
-                        props[key] = value
-                    }
-                }
-            }
-            //_gui.viewsMap['tool']['assessment'] = analyse.object.widgets
-        }
-        println "Run Analyse"
-
-        println "Analizes map size "+analyzesMap.size()
-        //println props
     }
 
     def sum(obj){
@@ -348,6 +183,91 @@ class DSL {
         }
     }
 
+
+    def data(String str){
+        data = str
+        //props[str]
+    }
+
+    def setData(obj){
+        props[data]= obj
+    }
+
+    def setData(String str, obj){
+        props[str]= obj
+    }
+
+    def getData(String str){
+        props[str]
+    }
+
+    def propertyMissing(String key, arg) {
+        //println "propertyMissing: key, arg "+key+"->"+arg
+        props[key] = arg
+    }
+
+    def propertyMissing(String key) {
+        props[key]
+        //new Node(_k, _k.toURI(props[key]))
+    }
+
+    def printData(){
+        println 'props'
+        println props
+    }
+
+    def analysis(String id, Closure closure){
+        String uri = _k.toURI(id)
+
+        def requestLst        = [:]
+        requestLst['widgets'] = [:]
+        def args              = [:]
+        args['widgets']       = [:]
+
+        def object = new Analysis(uri, _ctx)
+
+        closure.resolveStrategy = Closure.DELEGATE_FIRST
+        closure.delegate = object
+
+        analyzesMap[uri] = [object: object,
+                            closure: closure]
+    }
+
+    def _clean(String controller, String action){
+        if(controller?.trim() && action?.trim()){
+            _gui.viewsMap[controller][action] = []
+        }
+
+        /*
+        analyzesMap.each{ analyseKey, analyse ->
+            analyse.object.widgets = []
+            analyse.object.model = []
+        }
+        */
+    }
+
+    def _evalIndividuals(String id){
+        def uri = _k.toURI(':'+id)
+        def types = _k[uri].getType()
+
+        analyzesMap.each{ analyseKey, analyse ->
+            props.each{ key, value ->
+                types.each{
+                    if(it == value){
+                        props[key] = uri
+                        analyse.closure()
+                        props[key] = value
+                    }
+                }
+            }
+            //_gui.viewsMap['tool']['analysis'] = analyse.object.widgets
+        }
+        println "Run Analyse"
+
+        println "Analizes map size "+analyzesMap.size()
+        //println props
+    }
+
     /*
        def title(String arg) {
            setData('title', arg)
@@ -365,7 +285,7 @@ class DSL {
 
        def paragraph(String arg){
            //def gui = _ctx.getBean('gui')
-           //gui.viewsMap['tool']['assessment'].push(['widget': 'paragraph', 'args': ['text': arg]])
+           //gui.viewsMap['tool']['analysis'].push(['widget': 'paragraph', 'args': ['text': arg]])
        }
 
        def recommendation(Map map, String txt){

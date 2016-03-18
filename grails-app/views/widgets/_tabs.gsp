@@ -8,7 +8,7 @@
     </g:if>
 </ul>
 
-<form id="<%=id%>_form" action="/tool/report" method="post" class="form-horizontal">
+<form id="<%=id%>_form" action="/tool/createAnalysis" method="post" class="form-horizontal">
     <div id="<%=id%>_content" class="tab-content">
         <g:render template="/widgets/hidden" model="[id: 'evalObjInstance', value: evalObjInstance]"/>
         <g:each var="widget" in="${widgets}">

@@ -225,12 +225,12 @@ fieldset{
 	margin-bottom: 25px;
 }
 
-#assessment_tab > li > a{
+#analysis_tab > li > a{
 	background-color: #eee;
 	border: 1px solid #ddd;
 }
 
-#assessment_tab > .active > a{
+#analysis_tab > .active > a{
 	color: #ffffff;
 	background-color: #4582ec;
 	border-color: #4582ec;
