@@ -120,11 +120,11 @@ prog {
 
     cost_production_efficiency = sum(analysis.':ProductionEfficiencyFeature')
 
-    TechnologicalEfficiencyInTheField = weightedSum(analysis.':TechnologicalEfficiencyInTheField')  //.equation({value*weight}))
-    TechnologicalEfficiencyInTheIndustrial = weightedSum(analysis.':TechnologicalEfficiencyInTheIndustrial')
+    technologicalEfficiencyInTheField = weightedSum(analysis.':TechnologicalEfficiencyInTheField')  //.equation({value*weight}))
+    technologicalEfficiencyInTheIndustrial = weightedSum(analysis.':TechnologicalEfficiencyInTheIndustrial')
 
     efficiency = cost_production_efficiency *
-                 (TechnologicalEfficiencyInTheField+TechnologicalEfficiencyInTheIndustrial)
+                 (technologicalEfficiencyInTheField+technologicalEfficiencyInTheIndustrial)
 
     //economic =      2.0 * analysis.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
     //        analysis.'Eficiência energética das caldeiras para cogeração de energia'

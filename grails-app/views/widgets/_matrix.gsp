@@ -10,10 +10,10 @@
     <script type="text/javascript">
         var recomendations = [];
         <g:each var="recomendation" in="${recomendations}">
-        recomendations.push("${recomendation}");
+            recomendations.push("${recomendation}");
         </g:each>
 
-        var result = Matrix("#graphic", {x: <%=x%>, y: <%=y%>, label_x: "<%=label_x%>", label_y: "<%=label_y%>", range_x: <%=range_x%>, range_y: <%=range_y%>, quadrants: ${quadrants}, recomendations: ${recomendations} });
+        var result = Matrix("#graphic", {x: <%=x%>, y: <%=y%>, label_x: "<%=label_x%>", label_y: "<%=label_y%>", range_x: <%=range_x%>, range_y: <%=range_y%>, quadrants: ${quadrants}, recomendations: recomendations });
         $("#recomendations").append("<p>Quadrante : "+result.quadrant+"</p>");
         $("#recomendations").append("<p>Recomendação: "+result.recomendation+"</p>");
     </script>

@@ -187,7 +187,7 @@ class ToolController {
             dsl.setData(new DataReader(k, uri))
             dsl.program()
         }
-        dsl.printData()
+        println dsl.getScenario()
 
         dsl._clean(controllerName, actionName)
         gui._setView(controllerName, actionName)
@@ -209,10 +209,10 @@ class ToolController {
                               "Cenário muito favorável, Alto desempenho dos indicadores"]
         gui.matrix([x: dsl.getData('sustainability'),
                     y: dsl.getData('efficiency'),
-                    labelX: 'Indice da sustentabilidade',
-                    labelY: 'Indice de eficiência',
-                    rangeX: [-50,150],
-                    rangeY: [-30,60],
+                    label_x: 'Indice da sustentabilidade',
+                    label_y: 'Indice de eficiência',
+                    range_x: [-50,150],
+                    range_y: [-30,60],
                     quadrants: [4,3],
                     recomendations: recomendations])
 
@@ -233,7 +233,7 @@ class ToolController {
         gui.linebreak()
 
         gui.paragraph('''**Avaliação da sustentabilidade** ''')
-        gui.paragraph('Índice da sustentabilidade '+ dsl.getData('sustainability'))
+        gui.paragraph('Índice da sustentabilidade: '+ dsl.getData('sustainability'))
         gui.linebreak()
 
         gui.paragraph('**Eficiência da produção**')
@@ -243,8 +243,20 @@ class ToolController {
 
         gui.paragraph('**Eficiência tecnológica no campo**')
         gui.table( dsl.getData('analysis').':TechnologicalEfficiencyInTheField', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso'])
-        gui.paragraph('Índice de tecnológica no campo: '+ dsl.getData('TechnologicalEfficiencyInTheField'))
+        gui.paragraph('Índice de tecnológica no campo: '+ dsl.getData('technologicalEfficiencyInTheField'))
         gui.linebreak()
+
+        gui.paragraph('**Eficiência tecnológica na industria**')
+        gui.table( dsl.getData('analysis').':TechnologicalEfficiencyInTheIndustrial', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso'])
+        gui.paragraph('Índice de tecnológica na industria: '+ dsl.getData('technologicalEfficiencyInTheIndustrial'))
+        gui.linebreak()
+
+        gui.paragraph('''**Avaliação da eficiência** ''')
+        gui.paragraph('Índice da eficiência: '+ dsl.getData('efficiency'))
+        gui.linebreak()
+
+        gui.paragraph('**Mapa da microregião**')
+        gui.map(dsl.getData('analysis').'Microregion'.map())
 
         /*
        def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
@@ -308,7 +320,7 @@ class ToolController {
 
     def analyses(){
         def id = k.shortURI(params.id)
-        println params.id
+        //println params.id
 
         def analyses = k[id].labelAppliedTo
 

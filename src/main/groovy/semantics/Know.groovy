@@ -94,7 +94,7 @@ class Know {
                 return null
             }
             println 'prexixes analyse: '+id
-            if (!id.contains(':')) return searchPrefix(id).uri+id
+            if (!id.contains(':')) return searchByLabel(id) //return searchPrefix(id).uri+id
         }
         else{
             return null
@@ -158,24 +158,42 @@ class Know {
         existOnt
     }
 
+    def searchByLabel(name){
+        println "Heavy costly!"
+        def langs = ['en', 'pt', 'es', 'fr', 'de']
+        def search
+        def result = ''
+
+        langs.find{
+            search = query("?uri rdfs:label '" + name + "'@"+it)
+            if (search.size() > 0) {
+                result = search[0].uri
+                return true
+            }
+        }
+        return result
+    }
+
     def searchPrefix(String name){
-        def query
+        def search
         def result = []
         _prefixes.find{key, value ->
-            if(name.startsWith(key) || name.startsWith(value)) {
+            if(name.startsWith(key+':') || name.startsWith(value)) {
                 result = [alias : key, 'uri': value]
                 return true
             }
         }
         if(result.empty) {
-            println "Heavy costly!"
+            /*
             _prefixes.find{ key, value ->
-                query = query("<" + value + name + "> a ?class")
-                if (query.size() > 0) {
+                println "<" + value + name + "> a ?class"
+                search = query("<" + value + name + "> rdf:type ?class")
+                if (search.size() > 0) {
                     result = [alias: key, 'uri': value]
                 }
                 return true
             }
+        */
         }
         return result
     }

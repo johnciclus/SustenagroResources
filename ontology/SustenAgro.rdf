@@ -169,6 +169,14 @@
     
 
 
+    <!-- http://purl.org/biodiv/semanticUI#hasWeight -->
+
+    <rdf:Description rdf:about="&semanticUI;hasWeight">
+        <rdfs:range rdf:resource="&semanticUI;Value"/>
+    </rdf:Description>
+    
+
+
     <!-- http://purl.org/biodiv/semanticUI#value -->
 
     <owl:ObjectProperty rdf:about="&semanticUI;value"/>
@@ -484,13 +492,6 @@
     <owl:Class rdf:about="&semanticUI;Boolean">
         <rdfs:label xml:lang="en">Boolean</rdfs:label>
         <rdfs:label xml:lang="pt">Boleana</rdfs:label>
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semanticUI;hasDataValue"/>
-                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onDataRange rdf:resource="&xsd;boolean"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
     </owl:Class>
     
 
@@ -1184,6 +1185,16 @@
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#EconomicIndicator">
         <rdfs:label xml:lang="en">Economic indicator</rdfs:label>
         <rdfs:label xml:lang="pt">Indicador econômico</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#EfficiencyIndicator -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#EfficiencyIndicator">
+        <rdfs:label xml:lang="en">Efficiency Indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de eficiência</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Indicator"/>
     </owl:Class>
     
@@ -1323,7 +1334,7 @@
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#EnvironmentalIndicator">
         <rdfs:label xml:lang="en">Environmental indicator</rdfs:label>
         <rdfs:label xml:lang="pt">Indicador ambiental</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Indicator"/>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator"/>
     </owl:Class>
     
 
@@ -2118,7 +2129,7 @@
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ProductionEfficiencyFeature">
         <rdfs:label xml:lang="en">Production efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência da produção</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionFeature"/>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#EfficiencyIndicator"/>
     </owl:Class>
     
 
@@ -2147,16 +2158,6 @@
             </owl:Restriction>
         </rdfs:subClassOf>
         <weight rdf:datatype="&xsd;double">2.0</weight>
-    </owl:Class>
-    
-
-
-    <!-- http://semantic.icmc.usp.br/sustenagro#ProductionFeature -->
-
-    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ProductionFeature">
-        <rdfs:label xml:lang="en">Production feature</rdfs:label>
-        <rdfs:label xml:lang="pt">Característica de produção</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&semanticUI;Feature"/>
     </owl:Class>
     
 
@@ -2465,7 +2466,7 @@
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SocialIndicator">
         <rdfs:label xml:lang="en">Social indicator</rdfs:label>
         <rdfs:label xml:lang="pt">Indicador social</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Indicator"/>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator"/>
     </owl:Class>
     
 
@@ -2629,18 +2630,22 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator">
+        <rdfs:label xml:lang="en">Sustainability Indicator</rdfs:label>
+        <rdfs:label xml:lang="pt">Indicador de sustentabilidade</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#Indicator"/>
+    </owl:Class>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyFeature -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#TechnologicalEfficiencyFeature">
         <rdfs:label xml:lang="en">Technological efficiency</rdfs:label>
         <rdfs:label xml:lang="pt">Eficiência tecnológica</rdfs:label>
-        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionFeature"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&semanticUI;value"/>
-                <owl:someValuesFrom rdf:resource="&semanticUI;Weighted"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#EfficiencyIndicator"/>
     </owl:Class>
     
 

@@ -97,11 +97,10 @@ class Node {
     }
 
     def getMap(String args){
-        def res = k.select('distinct '+args)
-                .query("<$URI> :appliedTo ?productionUnit. " +
-                "?productionUnit dbp:MicroRegion ?microregion. " +
-                "?microregion <http://dbpedia.org/property/pt/mapa> ?map.")
-
+        def sparql = "<$URI> :appliedTo ?evalobj. " +
+                     "?evalobj :hasMicroRegion ?microregion. " +
+                     "?microregion <http://dbpedia.org/property/pt/mapa> ?map."
+        def res = k.select('distinct '+args).query(sparql)
         res.metaClass.map = { (delegate.size()==1)? delegate[0]['map'] :delegate.collect { it['map'] } }
         return res
     }

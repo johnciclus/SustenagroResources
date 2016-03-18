@@ -3,6 +3,7 @@ package dsl
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
 import org.springframework.context.ApplicationContext
+import semantics.DataReader
 import semantics.Node
 
 /**
@@ -65,12 +66,6 @@ class DSL {
         evaluationObjectInstance = null
 
         _sandbox.register()
-
-        //def stack = code.tokenize("\n")
-
-        //for (c in stack){
-        //    println c + "\n"
-        //}
 
         _script = (DelegatingScript) _shell.parse(code)
         _shell
@@ -216,6 +211,15 @@ class DSL {
         println props
     }
 
+    def getScenario(){
+        def result = [:]
+        props.each{ key, value ->
+            if(value.getClass() != DataReader)
+                result[key] = value
+        }
+        return result
+    }
+
     def analysis(String id, Closure closure){
         String uri = _k.toURI(id)
 
@@ -267,31 +271,5 @@ class DSL {
         println "Analizes map size "+analyzesMap.size()
         //println props
     }
-
-    /*
-       def title(String arg) {
-           setData('title', arg)
-       }
-
-       def description(String arg){
-           setData('description', _toHTML(arg))
-           //def gui = _ctx.getBean('gui')
-           //gui.viewsMap['tool']['index'].push(['widget': 'description', 'args': ['description': _toHTML(arg)]])
-
-           //println  Processor.process(description, true)
-           //println new PegDownProcessor().markdownToHtml(description)
-       }
-
-
-       def paragraph(String arg){
-           //def gui = _ctx.getBean('gui')
-           //gui.viewsMap['tool']['analysis'].push(['widget': 'paragraph', 'args': ['text': arg]])
-       }
-
-       def recommendation(Map map, String txt){
-           recommendations << [map['if'],txt]
-       }
-       */
-
 }
 

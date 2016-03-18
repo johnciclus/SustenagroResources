@@ -17,8 +17,7 @@ class DataReader {
         def uri = k.toURI(name)
         def res
 
-        println name
-        println uri
+
 
         if(!uri){
             res = k[id].findURI(name)
@@ -31,6 +30,9 @@ class DataReader {
 
         def classList = k[uri].getSuperClass()
 
+        println name
+        println uri
+        println classList
 
         if(classList.contains(k.toURI(':Indicator'))){
             try{
@@ -56,12 +58,11 @@ class DataReader {
                 res = []
             }
         }
-
-        else if(classList.contains(k.toURI('dbp:MicroRegion'))){
+        else if(classList.contains(k.toURI('dbp:Region'))){
             try {
                 //println "uri"
                 //println uri
-                res = k[uri].getMap('?map')
+                res = k[id].getMap('?map')
             }
             catch (e) {
                 res = []

@@ -199,7 +199,7 @@ class GUIDSL {
 
     def matrix(Map map){
         //report << ['matrix', map.x, map.y, map.labelX, map.labelY, map.rangeX, map.rangeY, map.quadrants, map.recomendations]
-        viewsMap[controller][action].push(['widget': 'matrix', 'args': [x: map.x, y: map.y, label_x: map.labelX, label_y: map.labelY, range_x: map.rangeX, range_y: map.rangeY, quadrants: map.quadrants, recomendations: map.recomendations]])
+        viewsMap[controller][action].push(['widget': 'matrix', 'args': [x: map.x, y: map.y, label_x: map.label_x, label_y: map.label_y, range_x: map.range_x, range_y: map.range_y, quadrants: map.quadrants, recomendations: map.recomendations]])
     }
 
     def tabs(Map extArgs = [:], Map data = [:], String evaluationObjectId){
@@ -233,7 +233,7 @@ class GUIDSL {
             }
         }
 
-        Uri.printTree(data)
+        //Uri.printTree(data)
 
         /*
         extArgs['tabs'].eachWithIndex{ it, int i ->
@@ -319,5 +319,30 @@ class GUIDSL {
     }
 
     static _toHTML(String txt) {_md.markdownToHtml(txt)}
+
+    /*
+       def title(String arg) {
+           setData('title', arg)
+       }
+
+       def description(String arg){
+           setData('description', _toHTML(arg))
+           //def gui = _ctx.getBean('gui')
+           //gui.viewsMap['tool']['index'].push(['widget': 'description', 'args': ['description': _toHTML(arg)]])
+
+           //println  Processor.process(description, true)
+           //println new PegDownProcessor().markdownToHtml(description)
+       }
+
+
+       def paragraph(String arg){
+           //def gui = _ctx.getBean('gui')
+           //gui.viewsMap['tool']['analysis'].push(['widget': 'paragraph', 'args': ['text': arg]])
+       }
+
+       def recommendation(Map map, String txt){
+           recommendations << [map['if'],txt]
+       }
+   */
 
 }
