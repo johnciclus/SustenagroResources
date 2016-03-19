@@ -4,29 +4,27 @@ import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
 import org.springframework.context.ApplicationContext
 import semantics.DataReader
-import semantics.Node
 
 /**
  * Created by dilvan on 7/14/15.
  */
 
 class DSL {
-    def featureMap = [:]
-    def analyzesMap = [:]
+    private def _ctx
+    private def _k
+    private def _gui
 
-    def evaluationObjectInstance
+    private def _sandbox
+    private def _script
+    private Closure _program
+    private GroovyShell _shell
 
-    def data
-    def props = [:]
-    Closure program
+    private def _data
+    private def _props = [:]
+    private def _featureMap = [:]
+    private def _analysisMap = [:]
 
-    GroovyShell _shell
-    def _sandbox
-    def _script
-    def _ctx
-    def _k
-    def _gui
-    static _md
+    private def _evaluationObjectInstance
 
     DSL(String file, ApplicationContext applicationContext){
         // Create CompilerConfiguration and assign
@@ -34,7 +32,6 @@ class DSL {
         _ctx = applicationContext
         _k = _ctx.getBean('k')
         _gui = _ctx.getBean('gui')
-        _md = _ctx.getBean('md')
 
         def _cc = new CompilerConfiguration()
         _cc.addCompilationCustomizers(new SandboxTransformer())
@@ -60,10 +57,10 @@ class DSL {
     }
 
     def reload(String code){
-        featureMap = [:]
-        analyzesMap = [:]
+        _featureMap = [:]
+        _analysisMap = [:]
 
-        evaluationObjectInstance = null
+        _evaluationObjectInstance = null
 
         _sandbox.register()
 
@@ -94,6 +91,24 @@ class DSL {
         }
         return response
     }
+    /*
+    def analysis(String id, Closure closure){
+        String uri = _k.toURI(id)
+
+        def requestLst        = [:]
+        requestLst['widgets'] = [:]
+        def attrs              = [:]
+        attrs['widgets']       = [:]
+
+        def object = new Analysis(uri, _ctx)
+
+        closure.resolveStrategy = Closure.DELEGATE_FIRST
+        closure.delegate = object
+
+        _analysisMap[uri] = [object: object,
+                             closure: closure]
+    }
+    */
 
     def evaluationObject(String id, Closure closure){
         String uri = _k.toURI(id)
@@ -103,7 +118,11 @@ class DSL {
         closure.delegate = object
         closure()
 
-        evaluationObjectInstance = object
+        _evaluationObjectInstance = object
+    }
+
+    def getEvaluationObject(){
+        _evaluationObjectInstance
     }
 
     def feature(String id, Closure closure = {}){
@@ -114,11 +133,23 @@ class DSL {
         closure.delegate = feature
         closure()
 
-        featureMap[uri] = feature
+        _featureMap[uri] = feature
     }
 
-    def prog(Closure c){
-        program = c
+    def getFeatureMap(){
+        _featureMap
+    }
+
+    def getAnalysisMap(){
+        _analysisMap
+    }
+
+    def formula(Closure c){
+        _program = c
+    }
+
+    def runFormula(){
+        _program()
     }
 
     def sum(obj){
@@ -178,89 +209,67 @@ class DSL {
         }
     }
 
-
     def data(String str){
-        data = str
-        //props[str]
+        _data = str
+        //_props[str]
     }
 
     def setData(obj){
-        props[data]= obj
-    }
-
-    def setData(String str, obj){
-        props[str]= obj
+        _props[_data]= obj
     }
 
     def getData(String str){
-        props[str]
+        _props[str]
+    }
+
+    def printData(){
+        println _props
     }
 
     def propertyMissing(String key, arg) {
         //println "propertyMissing: key, arg "+key+"->"+arg
-        props[key] = arg
+        _props[key] = arg
     }
 
     def propertyMissing(String key) {
-        props[key]
+        _props[key]
         //new Node(_k, _k.toURI(props[key]))
-    }
-
-    def printData(){
-        println 'props'
-        println props
     }
 
     def getScenario(){
         def result = [:]
-        props.each{ key, value ->
+        _props.each{ key, value ->
             if(value.getClass() != DataReader)
                 result[key] = value
         }
         return result
     }
 
-    def analysis(String id, Closure closure){
-        String uri = _k.toURI(id)
-
-        def requestLst        = [:]
-        requestLst['widgets'] = [:]
-        def args              = [:]
-        args['widgets']       = [:]
-
-        def object = new Analysis(uri, _ctx)
-
-        closure.resolveStrategy = Closure.DELEGATE_FIRST
-        closure.delegate = object
-
-        analyzesMap[uri] = [object: object,
-                            closure: closure]
-    }
-
-    def _clean(String controller, String action){
+    def clean(String controller, String action){
         if(controller?.trim() && action?.trim()){
             _gui.viewsMap[controller][action] = []
         }
 
         /*
-        analyzesMap.each{ analyseKey, analyse ->
+        _analysisMap.each{ analyseKey, analyse ->
             analyse.object.widgets = []
             analyse.object.model = []
         }
         */
     }
 
+    /*
     def _evalIndividuals(String id){
         def uri = _k.toURI(':'+id)
         def types = _k[uri].getType()
 
-        analyzesMap.each{ analyseKey, analyse ->
-            props.each{ key, value ->
+        _analysisMap.each{ analyseKey, analyse ->
+            _props.each{ key, value ->
                 types.each{
                     if(it == value){
-                        props[key] = uri
+                        _props[key] = uri
                         analyse.closure()
-                        props[key] = value
+                        _props[key] = value
                     }
                 }
             }
@@ -268,8 +277,9 @@ class DSL {
         }
         println "Run Analyse"
 
-        println "Analizes map size "+analyzesMap.size()
-        //println props
+        println "Analizes map size "+_analysisMap.size()
+        //println _props
     }
+    */
 }
 

@@ -106,22 +106,21 @@ feature ':TechnologicalEfficiencyFeature', {
     }
 }
 
-data 'analysis'
-
+data 'data'
 
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
-prog {
-    environment =   weightedSum(analysis.':EnvironmentalIndicator')             //.equation({value*weight}))
-    economic    =   weightedSum(analysis.':EconomicIndicator')
-    social      =   weightedSum(analysis.':SocialIndicator')
+formula {
+    environment =   weightedSum(data.':EnvironmentalIndicator')             //.equation({value*weight}))
+    economic    =   weightedSum(data.':EconomicIndicator')
+    social      =   weightedSum(data.':SocialIndicator')
     
     sustainability = (environment + social + economic)/3
 
-    cost_production_efficiency = sum(analysis.':ProductionEfficiencyFeature')
+    cost_production_efficiency = sum(data.':ProductionEfficiencyFeature')
 
-    technologicalEfficiencyInTheField = weightedSum(analysis.':TechnologicalEfficiencyInTheField')  //.equation({value*weight}))
-    technologicalEfficiencyInTheIndustrial = weightedSum(analysis.':TechnologicalEfficiencyInTheIndustrial')
+    technologicalEfficiencyInTheField = weightedSum(data.':TechnologicalEfficiencyInTheField')  //.equation({value*weight}))
+    technologicalEfficiencyInTheIndustrial = weightedSum(data.':TechnologicalEfficiencyInTheIndustrial')
 
     efficiency = cost_production_efficiency *
                  (technologicalEfficiencyInTheField+technologicalEfficiencyInTheIndustrial)

@@ -33,15 +33,15 @@ class Analysis {
 
     def paragraph(String arg){
         println 'Paragraph test'
-        widgets << ['widget': 'paragraph', 'args': ['text': toHTML(arg)]]
+        widgets << ['widget': 'paragraph', 'attrs': ['text': toHTML(arg)]]
         println widgets
     }
 
-    def tabs(Map args, String id, Closure closure = {}){
+    def tabs(Map attrs, String id, Closure closure = {}){
         def request = []
         //dsl = _ctx.getBean('dsl')
-        args['id'] = id
-        args['widgets'] = [:]
+        attrs['id'] = id
+        attrs['widgets'] = [:]
 
         println id
         println closure.owner
@@ -50,32 +50,32 @@ class Analysis {
         println ''
 
         def refTmp = ref
-        ref = args['widgets']
-        closure()               //closure(args['widgets'])
-        println args
+        ref = attrs['widgets']
+        closure()               //closure(attrs['widgets'])
+        println attrs
         ref = refTmp
 
 
 
         /*
         tabs.each{ tab ->
-            args['widgets'][tab.id] = tab.widget
+            attrs['widgets'][tab.id] = tab.widget
         }
 
         for(int i=0; i < tabs.size(); i++){
             if(i == 0 ){
-                args['widgets'][tabs[i].id].args['next'] = tabs[i+1].id
-                args['widgets'][tabs[i].id].args['nextLabel'] = args['nextLabel']
+                attrs['widgets'][tabs[i].id].attrs['next'] = tabs[i+1].id
+                attrs['widgets'][tabs[i].id].attrs['nextLabel'] = attrs['nextLabel']
             }
             else if(i == (tabs.size()-1)){
-                args['widgets'][tabs[i].id].args['previous'] = tabs[i-1].id
-                args['widgets'][tabs[i].id].args['previousLabel'] = args['previousLabel']
+                attrs['widgets'][tabs[i].id].attrs['previous'] = tabs[i-1].id
+                attrs['widgets'][tabs[i].id].attrs['previousLabel'] = attrs['previousLabel']
             }
             else{
-                args['widgets'][tabs[i].id].args['previous'] = tabs[i-1].id
-                args['widgets'][tabs[i].id].args['next'] = tabs[i+1].id
-                args['widgets'][tabs[i].id].args['previousLabel'] = args['previousLabel']
-                args['widgets'][tabs[i].id].args['nextLabel'] = args['nextLabel']
+                attrs['widgets'][tabs[i].id].attrs['previous'] = tabs[i-1].id
+                attrs['widgets'][tabs[i].id].attrs['next'] = tabs[i+1].id
+                attrs['widgets'][tabs[i].id].attrs['previousLabel'] = attrs['previousLabel']
+                attrs['widgets'][tabs[i].id].attrs['nextLabel'] = attrs['nextLabel']
             }
         }
 
@@ -84,7 +84,7 @@ class Analysis {
 
         widgets <<   [widget: 'tabs',
                       request: request,
-                      args: args ]
+                      attrs: attrs ]
 
         //<input type="hidden" name="production_unit_id" value="${evaluationObject.id}">
         //<g:render template="/widgets/tabs" model="${model}" />
@@ -94,9 +94,9 @@ class Analysis {
         tabs([:], id, closure)
     }
 
-    def tab(Map args = [:], String id='', Closure closure = {}){
-        args['id'] = id
-        args['widgets'] = [:]
+    def tab(Map attrs = [:], String id='', Closure closure = {}){
+        attrs['id'] = id
+        attrs['widgets'] = [:]
 
         println id
         println closure.owner
@@ -105,25 +105,25 @@ class Analysis {
         println ''
 
         def refTmp = ref
-        ref = args['widgets']
+        ref = attrs['widgets']
         closure()
-        println args
+        println attrs
         ref = refTmp
 
 
         /*
         widgets.eachWithIndex{ widget, index ->
-            args['widgets'][widget.id] = widget.widget
+            attrs['widgets'][widget.id] = widget.widget
         }
         */
 
         ref[id] = [widget: 'tab',
                    request: [],
-                   args: args]
+                   attrs: attrs]
 
         /*tabs <<  [id: id, widget:  [widget: 'tab',
                             request: [],
-                            args: args ]]
+                            attrs: attrs ]]
         */
 }
 
@@ -131,7 +131,7 @@ def indicatorList(String id){
     println "Indicator list "
     ref[id] = [widget: 'paragraph',
                request: [],
-               args: [text: "Indicator list "]]
+               attrs: [text: "Indicator list "]]
 }
 
 static toHTML(String txt) {md.markdownToHtml(txt)}

@@ -54,7 +54,7 @@ class Feature {
             }
         }
         */
-        //def args = [:]
+        //def attrs = [:]
         /*
         dsl.dimensionsMap.each{ feature ->
             features[feature.key] = ['subClass': [:]]

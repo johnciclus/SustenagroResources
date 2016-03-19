@@ -17,8 +17,6 @@ class DataReader {
         def uri = k.toURI(name)
         def res
 
-
-
         if(!uri){
             res = k[id].findURI(name)
             if( res.size()>0 )
@@ -30,9 +28,9 @@ class DataReader {
 
         def classList = k[uri].getSuperClass()
 
-        println name
-        println uri
-        println classList
+        //println name
+        //println uri
+        //println classList
 
         if(classList.contains(k.toURI(':Indicator'))){
             try{
