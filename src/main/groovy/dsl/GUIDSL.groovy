@@ -155,18 +155,22 @@ class GUIDSL {
         viewsMap[controller][action].push(['widget': 'createEvaluationObject', 'request': requestLst, 'attrs': attrs])
     }
 
-    def paragraph(Map attrs = [:]){
-        viewsMap[controller][action].push(['widget': 'paragraph', 'attrs': [text: _toHTML(attrs['text'])]])
+    def paragraph(Map attrs = [:], ArrayList view = viewsMap[controller][action]){
+        view.push(['widget': 'paragraph', 'attrs': [text: _toHTML(attrs['text'])]])
     }
 
-    def paragraph(String txt){
+    def paragraph(String txt, ArrayList view = viewsMap[controller][action]){
         //report << ['paragraph', _toHTML(txt)]
-        viewsMap[controller][action].push(['widget': 'paragraph', 'attrs': [text: _toHTML(txt)]])
+        view.push(['widget': 'paragraph', 'attrs': [text: _toHTML(txt)]])
     }
 
-    def linebreak(){
+    def individualsPanel(Map attrs = [:], ArrayList view = viewsMap[controller][action]){
+        view.push(['widget': 'individualsPanel', 'attrs': attrs])
+    }
+
+    def linebreak(ArrayList view = viewsMap[controller][action]){
         //report << ['linebreak']
-        viewsMap[controller][action].push(['widget': 'linebreak'])
+        view.push(['widget': 'linebreak'])
     }
 
     def recommendation(String txt){
@@ -187,22 +191,23 @@ class GUIDSL {
         //if (map['if']) report << ['recommendation', _toHTML(txt)]
     }
 
-    def table(ArrayList list, Map headers = [:]){
+    def table(Map attrs = [:], ArrayList view = viewsMap[controller][action]){
         //report << ['table', list, headers]
-        viewsMap[controller][action].push(['widget': 'tableReport', 'attrs': [header: headers, data: list]])
+        view.push(['widget': 'tableReport', 'attrs': attrs])
     }
 
-    def map(String url){
+    def map(Map attrs = [:], ArrayList view = viewsMap[controller][action]){
         //report << ['map', url]
-        viewsMap[controller][action].push(['widget': 'map', 'attrs': [map_url: url]])
+        view.push(['widget': 'map', 'attrs': [url: attrs.url]])
     }
 
-    def matrix(Map map){
+    def matrix(Map attrs = [:], ArrayList view = viewsMap[controller][action]){
         //report << ['matrix', map.x, map.y, map.labelX, map.labelY, map.rangeX, map.rangeY, map.quadrants, map.recomendations]
-        viewsMap[controller][action].push(['widget': 'matrix', 'attrs': [x: map.x, y: map.y, label_x: map.label_x, label_y: map.label_y, range_x: map.range_x, range_y: map.range_y, quadrants: map.quadrants, recomendations: map.recomendations]])
+        view.push(['widget': 'matrix', 'attrs': attrs])
+        //view.push(['widget': 'matrix', 'attrs': [x: map.x, y: map.y, label_x: map.label_x, label_y: map.label_y, range_x: map.range_x, range_y: map.range_y, quadrants: map.quadrants, recomendations: map.recomendations]])
     }
 
-    def tabs(Map extAttrs = [:], Map widgets = [:], String evaluationObjectId){
+    def tabs(Map extAttrs = [:], Map widgets = [:], ArrayList view = viewsMap[controller][action], String evaluationObjectId){
         def attrs = [:]
         def tab_prefix = 'tab_'
         def uri = _k.toURI(evaluationObjectId)
@@ -215,11 +220,22 @@ class GUIDSL {
 
         widgets.eachWithIndex{ it, int i ->
             attrs['tabs'][tab_prefix+i] = ['widget': 'tab', attrs: [id: tab_prefix+i, label: extAttrs.labels[tab_prefix+i]]]
-            attrs['tabpanels'][tab_prefix+i] = it.value //[attrs: it.value.attrs]
+            attrs['tabpanels'][tab_prefix+i] = []
+
+            //Uri.printTree(it.value)
+
+            it.value.each{ widget ->
+                if(widget.attrs)
+                    "$widget.widget"(widget.attrs, attrs['tabpanels'][tab_prefix+i])
+                else
+                    "$widget.widget"(attrs['tabpanels'][tab_prefix+i])
+            }
+            println attrs['tabpanels'][tab_prefix+i]
         }
 
         attrs['tabs'][tab_prefix+'0'].attrs['widgetClass'] = 'active'
-        attrs['tabs'][tab_prefix+(widgets.size()-1)].attrs['submitLabel'] = extAttrs['submitLabel']
+        if(extAttrs['submit'])
+            attrs['tabs'][tab_prefix+(widgets.size()-1)].attrs['submitLabel'] = extAttrs['submitLabel']
 
         attrs['tabs'].eachWithIndex{ tab, int i ->
             if(i > 0 ){
@@ -232,7 +248,7 @@ class GUIDSL {
             }
         }
 
-        Uri.printTree(attrs)
+        //Uri.printTree(attrs)
 
         /*
         extAttrs['tabs'].eachWithIndex{ it, int i ->
@@ -247,9 +263,7 @@ class GUIDSL {
             }
         }*/
 
-
-        //
-        viewsMap[controller][action].push(['widget': 'tabs', 'attrs': attrs])
+        view.push(['widget': 'tabs', 'attrs': attrs])
 
         /*
 
@@ -274,6 +288,18 @@ class GUIDSL {
 
          */
 
+    }
+
+    def form(Map attrs = [:], ArrayList widgets = [], ArrayList view = viewsMap[controller][action]){
+        if(!attrs.widgets){
+            attrs.widgets = []
+        }
+
+        widgets.each{
+            "$it.widget"(it.attrs, it.widgets, attrs.widgets, it.id)
+        }
+
+        view.push(['widget': 'form', 'attrs': attrs])
     }
 
     def individual(String key, String uri){

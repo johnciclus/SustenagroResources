@@ -1,5 +1,7 @@
-<form id="<%=id%>" action="<%=action%>" method="<%=method%>" class="<%=formClass%>">
-    <div class="form-group col-sm-12 text-center">
-        <g:render template="/widgets/submit" model="[value: submitLabel]"/>
-    </div>
+<form <g:if test="${id}"> id="<%=id%>" </g:if> <g:if test="${action}"> action="<%=action%>" </g:if> <g:if test="${method}"> method="<%=method%>" </g:if> <g:if test="${formClass}"> class="<%=formClass%>" </g:if>>
+    <g:if test="${widgets}">
+        <g:each in="${widgets}">
+            <g:render template="/widgets/${it.widget}" model="${it.attrs}"/>
+        </g:each>
+    </g:if>
 </form>

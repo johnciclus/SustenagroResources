@@ -50,21 +50,27 @@ class ToolController {
     def analysis(){
         def uri = k.toURI(':'+params.id)
         def tab_prefix = 'tab_'
-        def attrs = gui.widgetAttrs['tabs']
-        def widgets = [:]
+        def tabsAttrs = gui.widgetAttrs['tabs']
+        def tabsWidgets = [:]
+        def formAttrs = gui.widgetAttrs['form']
+        def formWidgets = []
 
-        attrs.labels = [:]
+        tabsAttrs.labels = [:]
         dsl.featureMap.eachWithIndex{ key, feature, int i ->
             feature.features.each{
-                attrs.labels[tab_prefix+i] = it.value.label
-                widgets[tab_prefix+i] = [['widget': 'individualsPanel', attrs: [data: it.value.subClass, values: [:], weights: [:]]]]
+                tabsAttrs.labels[tab_prefix+i] = it.value.label
+                tabsWidgets[tab_prefix+i] = [['widget': 'individualsPanel', attrs: [data: it.value.subClass, values: [:], weights: [:]]]]
             }
         }
+        tabsAttrs.submit = true
+
+        formAttrs['action'] = '/tool/createAnalysis'
+        formWidgets.push(['widget': 'tabs', attrs: tabsAttrs, widgets: tabsWidgets, id: uri])
 
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
         gui.paragraph([text: gui.widgetAttrs['paragraph'].text + '**'+ k[uri].label + '**'])
-        gui.tabs(attrs, widgets, uri)
+        gui.form(formAttrs, formWidgets)
         gui.requestData(controllerName, actionName)
 
         //println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
@@ -189,17 +195,6 @@ class ToolController {
         def attrs = gui.widgetAttrs['tabs']
         def widgets = [:]
 
-        attrs.labels = ['tab_0': 'Scenario', 'tab_1': 'Report']
-        widgets['tab_0'] = [['widget': 'paragraph', attrs: [text: 'Scenario text']]]
-        widgets['tab_1'] = [['widget': 'paragraph', attrs: [text: 'Report text']]]
-
-        dsl.clean(controllerName, actionName)
-        gui.setView(controllerName, actionName)
-        gui.tabs(attrs, widgets, uri)
-        gui.paragraph('**Matrix de Avaliação**')
-        gui.paragraph('Índice da sustentabilidade: ' + scenario['sustainability'])
-        gui.paragraph('Indice de eficiência: ' + scenario['efficiency'])
-
         def recomendations = ["Cenário desfavorável, Muito baixo desempenho dos indicadores",
                               "Cenário desfavorável, Baixo desempenho dos indicadores",
                               "Cenário desfavorável, Médio desempenho dos indicadores",
@@ -212,6 +207,67 @@ class ToolController {
                               "Cenário muito favorável, Baixo desempenho dos indicadores",
                               "Cenário muito favorável, Médio desempenho dos indicadores",
                               "Cenário muito favorável, Alto desempenho dos indicadores"]
+
+        attrs.labels = ['tab_0': 'Scenario', 'tab_1': 'Report']
+        widgets['tab_0'] = [['widget': 'paragraph', attrs: [text: '**Avaliação da sustentabilidade**']],
+                            ['widget': 'linebreak'],
+                            ['widget': 'paragraph', attrs: [text: '**Indicadores Ambientais**']],
+                            ['widget': 'table',     attrs: [header: ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso'], data: dsl.getData('data').':EnvironmentalIndicator']],
+                            ['widget': 'paragraph', attrs: [text: 'Índice ambiental: '+ scenario['environment']]],
+                            ['widget': 'linebreak'],
+                            ['widget': 'paragraph', attrs: [text: '**Indicadores Econômicos**']],
+                            ['widget': 'table',     attrs: [header: ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso'], data: dsl.getData('data').':EconomicIndicator']],
+                            ['widget': 'paragraph', attrs: [text: 'Índice econômico: '+ scenario['economic']]],
+                            ['widget': 'linebreak'],
+                            ['widget': 'paragraph', attrs: [text: '**Indicadores Sociais**']],
+                            ['widget': 'table',     attrs: [header: ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso'], data: dsl.getData('data').':SocialIndicator']],
+                            ['widget': 'paragraph', attrs: [text: 'Índice social: '+ scenario['social']]],
+                            ['widget': 'linebreak'],
+                            ['widget': 'paragraph', attrs: [text: '**Avaliação da sustentabilidade**']],
+                            ['widget': 'paragraph', attrs: [text: 'Índice da sustentabilidade: '+ scenario['sustainability']]],
+                            ['widget': 'linebreak'],
+                            ['widget': 'paragraph', attrs: [text: '**Eficiência da produção**']],
+                            ['widget': 'table',     attrs: [header: ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor'], data: dsl.getData('data').':ProductionEfficiencyFeature']],
+                            ['widget': 'paragraph', attrs: [text: 'Índice de eficiência da produção: '+ scenario['cost_production_efficiency']]],
+                            ['widget': 'linebreak'],
+                            ['widget': 'paragraph', attrs: [text: '**Eficiência tecnológica no campo**']],
+                            ['widget': 'table',     attrs: [header: ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso'], data: dsl.getData('data').':TechnologicalEfficiencyInTheField']],
+                            ['widget': 'paragraph', attrs: [text: 'Índice de tecnológica no campo: '+ scenario['technologicalEfficiencyInTheField']]],
+                            ['widget': 'linebreak'],
+                            ['widget': 'paragraph', attrs: [text: '**Eficiência tecnológica na industria**']],
+                            ['widget': 'table',     attrs: [header: ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso'], data: dsl.getData('data').':TechnologicalEfficiencyInTheIndustrial']],
+                            ['widget': 'paragraph', attrs: [text: 'Índice de tecnológica na industria: '+ scenario['technologicalEfficiencyInTheIndustrial']]],
+                            ['widget': 'linebreak'],
+                            ['widget': 'paragraph', attrs: [text: '**Avaliação da eficiência**']],
+                            ['widget': 'paragraph', attrs: [text: 'Índice da eficiência: '+ scenario['efficiency']]],
+                            ['widget': 'linebreak']]
+
+
+        widgets['tab_1'] = [['widget': 'paragraph', attrs: [text: '**Matrix de Avaliação**']],
+                            ['widget': 'paragraph', attrs: [text: 'Índice da sustentabilidade: ' + scenario['sustainability']]],
+                            ['widget': 'paragraph', attrs: [text: 'Indice de eficiência: ' + scenario['efficiency']]],
+                            ['widget': 'matrix',    attrs: [x: scenario['sustainability'],
+                                                            y: scenario['efficiency'],
+                                                            label_x: 'Indice da sustentabilidade',
+                                                            label_y: 'Indice de eficiência',
+                                                            range_x: [-50,150],
+                                                            range_y: [-30,60],
+                                                            quadrants: [4,3],
+                                                            recomendations: recomendations]],
+                            ['widget': 'paragraph', attrs: [text: '**Mapa da microregião**']],
+                            ['widget': 'map',       attrs: [url: dsl.getData('data').'Microregion'.map()]],
+        ]
+
+        dsl.clean(controllerName, actionName)
+        gui.setView(controllerName, actionName)
+        gui.tabs(attrs, widgets, uri)
+
+        /*
+        gui.paragraph('**Matrix de Avaliação**')
+        gui.paragraph('Índice da sustentabilidade: ' + scenario['sustainability'])
+        gui.paragraph('Indice de eficiência: ' + scenario['efficiency'])
+
+
         gui.matrix([x: scenario['sustainability'],
                     y: scenario['efficiency'],
                     label_x: 'Indice da sustentabilidade',
@@ -221,6 +277,7 @@ class ToolController {
                     quadrants: [4,3],
                     recomendations: recomendations])
 
+
         gui.paragraph('''**Avaliação da sustentabilidade** ''')
         gui.paragraph('**Indicadores Ambientais**')
         gui.table(dsl.getData('data').':EnvironmentalIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso'])
@@ -228,12 +285,12 @@ class ToolController {
         gui.linebreak()
 
         gui.paragraph('**Indicadores Econômicos**')
-        gui.table(dsl.getData('data').':EconomicIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso'])
+        //gui.table(dsl.getData('data').':EconomicIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso'])
         gui.paragraph('Índice econômico: '+ scenario['economic'])
         gui.linebreak()
 
         gui.paragraph('**Indicadores Sociais**')
-        gui.table(dsl.getData('data').':SocialIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso'])
+        //gui.table(dsl.getData('data').':SocialIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso'])
         gui.paragraph('Índice social: '+ scenario['social'])
         gui.linebreak()
 
@@ -242,17 +299,17 @@ class ToolController {
         gui.linebreak()
 
         gui.paragraph('**Eficiência da produção**')
-        gui.table(dsl.getData('data').':ProductionEfficiencyFeature', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor'])
+        //gui.table(dsl.getData('data').':ProductionEfficiencyFeature', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor'])
         gui.paragraph('Índice de eficiência da produção: '+ scenario['cost_production_efficiency'])
         gui.linebreak()
 
         gui.paragraph('**Eficiência tecnológica no campo**')
-        gui.table(dsl.getData('data').':TechnologicalEfficiencyInTheField', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso'])
+        //gui.table(dsl.getData('data').':TechnologicalEfficiencyInTheField', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso'])
         gui.paragraph('Índice de tecnológica no campo: '+ scenario['technologicalEfficiencyInTheField'])
         gui.linebreak()
 
         gui.paragraph('**Eficiência tecnológica na industria**')
-        gui.table(dsl.getData('data').':TechnologicalEfficiencyInTheIndustrial', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso'])
+        //gui.table(dsl.getData('data').':TechnologicalEfficiencyInTheIndustrial', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso'])
         gui.paragraph('Índice de tecnológica na industria: '+ scenario['technologicalEfficiencyInTheIndustrial'])
         gui.linebreak()
 
@@ -262,7 +319,7 @@ class ToolController {
 
         gui.paragraph('**Mapa da microregião**')
         gui.map(dsl.getData('data').'Microregion'.map())
-
+        */
         /*
        def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
        def technologyTypes = fea.evalObject(k.toURI([params.id]))

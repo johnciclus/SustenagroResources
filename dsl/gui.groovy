@@ -31,6 +31,9 @@ widgetAttributes 'tabs', submitLabel: 'Avaliar', previousLabel: 'Anterior', next
                                                                                                                         // [label: 'Avaliação da eficiência',         widget: 'efficiency_assessment'],
                                                                                                                         // [label: 'Relatório',                       widget: 'report'],
                                                                                                                         // [label: 'Recomendação',                    widget: 'recomendation']]
+widgetAttributes 'form', method: 'post', formClass: 'form-horizontal'
+
+
 // nome vai aparecer onde um nome for necessário
 title 'Avaliação da sustentabilidade na agricultura'
 
