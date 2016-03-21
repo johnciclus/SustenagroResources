@@ -28,15 +28,11 @@ class DataReader {
 
         def classList = k[uri].getSuperClass()
 
-        if(classList.contains(['superClass': 'http://bio.icmc.usp.br/sustenagro#ProductionEfficiencyFeature'])){
-            try{
-                res = k[uri].getIndividualsValue(id, '?ind ?label ?valueType ?valueTypeLabel ?value')
-            }
-            catch (e){
-                res = []
-            }
-        }
-        else if(classList.contains(['superClass': 'http://bio.icmc.usp.br/sustenagro#Indicator'])){
+        //println name
+        //println uri
+        //println classList
+
+        if(classList.contains(k.toURI(':Indicator'))){
             try{
                 res = k[uri].getIndividualsValueWeight(id, '?ind ?label ?valueType ?valueTypeLabel ?value ?weight')
             }
@@ -44,7 +40,15 @@ class DataReader {
                 res = []
             }
         }
-        else if(classList.contains(['superClass': 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyFeature'])){
+        else if(classList.contains(k.toURI('ui:Feature'))){
+            try{
+                res = k[uri].getIndividualsValue(id, '?ind ?label ?valueType ?valueTypeLabel ?value')
+            }
+            catch (e){
+                res = []
+            }
+        }
+        else if(classList.contains(k.toURI(':TechnologicalEfficiencyFeature'))){
             try{
                 res = k[uri].getIndividualsFeatureValueWeight(id, '?ind ?label ?valueType ?valueTypeLabel ?value ?weightType ?weightTypeLabel ?weight')
             }
@@ -52,16 +56,20 @@ class DataReader {
                 res = []
             }
         }
-        else if(classList.contains(['superClass': 'http://dbpedia.org/ontology/MicroRegion'])){
+        else if(classList.contains(k.toURI('dbp:Region'))){
             try {
-                println "ID"
-                println id
+                //println "uri"
+                //println uri
                 res = k[id].getMap('?map')
             }
             catch (e) {
                 res = []
             }
         }
+
+        //println uri
+        //println classList
+        //println res
 
         return res
     }
@@ -72,8 +80,6 @@ class DataReader {
 
     def getAt(String name) {
         if(name == 'CurrentProductionUnit'){
-            println 'CurrentProductionUnit'
-            //println id
             //println k[id].getLabel()
             //def res = k[id].getProductionEvaluationObject('?label ?productionUnit ?microregion ')
             return k[id].getLabel()

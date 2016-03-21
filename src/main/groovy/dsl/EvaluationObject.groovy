@@ -21,12 +21,12 @@ class EvaluationObject {
         widgets = []
     }
 
-    def instance(Map args = [:], String id, String prop = ''){
+    def instance(Map attrs = [:], String id, String prop = ''){
         def uri = k.toURI(id)
         //def featureId = k.shortURI(uri)
         def range = (id != _id)? k[uri].range : uri
         def dataType = (range)? range : k.toURI('xsd:string')
-        def widget = (args['widget'])? args['widget'] : gui['dataTypeToWidget'].find { k.toURI(it.key) == dataType }.value
+        def widget = (attrs['widget'])? attrs['widget'] : gui['dataTypeToWidget'].find { k.toURI(it.key) == dataType }.value
         def request = []
 
         if(prop?.trim()){
@@ -45,9 +45,9 @@ class EvaluationObject {
             widget = 'multipleCategoryForm'
 
         if(widget == 'categoryForm')
-            args['selectType'] = (args['multipleSelection'])? 'checkbox' : 'radio'
+            attrs['selectType'] = (attrs['multipleSelection'])? 'checkbox' : 'radio'
 
-        args['id'] = uri
+        attrs['id'] = uri
 
         //println uri
 
@@ -55,16 +55,16 @@ class EvaluationObject {
                   range: range,
                   dataType: dataType,
                   prop: prop,
-                  args: args]
+                  attrs: attrs]
 
         widgets << [ id: uri,
                      widget: widget,
                      request: request,
-                     args: args]
+                     attrs: attrs]
     }
 
-    def type(Map args = [:], String id=_id){
-        instance(args, id, 'rdfs:subClassOf')
+    def type(Map attrs = [:], String id=_id){
+        instance(attrs, id, 'rdfs:subClassOf')
     }
 
     def getURI(){

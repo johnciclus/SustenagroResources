@@ -22,7 +22,7 @@
 				<g:if test="${inputs}">
 					<g:each in="${inputs}">
 						<div class="section">
-							<g:render template="/widgets/${it.widget}" model="${it.args}" />
+							<g:render template="/widgets/${it.widget}" model="${it.attrs}" />
 						</div>
 					</g:each>
 				</g:if>

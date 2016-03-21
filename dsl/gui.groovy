@@ -27,10 +27,23 @@ widgetAttributes 'createEvaluationObject', title: "Cadastrar nova unidade produt
 
 widgetAttributes 'paragraph', text: "Unidade produtiva atual: "
 
-widgetAttributes 'tabs', id:'assessment', submitLabel: 'Avaliar', previousLabel: 'Anterior', nextLabel: 'Próximo', tabs:  [[label: 'Avaliação da sustentabilidade',  widget: 'sustainability_assessment']]
+widgetAttributes 'tabs', submitLabel: 'Avaliar', previousLabel: 'Anterior', nextLabel: 'Próximo'       //, tabs:  [[label: 'Avaliação da sustentabilidade',  widget: 'sustainability_assessment']]
                                                                                                                         // [label: 'Avaliação da eficiência',         widget: 'efficiency_assessment'],
                                                                                                                         // [label: 'Relatório',                       widget: 'report'],
                                                                                                                         // [label: 'Recomendação',                    widget: 'recomendation']]
+// nome vai aparecer onde um nome for necessário
+title 'Avaliação da sustentabilidade na agricultura'
+
+// Aba de descrição do conteúdo: um texto em markdown que você vai escrever
+// (esse texto também pode estar num arquivo)
+description '''O processo de avaliação da sustentabilidade é composto pelas seguintes etapas:
+
+1. Localização da lavoura
+2. Caracterização da cultura, tecnologia e tipo de sistema produtivo
+3. Definição dos indicadores
+4. Recomendações de sustentabilidade
+
+'''
 
 
 /*
@@ -53,7 +66,7 @@ view("tool/index"){
 
 view("tool/assessments"){
     paragraph "Unidade produtiva atual: **" + Production_Unit.label + "**"
-    tabs 'assessment', previousLabel: 'Anterior', nextLabel: 'Próximo', {
+    tabs 'analysis', previousLabel: 'Anterior', nextLabel: 'Próximo', {
         tab 'sustainability_assessment', label: 'Avaliação da sustentabilidade', widgetClass: 'active', {
             //tabs 'sustainability', {
             indicatorList ':EnvironmentalIndicator'
@@ -70,4 +83,8 @@ view("tool/assessments"){
         tab 'recomendation', label: 'Recomendação'
     }
 }
+
+
+//individual 'Production_Unit', ':ProductionUnit'
+
 */

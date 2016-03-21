@@ -10,7 +10,6 @@ class Feature {
     def k
     def model = []
     def features = [:]
-    def categories = [:]
 
     Feature(String id, ApplicationContext applicationContext){
         _id = id
@@ -21,21 +20,22 @@ class Feature {
         def grandChildren
 
         features[uri] = ['label': k[uri].label, 'subClass': [:]]
-        grandChildren = k[uri].getGrandchildren('?id ?label ?subClass ?category ?valueType')
+        grandChildren = k[uri].getGrandchildren('?id ?label ?subClass ?category ?valueType')            //'?id ?label ?subClass ?category ?valueType ?weight'
         k[uri].getSubClass('?label').each{ subClass ->
             features[uri]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
             grandChildren.each{
                 if(it.subClass == subClass.subClass) {
                     features[uri]['subClass'][subClass.subClass]['subClass'][it.id] = it
+                    features[uri]['subClass'][subClass.subClass]['subClass'][it.id]['categoryIndividuals'] = k[it.category].getIndividualsIdLabel()
                 }
             }
         }
-        def categoriesTmp = grandChildren.categoryList()
-        def method = 'getIndividualsIdLabel'
+        //def categoriesTmp = grandChildren.categoryList()
+        //def method = 'getIndividualsIdLabel'
 
-        categoriesTmp.each{ key, value ->
-            categories[key] = k[key]."${method}"()
-        }
+        //categoriesTmp.each{ key, value ->
+        //    categories[key] = k[key]."${method}"()
+        //}
 
         //categories[k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
         //categories[k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
@@ -54,7 +54,7 @@ class Feature {
             }
         }
         */
-        //def args = [:]
+        //def attrs = [:]
         /*
         dsl.dimensionsMap.each{ feature ->
             features[feature.key] = ['subClass': [:]]
@@ -138,5 +138,28 @@ class Feature {
                         }
         }
         return asserts
+    }
+
+    def getIndividuals(){
+        def individuals = [:]
+        features.each{ key, feautre ->
+            feautre.subClass.each{ subClassKey, subClass ->
+                subClass.subClass.each{
+                    individuals[it.key] = it.value
+                }
+            }
+        }
+        return individuals
+    }
+    def getIndividualKeys(){
+        def individuals = []
+        features.each{ key, feature ->
+            feature.subClass.each{ subClassKey, subClass ->
+                subClass.subClass.each{
+                    individuals.push(it.key)
+                }
+            }
+        }
+        return individuals
     }
 }
