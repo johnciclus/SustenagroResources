@@ -25,6 +25,8 @@ class Know {
         addNamespace('owl','http://www.w3.org/2002/07/owl#')
         addNamespace('xsd','http://www.w3.org/2001/XMLSchema#')
         addNamespace('foaf','http://xmlns.com/foaf/0.1/')
+        //addNamespace('dcterm', 'http://purl.org/dc/terms/')
+
         addNamespace('dc','http://purl.org/dc/terms/')
         addNamespace('dbp','http://dbpedia.org/ontology/')
         addNamespace('dbpr','http://dbpedia.org/resource/')

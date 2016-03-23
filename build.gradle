@@ -3,46 +3,40 @@ buildscript {
         grailsVersion = project.grailsVersion
     }
     repositories {
-	    jcenter()
+        jcenter()
         mavenLocal()
         maven { url "https://repo.grails.org/grails/core" }
         maven { url "http://www.systap.com/maven/releases" }
     }
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
-        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.6.9'
+        classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.6.9"
+        classpath "org.grails.plugins:hibernate4:5.0.2"
     }
 }
 
 plugins {
-    id "io.spring.dependency-management" version "0.5.5.RELEASE"
+    id "io.spring.dependency-management" version "0.5.6.RELEASE"
 }
 
-version "1"
+version "1.0"
 group "sustenagro"
 
-apply plugin: "spring-boot"
-apply plugin: "war"
-apply plugin: "asset-pipeline"
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: "org.grails.grails-web"
-apply plugin: "org.grails.grails-gsp"
+apply plugin:"eclipse"
+apply plugin:"idea"
+apply plugin:"war"
+apply plugin:"org.grails.grails-web"
+apply plugin:"org.grails.grails-gsp"
+apply plugin:"asset-pipeline"
 
 ext {
     grailsVersion = project.grailsVersion
     gradleWrapperVersion = project.gradleWrapperVersion
 }
 
-assets {
-    minifyJs = false
-    minifyCss = false
-}
-
 repositories {
     mavenLocal()
     maven { url "https://repo.grails.org/grails/core" }
-    maven { url "http://www.systap.com/maven/releases" }
 }
 
 dependencyManagement {
@@ -54,70 +48,32 @@ dependencyManagement {
 
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-logging"
-    compile "org.springframework.boot:spring-boot-starter-actuator"
     compile "org.springframework.boot:spring-boot-autoconfigure"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
     compile "org.springframework.boot:spring-boot-starter-tomcat"
-    //compile "org.springframework.boot:spring-boot-starter-security"
+    compile "org.grails:grails-core"
+    compile "org.grails.plugins:spring-security-core:3.0.4"
     compile "org.grails:grails-dependencies"
     compile "org.grails:grails-web-boot"
-    //providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
-
     compile "org.grails.plugins:cache"
-    compile 'org.codehaus.groovy:groovy-all:2.4.5'
     compile 'com.github.slugify:slugify:2.1.4'
-
-    //compile 'org.grails.plugins:spring-security-core:3.0.3'
-
+    compile "org.grails.plugins:hibernate4"
+    compile "org.hibernate:hibernate-ehcache"
     compile 'org.apache.jena:jena:3.0.1'
     compile 'org.apache.jena:jena-arq:3.0.1'
     compile 'org.apache.jena:jena-iri:3.0.1'
-
-    compile 'net.sourceforge.owlapi:owlapi-api:4.1.3'
-    compile 'net.sourceforge.owlapi:owlapi-apibinding:4.1.3'
-    //compile 'com.github.jsonld-java:jsonld-java:0.5.1'
-    //compile 'xerces:xercesImpl:2.11.0'
-
-    // this can be replaced after jena 2.12.2 or later
-    // it was partially merged in 2.12.1, but not fully so it's incompatible
-    // with 2.12.0
-    //compile 'org.apache.jena:jena-csv:1.0.0'
-    //compile 'org.codehaus.gpars:gpars:1.1.0'
-    //-------------
-
-    //compile 'com.github.rjeschke:txtmark:0.13'
+    compile 'net.sourceforge.owlapi:owlapi-api:5.0.1'
+    compile 'net.sourceforge.owlapi:owlapi-apibinding:5.0.1'
     compile 'org.pegdown:pegdown:1.5.0'
     compile 'org.kohsuke:groovy-sandbox:1.10'
-    //compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.2'
-
+    console "org.grails:grails-console"
+    //profile "org.grails.profiles:web:3.1.4"
     runtime "org.grails.plugins:asset-pipeline"
-
+    runtime "com.h2database:h2"
     testCompile "org.grails:grails-plugin-testing"
     testCompile "org.grails.plugins:geb"
-
-    // Note: It is recommended to update to a more robust driver (Chrome, Firefox etc.)
-    //testRuntime 'org.seleniumhq.selenium:selenium-htmlunit-driver:2.44.0'
-    testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
-
-    console "org.grails:grails-console"
-
-    //---------------
-//    compile 'com.fasterxml.jackson.core:jackson-core:2.3.3'
-//    compile 'com.fasterxml.jackson.core:jackson-databind:2.3.3'
-//    compile 'com.fasterxml.jackson.core:jackson-annotations:2.3.3'
-//    compile 'org.apache.clerezza:rdf.core:0.14'
-//
-//    compile ('org.apache.httpcomponents:httpclient-osgi:4.2.5') {
-//        exclude group: 'commons-logging:commons-logging'
-//    }
-//    compile 'org.apache.httpcomponents:httpcore-osgi:4.2.5'
-//    compile 'org.mockito:mockito-core:1.10.17'
-//
-//    compile ('org.semweb4j:rdf2go.api:5.0.1') {
-//        exclude group: 'org.slf4j:slf4j-log4j12'
-//        exclude group: 'log4j:log4j'
-//    }
-//
-//    testCompile 'org.semweb4j:rdf2go.impl.sesame:5.0.1'
+    testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
+    testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
 }
 
 configurations {
@@ -129,14 +85,7 @@ task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion
 }
 
-task fatJar(type: Jar) {
-    manifest {
-        attributes 'sustenagro': 'Gradle Jar File',
-                'Implementation-Version': version
-//                'Main-Class': 'Test'
-
-    }
-    baseName = project.name + '-all'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
+assets {
+    minifyJs = true
+    minifyCss = true
 }

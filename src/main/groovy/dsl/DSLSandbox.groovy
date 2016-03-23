@@ -19,9 +19,11 @@ class DSLSandbox extends GroovyValueFilter{
     }
 
     private static final Set<Class> ALLOWED_TYPES = [
-            String,
-            Integer,
             Boolean,
+            Integer,
+            Float,
+            Double,
+            String,
             Binding,
             ArrayList,
             Object[],

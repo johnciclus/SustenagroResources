@@ -417,6 +417,27 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasPassword -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasPassword">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has password</rdfs:label>
+        <rdfs:label xml:lang="pt">tem senha</rdfs:label>
+        <rdfs:domain rdf:resource="http://semantic.icmc.usp.br/sustenagro#User"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasString -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasString">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#hasTotalValueInvestedInTechnologicInAgriculturalPhase -->
 
     <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasTotalValueInvestedInTechnologicInAgriculturalPhase">
@@ -446,6 +467,18 @@
         <rdfs:label xml:lang="en">has total value planeed for investment to production drainage</rdfs:label>
         <rdfs:label xml:lang="pt">Valor total previsto para investimento para escoamento da produção</rdfs:label>
         <rdfs:range rdf:resource="&owl;real"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasUserName -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasUserName">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has username</rdfs:label>
+        <rdfs:label xml:lang="pt">tem nome de usuário</rdfs:label>
+        <rdfs:domain rdf:resource="http://semantic.icmc.usp.br/sustenagro#User"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -2990,6 +3023,12 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#User -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#User"/>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#UserEconomicAttribute -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#UserEconomicAttribute">
@@ -5008,6 +5047,16 @@
         <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
         <rdfs:label xml:lang="en">Public</rdfs:label>
         <rdfs:label xml:lang="pt">Público</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#root -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#root">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#User"/>
+        <hasPassword rdf:datatype="&xsd;string">4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2</hasPassword>
+        <hasUserName rdf:datatype="&xsd;string">root</hasUserName>
     </owl:NamedIndividual>
     
 

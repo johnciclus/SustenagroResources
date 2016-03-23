@@ -16,17 +16,17 @@ class GUIDSL {
     def _k
     def widgetAttrs
     def contanst
-    def controller
-    def action
+    def _controller
+    def _action
 
     static _md
 
     def viewsMap
     def dataTypeToWidget
 
-    def props = [:]
+    def _props = [:]
 
-    def GUIDSL(String file, ApplicationContext applicationContext){
+    def GUIDSL(String filename, ApplicationContext applicationContext){
 
         _ctx = applicationContext
         _k = _ctx.getBean('k')
@@ -56,7 +56,7 @@ class GUIDSL {
         //_shell = new GroovyShell(this.class.classLoader, binding, cc)
         _ctx = applicationContext
 
-        _script = (DelegatingScript) _shell.parse(new File(file).text)
+        _script = (DelegatingScript) _shell.parse(new File(filename).text)
         _script.setDelegate(this)
 
         // Run DSL script.
@@ -135,7 +135,7 @@ class GUIDSL {
         //println uri
         //println shortId
 
-        viewsMap[controller][action].push(['widget': 'selectEvaluationObject', 'request': request, attrs: attrs])
+        viewsMap[_controller][_action].push(['widget': 'selectEvaluationObject', 'request': request, attrs: attrs])
     }
 
     def createEvaluationObject(Map attrs = [:], ArrayList widgets = [], String evaluationObjectId){
@@ -152,30 +152,30 @@ class GUIDSL {
             attrs['widgets'][it.id] = ['widget': it.widget, 'attrs': it.attrs]
         }
 
-        viewsMap[controller][action].push(['widget': 'createEvaluationObject', 'request': requestLst, 'attrs': attrs])
+        viewsMap[_controller][_action].push(['widget': 'createEvaluationObject', 'request': requestLst, 'attrs': attrs])
     }
 
-    def paragraph(Map attrs = [:], ArrayList view = viewsMap[controller][action]){
+    def paragraph(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         view.push(['widget': 'paragraph', 'attrs': [text: _toHTML(attrs['text'])]])
     }
 
-    def paragraph(String txt, ArrayList view = viewsMap[controller][action]){
+    def paragraph(String txt, ArrayList view = viewsMap[_controller][_action]){
         //report << ['paragraph', _toHTML(txt)]
         view.push(['widget': 'paragraph', 'attrs': [text: _toHTML(txt)]])
     }
 
-    def individualsPanel(Map attrs = [:], ArrayList view = viewsMap[controller][action]){
+    def individualsPanel(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         view.push(['widget': 'individualsPanel', 'attrs': attrs])
     }
 
-    def linebreak(ArrayList view = viewsMap[controller][action]){
+    def linebreak(ArrayList view = viewsMap[_controller][_action]){
         //report << ['linebreak']
         view.push(['widget': 'linebreak'])
     }
 
-    def recommendation(String txt){
+    def recommendation(String txt, ArrayList view = viewsMap[_controller][_action]){
         //report << ['recommendation', _toHTML(txt)]
-        viewsMap[controller][action].push(['widget': 'paragraph', 'attrs': [text: _toHTML('Recomendação: '+ txt)]])
+        view.push(['widget': 'paragraph', 'attrs': [text: _toHTML('Recomendação: '+ txt)]])
 
     }
 
@@ -191,23 +191,23 @@ class GUIDSL {
         //if (map['if']) report << ['recommendation', _toHTML(txt)]
     }
 
-    def table(Map attrs = [:], ArrayList view = viewsMap[controller][action]){
+    def table(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         //report << ['table', list, headers]
         view.push(['widget': 'tableReport', 'attrs': attrs])
     }
 
-    def map(Map attrs = [:], ArrayList view = viewsMap[controller][action]){
+    def map(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         //report << ['map', url]
         view.push(['widget': 'map', 'attrs': [url: attrs.url]])
     }
 
-    def matrix(Map attrs = [:], ArrayList view = viewsMap[controller][action]){
+    def matrix(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         //report << ['matrix', map.x, map.y, map.labelX, map.labelY, map.rangeX, map.rangeY, map.quadrants, map.recomendations]
         view.push(['widget': 'matrix', 'attrs': attrs])
         //view.push(['widget': 'matrix', 'attrs': [x: map.x, y: map.y, label_x: map.label_x, label_y: map.label_y, range_x: map.range_x, range_y: map.range_y, quadrants: map.quadrants, recomendations: map.recomendations]])
     }
 
-    def tabs(Map extAttrs = [:], Map widgets = [:], ArrayList view = viewsMap[controller][action], String evaluationObjectId){
+    def tabs(Map extAttrs = [:], Map widgets = [:], ArrayList view = viewsMap[_controller][_action], String evaluationObjectId){
         def attrs = [:]
         def tab_prefix = 'tab_'
         def uri = _k.toURI(evaluationObjectId)
@@ -230,7 +230,7 @@ class GUIDSL {
                 else
                     "$widget.widget"(attrs['tabpanels'][tab_prefix+i])
             }
-            println attrs['tabpanels'][tab_prefix+i]
+            //attrs['tabpanels'][tab_prefix+i]
         }
 
         attrs['tabs'][tab_prefix+'0'].attrs['widgetClass'] = 'active'
@@ -290,7 +290,7 @@ class GUIDSL {
 
     }
 
-    def form(Map attrs = [:], ArrayList widgets = [], ArrayList view = viewsMap[controller][action]){
+    def form(Map attrs = [:], ArrayList widgets = [], ArrayList view = viewsMap[_controller][_action]){
         if(!attrs.widgets){
             attrs.widgets = []
         }
@@ -302,26 +302,46 @@ class GUIDSL {
         view.push(['widget': 'form', 'attrs': attrs])
     }
 
-    def individual(String key, String uri){
-        props[key]= _k.toURI(uri)
-    }
-
     def methodMissing(String key, attrs){
-        //println "methodMissing"
+        println "methodMissing: "+ key + attrs.getClass()
         if(attrs.getClass() == Object[]){
-            if(attrs.size()==1){
-                if(attrs[0].getClass() == String)
-                    props[key] = _toHTML(attrs[0])
-                else
-                    props[key] = attrs[0]
+            if(attrs.size()==1 && attrs[0].getClass() == String){
+                _props[key] = _toHTML(attrs[0])
             }
-            else
-                props[key] = attrs
+            else if(attrs.size()==2 && attrs[0].getClass() == LinkedHashMap && attrs[1].getClass() == ArrayList){
+                attrs[1].push(['widget': key, 'attrs': attrs[0]])
+            }
+            else{
+                println 'Unknown method: '+ key
+                attrs.eachWithIndex{ it, int i ->
+                    println "Attrs ["+i+"]"
+                    Uri.printTree(it)
+                }
+            }
+
         }
     }
 
-    def setData(String str, obj){
-        _props[str]= obj
+    def propertyMissing(String key) {
+        getData(key)         //new Node(_k, _k.toURI(props[key]))
+    }
+
+    def propertyMissing(String key, obj) {
+        setData(key, obj)
+    }
+
+    def setData(String key, obj){
+        _props[key]= obj    // _props[key]= _k.toURI(uri)
+    }
+
+    def getData(String key){
+        _props[key]
+    }
+
+    def printData(){
+        _props.each{
+            println it
+        }
     }
 
     def requestData(String controllerName, String actionName){
@@ -343,8 +363,36 @@ class GUIDSL {
     }
 
     def setView(String controllerName, String actionName){
-        this.controller = controllerName
-        this.action = actionName
+        this._controller = controllerName
+        this._action = actionName
+    }
+
+    def renderView(String name){
+        _sandbox.register()
+
+        _script = (DelegatingScript) _shell.parse(new File("dsl/${name}.groovy").text)
+        _script.setDelegate(this)
+
+        try {
+            _script.run()
+        }
+        catch(Exception e){
+            /*
+            response.error = [:]
+            for (StackTraceElement el : e.getStackTrace()) {
+                if(el.getMethodName() == 'run' && el.getFileName() ==~ /Script.+\.groovy/) {
+                    response.error.line = el.getLineNumber()
+                    response.error.message = e.getMessage()
+                    response.error.filename = el.getFileName()
+                }
+            }
+            //response.status = 'error'
+            */
+            println e
+        }
+        finally {
+            _sandbox.unregister()
+        }
     }
 
     static _toHTML(String txt) {_md.markdownToHtml(txt)}

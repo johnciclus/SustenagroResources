@@ -1,3 +1,5 @@
+package sustenagro
+
 class UrlMappings {
 
     static mappings = {
@@ -8,7 +10,8 @@ class UrlMappings {
         }
 
         "/"(view:"/index")
-        "/login"(view:"/login")
+        "/contact"(view:"/contact")
+        "/error"(view:'/error')
         "500"(view:'/error')
         "404"(view:'/notFound')
     }

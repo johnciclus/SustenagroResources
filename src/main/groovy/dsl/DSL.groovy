@@ -16,8 +16,8 @@ class DSL {
 
     private def _sandbox
     private def _script
-    private Closure _program
-    private GroovyShell _shell
+    private def _program
+    private def _shell
 
     private def _data
     private def _props = [:]
@@ -26,7 +26,7 @@ class DSL {
 
     private def _evaluationObjectInstance
 
-    DSL(String file, ApplicationContext applicationContext){
+    DSL(String filename, ApplicationContext applicationContext){
         // Create CompilerConfiguration and assign
         // the DelegatingScript class as the base script class.
         _ctx = applicationContext
@@ -44,7 +44,7 @@ class DSL {
         // Configure the GroovyShell and pass the compiler configuration.
         //_shell = new GroovyShell(this.class.classLoader, binding, cc)
 
-        _script = (DelegatingScript) _shell.parse(new File(file).text)
+        _script = (DelegatingScript) _shell.parse(new File(filename).text)
         _script.setDelegate(this)
 
         // Run DSL script.
@@ -218,22 +218,22 @@ class DSL {
         _props[_data]= obj
     }
 
-    def getData(String str){
-        _props[str]
+    def getData(String key){
+        _props[key]
     }
 
     def printData(){
         println _props
     }
 
+    def propertyMissing(String key) {
+        getData(key)
+        //new Node(_k, _k.toURI(props[key]))
+    }
+
     def propertyMissing(String key, arg) {
         //println "propertyMissing: key, arg "+key+"->"+arg
         _props[key] = arg
-    }
-
-    def propertyMissing(String key) {
-        _props[key]
-        //new Node(_k, _k.toURI(props[key]))
     }
 
     def getScenario(){

@@ -1,4 +1,4 @@
-package sustenagro
+package grails.plugin.springsecurity
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@TestFor(HomeController)
-class HomeControllerSpec extends Specification {
+@TestFor(LoginController)
+class LoginControllerSpec extends Specification {
 
     def setup() {
     }
@@ -17,6 +17,6 @@ class HomeControllerSpec extends Specification {
 
     void "test something"() {
         expect:"fix me"
-            true == true
+            true == false
     }
 }
