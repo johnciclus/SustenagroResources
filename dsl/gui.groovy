@@ -25,7 +25,7 @@ widgetAttributes 'selectEvaluationObject', title: "Selecionar unidade produtiva"
 
 widgetAttributes 'createEvaluationObject', title: "Cadastrar nova unidade produtiva para realizar avaliação", submitLabel: "Cadastrar"
 
-widgetAttributes 'paragraph', text: "Unidade produtiva atual: "
+widgetAttributes 'textFormat', text: "Unidade produtiva atual: "
 
 widgetAttributes 'tabs', submitLabel: 'Avaliar', previousLabel: 'Anterior', nextLabel: 'Próximo'       //, tabs:  [[label: 'Avaliação da sustentabilidade',  widget: 'sustainability_assessment']]
                                                                                                                         // [label: 'Avaliação da eficiência',         widget: 'efficiency_assessment'],
@@ -68,7 +68,7 @@ view("tool/index"){
 }
 
 view("tool/assessments"){
-    paragraph "Unidade produtiva atual: **" + Production_Unit.label + "**"
+    text "Unidade produtiva atual: **" + Production_Unit.label + "**"
     tabs 'analysis', previousLabel: 'Anterior', nextLabel: 'Próximo', {
         tab 'sustainability_assessment', label: 'Avaliação da sustentabilidade', widgetClass: 'active', {
             //tabs 'sustainability', {

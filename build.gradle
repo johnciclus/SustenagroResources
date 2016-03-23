@@ -10,7 +10,7 @@ buildscript {
     }
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
-        classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.6.9"
+        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.1.1'
         classpath "org.grails.plugins:hibernate4:5.0.2"
     }
 }
@@ -22,16 +22,22 @@ plugins {
 version "1.0"
 group "sustenagro"
 
-apply plugin:"eclipse"
-apply plugin:"idea"
-apply plugin:"war"
-apply plugin:"org.grails.grails-web"
-apply plugin:"org.grails.grails-gsp"
-apply plugin:"asset-pipeline"
+apply plugin: "spring-boot"
+apply plugin: "war"
+apply plugin: "asset-pipeline"
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: "org.grails.grails-web"
+apply plugin: "org.grails.grails-gsp"
 
 ext {
     grailsVersion = project.grailsVersion
     gradleWrapperVersion = project.gradleWrapperVersion
+}
+
+assets {
+    minifyJs = true
+    minifyCss = true
 }
 
 repositories {
@@ -57,7 +63,7 @@ dependencies {
     compile "org.grails:grails-web-boot"
     compile "org.grails.plugins:cache"
     compile 'com.github.slugify:slugify:2.1.4'
-    compile "org.grails.plugins:hibernate4"
+    compile "org.grails.plugins:hibernate4:5.0.2"
     compile "org.hibernate:hibernate-ehcache"
     compile 'org.apache.jena:jena:3.0.1'
     compile 'org.apache.jena:jena-arq:3.0.1'
@@ -83,9 +89,4 @@ configurations {
 
 task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion
-}
-
-assets {
-    minifyJs = true
-    minifyCss = true
 }

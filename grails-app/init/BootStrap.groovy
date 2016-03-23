@@ -24,25 +24,24 @@ class BootStrap {
             }
         }
 
+        UserRole.withSession {
+            it.flush()
+            it.clear()
+        }
+
         /*
         users.each{
             println it
             user = new User(it.username, it.password).save()
             UserRole.create user, adminRole
         }
-        */
-
-        UserRole.withSession {
-            it.flush()
-            it.clear()
-        }
-
         println "User.count"
         println User.count()
         println "Role.count"
         println Role.count()
         println "UserRole.count"
         println UserRole.count()
+        */
     }
     def destroy = {
 

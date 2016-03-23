@@ -4,6 +4,9 @@ import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
 import org.springframework.context.ApplicationContext
 import semantics.DataReader
+import utils.Uri
+import groovy.io.FileType
+
 
 /**
  * Created by dilvan on 7/14/15.
@@ -13,6 +16,7 @@ class DSL {
     private def _ctx
     private def _k
     private def _gui
+    private static _md
 
     private def _sandbox
     private def _script
@@ -23,7 +27,7 @@ class DSL {
     private def _props = [:]
     private def _featureMap = [:]
     private def _analysisMap = [:]
-
+    private def _formulaView = []
     private def _evaluationObjectInstance
 
     DSL(String filename, ApplicationContext applicationContext){
@@ -32,6 +36,7 @@ class DSL {
         _ctx = applicationContext
         _k = _ctx.getBean('k')
         _gui = _ctx.getBean('gui')
+        _md = _ctx.getBean('md')
 
         def _cc = new CompilerConfiguration()
         _cc.addCompilationCustomizers(new SandboxTransformer())
@@ -57,9 +62,11 @@ class DSL {
     }
 
     def reload(String code){
+        _data = null
+        _props = [:]
         _featureMap = [:]
         _analysisMap = [:]
-
+        _formulaView = []
         _evaluationObjectInstance = null
 
         _sandbox.register()
@@ -209,6 +216,19 @@ class DSL {
         }
     }
 
+    def getScenario(){
+        def result = [:]
+        _props.each{ key, value ->
+            if(value.getClass() != DataReader)
+                result[key] = value
+        }
+        return result
+    }
+
+    def getFormulaView(){
+        return _formulaView
+    }
+
     def data(String str){
         _data = str
         //_props[str]
@@ -227,22 +247,45 @@ class DSL {
     }
 
     def propertyMissing(String key) {
+        println "propertyMissing: key "+key
         getData(key)
         //new Node(_k, _k.toURI(props[key]))
     }
 
     def propertyMissing(String key, arg) {
-        //println "propertyMissing: key, arg "+key+"->"+arg
+        println "propertyMissing: key, arg "+key+"->"+arg
         _props[key] = arg
     }
 
-    def getScenario(){
-        def result = [:]
-        _props.each{ key, value ->
-            if(value.getClass() != DataReader)
-                result[key] = value
+    def methodMissing(String key) {
+        println "methodMissing: key "+key
+        //new Node(_k, _k.toURI(props[key]))
+    }
+
+    def methodMissing(String key, attrs){
+        println "DSL methodMissing: "+ key
+        if(attrs.getClass() == Object[]){
+            if(key == 'textFormat')
+                println _gui.getWidgetsNames().contains(key)
+            if(_gui.getWidgetsNames().contains(key)){
+                if(attrs.size()==1 && attrs[0].getClass() == String){
+                    _formulaView.push(['widget': key, 'attrs': _toHTML(attrs[0])])
+                }
+                else if(attrs.size()==1 && attrs[0].getClass() == LinkedHashMap){
+                    _formulaView.push(['widget': key, 'attrs': attrs[0]])
+                }
+            }
+            else if(attrs.size()==1 && attrs[0].getClass() == String){
+                _props[key] = _toHTML(attrs[0])
+            }
+            else{
+                println 'Unknown method: '+ key
+                attrs.eachWithIndex{ it, int i ->
+                    println "Attrs ["+i+"]"
+                    Uri.printTree(it)
+                }
+            }
         }
-        return result
     }
 
     def clean(String controller, String action){
@@ -258,6 +301,7 @@ class DSL {
         */
     }
 
+    static _toHTML(String txt) {_md.markdownToHtml(txt)}
     /*
     def _evalIndividuals(String id){
         def uri = _k.toURI(':'+id)

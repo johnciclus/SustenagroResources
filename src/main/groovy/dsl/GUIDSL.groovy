@@ -1,5 +1,6 @@
 package dsl
 
+import groovy.io.FileType
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
 import org.springframework.context.ApplicationContext
@@ -155,13 +156,13 @@ class GUIDSL {
         viewsMap[_controller][_action].push(['widget': 'createEvaluationObject', 'request': requestLst, 'attrs': attrs])
     }
 
-    def paragraph(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
-        view.push(['widget': 'paragraph', 'attrs': [text: _toHTML(attrs['text'])]])
+    def text(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
+        view.push(['widget': 'text', 'attrs': [text: _toHTML(attrs['text'])]])
     }
 
-    def paragraph(String txt, ArrayList view = viewsMap[_controller][_action]){
-        //report << ['paragraph', _toHTML(txt)]
-        view.push(['widget': 'paragraph', 'attrs': [text: _toHTML(txt)]])
+    def text(String txt, ArrayList view = viewsMap[_controller][_action]){
+        //report << ['text', _toHTML(txt)]
+        view.push(['widget': 'text', 'attrs': [text: _toHTML(txt)]])
     }
 
     def individualsPanel(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
@@ -173,9 +174,14 @@ class GUIDSL {
         view.push(['widget': 'linebreak'])
     }
 
+    def ln(ArrayList view = viewsMap[_controller][_action]){
+        //report << ['linebreak']
+        view.push(['widget': 'linebreak'])
+    }
+
     def recommendation(String txt, ArrayList view = viewsMap[_controller][_action]){
         //report << ['recommendation', _toHTML(txt)]
-        view.push(['widget': 'paragraph', 'attrs': [text: _toHTML('Recomendação: '+ txt)]])
+        view.push(['widget': 'text', 'attrs': [text: _toHTML('Recomendação: '+ txt)]])
 
     }
 
@@ -291,9 +297,7 @@ class GUIDSL {
     }
 
     def form(Map attrs = [:], ArrayList widgets = [], ArrayList view = viewsMap[_controller][_action]){
-        if(!attrs.widgets){
-            attrs.widgets = []
-        }
+        attrs.widgets = []
 
         widgets.each{
             "$it.widget"(it.attrs, it.widgets, attrs.widgets, it.id)
@@ -303,13 +307,32 @@ class GUIDSL {
     }
 
     def methodMissing(String key, attrs){
-        println "methodMissing: "+ key + attrs.getClass()
+        println "GUIDSL methodMissing: "+ key
         if(attrs.getClass() == Object[]){
-            if(attrs.size()==1 && attrs[0].getClass() == String){
-                _props[key] = _toHTML(attrs[0])
+            if(getWidgetsNames().contains(key)){
+                if(key == 'textFormat' ){
+                    println key
+                    println attrs
+                    println attrs.size()
+                    //println viewsMap
+                }
+
+                if(attrs.size()==1 && attrs[0].getClass() == String){
+                    if(viewsMap[_controller])
+                        viewsMap[_controller][_action].push(['widget': key, 'attrs': ['text': _toHTML(attrs[0])]])
+                    else{
+                        _props[key] = _toHTML(attrs[0])
+                    }
+                }
+                else if(attrs.size()==2 && attrs[0].getClass() == LinkedHashMap && attrs[1].getClass() == ArrayList){
+                    if(attrs[0].text)
+                        attrs[1].push(['widget': key, 'attrs': ['text': _toHTML(attrs[0].text)]])
+                    else
+                        attrs[1].push(['widget': key, 'attrs': attrs[0]])
+                }
             }
-            else if(attrs.size()==2 && attrs[0].getClass() == LinkedHashMap && attrs[1].getClass() == ArrayList){
-                attrs[1].push(['widget': key, 'attrs': attrs[0]])
+            else if(attrs.size()==1 && attrs[0].getClass() == String){
+                _props[key] = _toHTML(attrs[0])
             }
             else{
                 println 'Unknown method: '+ key
@@ -318,7 +341,6 @@ class GUIDSL {
                     Uri.printTree(it)
                 }
             }
-
         }
     }
 
@@ -370,7 +392,7 @@ class GUIDSL {
     def renderView(String name){
         _sandbox.register()
 
-        _script = (DelegatingScript) _shell.parse(new File("dsl/${name}.groovy").text)
+        _script = (DelegatingScript) _shell.parse(new File("dsl/views/${name}.groovy").text)
         _script.setDelegate(this)
 
         try {
@@ -395,6 +417,18 @@ class GUIDSL {
         }
     }
 
+    def getWidgetsNames(){
+        def dir = new File("grails-app/views/widgets/")
+        def widgetsList = []
+        def name
+
+        dir.eachFileRecurse (FileType.FILES) { file ->
+            name = file.name
+            widgetsList << name.substring(1, name.lastIndexOf('.'))
+        }
+        return widgetsList
+    }
+
     static _toHTML(String txt) {_md.markdownToHtml(txt)}
 
     /*
@@ -412,9 +446,9 @@ class GUIDSL {
        }
 
 
-       def paragraph(String arg){
+       def text(String arg){
            //def gui = _ctx.getBean('gui')
-           //gui.viewsMap['tool']['analysis'].push(['widget': 'paragraph', 'attrs': ['text': arg]])
+           //gui.viewsMap['tool']['analysis'].push(['widget': 'text', 'attrs': ['text': arg]])
        }
 
        def recommendation(Map map, String txt){

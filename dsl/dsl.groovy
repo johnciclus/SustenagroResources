@@ -130,4 +130,28 @@ formula {
 
     //social =        3 * analysis.EnergyEfficiencyOfBoilersForCogeneration + 7 *
     //        analysis.OperationalEfficiencyPlant
+
+    matrixWithSummary   x: sustainability,
+                        y: efficiency,
+                        label_x: 'Indice da sustentabilidade',
+                        label_y: 'Indice de eficiência',
+                        range_x: [-50,150],
+                        range_y: [-30,60],
+                        quadrants: [4,3],
+                        recomendations: ["Cenário desfavorável, Muito baixo desempenho dos indicadores",
+                                         "Cenário desfavorável, Baixo desempenho dos indicadores",
+                                         "Cenário desfavorável, Médio desempenho dos indicadores",
+                                         "Cenário desfavorável, Alto desempenho dos indicadores",
+                                         "Cenário propício, Muito baixo desempenho dos indicadores",
+                                         "Cenário propício, Baixo desempenho dos indicadores",
+                                         "Cenário propício, Médio desempenho dos indicadores",
+                                         "Cenário propício, Alto desempenho dos indicadores",
+                                         "Cenário muito favorável, Muito baixo desempenho dos indicadores",
+                                         "Cenário muito favorável, Baixo desempenho dos indicadores",
+                                         "Cenário muito favorável, Médio desempenho dos indicadores",
+                                         "Cenário muito favorável, Alto desempenho dos indicadores"]
+
+    textFormat '**Mapa da microregião**'
+
+    map     url: data.'Microregion'.map()
 }

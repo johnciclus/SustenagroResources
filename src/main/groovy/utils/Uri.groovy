@@ -29,7 +29,7 @@ class Uri {
             level++
             object.each{
                 print "\t"*level + it.key + " : "
-                if(it.value.getClass() != LinkedHashMap) {
+                if((it.value.getClass() != LinkedHashMap) && (it.value.getClass() != ArrayList)) {
                     println it.value
                 }
                 else{
@@ -42,7 +42,7 @@ class Uri {
             level++
             object.eachWithIndex{ it, index ->
                 print "\t"*level + '['+index+"] : "
-                if(it.getClass() != LinkedHashMap) {
+                if((it.getClass() != LinkedHashMap) && (it.getClass() != ArrayList)) {
                     println it
                 }
                 else{

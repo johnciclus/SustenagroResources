@@ -31,10 +31,10 @@ class Analysis {
         ref = widgets
     }
 
-    def paragraph(String arg){
-        println 'Paragraph test'
-        widgets << ['widget': 'paragraph', 'attrs': ['text': toHTML(arg)]]
-        println widgets
+    def text(String arg){
+        //println 'Paragraph test'
+        widgets << ['widget': 'text', 'attrs': ['text': toHTML(arg)]]
+        //println widgets
     }
 
     def tabs(Map attrs, String id, Closure closure = {}){
@@ -129,7 +129,7 @@ class Analysis {
 
 def indicatorList(String id){
     println "Indicator list "
-    ref[id] = [widget: 'paragraph',
+    ref[id] = [widget: 'text',
                request: [],
                attrs: [text: "Indicator list "]]
 }
