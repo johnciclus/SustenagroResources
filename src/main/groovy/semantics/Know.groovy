@@ -96,7 +96,7 @@ class Know {
                 return null
             }
             println 'prexixes analyse: '+id
-            if (!id.contains(':')) return searchByLabel(id) //return searchPrefix(id).uri+id
+            if (!id.contains(':')) return searchByLabel(id)
         }
         else{
             return null

@@ -134,7 +134,7 @@ class Node {
         k.query("?id :appliedTo <$URI>. ?id rdfs:label ?label")
     }
 
-    def getAssessments(){
+    def getAnalyses(){
         k.query("?id a ui:Analysis. ?id :appliedTo <$URI>")
     }
 
@@ -543,13 +543,23 @@ class Node {
         def query = ''
         def result
 
-        query = "?user a <http://semantic.icmc.usp.br/sustenagro#User>. "+
-                "?user <http://semantic.icmc.usp.br/sustenagro#hasUserName> ?username. "+
-                "?user <http://semantic.icmc.usp.br/sustenagro#hasPassword> ?password. "
+        query = "?user a ui:User. "+
+                "?user ui:hasUserName ?username. "+
+                "?user ui:hasPassword ?password. "
 
         result = k.query(query)
+        //(result.size()==1)? result[0] : result
+    }
 
-        (result.size()==1)? result[0] : result
+    def getRoles(){
+        def select = ''
+        def query = ''
+        def result
+
+        query = "<$URI> ui:hasRole ?role. "
+
+        result = k.query(query)
+        //(result.size()==1)? result[0] : result
     }
 
     def selectSubject(String word){

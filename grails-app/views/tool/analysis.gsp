@@ -2,7 +2,9 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>SustenAgro - Tool - Analysis</title>
+    <title>SustenAgro - Tool - Scenario</title>
+    <asset:stylesheet href="bootstrap-table.min.css"/>
+    <asset:javascript src="bootstrap-table.min.js"/>
 </head>
 <body>
 <div class="row main">
@@ -13,20 +15,14 @@
             </g:each>
         </g:if>
     </div>
-
 </div>
 <script type="text/javascript">
+    $('#analysis_content table').bootstrapTable()
 
     $('.pager a').click(function(e){
         $('.nav-tabs a[href="'+$(this).attr('href')+'"]').tab('show');
         //console.log($('.pager a[href="'+$(this).attr('href')+'"]'));
         e.preventDefault();
-    });
-
-    $(".clear").click(function(){
-        var name = $(this).attr('id').replace('-clear', '');
-        $("input:radio").filter(function(index) {return $(this).attr('name')===name;})
-                .removeAttr('checked');
     });
 </script>
 </body>

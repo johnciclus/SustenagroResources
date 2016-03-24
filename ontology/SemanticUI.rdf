@@ -183,6 +183,16 @@
     
 
 
+    <!-- http://purl.org/biodiv/semanticUI#hasRole -->
+
+    <owl:ObjectProperty rdf:about="&semanticUI;hasRole">
+        <rdfs:label xml:lang="en">has role</rdfs:label>
+        <rdfs:label xml:lang="pt">tem perfil</rdfs:label>
+        <rdfs:range rdf:resource="&semanticUI;Role"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://purl.org/biodiv/semanticUI#hasWeight -->
 
     <owl:ObjectProperty rdf:about="&semanticUI;hasWeight">
@@ -230,6 +240,28 @@
         <rdfs:label xml:lang="en">has data value</rdfs:label>
         <rdfs:label xml:lang="pt">tem valor do dado</rdfs:label>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasPassword -->
+
+    <owl:DatatypeProperty rdf:about="&semanticUI;hasPassword">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has password</rdfs:label>
+        <rdfs:label xml:lang="en">tem senha</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasUserName -->
+
+    <owl:DatatypeProperty rdf:about="&semanticUI;hasUserName">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has username</rdfs:label>
+        <rdfs:label xml:lang="pt">tem nome de usuário</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -436,11 +468,29 @@
     
 
 
+    <!-- http://purl.org/biodiv/semanticUI#Role -->
+
+    <owl:Class rdf:about="&semanticUI;Role">
+        <rdfs:label xml:lang="en">Role</rdfs:label>
+        <rdfs:label xml:lang="pt">Perfil</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://purl.org/biodiv/semanticUI#Scenario -->
 
     <owl:Class rdf:about="&semanticUI;Scenario">
         <rdfs:label xml:lang="en">Scenario</rdfs:label>
         <rdfs:label xml:lang="pt">Cenário</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#User -->
+
+    <owl:Class rdf:about="&semanticUI;User">
+        <rdfs:label xml:lang="en">User</rdfs:label>
+        <rdfs:label xml:lang="pt">Usuário</rdfs:label>
     </owl:Class>
     
 

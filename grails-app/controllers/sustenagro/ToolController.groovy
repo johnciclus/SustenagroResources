@@ -2,10 +2,11 @@ package sustenagro
 
 import semantics.DataReader
 import semantics.Node
+import org.apache.commons.io.FilenameUtils
 
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured('ROLE_USER')
+@Secured(['ROLE_USER', 'ROLE_ADMIN'])
 class ToolController {
     def dsl
     def gui
@@ -16,12 +17,22 @@ class ToolController {
     def index() {
 
         def evaluationObject = dsl.evaluationObject
+        def tabsAttrs = [:]
+        def tabsWidgets
+
+        println springSecurityService.getPrincipal().getAuthorities()
+
+
+        tabsAttrs.labels = ['tab_0': gui.widgetAttrs['createEvaluationObject'].title,
+                            'tab_1': gui.widgetAttrs['selectEvaluationObject'].title]
+        tabsAttrs.pager = false
+
+        tabsWidgets     =  ['tab_0': [['widget': 'createEvaluationObject', widgets: evaluationObject.widgets, id: evaluationObject.getURI()]],
+                            'tab_1': [['widget': 'selectEvaluationObject', id: evaluationObject.getURI()]]]
 
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
-        gui.selectEvaluationObject(gui.widgetAttrs['selectEvaluationObject'], evaluationObject.getURI())
-        gui.createEvaluationObject(gui.widgetAttrs['createEvaluationObject'], evaluationObject.widgets, evaluationObject.getURI())
-        gui.requestData(controllerName, actionName)
+        gui.tabs(tabsAttrs, tabsWidgets)
 
         render(view: 'index', model: [data: gui._props, inputs: gui.viewsMap[controllerName][actionName]])
     }
@@ -48,44 +59,47 @@ class ToolController {
         }
 
         //k.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
-        redirect(action: 'analysis', id: id)
+        redirect(action: 'scenario', id: id)
     }
 
-    def analysis(){
+    def scenario(){
         def uri = k.toURI(':'+params.id)
-        def tab_prefix = 'tab_'
-        def tabsAttrs = gui.widgetAttrs['tabs']
+        def tabsAttrs = [:]
         def tabsWidgets = [:]
-        def formAttrs = gui.widgetAttrs['form']
+        def formAttrs = [:]
         def formWidgets = []
+        def tab_prefix = 'tab_'
 
         tabsAttrs.labels = [:]
         dsl.featureMap.eachWithIndex{ key, feature, int i ->
             feature.features.each{
                 tabsAttrs.labels[tab_prefix+i] = it.value.label
-                tabsWidgets[tab_prefix+i] = [['widget': 'individualsPanel', attrs: [data: it.value.subClass, values: [:], weights: [:]]]]
+                tabsWidgets[tab_prefix+i] = [['widget': 'individualsPanel',
+                                              attrs: [data: it.value.subClass,
+                                                      values: [:], weights: [:]]
+                                            ]]
             }
         }
         tabsAttrs.submit = true
 
-        formAttrs['action'] = '/tool/createAnalysis'
-        formWidgets.push(['widget': 'tabs', attrs: tabsAttrs, widgets: tabsWidgets, id: uri])
+        formAttrs['action'] = '/tool/createScenario'
+        formWidgets.push(['widget': 'hiddenInput', attrs: [id: 'evalObjInstance', value: uri]])
+        formWidgets.push(['widget': 'tabs', attrs: tabsAttrs, widgets: tabsWidgets])
 
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
-        gui.textFormat([text: gui.widgetAttrs['textFormat'].text + '**'+ k[uri].label + '**'])
+        gui.text([text: gui.widgetAttrs['text'].text + '**'+ k[uri].label + '**'])
         gui.form(formAttrs, formWidgets)
-        //gui.requestData(controllerName, actionName)
 
         //println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
         //Uri.printTree(gui.viewsMap[controllerName][actionName])
 
-        render(view: 'analysis', model: [data: gui._props, inputs: gui.viewsMap[controllerName][actionName]])
+        render(view: 'scenario', model: [data: gui._props, inputs: gui.viewsMap[controllerName][actionName]])
     }
 
-    def createAnalysis(){
+    def createScenario(){
         def evalObjInstance = k.toURI(params.evalObjInstance)
-        def num = k[evalObjInstance].getAssessments().size() + 1
+        def num = k[evalObjInstance].getAnalyses().size() + 1
         def name = evalObjInstance.substring(evalObjInstance.lastIndexOf('#')+1)
         def analysisId = name+"-analysis-"+num
         def properties = [:]
@@ -179,34 +193,31 @@ class ToolController {
             }
         }
         */
-        redirect(action: 'scenario',
-                id: analysisId)
+        redirect(action: 'analysis', id: analysisId)
     }
 
-    def scenario(){
+    def analysis(){
         def uri
 
         if(params.id){
             uri = k.toURI(":"+params.id)
         }
 
-        if(uri?.trim()){
-            dsl.setData(new DataReader(k, uri))
-            dsl.runFormula()
-        }
-
-        println springSecurityService.getClass()
-
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
-        gui.setData('scenario', dsl.getScenario())
+
+        if(uri?.trim()){
+            dsl.setData(new DataReader(k, uri))
+            dsl.runReport()
+        }
+
+
+        gui.setData('variables', dsl.getVariables())
         gui.setData('dataReader', dsl.getData('data'))
-        gui.setData('uri', uri)
-        gui.setData('formulaView', dsl.getFormulaView())
-        //println gui.viewsMap
-        gui.renderView('scenario')
+        //gui.setData('uri', uri)
+        gui.setData('reportView', dsl.getReportView())
+        gui.renderView(actionName)
         //gui.printData()
-        //gui.requestData(controllerName, actionName)
 
         /*
        def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
@@ -248,33 +259,29 @@ class ToolController {
        }
        */
 
-        render(view: 'scenario', model: [data: gui._props, inputs: gui.viewsMap[controllerName][actionName]])
-    }
-
-    def selectEvaluationObject(){
-        def id = k.shortURI(params.production_unit_id)
-
-        redirect(   action: 'analysis',
-                id: id)
-    }
-
-    def selectAnalysis(){
-        def id = k.shortURI(params.production_unit_id)
-        def name = k.shortURI(params.analysis)
-
-        redirect(   action: 'analysis',
-                id: id,
-                params: [analysis: name])
+        render(view: 'analysis', model: [data: gui._props, inputs: gui.viewsMap[controllerName][actionName]])
     }
 
     def analyses(){
-        def id = k.shortURI(params.id)
-        //println params.id
+        def uri = k.toURI(params.evaluation_object_id)
+        def analyses = k[uri].labelAppliedTo
+        def model = gui.widgetAttrs['analyses']
+        model.analyses = analyses
+        model.evaluation_object_id = uri
 
-        def analyses = k[id].labelAppliedTo
+        render( template: '/widgets/analyses', model: model);
+    }
 
-        render( template: 'analyses',
-                model:    [analyses: analyses,
-                           production_unit_id: id]);
+    def selectEvaluationObject(){
+        def uri = k.toURI(params.evaluation_object_id)
+        def id =  uri.substring(uri.lastIndexOf('#')+1)
+        redirect(action: 'scenario', id: id)
+    }
+
+    def selectAnalysis(){
+        def uri = k.toURI(params.analysis)
+        def id =  uri.substring(uri.lastIndexOf('#')+1)
+
+        redirect( action: 'analysis', id: id)
     }
 }

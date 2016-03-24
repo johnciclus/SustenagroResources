@@ -230,12 +230,12 @@ fieldset{
 	margin-bottom: 25px;
 }
 
-#analysis_tab > li > a{
+.nav-tabs > li > a{
 	background-color: #eee;
 	border: 1px solid #ddd;
 }
 
-#analysis_tab > .active > a{
+.nav-tabs > .active > a{
 	color: #ffffff;
 	background-color: #4582ec;
 	border-color: #4582ec;

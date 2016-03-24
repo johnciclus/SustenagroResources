@@ -1,8 +1,8 @@
-<h5 class="text-primary">Selecionar avaliação</h5>
-<form id="select_assessment" action="/tool/selectAssessment" method="post" class="form-horizontal" >
-    <input type="hidden" name="production_unit_id" value="http://bio.icmc.usp.br/sustenagro#${production_unit}">
+<g:render template="/widgets/title" model="[text: title]"/>
+<form action="/tool/selectAnalysis" method="post" class="form-horizontal" >
+    <input type="hidden" name="evaluation_object_id" value="${evaluation_object_id}">
     <div class="form-group">
-        <label for="analysis" class="col-sm-4 control-label">Avaliações</label>
+        <label for="analysis" class="col-sm-4 control-label">Análises</label>
         <div class="col-sm-8">
             <table data-toggle="table"
                    data-click-to-select="true"
@@ -15,7 +15,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <g:each status="i" var="it" in="${assessments}">
+                    <g:each status="i" var="it" in="${analyses}">
                         <tr data-index="${i}">
                             <td><input data-index="${i}" type="radio" name="analysis" value="${it.id}"></td>
                             <td>${it.label}</td>
@@ -26,6 +26,6 @@
         </div>
     </div>
     <div class="form-group col-sm-12 text-center">
-        <input id="get_assessment" type="submit" class="btn btn-primary" value="Ver avaliação"/>
+        <input type="submit" class="btn btn-primary" value="<%=submitLabel%>"/>
     </div>
 </form>

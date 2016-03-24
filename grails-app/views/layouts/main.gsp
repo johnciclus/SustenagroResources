@@ -44,15 +44,33 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li <g:if test="${controllerName == null}"> class="active" </g:if> ><a href="/">Inicio</a></li>
-                    <li <g:if test="${controllerName == 'tool'}"> class="active" </g:if> ><a href="/tool">Ferramenta</a></li>
-                    <li <g:if test="${controllerName == 'admin'}"> class="active" </g:if> ><a href="/admin">Administração</a></li>
+                    <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_USER">
+                        <li <g:if test="${controllerName == 'tool'}"> class="active" </g:if> ><a href="/tool">Ferramenta</a></li>
+                    </sec:ifAnyGranted>
+                    <sec:ifAnyGranted roles="ROLE_ADMIN">
+                        <li <g:if test="${controllerName == 'admin'}"> class="active" </g:if> ><a href="/admin">Administração</a></li>
+                    </sec:ifAnyGranted>
                     <li <g:if test="${controllerName == 'contact'}"> class="active" </g:if> ><a href="/contact">Contato</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="/login/auth">Inicie sessão</a></li>
-                    <!--<li><a href="/login">Cadastre-se</a></li>-->
-                    <li><a id="logout" href="/logout">Sair</a></li>
-                </ul>
+
+                    <sec:ifLoggedIn>
+                        <div class="btn-group navbar-btn navbar-right">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <sec:username/> <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a id="welcome" href="#">Bem vindo <sec:username/>!</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a id="logout" href="/">Sair</a></li>
+                            </ul>
+                        </div>
+                    </sec:ifLoggedIn>
+                    <sec:ifNotLoggedIn>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="/login/auth">Inicie sessão</a></li>
+                            <li><a href="#">Cadastre-se</a>
+                        </ul>
+                    </sec:ifNotLoggedIn>
             </div>
         </div>
     </div>
@@ -74,7 +92,6 @@
     <script type="application/javascript">
         $('#logout').click(function(e){
             $.post('/logout');
-            return false;
         });
 
     </script>

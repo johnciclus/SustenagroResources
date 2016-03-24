@@ -127,33 +127,51 @@ class GUIDSL {
         contanst[id] = arg
     }
 
-    def selectEvaluationObject(Map attrs = [:], String id){
+    def selectEvaluationObject(Map attrs = [:], String id, ArrayList view = viewsMap[_controller][_action]){
+        def defaultAttrs =  widgetAttrs['selectEvaluationObject']
         def uri = _k.toURI(id)
         def request = ['evaluationObjects': ['a', uri]]
         def shortId = _k.shortURI(uri)
         attrs['evaluationObject']= uri
 
-        //println uri
-        //println shortId
+        defaultAttrs.each{key, value->
+            attrs[key] = value
+        }
 
-        viewsMap[_controller][_action].push(['widget': 'selectEvaluationObject', 'request': request, attrs: attrs])
+        request.each{ key, arg ->
+            attrs[key] = _k[arg[1]].getLabelDescription(arg[0].toString())
+        }
+
+        view.push(['widget': 'selectEvaluationObject', 'request': request, attrs: attrs])
     }
 
-    def createEvaluationObject(Map attrs = [:], ArrayList widgets = [], String evaluationObjectId){
+    def createEvaluationObject(Map attrs = [:], ArrayList widgets = [], String evaluationObjectId, ArrayList view = viewsMap[_controller][_action]){
+        def defaultAttrs =  widgetAttrs['createEvaluationObject']
         def uri = _k.toURI(evaluationObjectId)
-        def requestLst              = [:]
-        requestLst['widgets']       = [:]
-        attrs['widgets']             = [:]
+        def request        = [:]
+
+        defaultAttrs.each{key, value->
+            attrs[key] = value
+        }
+
+        request['widgets'] = [:]
+        attrs['widgets']      = [:]
         attrs['evalObjType']  = uri
 
         widgets.each{
             if(it.request) {
-                requestLst['widgets'][it.id] = it.request
+                request['widgets'][it.id] = it.request
             }
             attrs['widgets'][it.id] = ['widget': it.widget, 'attrs': it.attrs]
         }
 
-        viewsMap[_controller][_action].push(['widget': 'createEvaluationObject', 'request': requestLst, 'attrs': attrs])
+        request.widgets.each{ key, arg ->
+            attrs.widgets[key]['attrs']['data'] = _k[arg[1]].getLabelDescription(arg[0].toString())
+        }
+
+        //Uri.printTree(attrs)
+
+        view.push(['widget': 'createEvaluationObject', 'request': request, 'attrs': attrs])
     }
 
     def text(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
@@ -161,7 +179,6 @@ class GUIDSL {
     }
 
     def text(String txt, ArrayList view = viewsMap[_controller][_action]){
-        //report << ['text', _toHTML(txt)]
         view.push(['widget': 'text', 'attrs': [text: _toHTML(txt)]])
     }
 
@@ -170,17 +187,14 @@ class GUIDSL {
     }
 
     def linebreak(ArrayList view = viewsMap[_controller][_action]){
-        //report << ['linebreak']
         view.push(['widget': 'linebreak'])
     }
 
     def ln(ArrayList view = viewsMap[_controller][_action]){
-        //report << ['linebreak']
         view.push(['widget': 'linebreak'])
     }
 
     def recommendation(String txt, ArrayList view = viewsMap[_controller][_action]){
-        //report << ['recommendation', _toHTML(txt)]
         view.push(['widget': 'text', 'attrs': [text: _toHTML('Recomendação: '+ txt)]])
 
     }
@@ -213,14 +227,12 @@ class GUIDSL {
         //view.push(['widget': 'matrix', 'attrs': [x: map.x, y: map.y, label_x: map.label_x, label_y: map.label_y, range_x: map.range_x, range_y: map.range_y, quadrants: map.quadrants, recomendations: map.recomendations]])
     }
 
-    def tabs(Map extAttrs = [:], Map widgets = [:], ArrayList view = viewsMap[_controller][_action], String evaluationObjectId){
+    def tabs(Map extAttrs = [:], Map widgets = [:], ArrayList view = viewsMap[_controller][_action]){
+        def defaultAttrs = widgetAttrs['tabs']
         def attrs = [:]
         def tab_prefix = 'tab_'
-        def uri = _k.toURI(evaluationObjectId)
 
-        attrs['evalObjInstance']  = uri
-
-        attrs['id'] = 'analysis'
+        attrs['id'] = 'tabs'
         attrs['tabs'] = [:]
         attrs['tabpanels'] = [:]
 
@@ -228,10 +240,16 @@ class GUIDSL {
             attrs['tabs'][tab_prefix+i] = ['widget': 'tab', attrs: [id: tab_prefix+i, label: extAttrs.labels[tab_prefix+i]]]
             attrs['tabpanels'][tab_prefix+i] = []
 
-            //Uri.printTree(it.value)
-
             it.value.each{ widget ->
-                if(widget.attrs)
+                if(widget.attrs && widget.widgets && widget.id)
+                    "$widget.widget"(widget.attrs, widget.widgets, widget.id, attrs['tabpanels'][tab_prefix+i])
+                else if(widget.widgets && widget.id)
+                    "$widget.widget"([:], widget.widgets, widget.id, attrs['tabpanels'][tab_prefix+i])
+                else if(widget.attrs && widget.id)
+                    "$widget.widget"(widget.attrs, widget.id, attrs['tabpanels'][tab_prefix+i])
+                else if(widget.id)
+                    "$widget.widget"([:], widget.id, attrs['tabpanels'][tab_prefix+i])
+                else if(widget.attrs)
                     "$widget.widget"(widget.attrs, attrs['tabpanels'][tab_prefix+i])
                 else
                     "$widget.widget"(attrs['tabpanels'][tab_prefix+i])
@@ -240,17 +258,20 @@ class GUIDSL {
         }
 
         attrs['tabs'][tab_prefix+'0'].attrs['widgetClass'] = 'active'
-        if(extAttrs['submit'])
-            attrs['tabs'][tab_prefix+(widgets.size()-1)].attrs['submitLabel'] = extAttrs['submitLabel']
 
-        attrs['tabs'].eachWithIndex{ tab, int i ->
-            if(i > 0 ){
-                tab.value.attrs['previous'] = tab_prefix+(i-1)
-                tab.value.attrs['previousLabel'] = extAttrs['previousLabel']
-            }
-            if(i < (attrs['tabs'].size()-1)){
-                tab.value.attrs['next'] = tab_prefix+(i+1)
-                tab.value.attrs['nextLabel'] = extAttrs['nextLabel']
+        if(extAttrs.containsKey('pager') ? extAttrs.pager : defaultAttrs.pager){
+            if(extAttrs['submit'])
+                attrs['tabs'][tab_prefix+(widgets.size()-1)].attrs['submitLabel'] = defaultAttrs['submitLabel']
+
+            attrs['tabs'].eachWithIndex{ tab, int i ->
+                if(i > 0 ){
+                    tab.value.attrs['previous'] = tab_prefix+(i-1)
+                    tab.value.attrs['previousLabel'] = defaultAttrs['previousLabel']
+                }
+                if(i < (attrs['tabs'].size()-1)){
+                    tab.value.attrs['next'] = tab_prefix+(i+1)
+                    tab.value.attrs['nextLabel'] = defaultAttrs['nextLabel']
+                }
             }
         }
 
@@ -297,39 +318,77 @@ class GUIDSL {
     }
 
     def form(Map attrs = [:], ArrayList widgets = [], ArrayList view = viewsMap[_controller][_action]){
+        def defaultAttrs = widgetAttrs['form']
+        defaultAttrs.each{key, value->
+            attrs[key] = value
+        }
         attrs.widgets = []
 
-        widgets.each{
-            "$it.widget"(it.attrs, it.widgets, attrs.widgets, it.id)
+        widgets.each {
+            if (it.widget){
+                if (it.attrs && it.widgets) {
+                    "$it.widget"(it.attrs, it.widgets, attrs.widgets)
+                }
+                else if(it.attrs) {
+                    "$it.widget"(it.attrs, attrs.widgets)
+                }
+            }
         }
-
         view.push(['widget': 'form', 'attrs': attrs])
+    }
+
+    def hiddenInput(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
+        view.push(['widget': 'hiddenInput', 'attrs': attrs])
     }
 
     def methodMissing(String key, attrs){
         println "GUIDSL methodMissing: "+ key
         if(attrs.getClass() == Object[]){
+            def container = []
+            def element = null
             if(getWidgetsNames().contains(key)){
-                if(key == 'textFormat' ){
-                    println key
-                    println attrs
-                    println attrs.size()
-                    //println viewsMap
-                }
-
                 if(attrs.size()==1 && attrs[0].getClass() == String){
-                    if(viewsMap[_controller])
-                        viewsMap[_controller][_action].push(['widget': key, 'attrs': ['text': _toHTML(attrs[0])]])
+                    if(viewsMap[_controller]){
+                        container = viewsMap[_controller][_action]
+                        element = ['widget': key, 'attrs': ['text': _toHTML(attrs[0])]]
+                    }
                     else{
-                        _props[key] = _toHTML(attrs[0])
+                        _props[key] =_toHTML(attrs[0])
+                    }
+                }
+                else if(attrs.size()==1 && attrs[0].getClass() == LinkedHashMap){
+                    if(viewsMap[_controller] && attrs[0].text){
+
+                        container = viewsMap[_controller][_action]
+                        element = ['widget': key, 'attrs': ['text': _toHTML(attrs[0].text)]]
+                        /*
+                        if(key == 'text'){
+                            println key
+                            println attrs.size()
+                            println _toHTML(attrs[0].text)
+                            println _controller+"-"+_action
+                        }
+                        */
                     }
                 }
                 else if(attrs.size()==2 && attrs[0].getClass() == LinkedHashMap && attrs[1].getClass() == ArrayList){
-                    if(attrs[0].text)
-                        attrs[1].push(['widget': key, 'attrs': ['text': _toHTML(attrs[0].text)]])
-                    else
-                        attrs[1].push(['widget': key, 'attrs': attrs[0]])
+                    if(attrs[0].text){
+                        container = attrs[1]
+                        element = ['widget': key, 'attrs': ['text': _toHTML(attrs[0].text)]]
+                    }
+                    else{
+                        container = attrs[1]
+                        element = ['widget': key, 'attrs': attrs[0]]
+                    }
                 }
+                if(element)
+                    container.push(element)
+                /*
+                if(key == 'text'){
+                    println key
+                    println container
+                }
+                */
             }
             else if(attrs.size()==1 && attrs[0].getClass() == String){
                 _props[key] = _toHTML(attrs[0])

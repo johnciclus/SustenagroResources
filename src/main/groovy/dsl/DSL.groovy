@@ -27,7 +27,7 @@ class DSL {
     private def _props = [:]
     private def _featureMap = [:]
     private def _analysisMap = [:]
-    private def _formulaView = []
+    private def _reportView = []
     private def _evaluationObjectInstance
 
     DSL(String filename, ApplicationContext applicationContext){
@@ -66,7 +66,7 @@ class DSL {
         _props = [:]
         _featureMap = [:]
         _analysisMap = [:]
-        _formulaView = []
+        _reportView = []
         _evaluationObjectInstance = null
 
         _sandbox.register()
@@ -98,24 +98,6 @@ class DSL {
         }
         return response
     }
-    /*
-    def analysis(String id, Closure closure){
-        String uri = _k.toURI(id)
-
-        def requestLst        = [:]
-        requestLst['widgets'] = [:]
-        def attrs              = [:]
-        attrs['widgets']       = [:]
-
-        def object = new Analysis(uri, _ctx)
-
-        closure.resolveStrategy = Closure.DELEGATE_FIRST
-        closure.delegate = object
-
-        _analysisMap[uri] = [object: object,
-                             closure: closure]
-    }
-    */
 
     def evaluationObject(String id, Closure closure){
         String uri = _k.toURI(id)
@@ -151,11 +133,11 @@ class DSL {
         _analysisMap
     }
 
-    def formula(Closure c){
+    def report(Closure c){
         _program = c
     }
 
-    def runFormula(){
+    def runReport(){
         _program()
     }
 
@@ -216,7 +198,7 @@ class DSL {
         }
     }
 
-    def getScenario(){
+    def getVariables(){
         def result = [:]
         _props.each{ key, value ->
             if(value.getClass() != DataReader)
@@ -225,8 +207,8 @@ class DSL {
         return result
     }
 
-    def getFormulaView(){
-        return _formulaView
+    def getReportView(){
+        return _reportView
     }
 
     def data(String str){
@@ -247,33 +229,65 @@ class DSL {
     }
 
     def propertyMissing(String key) {
-        println "propertyMissing: key "+key
+        //println "propertyMissing: key "+key
         getData(key)
         //new Node(_k, _k.toURI(props[key]))
     }
 
     def propertyMissing(String key, arg) {
-        println "propertyMissing: key, arg "+key+"->"+arg
+        //println "propertyMissing: key, arg "+key+"->"+arg
         _props[key] = arg
     }
 
     def methodMissing(String key) {
-        println "methodMissing: key "+key
+        //println "methodMissing: key "+key
         //new Node(_k, _k.toURI(props[key]))
     }
 
     def methodMissing(String key, attrs){
         println "DSL methodMissing: "+ key
         if(attrs.getClass() == Object[]){
-            if(key == 'textFormat')
-                println _gui.getWidgetsNames().contains(key)
+            def container = []
+            def element = null
+
             if(_gui.getWidgetsNames().contains(key)){
+                /*if(key=='sustainabilityMatrix'){
+                    println key
+                    println attrs.getClass()
+                    println attrs.size()
+                }*/
                 if(attrs.size()==1 && attrs[0].getClass() == String){
-                    _formulaView.push(['widget': key, 'attrs': _toHTML(attrs[0])])
+                    if(_reportView){
+                        container = _reportView
+                        element = ['widget': key, 'attrs': ['text': _toHTML(attrs[0])]]
+                    }
+                    else{
+                        _props[key] =_toHTML(attrs[0])
+                    }
                 }
                 else if(attrs.size()==1 && attrs[0].getClass() == LinkedHashMap){
-                    _formulaView.push(['widget': key, 'attrs': attrs[0]])
+                    if(_reportView && attrs[0].text){
+                        container = _reportView
+                        element = ['widget': key, 'attrs': ['text': _toHTML(attrs[0].text)]]
+
+                    }
+                    else{
+                        container = _reportView
+                        element = ['widget': key, 'attrs': attrs[0]]
+                    }
                 }
+                else if(attrs.size()==2 && attrs[0].getClass() == LinkedHashMap && attrs[1].getClass() == ArrayList){
+                    if(attrs[0].text){
+                        container = attrs[1]
+                        element = ['widget': key, 'attrs': ['text': _toHTML(attrs[0].text)]]
+                    }
+                    else{
+                        container = attrs[1]
+                        element = ['widget': key, 'attrs': attrs[0]]
+                    }
+                }
+                if(element)
+                    container.push(element)
             }
             else if(attrs.size()==1 && attrs[0].getClass() == String){
                 _props[key] = _toHTML(attrs[0])
@@ -291,6 +305,9 @@ class DSL {
     def clean(String controller, String action){
         if(controller?.trim() && action?.trim()){
             _gui.viewsMap[controller][action] = []
+            if(action == 'analysis'){
+               _reportView = []
+            }
         }
 
         /*
