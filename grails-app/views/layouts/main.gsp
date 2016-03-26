@@ -68,7 +68,7 @@
                     <sec:ifNotLoggedIn>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="active"><a href="/login/auth">Inicie sessão</a></li>
-                            <li><a href="#">Cadastre-se</a>
+                            <li><a href="/user/signup">Cadastre-se</a>
                         </ul>
                     </sec:ifNotLoggedIn>
             </div>

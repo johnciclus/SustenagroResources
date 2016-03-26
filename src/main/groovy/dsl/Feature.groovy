@@ -5,28 +5,25 @@ import org.springframework.context.ApplicationContext
  * Created by john on 27/02/16.
  */
 class Feature {
-    def _id
-    def _ctx
-    def k
-    def model = []
-    def features = [:]
+    private def _uri
+    private def _ctx
+    private def _k
+    private def _model = [:]
 
     Feature(String id, ApplicationContext applicationContext){
-        _id = id
-        _ctx = applicationContext
-        k = _ctx.getBean('k')
-
-        def uri = k.toURI(id)
         def grandChildren
+        _ctx = applicationContext
+        _k = _ctx.getBean('k')
+        _uri = _k.toURI(id)
 
-        features[uri] = ['label': k[uri].label, 'subClass': [:]]
-        grandChildren = k[uri].getGrandchildren('?id ?label ?subClass ?category ?valueType')            //'?id ?label ?subClass ?category ?valueType ?weight'
-        k[uri].getSubClass('?label').each{ subClass ->
-            features[uri]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
+        _model = ['label': _k[_uri].label, 'subClass': [:]]
+        grandChildren = _k[_uri].getGrandchildren('?id ?label ?subClass ?category ?valueType ?relevance')
+        _k[_uri].getSubClass('?label').each{ subClass ->
+            _model['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
             grandChildren.each{
                 if(it.subClass == subClass.subClass) {
-                    features[uri]['subClass'][subClass.subClass]['subClass'][it.id] = it
-                    features[uri]['subClass'][subClass.subClass]['subClass'][it.id]['categoryIndividuals'] = k[it.category].getIndividualsIdLabel()
+                    _model['subClass'][subClass.subClass]['subClass'][it.id] = it
+                    _model['subClass'][subClass.subClass]['subClass'][it.id]['categoryIndividuals'] = _k[it.category].getIndividualsIdLabel()
                 }
             }
         }
@@ -34,22 +31,22 @@ class Feature {
         //def method = 'getIndividualsIdLabel'
 
         //categoriesTmp.each{ key, value ->
-        //    categories[key] = k[key]."${method}"()
+        //    categories[key] = _k[key]."${method}"()
         //}
 
-        //categories[k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
-        //categories[k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
+        //categories[_k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
+        //categories[_k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
 
         /*
         categories += grandChildren.categoryList()
 
-        categories[k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
-        categories[k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
+        categories[_k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
+        categories[_k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
 
         def method = 'getIndividualsIdLabel'
 
         categories.each { key, value ->
-            value = k[key]."${method}"().each{            //getIndividualsIdLabel().each {
+            value = _k[key]."${method}"().each{            //getIndividualsIdLabel().each {
                 value.push(it)
             }
         }
@@ -57,13 +54,13 @@ class Feature {
         //def attrs = [:]
         /*
         dsl.dimensionsMap.each{ feature ->
-            features[feature.key] = ['subClass': [:]]
-            grandChildren = k[feature.key].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
-            k[feature.key].getSubClass('?label').each{ subClass ->
-                features[feature.key]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
+            _model[feature.key] = ['subClass': [:]]
+            grandChildren = _k[feature.key].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
+            _k[feature.key].getSubClass('?label').each{ subClass ->
+                _model[feature.key]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
                 grandChildren.each{
                     if(it.subClass == subClass.subClass) {
-                        features[feature.key]['subClass'][subClass.subClass]['subClass'][it.id] = it
+                        _model[feature.key]['subClass'][subClass.subClass]['subClass'][it.id] = it
                     }
                 }
             }
@@ -71,33 +68,33 @@ class Feature {
         }
 
         dsl.featureMap.each{ feature ->
-            features[feature.key] = ['subClass': [:]]
-            grandChildren = k[feature.key].getGrandchildren('?id ?label ?subClass ?category ?valueType')
-            k[feature.key].getSubClass('?label').each{ subClass ->
-                features[feature.key]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
+            _model[feature.key] = ['subClass': [:]]
+            grandChildren = _k[feature.key].getGrandchildren('?id ?label ?subClass ?category ?valueType')
+            _k[feature.key].getSubClass('?label').each{ subClass ->
+                _model[feature.key]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
                 grandChildren.each{
                     if(it.subClass == subClass.subClass) {
-                        features[feature.key]['subClass'][subClass.subClass]['subClass'][it.id] = it
+                        _model[feature.key]['subClass'][subClass.subClass]['subClass'][it.id] = it
                     }
                 }
             }
             categories += grandChildren.categoryList()
         }
 
-        categories[k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
-        categories[k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
+        categories[_k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
+        categories[_k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
 
         def method = 'getIndividualsIdLabel'
 
         categories.each { key, v ->
-            k[key]."${method}"().each{            //getIndividualsIdLabel().each {
+            _k[key]."${method}"().each{            //getIndividualsIdLabel().each {
                 v.push(it)
             }
         }
 
         /*
         println "* Tree *"
-        Uri.printTree(features)
+        Uri.printTree(_model)
 
         println "Categories"
         categories.each{ category ->
@@ -107,19 +104,26 @@ class Feature {
             }
         }
 
-        features: features,
+        features: _model,
         categories: categories,
         technologyTypes: technologyTypes
         */
 
     }
+    def getUri(){
+        return _uri
+    }
+
+    def getModel(){
+        return _model
+    }
 
     def conditional(String arg, String type, Closure closure = {}){
-        model << [conditional: [objectType: k.toURI(arg), isType: k.toURI(type), then: closure()]]
+        //_model << [conditional: [objectType: _k.toURI(arg), isType: _k.toURI(type), then: closure()]]
     }
 
     def include(String arg){
-        [include: k.toURI(arg)]
+        [include: _k.toURI(arg)]
     }
 
     def exclude(String arg){
@@ -127,9 +131,10 @@ class Feature {
     }
 
     def evalObject(String arg){
+        /*
         def asserts = []
-        model.each{
-            def types = k[k.toURI(arg)].getType()
+        _model.each{
+            def types = _k[_k.toURI(arg)].getType()
             if(it['conditional'])
                 if(types.contains(it['conditional']['objectType']))
                     if(types.contains(it['conditional']['isType']))
@@ -138,26 +143,23 @@ class Feature {
                         }
         }
         return asserts
+        */
     }
 
     def getIndividuals(){
         def individuals = [:]
-        features.each{ key, feautre ->
-            feautre.subClass.each{ subClassKey, subClass ->
-                subClass.subClass.each{
-                    individuals[it.key] = it.value
-                }
+        _model.subClass.each{ subClassKey, subClass ->
+            subClass.subClass.each{
+                individuals[it.key] = it.value
             }
         }
         return individuals
     }
     def getIndividualKeys(){
         def individuals = []
-        features.each{ key, feature ->
-            feature.subClass.each{ subClassKey, subClass ->
-                subClass.subClass.each{
-                    individuals.push(it.key)
-                }
+        _model.subClass.each{ subClassKey, subClass ->
+            subClass.subClass.each{
+                individuals.push(it.key)
             }
         }
         return individuals

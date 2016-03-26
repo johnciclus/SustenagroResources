@@ -199,6 +199,7 @@
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label xml:lang="en">has weight</rdfs:label>
         <rdfs:label xml:lang="pt">tem peso</rdfs:label>
+        <rdfs:range rdf:resource="&semanticUI;Value"/>
     </owl:ObjectProperty>
     
 
@@ -408,6 +409,8 @@
     <!-- http://purl.org/biodiv/semanticUI#Boolean -->
 
     <owl:Class rdf:about="&semanticUI;Boolean">
+        <rdfs:label xml:lang="en">Boolean</rdfs:label>
+        <rdfs:label xml:lang="pt">Boleana</rdfs:label>
         <rdfs:subClassOf rdf:resource="&semanticUI;Categorical"/>
     </owl:Class>
     

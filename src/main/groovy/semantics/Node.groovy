@@ -13,25 +13,25 @@ class Node {
         this.URI = uri
 
         //rdf:Property
-        this.patterns.put('type', "<$URI> rdf:type ?type. ")
-        this.patterns.put('superClass', "<$URI> rdfs:subClassOf ?superClass. ")
+        this.patterns['type']       = "<$URI> rdf:type ?type. "
+        this.patterns['superClass'] = "<$URI> rdfs:subClassOf ?superClass. "
 
         //owl:ObjectProperty
-        this.patterns.put('appliedTo', "<$URI> :appliedTo ?appliedTo. ")
-        this.patterns.put('range', "<$URI> rdfs:range ?range. ")
+        this.patterns['appliedTo']  = "<$URI> :appliedTo ?appliedTo. "
+        this.patterns['range']      = "<$URI> rdfs:range ?range. "
 
         //owl:DatatypeProperty
-        this.patterns.put('mapa', "<$URI> <http://dbpedia.org/property/pt/mapa> ?mapa. ")
+        this.patterns['mapa']       = "<$URI> <http://dbpedia.org/property/pt/mapa> ?mapa. "
 
         //owl:TransitiveProperty
 
         // owl:AnnotationProperty
-        this.patterns.put('label', "<$URI> rdfs:label ?label. ")
-        this.patterns.put('comment', "<$URI> rdfs:comment ?comment. ")
-        this.patterns.put('weight', "<$URI> :weight ?weight. ")
-        this.patterns.put('description', "<$URI> dcterm:description ?description. ")
-        this.patterns.put('title', "<$URI> dcterm:title ?title. ")
-        this.patterns.put('creator', "<$URI> dc:creator ?creator. ")
+        this.patterns['label']      = "<$URI> rdfs:label ?label. "
+        this.patterns['comment']    = "<$URI> rdfs:comment ?comment. "
+        this.patterns['weight']     = "<$URI> :weight ?weight. "
+        this.patterns['description']= "<$URI> dcterm:description ?description. "
+        this.patterns['title']      = "<$URI> dcterm:title ?title. "
+        this.patterns['creator']    = "<$URI> dc:creator ?creator. "
 
     }
 
@@ -204,35 +204,36 @@ class Node {
     }
 
     def getGrandchildren(String args){
-        def argsList = args.split(' ')
+        def argsList = args.tokenize(' ?')
         def query = ''
         def result
 
-        if (argsList.contains('?subClass')) {
+        if (argsList.contains('subClass')) {
             query += "?subClass rdfs:subClassOf <$URI>"
 
-            if (argsList.contains('?subClassLabel'))
+            if (argsList.contains('subClassLabel'))
                 query += "; rdfs:label ?subClassLabel";
 
             query += "."
         }
-        if (argsList.contains('?id')){
+        if (argsList.contains('id')){
             query +="?id rdfs:subClassOf ?subClass"
 
-            if (argsList.contains('?label'))
+            if (argsList.contains('label'))
                 query +="; rdfs:label ?label";
 
-            if (argsList.contains('?weight'))
-                query +="; :weight ?weight";
+            if (argsList.contains('relevance'))
+                query +=". optional {?id :relevance ?relevance}";
 
             query += "."
         }
-        if (argsList.contains('?id') && argsList.contains('?subClass') && argsList.contains('?category') && argsList.contains('?valueType')) {
+        if (argsList.contains('id') && argsList.contains('subClass') && argsList.contains('category') && argsList.contains('valueType')) {
             query += ''' ?id rdfs:subClassOf ?y.
                     ?y owl:onClass ?category.
                     ?category rdfs:subClassOf ?valueType. ''' +
                     "FILTER(?subClass != <$URI> && ?subClass != ?id && ?valueType = ui:Categorical)"
         }
+
         result = k.select('distinct '+args).query(query, "ORDER BY ?label")
 
         result.metaClass.category = {

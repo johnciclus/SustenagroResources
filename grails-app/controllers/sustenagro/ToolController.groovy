@@ -5,6 +5,7 @@ import semantics.Node
 import org.apache.commons.io.FilenameUtils
 
 import grails.plugin.springsecurity.annotation.Secured
+import utils.Uri
 
 @Secured(['ROLE_USER', 'ROLE_ADMIN'])
 class ToolController {
@@ -19,9 +20,6 @@ class ToolController {
         def evaluationObject = dsl.evaluationObject
         def tabsAttrs = [:]
         def tabsWidgets
-
-        println springSecurityService.getPrincipal().getAuthorities()
-
 
         tabsAttrs.labels = ['tab_0': gui.widgetAttrs['createEvaluationObject'].title,
                             'tab_1': gui.widgetAttrs['selectEvaluationObject'].title]
@@ -43,6 +41,9 @@ class ToolController {
         def type = k.toURI(params['evalObjType'])
         def evaluationObject = dsl.evaluationObject
 
+        def username = springSecurityService.getPrincipal().username
+        //println username
+
         if(params['evalObjType'] && params[name] && params[type]){
 
             def node = new Node(k, '')
@@ -50,7 +51,7 @@ class ToolController {
 
             evaluationObject.model.each{ ins ->
                 if(params[ins.id] && ins.id != type){
-                    propertyInstances[k.shortToURI(ins.id)] = [value: params[ins.id], dataType: ins.dataType]
+                    propertyInstances[k.toURI(ins.id)] = [value: params[ins.id], dataType: ins.dataType]
                 }
             }
 
@@ -72,14 +73,21 @@ class ToolController {
 
         tabsAttrs.labels = [:]
         dsl.featureMap.eachWithIndex{ key, feature, int i ->
-            feature.features.each{
-                tabsAttrs.labels[tab_prefix+i] = it.value.label
-                tabsWidgets[tab_prefix+i] = [['widget': 'individualsPanel',
-                                              attrs: [data: it.value.subClass,
-                                                      values: [:], weights: [:]]
-                                            ]]
-            }
+
+            tabsAttrs.labels[tab_prefix+i] = feature.model.label
+            tabsWidgets[tab_prefix+i] = [['widget': 'individualsPanel',
+                                          attrs: [data: feature.model.subClass,
+                                                  values: [:], weights: [:]]
+                                        ]]
+
         }
+
+        dsl.featureMap.each{ key, feature ->
+            println feature.model.label
+            println feature.uri
+            Uri.printTree(feature.model)
+        }
+
         tabsAttrs.submit = true
 
         formAttrs['action'] = '/tool/createScenario'
@@ -116,7 +124,7 @@ class ToolController {
         }
 
         individualKeys.each{
-            uri = k.shortToURI(it)
+            uri = k.toURI(it)
             if(params[uri]){
                 featureInstances[uri] = params[uri]
             }
@@ -211,10 +219,8 @@ class ToolController {
             dsl.runReport()
         }
 
-
         gui.setData('variables', dsl.getVariables())
         gui.setData('dataReader', dsl.getData('data'))
-        //gui.setData('uri', uri)
         gui.setData('reportView', dsl.getReportView())
         gui.renderView(actionName)
         //gui.printData()

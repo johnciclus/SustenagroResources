@@ -5,8 +5,6 @@ import org.kohsuke.groovy.sandbox.SandboxTransformer
 import org.springframework.context.ApplicationContext
 import semantics.DataReader
 import utils.Uri
-import groovy.io.FileType
-
 
 /**
  * Created by dilvan on 7/14/15.
@@ -26,7 +24,7 @@ class DSL {
     private def _data
     private def _props = [:]
     private def _featureMap = [:]
-    private def _analysisMap = [:]
+    private def _scenarioMap = [:]
     private def _reportView = []
     private def _evaluationObjectInstance
 
@@ -129,8 +127,8 @@ class DSL {
         _featureMap
     }
 
-    def getAnalysisMap(){
-        _analysisMap
+    def getScenarioMap(){
+        _scenarioMap
     }
 
     def report(Closure c){
@@ -309,13 +307,6 @@ class DSL {
                _reportView = []
             }
         }
-
-        /*
-        _analysisMap.each{ analyseKey, analyse ->
-            analyse.object.widgets = []
-            analyse.object.model = []
-        }
-        */
     }
 
     static _toHTML(String txt) {_md.markdownToHtml(txt)}

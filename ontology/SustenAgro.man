@@ -8,7 +8,6 @@ Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
 Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 Prefix: terms: <http://purl.org/dc/terms/>
 Prefix: semanticUI: <http://purl.org/biodiv/semanticUI#>
-Prefix: sustenagro: <http://bio.icmc.usp.br/sustenagro#>
 
 
 
@@ -30,7 +29,7 @@ AnnotationProperty: terms:title
         <http://www.w3.org/2000/01/rdf-schema#Literal>
     
     
-AnnotationProperty: weight
+AnnotationProperty: relevance
 
     Domain: 
         <http://semantic.icmc.usp.br/sustenagro#Indicator>
@@ -86,6 +85,28 @@ Datatype: xsd:boolean
 Datatype: rdf:PlainLiteral
 
     
+ObjectProperty: appliedTo
+
+    Annotations: 
+        rdfs:label "applied to"@en,
+        rdfs:label "aplicado a"@pt
+    
+    Range: 
+        semanticUI:EvaluationObject
+    
+    Characteristics: 
+        Functional
+    
+    
+ObjectProperty: uniqueValue
+
+    Characteristics: 
+        Functional
+    
+    SubPropertyOf: 
+        semanticUI:value
+    
+    
 ObjectProperty: hasSugarcaneSource
 
     Annotations: 
@@ -100,19 +121,6 @@ ObjectProperty: hasSugarcaneSource
     
     SubPropertyOf: 
         has
-    
-    
-ObjectProperty: appliedTo
-
-    Annotations: 
-        rdfs:label "applied to"@en,
-        rdfs:label "aplicado a"@pt
-    
-    Range: 
-        semanticUI:EvaluationObject
-    
-    Characteristics: 
-        Functional
     
     
 ObjectProperty: hasCanavialLongevity
@@ -169,16 +177,7 @@ ObjectProperty: hasAgriculturalProductionSystem
     SubPropertyOf: 
         has
     
-    
-ObjectProperty: semanticUI:value
 
-    
-ObjectProperty: has
-
-    Annotations: 
-        rdfs:label "tem"@pt,
-        rdfs:label "has"@en
-    
     
 ObjectProperty: hasAvailabilityOfEvaluationResults
 
@@ -196,31 +195,12 @@ ObjectProperty: hasAvailabilityOfEvaluationResults
         has
     
     
-ObjectProperty: uniqueValue
-
-    Characteristics: 
-        Functional
-    
-    SubPropertyOf: 
-        semanticUI:value
-    
-    
-DataProperty: semanticUI:hasDataValue
-
-    
-DataProperty: hasTotalValueInvestedInTechnologicInAgriculturalPhase
+ObjectProperty: has
 
     Annotations: 
-        rdfs:label "Tem valor total investido em tecnologia na fase agrícola (até a fase atual)"@pt,
-        rdfs:label "has total value invested in technologic in agricultural phase"@en
-    
-    Range: 
-        owl:real
-    
-    Characteristics: 
-        Functional
-    
-    
+        rdfs:label "tem"@pt,
+        rdfs:label "has"@en
+        
 DataProperty: hasEstablishmentDate
 
     Annotations: 
@@ -234,14 +214,23 @@ DataProperty: hasEstablishmentDate
         Functional
     
     
-DataProperty: hasBeginningOfHarvestDate
+DataProperty: pt:mapa
+
+    Range: 
+        xsd:anyURI
+    
+    Characteristics: 
+        Functional
+
+    
+DataProperty: hasPartnershipsForResearchOrImprovementOfTheSystem
 
     Annotations: 
-        rdfs:label "has beginning of harvest date"@en,
-        rdfs:label "Tem data de início da colheita"@pt
+        rdfs:label "has partnerships for research or improvement of the system"@en,
+        rdfs:label "Tem parcerias para pesquisa ou aprimoramento do sistema"@pt
     
     Range: 
-        xsd:date
+        rdfs:Literal
     
     Characteristics: 
         Functional
@@ -286,6 +275,19 @@ DataProperty: hasTotalValuePlaneedForInvestmentToProductionDrainage
         Functional
     
     
+DataProperty: hasLinkWithOtherBusinessOrInvestmentGroups
+
+    Annotations: 
+        rdfs:label "Tem ligação com outros grupos empresariais ou de investimentos"@pt,
+        rdfs:label "has link with other business groups or investment"@en
+    
+    Range: 
+        rdfs:Literal
+    
+    Characteristics: 
+        Functional
+    
+    
 DataProperty: hasFinancing
 
     Annotations: 
@@ -299,14 +301,14 @@ DataProperty: hasFinancing
         Functional
     
     
-DataProperty: hasPartnershipsForResearchOrImprovementOfTheSystem
+DataProperty: hasTotalValueInvestedInTechnologicInAgriculturalPhase
 
     Annotations: 
-        rdfs:label "has partnerships for research or improvement of the system"@en,
-        rdfs:label "Tem parcerias para pesquisa ou aprimoramento do sistema"@pt
+        rdfs:label "Tem valor total investido em tecnologia na fase agrícola (até a fase atual)"@pt,
+        rdfs:label "has total value invested in technologic in agricultural phase"@en
     
     Range: 
-        rdfs:Literal
+        owl:real
     
     Characteristics: 
         Functional
@@ -323,16 +325,7 @@ DataProperty: hasFinishOfPlantingDate
     
     Characteristics: 
         Functional
-    
-    
-DataProperty: pt:mapa
 
-    Range: 
-        xsd:anyURI
-    
-    Characteristics: 
-        Functional
-    
     
 DataProperty: hasName
 
@@ -373,14 +366,14 @@ DataProperty: hasInnovationDevelopmentProjects
         Functional
     
     
-DataProperty: hasLinkWithOtherBusinessOrInvestmentGroups
+DataProperty: hasBeginningOfHarvestDate
 
     Annotations: 
-        rdfs:label "Tem ligação com outros grupos empresariais ou de investimentos"@pt,
-        rdfs:label "has link with other business groups or investment"@en
+        rdfs:label "has beginning of harvest date"@en,
+        rdfs:label "Tem data de início da colheita"@pt
     
     Range: 
-        rdfs:Literal
+        xsd:date
     
     Characteristics: 
         Functional
@@ -404,15 +397,15 @@ Class: PublicPoliciesForSector
         rdfs:label "Public policies for the sector"@en
     
     SubClassOf: 
-        semanticUI:value exactly 1 PublicPoliciesCategory,
-        PoliticalVariable
+        PoliticalVariable,
+        semanticUI:value exactly 1 PublicPoliciesCategory
     
     
 Class: ComplianceWithRegulatoryNorm24
 
     Annotations: 
         rdfs:label "Compliance with regulatory norm 24 which deals with employee welfare"@en,
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Cumprimento a Norma Regulamentadora 24 que trata do bem-estar do trabalhador"@pt
     
     SubClassOf: 
@@ -428,6 +421,16 @@ Class: <http://dbpedia.org/ontology/Provider>
     
     SubClassOf: 
         ProductionUnit
+    
+    
+Class: CostAttribute
+
+    Annotations: 
+        rdfs:label "Atributo de custo"@pt,
+        rdfs:label "Cost attribute"@en
+    
+    SubClassOf: 
+        EconomicIndicator
     
     
 Class: LogisticsProximity
@@ -462,6 +465,16 @@ Class: PlanningOfHarvestFront
         Logistic
     
     
+Class: VinasseAndEthanolRelationCategory
+
+    Annotations: 
+        rdfs:label "Categoria relação entre vinhaça e etanol"@pt,
+        rdfs:label "Vinasse and ethanol relation category"@en
+    
+    SubClassOf: 
+        semanticUI:Categorical
+    
+    
 Class: UseOfMoreResistantStrainsToTheEthanolConcentration
 
     Annotations: 
@@ -478,16 +491,6 @@ Class: FiltercakeAndAshesDestinationCategory
     Annotations: 
         rdfs:label "Categoria da destinação de torta de filtro e cinza"@pt,
         rdfs:label "Filter cake and ashes destination category"@en
-    
-    SubClassOf: 
-        semanticUI:Categorical
-    
-    
-Class: MonitoringOfFlowCategory
-
-    Annotations: 
-        rdfs:label "Categoria de monitoramento do fluxo"@pt,
-        rdfs:label "Monitoring of flow category"@en
     
     SubClassOf: 
         semanticUI:Categorical
@@ -526,8 +529,8 @@ Class: AccidentsIncidenceCategory
 Class: PriceEqualizationPolicy
 
     Annotations: 
-        rdfs:label "Price equalization policy (tanking and off season)"@en,
-        rdfs:label "Política de equalização de preços (tancagem e entre safra)"@pt
+        rdfs:label "Política de equalização de preços (tancagem e entre safra)"@pt,
+        rdfs:label "Price equalization policy (tanking and off season)"@en
     
     SubClassOf: 
         TechnologicalEfficiencyInTheField,
@@ -537,33 +540,22 @@ Class: PriceEqualizationPolicy
 Class: SustainabilityIndicator
 
     Annotations: 
-        rdfs:label "Indicador de sustentabilidade"@pt,
-        rdfs:label "Sustainability Indicator"@en
+        rdfs:label "Sustainability Indicator"@en,
+        rdfs:label "Indicador de sustentabilidade"@pt
     
     SubClassOf: 
         Indicator
     
     
-Class: PositiveNegative
+Class: MonitoringOfFlowCategory
 
     Annotations: 
-        rdfs:label "Positive/Negative"@en,
-        rdfs:label "Positivo/Negativo"@pt
+        rdfs:label "Categoria de monitoramento do fluxo"@pt,
+        rdfs:label "Monitoring of flow category"@en
     
     SubClassOf: 
-        semanticUI:Boolean
-    
-    
-Class: ElectricityProduction
+        semanticUI:Categorical
 
-    Annotations: 
-        rdfs:label "Electricity production"@en,
-        rdfs:label "Produção de energia elétrica"@pt
-    
-    SubClassOf: 
-        semanticUI:value exactly 1 ElectricityProductionCategory,
-        TechnologicalEfficiencyInTheIndustrial
-    
     
 Class: AgriculturalCuttingTypeCategory
 
@@ -573,6 +565,16 @@ Class: AgriculturalCuttingTypeCategory
     
     SubClassOf: 
         semanticUI:Categorical
+    
+    
+Class: UserEconomicAttribute
+
+    Annotations: 
+        rdfs:label "User economic attribute"@en,
+        rdfs:label "Atributo econômico de usuário"@en
+    
+    SubClassOf: 
+        EconomicIndicator
     
     
 Class: WaterAttribute
@@ -593,16 +595,6 @@ Class: EnergyAttribute
     
     SubClassOf: 
         EconomicIndicator
-    
-    
-Class: RawMaterialDiversificationWithImprovedInputsCategory
-
-    Annotations: 
-        rdfs:label "Raw material diversification with improved inputs category"@en,
-        rdfs:label "Categoria de diversificação da matéria prima com insumos melhorados"@pt
-    
-    SubClassOf: 
-        semanticUI:Categorical
     
     
 Class: PresenceOfInnovationsInTheFieldCategory
@@ -639,7 +631,7 @@ Class: RationalUseOfInputs
 
     Annotations: 
         rdfs:label "Rational use of inputs"@en,
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Uso racional de insumos"@pt
     
     SubClassOf: 
@@ -658,20 +650,16 @@ Class: AccessToInternationalMarket
         MarketVariable
     
     
-Class: PlanToExpandProductionViaImprovedProductivity
+Class: ElectricityProduction
 
     Annotations: 
-        rdfs:label "Plan to expand production via improved productivity"@en,
-        weight "2.0"^^xsd:double,
-        rdfs:label "Plano de expansão da produção via melhoria da produtividade"@pt
+        rdfs:label "Electricity production"@en,
+        rdfs:label "Produção de energia elétrica"@pt
     
     SubClassOf: 
-        ProductivityAttribute,
-        semanticUI:value exactly 1 YesNo
+        semanticUI:value exactly 1 ElectricityProductionCategory,
+        TechnologicalEfficiencyInTheIndustrial
     
-    
-Class: semanticUI:Weighted
-
     
 Class: HarvestTypeUsedCategory
 
@@ -683,32 +671,10 @@ Class: HarvestTypeUsedCategory
         semanticUI:Categorical
     
     
-Class: PlantationTypeUsed
-
-    Annotations: 
-        rdfs:label "Tipo de plantio utilizado"@pt,
-        weight "2.0"^^xsd:double,
-        rdfs:label "Plantation type used"@en
-    
-    SubClassOf: 
-        PlantingAttribute,
-        semanticUI:value exactly 1 PlantationTypeUsedCategory
-    
-    
-Class: Literal
-
-    Annotations: 
-        rdfs:label "Literal"@pt,
-        rdfs:label "Literal"@en
-    
-    SubClassOf: 
-        semanticUI:Value
-    
-    
 Class: UseOfAdequateVarietyToTheClimateAndSoilConditions
 
     Annotations: 
-        weight "3.0"^^xsd:double,
+        relevance "3.0"^^xsd:double,
         rdfs:label "Use of adequate variety to the climate and soil conditions"@en,
         rdfs:label "Emprego de variedade adequada às condições de clima e solo"@pt
     
@@ -726,9 +692,6 @@ Class: PresenceOfInnovationsInTheField
     SubClassOf: 
         semanticUI:value exactly 1 PresenceOfInnovationsInTheFieldCategory,
         TechnologicalEfficiencyInTheField
-    
-    
-Class: semanticUI:EvaluationObject
 
     
 Class: InitiativesOrActionsThatPromoteTheLocalCommunityWell-Being
@@ -736,7 +699,7 @@ Class: InitiativesOrActionsThatPromoteTheLocalCommunityWell-Being
     Annotations: 
         rdfs:label "Initiatives or actions that promote the local community well-being according to the standards of corporate social responsibility (CSR)"@en,
         rdfs:label "Iniciativas ou ações que promovam o bem-estar da comunidade local de acordo com as normas de Responsabilidade Social Empresarial (RSE)"@pt,
-        weight "2.0"^^xsd:double
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
         RegulatoryAttendanceAttribute,
@@ -753,16 +716,6 @@ Class: IntensityCategory
         semanticUI:Categorical
     
     
-Class: BioelectricityProductionCategory
-
-    Annotations: 
-        rdfs:label "Bioelectricity production category"@en,
-        rdfs:label "Categoria produção de bioeletricidade"@pt
-    
-    SubClassOf: 
-        semanticUI:Categorical
-    
-    
 Class: ComplianceProtocolsCategory
 
     Annotations: 
@@ -773,25 +726,34 @@ Class: ComplianceProtocolsCategory
         semanticUI:Categorical
     
     
-Class: AgriculturalCuttingType
+Class: MarketVariable
 
     Annotations: 
-        rdfs:label "Agricultural cutting type"@en,
-        rdfs:label "Tipo de corte agrícola"@pt
+        rdfs:label "Market variable"@en,
+        rdfs:label "Variável de mercado"@pt
     
     SubClassOf: 
-        semanticUI:value exactly 1 AgriculturalCuttingTypeCategory,
-        TechnologicalEfficiencyInTheField
+        ProductionEfficiencyFeature
     
     
-Class: CostAttribute
+Class: AdequacyOfBoilersCategory
 
     Annotations: 
-        rdfs:label "Atributo de custo"@pt,
-        rdfs:label "Cost attribute"@en
+        rdfs:label "Adequacy of boilers category"@en,
+        rdfs:label "Categoria de dequação das caldeiras"@pt
     
     SubClassOf: 
-        EconomicIndicator
+        semanticUI:Categorical
+    
+    
+Class: VarietiesCategory
+
+    Annotations: 
+        rdfs:label "Categoria variedades"@pt,
+        rdfs:label "Varieties category"@en
+    
+    SubClassOf: 
+        semanticUI:Categorical
     
     
 Class: JobFormalityRateCategory
@@ -809,7 +771,7 @@ Class: ElectricityProductionForOwnConsumptionAndExport
     Annotations: 
         rdfs:label "Bioelectricity production for own consumption and export"@en,
         rdfs:label "Produção de bioeletricidade para consumo próprio e exportação"@pt,
-        weight "3.0"^^xsd:double
+        relevance "3.0"^^xsd:double
     
     SubClassOf: 
         semanticUI:value exactly 1 ElectricityProductionForOwnConsumptionAndExportCategory,
@@ -830,7 +792,7 @@ Class: ComplianceToStateEnvironmentalProtocols
 Class: EmploymentFormalization
 
     Annotations: 
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Employment formalization"@en,
         rdfs:label "Formalização de emprego"@pt
     
@@ -847,9 +809,6 @@ Class: AccessToInternationalMarketCategory
     
     SubClassOf: 
         semanticUI:Categorical
-    
-    
-Class: semanticUI:Feature
 
     
 Class: LogisticsProximityCategory
@@ -866,7 +825,7 @@ Class: ProductionEvaluationBasedOnMarketDecision
 
     Annotations: 
         rdfs:label "Avaliação da produção (etanol/açúcar/bioeletricidade) com base na decisão de mercado e/ou preços"@pt,
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Production evaluation (Ethanol / Sugar / Bioelectricity) based on market-decision and / or prices"@en
     
     SubClassOf: 
@@ -918,8 +877,8 @@ Class: FiltercakeAndAshesDestination
 Class: AbsoluteEmissionsOfGreenhouseGasesCategory
 
     Annotations: 
-        rdfs:label "Absolute emissions of greenhouse gases (GEE) or associated gases category"@en,
-        rdfs:label "Categoria de emissões absolutas de gases de efeito estufa (GEE) ou gases associados"@pt
+        rdfs:label "Categoria de emissões absolutas de gases de efeito estufa (GEE) ou gases associados"@pt,
+        rdfs:label "Absolute emissions of greenhouse gases (GEE) or associated gases category"@en
     
     SubClassOf: 
         semanticUI:Categorical
@@ -956,16 +915,15 @@ Class: FiberValueCategory
         semanticUI:Categorical
     
     
-Class: PlanningTheProductionEnvironmentInAccordanceWithAptitudePedologicalOrEdaphic
+Class: AccessToInternalMarket
 
     Annotations: 
-        weight "2.0"^^xsd:double,
-        rdfs:label "Planning the production environment in accordance with pedological or edaphic aptitude"@en,
-        rdfs:label "Planejamento do ambiente de produção segundo aptidão pedológica ou edáfica"@pt
+        rdfs:label "Access to the internal market (function of incentives and/or public policy)"@en,
+        rdfs:label "Acesso ao mercado interno (função de incentivos e/ou políticas públicas)"@pt
     
     SubClassOf: 
-        SoilsAttribute,
-        semanticUI:value exactly 1 YesNo
+        semanticUI:value exactly 1 AccessToInternalMarketCategory,
+        MarketVariable
     
     
 Class: SugarcaneValueInATR
@@ -979,14 +937,16 @@ Class: SugarcaneValueInATR
         semanticUI:value exactly 1 SugarcaneValueCategory
     
     
-Class: AtmosphericPollutantsEmissionCategory
+Class: AttendanceToSprayingRestriction
 
     Annotations: 
-        rdfs:label "Categoria de emissão de poluentes atmosféricos"@pt,
-        rdfs:label "Atmospheric pollutants emission category"@en
+        relevance "2.0"^^xsd:double,
+        rdfs:label "Atendimento à restrição da pulverização aérea para aplicação de maturadores (Instrução Normativa Conjunta 1/2012//DAS/MAPA)"@pt,
+        rdfs:label "Attendance to restriction on aerial spraying for applying maturing (Joint Normative Instruction 1/2012/DAS/MAPA)"@en
     
     SubClassOf: 
-        semanticUI:Categorical
+        GeneralAttribute,
+        semanticUI:value exactly 1 YesNo
     
     
 Class: VinasseUse
@@ -1035,7 +995,7 @@ Class: LogisticsPlanningOfTheFieldSucarcaneToThePlant
     Annotations: 
         rdfs:label "Logistics planning of the field sugarcane to the plant"@en,
         rdfs:label "Planejamento logístico da cana do campo para a usina"@pt,
-        weight "2.0"^^xsd:double
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
         semanticUI:value exactly 1 YesNo,
@@ -1094,17 +1054,6 @@ Class: AtmosphereAttribute
         EnvironmentalIndicator
     
     
-Class: ProductionAndReuseOfWaterFromSugarcaneProcessing
-
-    Annotations: 
-        rdfs:label "Production and reuse of water from sugarcane processing"@en,
-        rdfs:label "Produção e reutilização de água a partir do processamento da cana-de-açucar"@pt
-    
-    SubClassOf: 
-        TechnologicalEfficiencyInTheIndustrial,
-        semanticUI:value exactly 1 ProductionAndReuseOfWaterFromSugarcaneProcessingCategory
-    
-    
 Class: ProductionUnit
 
     Annotations: 
@@ -1116,21 +1065,23 @@ Class: ProductionUnit
         hasName some rdfs:Literal
     
     
-Class: UserEconomicAttribute
+Class: TrainingRoutineInWorkerSafety
 
     Annotations: 
-        rdfs:label "User economic attribute"@en,
-        rdfs:label "Atributo econômico de usuário"@en
+        rdfs:label "Rotina de treinamento em segurança do trabalhador"@pt,
+        rdfs:label "Training routine in worker safety"@en,
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
-        EconomicIndicator
+        SafetyAttribute,
+        semanticUI:value exactly 1 ExistNo
     
     
 Class: AtmosphericPollutantsEmission
 
     Annotations: 
-        rdfs:label "Emissão de poluentes atmosféricos"@pt,
-        rdfs:label "Atmospheric pollutants emission"@en
+        rdfs:label "Atmospheric pollutants emission"@en,
+        rdfs:label "Emissão de poluentes atmosféricos"@pt
     
     SubClassOf: 
         TechnologicalEfficiencyInTheIndustrial,
@@ -1157,22 +1108,10 @@ Class: TrainingAttribute
         SocialIndicator
     
     
-Class: AttendanceToSprayingRestriction
-
-    Annotations: 
-        weight "2.0"^^xsd:double,
-        rdfs:label "Atendimento à restrição da pulverização aérea para aplicação de maturadores (Instrução Normativa Conjunta 1/2012//DAS/MAPA)"@pt,
-        rdfs:label "Attendance to restriction on aerial spraying for applying maturing (Joint Normative Instruction 1/2012/DAS/MAPA)"@en
-    
-    SubClassOf: 
-        GeneralAttribute,
-        semanticUI:value exactly 1 YesNo
-    
-    
 Class: AttendanceToLaw7802-1989
 
     Annotations: 
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Atendimento a Lei n°7.802/1989 que dispõe sobre o transporte, armazenamento, comercialização, destino final dos resíduos e embalagens de agrotóxicos e afins."@pt,
         rdfs:label "Attendance to Law No. 7.802 / 1989 which provides for the transport, storage, marketing, waste disposal and pesticide packaging and the like."@en
     
@@ -1181,14 +1120,14 @@ Class: AttendanceToLaw7802-1989
         SoilsAttribute
     
     
-Class: ProductionEnvironmentAlignmentCategory
+Class: Literal
 
     Annotations: 
-        rdfs:label "Production environment alignment category"@en,
-        rdfs:label "Categoria alinhamento ao ambiente de produção/produtor"@pt
+        rdfs:label "Literal"@pt,
+        rdfs:label "Literal"@en
     
     SubClassOf: 
-        semanticUI:Categorical
+        semanticUI:Value
     
     
 Class: <http://dbpedia.org/resource/PhysicalPlant>
@@ -1215,7 +1154,7 @@ Class: AttendanceOfRequirementsOfAdequateEquipmentUsageNorm31
 
     Annotations: 
         rdfs:label "Attendance of requirements of adequate equipment usage for pesticide application according to regulatory norm 31"@en,
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Atendimento de requisitos de uso de equipamento adequado para aplicação de agrotóxicos de acordo com a Norma Reguladora 31"@pt
     
     SubClassOf: 
@@ -1223,20 +1162,22 @@ Class: AttendanceOfRequirementsOfAdequateEquipmentUsageNorm31
         HealthAttribute
     
     
-Class: PublicPoliciesCategory
+Class: PlanToExpandProductionViaImprovedProductivity
 
     Annotations: 
-        rdfs:label "Categorias de políticas públicas"@pt,
-        rdfs:label "Public policies category"@en
+        rdfs:label "Plan to expand production via improved productivity"@en,
+        relevance "2.0"^^xsd:double,
+        rdfs:label "Plano de expansão da produção via melhoria da produtividade"@pt
     
     SubClassOf: 
-        semanticUI:Categorical
+        ProductivityAttribute,
+        semanticUI:value exactly 1 YesNo
     
     
 Class: RemunerationCompatibleWithAgreedMinimumWageBetweenUnionAndPlant
 
     Annotations: 
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Remuneration compatible with agreed minimum wage between union and plant"@en,
         rdfs:label "Remuneração compatível com piso salarial acordado entre sindicato e usina"@pt
     
@@ -1259,7 +1200,7 @@ Class: EmploymentOfAdequateIrrigationToWaterUsePolicy
 
     Annotations: 
         rdfs:label "Emprego de irrigação adequado a política de uso da água"@pt,
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Employment of adequate irrigation to water use policy"@en
     
     SubClassOf: 
@@ -1272,7 +1213,7 @@ Class: ReuseOfStrawComingFromTheHarvestForGroundCover
     Annotations: 
         rdfs:label "Reuse of straw coming from the harvest for ground cover"@en,
         rdfs:label "Reutilização da palhada ou palhiço oriundo da colheita para cobertura do solo"@pt,
-        weight "2.0"^^xsd:double
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
         SoilsAttribute,
@@ -1283,7 +1224,7 @@ Class: PlanToReplacementOfOldBoilersWithMoreEfficientBoilersForCogeneration
 
     Annotations: 
         rdfs:label "Plano de substituição das caldeiras antigas por caldeiras mais eficientes para cogeração de energia"@pt,
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Plan to replacement of old boilers with more efficient boilers for cogeneration"@en
     
     SubClassOf: 
@@ -1294,7 +1235,7 @@ Class: PlanToReplacementOfOldBoilersWithMoreEfficientBoilersForCogeneration
 Class: UseOfVinasseToFertigation
 
     Annotations: 
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Uso da vinhaça para fertirrigação (em substituição parcial a adubação mineral)"@pt,
         rdfs:label "Use of vinasse to fertigation (which partially replaced mineral fertilizer)"@en
     
@@ -1307,7 +1248,7 @@ Class: EmissionControlnAccordanceWithResolutions
 
     Annotations: 
         rdfs:label "Controle de emissões de acordo com as resoluções CONAMA 382/2006 e 436/2011"@pt,
-        weight "3.0"^^xsd:double,
+        relevance "3.0"^^xsd:double,
         rdfs:label "Emission control in accordance with resolutions CONAMA 382/2006 and 436/2011"@en
     
     SubClassOf: 
@@ -1320,7 +1261,7 @@ Class: ProtectionPlanAndConservationOfRemainingAreas-Protected
     Annotations: 
         rdfs:label "Protection plan and conservation of remaining areas / protected (Permanent Protection Areas, Legal Reserve)"@en,
         rdfs:label "Plano de proteção e conservação de áreas remanescentes/protegidas (Áreas de Proteção Permanente, Reserva Legal)"@pt,
-        weight "2.0"^^xsd:double
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
         BiodiversityAttribute,
@@ -1378,14 +1319,14 @@ Class: BiodiversityAttribute
         EnvironmentalIndicator
     
     
-Class: UseOfMoreResistantStrainsToTheEthanolConcentrationCategory
+Class: SocialIndicator
 
     Annotations: 
-        rdfs:label "Categoria de utilização de cepas mais resistentes a concentração do etanol"@pt,
-        rdfs:label "Use of more resistant strains to the ethanol concentration category"@en
+        rdfs:label "Indicador social"@pt,
+        rdfs:label "Social indicator"@en
     
     SubClassOf: 
-        semanticUI:Categorical
+        SustainabilityIndicator
     
     
 Class: AgriculturalManagementCategory
@@ -1398,15 +1339,15 @@ Class: AgriculturalManagementCategory
         semanticUI:Categorical
     
     
-Class: ProducersOrPlantsOrganization
+Class: AgriculturalCuttingType
 
     Annotations: 
-        rdfs:label "Producers or plants organization"@en,
-        rdfs:label "Organização de produtores ou de usinas"@pt
+        rdfs:label "Agricultural cutting type"@en,
+        rdfs:label "Tipo de corte agrícola"@pt
     
     SubClassOf: 
-        TechnologicalEfficiencyInTheField,
-        semanticUI:value exactly 1 ProducersOrPlantsOrganizationCategory
+        semanticUI:value exactly 1 AgriculturalCuttingTypeCategory,
+        TechnologicalEfficiencyInTheField
     
     
 Class: UserSocialAttribute
@@ -1419,14 +1360,15 @@ Class: UserSocialAttribute
         SocialIndicator
     
     
-Class: ExistNo
+Class: ProducersOrPlantsOrganization
 
     Annotations: 
-        rdfs:label "Existe/Não existe"@pt,
-        rdfs:label "Exist/No exist"@en
+        rdfs:label "Producers or plants organization"@en,
+        rdfs:label "Organização de produtores ou de usinas"@pt
     
     SubClassOf: 
-        semanticUI:Boolean
+        TechnologicalEfficiencyInTheField,
+        semanticUI:value exactly 1 ProducersOrPlantsOrganizationCategory
     
     
 Class: SubProductsAttribute
@@ -1442,7 +1384,7 @@ Class: SubProductsAttribute
 Class: InvestmentRatioMachinesVersusProductionReturnOnAssets
 
     Annotations: 
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Investment relationship between machines versus sugarcane production and return on assets"@en,
         rdfs:label "Relação entre investimento de máquinas versus produção de cana e retorno do imobilizado"@pt
     
@@ -1466,7 +1408,7 @@ Class: UseOfAdequateTerracingToTheSoilSlopeAndHarvestMechanization
     Annotations: 
         rdfs:label "Use of terracing adequate to the soil slope and harvest mechanization"@en,
         rdfs:label "Uso de terraceamento adequado a declividade do solo e mecanização da colheita"@pt,
-        weight "2.0"^^xsd:double
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
         SoilsAttribute,
@@ -1476,7 +1418,7 @@ Class: UseOfAdequateTerracingToTheSoilSlopeAndHarvestMechanization
 Class: PlantationPlanAccordingToTheRegionalFeatures
 
     Annotations: 
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Plantation plan according to the regional features (production environment)"@en,
         rdfs:label "Plano de plantio de acordo com as caracteristícas regionais (ambiente de produção)"@pt
     
@@ -1488,7 +1430,7 @@ Class: PlantationPlanAccordingToTheRegionalFeatures
 Class: AbsoluteEmissionsOfGreenhouseGases
 
     Annotations: 
-        weight "3.0"^^xsd:double,
+        relevance "3.0"^^xsd:double,
         rdfs:label "Emissões absolutas de gases de efeito estufa (GEE) ou gases associados"@pt,
         rdfs:label "Absolute emissions of greenhouse gases (GEE) or associated gases"@en
     
@@ -1512,7 +1454,7 @@ Class: UseOfTechniquesForBiologicalPestControl
 
     Annotations: 
         rdfs:label "Emprego de técnicas para controle biológico de pragas"@pt,
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Use of techniques for biological pest control"@en
     
     SubClassOf: 
@@ -1520,11 +1462,21 @@ Class: UseOfTechniquesForBiologicalPestControl
         semanticUI:value exactly 1 UseOfTechniquesForBiologicalPestControlCategory
     
     
-Class: VarietiesCategory
+Class: RawMaterialDiversificationWithImprovedInputsCategory
 
     Annotations: 
-        rdfs:label "Categoria variedades"@pt,
-        rdfs:label "Varieties category"@en
+        rdfs:label "Categoria de diversificação da matéria prima com insumos melhorados"@pt,
+        rdfs:label "Raw material diversification with improved inputs category"@en
+    
+    SubClassOf: 
+        semanticUI:Categorical
+    
+    
+Class: PublicPoliciesCategory
+
+    Annotations: 
+        rdfs:label "Categorias de políticas públicas"@pt,
+        rdfs:label "Public policies category"@en
     
     SubClassOf: 
         semanticUI:Categorical
@@ -1553,7 +1505,7 @@ Class: SugarcaneValueCategory
 Class: TrafficControl
 
     Annotations: 
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Traffic control"@en,
         rdfs:label "Controle de tráfego"@pt
     
@@ -1575,7 +1527,7 @@ Class: PlantingPlanConsideringThePrecursorUseOfAreaCategory
 Class: ReformAndOrRotationCropForTheNextHarvest
 
     Annotations: 
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Reform and / or rotation crop for the next harvest"@en,
         rdfs:label "Reforma e/ou rotação de cultura para a próxima safra."@pt
     
@@ -1598,23 +1550,12 @@ Class: UseOfCakeFIlterInTheOrganicManureInAreaWithSugarcane
 
     Annotations: 
         rdfs:label "Use of cake fIlter in the organic manure in area with sugarcane"@en,
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Uso de torta de filtro na adubação orgânica em área com cana (plantio, soca, reforma)"@pt
     
     SubClassOf: 
         semanticUI:value exactly 1 YesNo,
         SoilsAttribute
-    
-    
-Class: AccessToInternalMarket
-
-    Annotations: 
-        rdfs:label "Access to the internal market (function of incentives and/or public policy)"@en,
-        rdfs:label "Acesso ao mercado interno (função de incentivos e/ou políticas públicas)"@pt
-    
-    SubClassOf: 
-        semanticUI:value exactly 1 AccessToInternalMarketCategory,
-        MarketVariable
     
     
 Class: PlantationTypeUsedCategory
@@ -1637,16 +1578,14 @@ Class: UseOfTechniquesForBiologicalPestControlCategory
         semanticUI:Categorical
     
     
-Class: TrainingRoutineInWorkerSafety
+Class: UseOfMoreResistantStrainsToTheEthanolConcentrationCategory
 
     Annotations: 
-        rdfs:label "Rotina de treinamento em segurança do trabalhador"@pt,
-        rdfs:label "Training routine in worker safety"@en,
-        weight "2.0"^^xsd:double
+        rdfs:label "Categoria de utilização de cepas mais resistentes a concentração do etanol"@pt,
+        rdfs:label "Use of more resistant strains to the ethanol concentration category"@en
     
     SubClassOf: 
-        SafetyAttribute,
-        semanticUI:value exactly 1 ExistNo
+        semanticUI:Categorical
     
     
 Class: VinasseDestination
@@ -1663,8 +1602,8 @@ Class: VinasseDestination
 Class: ComplianceWithAgriculturalAndEconomicZoning
 
     Annotations: 
-        rdfs:label "Atendimento ao zoneamento agrícola e econômico (ZAE)"@pt,
-        rdfs:label "Compliance with agricultural and economic zoning (AEZ)"@en
+        rdfs:label "Compliance with agricultural and economic zoning (AEZ)"@en,
+        rdfs:label "Atendimento ao zoneamento agrícola e econômico (ZAE)"@pt
     
     SubClassOf: 
         semanticUI:value exactly 1 ComplianceToZoningCategory,
@@ -1686,7 +1625,7 @@ Class: NaturalRecoveryAndInducedAreas
     Annotations: 
         rdfs:label "Natural recovery and induced areas (reforestation)"@en,
         rdfs:label "Áreas em recuperação natural e induzida (reflorestamento)"@pt,
-        weight "2.0"^^xsd:double
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
         BiodiversityAttribute,
@@ -1697,19 +1636,31 @@ Class: UseOfFilterCakeWhichPartiallyReplacedMineralFertilizer
 
     Annotations: 
         rdfs:label "Use of filter cake which partially replaced mineral fertilizer"@en,
-        weight "2.0"^^xsd:double,
-        rdfs:label "Uso de torta de filtro em substituição parcial a adubação mineral"@pt
+        rdfs:label "Uso de torta de filtro em substituição parcial a adubação mineral"@pt,
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
         SubProductsAttribute,
         semanticUI:value exactly 1 YesNo
     
     
-Class: ComplianceToCommitmentCategory
+Class: ExistenceOfTrainingProgramsAndTrainingToWorkers
 
     Annotations: 
-        rdfs:label "Categoria de atendimento ao compromisso"@pt,
-        rdfs:label "Compliance to commitment category"@en
+        rdfs:label "Existence of training programs and training to workers"@en,
+        rdfs:label "Existência de programas de capacitação e treinamento ao trabalhador"@pt,
+        relevance "2.0"^^xsd:double
+    
+    SubClassOf: 
+        semanticUI:value exactly 1 ExistNo,
+        TrainingAttribute
+    
+    
+Class: ProductionEnvironmentAlignmentCategory
+
+    Annotations: 
+        rdfs:label "Production environment alignment category"@en,
+        rdfs:label "Categoria alinhamento ao ambiente de produção/produtor"@pt
     
     SubClassOf: 
         semanticUI:Categorical
@@ -1719,7 +1670,7 @@ Class: FulfillmentOfLaborLaws
 
     Annotations: 
         rdfs:label "Fulfillment of labor laws in accordance with law #5.889/73 plus the law #11.718/2008 that deal with labor relations in the rural sector"@en,
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Cumprimento das leis trabalhistas de acordo com a Lei N°5.889/73* acrescida da Lei N° 11.718/2008* que tratam das relações de trabalho no setor rural."@pt
     
     SubClassOf: 
@@ -1727,14 +1678,14 @@ Class: FulfillmentOfLaborLaws
         RegulatoryAttendanceAttribute
     
     
-Class: ProductivityAttribute
+Class: ExistNo
 
     Annotations: 
-        rdfs:label "Atributo de produtividade"@pt,
-        rdfs:label "Productivity attribute"@en
+        rdfs:label "Existe/Não existe"@pt,
+        rdfs:label "Exist/No exist"@en
     
     SubClassOf: 
-        EconomicIndicator
+        semanticUI:Boolean
     
     
 Class: RenewalOfAreaWithSugarcaneUsingRotationWithFoodCrops
@@ -1742,7 +1693,7 @@ Class: RenewalOfAreaWithSugarcaneUsingRotationWithFoodCrops
     Annotations: 
         rdfs:label "Renovação da área com cana utilizando rotação com culturas alimentares"@pt,
         rdfs:label "Renewal of area with sugarcane using rotation with food crops"@en,
-        weight "3.0"^^xsd:double
+        relevance "3.0"^^xsd:double
     
     SubClassOf: 
         PlantingAttribute,
@@ -1795,7 +1746,7 @@ Class: SharingOfRisksBetweenSuppliersAndProductionPlant
     Annotations: 
         rdfs:label "Sharing of risks between suppliers and production plant"@en,
         rdfs:label "Compartilhamento dos riscos de produção entre fornecedores e usina"@pt,
-        weight "2.0"^^xsd:double
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
         ProductivityAttribute,
@@ -1813,23 +1764,22 @@ Class: SugarcanePlanting
         semanticUI:value exactly 1 SugarcanePlantingCategory
     
     
-Class: ExistenceOfTrainingProgramsAndTrainingToWorkers
+Class: ProductionAndReuseOfWaterFromSugarcaneProcessing
 
     Annotations: 
-        rdfs:label "Existence of training programs and training to workers"@en,
-        rdfs:label "Existência de programas de capacitação e treinamento ao trabalhador"@pt,
-        weight "2.0"^^xsd:double
+        rdfs:label "Production and reuse of water from sugarcane processing"@en,
+        rdfs:label "Produção e reutilização de água a partir do processamento da cana-de-açucar"@pt
     
     SubClassOf: 
-        semanticUI:value exactly 1 ExistNo,
-        TrainingAttribute
+        TechnologicalEfficiencyInTheIndustrial,
+        semanticUI:value exactly 1 ProductionAndReuseOfWaterFromSugarcaneProcessingCategory
     
     
 Class: SugarcaneTransportOptimizationForIndustry
 
     Annotations: 
         rdfs:label "Otimização do transporte da cana para a indústria"@pt,
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Sugarcane transport optimization for industry"@en
     
     SubClassOf: 
@@ -1850,8 +1800,8 @@ Class: ReductionInWaterConsumptionCategory
 Class: AgriculturalManagement
 
     Annotations: 
-        rdfs:label "Agricultural management"@en,
-        rdfs:label "Manejo agrícola"@pt
+        rdfs:label "Manejo agrícola"@pt,
+        rdfs:label "Agricultural management"@en
     
     SubClassOf: 
         TechnologicalEfficiencyInTheField,
@@ -1863,7 +1813,7 @@ Class: InvestmentsInNewTechnologiesAndIndustrialProcessesWhichContributeACleaner
     Annotations: 
         rdfs:label "Investments in new technologies and industrial processes which contribute a cleaner and sustainable production"@en,
         rdfs:label "Investimentos em novas tecnologias e processos industriais que favoreçam uma produção mais limpa e sustentável"@pt,
-        weight "2.0"^^xsd:double
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
         InvestmentsAttribute,
@@ -1885,7 +1835,7 @@ Class: BiofuelInfrastructureAvailable
     Annotations: 
         rdfs:label "Infrastructure available for the production of second and third generation biofuels"@en,
         rdfs:label "Infraestrutura disponível para produção de biocombustíveis de segunda e terceira geração"@pt,
-        weight "2.0"^^xsd:double
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
         semanticUI:value exactly 1 YesNo,
@@ -1907,7 +1857,7 @@ Class: BufferStocks
     Annotations: 
         rdfs:label "Ter estoques de combustível de modo a regular oferta/demanda do etanol e preços (estoques reguladores)"@pt,
         rdfs:label "Have fuel stocks in order to regulate supply  / demand and prices of ethanol (buffer stocks)"@en,
-        weight "2.0"^^xsd:double
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
         semanticUI:value exactly 1 YesNo,
@@ -1924,18 +1874,6 @@ Class: PoliticalVariable
         ProductionEfficiencyFeature
     
     
-Class: UseOfTechniquesOfGreenManure
-
-    Annotations: 
-        rdfs:label "Emprego de técnicas de adubação verde"@pt,
-        rdfs:label "Use of techniques of green manure"@en,
-        weight "2.0"^^xsd:double
-    
-    SubClassOf: 
-        SoilsAttribute,
-        semanticUI:value exactly 1 YesNo
-    
-    
 Class: AdequacyOfBoilers
 
     Annotations: 
@@ -1950,7 +1888,7 @@ Class: AdequacyOfBoilers
 Class: AdequateDestinationOfVinasse
 
     Annotations: 
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Adequada destinação da vinhaça"@pt,
         rdfs:label "Adequate destination of vinasse"@en
     
@@ -1979,6 +1917,18 @@ Class: ProducersOrPlantsOrganizationCategory
         semanticUI:Categorical
     
     
+Class: PlanningTheProductionEnvironmentInAccordanceWithAptitudePedologicalOrEdaphic
+
+    Annotations: 
+        relevance "2.0"^^xsd:double,
+        rdfs:label "Planning the production environment in accordance with pedological or edaphic aptitude"@en,
+        rdfs:label "Planejamento do ambiente de produção segundo aptidão pedológica ou edáfica"@pt
+    
+    SubClassOf: 
+        SoilsAttribute,
+        semanticUI:value exactly 1 YesNo
+    
+    
 Class: HarvestAttribute
 
     Annotations: 
@@ -2000,11 +1950,21 @@ Class: GovernmentSubsidy
         PoliticalVariable
     
     
+Class: ComplianceToCommitmentCategory
+
+    Annotations: 
+        rdfs:label "Categoria de atendimento ao compromisso"@pt,
+        rdfs:label "Compliance to commitment category"@en
+    
+    SubClassOf: 
+        semanticUI:Categorical
+    
+    
 Class: ProductivityOfSugarcanePerHectare
 
     Annotations: 
         rdfs:label "Productivity of sugarcane per hectare"@en,
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Produtividade de cana-de-açucar por hectare"@pt
     
     SubClassOf: 
@@ -2015,13 +1975,23 @@ Class: ProductivityOfSugarcanePerHectare
 Class: AdequateStructureForInstallationOrExpansionOfWaterReuse
 
     Annotations: 
-        weight "3.0"^^xsd:double,
+        relevance "3.0"^^xsd:double,
         rdfs:label "Adequate structure for installation or expansion of water reuse (closed circuit)"@en,
         rdfs:label "Estrutura adequada para instalação ou ampliação do reuso da água (circuito fechado)"@pt
     
     SubClassOf: 
         semanticUI:value exactly 1 YesNo,
         WaterAttribute
+    
+    
+Class: PositiveNegative
+
+    Annotations: 
+        rdfs:label "Positive/Negative"@en,
+        rdfs:label "Positivo/Negativo"@pt
+    
+    SubClassOf: 
+        semanticUI:Boolean
     
     
 Class: SugarcaneMechanizationCategory
@@ -2045,14 +2015,14 @@ Class: CircuitClosing
         TechnologicalEfficiencyInTheIndustrial
     
     
-Class: VinasseAndEthanolRelationCategory
+Class: ProductivityAttribute
 
     Annotations: 
-        rdfs:label "Categoria relação entre vinhaça e etanol"@pt,
-        rdfs:label "Vinasse and ethanol relation category"@en
+        rdfs:label "Productivity attribute"@en,
+        rdfs:label "Atributo de produtividade"@pt
     
     SubClassOf: 
-        semanticUI:Categorical
+        EconomicIndicator
     
     
 Class: Indicator
@@ -2088,7 +2058,7 @@ Class: PricePoliciesCategory
 Class: PlantingPlanConsideringThePrecursorUseOfArea
 
     Annotations: 
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Planting plan considering the precursor use of area"@en,
         rdfs:label "Plano de plantio considerando o uso precursor da área"@pt
     
@@ -2097,14 +2067,14 @@ Class: PlantingPlanConsideringThePrecursorUseOfArea
         SoilsAttribute
     
     
-Class: MarketVariable
+Class: GovernmentSubsidyCategory
 
     Annotations: 
-        rdfs:label "Market variable"@en,
-        rdfs:label "Variável de mercado"@pt
+        rdfs:label "Categoria do subsídio do governo"@pt,
+        rdfs:label "Government subsidy category"@en
     
     SubClassOf: 
-        ProductionEfficiencyFeature
+        semanticUI:Categorical
     
     
 Class: BagasseAndStrawDestinationCategory
@@ -2117,17 +2087,16 @@ Class: BagasseAndStrawDestinationCategory
         semanticUI:Categorical
     
     
-Class: AdequacyOfBoilersCategory
+Class: UseOfTechniquesOfGreenManure
 
     Annotations: 
-        rdfs:label "Adequacy of boilers category"@en,
-        rdfs:label "Categoria de dequação das caldeiras"@pt
+        rdfs:label "Emprego de técnicas de adubação verde"@pt,
+        rdfs:label "Use of techniques of green manure"@en,
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
-        semanticUI:Categorical
-    
-    
-Class: semanticUI:Categorical
+        SoilsAttribute,
+        semanticUI:value exactly 1 YesNo
 
     
 Class: AverageSalaryCategory
@@ -2144,13 +2113,16 @@ Class: UsesOrInvestestInMoreResistantYeast
 
     Annotations: 
         rdfs:label "Utiliza ou investe em leveduras mais resistentes para melhor eficiência na produção de etanol"@pt,
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Uses or invests in more resistant yeast for better efficiency in ethanol production"@en
     
     SubClassOf: 
         IndustrialUnityAttribute,
         semanticUI:value exactly 1 YesNo
     
+    
+Class: <http://dbpedia.org/page/Microregion_(Brazil)>
+
     
 Class: VinasseUseCategory
 
@@ -2162,24 +2134,26 @@ Class: VinasseUseCategory
         semanticUI:Categorical
     
     
-Class: GovernmentSubsidyCategory
+Class: AtmosphericPollutantsEmissionCategory
 
     Annotations: 
-        rdfs:label "Categoria do subsídio do governo"@pt,
-        rdfs:label "Government subsidy category"@en
+        rdfs:label "Categoria de emissão de poluentes atmosféricos"@pt,
+        rdfs:label "Atmospheric pollutants emission category"@en
     
     SubClassOf: 
         semanticUI:Categorical
     
     
-Class: SocialIndicator
+Class: PlantationTypeUsed
 
     Annotations: 
-        rdfs:label "Indicador social"@pt,
-        rdfs:label "Social indicator"@en
+        rdfs:label "Tipo de plantio utilizado"@pt,
+        relevance "2.0"^^xsd:double,
+        rdfs:label "Plantation type used"@en
     
     SubClassOf: 
-        SustainabilityIndicator
+        PlantingAttribute,
+        semanticUI:value exactly 1 PlantationTypeUsedCategory
     
     
 Class: PlanningOfHarvestFrontCategory
@@ -2195,7 +2169,7 @@ Class: PlanningOfHarvestFrontCategory
 Class: GradualReplacementOfDieselUseByRenewableFuelInTheFleet
 
     Annotations: 
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Gradual replacement of diesel use by renewable fuel in the fleet"@en,
         rdfs:label "Substituição gradativa do uso de diesel por combustível renovável na frota"@pt
     
@@ -2204,8 +2178,15 @@ Class: GradualReplacementOfDieselUseByRenewableFuelInTheFleet
         EnergyAttribute
     
     
-Class: <http://dbpedia.org/page/Microregion_(Brazil)>
+Class: BioelectricityProductionCategory
 
+    Annotations: 
+        rdfs:label "Bioelectricity production category"@en,
+        rdfs:label "Categoria produção de bioeletricidade"@pt
+    
+    SubClassOf: 
+        semanticUI:Categorical
+    
     
 Class: Varieties
 
@@ -2234,7 +2215,7 @@ Class: UseOfBurningInAreasWithHigherSlopeOf12
     Annotations: 
         rdfs:label "Use of burning in areas with higher slope of 12%"@en,
         rdfs:label "Uso de queima em áreas com declive acima de 12%"@pt,
-        weight "2.0"^^xsd:double
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
         semanticUI:value exactly 1 YesNo,
@@ -2265,7 +2246,7 @@ Class: FiberValue
 Class: CropPlanning
 
     Annotations: 
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Planejamento de safra"@pt,
         rdfs:label "Crop planning"@en
     
@@ -2288,21 +2269,18 @@ Class: TotalRecoverableSugarIndex
 
     Annotations: 
         rdfs:label "ATR index (total recoverable sugar) per ton of sugarcane"@en,
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Índice de ATR (açúcares totais recuperáveis) por tonelada de cana-de-açucar"@pt
     
     SubClassOf: 
         ProductivityAttribute,
         semanticUI:value exactly 1 TotalRecoverableSugarIndexCategory
-    
-    
-Class: semanticUI:Value
 
     
 Class: ComplianceWithCurrentEnvironmentalLegislation
 
     Annotations: 
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "Cumprimento da Legislação ambiental vigente"@pt,
         rdfs:label "Compliance with current environmental legislation"@en
     
@@ -2368,26 +2346,19 @@ Class: HarvestTypeUsed
     Annotations: 
         rdfs:label "Harvest type used (manual or mechanized)"@en,
         rdfs:label "Tipo de colheta utilizada (manual ou mecanizada)"@pt,
-        weight "2.0"^^xsd:double
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
         semanticUI:value exactly 1 HarvestTypeUsedCategory,
         HarvestAttribute
-    
-    
-Class: semanticUI:Boolean
 
-    Annotations: 
-        rdfs:label "Boleana"@pt,
-        rdfs:label "Boolean"@en
-    
     
 Class: UseOfBurningInAreasWithLowerSlopeOf12
 
     Annotations: 
         rdfs:label "Use of burning in areas with lower slope of 12%"@en,
         rdfs:label "Uso de queima em áreas com declive inferior a 12%"@pt,
-        weight "2.0"^^xsd:double
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
         semanticUI:value exactly 1 YesNo,
@@ -2401,8 +2372,7 @@ Class: TechnologicalEfficiencyFeature
         rdfs:label "Eficiência tecnológica"@pt
     
     SubClassOf: 
-        EfficiencyIndicator,
-        semanticUI:value some semanticUI:Weighted
+        EfficiencyIndicator
     
     
 Class: AgriculturalPlanningObservingManagementTechniquesPlantingAndHarvestingSeasons
@@ -2410,7 +2380,7 @@ Class: AgriculturalPlanningObservingManagementTechniquesPlantingAndHarvestingSea
     Annotations: 
         rdfs:label "Agricultural planning observing management techniques and planting and harvesting seasons"@en,
         rdfs:label "Planejamento agrícola observando as técnicas de manejo e épocas de plantio e colheita"@pt,
-        weight "2.0"^^xsd:double
+        relevance "2.0"^^xsd:double
     
     SubClassOf: 
         semanticUI:value exactly 1 YesNo,
@@ -2465,12 +2435,12 @@ Class: TotalRecoverableSugarIndexCategory
     
     SubClassOf: 
         semanticUI:Categorical
-    
+
     
 Class: ItOwnOrGrantsForWaterCatchmentAccordingToCurrentRegulations
 
     Annotations: 
-        weight "2.0"^^xsd:double,
+        relevance "2.0"^^xsd:double,
         rdfs:label "It own or grants for water catchment according to current regulations"@en,
         rdfs:label "Possui ou outorga para captação de água segundo a norma vigente"@pt
     
@@ -2512,9 +2482,9 @@ Class: TechnologicalEfficiencyInTheField
 Class: ReducingWaterConsumptionInSugarcaneProcessing
 
     Annotations: 
-        weight "3.0"^^xsd:double,
         rdfs:label "Redução do consumo de água no processamento da cana"@pt,
-        rdfs:label "Reducing water consumption in sugarcane processing"@en
+        rdfs:label "Reducing water consumption in sugarcane processing"@en,
+        relevance "3.0"^^xsd:double
     
     SubClassOf: 
         semanticUI:value exactly 1 YesNo,
@@ -2531,30 +2501,17 @@ Class: SugarcanePlantingCategory
         semanticUI:Categorical
     
     
-Individual: VinasseDisposalInTheEnvironment
+Individual: LowEfficiency
 
     Annotations: 
-        rdfs:label "Vinasse disposal in the environment"@en,
-        rdfs:label "Descarte da vinhaça no ambiente"@pt
+        rdfs:label "Low Efficiency"@en,
+        rdfs:label "Baixa eficiência"@pt
     
     Types: 
-        VinasseDestinationCategory
+        BoilerEfficiencyCategory
     
     Facts:  
-     semanticUI:hasDataValue  "-1.0"^^xsd:double
-    
-    
-Individual: AdaptedAndResistantVarieties
-
-    Annotations: 
-        rdfs:label "Adapted and resistant varieties"@en,
-        rdfs:label "Variedades adaptadas e resistentes"@pt
-    
-    Types: 
-        VarietiesCategory
-    
-    Facts:  
-     semanticUI:hasDataValue  "2.0"^^xsd:double
+     semanticUI:hasDataValue  "-3.0"^^xsd:double
     
     
 Individual: SugarcaneValueLowest
@@ -2648,8 +2605,8 @@ Individual: ReplacingFoodCrops
 Individual: False
 
     Annotations: 
-        rdfs:label "Falso"@pt,
-        rdfs:label "False"@en
+        rdfs:label "False"@en,
+        rdfs:label "Falso"@pt
     
     Types: 
         TrueFalse
@@ -2791,8 +2748,8 @@ Individual: Uses
 Individual: Appropriate-WithReducedVisibleAndInvisibleLosses
 
     Annotations: 
-        rdfs:label "Adequada - com redução de perdas visíveis e invisíveis"@pt,
-        rdfs:label "Appropriate - with reduced visible and invisible losses"@en
+        rdfs:label "Appropriate - with reduced visible and invisible losses"@en,
+        rdfs:label "Adequada - com redução de perdas visíveis e invisíveis"@pt
     
     Types: 
         SugarcaneMechanizationCategory
@@ -2853,8 +2810,8 @@ Individual: BagasseAndStrawDestinationNo
 Individual: Low
 
     Annotations: 
-        rdfs:label "Low"@en,
-        rdfs:label "Baixa"@pt
+        rdfs:label "Baixa"@pt,
+        rdfs:label "Low"@en
     
     Types: 
         IntensityCategory
@@ -2889,19 +2846,6 @@ Individual: FiberValueEqualOrHigher
      semanticUI:hasDataValue  "1.0"^^xsd:double
     
     
-Individual: UseOrSaleOfBagasse
-
-    Annotations: 
-        rdfs:label "Emprego ou venda do bagaço para produção de energia elétrica"@pt,
-        rdfs:label "Use or sale of bagasse to produce electricity"@en
-    
-    Types: 
-        BagasseDestinationCategory
-    
-    Facts:  
-     semanticUI:hasDataValue  "1.0"^^xsd:double
-    
-    
 Individual: ItProducesReuseAndReturn
 
     Annotations: 
@@ -2915,14 +2859,14 @@ Individual: ItProducesReuseAndReturn
      semanticUI:hasDataValue  "2.0"^^xsd:double
     
     
-Individual: DoesNotMeet
+Individual: VinasseDisposalInTheEnvironment
 
     Annotations: 
-        rdfs:label "Does not meet"@en,
-        rdfs:label "Não atende"@pt
+        rdfs:label "Vinasse disposal in the environment"@en,
+        rdfs:label "Descarte da vinhaça no ambiente"@pt
     
     Types: 
-        AbsoluteEmissionsOfGreenhouseGasesCategory
+        VinasseDestinationCategory
     
     Facts:  
      semanticUI:hasDataValue  "-1.0"^^xsd:double
@@ -3039,19 +2983,6 @@ Individual: IndirectOptimization
      semanticUI:hasDataValue  "1.0"^^xsd:double
     
     
-Individual: IndirectAlignment
-
-    Annotations: 
-        rdfs:label "Indirect"@en,
-        rdfs:label "Indireta"@pt
-    
-    Types: 
-        ProductionEnvironmentAlignmentCategory
-    
-    Facts:  
-     semanticUI:hasDataValue  "1.0"^^xsd:double
-    
-    
 Individual: PreparationPlantationMechanizedMaintenance
 
     Annotations: 
@@ -3104,17 +3035,27 @@ Individual: NullAlignment
      semanticUI:hasDataValue  "0.0"^^xsd:double
     
     
-Individual: LowEfficiency
+Individual: IndirectAlignment
 
     Annotations: 
-        rdfs:label "Baixa eficiência"@pt,
-        rdfs:label "Low Efficiency"@en
+        rdfs:label "Indirect"@en,
+        rdfs:label "Indireta"@pt
     
     Types: 
-        BoilerEfficiencyCategory
+        ProductionEnvironmentAlignmentCategory
     
     Facts:  
-     semanticUI:hasDataValue  "-3.0"^^xsd:double
+     semanticUI:hasDataValue  "1.0"^^xsd:double
+    
+    
+Individual: adminRole
+
+    Annotations: 
+        rdfs:label "Admin role"@en,
+        rdfs:label "Perfil de administrador"@pt
+    
+    Types: 
+        semanticUI:Role
     
     
 Individual: SelfConsumption
@@ -3203,19 +3144,6 @@ Individual: <http://semantic.icmc.usp.br/sustenagro#140to145kg>
     
     Types: 
         TotalRecoverableSugarIndexCategory
-    
-    Facts:  
-     semanticUI:hasDataValue  "1.0"^^xsd:double
-    
-    
-Individual: YesWithoutConsideringArea
-
-    Annotations: 
-        rdfs:label "Sim sem considerar o tamanho da área"@pt,
-        rdfs:label "Yes without considering the size of the area"@en
-    
-    Types: 
-        PlanningOfHarvestFrontCategory
     
     Facts:  
      semanticUI:hasDataValue  "1.0"^^xsd:double
@@ -3341,8 +3269,8 @@ Individual: inappropriateDisposal
 Individual: Gt15.83
 
     Annotations: 
-        rdfs:label "> 15,83"@pt,
-        rdfs:label "> 15.83"@en
+        rdfs:label "> 15.83"@en,
+        rdfs:label "> 15,83"@pt
     
     Types: 
         AccidentsIncidenceCategory
@@ -3647,6 +3575,16 @@ Individual: InReplacementOfFoodCrops
      semanticUI:hasDataValue  "-1.0"^^xsd:double
     
     
+Individual: OneAndHalfYear
+
+    Annotations: 
+        rdfs:label "Cana de um ano e meio"@pt,
+        rdfs:label "One and half year"@en
+    
+    Types: 
+        CanavialLongevityCategory
+    
+    
 Individual: Lt15.83
 
     Annotations: 
@@ -3684,6 +3622,18 @@ Individual: DoesNotUseGasReductionTechnique
     
     Facts:  
      semanticUI:hasDataValue  "-1.0"^^xsd:double
+    
+    
+Individual: admin
+
+    Types: 
+        semanticUI:User
+    
+    Facts:  
+     semanticUI:hasRole  adminRole,
+     semanticUI:hasRole  userRole,
+     semanticUI:hasPassword  "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"^^xsd:string,
+     semanticUI:hasUserName  "admin"^^xsd:string
     
     
 Individual: NotUses
@@ -3803,17 +3753,14 @@ Individual: Above18
      semanticUI:hasDataValue  "-1.0"^^xsd:double
     
     
-Individual: EmploymentForFertigationBiogas
+Individual: SugarcaneProductionSystem
 
     Annotations: 
-        rdfs:label "Emprego para fertirrigação / Biogás"@pt,
-        rdfs:label "Employment for fertigation / Biogas"@en
+        rdfs:label "Sistema de produção de cana-de-açucar"@pt,
+        rdfs:label "Sugarcane production system"@en
     
     Types: 
-        VinasseUseCategory
-    
-    Facts:  
-     semanticUI:hasDataValue  "1.0"^^xsd:double
+        AgriculturalProductionSystemCategory
     
     
 Individual: TraditionalConcentrationEmployingBiotechnology
@@ -4119,17 +4066,17 @@ Individual: InadequateDisposal
      semanticUI:hasDataValue  "-1.0"^^xsd:double
     
     
-Individual: Gt85ton
+Individual: UseOrSaleOfBagasse
 
     Annotations: 
-        rdfs:label "> 85 ton/ha"@en,
-        rdfs:label "> 85 ton/ha"@pt
+        rdfs:label "Emprego ou venda do bagaço para produção de energia elétrica"@pt,
+        rdfs:label "Use or sale of bagasse to produce electricity"@en
     
     Types: 
-        SugarcaneProductivityPerHectareCategory
+        BagasseDestinationCategory
     
     Facts:  
-     semanticUI:hasDataValue  "2.0"^^xsd:double
+     semanticUI:hasDataValue  "1.0"^^xsd:double
     
     
 Individual: <http://semantic.icmc.usp.br/sustenagro#130to139kg>
@@ -4249,6 +4196,29 @@ Individual: CleaningWithWaterAndWaterReuse
      semanticUI:hasDataValue  "1.0"^^xsd:double
     
     
+Individual: Gt85ton
+
+    Annotations: 
+        rdfs:label "> 85 ton/ha"@en,
+        rdfs:label "> 85 ton/ha"@pt
+    
+    Types: 
+        SugarcaneProductivityPerHectareCategory
+    
+    Facts:  
+     semanticUI:hasDataValue  "2.0"^^xsd:double
+    
+    
+Individual: userRole
+
+    Annotations: 
+        rdfs:label "User role"@en,
+        rdfs:label "Perfil de usuário"@pt
+    
+    Types: 
+        semanticUI:Role
+    
+    
 Individual: SemimechanizedPlantation
 
     Annotations: 
@@ -4262,14 +4232,17 @@ Individual: SemimechanizedPlantation
      semanticUI:hasDataValue  "0.0"^^xsd:double
     
     
-Individual: OneAndHalfYear
+Individual: AdaptedAndResistantVarieties
 
     Annotations: 
-        rdfs:label "Cana de um ano e meio"@pt,
-        rdfs:label "One and half year"@en
+        rdfs:label "Adapted and resistant varieties"@en,
+        rdfs:label "Variedades adaptadas e resistentes"@pt
     
     Types: 
-        CanavialLongevityCategory
+        VarietiesCategory
+    
+    Facts:  
+     semanticUI:hasDataValue  "2.0"^^xsd:double
     
     
 Individual: AccessToInternalMarketYes
@@ -4298,14 +4271,15 @@ Individual: ManualHarverst
      semanticUI:hasDataValue  "-2.0"^^xsd:double
     
     
-Individual: OneYear
+Individual: user
 
-    Annotations: 
-        rdfs:label "One year"@en,
-        rdfs:label "Um ano"@pt
-    
     Types: 
-        CanavialLongevityCategory
+        semanticUI:User
+    
+    Facts:  
+     semanticUI:hasRole  userRole,
+     semanticUI:hasPassword  "04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb"^^xsd:string,
+     semanticUI:hasUserName  "user"^^xsd:string
     
     
 Individual: UseOfSystemsReducingEmissions
@@ -4373,14 +4347,27 @@ Individual: Between10-18
 Individual: PreBuddedSeedling
 
     Annotations: 
-        rdfs:label "Pre-budded seedling"@en,
-        rdfs:label "Muda Pré-brotada (MPB)"@pt
+        rdfs:label "Muda Pré-brotada (MPB)"@pt,
+        rdfs:label "Pre-budded seedling"@en
     
     Types: 
         SugarcanePlantingCategory
     
     Facts:  
      semanticUI:hasDataValue  "2.0"^^xsd:double
+    
+    
+Individual: EmploymentForFertigationBiogas
+
+    Annotations: 
+        rdfs:label "Emprego para fertirrigação / Biogás"@pt,
+        rdfs:label "Employment for fertigation / Biogas"@en
+    
+    Types: 
+        VinasseUseCategory
+    
+    Facts:  
+     semanticUI:hasDataValue  "1.0"^^xsd:double
     
     
 Individual: Commercial
@@ -4448,14 +4435,17 @@ Individual: ManualCuttingType
      semanticUI:hasDataValue  "1.0"^^xsd:double
     
     
-Individual: SugarcaneProductionSystem
+Individual: YesWithoutConsideringArea
 
     Annotations: 
-        rdfs:label "Sistema de produção de cana-de-açucar"@pt,
-        rdfs:label "Sugarcane production system"@en
+        rdfs:label "Sim sem considerar o tamanho da área"@pt,
+        rdfs:label "Yes without considering the size of the area"@en
     
     Types: 
-        AgriculturalProductionSystemCategory
+        PlanningOfHarvestFrontCategory
+    
+    Facts:  
+     semanticUI:hasDataValue  "1.0"^^xsd:double
     
     
 Individual: <http://semantic.icmc.usp.br/sustenagro#85tnha>
@@ -4469,6 +4459,19 @@ Individual: <http://semantic.icmc.usp.br/sustenagro#85tnha>
     
     Facts:  
      semanticUI:hasDataValue  "1.0"^^xsd:double
+    
+    
+Individual: DoesNotMeet
+
+    Annotations: 
+        rdfs:label "Does not meet"@en,
+        rdfs:label "Não atende"@pt
+    
+    Types: 
+        AbsoluteEmissionsOfGreenhouseGasesCategory
+    
+    Facts:  
+     semanticUI:hasDataValue  "-1.0"^^xsd:double
     
     
 Individual: AdhesionAndUseOfInnovations
@@ -4549,6 +4552,19 @@ Individual: ProducersOrPlantsOrganizationYes
      semanticUI:hasDataValue  "1.0"^^xsd:double
     
     
+Individual: PlanningOfHarvestFromNo
+
+    Annotations: 
+        rdfs:label "Não"@pt,
+        rdfs:label "No"@en
+    
+    Types: 
+        PlanningOfHarvestFrontCategory
+    
+    Facts:  
+     semanticUI:hasDataValue  "0.0"^^xsd:double
+    
+    
 Individual: SemimechanizedHarvest
 
     Annotations: 
@@ -4614,17 +4630,17 @@ Individual: ForTheSector
      semanticUI:hasDataValue  "0.0"^^xsd:double
     
     
-Individual: PlanningOfHarvestFromNo
+Individual: DoNotUse
 
     Annotations: 
-        rdfs:label "Não"@pt,
-        rdfs:label "No"@en
+        rdfs:label "Não usa"@pt,
+        rdfs:label "Do not use"@en
     
     Types: 
-        PlanningOfHarvestFrontCategory
+        UseOfVinasseToFertigationCategory
     
     Facts:  
-     semanticUI:hasDataValue  "0.0"^^xsd:double
+     semanticUI:hasDataValue  "-1.0"^^xsd:double
     
     
 Individual: Inappropriate-IncreaseOfProductionCosts
@@ -4666,6 +4682,16 @@ Individual: PreparationPlantationManualMaintenance
      semanticUI:hasDataValue  "0.0"^^xsd:double
     
     
+Individual: OneYear
+
+    Annotations: 
+        rdfs:label "One year"@en,
+        rdfs:label "Um ano"@pt
+    
+    Types: 
+        CanavialLongevityCategory
+    
+    
 Individual: ConditionedByDemand
 
     Annotations: 
@@ -4703,19 +4729,6 @@ Individual: Gt1000
     
     Facts:  
      semanticUI:hasDataValue  "2.0"^^xsd:double
-    
-    
-Individual: DoNotUse
-
-    Annotations: 
-        rdfs:label "Não usa"@pt,
-        rdfs:label "Do not use"@en
-    
-    Types: 
-        UseOfVinasseToFertigationCategory
-    
-    Facts:  
-     semanticUI:hasDataValue  "-1.0"^^xsd:double
     
     
 Individual: LowerThan79

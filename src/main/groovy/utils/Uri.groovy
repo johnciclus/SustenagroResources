@@ -4,7 +4,6 @@ package utils
  * Created by john on 20/07/15.
  */
 class Uri {
-
     def static simpleDomain(ArrayList list, String dom, String prefix=":"){
         list.each{ el ->
             el.each{
@@ -52,5 +51,4 @@ class Uri {
             }
         }
     }
-
 }
