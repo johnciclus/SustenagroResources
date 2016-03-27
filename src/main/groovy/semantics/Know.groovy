@@ -25,6 +25,8 @@ class Know {
         addNamespace('owl','http://www.w3.org/2002/07/owl#')
         addNamespace('xsd','http://www.w3.org/2001/XMLSchema#')
         addNamespace('foaf','http://xmlns.com/foaf/0.1/')
+        //addNamespace('dcterm', 'http://purl.org/dc/terms/')
+
         addNamespace('dc','http://purl.org/dc/terms/')
         addNamespace('dbp','http://dbpedia.org/ontology/')
         addNamespace('dbpr','http://dbpedia.org/resource/')
@@ -94,7 +96,7 @@ class Know {
                 return null
             }
             println 'prexixes analyse: '+id
-            if (!id.contains(':')) return searchByLabel(id) //return searchPrefix(id).uri+id
+            if (!id.contains(':')) return searchByLabel(id)
         }
         else{
             return null

@@ -6,7 +6,9 @@ import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat
 import org.semanticweb.owlapi.formats.ManchesterSyntaxDocumentFormat
 import grails.converters.*
 import utils.Uri
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured('ROLE_ADMIN')
 class AdminController {
 
     def ontology
@@ -91,7 +93,7 @@ class AdminController {
             }
 
             sparql += " rdfs:subClassOf _:b. "+
-                      " _:b owl:onClass <"+ k.toURI(":" + params.valuetype) +">"
+                    " _:b owl:onClass <"+ k.toURI(":" + params.valuetype) +">"
 
             println sparql
 

@@ -8,14 +8,31 @@ class Node {
     Know k
     Map patterns = [:]
 
-    public Node(Know k, String uri){
+    public Node(Know k, String uri = null){
         this.k = k
         this.URI = uri
 
-        this.patterns.put('type', "<$URI> rdf:type ?type. ")
-        this.patterns.put('label', "<$URI> rdfs:label ?label. ")
-        this.patterns.put('superClass', "<$URI> rdfs:subClassOf ?superClass. ")
-        this.patterns.put('range', "<$URI> rdfs:range ?range. ")
+        //rdf:Property
+        this.patterns['type']       = "<$URI> rdf:type ?type. "
+        this.patterns['superClass'] = "<$URI> rdfs:subClassOf ?superClass. "
+
+        //owl:ObjectProperty
+        this.patterns['appliedTo']  = "<$URI> :appliedTo ?appliedTo. "
+        this.patterns['range']      = "<$URI> rdfs:range ?range. "
+
+        //owl:DatatypeProperty
+        this.patterns['mapa']       = "<$URI> <http://dbpedia.org/property/pt/mapa> ?mapa. "
+
+        //owl:TransitiveProperty
+
+        // owl:AnnotationProperty
+        this.patterns['label']      = "<$URI> rdfs:label ?label. "
+        this.patterns['comment']    = "<$URI> rdfs:comment ?comment. "
+        this.patterns['weight']     = "<$URI> :weight ?weight. "
+        this.patterns['description']= "<$URI> dcterm:description ?description. "
+        this.patterns['title']      = "<$URI> dcterm:title ?title. "
+        this.patterns['creator']    = "<$URI> dc:creator ?creator. "
+
     }
 
     def getAttr(String args='', Map params = [:]) {
@@ -75,15 +92,15 @@ class Node {
     }
 
     def getRange(Map params = [:]) {
-        //def res = k.select("distinct ?range").query("<$URI> rdfs:range ?range.")
+        //def result = k.select("distinct ?range").query("<$URI> rdfs:range ?range.")
         getAttr('?range', params)
     }
 
     def getDataType(){
-        def res = k.select('?dataType').query("<$URI> rdfs:subClassOf ?dataType. ?dataType rdfs:subClassOf :DataType. FILTER (?dataType != :DataType && ?dataType != <$URI>)")
+        def result = k.select('?dataType').query("<$URI> rdfs:subClassOf ?dataType. ?dataType rdfs:subClassOf :DataType. FILTER (?dataType != :DataType && ?dataType != <$URI>)")
         //println k.getPrefixesMap()
 
-        res.metaClass.shortURI = {
+        result.metaClass.shortURI = {
             def uris = delegate.collect {
                 if(it.dataType instanceof String)
                     it.dataType = it.dataType.replace(k.getBasePrefix(), '')
@@ -93,16 +110,16 @@ class Node {
             else
                 return uris
         }
-        return res
+        return result
     }
 
     def getMap(String args){
         def sparql = "<$URI> :appliedTo ?evalobj. " +
                      "?evalobj :hasMicroRegion ?microregion. " +
                      "?microregion <http://dbpedia.org/property/pt/mapa> ?map."
-        def res = k.select('distinct '+args).query(sparql)
-        res.metaClass.map = { (delegate.size()==1)? delegate[0]['map'] :delegate.collect { it['map'] } }
-        return res
+        def result = k.select('distinct '+args).query(sparql)
+        result.metaClass.map = { (delegate.size()==1)? delegate[0]['map'] :delegate.collect { it['map'] } }
+        return result
     }
 
     def getLabelDescription(String property) {
@@ -117,7 +134,7 @@ class Node {
         k.query("?id :appliedTo <$URI>. ?id rdfs:label ?label")
     }
 
-    def getAssessments(){
+    def getAnalyses(){
         k.query("?id a ui:Analysis. ?id :appliedTo <$URI>")
     }
 
@@ -163,7 +180,7 @@ class Node {
 
         def prefixes = k.getPrefixesMap()
 
-        /*res.metaClass.shortURI = {
+        /*result.metaClass.shortURI = {
             def uris = delegate.collect {
                 if(it.subClass instanceof String){
                     prefixes.each{ key, value ->
@@ -178,65 +195,66 @@ class Node {
                 return uris
         }
 
-        if(res.size()==1)
-            return res[0].subClass
+        if(result.size()==1)
+            return result[0].subClass
         else
-            return res*/
+            return result*/
 
         result
     }
 
     def getGrandchildren(String args){
-        def argsList = args.split(' ')
+        def argsList = args.tokenize(' ?')
         def query = ''
-        def res
+        def result
 
-        if (argsList.contains('?subClass')) {
+        if (argsList.contains('subClass')) {
             query += "?subClass rdfs:subClassOf <$URI>"
 
-            if (argsList.contains('?subClassLabel'))
+            if (argsList.contains('subClassLabel'))
                 query += "; rdfs:label ?subClassLabel";
 
             query += "."
         }
-        if (argsList.contains('?id')){
+        if (argsList.contains('id')){
             query +="?id rdfs:subClassOf ?subClass"
 
-            if (argsList.contains('?label'))
+            if (argsList.contains('label'))
                 query +="; rdfs:label ?label";
 
-            if (argsList.contains('?weight'))
-                query +="; :weight ?weight";
+            if (argsList.contains('relevance'))
+                query +=". optional {?id :relevance ?relevance}";
 
             query += "."
         }
-        if (argsList.contains('?id') && argsList.contains('?subClass') && argsList.contains('?category') && argsList.contains('?valueType')) {
+        if (argsList.contains('id') && argsList.contains('subClass') && argsList.contains('category') && argsList.contains('valueType')) {
             query += ''' ?id rdfs:subClassOf ?y.
                     ?y owl:onClass ?category.
                     ?category rdfs:subClassOf ?valueType. ''' +
                     "FILTER(?subClass != <$URI> && ?subClass != ?id && ?valueType = ui:Categorical)"
         }
-        res = k.select('distinct '+args).query(query, "ORDER BY ?label")
 
-        res.metaClass.category = {
+        result = k.select('distinct '+args).query(query, "ORDER BY ?label")
+
+        result.metaClass.category = {
             delegate.collect {it['category']}
         }
-        res.metaClass.categoryList = {
+        result.metaClass.categoryList = {
             propertyToList(delegate, 'category')
         }
-        res.metaClass.subClass = {
+        result.metaClass.subClass = {
             delegate.collect {it['subClass']}
         }
-        res.metaClass.subClassMap = { attrs ->
+        result.metaClass.subClassMap = { attrs ->
             propertyToMap(delegate, 'subClass', attrs)
         }
-        res
+        result
     }
 
     def getChildren(String args){
         def argsList = args.split(' ')
         def query = ''
-        def res
+        def result
 
         //'?id ?label ?category ?valueType'
 
@@ -258,23 +276,23 @@ class Node {
                     "FILTER( ?valueType = ui:Categorical || ?valueType = ui:Real)"
         }
 
-        res = k.select('distinct '+args).query(query, "ORDER BY ?label")
+        result = k.select('distinct '+args).query(query, "ORDER BY ?label")
 
-        res.each{it.subClass = URI; it.subClassLabel = getLabel()}
+        result.each{it.subClass = URI; it.subClassLabel = getLabel()}
 
-        res.metaClass.category = {
+        result.metaClass.category = {
             delegate.collect {it['category']}
         }
-        res.metaClass.categoryList = {
+        result.metaClass.categoryList = {
             propertyToList(delegate, 'category')
         }
-        res.metaClass.subClass = {
+        result.metaClass.subClass = {
             delegate.collect {it['subClass']}
         }
-        res.metaClass.subClassMap = { attrs ->
+        result.metaClass.subClassMap = { attrs ->
             propertyToMap(delegate, 'subClass', attrs)
         }
-        res
+        result
     }
 
     def getEvaluationObject(String args){
@@ -300,28 +318,28 @@ class Node {
         if (argsList.contains('?productionUnit'))
             query += "FILTER( ?productionUnitType != :ProductionUnit )"
 
-        def res = k.select('distinct '+args).query(query)
+        def result = k.select('distinct '+args).query(query)
 
         /*def id
         argsList.each {
             id = it.substring(1)
             println id
-            res.metaClass[id] = {
+            result.metaClass[id] = {
                 println 'Array: ' + id
                 return (delegate.size() == 1) ? delegate[0][id] : delegate.collect { it[id] }
             }
         }*/
 
         if (argsList.contains('?label'))
-            res.metaClass['label'] = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
+            result.metaClass['label'] = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
         if (argsList.contains('?productionUnit'))
-            res.metaClass['productionUnit'] = { (delegate.size()==1)? delegate[0]['productionUnit'] :delegate.collect { it['productionUnit'] } }
+            result.metaClass['productionUnit'] = { (delegate.size()==1)? delegate[0]['productionUnit'] :delegate.collect { it['productionUnit'] } }
         if (argsList.contains('?microregion'))
-            res.metaClass['microregion'] = { (delegate.size()==1)? delegate[0]['microregion'] :delegate.collect { it['microregion'] } }
+            result.metaClass['microregion'] = { (delegate.size()==1)? delegate[0]['microregion'] :delegate.collect { it['microregion'] } }
         if (argsList.contains('?efficiency'))
-            res.metaClass['efficiency'] = { (delegate.size()==1)? delegate[0]['efficiency'] :delegate.collect { it['efficiency'] } }
+            result.metaClass['efficiency'] = { (delegate.size()==1)? delegate[0]['efficiency'] :delegate.collect { it['efficiency'] } }
 
-        return res
+        return result
     }
 
     def getGranchildrenIndividuals(String analysis, String args){
@@ -360,19 +378,19 @@ class Node {
                         "FILTER( ?subClass != ?id && ?subClass != <$URI> )"
 
         //println sparql
-        def res = k.select('distinct '+args).query(sparql, "ORDER BY ?label")
+        def result = k.select('distinct '+args).query(sparql, "ORDER BY ?label")
 
-        res.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
-        res.metaClass.label = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
-        res.metaClass.value = { (delegate.size()==1)? delegate[0]['value'] :delegate.collect { it['value'] } }
-        res.metaClass.valueType = { (delegate.size()==1)? delegate[0]['valueType'] :delegate.collect { it['valueType'] } }
-        res.metaClass.valueTypeLabel = { (delegate.size()==1)? delegate[0]['valueTypeLabel'] :delegate.collect { it['valueTypeLabel'] } }
-        return res
+        result.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
+        result.metaClass.label = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
+        result.metaClass.value = { (delegate.size()==1)? delegate[0]['value'] :delegate.collect { it['value'] } }
+        result.metaClass.valueType = { (delegate.size()==1)? delegate[0]['valueType'] :delegate.collect { it['valueType'] } }
+        result.metaClass.valueTypeLabel = { (delegate.size()==1)? delegate[0]['valueTypeLabel'] :delegate.collect { it['valueTypeLabel'] } }
+        return result
     }
 
     def getIndividualsValueWeight(String analysis, String args){
         def argsList = args.split(' ')
-        def res = k.select('distinct '+args)
+        def result = k.select('distinct '+args)
                 .query("<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
                 "?subClass rdfs:subClassOf <$URI>."+
                 "?id rdfs:subClassOf ?subClass." +
@@ -384,22 +402,22 @@ class Node {
                 "?valueType rdfs:label ?valueTypeLabel."+
                 "FILTER( ?subClass != ?id && ?subClass != <$URI> )", "ORDER BY ?label")
 
-        res.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
-        res.metaClass.label = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
-        res.metaClass.value = { (delegate.size()==1)? delegate[0]['value'] :delegate.collect { it['value'] } }
-        res.metaClass.valueType = { (delegate.size()==1)? delegate[0]['valueType'] :delegate.collect { it['valueType'] } }
-        res.metaClass.valueTypeLabel = { (delegate.size()==1)? delegate[0]['valueTypeLabel'] :delegate.collect { it['valueTypeLabel'] } }
-        res.metaClass.weight = { (delegate.size()==1)? delegate[0]['weight'] :delegate.collect { it['weight'] } }
-        res.metaClass.equation = { eq ->
+        result.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
+        result.metaClass.label = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
+        result.metaClass.value = { (delegate.size()==1)? delegate[0]['value'] :delegate.collect { it['value'] } }
+        result.metaClass.valueType = { (delegate.size()==1)? delegate[0]['valueType'] :delegate.collect { it['valueType'] } }
+        result.metaClass.valueTypeLabel = { (delegate.size()==1)? delegate[0]['valueTypeLabel'] :delegate.collect { it['valueTypeLabel'] } }
+        result.metaClass.weight = { (delegate.size()==1)? delegate[0]['weight'] :delegate.collect { it['weight'] } }
+        result.metaClass.equation = { eq ->
             eq.resolveStrategy = Closure.DELEGATE_FIRST
             delegate.collect({ eq.delegate = it; eq()})
         }
-        return res
+        return result
     }
 
     def getIndividualsFeatureValueWeight(String analysis, String args) {
         def argsList = args.split(' ')
-        def res = k.select('distinct '+args)
+        def result = k.select('distinct '+args)
                    .query("<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
                         "?id rdfs:subClassOf <$URI>." +
                         "?id rdfs:label ?label." +
@@ -416,23 +434,23 @@ class Node {
         argsList.each{
             id = it.substring(1)
             println id
-            res.metaClass[id] = {
+            result.metaClass[id] = {
                 println 'Array: '+id
                 return (delegate.size()==1)? delegate[0][id] : delegate.collect { it[id] }
             }
         }*/
-        res.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
-        res.metaClass.label = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
-        res.metaClass.value = { (delegate.size()==1)? delegate[0]['value'] :delegate.collect { it['value'] } }
-        res.metaClass.valueType = { (delegate.size()==1)? delegate[0]['valueType'] :delegate.collect { it['valueType'] } }
-        res.metaClass.valueTypeLabel = { (delegate.size()==1)? delegate[0]['valueTypeLabel'] :delegate.collect { it['valueTypeLabel'] } }
-        res.metaClass.weight = { (delegate.size()==1)? delegate[0]['weight'] :delegate.collect { it['weight'] } }
-        res.metaClass.weightType = { (delegate.size()==1)? delegate[0]['weightType'] :delegate.collect { it['weightType'] } }
-        res.metaClass.equation = { eq ->
+        result.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
+        result.metaClass.label = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
+        result.metaClass.value = { (delegate.size()==1)? delegate[0]['value'] :delegate.collect { it['value'] } }
+        result.metaClass.valueType = { (delegate.size()==1)? delegate[0]['valueType'] :delegate.collect { it['valueType'] } }
+        result.metaClass.valueTypeLabel = { (delegate.size()==1)? delegate[0]['valueTypeLabel'] :delegate.collect { it['valueTypeLabel'] } }
+        result.metaClass.weight = { (delegate.size()==1)? delegate[0]['weight'] :delegate.collect { it['weight'] } }
+        result.metaClass.weightType = { (delegate.size()==1)? delegate[0]['weightType'] :delegate.collect { it['weightType'] } }
+        result.metaClass.equation = { eq ->
             eq.resolveStrategy = Closure.DELEGATE_FIRST
             delegate.collect({ eq.delegate = it; eq()})
         }
-        return res
+        return result
     }
 
     def getIndicator(){
@@ -483,10 +501,10 @@ class Node {
     }
 
     def getFeaturesURI(){
-        def res = k.select('?featuresURI').query("<$URI> :features ?featuresURI.")
+        def result = k.select('?featuresURI').query("<$URI> :features ?featuresURI.")
         def prefixes = k.getPrefixesMap()
 
-        res.metaClass.shortURI = {
+        result.metaClass.shortURI = {
             def uris = delegate.collect {
                 if(it.featuresURI instanceof String){
                     prefixes.each{ key, value ->
@@ -500,10 +518,49 @@ class Node {
             else
                 return uris
         }
-        if(res.size()==1)
-            return res[0].featuresURI
+        if(result.size()==1)
+            return result[0].featuresURI
         else
-            return res
+            return result
+    }
+
+    def getUser(){
+        def select = ''
+        def query = ''
+        def result
+
+        query =    "?user a <http://semantic.icmc.usp.br/sustenagro#User>. "+
+                    "?user <http://semantic.icmc.usp.br/sustenagro#hasUserName> ?username. "+
+                    "?user <http://semantic.icmc.usp.br/sustenagro#hasPassword> ?password. "+
+                    "FILTER (?username = 'root' && ?password = SHA256('root'))"
+
+        result = k.query(query)
+
+        (result.size()==1)? result[0] : result
+    }
+
+    def getUsers(){
+        def select = ''
+        def query = ''
+        def result
+
+        query = "?user a ui:User. "+
+                "?user ui:hasUserName ?username. "+
+                "?user ui:hasPassword ?password. "
+
+        result = k.query(query)
+        //(result.size()==1)? result[0] : result
+    }
+
+    def getRoles(){
+        def select = ''
+        def query = ''
+        def result
+
+        query = "<$URI> ui:hasRole ?role. "
+
+        result = k.query(query)
+        //(result.size()==1)? result[0] : result
     }
 
     def selectSubject(String word){

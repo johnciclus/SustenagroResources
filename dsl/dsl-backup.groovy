@@ -4,19 +4,6 @@
 // facilita na hora de publicarmos os papers. Porém, o aplicativo pode ser
 // em português ou inglês. Isso vai depender da ontologia, nela teremos as
 // definições nas duas linguas.
-// nome vai aparecer onde um nome for necessário
-title 'Avaliação da sustentabilidade na agricultura'
-
-// Aba de descrição do conteúdo: um texto em markdown que você vai escrever
-// (esse texto também pode estar num arquivo)
-description '''O processo de avaliação da sustentabilidade é composto pelas seguintes etapas:
-
-1. Localização da lavoura
-2. Caracterização da cultura, tecnologia e tipo de sistema produtivo
-3. Definição dos indicadores
-4. Recomendações de sustentabilidade
-
-'''
 
 // Informações que serão lidas antes dos indicadores. No exemplo serão
 // mostradas todas as culturas, tecnologias e meios de produção que
@@ -99,18 +86,18 @@ evaluationObject ':ProductionUnit', {
 // mostrar algum indicador. No exemplo abaixo, o indicador "co2 emission"
 // (fictício) não é mostrado.
 
-indicators ':EnvironmentalIndicator'
+feature ':EnvironmentalIndicator'
 //{
 //    exclude 'co2 emission'
 //}
 
-indicators ':EconomicIndicator'
+feature ':EconomicIndicator'
 
-indicators ':SocialIndicator'
+feature ':SocialIndicator'
 
-indicators ':ProductionEfficiencyFeature'
+feature ':ProductionEfficiencyFeature'
 
-indicators ':TechnologicalEfficiencyFeature', {
+feature ':TechnologicalEfficiencyFeature', {
     conditional ":ProductionUnit", 'http://dbpedia.org/ontology/Provider', {
         include ':TechnologicalEfficiencyInTheField'
     }
@@ -119,39 +106,24 @@ indicators ':TechnologicalEfficiencyFeature', {
     }
 }
 
-data 'analysis'
+data 'data'
 
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
-prog {
-    environment =   weightedSum(analysis.':EnvironmentalIndicator')
-    economic    =   weightedSum(analysis.':EconomicIndicator')
-    social      =   weightedSum(analysis.':SocialIndicator')
-
-    //environment =   sum(analysis.':EnvironmentalIndicator'.equation({value*weight}))
-    //social      =   sum(analysis.':SocialIndicator'.equation({value*weight}))
-    //economic    =   sum(analysis.':EconomicIndicator'.equation({value*weight}))
+formula {
+    environment =   weightedSum(data.':EnvironmentalIndicator')             //.equation({value*weight}))
+    economic    =   weightedSum(data.':EconomicIndicator')
+    social      =   weightedSum(data.':SocialIndicator')
 
     sustainability = (environment + social + economic)/3
 
-    cost_production_efficiency = sum(analysis.':ProductionEfficiencyFeature')
-    //cost_production_efficiency = sum(analysis.':ProductionEfficiencyFeature'.value())
+    cost_production_efficiency = sum(data.':ProductionEfficiencyFeature')
 
-    TechnologicalEfficiencyInTheField = weightedSum(analysis.':TechnologicalEfficiencyInTheField')
-    TechnologicalEfficiencyInTheIndustrial = weightedSum(analysis.':TechnologicalEfficiencyInTheIndustrial')
-
-    //TechnologicalEfficiencyInTheField = sum(analysis.':TechnologicalEfficiencyInTheField'.equation({value*weight}))
-    //TechnologicalEfficiencyInTheIndustrial = sum(analysis.':TechnologicalEfficiencyInTheIndustrial'.equation({value*weight}))
+    technologicalEfficiencyInTheField = weightedSum(data.':TechnologicalEfficiencyInTheField')  //.equation({value*weight}))
+    technologicalEfficiencyInTheIndustrial = weightedSum(data.':TechnologicalEfficiencyInTheIndustrial')
 
     efficiency = cost_production_efficiency *
-            (TechnologicalEfficiencyInTheField+TechnologicalEfficiencyInTheIndustrial)
-
-    //environment =   (analysis.'BiologicalPestControl' ? 1:-1) +
-    //        (analysis.'PlanningSystematicPlanting' ? 1:-1) +
-    //        (analysis.'StandardAerialSpraying' ? 1:-1) +
-    //        analysis.'VinasseAndEthanolRelation'
-
-
+            (technologicalEfficiencyInTheField+technologicalEfficiencyInTheIndustrial)
 
     //economic =      2.0 * analysis.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
     //        analysis.'Eficiência energética das caldeiras para cogeração de energia'
@@ -159,134 +131,27 @@ prog {
     //social =        3 * analysis.EnergyEfficiencyOfBoilersForCogeneration + 7 *
     //        analysis.OperationalEfficiencyPlant
 
-    // THE REPORT
-
-    // Just showing text
-    //show '***That is the report:***'
-
-    // Cada recomendação terá uma fórmula lógica que permite especificar
-    // quando ela deve ser mostrada. Essas fórmulas podem ser tão complexas
-    // quanto necessário. Caso o resultado da fórmula seja verdadeiro, o texto
-    // (em markdown) vai ser mostrado.
-    // Aqui temos 4 possibilidades de implementação:
-
-    // if (environment > 3.5 || social ==7)
-    //    recommendation '**markdown** *First* option'
-
-    // recommendation environment > 3.5 || social == 7, '**Second** *option*'
-    // recommendation if:(environment > 3.5 || social == 7), '**Third** *option*'
-    // recommendation if:(environment > 3.5 || social == 7), show: ''' *Fourth* *option* '''
-
-    //show 'Nome da unidade produtiva: ' + analysis.'CurrentProductionUnit'.label()
-    //show 'Caracterização dos sistemas produtivos no Centro-Sul: ' + analysis.'CurrentProductionUnit'.productionUnit()
-    //show 'Microrregião da unidade produtiva: ' + analysis.'CurrentProductionUnit'.microregion()
-    //show 'Tecnologias disponíveis: ' + analysis.'CurrentProductionUnit'.efficiency()
-
-    //linebreak()
-
-    paragraph '**Matrix de Avaliação**'
-
-    paragraph 'Índice da sustentabilidade: ' + sustainability
-    paragraph 'Indice de eficiência: ' + efficiency
-
-    //can be set in the ontology
-    recomendations = ["Cenário desfavorável, Muito baixo desempenho dos indicadores",
-                      "Cenário desfavorável, Baixo desempenho dos indicadores",
-                      "Cenário desfavorável, Médio desempenho dos indicadores",
-                      "Cenário desfavorável, Alto desempenho dos indicadores",
-                      "Cenário propício, Muito baixo desempenho dos indicadores",
-                      "Cenário propício, Baixo desempenho dos indicadores",
-                      "Cenário propício, Médio desempenho dos indicadores",
-                      "Cenário propício, Alto desempenho dos indicadores",
-                      "Cenário muito favorável, Muito baixo desempenho dos indicadores",
-                      "Cenário muito favorável, Baixo desempenho dos indicadores",
-                      "Cenário muito favorável, Médio desempenho dos indicadores",
-                      "Cenário muito favorável, Alto desempenho dos indicadores"]
-
-    // Matrix de sustentabilidade
-    matrix([x: sustainability,
+    matrixWithSummary   x: sustainability,
             y: efficiency,
-            labelX: 'Indice da sustentabilidade',
-            labelY: 'Indice de eficiência',
-            rangeX: [-50,150],
-            rangeY: [-30,60],
+            label_x: 'Indice da sustentabilidade',
+            label_y: 'Indice de eficiência',
+            range_x: [-50,150],
+            range_y: [-30,60],
             quadrants: [4,3],
-            recomendations: recomendations])
+            recomendations: ["Cenário desfavorável, Muito baixo desempenho dos indicadores",
+                             "Cenário desfavorável, Baixo desempenho dos indicadores",
+                             "Cenário desfavorável, Médio desempenho dos indicadores",
+                             "Cenário desfavorável, Alto desempenho dos indicadores",
+                             "Cenário propício, Muito baixo desempenho dos indicadores",
+                             "Cenário propício, Baixo desempenho dos indicadores",
+                             "Cenário propício, Médio desempenho dos indicadores",
+                             "Cenário propício, Alto desempenho dos indicadores",
+                             "Cenário muito favorável, Muito baixo desempenho dos indicadores",
+                             "Cenário muito favorável, Baixo desempenho dos indicadores",
+                             "Cenário muito favorável, Médio desempenho dos indicadores",
+                             "Cenário muito favorável, Alto desempenho dos indicadores"]
 
-    //    matrix x: environment, y: environmentAvg, labelX: 'Indice de Magnitude', labelY: 'Indice de Segurança', rangeX: [-5,5], rangeY: [-2,2], quadrants: [4,6], [
-    //    [0, 0, 'bla bla bla'],
-    //    [0, 1, 'bla bla bla'],
-    //    //quadrant2: 'bla bla bla',
-    //    ...
-    //    ]
+    text           '**Mapa da microregião**'
 
-
-    //Outra possibilidade
-    //matrix  x: [label: 'kkk', value = environment, range: [1,9]],
-    //        y: [label: 'kkk', value = social, range: [1,9]]
-
-    paragraph '''**Avaliação da sustentabilidade** '''
-
-    paragraph '**Indicadores Ambientais**'
-
-    table analysis.':EnvironmentalIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso']
-
-    paragraph 'Índice ambiental: '+ environment
-
-    //linebreak()
-
-    paragraph '**Indicadores Econômicos**'
-
-    table analysis.':EconomicIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso']
-
-    paragraph 'Índice econômico: '+ economic
-
-    linebreak()
-
-    paragraph '**Indicadores Sociais**'
-
-    table analysis.':SocialIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso']
-
-    paragraph 'Índice social: '+ social
-
-    linebreak()
-
-    paragraph '**Avaliação da sustentabilidade**'
-
-    paragraph 'Índice da sustentabilidade '+ sustainability
-
-    linebreak()
-
-    paragraph '**Eficiência da produção**'
-
-    table analysis.':ProductionEfficiencyFeature', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor']
-
-    paragraph 'Índice de eficiência da produção: '+ cost_production_efficiency
-
-    linebreak()
-
-    paragraph '**Eficiência tecnológica no campo**'
-
-    table analysis.':TechnologicalEfficiencyInTheField', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso']
-
-    paragraph 'Índice de tecnológica no campo: '+ TechnologicalEfficiencyInTheField
-
-    linebreak()
-
-    paragraph '**Eficiência tecnológica na industria**'
-
-    table analysis.':TechnologicalEfficiencyInTheIndustrial', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso']
-
-    paragraph 'Índice de tecnológica na industria: '+ TechnologicalEfficiencyInTheIndustrial
-
-    linebreak()
-
-    paragraph '**Avaliação de eficiência**'
-
-    paragraph 'Índice de eficiência: '+ efficiency
-
-    linebreak()
-
-    paragraph '**Mapa da microregião**'
-    //map analysis.'Microregion_(Brazil)'.map()
+    map                 url: data.'Microregion'.map()
 }

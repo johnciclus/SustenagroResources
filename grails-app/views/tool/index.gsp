@@ -29,22 +29,28 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-            function loadAssessments(){
-                $.post('/tool/assessments',
-                        { 'production_unit_id':  $('#production_unit_id').val()},
+            function loadAnalyses(){
+                $.post('/tool/analyses',
+                        { 'evaluation_object_id':  $('#evaluation_object_id').val()},
                         function( data ) {
-                            $('#assessments_form').html(data);
-                            $('#assessments_form table').bootstrapTable()
-                            $('#new_assessment').prop('disabled', false);
+                            $('#analyses_form').html(data);
+                            $('#analyses_form table').bootstrapTable()
+                            $('#new_analysis').prop('disabled', false);
                         }
                 );
             }
 
-			if($('#production_unit_id').val()!=null){
-				loadAssessments();
+			if($('#evaluation_object_id').val()!=null){
+				loadAnalyses();
 			}
-			$('#production_unit_id').change( function(){
-				loadAssessments();
+			$('#evaluation_object_id').change( function(){
+				loadAnalyses();
+			});
+
+			$('.pager a').click(function(e){
+				$('.nav-tabs a[href="'+$(this).attr('href')+'"]').tab('show');
+				//console.log($('.pager a[href="'+$(this).attr('href')+'"]'));
+				e.preventDefault();
 			});
 		</script>
 	</body>

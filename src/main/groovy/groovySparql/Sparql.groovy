@@ -63,8 +63,8 @@ class Sparql {
     Model model
     String user
     String pass
-    protected Query query
-    protected QueryExecution qe
+    //Query query
+    //QueryExecution qe
 
     // Apache Jena config parameter for setting HTTP timeout
     private final String timeoutParam = 'timeout'
@@ -445,14 +445,16 @@ class Sparql {
     def query(String sparql, String lang) {
         def res = []
 
+        Query query
+        QueryExecution qe = null
+
         try{
-            query = QueryFactory.create(sparql)
+            query = QueryFactory.create(sparql, Syntax.syntaxARQ)
+            qe = QueryExecutionFactory.sparqlService(endpoint, query)
         }
         catch (all){
-            println 'Exception'
+            println 'Exception: '+all
         }
-
-        qe = QueryExecutionFactory.sparqlService(endpoint, query)
 
             /*
          * Some explanation here - ARQ can provide a QE based on a pure

@@ -8,7 +8,7 @@
     <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY semanticUI "http://purl.org/biodiv/semanticUI#" >
-    <!ENTITY sustenagro "http://bio.icmc.usp.br/sustenagro#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
 ]>
@@ -20,10 +20,10 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:semanticUI="http://purl.org/biodiv/semanticUI#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:sustenagro="http://bio.icmc.usp.br/sustenagro#"
      xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="http://semantic.icmc.usp.br/sustenagro#">
         <owl:imports rdf:resource="http://purl.org/biodiv/semanticUI#"/>
@@ -61,9 +61,9 @@
     
 
 
-    <!-- http://semantic.icmc.usp.br/sustenagro#weight -->
+    <!-- http://semantic.icmc.usp.br/sustenagro#relevance -->
 
-    <owl:AnnotationProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#weight">
+    <owl:AnnotationProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#relevance">
         <rdfs:domain rdf:resource="http://semantic.icmc.usp.br/sustenagro#Indicator"/>
     </owl:AnnotationProperty>
     
@@ -166,20 +166,6 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
-
-
-    <!-- http://purl.org/biodiv/semanticUI#hasWeight -->
-
-    <rdf:Description rdf:about="&semanticUI;hasWeight">
-        <rdfs:range rdf:resource="&semanticUI;Value"/>
-    </rdf:Description>
-    
-
-
-    <!-- http://purl.org/biodiv/semanticUI#value -->
-
-    <owl:ObjectProperty rdf:about="&semanticUI;value"/>
     
 
 
@@ -298,12 +284,6 @@
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:range rdf:resource="&xsd;anyURI"/>
     </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/biodiv/semanticUI#hasDataValue -->
-
-    <owl:DatatypeProperty rdf:about="&semanticUI;hasDataValue"/>
     
 
 
@@ -487,39 +467,6 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#Boolean -->
-
-    <owl:Class rdf:about="&semanticUI;Boolean">
-        <rdfs:label xml:lang="en">Boolean</rdfs:label>
-        <rdfs:label xml:lang="pt">Boleana</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.org/biodiv/semanticUI#Categorical -->
-
-    <owl:Class rdf:about="&semanticUI;Categorical"/>
-    
-
-
-    <!-- http://purl.org/biodiv/semanticUI#EvaluationObject -->
-
-    <owl:Class rdf:about="&semanticUI;EvaluationObject"/>
-    
-
-
-    <!-- http://purl.org/biodiv/semanticUI#Feature -->
-
-    <owl:Class rdf:about="&semanticUI;Feature"/>
-    
-
-
-    <!-- http://purl.org/biodiv/semanticUI#Value -->
-
-    <owl:Class rdf:about="&semanticUI;Value"/>
-    
-
-
     <!-- http://semantic.icmc.usp.br/sustenagro#AbsoluteEmissionsOfGreenhouseGases -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#AbsoluteEmissionsOfGreenhouseGases">
@@ -533,7 +480,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">3.0</weight>
+        <relevance rdf:datatype="&xsd;double">3.0</relevance>
     </owl:Class>
     
 
@@ -652,7 +599,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -670,7 +617,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">3.0</weight>
+        <relevance rdf:datatype="&xsd;double">3.0</relevance>
     </owl:Class>
     
 
@@ -742,7 +689,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -807,7 +754,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -825,7 +772,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -843,7 +790,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -965,7 +912,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -993,7 +940,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1112,7 +1059,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1147,7 +1094,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1175,7 +1122,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1240,7 +1187,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">3.0</weight>
+        <relevance rdf:datatype="&xsd;double">3.0</relevance>
     </owl:Class>
     
 
@@ -1268,7 +1215,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">3.0</weight>
+        <relevance rdf:datatype="&xsd;double">3.0</relevance>
     </owl:Class>
     
 
@@ -1286,7 +1233,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1314,7 +1261,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1362,7 +1309,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1434,7 +1381,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1489,7 +1436,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1517,7 +1464,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1575,7 +1522,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1603,7 +1550,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1631,7 +1578,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1649,7 +1596,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1707,7 +1654,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1789,7 +1736,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1817,7 +1764,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1835,7 +1782,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1880,7 +1827,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1898,7 +1845,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1916,7 +1863,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -1954,7 +1901,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2157,7 +2104,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2201,7 +2148,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2229,7 +2176,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2274,7 +2221,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2319,7 +2266,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">3.0</weight>
+        <relevance rdf:datatype="&xsd;double">3.0</relevance>
     </owl:Class>
     
 
@@ -2364,7 +2311,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2392,7 +2339,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2410,7 +2357,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">3.0</weight>
+        <relevance rdf:datatype="&xsd;double">3.0</relevance>
     </owl:Class>
     
 
@@ -2428,7 +2375,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2456,7 +2403,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2598,7 +2545,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2683,7 +2630,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2711,7 +2658,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2739,7 +2686,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2767,7 +2714,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2785,7 +2732,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">3.0</weight>
+        <relevance rdf:datatype="&xsd;double">3.0</relevance>
     </owl:Class>
     
 
@@ -2803,7 +2750,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2821,7 +2768,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2839,7 +2786,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2857,7 +2804,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2902,7 +2849,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2930,7 +2877,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -2948,7 +2895,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -3033,7 +2980,7 @@
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <weight rdf:datatype="&xsd;double">2.0</weight>
+        <relevance rdf:datatype="&xsd;double">2.0</relevance>
     </owl:Class>
     
 
@@ -4915,6 +4862,28 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#admin -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#admin">
+        <rdf:type rdf:resource="&semanticUI;User"/>
+        <semanticUI:hasPassword rdf:datatype="&xsd;string">8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918</semanticUI:hasPassword>
+        <semanticUI:hasUserName rdf:datatype="&xsd;string">admin</semanticUI:hasUserName>
+        <semanticUI:hasRole rdf:resource="http://semantic.icmc.usp.br/sustenagro#adminRole"/>
+        <semanticUI:hasRole rdf:resource="http://semantic.icmc.usp.br/sustenagro#userRole"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#adminRole -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#adminRole">
+        <rdf:type rdf:resource="&semanticUI;Role"/>
+        <rdfs:label xml:lang="en">Admin role</rdfs:label>
+        <rdfs:label xml:lang="pt">Perfil de administrador</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#inappropriateDisposal -->
 
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#inappropriateDisposal">
@@ -5008,6 +4977,27 @@
         <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
         <rdfs:label xml:lang="en">Public</rdfs:label>
         <rdfs:label xml:lang="pt">Público</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#user -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#user">
+        <rdf:type rdf:resource="&semanticUI;User"/>
+        <semanticUI:hasPassword rdf:datatype="&xsd;string">04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb</semanticUI:hasPassword>
+        <semanticUI:hasUserName rdf:datatype="&xsd;string">user</semanticUI:hasUserName>
+        <semanticUI:hasRole rdf:resource="http://semantic.icmc.usp.br/sustenagro#userRole"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#userRole -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#userRole">
+        <rdf:type rdf:resource="&semanticUI;Role"/>
+        <rdfs:label xml:lang="en">User role</rdfs:label>
+        <rdfs:label xml:lang="pt">Perfil de usuário</rdfs:label>
     </owl:NamedIndividual>
     
 

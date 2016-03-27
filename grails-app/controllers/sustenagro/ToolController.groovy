@@ -2,24 +2,37 @@ package sustenagro
 
 import semantics.DataReader
 import semantics.Node
+import org.apache.commons.io.FilenameUtils
 
+import grails.plugin.springsecurity.annotation.Secured
+import utils.Uri
+
+@Secured(['ROLE_USER', 'ROLE_ADMIN'])
 class ToolController {
     def dsl
     def gui
     def k
     def slugify
+    def springSecurityService
 
     def index() {
 
         def evaluationObject = dsl.evaluationObject
+        def tabsAttrs = [:]
+        def tabsWidgets
+
+        tabsAttrs.labels = ['tab_0': gui.widgetAttrs['createEvaluationObject'].title,
+                            'tab_1': gui.widgetAttrs['selectEvaluationObject'].title]
+        tabsAttrs.pager = false
+
+        tabsWidgets     =  ['tab_0': [['widget': 'createEvaluationObject', widgets: evaluationObject.widgets, id: evaluationObject.getURI()]],
+                            'tab_1': [['widget': 'selectEvaluationObject', id: evaluationObject.getURI()]]]
 
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
-        gui.selectEvaluationObject(gui.widgetAttrs['selectEvaluationObject'], evaluationObject.getURI())
-        gui.createEvaluationObject(gui.widgetAttrs['createEvaluationObject'], evaluationObject.widgets, evaluationObject.getURI())
-        gui.requestData(controllerName, actionName)
+        gui.tabs(tabsAttrs, tabsWidgets)
 
-        render(view: 'index', model: [data: gui.props, inputs: gui.viewsMap[controllerName][actionName]])
+        render(view: 'index', model: [data: gui._props, inputs: gui.viewsMap[controllerName][actionName]])
     }
 
     def createEvaluationObject() {
@@ -28,6 +41,9 @@ class ToolController {
         def type = k.toURI(params['evalObjType'])
         def evaluationObject = dsl.evaluationObject
 
+        def username = springSecurityService.getPrincipal().username
+        //println username
+
         if(params['evalObjType'] && params[name] && params[type]){
 
             def node = new Node(k, '')
@@ -35,7 +51,7 @@ class ToolController {
 
             evaluationObject.model.each{ ins ->
                 if(params[ins.id] && ins.id != type){
-                    propertyInstances[k.shortToURI(ins.id)] = [value: params[ins.id], dataType: ins.dataType]
+                    propertyInstances[k.toURI(ins.id)] = [value: params[ins.id], dataType: ins.dataType]
                 }
             }
 
@@ -44,38 +60,54 @@ class ToolController {
         }
 
         //k.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
-        redirect(action: 'analysis', id: id)
+        redirect(action: 'scenario', id: id)
     }
 
-    def analysis(){
+    def scenario(){
         def uri = k.toURI(':'+params.id)
+        def tabsAttrs = [:]
+        def tabsWidgets = [:]
+        def formAttrs = [:]
+        def formWidgets = []
         def tab_prefix = 'tab_'
-        def attrs = gui.widgetAttrs['tabs']
-        def widgets = [:]
 
-        attrs.labels = [:]
+        tabsAttrs.labels = [:]
         dsl.featureMap.eachWithIndex{ key, feature, int i ->
-            feature.features.each{
-                attrs.labels[tab_prefix+i] = it.value.label
-                widgets[tab_prefix+i] = [['widget': 'individualsPanel', attrs: [data: it.value.subClass, values: [:], weights: [:]]]]
-            }
+
+            tabsAttrs.labels[tab_prefix+i] = feature.model.label
+            tabsWidgets[tab_prefix+i] = [['widget': 'individualsPanel',
+                                          attrs: [data: feature.model.subClass,
+                                                  values: [:], weights: [:]]
+                                        ]]
+
         }
+
+        dsl.featureMap.each{ key, feature ->
+            println feature.model.label
+            println feature.uri
+            Uri.printTree(feature.model)
+        }
+
+        tabsAttrs.submit = true
+
+        formAttrs['action'] = '/tool/createScenario'
+        formWidgets.push(['widget': 'hiddenInput', attrs: [id: 'evalObjInstance', value: uri]])
+        formWidgets.push(['widget': 'tabs', attrs: tabsAttrs, widgets: tabsWidgets])
 
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
-        gui.paragraph([text: gui.widgetAttrs['paragraph'].text + '**'+ k[uri].label + '**'])
-        gui.tabs(attrs, widgets, uri)
-        gui.requestData(controllerName, actionName)
+        gui.text([text: gui.widgetAttrs['text'].text + '**'+ k[uri].label + '**'])
+        gui.form(formAttrs, formWidgets)
 
         //println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
         //Uri.printTree(gui.viewsMap[controllerName][actionName])
 
-        render(view: 'analysis', model: [data: gui.props, inputs: gui.viewsMap[controllerName][actionName]])
+        render(view: 'scenario', model: [data: gui._props, inputs: gui.viewsMap[controllerName][actionName]])
     }
 
-    def createAnalysis(){
+    def createScenario(){
         def evalObjInstance = k.toURI(params.evalObjInstance)
-        def num = k[evalObjInstance].getAssessments().size() + 1
+        def num = k[evalObjInstance].getAnalyses().size() + 1
         def name = evalObjInstance.substring(evalObjInstance.lastIndexOf('#')+1)
         def analysisId = name+"-analysis-"+num
         def properties = [:]
@@ -92,7 +124,7 @@ class ToolController {
         }
 
         individualKeys.each{
-            uri = k.shortToURI(it)
+            uri = k.toURI(it)
             if(params[uri]){
                 featureInstances[uri] = params[uri]
             }
@@ -169,99 +201,29 @@ class ToolController {
             }
         }
         */
-        redirect(action: 'scenario',
-                id: analysisId)
+        redirect(action: 'analysis', id: analysisId)
     }
 
-    def scenario(){
+    def analysis(){
         def uri
 
         if(params.id){
             uri = k.toURI(":"+params.id)
         }
 
-        if(uri?.trim()){
-            dsl.setData(new DataReader(k, uri))
-            dsl.runFormula()
-        }
-        def scenario = dsl.getScenario()
-
-        def attrs = gui.widgetAttrs['tabs']
-        def widgets = [:]
-
-        attrs.labels = ['tab_0': 'Scenario', 'tab_1': 'Report']
-        widgets['tab_0'] = [['widget': 'paragraph', attrs: [text: 'Scenario text']]]
-        widgets['tab_1'] = [['widget': 'paragraph', attrs: [text: 'Report text']]]
-
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
-        gui.tabs(attrs, widgets, uri)
-        gui.paragraph('**Matrix de Avaliação**')
-        gui.paragraph('Índice da sustentabilidade: ' + scenario['sustainability'])
-        gui.paragraph('Indice de eficiência: ' + scenario['efficiency'])
 
-        def recomendations = ["Cenário desfavorável, Muito baixo desempenho dos indicadores",
-                              "Cenário desfavorável, Baixo desempenho dos indicadores",
-                              "Cenário desfavorável, Médio desempenho dos indicadores",
-                              "Cenário desfavorável, Alto desempenho dos indicadores",
-                              "Cenário propício, Muito baixo desempenho dos indicadores",
-                              "Cenário propício, Baixo desempenho dos indicadores",
-                              "Cenário propício, Médio desempenho dos indicadores",
-                              "Cenário propício, Alto desempenho dos indicadores",
-                              "Cenário muito favorável, Muito baixo desempenho dos indicadores",
-                              "Cenário muito favorável, Baixo desempenho dos indicadores",
-                              "Cenário muito favorável, Médio desempenho dos indicadores",
-                              "Cenário muito favorável, Alto desempenho dos indicadores"]
-        gui.matrix([x: scenario['sustainability'],
-                    y: scenario['efficiency'],
-                    label_x: 'Indice da sustentabilidade',
-                    label_y: 'Indice de eficiência',
-                    range_x: [-50,150],
-                    range_y: [-30,60],
-                    quadrants: [4,3],
-                    recomendations: recomendations])
+        if(uri?.trim()){
+            dsl.setData(new DataReader(k, uri))
+            dsl.runReport()
+        }
 
-        gui.paragraph('''**Avaliação da sustentabilidade** ''')
-        gui.paragraph('**Indicadores Ambientais**')
-        gui.table(dsl.getData('data').':EnvironmentalIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso'])
-        gui.paragraph('Índice ambiental: '+ scenario['environment'])
-        gui.linebreak()
-
-        gui.paragraph('**Indicadores Econômicos**')
-        gui.table(dsl.getData('data').':EconomicIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso'])
-        gui.paragraph('Índice econômico: '+ scenario['economic'])
-        gui.linebreak()
-
-        gui.paragraph('**Indicadores Sociais**')
-        gui.table(dsl.getData('data').':SocialIndicator', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weight': 'Peso'])
-        gui.paragraph('Índice social: '+ scenario['social'])
-        gui.linebreak()
-
-        gui.paragraph('''**Avaliação da sustentabilidade** ''')
-        gui.paragraph('Índice da sustentabilidade: '+ scenario['sustainability'])
-        gui.linebreak()
-
-        gui.paragraph('**Eficiência da produção**')
-        gui.table(dsl.getData('data').':ProductionEfficiencyFeature', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor'])
-        gui.paragraph('Índice de eficiência da produção: '+ scenario['cost_production_efficiency'])
-        gui.linebreak()
-
-        gui.paragraph('**Eficiência tecnológica no campo**')
-        gui.table(dsl.getData('data').':TechnologicalEfficiencyInTheField', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso'])
-        gui.paragraph('Índice de tecnológica no campo: '+ scenario['technologicalEfficiencyInTheField'])
-        gui.linebreak()
-
-        gui.paragraph('**Eficiência tecnológica na industria**')
-        gui.table(dsl.getData('data').':TechnologicalEfficiencyInTheIndustrial', ['label': 'Indicador', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor', 'weightTypeLabel': 'Peso cadastrado', 'weight': 'Peso'])
-        gui.paragraph('Índice de tecnológica na industria: '+ scenario['technologicalEfficiencyInTheIndustrial'])
-        gui.linebreak()
-
-        gui.paragraph('''**Avaliação da eficiência** ''')
-        gui.paragraph('Índice da eficiência: '+ scenario['efficiency'])
-        gui.linebreak()
-
-        gui.paragraph('**Mapa da microregião**')
-        gui.map(dsl.getData('data').'Microregion'.map())
+        gui.setData('variables', dsl.getVariables())
+        gui.setData('dataReader', dsl.getData('data'))
+        gui.setData('reportView', dsl.getReportView())
+        gui.renderView(actionName)
+        //gui.printData()
 
         /*
        def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
@@ -303,34 +265,29 @@ class ToolController {
        }
        */
 
-
-        render(view: 'scenario', model: [data: gui.props, inputs: gui.viewsMap[controllerName][actionName]])
-    }
-
-    def selectEvaluationObject(){
-        def id = k.shortURI(params.production_unit_id)
-
-        redirect(   action: 'analysis',
-                    id: id)
-    }
-
-    def selectAnalysis(){
-        def id = k.shortURI(params.production_unit_id)
-        def name = k.shortURI(params.analysis)
-
-        redirect(   action: 'analysis',
-                id: id,
-                params: [analysis: name])
+        render(view: 'analysis', model: [data: gui._props, inputs: gui.viewsMap[controllerName][actionName]])
     }
 
     def analyses(){
-        def id = k.shortURI(params.id)
-        //println params.id
+        def uri = k.toURI(params.evaluation_object_id)
+        def analyses = k[uri].labelAppliedTo
+        def model = gui.widgetAttrs['analyses']
+        model.analyses = analyses
+        model.evaluation_object_id = uri
 
-        def analyses = k[id].labelAppliedTo
+        render( template: '/widgets/analyses', model: model);
+    }
 
-        render( template: 'analyses',
-                model:    [analyses: analyses,
-                           production_unit_id: id]);
+    def selectEvaluationObject(){
+        def uri = k.toURI(params.evaluation_object_id)
+        def id =  uri.substring(uri.lastIndexOf('#')+1)
+        redirect(action: 'scenario', id: id)
+    }
+
+    def selectAnalysis(){
+        def uri = k.toURI(params.analysis)
+        def id =  uri.substring(uri.lastIndexOf('#')+1)
+
+        redirect( action: 'analysis', id: id)
     }
 }

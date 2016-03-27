@@ -4,33 +4,35 @@
 
 //default widget: 'category',
 
-dataType "rdfs:Literal", widget: "textForm"
-dataType "owl:real", widget: "numberForm"
-dataType "xsd:int", widget: "numberForm"
-dataType "xsd:integer", widget: "numberForm"
-dataType "xsd:float", widget: "numberForm"
-dataType "xsd:date", widget: "dateForm"
-dataType "xsd:string", widget: "textForm"
-dataType "xsd:language", widget: "textForm"
-dataType "xsd:boolean", widget: "categoryForm"
-dataType ":SimpleCategory", widget: "categoryForm"
-dataType ":ProductionUnit", widget: "categoryForm"
-dataType ":SugarcaneSourceCategory", widget: "categoryForm"
-dataType ":CanavialLongevityCategory", widget: "categoryForm"
-dataType ":AgriculturalProductionSystemCategory", widget: "categoryForm"
-dataType ":AvailabilityOfEvaluationResultsCategory", widget: "categoryForm"
-dataType "http://dbpedia.org/page/Microregion_(Brazil)", widget: "categoryForm"
+dataType "rdfs:Literal",                                    widget: "textForm"
+dataType "owl:real",                                        widget: "numberForm"
+dataType "xsd:int",                                         widget: "numberForm"
+dataType "xsd:integer",                                     widget: "numberForm"
+dataType "xsd:float",                                       widget: "numberForm"
+dataType "xsd:date",                                        widget: "dateForm"
+dataType "xsd:string",                                      widget: "textForm"
+dataType "xsd:language",                                    widget: "textForm"
+dataType "xsd:boolean",                                     widget: "categoryForm"
+dataType ":SimpleCategory",                                 widget: "categoryForm"
+dataType ":ProductionUnit",                                 widget: "categoryForm"
+dataType ":SugarcaneSourceCategory",                        widget: "categoryForm"
+dataType ":CanavialLongevityCategory",                      widget: "categoryForm"
+dataType ":AgriculturalProductionSystemCategory",           widget: "categoryForm"
+dataType ":AvailabilityOfEvaluationResultsCategory",        widget: "categoryForm"
+dataType "http://dbpedia.org/page/Microregion_(Brazil)",    widget: "categoryForm"
 
-widgetAttributes 'selectEvaluationObject', title: "Selecionar unidade produtiva", label : "Unidade produtiva", submitLabel: "Nova avaliação"
+widgetAttributes 'selectEvaluationObject', title: "Selecionar unidade produtiva", label : "Unidade produtiva", submitLabel: "Novo análise"
 
-widgetAttributes 'createEvaluationObject', title: "Cadastrar nova unidade produtiva para realizar avaliação", submitLabel: "Cadastrar"
+widgetAttributes 'createEvaluationObject', title: "Cadastrar nova unidade produtiva", submitLabel: "Cadastrar"
 
-widgetAttributes 'paragraph', text: "Unidade produtiva atual: "
+widgetAttributes 'text', text: "Unidade produtiva atual: "
 
-widgetAttributes 'tabs', submitLabel: 'Avaliar', previousLabel: 'Anterior', nextLabel: 'Próximo'       //, tabs:  [[label: 'Avaliação da sustentabilidade',  widget: 'sustainability_assessment']]
-                                                                                                                        // [label: 'Avaliação da eficiência',         widget: 'efficiency_assessment'],
-                                                                                                                        // [label: 'Relatório',                       widget: 'report'],
-                                                                                                                        // [label: 'Recomendação',                    widget: 'recomendation']]
+widgetAttributes 'tabs', submitLabel: 'Avaliar', previousLabel: 'Anterior', nextLabel: 'Próximo', pager: true
+
+widgetAttributes 'form', method: 'post', formClass: 'form-horizontal'
+
+widgetAttributes 'analyses', title: 'Selecionar análise', submitLabel: 'Ver análise'
+
 // nome vai aparecer onde um nome for necessário
 title 'Avaliação da sustentabilidade na agricultura'
 
@@ -65,7 +67,7 @@ view("tool/index"){
 }
 
 view("tool/assessments"){
-    paragraph "Unidade produtiva atual: **" + Production_Unit.label + "**"
+    text "Unidade produtiva atual: **" + Production_Unit.label + "**"
     tabs 'analysis', previousLabel: 'Anterior', nextLabel: 'Próximo', {
         tab 'sustainability_assessment', label: 'Avaliação da sustentabilidade', widgetClass: 'active', {
             //tabs 'sustainability', {

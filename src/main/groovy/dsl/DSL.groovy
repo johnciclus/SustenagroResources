@@ -4,6 +4,7 @@ import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
 import org.springframework.context.ApplicationContext
 import semantics.DataReader
+import utils.Uri
 
 /**
  * Created by dilvan on 7/14/15.
@@ -13,25 +14,27 @@ class DSL {
     private def _ctx
     private def _k
     private def _gui
+    private static _md
 
     private def _sandbox
     private def _script
-    private Closure _program
-    private GroovyShell _shell
+    private def _program
+    private def _shell
 
     private def _data
     private def _props = [:]
     private def _featureMap = [:]
-    private def _analysisMap = [:]
-
+    private def _scenarioMap = [:]
+    private def _reportView = []
     private def _evaluationObjectInstance
 
-    DSL(String file, ApplicationContext applicationContext){
+    DSL(String filename, ApplicationContext applicationContext){
         // Create CompilerConfiguration and assign
         // the DelegatingScript class as the base script class.
         _ctx = applicationContext
         _k = _ctx.getBean('k')
         _gui = _ctx.getBean('gui')
+        _md = _ctx.getBean('md')
 
         def _cc = new CompilerConfiguration()
         _cc.addCompilationCustomizers(new SandboxTransformer())
@@ -44,7 +47,7 @@ class DSL {
         // Configure the GroovyShell and pass the compiler configuration.
         //_shell = new GroovyShell(this.class.classLoader, binding, cc)
 
-        _script = (DelegatingScript) _shell.parse(new File(file).text)
+        _script = (DelegatingScript) _shell.parse(new File(filename).text)
         _script.setDelegate(this)
 
         // Run DSL script.
@@ -57,9 +60,11 @@ class DSL {
     }
 
     def reload(String code){
+        _data = null
+        _props = [:]
         _featureMap = [:]
         _analysisMap = [:]
-
+        _reportView = []
         _evaluationObjectInstance = null
 
         _sandbox.register()
@@ -91,24 +96,6 @@ class DSL {
         }
         return response
     }
-    /*
-    def analysis(String id, Closure closure){
-        String uri = _k.toURI(id)
-
-        def requestLst        = [:]
-        requestLst['widgets'] = [:]
-        def attrs              = [:]
-        attrs['widgets']       = [:]
-
-        def object = new Analysis(uri, _ctx)
-
-        closure.resolveStrategy = Closure.DELEGATE_FIRST
-        closure.delegate = object
-
-        _analysisMap[uri] = [object: object,
-                             closure: closure]
-    }
-    */
 
     def evaluationObject(String id, Closure closure){
         String uri = _k.toURI(id)
@@ -140,15 +127,15 @@ class DSL {
         _featureMap
     }
 
-    def getAnalysisMap(){
-        _analysisMap
+    def getScenarioMap(){
+        _scenarioMap
     }
 
-    def formula(Closure c){
+    def report(Closure c){
         _program = c
     }
 
-    def runFormula(){
+    def runReport(){
         _program()
     }
 
@@ -209,6 +196,19 @@ class DSL {
         }
     }
 
+    def getVariables(){
+        def result = [:]
+        _props.each{ key, value ->
+            if(value.getClass() != DataReader)
+                result[key] = value
+        }
+        return result
+    }
+
+    def getReportView(){
+        return _reportView
+    }
+
     def data(String str){
         _data = str
         //_props[str]
@@ -218,12 +218,18 @@ class DSL {
         _props[_data]= obj
     }
 
-    def getData(String str){
-        _props[str]
+    def getData(String key){
+        _props[key]
     }
 
     def printData(){
         println _props
+    }
+
+    def propertyMissing(String key) {
+        //println "propertyMissing: key "+key
+        getData(key)
+        //new Node(_k, _k.toURI(props[key]))
     }
 
     def propertyMissing(String key, arg) {
@@ -231,33 +237,79 @@ class DSL {
         _props[key] = arg
     }
 
-    def propertyMissing(String key) {
-        _props[key]
+    def methodMissing(String key) {
+        //println "methodMissing: key "+key
         //new Node(_k, _k.toURI(props[key]))
     }
 
-    def getScenario(){
-        def result = [:]
-        _props.each{ key, value ->
-            if(value.getClass() != DataReader)
-                result[key] = value
+    def methodMissing(String key, attrs){
+        println "DSL methodMissing: "+ key
+        if(attrs.getClass() == Object[]){
+            def container = []
+            def element = null
+
+            if(_gui.getWidgetsNames().contains(key)){
+                /*if(key=='sustainabilityMatrix'){
+                    println key
+                    println attrs.getClass()
+                    println attrs.size()
+                }*/
+                if(attrs.size()==1 && attrs[0].getClass() == String){
+                    if(_reportView){
+                        container = _reportView
+                        element = ['widget': key, 'attrs': ['text': _toHTML(attrs[0])]]
+                    }
+                    else{
+                        _props[key] =_toHTML(attrs[0])
+                    }
+                }
+                else if(attrs.size()==1 && attrs[0].getClass() == LinkedHashMap){
+                    if(_reportView && attrs[0].text){
+                        container = _reportView
+                        element = ['widget': key, 'attrs': ['text': _toHTML(attrs[0].text)]]
+
+                    }
+                    else{
+                        container = _reportView
+                        element = ['widget': key, 'attrs': attrs[0]]
+                    }
+                }
+                else if(attrs.size()==2 && attrs[0].getClass() == LinkedHashMap && attrs[1].getClass() == ArrayList){
+                    if(attrs[0].text){
+                        container = attrs[1]
+                        element = ['widget': key, 'attrs': ['text': _toHTML(attrs[0].text)]]
+                    }
+                    else{
+                        container = attrs[1]
+                        element = ['widget': key, 'attrs': attrs[0]]
+                    }
+                }
+                if(element)
+                    container.push(element)
+            }
+            else if(attrs.size()==1 && attrs[0].getClass() == String){
+                _props[key] = _toHTML(attrs[0])
+            }
+            else{
+                println 'Unknown method: '+ key
+                attrs.eachWithIndex{ it, int i ->
+                    println "Attrs ["+i+"]"
+                    Uri.printTree(it)
+                }
+            }
         }
-        return result
     }
 
     def clean(String controller, String action){
         if(controller?.trim() && action?.trim()){
             _gui.viewsMap[controller][action] = []
+            if(action == 'analysis'){
+               _reportView = []
+            }
         }
-
-        /*
-        _analysisMap.each{ analyseKey, analyse ->
-            analyse.object.widgets = []
-            analyse.object.model = []
-        }
-        */
     }
 
+    static _toHTML(String txt) {_md.markdownToHtml(txt)}
     /*
     def _evalIndividuals(String id){
         def uri = _k.toURI(':'+id)

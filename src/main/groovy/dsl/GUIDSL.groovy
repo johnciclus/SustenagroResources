@@ -1,5 +1,6 @@
 package dsl
 
+import groovy.io.FileType
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
 import org.springframework.context.ApplicationContext
@@ -16,17 +17,17 @@ class GUIDSL {
     def _k
     def widgetAttrs
     def contanst
-    def controller
-    def action
+    def _controller
+    def _action
 
     static _md
 
     def viewsMap
     def dataTypeToWidget
 
-    def props = [:]
+    def _props = [:]
 
-    def GUIDSL(String file, ApplicationContext applicationContext){
+    def GUIDSL(String filename, ApplicationContext applicationContext){
 
         _ctx = applicationContext
         _k = _ctx.getBean('k')
@@ -56,7 +57,7 @@ class GUIDSL {
         //_shell = new GroovyShell(this.class.classLoader, binding, cc)
         _ctx = applicationContext
 
-        _script = (DelegatingScript) _shell.parse(new File(file).text)
+        _script = (DelegatingScript) _shell.parse(new File(filename).text)
         _script.setDelegate(this)
 
         // Run DSL script.
@@ -126,52 +127,75 @@ class GUIDSL {
         contanst[id] = arg
     }
 
-    def selectEvaluationObject(Map attrs = [:], String id){
+    def selectEvaluationObject(Map attrs = [:], String id, ArrayList view = viewsMap[_controller][_action]){
+        def defaultAttrs =  widgetAttrs['selectEvaluationObject']
         def uri = _k.toURI(id)
         def request = ['evaluationObjects': ['a', uri]]
         def shortId = _k.shortURI(uri)
         attrs['evaluationObject']= uri
 
-        //println uri
-        //println shortId
+        defaultAttrs.each{key, value->
+            attrs[key] = value
+        }
 
-        viewsMap[controller][action].push(['widget': 'selectEvaluationObject', 'request': request, attrs: attrs])
+        request.each{ key, arg ->
+            attrs[key] = _k[arg[1]].getLabelDescription(arg[0].toString())
+        }
+
+        view.push(['widget': 'selectEvaluationObject', 'request': request, attrs: attrs])
     }
 
-    def createEvaluationObject(Map attrs = [:], ArrayList widgets = [], String evaluationObjectId){
+    def createEvaluationObject(Map attrs = [:], ArrayList widgets = [], String evaluationObjectId, ArrayList view = viewsMap[_controller][_action]){
+        def defaultAttrs =  widgetAttrs['createEvaluationObject']
         def uri = _k.toURI(evaluationObjectId)
-        def requestLst              = [:]
-        requestLst['widgets']       = [:]
-        attrs['widgets']             = [:]
+        def request        = [:]
+
+        defaultAttrs.each{key, value->
+            attrs[key] = value
+        }
+
+        request['widgets'] = [:]
+        attrs['widgets']      = [:]
         attrs['evalObjType']  = uri
 
         widgets.each{
             if(it.request) {
-                requestLst['widgets'][it.id] = it.request
+                request['widgets'][it.id] = it.request
             }
             attrs['widgets'][it.id] = ['widget': it.widget, 'attrs': it.attrs]
         }
 
-        viewsMap[controller][action].push(['widget': 'createEvaluationObject', 'request': requestLst, 'attrs': attrs])
+        request.widgets.each{ key, arg ->
+            attrs.widgets[key]['attrs']['data'] = _k[arg[1]].getLabelDescription(arg[0].toString())
+        }
+
+        //Uri.printTree(attrs)
+
+        view.push(['widget': 'createEvaluationObject', 'request': request, 'attrs': attrs])
     }
 
-    def paragraph(Map attrs = [:]){
-        viewsMap[controller][action].push(['widget': 'paragraph', 'attrs': [text: _toHTML(attrs['text'])]])
+    def text(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
+        view.push(['widget': 'text', 'attrs': [text: _toHTML(attrs['text'])]])
     }
 
-    def paragraph(String txt){
-        //report << ['paragraph', _toHTML(txt)]
-        viewsMap[controller][action].push(['widget': 'paragraph', 'attrs': [text: _toHTML(txt)]])
+    def text(String txt, ArrayList view = viewsMap[_controller][_action]){
+        view.push(['widget': 'text', 'attrs': [text: _toHTML(txt)]])
     }
 
-    def linebreak(){
-        //report << ['linebreak']
-        viewsMap[controller][action].push(['widget': 'linebreak'])
+    def individualsPanel(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
+        view.push(['widget': 'individualsPanel', 'attrs': attrs])
     }
 
-    def recommendation(String txt){
-        //report << ['recommendation', _toHTML(txt)]
-        viewsMap[controller][action].push(['widget': 'paragraph', 'attrs': [text: _toHTML('Recomendação: '+ txt)]])
+    def linebreak(ArrayList view = viewsMap[_controller][_action]){
+        view.push(['widget': 'linebreak'])
+    }
+
+    def ln(ArrayList view = viewsMap[_controller][_action]){
+        view.push(['widget': 'linebreak'])
+    }
+
+    def recommendation(String txt, ArrayList view = viewsMap[_controller][_action]){
+        view.push(['widget': 'text', 'attrs': [text: _toHTML('Recomendação: '+ txt)]])
 
     }
 
@@ -187,52 +211,71 @@ class GUIDSL {
         //if (map['if']) report << ['recommendation', _toHTML(txt)]
     }
 
-    def table(ArrayList list, Map headers = [:]){
+    def table(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         //report << ['table', list, headers]
-        viewsMap[controller][action].push(['widget': 'tableReport', 'attrs': [header: headers, data: list]])
+        view.push(['widget': 'tableReport', 'attrs': attrs])
     }
 
-    def map(String url){
+    def map(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         //report << ['map', url]
-        viewsMap[controller][action].push(['widget': 'map', 'attrs': [map_url: url]])
+        view.push(['widget': 'map', 'attrs': [url: attrs.url]])
     }
 
-    def matrix(Map map){
+    def matrix(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         //report << ['matrix', map.x, map.y, map.labelX, map.labelY, map.rangeX, map.rangeY, map.quadrants, map.recomendations]
-        viewsMap[controller][action].push(['widget': 'matrix', 'attrs': [x: map.x, y: map.y, label_x: map.label_x, label_y: map.label_y, range_x: map.range_x, range_y: map.range_y, quadrants: map.quadrants, recomendations: map.recomendations]])
+        view.push(['widget': 'matrix', 'attrs': attrs])
+        //view.push(['widget': 'matrix', 'attrs': [x: map.x, y: map.y, label_x: map.label_x, label_y: map.label_y, range_x: map.range_x, range_y: map.range_y, quadrants: map.quadrants, recomendations: map.recomendations]])
     }
 
-    def tabs(Map extAttrs = [:], Map widgets = [:], String evaluationObjectId){
+    def tabs(Map extAttrs = [:], Map widgets = [:], ArrayList view = viewsMap[_controller][_action]){
+        def defaultAttrs = widgetAttrs['tabs']
         def attrs = [:]
         def tab_prefix = 'tab_'
-        def uri = _k.toURI(evaluationObjectId)
 
-        attrs['evalObjInstance']  = uri
-
-        attrs['id'] = 'analysis'
+        attrs['id'] = 'tabs'
         attrs['tabs'] = [:]
         attrs['tabpanels'] = [:]
 
         widgets.eachWithIndex{ it, int i ->
             attrs['tabs'][tab_prefix+i] = ['widget': 'tab', attrs: [id: tab_prefix+i, label: extAttrs.labels[tab_prefix+i]]]
-            attrs['tabpanels'][tab_prefix+i] = it.value //[attrs: it.value.attrs]
+            attrs['tabpanels'][tab_prefix+i] = []
+
+            it.value.each{ widget ->
+                if(widget.attrs && widget.widgets && widget.id)
+                    "$widget.widget"(widget.attrs, widget.widgets, widget.id, attrs['tabpanels'][tab_prefix+i])
+                else if(widget.widgets && widget.id)
+                    "$widget.widget"([:], widget.widgets, widget.id, attrs['tabpanels'][tab_prefix+i])
+                else if(widget.attrs && widget.id)
+                    "$widget.widget"(widget.attrs, widget.id, attrs['tabpanels'][tab_prefix+i])
+                else if(widget.id)
+                    "$widget.widget"([:], widget.id, attrs['tabpanels'][tab_prefix+i])
+                else if(widget.attrs)
+                    "$widget.widget"(widget.attrs, attrs['tabpanels'][tab_prefix+i])
+                else
+                    "$widget.widget"(attrs['tabpanels'][tab_prefix+i])
+            }
+            //attrs['tabpanels'][tab_prefix+i]
         }
 
         attrs['tabs'][tab_prefix+'0'].attrs['widgetClass'] = 'active'
-        attrs['tabs'][tab_prefix+(widgets.size()-1)].attrs['submitLabel'] = extAttrs['submitLabel']
 
-        attrs['tabs'].eachWithIndex{ tab, int i ->
-            if(i > 0 ){
-                tab.value.attrs['previous'] = tab_prefix+(i-1)
-                tab.value.attrs['previousLabel'] = extAttrs['previousLabel']
-            }
-            if(i < (attrs['tabs'].size()-1)){
-                tab.value.attrs['next'] = tab_prefix+(i+1)
-                tab.value.attrs['nextLabel'] = extAttrs['nextLabel']
+        if(extAttrs.containsKey('pager') ? extAttrs.pager : defaultAttrs.pager){
+            if(extAttrs['submit'])
+                attrs['tabs'][tab_prefix+(widgets.size()-1)].attrs['submitLabel'] = defaultAttrs['submitLabel']
+
+            attrs['tabs'].eachWithIndex{ tab, int i ->
+                if(i > 0 ){
+                    tab.value.attrs['previous'] = tab_prefix+(i-1)
+                    tab.value.attrs['previousLabel'] = defaultAttrs['previousLabel']
+                }
+                if(i < (attrs['tabs'].size()-1)){
+                    tab.value.attrs['next'] = tab_prefix+(i+1)
+                    tab.value.attrs['nextLabel'] = defaultAttrs['nextLabel']
+                }
             }
         }
 
-        Uri.printTree(attrs)
+        //Uri.printTree(attrs)
 
         /*
         extAttrs['tabs'].eachWithIndex{ it, int i ->
@@ -247,9 +290,7 @@ class GUIDSL {
             }
         }*/
 
-
-        //
-        viewsMap[controller][action].push(['widget': 'tabs', 'attrs': attrs])
+        view.push(['widget': 'tabs', 'attrs': attrs])
 
         /*
 
@@ -276,26 +317,112 @@ class GUIDSL {
 
     }
 
-    def individual(String key, String uri){
-        props[key]= _k.toURI(uri)
+    def form(Map attrs = [:], ArrayList widgets = [], ArrayList view = viewsMap[_controller][_action]){
+        def defaultAttrs = widgetAttrs['form']
+        defaultAttrs.each{key, value->
+            attrs[key] = value
+        }
+        attrs.widgets = []
+
+        widgets.each {
+            if (it.widget){
+                if (it.attrs && it.widgets) {
+                    "$it.widget"(it.attrs, it.widgets, attrs.widgets)
+                }
+                else if(it.attrs) {
+                    "$it.widget"(it.attrs, attrs.widgets)
+                }
+            }
+        }
+        view.push(['widget': 'form', 'attrs': attrs])
+    }
+
+    def hiddenInput(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
+        view.push(['widget': 'hiddenInput', 'attrs': attrs])
     }
 
     def methodMissing(String key, attrs){
-        //println "methodMissing"
+        println "GUIDSL methodMissing: "+ key
         if(attrs.getClass() == Object[]){
-            if(attrs.size()==1){
-                if(attrs[0].getClass() == String)
-                    props[key] = _toHTML(attrs[0])
-                else
-                    props[key] = attrs[0]
+            def container = []
+            def element = null
+            if(getWidgetsNames().contains(key)){
+                if(attrs.size()==1 && attrs[0].getClass() == String){
+                    if(viewsMap[_controller]){
+                        container = viewsMap[_controller][_action]
+                        element = ['widget': key, 'attrs': ['text': _toHTML(attrs[0])]]
+                    }
+                    else{
+                        _props[key] =_toHTML(attrs[0])
+                    }
+                }
+                else if(attrs.size()==1 && attrs[0].getClass() == LinkedHashMap){
+                    if(viewsMap[_controller] && attrs[0].text){
+
+                        container = viewsMap[_controller][_action]
+                        element = ['widget': key, 'attrs': ['text': _toHTML(attrs[0].text)]]
+                        /*
+                        if(key == 'text'){
+                            println key
+                            println attrs.size()
+                            println _toHTML(attrs[0].text)
+                            println _controller+"-"+_action
+                        }
+                        */
+                    }
+                }
+                else if(attrs.size()==2 && attrs[0].getClass() == LinkedHashMap && attrs[1].getClass() == ArrayList){
+                    if(attrs[0].text){
+                        container = attrs[1]
+                        element = ['widget': key, 'attrs': ['text': _toHTML(attrs[0].text)]]
+                    }
+                    else{
+                        container = attrs[1]
+                        element = ['widget': key, 'attrs': attrs[0]]
+                    }
+                }
+                if(element)
+                    container.push(element)
+                /*
+                if(key == 'text'){
+                    println key
+                    println container
+                }
+                */
             }
-            else
-                props[key] = attrs
+            else if(attrs.size()==1 && attrs[0].getClass() == String){
+                _props[key] = _toHTML(attrs[0])
+            }
+            else{
+                println 'Unknown method: '+ key
+                attrs.eachWithIndex{ it, int i ->
+                    println "Attrs ["+i+"]"
+                    Uri.printTree(it)
+                }
+            }
         }
     }
 
-    def setData(String str, obj){
-        _props[str]= obj
+    def propertyMissing(String key) {
+        getData(key)         //new Node(_k, _k.toURI(props[key]))
+    }
+
+    def propertyMissing(String key, obj) {
+        setData(key, obj)
+    }
+
+    def setData(String key, obj){
+        _props[key]= obj    // _props[key]= _k.toURI(uri)
+    }
+
+    def getData(String key){
+        _props[key]
+    }
+
+    def printData(){
+        _props.each{
+            println it
+        }
     }
 
     def requestData(String controllerName, String actionName){
@@ -317,8 +444,48 @@ class GUIDSL {
     }
 
     def setView(String controllerName, String actionName){
-        this.controller = controllerName
-        this.action = actionName
+        this._controller = controllerName
+        this._action = actionName
+    }
+
+    def renderView(String name){
+        _sandbox.register()
+
+        _script = (DelegatingScript) _shell.parse(new File("dsl/views/${name}.groovy").text)
+        _script.setDelegate(this)
+
+        try {
+            _script.run()
+        }
+        catch(Exception e){
+            /*
+            response.error = [:]
+            for (StackTraceElement el : e.getStackTrace()) {
+                if(el.getMethodName() == 'run' && el.getFileName() ==~ /Script.+\.groovy/) {
+                    response.error.line = el.getLineNumber()
+                    response.error.message = e.getMessage()
+                    response.error.filename = el.getFileName()
+                }
+            }
+            //response.status = 'error'
+            */
+            println e
+        }
+        finally {
+            _sandbox.unregister()
+        }
+    }
+
+    def getWidgetsNames(){
+        def dir = new File("grails-app/views/widgets/")
+        def widgetsList = []
+        def name
+
+        dir.eachFileRecurse (FileType.FILES) { file ->
+            name = file.name
+            widgetsList << name.substring(1, name.lastIndexOf('.'))
+        }
+        return widgetsList
     }
 
     static _toHTML(String txt) {_md.markdownToHtml(txt)}
@@ -338,9 +505,9 @@ class GUIDSL {
        }
 
 
-       def paragraph(String arg){
+       def text(String arg){
            //def gui = _ctx.getBean('gui')
-           //gui.viewsMap['tool']['analysis'].push(['widget': 'paragraph', 'attrs': ['text': arg]])
+           //gui.viewsMap['tool']['analysis'].push(['widget': 'text', 'attrs': ['text': arg]])
        }
 
        def recommendation(Map map, String txt){
