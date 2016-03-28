@@ -171,4 +171,15 @@ class Feature {
         }
         return individuals
     }
+
+    def getWeightedIndividualKeys(){
+        def individuals = []
+        _model.subClass.each{ subClassKey, subClass ->
+            subClass.subClass.each{
+                if(it.value.weightId)
+                    individuals.push(it.value.weightId)
+            }
+        }
+        return individuals
+    }
 }

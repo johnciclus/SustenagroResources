@@ -28,13 +28,16 @@ class DataReader {
 
         def classList = k[uri].getSuperClass()
 
+        /*
         println name
         println uri
         println classList
+        */
 
-        if(classList.contains(k.toURI(':Indicator'))){
+        if(classList.contains(k.toURI(':TechnologicalEfficiencyFeature'))){
             try{
-                res = k[uri].getIndividualsValueWeight(id, '?ind ?label ?valueTypeLabel ?value')
+                res = k[uri].getChildrenIndividuals(id, '?ind ?label ?valueTypeLabel ?value ?weightTypeLabel ?weight ?relevance')
+                //res = k[uri].getIndividualsFeatureValueWeight(id, '?ind ?label ?valueTypeLabel ?value ?weightType ?weightTypeLabel ?weight')
             }
             catch (e){
                 res = []
@@ -42,15 +45,7 @@ class DataReader {
         }
         else if(classList.contains(k.toURI('ui:Feature'))){
             try{
-                res = k[uri].getIndividualsValue(id, '?ind ?label ?valueType ?valueTypeLabel ?value')
-            }
-            catch (e){
-                res = []
-            }
-        }
-        else if(classList.contains(k.toURI(':TechnologicalEfficiencyFeature'))){
-            try{
-                res = k[uri].getIndividualsFeatureValueWeight(id, '?ind ?label ?valueType ?valueTypeLabel ?value ?weightType ?weightTypeLabel ?weight')
+                res = k[uri].getGrandChildrenIndividuals(id, '?ind ?label ?valueTypeLabel ?value ?weightTypeLabel ?weight ?relevance')
             }
             catch (e){
                 res = []

@@ -114,33 +114,40 @@ class ToolController {
         def properties = [:]
         def node = new Node(k, '')
         def individualKeys = []
+        def weightedIndividualsKeys = []
+        def weightedIndividuals = [:]
         def featureInstances = [:]
         def uri = ''
 
         properties[k.toURI('rdfs:label')] = k['ui:Analysis'].label+ " " + num
         properties[k.toURI(':appliedTo')] = evalObjURI
 
-        dsl.featureMap.each{
-            individualKeys += it.value.getIndividualKeys()
+        dsl.featureMap.each{ key, feature ->
+            individualKeys += feature.getIndividualKeys()
+        }
+
+        dsl.featureMap.each{ key, feature ->
+            weightedIndividualsKeys += feature.getWeightedIndividualKeys()
+        }
+
+        weightedIndividualsKeys.each{
+            uri = k.toURI(it)
+            if(params[uri]){
+                weightedIndividuals[uri.substring(0, uri.lastIndexOf('-'))] = params[uri]
+            }
         }
 
         individualKeys.each{
             uri = k.toURI(it)
             if(params[uri]){
-                featureInstances[uri] = params[uri]
+                if(!weightedIndividuals[uri]){
+                    featureInstances[uri] = ['value': params[uri]]
+                }
+                else{
+                    featureInstances[uri] = ['value': params[uri], 'weight': weightedIndividuals[uri]]
+                }
             }
         }
-
-        /*
-        println "Properties"
-        properties.each{
-            println it
-        }
-
-        println "Feature Instances"
-        featureInstances.each{
-            println it
-        }*/
 
         node.insertAnalysis(analysisId, properties, featureInstances)
 
