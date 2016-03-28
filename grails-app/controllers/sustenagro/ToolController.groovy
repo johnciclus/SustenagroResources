@@ -81,12 +81,13 @@ class ToolController {
                                         ]]
 
         }
-
+        /*
         dsl.featureMap.each{ key, feature ->
             println feature.model.label
             println feature.uri
             Uri.printTree(feature.model)
         }
+        */
 
         tabsAttrs.submit = true
 
@@ -106,9 +107,9 @@ class ToolController {
     }
 
     def createScenario(){
-        def evalObjInstance = k.toURI(params.evalObjInstance)
-        def num = k[evalObjInstance].getAnalyses().size() + 1
-        def name = evalObjInstance.substring(evalObjInstance.lastIndexOf('#')+1)
+        def evalObjURI = k.toURI(params.evalObjInstance)
+        def num = k[evalObjURI].getAnalyses().size() + 1
+        def name = evalObjURI.substring(evalObjURI.lastIndexOf('#')+1)
         def analysisId = name+"-analysis-"+num
         def properties = [:]
         def node = new Node(k, '')
@@ -117,7 +118,7 @@ class ToolController {
         def uri = ''
 
         properties[k.toURI('rdfs:label')] = k['ui:Analysis'].label+ " " + num
-        properties[k.toURI(':appliedTo')] = evalObjInstance
+        properties[k.toURI(':appliedTo')] = evalObjURI
 
         dsl.featureMap.each{
             individualKeys += it.value.getIndividualKeys()
@@ -129,6 +130,17 @@ class ToolController {
                 featureInstances[uri] = params[uri]
             }
         }
+
+        /*
+        println "Properties"
+        properties.each{
+            println it
+        }
+
+        println "Feature Instances"
+        featureInstances.each{
+            println it
+        }*/
 
         node.insertAnalysis(analysisId, properties, featureInstances)
 
@@ -213,6 +225,20 @@ class ToolController {
 
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
+
+        /*
+        println uri
+
+        dsl.featureMap.each{ key, fea ->
+            fea.model.subClass.each{ featureKey, feature ->
+                feature.subClass.each{ indKey, ind->
+                    println indKey
+                    println ind
+                }
+            }
+        }
+        */
+
 
         if(uri?.trim()){
             dsl.setData(new DataReader(k, uri))

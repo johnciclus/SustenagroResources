@@ -10,20 +10,18 @@ import utils.Uri
  * Created by john on 26/02/16.
  */
 class GUIDSL {
-    def _shell
-    def _sandbox
-    def _script
-    def _ctx
-    def _k
-    def widgetAttrs
-    def contanst
-    def _controller
-    def _action
-
-    static _md
-
-    def viewsMap
-    def dataTypeToWidget
+    private def _shell
+    private def _sandbox
+    private def _script
+    private def _ctx
+    private def _k
+    private def widgetAttrs
+    private def contanst
+    private def _controller
+    private def _action
+    private static _md
+    private def viewsMap
+    private def dataTypeToWidget
 
     def _props = [:]
 
@@ -119,8 +117,20 @@ class GUIDSL {
         dataTypeToWidget[k.toURI(id)] = attrs['widget']
     }
 
+    def getDataTypeToWidget(){
+        return dataTypeToWidget
+    }
+
     def widgetAttributes(Map attrs = [:], String id){
         widgetAttrs[id] = attrs
+    }
+
+    def getWidgetAttrs(){
+        return widgetAttrs
+    }
+
+    def getViewsMap(){
+        return viewsMap
     }
 
     def contanst(Object arg, String id){

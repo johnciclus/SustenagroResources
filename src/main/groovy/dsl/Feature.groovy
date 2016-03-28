@@ -12,18 +12,25 @@ class Feature {
 
     Feature(String id, ApplicationContext applicationContext){
         def grandChildren
+        def category
         _ctx = applicationContext
         _k = _ctx.getBean('k')
         _uri = _k.toURI(id)
 
         _model = ['label': _k[_uri].label, 'subClass': [:]]
-        grandChildren = _k[_uri].getGrandchildren('?id ?label ?subClass ?category ?valueType ?relevance')
+        grandChildren = _k[_uri].getGrandchildren('?id ?label ?subClass ?relevance ?category ?weight')
+
         _k[_uri].getSubClass('?label').each{ subClass ->
             _model['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
             grandChildren.each{
                 if(it.subClass == subClass.subClass) {
                     _model['subClass'][subClass.subClass]['subClass'][it.id] = it
+                    _model['subClass'][subClass.subClass]['subClass'][it.id]['valueTypes'] = _k[it.category].getSuperClass()
                     _model['subClass'][subClass.subClass]['subClass'][it.id]['categoryIndividuals'] = _k[it.category].getIndividualsIdLabel()
+                    if(it.weight){
+                        _model['subClass'][subClass.subClass]['subClass'][it.id]['weightId'] = it.id + '-' + it.weight.substring(it.weight.lastIndexOf('#')+1)
+                        _model['subClass'][subClass.subClass]['subClass'][it.id]['weightIndividuals'] = _k[it.weight].getIndividualsIdLabel()
+                    }
                 }
             }
         }

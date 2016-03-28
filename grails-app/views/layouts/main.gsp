@@ -91,7 +91,10 @@
 
     <script type="application/javascript">
         $('#logout').click(function(e){
-            $.post('/logout');
+            $.post('/logout', function( data ) {
+                $(location).attr('href', '/');
+            });
+            return false;
         });
 
     </script>

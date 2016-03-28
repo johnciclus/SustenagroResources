@@ -208,15 +208,14 @@ class Node {
         def query = ''
         def result
 
-        if (argsList.contains('subClass')) {
+        if (argsList.contains('subClass') && argsList.contains('id')) {
             query += "?subClass rdfs:subClassOf <$URI>"
 
             if (argsList.contains('subClassLabel'))
                 query += "; rdfs:label ?subClassLabel";
 
             query += "."
-        }
-        if (argsList.contains('id')){
+
             query +="?id rdfs:subClassOf ?subClass"
 
             if (argsList.contains('label'))
@@ -226,12 +225,21 @@ class Node {
                 query +=". optional {?id :relevance ?relevance}";
 
             query += "."
-        }
-        if (argsList.contains('id') && argsList.contains('subClass') && argsList.contains('category') && argsList.contains('valueType')) {
-            query += ''' ?id rdfs:subClassOf ?y.
-                    ?y owl:onClass ?category.
-                    ?category rdfs:subClassOf ?valueType. ''' +
-                    "FILTER(?subClass != <$URI> && ?subClass != ?id && ?valueType = ui:Categorical)"
+
+            if(argsList.contains('category')){
+                query += ''' ?id rdfs:subClassOf ?y.
+                             ?y owl:onProperty ui:value.
+                             ?y owl:onClass ?category. '''
+            }
+            if(argsList.contains('weight')){
+                query += ''' optional {
+                                ?id rdfs:subClassOf ?z.
+                                ?z owl:onProperty ui:hasWeight.
+                                ?z owl:onClass ?weight.
+                             } '''
+            }
+
+            query += "FILTER(?subClass != <$URI> && ?subClass != ?id)"
         }
 
         result = k.select('distinct '+args).query(query, "ORDER BY ?label")
@@ -390,17 +398,19 @@ class Node {
 
     def getIndividualsValueWeight(String analysis, String args){
         def argsList = args.split(' ')
-        def result = k.select('distinct '+args)
-                .query("<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
-                "?subClass rdfs:subClassOf <$URI>."+
-                "?id rdfs:subClassOf ?subClass." +
-                "?id rdfs:label ?label." +
-                "?id :weight ?weight." +
-                "?ind a ?id." +
-                "?ind ui:value ?valueType."+
-                "?valueType ui:hasDataValue ?value."+
-                "?valueType rdfs:label ?valueTypeLabel."+
-                "FILTER( ?subClass != ?id && ?subClass != <$URI> )", "ORDER BY ?label")
+        def result
+        def query = "<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+                    "?subClass rdfs:subClassOf <$URI>."+
+                    "?id rdfs:subClassOf ?subClass." +
+                    "?id rdfs:label ?label." +
+                    "?id :weight ?weight." +
+                    "?ind a ?id." +
+                    "?ind ui:value ?valueType."+
+                    "?valueType ui:hasDataValue ?value."+
+                    "?valueType rdfs:label ?valueTypeLabel."+
+                    "FILTER( ?subClass != ?id && ?subClass != <$URI> )"
+
+        result = k.select('distinct '+args).query(query, "ORDER BY ?label")
 
         result.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
         result.metaClass.label = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
@@ -575,6 +585,25 @@ class Node {
         k.select('distinct ?uri').query("?uri rdfs:label '$label'@${k.lang}.")
     }
 
+    def existOntology(String uri){
+        def existOnt = false
+        def result = k.query("?o rdf:type owl:Ontology")
+
+        println "******** Result ********"
+        println result
+
+        result.each{
+            if(it.o == uri)
+                existOnt = true
+        }
+
+        existOnt
+    }
+
+    def exist(){
+        k.query("<$URI> rdf:type ?type").size() > 1 ? true : false
+    }
+
     def insertEvaluationObject(String id, Object type, Map properties = [:]){
         def name = k.toURI(':hasName')
 
@@ -619,7 +648,6 @@ class Node {
                     }
                     break
             }
-
         }
 
         sparql += '.'
@@ -666,6 +694,50 @@ class Node {
                         " dc:hasPart <" + it.key +'-'+ id +">."
 
         }
+
+        k.insert(sparql)
+    }
+
+    def insertUser(String id, Map properties = [:]){
+        def userId = k.toURI(id)
+        String sparql = "<" + userId + "> "+
+                "rdf:type ui:User"
+
+        properties.each { key, property ->
+            switch (property.dataType) {
+                case k.toURI('xsd:string'):
+                    sparql += ";<${k.toURI(key)}> \"" + property.value + "\"^^xsd:string "
+                    break
+                case k.toURI('xsd:date'):
+                    sparql += ";<${k.toURI(key)}> \"" + property.value + "\"^^xsd:date "
+                    break
+                case k.toURI('xsd:double'):
+                    sparql += ";<${k.toURI(key)}> \"" + property.value + "\"^^xsd:double "
+                    break
+                case k.toURI('xsd:float'):
+                    sparql += ";<${k.toURI(key)}> \"" + property.value + "\"^^xsd:float "
+                    break
+                case k.toURI('owl:real'):
+                    sparql += ";<${k.toURI(key)}> \"" + property.value + "\"^^owl:real "
+                    break
+                case k.toURI('rdfs:Literal'):
+                    sparql += ";<${k.toURI(key)}> '" + property.value + "'@" + k.lang + " "
+                    break
+                default:
+                    // Implement for arraylist
+                    if (k.isURI(property.value))
+                        sparql += ";<${k.toURI(key)}> <" + property.value + ">"
+                    else {
+                        println "Default: " + key + " : " + property.value
+                        sparql += ";<${k.toURI(key)}> '" + property.value + "'@" + k.lang + " "
+                    }
+                    break
+            }
+        }
+
+        sparql += '.'
+
+        println sparql
 
         k.insert(sparql)
     }

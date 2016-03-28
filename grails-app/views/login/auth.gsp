@@ -10,13 +10,18 @@
         <div class="page-header">
             <h1>Bem-vindo!</h1>
         </div>
+
+        <g:if test='${flash.message}'>
+            <div class="alert alert-info" role="alert">
+            <p>${flash.message}</p>
+            </div>
+        </g:if>
+
         <div>
             <p>Por favor insira os dados de usuário</p>
         </div>
 
-        <g:if test='${flash.message}'>
-            <div>${flash.message}</div>
-        </g:if>
+
 
         <form action='/login/authenticate' method='post' id='loginForm' class='form-horizontal'>
             <div class="form-group">
@@ -46,7 +51,7 @@
             </p>
 
             <div class="form-group col-sm-12 text-center">
-                <input type="submit" id="submit" value="${message(code: 'springSecurity.login.button')}" class="btn btn-primary"/>
+                <input type="submit" id="submit" value="Ingresar" class="btn btn-primary"/>
             </div>
         </form>
     </div>

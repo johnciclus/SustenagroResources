@@ -31,12 +31,12 @@
 		<script type="text/javascript">
             function loadAnalyses(){
                 $.post('/tool/analyses',
-                        { 'evaluation_object_id':  $('#evaluation_object_id').val()},
-                        function( data ) {
-                            $('#analyses_form').html(data);
-                            $('#analyses_form table').bootstrapTable()
-                            $('#new_analysis').prop('disabled', false);
-                        }
+					{ 'evaluation_object_id':  $('#evaluation_object_id').val()},
+					function( data ) {
+						$('#analyses_form').html(data);
+						$('#analyses_form table').bootstrapTable()
+						$('#new_analysis').prop('disabled', false);
+					}
                 );
             }
 

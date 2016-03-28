@@ -28,13 +28,13 @@ class DataReader {
 
         def classList = k[uri].getSuperClass()
 
-        //println name
-        //println uri
-        //println classList
+        println name
+        println uri
+        println classList
 
         if(classList.contains(k.toURI(':Indicator'))){
             try{
-                res = k[uri].getIndividualsValueWeight(id, '?ind ?label ?valueType ?valueTypeLabel ?value ?weight')
+                res = k[uri].getIndividualsValueWeight(id, '?ind ?label ?valueTypeLabel ?value')
             }
             catch (e){
                 res = []
