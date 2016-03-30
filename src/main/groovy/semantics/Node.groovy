@@ -148,6 +148,10 @@ class Node {
         k.query("?id rdf:type <$URI>. ?id rdfs:label ?label. ?id ui:hasDataValue ?value.")
     }
 
+    def getIdLabel(){
+        k.query("?id rdf:type <$URI>. ?id rdfs:label ?label.")
+    }
+
     def getSuperClass(Map params = [:]){
         getAttr('?superClass', ['FILTER': "?superClass != <$URI>"])
         //k.select('?superClass').query("<$URI> rdfs:subClassOf ?superClass. FILTER(?superClass != <$URI>)")

@@ -18,6 +18,8 @@ class ToolController {
     def index() {
 
         def evaluationObject = dsl.evaluationObject
+        def evaluationObjects = k['ui:EvaluationObject'].getIdLabel()
+        def analysis = []
         def tabsAttrs = [:]
         def tabsWidgets
 
@@ -30,9 +32,16 @@ class ToolController {
 
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
+
+
+        evaluationObjects.each{
+            it.id = it.id.substring(it.id.lastIndexOf('#')+1)
+        }
+
+        //gui.
         gui.tabs(tabsAttrs, tabsWidgets)
 
-        render(view: 'index', model: [data: gui._props, inputs: gui.viewsMap[controllerName][actionName]])
+        render(view: 'index', model: [data: gui._props, inputs: gui.viewsMap[controllerName][actionName], evaluationObjects: evaluationObjects, analysis: analysis])
     }
 
     def createEvaluationObject() {

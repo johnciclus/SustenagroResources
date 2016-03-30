@@ -13,12 +13,16 @@
 	<body>
 		<div class="row main">
 			<div id="content" class="col-sm-10 col-sm-offset-1 content">
-				<div class="section">
-					<g:render template="/widgets/title" model="['text': data['title']]" />
-				</div>
-				<div class="section">
-					<g:render template="/widgets/description" model="['text': data['description']]" />
-				</div>
+                <div class="section">
+                    <g:render template="/widgets/navbarRoute" model="['evaluationObjects': evaluationObjects, analysis: analysis]" />
+                </div>
+                <div class="section">
+                    <g:render template="/widgets/title" model="['text': data['title']]" />
+                </div>
+                <div class="section">
+                    <g:render template="/widgets/description" model="['text': data['description']]" />
+                </div>
+
 				<g:if test="${inputs}">
 					<g:each in="${inputs}">
 						<div class="section">

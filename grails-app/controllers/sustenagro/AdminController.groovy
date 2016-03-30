@@ -1,5 +1,6 @@
 package sustenagro
 
+import grails.rest.*
 import org.semanticweb.owlapi.model.*
 import org.semanticweb.owlapi.io.StringDocumentSource
 import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat
@@ -20,8 +21,19 @@ class AdminController {
         def indicators = k[':Indicator'].getIndicators()
         def dimensions = k[':Indicator'].getDimensions()
 
-        Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#", '')
-        Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#", '')
+        println indicators
+        println dimensions
+
+        dsl.featureMap.each{ key, fea ->
+            fea.model.subClass.each{ featureKey, feature ->
+                feature.subClass.each{ indKey, ind->
+                    println indKey
+                    println ind
+                }
+            }
+        }
+        //Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#", '')
+        //Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#", '')
 
         OutputStream out = new ByteArrayOutputStream()
         //ontology.getManager().saveOntology(ontology.getOntology(), new ManchesterSyntaxDocumentFormat(), out)

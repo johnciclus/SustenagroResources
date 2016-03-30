@@ -352,7 +352,7 @@ class GUIDSL {
     }
 
     def methodMissing(String key, attrs){
-        println "GUIDSL methodMissing: "+ key
+        //println "GUIDSL methodMissing: "+ key
         if(attrs.getClass() == Object[]){
             def container = []
             def element = null
