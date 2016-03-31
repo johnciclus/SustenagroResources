@@ -96,6 +96,16 @@ class Node {
         getAttr('?range', params)
     }
 
+    def getDataProperties(){
+        def result = k.select('?dataProperty ?dataPropertyLabel ?value').query("<$URI> ?dataProperty ?value. ?dataProperty rdf:type owl:DatatypeProperty; rdfs:label ?dataPropertyLabel. ")
+        return result
+    }
+
+    def getObjectProperties(){
+        def result = k.select('?objectProperty ?objectPropertyLabel ?value ?valueLabel').query("<$URI> ?objectProperty ?value. ?value rdfs:label ?valueLabel. ?objectProperty rdf:type owl:ObjectProperty; rdfs:label ?objectPropertyLabel. ")
+        return result
+    }
+
     def getDataType(){
         def result = k.select('?dataType').query("<$URI> rdfs:subClassOf ?dataType. ?dataType rdfs:subClassOf :DataType. FILTER (?dataType != :DataType && ?dataType != <$URI>)")
         //println k.getPrefixesMap()
@@ -144,12 +154,14 @@ class Node {
                 "ORDER BY ?label")
     }
 
-    def getOptions() {
-        k.query("?id rdf:type <$URI>. ?id rdfs:label ?label. ?id ui:hasDataValue ?value.")
+    def getAnalysesIdLabel(){
+        k.select('distinct ?id ?label')
+            .query("?id :appliedTo <$URI>; rdfs:label ?label.",
+            "ORDER BY ?label")
     }
 
-    def getIdLabel(){
-        k.query("?id rdf:type <$URI>. ?id rdfs:label ?label.")
+    def getOptions() {
+        k.query("?id rdf:type <$URI>. ?id rdfs:label ?label. ?id ui:hasDataValue ?value.")
     }
 
     def getSuperClass(Map params = [:]){
@@ -619,7 +631,9 @@ class Node {
                     sparql += ";<${k.shortToURI(key)}> \"" + property.value + "\"^^xsd:float "
                     break
                 case k.toURI('owl:real'):
-                    sparql += ";<${k.shortToURI(key)}> \"" + property.value + "\"^^owl:real "
+                    println key
+                    println property
+                    sparql += ";<${k.shortToURI(key)}> \"" + property.value + "\"^^<"+k.toURI('owl:real')+"> "
                     break
                 case k.toURI('rdfs:Literal'):
                     sparql += ";<${k.shortToURI(key)}> '" + property.value + "'@"+ k.lang+" "

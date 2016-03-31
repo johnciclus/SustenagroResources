@@ -9,7 +9,9 @@
     <div id="content" class="col-sm-10 col-sm-offset-1 content">
         <g:if test="${inputs}">
             <g:each in="${inputs}">
-                <g:render template="/widgets/${it.widget}" model="${it.attrs}" />
+                <div class="section">
+                    <g:render template="/widgets/${it.widget}" model="${it.attrs}" />
+                </div>
             </g:each>
         </g:if>
     </div>

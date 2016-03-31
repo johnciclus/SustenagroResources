@@ -24,6 +24,9 @@ evaluationObject ':ProductionUnit', {
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
     type label: "Tipo da unidade produtiva", header: "Opções"
 
+    // Microrregião produtora
+    instance ':hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
+
     // Agricultural production system
     instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções"
 
@@ -31,9 +34,6 @@ evaluationObject ':ProductionUnit', {
 
     // Origem da cana (própria, fornecedor, arrendamento)
     instance  ':hasSugarcaneSource', label: "Origem da cana", header: "Opções"
-
-    // Microrregião produtora
-    instance ':hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
 
     // Data de fundação da unidade produção
     instance ':hasEstablishmentDate', label: "Data de fundação da unidade produção"
@@ -49,18 +49,6 @@ evaluationObject ':ProductionUnit', {
     // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
     instance ':hasInnovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
 
-    //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
-    instance ':hasFinancing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição"
-
-    // Valor total investido em tecnologia na fase agrícola (até a fase atual)
-    instance ':hasTotalValueInvestedInTechnologicInAgriculturalPhase', label: "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
-
-    // Valor total investido em tecnologia na fase industrial (até a fase atual)
-    instance ':hasTotalValueInvestedInTechnologicInIndustrialPhase', label: "Valor total investido em tecnologia na fase industrial (até a fase atual)"
-
-    // Valor total previsto para investimento para escoamento da produção
-    instance ':hasTotalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
-
     // Data de início do plantio
     instance ':hasBeginningOfPlantingDate', label: "Data de início do plantio"
 
@@ -75,6 +63,18 @@ evaluationObject ':ProductionUnit', {
 
     // Longevidade do canvial (cana de ano, cana de ano e meio);
     instance ':hasCanavialLongevity', label: "Longevidade do canvial", header: "Opções"
+
+    //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
+    instance ':hasFinancing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição"
+
+    // Valor total investido em tecnologia na fase agrícola (até a fase atual)
+    instance ':hasTotalValueInvestedInTechnologicInAgriculturalPhase', label: "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
+
+    // Valor total investido em tecnologia na fase industrial (até a fase atual)
+    instance ':hasTotalValueInvestedInTechnologicInIndustrialPhase', label: "Valor total investido em tecnologia na fase industrial (até a fase atual)"
+
+    // Valor total previsto para investimento para escoamento da produção
+    instance ':hasTotalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
 
     // Disponibilização dos resultados da avaliação: Público | privado
     instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções"
@@ -110,7 +110,7 @@ data 'data'
 
 // Para cada índice, é possível indicar fórmulas para o cálculo de cada
 // atributo. Essas fórmulas podem ser tão complicadas como você queira.
-formula {
+report {
     environment =   weightedSum(data.':EnvironmentalIndicator')             //.equation({value*weight}))
     economic    =   weightedSum(data.':EconomicIndicator')
     social      =   weightedSum(data.':SocialIndicator')
@@ -131,7 +131,7 @@ formula {
     //social =        3 * analysis.EnergyEfficiencyOfBoilersForCogeneration + 7 *
     //        analysis.OperationalEfficiencyPlant
 
-    matrixWithSummary   x: sustainability,
+    sustainabilityMatrix    x: sustainability,
             y: efficiency,
             label_x: 'Indice da sustentabilidade',
             label_y: 'Indice de eficiência',
@@ -151,7 +151,7 @@ formula {
                              "Cenário muito favorável, Médio desempenho dos indicadores",
                              "Cenário muito favorável, Alto desempenho dos indicadores"]
 
-    text           '**Mapa da microregião**'
+    text    '**Mapa da microregião**'
 
-    map                 url: data.'Microregion'.map()
+    map     url: data.'Microregion'.map()
 }

@@ -4,6 +4,7 @@ import groovy.io.FileType
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
 import org.springframework.context.ApplicationContext
+import semantics.DataReader
 import utils.Uri
 
 /**
@@ -15,7 +16,7 @@ class GUIDSL {
     private def _script
     private def _ctx
     private def _k
-    private def widgetAttrs
+    private def _widgetAttrs
     private def contanst
     private def _controller
     private def _action
@@ -32,7 +33,7 @@ class GUIDSL {
         _md = _ctx.getBean('md')
 
         dataTypeToWidget = [:]
-        widgetAttrs = [:]
+        _widgetAttrs = [:]
         contanst = [:]
 
         viewsMap = [:]
@@ -122,11 +123,11 @@ class GUIDSL {
     }
 
     def widgetAttributes(Map attrs = [:], String id){
-        widgetAttrs[id] = attrs
+        _widgetAttrs[id] = attrs
     }
 
     def getWidgetAttrs(){
-        return widgetAttrs
+        return _widgetAttrs
     }
 
     def getViewsMap(){
@@ -138,14 +139,15 @@ class GUIDSL {
     }
 
     def selectEvaluationObject(Map attrs = [:], String id, ArrayList view = viewsMap[_controller][_action]){
-        def defaultAttrs =  widgetAttrs['selectEvaluationObject']
+        def defaultAttrs =  _widgetAttrs['selectEvaluationObject']
         def uri = _k.toURI(id)
         def request = ['evaluationObjects': ['a', uri]]
         def shortId = _k.shortURI(uri)
         attrs['evaluationObject']= uri
 
         defaultAttrs.each{key, value->
-            attrs[key] = value
+            if(!attrs.containsKey(key))
+                attrs[key] = value
         }
 
         request.each{ key, arg ->
@@ -155,16 +157,42 @@ class GUIDSL {
         view.push(['widget': 'selectEvaluationObject', 'request': request, attrs: attrs])
     }
 
+    def listEvaluationObjects(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
+        def defaultAttrs =  _widgetAttrs['listEvaluationObjects']
+        def evaluationObjects = _k['ui:EvaluationObject'].getIndividualsIdLabel()
+
+        defaultAttrs.each{key, value->
+            if(!attrs.containsKey(key))
+                attrs[key] = value
+        }
+        if(attrs.id){
+            def uri = _k.toURI(':'+attrs.id)
+            attrs.id = uri
+            attrs.data = []
+            _k[uri].getDataProperties().each{
+                attrs.data.push([label: it.dataPropertyLabel, value: it.value])
+            }
+            _k[uri].getObjectProperties().each{
+                attrs.data.push([label: it.objectPropertyLabel, value: it.valueLabel])
+            }
+        }
+
+        attrs['evaluationObjects'] = evaluationObjects
+
+        view.push(['widget': 'listEvaluationObjects', attrs: attrs])
+    }
+
     def createEvaluationObject(Map attrs = [:], ArrayList widgets = [], String evaluationObjectId, ArrayList view = viewsMap[_controller][_action]){
-        def defaultAttrs =  widgetAttrs['createEvaluationObject']
+        def defaultAttrs =  _widgetAttrs['createEvaluationObject']
         def uri = _k.toURI(evaluationObjectId)
         def request        = [:]
 
         defaultAttrs.each{key, value->
-            attrs[key] = value
+            if(!attrs.containsKey(key))
+                attrs[key] = value
         }
 
-        request['widgets'] = [:]
+        request['widgets']    = [:]
         attrs['widgets']      = [:]
         attrs['evalObjType']  = uri
 
@@ -238,9 +266,10 @@ class GUIDSL {
     }
 
     def tabs(Map extAttrs = [:], Map widgets = [:], ArrayList view = viewsMap[_controller][_action]){
-        def defaultAttrs = widgetAttrs['tabs']
+        def defaultAttrs = _widgetAttrs['tabs']
         def attrs = [:]
         def tab_prefix = 'tab_'
+        def activeTab = extAttrs.activeTab ? extAttrs.activeTab : tab_prefix+'0'
 
         attrs['id'] = 'tabs'
         attrs['tabs'] = [:]
@@ -262,12 +291,12 @@ class GUIDSL {
                 else if(widget.attrs)
                     "$widget.widget"(widget.attrs, attrs['tabpanels'][tab_prefix+i])
                 else
-                    "$widget.widget"(attrs['tabpanels'][tab_prefix+i])
+                    "$widget.widget"([:], attrs['tabpanels'][tab_prefix+i])
             }
             //attrs['tabpanels'][tab_prefix+i]
         }
 
-        attrs['tabs'][tab_prefix+'0'].attrs['widgetClass'] = 'active'
+        attrs['tabs'][activeTab].attrs['widgetClass'] = 'active'
 
         if(extAttrs.containsKey('pager') ? extAttrs.pager : defaultAttrs.pager){
             if(extAttrs['submit'])
@@ -328,9 +357,10 @@ class GUIDSL {
     }
 
     def form(Map attrs = [:], ArrayList widgets = [], ArrayList view = viewsMap[_controller][_action]){
-        def defaultAttrs = widgetAttrs['form']
+        def defaultAttrs = _widgetAttrs['form']
         defaultAttrs.each{key, value->
-            attrs[key] = value
+            if(!attrs.containsKey(key))
+                attrs[key] = value
         }
         attrs.widgets = []
 
@@ -349,6 +379,15 @@ class GUIDSL {
 
     def hiddenInput(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         view.push(['widget': 'hiddenInput', 'attrs': attrs])
+    }
+
+    def navBarRoute(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
+        def defaultAttrs = _widgetAttrs['navBarRoute']
+        defaultAttrs.each{key, value->
+            if(!attrs.containsKey(key))
+                attrs[key] = value
+        }
+        view.push(['widget': 'navbarRoute', 'attrs': attrs])
     }
 
     def methodMissing(String key, attrs){
@@ -427,6 +466,15 @@ class GUIDSL {
 
     def getData(String key){
         _props[key]
+    }
+
+    def getVariables(){
+        def result = [:]
+        _props.each{ key, value ->
+            if(value.getClass() != DataReader)
+                result[key] = value
+        }
+        return result
     }
 
     def printData(){

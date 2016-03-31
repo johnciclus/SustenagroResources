@@ -48,7 +48,7 @@
                         Inicio
                     </a></li>
                     <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_USER">
-                        <li <g:if test="${controllerName == 'tool'}"> class="active" </g:if> ><a href="/tool">
+                        <li <g:if test="${controllerName == 'tool'}"> class="active" </g:if> ><a href="/tool/evalobj">
                             <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
                             Ferramenta
                         </a></li>

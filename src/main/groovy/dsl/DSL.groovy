@@ -63,7 +63,6 @@ class DSL {
         _data = null
         _props = [:]
         _featureMap = [:]
-        _analysisMap = [:]
         _reportView = []
         _evaluationObjectInstance = null
 
