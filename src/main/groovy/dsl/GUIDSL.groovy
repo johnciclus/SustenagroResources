@@ -144,9 +144,9 @@ class GUIDSL {
         contanst[id] = arg
     }
 
-    def selectEvaluationObject(Map attrs = [:], String id, ArrayList view = viewsMap[_controller][_action]){
+    def selectEvaluationObject(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         def defaultAttrs =  _widgetAttrs['selectEvaluationObject']
-        def uri = _k.toURI(id)
+        def uri = _k.toURI(attrs.id)
         def request = ['evaluationObjects': ['a', uri]]
         def shortId = _k.shortURI(uri)
         attrs['evaluationObject']= uri
@@ -452,9 +452,11 @@ class GUIDSL {
                     "$it.widget"([:], it.widgets, attrs.widgets)
                 }
                 else if(it.attrs) {
-                    "$it.widget"(it.attrs, [], attrs.widgets)
+                    //println 'Only Attrs '+ it.widget
+                    "$it.widget"(it.attrs, attrs.widgets) // "$it.widget"(it.attrs, [], attrs.widgets)
                 }
                 else{
+                    //println 'No Attrs '+it.widget
                     "$it.widget"([:], [], attrs.widgets)
                 }
             }
@@ -476,7 +478,7 @@ class GUIDSL {
     }
 
     def methodMissing(String key, attrs){
-        println "GUIDSL methodMissing: "+ key + " - "+attrs
+        //println "GUIDSL methodMissing: "+ key //+ " - "+attrs
         if(attrs.getClass() == Object[]){
             def container = []
             def element = null

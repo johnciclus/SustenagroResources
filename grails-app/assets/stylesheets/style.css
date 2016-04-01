@@ -89,8 +89,7 @@ fieldset{
 .content, .left-content, .right-content{
 	background-color: rgba(255, 255, 255, 1.00);
 	text-align: justify;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	padding: 20px;
 }
 
 .content h5, .left-content h5, .right-content h5{

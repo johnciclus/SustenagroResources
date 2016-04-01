@@ -45,14 +45,12 @@
                 <ul class="nav navbar-nav">
                     <li <g:if test="${controllerName == null}"> class="active" </g:if> ><a href="/">
                         <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                        Inicio
+                        Apresentação
                     </a></li>
-                    <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_USER">
-                        <li <g:if test="${controllerName == 'tool'}"> class="active" </g:if> ><a href="/tool/evalobj">
-                            <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
-                            Ferramenta
-                        </a></li>
-                    </sec:ifAnyGranted>
+                    <li <g:if test="${controllerName == 'tool'}"> class="active" </g:if> ><a href="/tool/evalobj">
+                        <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+                        Avaliação
+                    </a></li>
                     <sec:ifAnyGranted roles="ROLE_ADMIN">
                         <li <g:if test="${controllerName == 'admin'}"> class="active" </g:if> ><a href="/admin">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

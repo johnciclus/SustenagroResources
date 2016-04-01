@@ -3,6 +3,7 @@ package sustenagro
 import semantics.DataReader
 import semantics.Node
 import grails.plugin.springsecurity.annotation.Secured
+import utils.Uri
 
 @Secured(['ROLE_USER', 'ROLE_ADMIN'])
 class ToolController {
@@ -86,6 +87,7 @@ class ToolController {
         def formAttrs = [:]
         def formWidgets = []
         def sustainabilityTabs = []
+        def efficiencyTabs = []
 
         evaluationObjects.each{
             it.id = it.id.substring(it.id.lastIndexOf('#')+1)
@@ -95,18 +97,19 @@ class ToolController {
         }
 
         dsl.featureMap.eachWithIndex { key, feature, int i ->
-            sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass,
-                                                                                                                                             values: [:], weights: [:]]
-                                                                                                     ]]
-            ])
+            if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
+                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]]])
+            if(feature.model.superClass.contains(k.toURI(':EfficiencyIndicator')))
+                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]]])
         }
 
-        tabsWidgets.push(['widget': 'tab', attrs: [label: 'Avaliação da Sustentabilidade'], widgets: [
-                ['widget': 'tabs', attrs: [id: 'sustainability', finalPag: 'efficiency_tab_0', finalPagLabel: 'Próximo', submit: true], widgets: sustainabilityTabs]
+        tabsWidgets.push(['widget': 'tab', attrs: [label: 'Avaliação da eficiência e custo'], widgets: [
+                ['widget': 'tabs', attrs: [id : 'efficiency', finalPag: 'sustainability_tab_0', finalPagLabel: 'Próximo'], widgets: efficiencyTabs]
         ]])
-        tabsWidgets.push(['widget': 'tab', attrs: [label: 'Avaliação da Eficiência'], widgets: [
-                ['widget': 'tabs', attrs: [id : 'efficiency', initialPag: 'sustainability_tab_4', initialPagLabel: 'Anterior', submit: true], widgets: []]
+        tabsWidgets.push(['widget': 'tab', attrs: [label: 'Avaliação da sustentabilidade'], widgets: [
+                ['widget': 'tabs', attrs: [id: 'sustainability', initialPag: 'efficiency_tab_4', initialPagLabel: 'Anterior', submit: true], widgets: sustainabilityTabs]
         ]])
+
 
         /*
         dsl.featureMap.each{ key, feature ->

@@ -1,4 +1,4 @@
-tabs([:],  [['widget': 'tab', attrs: [label: 'Scenario'], widgets: [
+tabs([:],  [['widget': 'tab', attrs: [label: 'Resultados da Avaliação'], widgets: [
             ['widget': 'text',       attrs: [text: '**Avaliação da sustentabilidade**']],
             ['widget': 'ln'],
             ['widget': 'text',       attrs: [text: '**Indicadores Ambientais**']],
@@ -32,5 +32,5 @@ tabs([:],  [['widget': 'tab', attrs: [label: 'Scenario'], widgets: [
             ['widget': 'text',       attrs: [text: 'Índice da eficiência: '+ vars['efficiency']]],
             ['widget': 'ln']
           ]],
-            ['widget': 'tab', attrs: [label: 'Report'], widgets: reportView]
+            ['widget': 'tab', attrs: [label: 'Relatório da Avaliação'], widgets: reportView]
         ])

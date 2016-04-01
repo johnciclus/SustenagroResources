@@ -17,7 +17,7 @@ class Feature {
         _k = _ctx.getBean('k')
         _uri = _k.toURI(id)
 
-        _model = ['label': _k[_uri].label, 'subClass': [:]]
+        _model = ['label': _k[_uri].label, 'subClass': [:], 'superClass': _k[_uri].getSuperClass()]
         grandChildren = _k[_uri].getGrandchildren('?id ?label ?subClass ?relevance ?category ?weight')
 
         _k[_uri].getSubClass('?label').each{ subClass ->
