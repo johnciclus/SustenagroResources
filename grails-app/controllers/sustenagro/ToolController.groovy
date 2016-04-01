@@ -18,8 +18,8 @@ class ToolController {
         def evaluationObject = dsl.evaluationObject
         def evaluationObjects = k['ui:EvaluationObject'].getIndividualsIdLabel()
         def analyses = (id)? k[':'+id].getAnalysesIdLabel() : []
-        def tabsAttrs = [:]
-        def tabsWidgets
+        def activeTab = 'tab_0'
+        def tabsWidgets = []
 
         evaluationObjects.each{
             it.id = it.id.substring(it.id.lastIndexOf('#')+1)
@@ -30,15 +30,15 @@ class ToolController {
 
         if(id){
             evalObjId = evalObjId.substring(evalObjId.lastIndexOf('#')+1)
-            tabsAttrs.activeTab = 'tab_1'
+            activeTab = 'tab_1'
         }
 
-        tabsAttrs.labels = ['tab_0': gui.widgetAttrs['createEvaluationObject'].title,
-                            'tab_1': gui.widgetAttrs['listEvaluationObjects'].title]
-        tabsAttrs.pager = false
-
-        tabsWidgets     =  ['tab_0': [['widget': 'createEvaluationObject', widgets: evaluationObject.widgets, id: evaluationObject.getURI()]],
-                            'tab_1': [['widget': 'listEvaluationObjects', attrs: [id: id]]]]
+        tabsWidgets.push(['widget': 'tab', attrs: [label: gui.widgetAttrs['createEvaluationObject'].title], widgets:[
+                ['widget': 'createEvaluationObject', attrs : [id: evaluationObject.getURI()], widgets: evaluationObject.widgets]
+        ]])
+        tabsWidgets.push(['widget': 'tab', attrs: [label: gui.widgetAttrs['listEvaluationObjects'].title], widgets:[
+                ['widget': 'listEvaluationObjects', attrs : [id: id]]
+        ]])
 
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
@@ -46,7 +46,7 @@ class ToolController {
         gui.navBarRoute([evaluationObjects: evaluationObjects, evalObjId: evalObjId, analyses: analyses])
         gui.title(['text': gui.variables.title])
         gui.description(['text': gui.variables.description])
-        gui.tabs(tabsAttrs, tabsWidgets)
+        gui.tabs([activeTab: activeTab, pagination: false], tabsWidgets)
 
         render(view: 'evalobj', model: [inputs: gui.viewsMap[controllerName][actionName]])
     }
@@ -82,11 +82,11 @@ class ToolController {
         def uri = k.toURI(':'+params.id)
         def evaluationObjects = k['ui:EvaluationObject'].getIndividualsIdLabel()
         def analyses = k[':'+params.id].getAnalysesIdLabel()
-        def tabsAttrs = [:]
-        def tabsWidgets = [:]
+        def tabsWidgets = []
         def formAttrs = [:]
         def formWidgets = []
-        def tab_prefix = 'tab_'
+        def sustainabilityTabs = []
+
         evaluationObjects.each{
             it.id = it.id.substring(it.id.lastIndexOf('#')+1)
         }
@@ -94,31 +94,33 @@ class ToolController {
             it.id = it.id.substring(it.id.lastIndexOf('#')+1)
         }
 
-        tabsAttrs.labels = [:]
-        dsl.featureMap.eachWithIndex{ key, feature, int i ->
-
-            tabsAttrs.labels[tab_prefix+i] = feature.model.label
-            tabsWidgets[tab_prefix+i] = [['widget': 'individualsPanel',
-                                          attrs: [data: feature.model.subClass,
-                                                  values: [:], weights: [:]]
-                                        ]]
-
+        dsl.featureMap.eachWithIndex { key, feature, int i ->
+            sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass,
+                                                                                                                                             values: [:], weights: [:]]
+                                                                                                     ]]
+            ])
         }
+
+        tabsWidgets.push(['widget': 'tab', attrs: [label: 'Avaliação da Sustentabilidade'], widgets: [
+                ['widget': 'tabs', attrs: [id: 'sustainability', finalPag: 'efficiency_tab_0', finalPagLabel: 'Próximo', submit: true], widgets: sustainabilityTabs]
+        ]])
+        tabsWidgets.push(['widget': 'tab', attrs: [label: 'Avaliação da Eficiência'], widgets: [
+                ['widget': 'tabs', attrs: [id : 'efficiency', initialPag: 'sustainability_tab_4', initialPagLabel: 'Anterior', submit: true], widgets: []]
+        ]])
+
         /*
         dsl.featureMap.each{ key, feature ->
             println feature.model.label
             println feature.uri
             Uri.printTree(feature.model)
         }
-        */
         println evaluationObjects
         println analyses
-
-        tabsAttrs.submit = true
+        */
 
         formAttrs['action'] = '/tool/createScenario'
         formWidgets.push(['widget': 'hiddenInput', attrs: [id: 'evalObjInstance', value: uri]])
-        formWidgets.push(['widget': 'tabs', attrs: tabsAttrs, widgets: tabsWidgets])
+        formWidgets.push(['widget': 'tabs', attrs: [id: 'main', pagination: false], widgets: tabsWidgets])
 
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
@@ -128,7 +130,7 @@ class ToolController {
         //println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
         //Uri.printTree(gui.viewsMap[controllerName][actionName])
 
-        render(view: 'scenario', model: [data: gui.variables, inputs: gui.viewsMap[controllerName][actionName]])
+        render(view: actionName, model: [data: gui.variables, inputs: gui.viewsMap[controllerName][actionName]])
     }
 
     def createScenario(){
@@ -285,7 +287,7 @@ class ToolController {
             dsl.runReport()
         }
 
-        gui.setData('variables', dsl.getVariables())
+        gui.setData('vars', dsl.getVariables())
         gui.setData('dataReader', dsl.getData('data'))
         gui.setData('reportView', dsl.getReportView())
         gui.navBarRoute([evaluationObjects: evaluationObjects, evalObjId: evalObjId, analyses: analyses, analysisId: analysisId ])
@@ -332,7 +334,7 @@ class ToolController {
        }
        */
 
-        render(view: 'analysis', model: [data: gui.variables, inputs: gui.viewsMap[controllerName][actionName]])
+        render(view: actionName, model: [data: gui.variables, inputs: gui.viewsMap[controllerName][actionName]])
     }
 
     def analyses(){

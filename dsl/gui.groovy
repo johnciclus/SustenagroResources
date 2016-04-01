@@ -29,7 +29,7 @@ widgetAttributes 'listEvaluationObjects', title: "Unidades produtivas", label : 
 
 widgetAttributes 'createEvaluationObject', title: "Cadastrar nova unidade produtiva", submitLabel: "Cadastrar"
 
-widgetAttributes 'tabs', submitLabel: 'Avaliar', previousLabel: 'Anterior', nextLabel: 'Próximo', pager: true
+widgetAttributes 'tabs', submitLabel: 'Avaliar', previousLabel: 'Anterior', nextLabel: 'Próximo', pagination: true
 
 widgetAttributes 'form', method: 'post', formClass: 'form-horizontal'
 

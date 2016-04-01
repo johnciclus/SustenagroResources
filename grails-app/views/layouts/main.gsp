@@ -59,7 +59,7 @@
                             Administração
                         </a></li>
                     </sec:ifAnyGranted>
-                    <li <g:if test="${controllerName == 'contact'}"> class="active" </g:if> ><a href="/contact">
+                    <li <g:if test="${controllerName == 'contact'}"> class="active" </g:if> ><a href="/home/contact">
                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                         Contato
                     </a></li>

@@ -631,9 +631,7 @@ class Node {
                     sparql += ";<${k.shortToURI(key)}> \"" + property.value + "\"^^xsd:float "
                     break
                 case k.toURI('owl:real'):
-                    println key
-                    println property
-                    sparql += ";<${k.shortToURI(key)}> \"" + property.value + "\"^^<"+k.toURI('owl:real')+"> "
+                    sparql += ";<${k.shortToURI(key)}> \"" + property.value + "\"^^owl:real "
                     break
                 case k.toURI('rdfs:Literal'):
                     sparql += ";<${k.shortToURI(key)}> '" + property.value + "'@"+ k.lang+" "
@@ -652,9 +650,11 @@ class Node {
 
         sparql += '.'
 
-        //sparql.split(';').each{
-        //    println it
-        //}
+        /*
+        sparql.split(';').each{
+            println it
+        }
+        */
 
         k.insert(sparql)
     }

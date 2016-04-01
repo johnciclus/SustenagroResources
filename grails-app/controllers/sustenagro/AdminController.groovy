@@ -38,7 +38,7 @@ class AdminController {
         OutputStream out = new ByteArrayOutputStream()
         //ontology.getManager().saveOntology(ontology.getOntology(), new ManchesterSyntaxDocumentFormat(), out)
 
-        render(view: 'index', model: [dsl_code: new File('dsl/dsl.groovy').text,
+        render(view: actionName, model: [dsl_code: new File('dsl/dsl.groovy').text,
                                       gui_code: new File('dsl/gui.groovy').text,
                                       ontology: new String(out.toByteArray(), "UTF-8"),
                                       indicators: indicators,

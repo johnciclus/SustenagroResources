@@ -8,10 +8,10 @@ grails.plugin.springsecurity.password.hash.iterations = 1
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/index',          access: ['permitAll']],
-	[pattern: '/contact',        access: ['permitAll']],
+    [pattern: '/error',          access: ['permitAll']],
+    [pattern: '/shutdown',       access: ['permitAll']],
+	[pattern: '/home/*',         access: ['permitAll']],
 	[pattern: '/user/*',    	 access: ['permitAll']],
-	[pattern: '/error',          access: ['permitAll']],
-	[pattern: '/shutdown',       access: ['permitAll']],
 	[pattern: '/assets/**',      access: ['permitAll']],
 	[pattern: '/**/js/**',       access: ['permitAll']],
 	[pattern: '/**/css/**',      access: ['permitAll']],
