@@ -1,1 +1,1 @@
-<h5 class="text-primary"><%=text%></h5>
+<h5 class="text-primary <%=widgetClass%>"><%=text%></h5>

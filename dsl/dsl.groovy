@@ -24,6 +24,9 @@ evaluationObject ':ProductionUnit', {
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
     type label: "Tipo da unidade produtiva", header: "Opções"
 
+    // Microrregião produtora
+    instance ':hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
+
     // Agricultural production system
     instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções"
 
@@ -31,9 +34,6 @@ evaluationObject ':ProductionUnit', {
 
     // Origem da cana (própria, fornecedor, arrendamento)
     instance  ':hasSugarcaneSource', label: "Origem da cana", header: "Opções"
-
-    // Microrregião produtora
-    instance ':hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
 
     // Data de fundação da unidade produção
     instance ':hasEstablishmentDate', label: "Data de fundação da unidade produção"
@@ -48,19 +48,13 @@ evaluationObject ':ProductionUnit', {
 
     // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
     instance ':hasInnovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
-
+    
     //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
     instance ':hasFinancing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição"
-
-    // Valor total investido em tecnologia na fase agrícola (até a fase atual)
-    instance ':hasTotalValueInvestedInTechnologicInAgriculturalPhase', label: "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
-
-    // Valor total investido em tecnologia na fase industrial (até a fase atual)
-    instance ':hasTotalValueInvestedInTechnologicInIndustrialPhase', label: "Valor total investido em tecnologia na fase industrial (até a fase atual)"
-
-    // Valor total previsto para investimento para escoamento da produção
-    instance ':hasTotalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
-
+    
+    // Longevidade do canvial (cana de ano, cana de ano e meio);
+    instance ':hasCanavialLongevity', label: "Longevidade do canvial", header: "Opções"
+    
     // Data de início do plantio
     instance ':hasBeginningOfPlantingDate', label: "Data de início do plantio"
 
@@ -73,8 +67,14 @@ evaluationObject ':ProductionUnit', {
     // Data de término da colheita
     instance ':hasFinishOfHarvestDate', label: "Data de término da colheita"
 
-    // Longevidade do canvial (cana de ano, cana de ano e meio);
-    instance ':hasCanavialLongevity', label: "Longevidade do canvial", header: "Opções"
+    // Valor total investido em tecnologia na fase agrícola (até a fase atual)
+    instance ':hasTotalValueInvestedInTechnologicInAgriculturalPhase', label: "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
+
+    // Valor total investido em tecnologia na fase industrial (até a fase atual)
+    instance ':hasTotalValueInvestedInTechnologicInIndustrialPhase', label: "Valor total investido em tecnologia na fase industrial (até a fase atual)"
+
+    // Valor total previsto para investimento para escoamento da produção
+    instance ':hasTotalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
 
     // Disponibilização dos resultados da avaliação: Público | privado
     instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções"

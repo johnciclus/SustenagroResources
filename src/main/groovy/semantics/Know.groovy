@@ -145,21 +145,6 @@ class Know {
         }
     }
 
-    def existOntology(String uri){
-        def existOnt = false
-        def result = query("?o rdf:type owl:Ontology")
-
-        println "******** Result ********"
-        println result
-
-        result.each{
-            if(it.o == uri)
-                existOnt = true
-        }
-
-        existOnt
-    }
-
     def searchByLabel(name){
         println "Heavy costly!"
         def langs = ['en', 'pt', 'es', 'fr', 'de']

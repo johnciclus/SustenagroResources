@@ -43,19 +43,30 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li <g:if test="${controllerName == null}"> class="active" </g:if> ><a href="/">Inicio</a></li>
-                    <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_USER">
-                        <li <g:if test="${controllerName == 'tool'}"> class="active" </g:if> ><a href="/tool">Ferramenta</a></li>
-                    </sec:ifAnyGranted>
+                    <li <g:if test="${controllerName == null}"> class="active" </g:if> ><a href="/">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                        Apresentação
+                    </a></li>
+                    <li <g:if test="${controllerName == 'tool'}"> class="active" </g:if> ><a href="/tool/evalobj">
+                        <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+                        Avaliação
+                    </a></li>
                     <sec:ifAnyGranted roles="ROLE_ADMIN">
-                        <li <g:if test="${controllerName == 'admin'}"> class="active" </g:if> ><a href="/admin">Administração</a></li>
+                        <li <g:if test="${controllerName == 'admin'}"> class="active" </g:if> ><a href="/admin">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            Administração
+                        </a></li>
                     </sec:ifAnyGranted>
-                    <li <g:if test="${controllerName == 'contact'}"> class="active" </g:if> ><a href="/contact">Contato</a></li>
+                    <li <g:if test="${controllerName == 'contact'}"> class="active" </g:if> ><a href="/home/contact">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                        Contato
+                    </a></li>
                 </ul>
 
                     <sec:ifLoggedIn>
                         <div class="btn-group navbar-btn navbar-right">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                 <sec:username/> <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
@@ -91,7 +102,10 @@
 
     <script type="application/javascript">
         $('#logout').click(function(e){
-            $.post('/logout');
+            $.post('/logout', function( data ) {
+                $(location).attr('href', '/');
+            });
+            return false;
         });
 
     </script>

@@ -74,7 +74,7 @@ fieldset{
 }
 
 .navbar {
-  margin: 50px 0px 30px 0px;
+  margin: 40px 0px 20px 0px;
   padding: 0px;
   
   background-color: rgba(255, 255, 255, 0.0);
@@ -89,6 +89,7 @@ fieldset{
 .content, .left-content, .right-content{
 	background-color: rgba(255, 255, 255, 1.00);
 	text-align: justify;
+	padding: 20px;
 }
 
 .content h5, .left-content h5, .right-content h5{
@@ -109,7 +110,7 @@ fieldset{
 }
 
 .section{
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 .editor {

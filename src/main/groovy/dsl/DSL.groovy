@@ -63,7 +63,6 @@ class DSL {
         _data = null
         _props = [:]
         _featureMap = [:]
-        _analysisMap = [:]
         _reportView = []
         _evaluationObjectInstance = null
 
@@ -160,19 +159,25 @@ class DSL {
     }
 
     def weightedSum(obj){
-        float val = 0.0
+        float val = 0
         float value
         float weight
 
         if(obj instanceof ArrayList) {
             obj.each {
                 value = (it.value.getClass() == Boolean ? (it.value ? 1 : -1) : it.value)
-                //weight = (it.weight.getClass() == Boolean ? (it.weight ? 1 : -1) : it.weight)
-                //val += (float) value*weight
-                val += value
+                if(it.relevance){
+                    weight = (it.relevance.getClass() == Boolean ? (it.relevance ? 1 : -1) : it.relevance)
+                }
+                else if(it.weight){
+                    weight = it.weight
+                }
+                else{
+                    weight = 1.0
+                }
+                val += (float) value * weight
             }
         }
-
         return val
     }
 

@@ -2,8 +2,6 @@ package sustenagro
 
 import semantics.DataReader
 import semantics.Node
-import org.apache.commons.io.FilenameUtils
-
 import grails.plugin.springsecurity.annotation.Secured
 import utils.Uri
 
@@ -15,24 +13,43 @@ class ToolController {
     def slugify
     def springSecurityService
 
-    def index() {
-
+    def evalobj() {
+        def id = params.id
+        def evalObjId = (id)? id : null
         def evaluationObject = dsl.evaluationObject
-        def tabsAttrs = [:]
-        def tabsWidgets
+        def evaluationObjects = k['ui:EvaluationObject'].getIndividualsIdLabel()
+        def analyses = (id)? k[':'+id].getAnalysesIdLabel() : []
+        def activeTab = 'tab_0'
+        def tabsWidgets = []
 
-        tabsAttrs.labels = ['tab_0': gui.widgetAttrs['createEvaluationObject'].title,
-                            'tab_1': gui.widgetAttrs['selectEvaluationObject'].title]
-        tabsAttrs.pager = false
+        evaluationObjects.each{
+            it.id = it.id.substring(it.id.lastIndexOf('#')+1)
+        }
+        analyses.each{
+            it.id = it.id.substring(it.id.lastIndexOf('#')+1)
+        }
 
-        tabsWidgets     =  ['tab_0': [['widget': 'createEvaluationObject', widgets: evaluationObject.widgets, id: evaluationObject.getURI()]],
-                            'tab_1': [['widget': 'selectEvaluationObject', id: evaluationObject.getURI()]]]
+        if(id){
+            evalObjId = evalObjId.substring(evalObjId.lastIndexOf('#')+1)
+            activeTab = 'tab_1'
+        }
+
+        tabsWidgets.push(['widget': 'tab', attrs: [label: gui.widgetAttrs['createEvaluationObject'].title], widgets:[
+                ['widget': 'createEvaluationObject', attrs : [id: evaluationObject.getURI()], widgets: evaluationObject.widgets]
+        ]])
+        tabsWidgets.push(['widget': 'tab', attrs: [label: gui.widgetAttrs['listEvaluationObjects'].title], widgets:[
+                ['widget': 'listEvaluationObjects', attrs : [id: id]]
+        ]])
 
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
-        gui.tabs(tabsAttrs, tabsWidgets)
 
-        render(view: 'index', model: [data: gui._props, inputs: gui.viewsMap[controllerName][actionName]])
+        gui.navBarRoute([evaluationObjects: evaluationObjects, evalObjId: evalObjId, analyses: analyses])
+        gui.title(['text': gui.variables.title])
+        gui.description(['text': gui.variables.description])
+        gui.tabs([activeTab: activeTab, pagination: false], tabsWidgets)
+
+        render(view: 'evalobj', model: [inputs: gui.viewsMap[controllerName][actionName]])
     }
 
     def createEvaluationObject() {
@@ -40,13 +57,12 @@ class ToolController {
         def name = k.toURI(':hasName')
         def type = k.toURI(params['evalObjType'])
         def evaluationObject = dsl.evaluationObject
-
         def username = springSecurityService.getPrincipal().username
         //println username
 
         if(params['evalObjType'] && params[name] && params[type]){
 
-            def node = new Node(k, '')
+            def node = new Node(k)
             def propertyInstances = [:]
 
             evaluationObject.model.each{ ins ->
@@ -65,68 +81,101 @@ class ToolController {
 
     def scenario(){
         def uri = k.toURI(':'+params.id)
-        def tabsAttrs = [:]
-        def tabsWidgets = [:]
+        def evaluationObjects = k['ui:EvaluationObject'].getIndividualsIdLabel()
+        def analyses = k[':'+params.id].getAnalysesIdLabel()
+        def tabsWidgets = []
         def formAttrs = [:]
         def formWidgets = []
-        def tab_prefix = 'tab_'
+        def sustainabilityTabs = []
+        def efficiencyTabs = []
 
-        tabsAttrs.labels = [:]
-        dsl.featureMap.eachWithIndex{ key, feature, int i ->
-
-            tabsAttrs.labels[tab_prefix+i] = feature.model.label
-            tabsWidgets[tab_prefix+i] = [['widget': 'individualsPanel',
-                                          attrs: [data: feature.model.subClass,
-                                                  values: [:], weights: [:]]
-                                        ]]
-
+        evaluationObjects.each{
+            it.id = it.id.substring(it.id.lastIndexOf('#')+1)
+        }
+        analyses.each{
+            it.id = it.id.substring(it.id.lastIndexOf('#')+1)
         }
 
+        dsl.featureMap.eachWithIndex { key, feature, int i ->
+            if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
+                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]]])
+            if(feature.model.superClass.contains(k.toURI(':EfficiencyIndicator')))
+                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]]])
+        }
+
+        tabsWidgets.push(['widget': 'tab', attrs: [label: 'Avaliação da eficiência e custo'], widgets: [
+                ['widget': 'tabs', attrs: [id : 'efficiency', finalPag: 'sustainability_tab_0', finalPagLabel: 'Próximo'], widgets: efficiencyTabs]
+        ]])
+        tabsWidgets.push(['widget': 'tab', attrs: [label: 'Avaliação da sustentabilidade'], widgets: [
+                ['widget': 'tabs', attrs: [id: 'sustainability', initialPag: 'efficiency_tab_4', initialPagLabel: 'Anterior', submit: true], widgets: sustainabilityTabs]
+        ]])
+
+
+        /*
         dsl.featureMap.each{ key, feature ->
             println feature.model.label
             println feature.uri
             Uri.printTree(feature.model)
         }
-
-        tabsAttrs.submit = true
+        println evaluationObjects
+        println analyses
+        */
 
         formAttrs['action'] = '/tool/createScenario'
         formWidgets.push(['widget': 'hiddenInput', attrs: [id: 'evalObjInstance', value: uri]])
-        formWidgets.push(['widget': 'tabs', attrs: tabsAttrs, widgets: tabsWidgets])
+        formWidgets.push(['widget': 'tabs', attrs: [id: 'main', pagination: false], widgets: tabsWidgets])
 
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
-        gui.text([text: gui.widgetAttrs['text'].text + '**'+ k[uri].label + '**'])
+        gui.navBarRoute([evaluationObjects: evaluationObjects, evalObjId: params.id, analyses: analyses])
         gui.form(formAttrs, formWidgets)
 
         //println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
         //Uri.printTree(gui.viewsMap[controllerName][actionName])
 
-        render(view: 'scenario', model: [data: gui._props, inputs: gui.viewsMap[controllerName][actionName]])
+        render(view: actionName, model: [data: gui.variables, inputs: gui.viewsMap[controllerName][actionName]])
     }
 
     def createScenario(){
-        def evalObjInstance = k.toURI(params.evalObjInstance)
-        def num = k[evalObjInstance].getAnalyses().size() + 1
-        def name = evalObjInstance.substring(evalObjInstance.lastIndexOf('#')+1)
+        def evalObjURI = k.toURI(params.evalObjInstance)
+        def num = k[evalObjURI].getAnalyses().size() + 1
+        def name = evalObjURI.substring(evalObjURI.lastIndexOf('#')+1)
         def analysisId = name+"-analysis-"+num
         def properties = [:]
-        def node = new Node(k, '')
+        def node = new Node(k)
         def individualKeys = []
+        def weightedIndividualsKeys = []
+        def weightedIndividuals = [:]
         def featureInstances = [:]
         def uri = ''
 
         properties[k.toURI('rdfs:label')] = k['ui:Analysis'].label+ " " + num
-        properties[k.toURI(':appliedTo')] = evalObjInstance
+        properties[k.toURI(':appliedTo')] = evalObjURI
 
-        dsl.featureMap.each{
-            individualKeys += it.value.getIndividualKeys()
+        dsl.featureMap.each{ key, feature ->
+            individualKeys += feature.getIndividualKeys()
+        }
+
+        dsl.featureMap.each{ key, feature ->
+            weightedIndividualsKeys += feature.getWeightedIndividualKeys()
+        }
+
+        weightedIndividualsKeys.each{
+            uri = k.toURI(it)
+            if(params[uri]){
+                weightedIndividuals[uri.substring(0, uri.lastIndexOf('-'))] = params[uri]
+            }
         }
 
         individualKeys.each{
             uri = k.toURI(it)
             if(params[uri]){
-                featureInstances[uri] = params[uri]
+                if(!weightedIndividuals[uri]){
+                    featureInstances[uri] = ['value': params[uri]]
+                }
+                else{
+                    featureInstances[uri] = ['value': params[uri], 'weight': weightedIndividuals[uri]]
+                }
             }
         }
 
@@ -205,23 +254,46 @@ class ToolController {
     }
 
     def analysis(){
-        def uri
+        def uri = params.id ? k.toURI(":"+params.id) : null
+        def evalObjId = k[uri].getAttr('appliedTo')
+        def evaluationObjects = k['ui:EvaluationObject'].getIndividualsIdLabel()
+        def analysisId = params.id
+        def analyses = k['ui:Analysis'].getIndividualsIdLabel()
 
-        if(params.id){
-            uri = k.toURI(":"+params.id)
+        evalObjId = evalObjId.substring(evalObjId.lastIndexOf('#')+1)
+        evaluationObjects.each{
+            it.id = it.id.substring(it.id.lastIndexOf('#')+1)
+        }
+        analyses.each{
+            it.id = it.id.substring(it.id.lastIndexOf('#')+1)
         }
 
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
+
+        /*
+        println uri
+
+        dsl.featureMap.each{ key, fea ->
+            fea.model.subClass.each{ featureKey, feature ->
+                feature.subClass.each{ indKey, ind->
+                    println indKey
+                    println ind
+                }
+            }
+        }
+        */
+
 
         if(uri?.trim()){
             dsl.setData(new DataReader(k, uri))
             dsl.runReport()
         }
 
-        gui.setData('variables', dsl.getVariables())
+        gui.setData('vars', dsl.getVariables())
         gui.setData('dataReader', dsl.getData('data'))
         gui.setData('reportView', dsl.getReportView())
+        gui.navBarRoute([evaluationObjects: evaluationObjects, evalObjId: evalObjId, analyses: analyses, analysisId: analysisId ])
         gui.renderView(actionName)
         //gui.printData()
 
@@ -265,7 +337,7 @@ class ToolController {
        }
        */
 
-        render(view: 'analysis', model: [data: gui._props, inputs: gui.viewsMap[controllerName][actionName]])
+        render(view: actionName, model: [data: gui.variables, inputs: gui.viewsMap[controllerName][actionName]])
     }
 
     def analyses(){

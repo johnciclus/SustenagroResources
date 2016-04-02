@@ -13,13 +13,7 @@
 	<body>
 		<div class="row main">
 			<div id="content" class="col-sm-10 col-sm-offset-1 content">
-				<div class="section">
-					<g:render template="/widgets/title" model="['text': data['title']]" />
-				</div>
-				<div class="section">
-					<g:render template="/widgets/description" model="['text': data['description']]" />
-				</div>
-				<g:if test="${inputs}">
+                <g:if test="${inputs}">
 					<g:each in="${inputs}">
 						<div class="section">
 							<g:render template="/widgets/${it.widget}" model="${it.attrs}" />
@@ -29,14 +23,14 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-            function loadAnalyses(){
+			function loadAnalyses(){
                 $.post('/tool/analyses',
-                        { 'evaluation_object_id':  $('#evaluation_object_id').val()},
-                        function( data ) {
-                            $('#analyses_form').html(data);
-                            $('#analyses_form table').bootstrapTable()
-                            $('#new_analysis').prop('disabled', false);
-                        }
+					{ 'evaluation_object_id':  $('#evaluation_object_id').val()},
+					function( data ) {
+						$('#analyses_form').html(data);
+						$('#analyses_form table').bootstrapTable()
+						$('#new_analysis').prop('disabled', false);
+					}
                 );
             }
 
@@ -44,13 +38,7 @@
 				loadAnalyses();
 			}
 			$('#evaluation_object_id').change( function(){
-				loadAnalyses();
-			});
-
-			$('.pager a').click(function(e){
-				$('.nav-tabs a[href="'+$(this).attr('href')+'"]').tab('show');
-				//console.log($('.pager a[href="'+$(this).attr('href')+'"]'));
-				e.preventDefault();
+				loadAnalyses(); // render objeval evaluation_object_id
 			});
 		</script>
 	</body>
