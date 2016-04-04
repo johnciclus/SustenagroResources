@@ -219,7 +219,8 @@ class GUIDSL {
     }
 
     def text(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
-        view.push(['widget': 'text', 'attrs': [text: _toHTML(attrs['text'])]])
+        attrs.text = _toHTML(attrs['text'])
+        view.push(['widget': 'text', 'attrs': attrs])
     }
 
     def text(String txt, ArrayList view = viewsMap[_controller][_action]){

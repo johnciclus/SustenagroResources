@@ -16,11 +16,17 @@
                     <li>Matriz de Sustentabilidade que é gerada a partir do Índice de Sustentabilidade Geral. Este sistema corresponde, portanto a uma ferramenta de apoio, do Método SustenAgro, com informações apresentadas como um norteador para ampliar a acuidade da avaliação.</li>
                 </ol>
 
+                <h5 class="text-primary page-header">Marca registrada pela equipe do Projeto</h5>
+                <asset:image src='logo.png' class="img-centered" width="350" />
+
                 <h5 class="text-primary page-header">Objetivo</h5>
                 <p>O Software/Método SustenAgro foi criado para a avaliação da sustentabilidade dos sistemas de produção de cana-de-açúcar, nas dimensões: social, ambiental, econômica.</p>
                 <p>O sistema permite avaliar a Eficiência tecnológica e de custos e a sua Sustentabilidade, através dos Índices de Eficiência do Sistema Agroindustrial/cana e de Sustentabilidade.</p>
                 <p>A natureza inclusiva do método permite empregá-lo, com adequações, para a avaliação dos variados sistemas de produção de cana-de-açúcar existentes no Centro-Sul do Brasil. De modo geral, o método tem por objetivo avaliar e indicar melhorias para que o sistema produtivo de cana-de-açúcar seja sustentável com redução de custos.</p>
+                <asset:image src='sustainability.png' class="img-centered" width="350" />
 
+            </div>
+            <div class="col-sm-5 right-content">
                 <h5 class="text-primary page-header">Metodologia empregada</h5>
                 <p>O método apresenta indicadores de sustentabilidade gerais organizados em critérios dentro de cada dimensão avaliada.</p>
                 <p>Estes parâmetros foram levantados a partir da literatura especializada e consolidados a partir da consulta aos especialistas das diversas áreas por meio de entrevista presencial.</p>
@@ -28,11 +34,8 @@
                 <p>Para uma avaliação mais criteriosa, é possível a inserção de indicadores de sustentabilidade específicos, possibilitando uma análise caso-a-caso do sistema agrícola em questão.</p>
                 <p>Nessa análise caso a caso os fatores de moderação e os índices são parametrizados para garantir uma avaliação embasada.</p>
 
-
                 <asset:image src='comunity.png' class="img-centered" width="350" />
-            </div>
-            <div class="col-sm-5 right-content">
-                <asset:image src='sustainability.png' class="img-centered" width="350" />
+
                 <h5 class="text-primary page-header">Sobre o desenvolvimento</h5>
                 <p>Esse Software é resultado do projeto de pesquisa “Avaliação da Sustentabilidade de Sistemas de Produção da Cana-de-açúcar e Soja na Região Centro-Sul do Brasil: Uma proposta metodológica e de modelo conceitual” foi financiado e coordenado pela Embrapa. </p>
                 <p><b>Instituições envolvidas na elaboração do Método SustenAgro</b></p>
@@ -57,14 +60,7 @@
                 <h5 class="text-primary page-header">Apoio Financeiro</h5>
                 <p>Empresa Brasileira de Pesquisa Agropecuária – Embrapa. </p>
 
-                <h5 class="text-primary page-header">Resultados Esperados</h5>
-                <p>Serão geradas 4 ferramentas:</p>
-                <ul>
-                    <li>Banco de Dados SustenAgro</li>
-                    <li>Modelo conceitual da Sustentabilidade da Agricultura</li>
-                    <li>Metodologia de avaliação da sustentabilidade agrícola</li>
-                    <li>Sistema de alerta sobre as vulnerabilidades agrícolas, (empregando Sistema de Informação Georreferenciada)</li>
-                </ul> 
+
             </div>
         </div>
     </body>

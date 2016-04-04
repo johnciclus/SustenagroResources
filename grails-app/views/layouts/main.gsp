@@ -52,10 +52,10 @@
                         Avaliação
                     </a></li>
                     <sec:ifAnyGranted roles="ROLE_ADMIN">
-                        <li <g:if test="${controllerName == 'admin'}"> class="active" </g:if> ><a href="/admin">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                            Administração
-                        </a></li>
+                    <li <g:if test="${controllerName == 'admin'}"> class="active" </g:if> ><a href="/admin">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        Administração
+                    </a></li>
                     </sec:ifAnyGranted>
                     <li <g:if test="${controllerName == 'contact'}"> class="active" </g:if> ><a href="/home/contact">
                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>

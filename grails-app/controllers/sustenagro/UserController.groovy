@@ -39,6 +39,4 @@ class UserController {
 
         redirect(controller: 'login', action: 'auth')
     }
-
-
 }

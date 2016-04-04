@@ -3,7 +3,7 @@ package sustenagro
 import semantics.DataReader
 import semantics.Node
 import grails.plugin.springsecurity.annotation.Secured
-import utils.Uri
+import java.text.SimpleDateFormat
 
 @Secured(['ROLE_USER', 'ROLE_ADMIN'])
 class ToolController {
@@ -137,10 +137,11 @@ class ToolController {
     }
 
     def createScenario(){
+        def now = new Date()
+        def timestamp = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(now)
         def evalObjURI = k.toURI(params.evalObjInstance)
-        def num = k[evalObjURI].getAnalyses().size() + 1
         def name = evalObjURI.substring(evalObjURI.lastIndexOf('#')+1)
-        def analysisId = name+"-analysis-"+num
+        def analysisId = name+"-analysis-"+timestamp
         def properties = [:]
         def node = new Node(k)
         def individualKeys = []
@@ -149,7 +150,7 @@ class ToolController {
         def featureInstances = [:]
         def uri = ''
 
-        properties[k.toURI('rdfs:label')] = k['ui:Analysis'].label+ " " + num
+        properties[k.toURI('rdfs:label')] = k['ui:Analysis'].label+ " " + timestamp
         properties[k.toURI(':appliedTo')] = evalObjURI
 
         dsl.featureMap.each{ key, feature ->

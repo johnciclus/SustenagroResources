@@ -21,7 +21,7 @@ dataType ":AgriculturalProductionSystemCategory",           widget: "categoryFor
 dataType ":AvailabilityOfEvaluationResultsCategory",        widget: "categoryForm"
 dataType "http://dbpedia.org/page/Microregion_(Brazil)",    widget: "categoryForm"
 
-widgetAttributes 'navBarRoute', evalObjTitle: "Unidade produtiva", newEvalObjLabel: "Nova unidade produtiva", analysesTitle: "Análises", newAnalysisLabel: "Novo análise"
+widgetAttributes 'navBarRoute', evalObjTitle: "Unidade produtiva", newEvalObjLabel: "Nova unidade produtiva", analysesTitle: "Análises", newAnalysisLabel: "Nova análise"
 
 widgetAttributes 'selectEvaluationObject', title: "Seleccionar unidade produtiva", label : "Unidade produtiva", submitLabel: "Novo análise"
 

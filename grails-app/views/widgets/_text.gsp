@@ -1,1 +1,1 @@
-<p><%=raw(text)%></p>
+<p class="<%=widgetClass%>"><%=text%></p>
