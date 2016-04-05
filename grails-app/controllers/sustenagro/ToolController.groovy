@@ -64,6 +64,10 @@ class ToolController {
 
             def node = new Node(k)
             def propertyInstances = [:]
+            def now = new Date()
+            println new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(now)
+
+            //http://www.w3.org/2001/XMLSchema#dateTime
 
             evaluationObject.model.each{ ins ->
                 if(params[ins.id] && ins.id != type){
@@ -260,6 +264,8 @@ class ToolController {
         def evaluationObjects = k['ui:EvaluationObject'].getIndividualsIdLabel()
         def analysisId = params.id
         def analyses = k['ui:Analysis'].getIndividualsIdLabel()
+        def sustainabilityTabs = []
+        def efficiencyTabs = []
 
         evalObjId = evalObjId.substring(evalObjId.lastIndexOf('#')+1)
         evaluationObjects.each{
@@ -267,6 +273,13 @@ class ToolController {
         }
         analyses.each{
             it.id = it.id.substring(it.id.lastIndexOf('#')+1)
+        }
+
+        dsl.featureMap.eachWithIndex { key, feature, int i ->
+            if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
+                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]]])
+            if(feature.model.superClass.contains(k.toURI(':EfficiencyIndicator')))
+                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]]])
         }
 
         dsl.clean(controllerName, actionName)
@@ -293,8 +306,13 @@ class ToolController {
 
         gui.setData('vars', dsl.getVariables())
         gui.setData('dataReader', dsl.getData('data'))
+        gui.setData('sustainabilityTabs', sustainabilityTabs)
+        gui.setData('efficiencyTabs', efficiencyTabs)
         gui.setData('reportView', dsl.getReportView())
-        gui.navBarRoute([evaluationObjects: evaluationObjects, evalObjId: evalObjId, analyses: analyses, analysisId: analysisId ])
+        gui.setData('evaluationObjects', evaluationObjects)
+        gui.setData('evalObjId', evalObjId)
+        gui.setData('analyses', analyses)
+        gui.setData('analysisId', analysisId)
         gui.renderView(actionName)
         //gui.printData()
 

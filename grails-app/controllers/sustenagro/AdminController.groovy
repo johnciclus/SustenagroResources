@@ -21,6 +21,7 @@ class AdminController {
         def indicators = k[':Indicator'].getIndicators()
         def dimensions = k[':Indicator'].getDimensions()
 
+        /*
         println indicators
         println dimensions
 
@@ -31,7 +32,7 @@ class AdminController {
                     println ind
                 }
             }
-        }
+        }*/
         //Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#", '')
         //Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#", '')
 
@@ -39,10 +40,11 @@ class AdminController {
         //ontology.getManager().saveOntology(ontology.getOntology(), new ManchesterSyntaxDocumentFormat(), out)
 
         render(view: actionName, model: [dsl_code: new File('dsl/dsl.groovy').text,
-                                      gui_code: new File('dsl/gui.groovy').text,
-                                      ontology: new String(out.toByteArray(), "UTF-8"),
-                                      indicators: indicators,
-                                      dimensions: dimensions])
+                                         gui_code: new File('dsl/gui.groovy').text,
+                                         views: new File('dsl/views/analysis.groovy').text,
+                                         ontology: new String(out.toByteArray(), "UTF-8"),
+                                         indicators: indicators,
+                                         dimensions: dimensions])
     }
 
     def dsl(){
@@ -77,6 +79,27 @@ class AdminController {
         file.write(new File('dsl/gui-backup.groovy').text)
 
         def response = gui.reload(file.text)
+
+        redirect(action: 'index')
+    }
+
+    def views(){
+        def response = [:]
+        if(params['views']) {
+            def file = new File('dsl/views/analysis.groovy')
+            file.write(params['views'])
+
+            response.status = 'ok'
+        }
+        render response as XML
+    }
+
+    def viewsReset(){
+        def file = new File('dsl/views/analysis.groovy')
+
+        file.write(new File('dsl/views/analysis.groovy').text)
+
+        //def response = gui.reload(file.text)
 
         redirect(action: 'index')
     }

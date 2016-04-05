@@ -19,12 +19,23 @@
     </div>
 </div>
 <script type="text/javascript">
-    $('#analysis_content table').bootstrapTable()
-
     $('.pager a').click(function(e){
+        var id = $(this).attr('href');
+        id = id.substring(0, id.lastIndexOf('_tab_'));
+        var main_id = $('#main_tabs li.active a').attr('href')
+        main_id = main_id.substring(0, main_id.lastIndexOf('_tab_'));
+        if(id != main_id){
+            var parent_id = $('.nav-tabs a[href="'+$(this).attr('href')+'"]').parents('.tab-pane').attr('id')
+            $('.nav-tabs a[href="'+'#'+parent_id+'"]').tab('show');
+        }
         $('.nav-tabs a[href="'+$(this).attr('href')+'"]').tab('show');
-        //console.log($('.pager a[href="'+$(this).attr('href')+'"]'));
         e.preventDefault();
+    });
+
+    $(".clear").click(function(){
+        var name = $(this).attr('id').replace('-clear', '');
+        $("input:radio").filter(function(index) {return $(this).attr('name')===name;})
+                .removeAttr('checked');
     });
 </script>
 </body>

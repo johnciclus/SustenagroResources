@@ -1,8 +1,14 @@
+navBarRoute 'evaluationObjects': evaluationObjects, 'evalObjId': evalObjId, 'analyses': analyses, 'analysisId': analysisId
+
 tabs([id: 'main', pagination: false],
         [['widget': 'tab', attrs: [label: 'Avaliação'], widgets: [
-            ['widget': 'tabs', attrs: [id : 'evaluation'], widgets: [
-                    ['widget': 'tab', attrs: [label: 'Avaliação da eficiência e custo'], widgets: []],
-                    ['widget': 'tab', attrs: [label: 'Avaliação da sustentabilidade'], widgets: []]
+            ['widget': 'tabs', attrs: [id : 'evaluation', pagination: false], widgets: [ 
+                ['widget': 'tab', attrs: [label: 'Avaliação da eficiência e custo'], widgets: [
+                        ['widget': 'tabs', attrs: [id : 'efficiency', finalPag: 'sustainability_tab_0', finalPagLabel: 'Próximo'], widgets: efficiencyTabs]
+                ]],
+                ['widget': 'tab', attrs: [label: 'Avaliação da sustentabilidade'], widgets: [
+                        ['widget': 'tabs', attrs: [id: 'sustainability', initialPag: 'efficiency_tab_4', initialPagLabel: 'Anterior'], widgets: sustainabilityTabs]
+                ]]
             ]]
         ]],
         ['widget': 'tab', attrs: [label: 'Resultados'], widgets: [
