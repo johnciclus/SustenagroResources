@@ -24,16 +24,16 @@ evaluationObject ':ProductionUnit', {
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
     type label: "Tipo da unidade produtiva", header: "Opções"
 
-    // Microrregião produtora
-    instance ':hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
-
     // Agricultural production system
     instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções"
 
-    //Identificação do sistema de produção
-
     // Origem da cana (própria, fornecedor, arrendamento)
     instance  ':hasSugarcaneSource', label: "Origem da cana", header: "Opções"
+
+    // Microrregião produtora
+    instance ':hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
+
+    //Identificação do sistema de produção
 
     // Data de fundação da unidade produção
     instance ':hasEstablishmentDate', label: "Data de fundação da unidade produção"
@@ -66,18 +66,19 @@ evaluationObject ':ProductionUnit', {
 
     // Data de término da colheita
     instance ':hasFinishOfHarvestDate', label: "Data de término da colheita"
-
-    // Valor total investido em tecnologia na fase agrícola (até a fase atual)
-    instance ':hasTotalValueInvestedInTechnologicInAgriculturalPhase', label: "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
-
-    // Valor total investido em tecnologia na fase industrial (até a fase atual)
-    instance ':hasTotalValueInvestedInTechnologicInIndustrialPhase', label: "Valor total investido em tecnologia na fase industrial (até a fase atual)"
-
-    // Valor total previsto para investimento para escoamento da produção
-    instance ':hasTotalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
-
+    
     // Disponibilização dos resultados da avaliação: Público | privado
     instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções"
+
+    // Valor total investido em tecnologia na fase agrícola (até a fase atual)
+    //instance ':hasTotalValueInvestedInTechnologicInAgriculturalPhase', label: "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
+
+    // Valor total investido em tecnologia na fase industrial (até a fase atual)
+    //instance ':hasTotalValueInvestedInTechnologicInIndustrialPhase', label: "Valor total investido em tecnologia na fase industrial (até a fase atual)"
+
+    // Valor total previsto para investimento para escoamento da produção
+    //instance ':hasTotalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
+    
 }
 
 
@@ -152,6 +153,6 @@ report {
                                              "Cenário muito favorável, Alto desempenho dos indicadores"]
 
     text    '**Mapa da microregião**'
-
+    
     map     url: data.'Microregion'.map()
 }

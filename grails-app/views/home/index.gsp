@@ -51,6 +51,7 @@
                 </ul>
 
                 <p><b>Instituições envolvidas na elaboração do Software</b></p>
+
                 <ul>
                     <li>Universidade de São Paulo / Instituto de Ciências Matemáticas e de Computação (campus São Carlos)</li>
                     <li>Intermídia ICMC USP</li>
@@ -59,8 +60,6 @@
 
                 <h5 class="text-primary page-header">Apoio Financeiro</h5>
                 <p>Empresa Brasileira de Pesquisa Agropecuária – Embrapa. </p>
-
-
             </div>
         </div>
     </body>
