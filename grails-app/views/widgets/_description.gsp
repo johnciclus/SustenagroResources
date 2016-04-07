@@ -1,3 +1,3 @@
-<div class="aling-ol">
+<div class="aling-list">
     ${raw(text)}
 </div>

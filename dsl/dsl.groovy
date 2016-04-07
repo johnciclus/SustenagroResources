@@ -18,7 +18,7 @@ evaluationObject ':ProductionUnit', {
     //type or instance
 
     // Production unit name
-    instance ':hasName', label: "Nome da unidade produtiva", placeholder: "Nome"
+    instance ':hasName', label: "Nome da unidade produtiva ou fazenda", placeholder: "Nome"
 
     // Production unit type
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
@@ -33,27 +33,15 @@ evaluationObject ':ProductionUnit', {
     // Microrregião produtora
     instance ':hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
 
-    //Identificação do sistema de produção
+    //Municipios envolvidos
 
     // Data de fundação da unidade produção
-    instance ':hasEstablishmentDate', label: "Data de fundação da unidade produção"
-
-    // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
-    instance ':hasPartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)", widget: 'textAreaForm', placeholder: "Descrição"
+    //instance ':hasEstablishmentDate', label: "Data de fundação da unidade produção"
 
     //Ligação com outros grupos empresariais ou de investimentos
-    instance ':hasLinkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos", placeholder: "Descrição"
+    //instance ':hasLinkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos", placeholder: "Descrição"
 
     // Municípios envolvidos (localização da sede)
-
-    // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
-    instance ':hasInnovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
-    
-    //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
-    instance ':hasFinancing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição"
-    
-    // Longevidade do canvial (cana de ano, cana de ano e meio);
-    instance ':hasCanavialLongevity', label: "Longevidade do canvial", header: "Opções"
     
     // Data de início do plantio
     instance ':hasBeginningOfPlantingDate', label: "Data de início do plantio"
@@ -67,8 +55,25 @@ evaluationObject ':ProductionUnit', {
     // Data de término da colheita
     instance ':hasFinishOfHarvestDate', label: "Data de término da colheita"
     
+    // Longevidade do canvial (cana de ano, cana de ano e meio);
+    instance ':hasCanavialLongevity', label: "Longevidade do canvial", header: "Opções"
+    
+    // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
+    instance ':hasInnovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
+    
+    //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
+    instance ':hasFinancing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição"
+
+    // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
+    instance ':hasPartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)", widget: 'textAreaForm', placeholder: "Descrição"
+    
+    //Tipo de organização/gestão da usina ou produtor (grupo econômico, convencional, familiar); 
+    
+    //Tipo de estrutura da usina/produtor de cana (Greenfield, tradicional...)
+    
     // Disponibilização dos resultados da avaliação: Público | privado
     instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções"
+
 
     // Valor total investido em tecnologia na fase agrícola (até a fase atual)
     //instance ':hasTotalValueInvestedInTechnologicInAgriculturalPhase', label: "Valor total investido em tecnologia na fase agrícola (até a fase atual)"

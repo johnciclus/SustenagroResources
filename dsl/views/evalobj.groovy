@@ -14,7 +14,7 @@ description 'text': '''O emprego do Software SustenAgro para avaliação da sust
 '''
 
 tabs([activeTab: activeTab, pagination: false], [
-    ['widget': 'tab', attrs: [label: 'Cadastrar nova unidade produtiva'], widgets:[
+    ['widget': 'tab', attrs: [label: 'Cadastrar nova unidade produtiva / fazenda'], widgets:[
         ['widget': 'createEvaluationObject', attrs : [id: evaluationObject.getURI()], widgets: evaluationObject.widgets]
     ]],
     ['widget': 'tab', attrs: [label: 'Unidades produtivas'], widgets:[

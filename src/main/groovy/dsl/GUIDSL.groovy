@@ -256,7 +256,7 @@ class GUIDSL {
         //if (map['if']) report << ['recommendation', _toHTML(txt)]
     }
 
-    def table(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
+    def tableReport(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         //report << ['table', list, headers]
         view.push(['widget': 'tableReport', 'attrs': attrs])
     }

@@ -94,9 +94,14 @@ class ToolController {
 
         dsl.featureMap.eachWithIndex { key, feature, int i ->
             if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
-                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]]])
+                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
+                    ['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]],
+                    ['widget': 'specificIndicators', attrs: ['title': 'Indicadores específicos']]
+                ]])
             if(feature.model.superClass.contains(k.toURI(':EfficiencyIndicator')))
-                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]]])
+                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
+                    ['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]
+                ]])
         }
 
         /*
