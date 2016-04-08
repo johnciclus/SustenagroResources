@@ -3,6 +3,8 @@ package sustenagro
 import semantics.DataReader
 import semantics.Node
 import grails.plugin.springsecurity.annotation.Secured
+import utils.Uri
+
 import java.text.SimpleDateFormat
 
 @Secured(['ROLE_USER', 'ROLE_ADMIN'])
@@ -93,10 +95,13 @@ class ToolController {
         }
 
         dsl.featureMap.eachWithIndex { key, feature, int i ->
+            //println key
+            //println feature
+            //println feature.model
             if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
                 sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
                     ['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]],
-                    ['widget': 'specificIndicators', attrs: ['title': 'Indicadores específicos']]
+                    ['widget': 'specificIndicators', attrs: [id: feature.name, title: 'Indicadores específicos', header: ['name': 'Nome', 'justification': 'Justificativa', 'value': 'Valor']]]
                 ]])
             if(feature.model.superClass.contains(k.toURI(':EfficiencyIndicator')))
                 efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
@@ -141,6 +146,7 @@ class ToolController {
         def individualKeys = []
         def weightedIndividualsKeys = []
         def weightedIndividuals = [:]
+        def extraIndividuals = [:]
         def featureInstances = [:]
         def uri = ''
 
@@ -149,10 +155,8 @@ class ToolController {
 
         dsl.featureMap.each{ key, feature ->
             individualKeys += feature.getIndividualKeys()
-        }
-
-        dsl.featureMap.each{ key, feature ->
             weightedIndividualsKeys += feature.getWeightedIndividualKeys()
+            extraIndividuals[feature.name] = [:]
         }
 
         weightedIndividualsKeys.each{
@@ -173,6 +177,21 @@ class ToolController {
                 }
             }
         }
+
+        def attr
+        extraIndividuals.each{ key, map ->
+            params.each{ pKey, value ->
+                if(pKey.getClass() == String && pKey.startsWith(key) && value){
+                    attr = pKey.tokenize('[]')
+                    if(!extraIndividuals[key].hasProperty(attr[1]) && !extraIndividuals[key][attr[1]]){
+                        extraIndividuals[key][attr[1]] = [:]
+                    }
+                    extraIndividuals[key][attr[1]][attr[2]] = value
+                }
+            }
+        }
+
+        Uri.printTree(extraIndividuals)
 
         node.insertAnalysis(analysisId, properties, featureInstances)
 

@@ -6,18 +6,19 @@ import org.springframework.context.ApplicationContext
  */
 class Feature {
     private def _uri
+    private def _name
     private def _ctx
     private def _k
     private def _model = [:]
 
     Feature(String id, ApplicationContext applicationContext){
         def grandChildren
-        def category
-        _ctx = applicationContext
-        _k = _ctx.getBean('k')
-        _uri = _k.toURI(id)
+        _ctx  = applicationContext
+        _k    = _ctx.getBean('k')
+        _uri  = _k.toURI(id)
+        _name = _uri.substring(_uri.lastIndexOf('#')+1)
 
-        _model = ['label': _k[_uri].label, 'subClass': [:], 'superClass': _k[_uri].getSuperClass()]
+        _model = [label: _k[_uri].label, subClass: [:], superClass: _k[_uri].getSuperClass()]
         grandChildren = _k[_uri].getGrandchildren('?id ?label ?subClass ?relevance ?category ?weight')
 
         _k[_uri].getSubClass('?label').each{ subClass ->
@@ -117,8 +118,13 @@ class Feature {
         */
 
     }
+
     def getUri(){
         return _uri
+    }
+
+    def getName(){
+        return _name
     }
 
     def getModel(){

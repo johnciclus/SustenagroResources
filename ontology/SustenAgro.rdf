@@ -2560,6 +2560,16 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#SustainabilityCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SustainabilityCategory">
+        <rdfs:label xml:lang="en">Sustainability category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoría de sustentabilidade</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Categorical"/>
+    </owl:Class>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator">
@@ -4942,6 +4952,28 @@
         <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
         <rdfs:label xml:lang="en">890.00 - 1,000.00</rdfs:label>
         <rdfs:label xml:lang="pt">890,00 - 1.000,00</rdfs:label>
+        <semanticUI:hasDataValue rdf:datatype="&xsd;double">1.0</semanticUI:hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#lessSustainable -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#lessSustainable">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SustainabilityCategory"/>
+        <rdfs:label xml:lang="en">Less sustainable</rdfs:label>
+        <rdfs:label xml:lang="pt">Menos sustentável</rdfs:label>
+        <semanticUI:hasDataValue rdf:datatype="&xsd;double">-1.0</semanticUI:hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#moreSustainable -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#moreSustainable">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SustainabilityCategory"/>
+        <rdfs:label xml:lang="en">More sustainable</rdfs:label>
+        <rdfs:label xml:lang="pt">Mais sustentável</rdfs:label>
         <semanticUI:hasDataValue rdf:datatype="&xsd;double">1.0</semanticUI:hasDataValue>
     </owl:NamedIndividual>
     
