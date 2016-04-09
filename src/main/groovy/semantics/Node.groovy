@@ -154,6 +154,12 @@ class Node {
                 "ORDER BY ?label")
     }
 
+    def getIndividualsIdValueLabel(){
+        k.select('distinct ?id ?value ?label')
+                .query("?id a <$URI>; rdfs:label ?label; ui:hasDataValue ?value.",
+                "ORDER BY ?label")
+    }
+
     def getAnalysesIdLabel(){
         k.select('distinct ?id ?label')
             .query("?id :appliedTo <$URI>; rdfs:label ?label.",
@@ -659,7 +665,7 @@ class Node {
         k.insert(sparql)
     }
 
-    def insertAnalysis(String id, Map properties = [:], Map individuals = [:]){
+    def insertAnalysis(String id, Map properties = [:]){
         def analysisId = k.toURI(":"+id)
         String sparql = "<" + analysisId + "> "+
                         "rdf:type ui:Analysis;"
@@ -680,24 +686,29 @@ class Node {
                     break
             }
         }
-        k.insert(sparql)
 
-        sparql = ''
+        k.insert(sparql)
+    }
+
+    def insertFeatures(String id, Map individuals = [:] ){
+        def analysisId = k.toURI(":"+id)
+        String sparql = ''
 
         individuals.each{
             sparql +=   " <" +it.key+'-'+id +">"+
-                        " rdf:type <"+ it.key +">"+
-                        "; dc:isPartOf <"+ analysisId + ">" +
-                        "; ui:value <"+  it.value.value +">"
+                    " rdf:type <"+ it.key +">"+
+                    "; dc:isPartOf <"+ analysisId + ">" +
+                    "; ui:value <"+  it.value.value +">"
             if(it.value.weight)
                 sparql += "; ui:hasWeight <"+ it.value.weight +">."
             else
                 sparql += "."
 
             sparql +=   " <" +analysisId + ">" +
-                        " dc:hasPart <" + it.key +'-'+ id +">."
+                    " dc:hasPart <" + it.key +'-'+ id +">."
 
         }
+        println sparql
 
         k.insert(sparql)
     }

@@ -278,6 +278,8 @@ class GUIDSL {
         def tab_prefix = 'tab_'
         def activeTab = extAttrs.activeTab ? extAttrs.activeTab : tab_prefix+'0'
         def pre = extAttrs.id ?  extAttrs.id+'_' : ''
+        println pre
+        println activeTab
 
         attrs['id'] = pre + 'tabs'
         attrs['tabs'] = [:]
@@ -306,6 +308,7 @@ class GUIDSL {
                 }
             }
         }
+        Uri.printTree(attrs)
         if(attrs['tabs'][activeTab]) {
             attrs['tabs'][activeTab].attrs['widgetClass'] = 'active'
 

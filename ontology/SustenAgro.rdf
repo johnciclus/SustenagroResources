@@ -347,6 +347,17 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasJustification -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasJustification">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">Has justification</rdfs:label>
+        <rdfs:label xml:lang="pt">Tem justificativa</rdfs:label>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#hasLinkWithOtherBusinessOrInvestmentGroups -->
 
     <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasLinkWithOtherBusinessOrInvestmentGroups">

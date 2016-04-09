@@ -1,6 +1,6 @@
 navBarRoute 'evaluationObjects': evaluationObjects, 'evalObjId': evalObjId, 'analyses': analyses, 'analysisId': analysisId
 
-tabs([id: 'main', pagination: false],
+tabs([id: 'main', activeTab: 'tab_1', pagination: false],
         [['widget': 'tab', attrs: [label: 'Avaliação'], widgets: [
                 ['widget': 'tabs', attrs: [id : 'evaluation', pagination: false], widgets: [
                         ['widget': 'tab', attrs: [label: 'Avaliação da eficiência e custo'], widgets: [

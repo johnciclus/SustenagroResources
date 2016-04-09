@@ -1,5 +1,5 @@
 <div class="section">
-    <p><strong>Matrix de Avaliação</strong></p>
+    <p><strong>Matriz de Avaliação</strong></p>
     <p>Índice da sustentabilidade: <%=x%></p>
     <p>Indice de eficiência: <%=y%></p>
     <div id="recomendations">

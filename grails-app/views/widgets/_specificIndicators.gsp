@@ -1,10 +1,10 @@
 <div class="col-md-12 section text-center">
-    <button class="btn btn-primary center" data-toggle="collapse" type="button" data-target="#New<%=id%>" aria-expanded="false" aria-controls="New<%=id%>">
+    <button class="btn btn-primary center" data-toggle="collapse" type="button" data-target="#New<%=name%>" aria-expanded="false" aria-controls="New<%=name%>">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <%=title%>
     </button>
 </div>
 
-<div id="New<%=id%>" class="collapse" class="section">
+<div id="New<%=name%>" class="collapse" class="section">
     <table data-toggle="table" class="table">
         <thead>
         <tr>
@@ -29,8 +29,9 @@
                         <g:render template="/widgets/textArea" model="[id: id+'['+i+'][justification]']"> </g:render>
                     </td>
                     <td>
-                        <g:render template="/widgets/radioInput" model="[id: id+'['+i+'][value]', value: 'more_sustainable', label: 'Mais sustentável']" ></g:render>
-                        <g:render template="/widgets/radioInput" model="[id: id+'['+i+'][value]', value: 'less_sustainable', label: 'Menos sustentável']" ></g:render>
+                        <g:each var="option" in="${options}">
+                            <g:render template="/widgets/radioInput" model="[id: id+'['+i+'][value]', value: option.id, label: option.label]" ></g:render>
+                        </g:each>
                     </td>
                 </tr>
             </g:each>

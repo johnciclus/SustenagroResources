@@ -94,18 +94,22 @@ class ToolController {
             it.id = it.id.substring(it.id.lastIndexOf('#')+1)
         }
 
+        def options = k[':SustainabilityCategory'].getIndividualsIdValueLabel()
+
         dsl.featureMap.eachWithIndex { key, feature, int i ->
             //println key
             //println feature
             //println feature.model
-            if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
-                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
-                    ['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]],
-                    ['widget': 'specificIndicators', attrs: [id: feature.name, title: 'Indicadores específicos', header: ['name': 'Nome', 'justification': 'Justificativa', 'value': 'Valor']]]
-                ]])
+
             if(feature.model.superClass.contains(k.toURI(':EfficiencyIndicator')))
                 efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
                     ['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]
+                ]])
+
+            if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
+                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
+                    ['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]],
+                    ['widget': 'specificIndicators', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: [':hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:hasDataValue': 'Valor']]]
                 ]])
         }
 
@@ -137,26 +141,26 @@ class ToolController {
 
     def createScenario(){
         def now = new Date()
-        def timestamp = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(now)
         def evalObjURI = k.toURI(params.evalObjInstance)
         def name = evalObjURI.substring(evalObjURI.lastIndexOf('#')+1)
-        def analysisId = name+"-analysis-"+timestamp
+        def analysisId = name+"-analysis-"+new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(now)
         def properties = [:]
         def node = new Node(k)
         def individualKeys = []
         def weightedIndividualsKeys = []
         def weightedIndividuals = [:]
-        def extraIndividuals = [:]
         def featureInstances = [:]
+        def extraFeatures = [:]
+        def extraFeatureInstances = [:]
         def uri = ''
 
-        properties[k.toURI('rdfs:label')] = k['ui:Analysis'].label+ " " + timestamp
+        properties[k.toURI('rdfs:label')] = k['ui:Analysis'].label+ " " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now)
         properties[k.toURI(':appliedTo')] = evalObjURI
 
         dsl.featureMap.each{ key, feature ->
             individualKeys += feature.getIndividualKeys()
             weightedIndividualsKeys += feature.getWeightedIndividualKeys()
-            extraIndividuals[feature.name] = [:]
+            extraFeatures[key] = [:]
         }
 
         weightedIndividualsKeys.each{
@@ -179,21 +183,32 @@ class ToolController {
         }
 
         def attr
-        extraIndividuals.each{ key, map ->
+        extraFeatures.each{ key, map ->
             params.each{ pKey, value ->
                 if(pKey.getClass() == String && pKey.startsWith(key) && value){
                     attr = pKey.tokenize('[]')
-                    if(!extraIndividuals[key].hasProperty(attr[1]) && !extraIndividuals[key][attr[1]]){
-                        extraIndividuals[key][attr[1]] = [:]
+                    if(!map.hasProperty(attr[1]) && !map[attr[1]]){
+                        map[attr[1]] = [:]
                     }
-                    extraIndividuals[key][attr[1]][attr[2]] = value
+                    map[attr[1]][attr[2]] = value
                 }
             }
         }
 
-        Uri.printTree(extraIndividuals)
+        extraFeatures.each{ key, feature ->
+            uri = k.toURI(key)
+            extraFeatureInstances[uri] = []
+            feature.each{ fKey, fProperties ->
+                extraFeatureInstances[uri].push(fProperties)
+            }
+        }
 
-        node.insertAnalysis(analysisId, properties, featureInstances)
+        println extraFeatureInstances
+
+        node.insertAnalysis(analysisId, properties)
+
+        node.insertFeatures(analysisId, featureInstances)
+
 
         /*
         def value
