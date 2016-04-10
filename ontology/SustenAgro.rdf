@@ -234,7 +234,6 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#hasSugarcaneSource -->
 
     <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasSugarcaneSource">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label xml:lang="en">has sugarcane source</rdfs:label>
         <rdfs:label xml:lang="pt">tem origem da cana</rdfs:label>
         <rdfs:range rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
@@ -343,6 +342,17 @@
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:label xml:lang="en">has innovation development projects</rdfs:label>
         <rdfs:label xml:lang="pt">tem projetos de inovação e/ou desenvolvimento (BNDES, Finep)</rdfs:label>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasJustification -->
+
+    <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasJustification">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">Has justification</rdfs:label>
+        <rdfs:label xml:lang="pt">Tem justificativa</rdfs:label>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     
@@ -2561,6 +2571,16 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#SustainabilityCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SustainabilityCategory">
+        <rdfs:label xml:lang="en">Sustainability category</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoría de sustentabilidade</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&semanticUI;Categorical"/>
+    </owl:Class>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator">
@@ -3960,7 +3980,7 @@
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#LeaseOrigin">
         <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
         <rdfs:label xml:lang="en">Lease origin</rdfs:label>
-        <rdfs:label xml:lang="pt">Origem do arrendamento</rdfs:label>
+        <rdfs:label xml:lang="pt">Arredamento / Parceria</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -4320,7 +4340,7 @@
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#OwnOrigin">
         <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
         <rdfs:label xml:lang="en">Own origin</rdfs:label>
-        <rdfs:label xml:lang="pt">Origem própria</rdfs:label>
+        <rdfs:label xml:lang="pt">Própria</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -4626,7 +4646,7 @@
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#SupplierOrigin">
         <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
         <rdfs:label xml:lang="en">Supplier origin</rdfs:label>
-        <rdfs:label xml:lang="pt">Origem do fornecedor</rdfs:label>
+        <rdfs:label xml:lang="pt">Fornecedor</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -4943,6 +4963,28 @@
         <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#AverageSalaryCategory"/>
         <rdfs:label xml:lang="en">890.00 - 1,000.00</rdfs:label>
         <rdfs:label xml:lang="pt">890,00 - 1.000,00</rdfs:label>
+        <semanticUI:hasDataValue rdf:datatype="&xsd;double">1.0</semanticUI:hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#lessSustainable -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#lessSustainable">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SustainabilityCategory"/>
+        <rdfs:label xml:lang="en">Less sustainable</rdfs:label>
+        <rdfs:label xml:lang="pt">Menos sustentável</rdfs:label>
+        <semanticUI:hasDataValue rdf:datatype="&xsd;double">-1.0</semanticUI:hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#moreSustainable -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#moreSustainable">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SustainabilityCategory"/>
+        <rdfs:label xml:lang="en">More sustainable</rdfs:label>
+        <rdfs:label xml:lang="pt">Mais sustentável</rdfs:label>
         <semanticUI:hasDataValue rdf:datatype="&xsd;double">1.0</semanticUI:hasDataValue>
     </owl:NamedIndividual>
     

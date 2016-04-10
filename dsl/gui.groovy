@@ -16,40 +16,24 @@ dataType "xsd:boolean",                                     widget: "categoryFor
 dataType ":SimpleCategory",                                 widget: "categoryForm"
 dataType ":ProductionUnit",                                 widget: "categoryForm"
 dataType ":SugarcaneSourceCategory",                        widget: "categoryForm"
-dataType ":CanavialLongevityCategory",                      widget: "categoryForm"
+dataType ":CanavialLongevityCategory",                      widget: "textForm"
 dataType ":AgriculturalProductionSystemCategory",           widget: "categoryForm"
 dataType ":AvailabilityOfEvaluationResultsCategory",        widget: "categoryForm"
 dataType "http://dbpedia.org/page/Microregion_(Brazil)",    widget: "categoryForm"
 
-widgetAttributes 'navBarRoute', evalObjTitle: "Unidade produtiva", newEvalObjLabel: "Nova unidade produtiva", analysesTitle: "Análises", newAnalysisLabel: "Novo análise"
+widgetAttributes 'navBarRoute', evalObjTitle: "Unidade produtiva", newEvalObjLabel: "Nova unidade produtiva", analysesTitle: "Análises", newAnalysisLabel: "Nova análise"
 
 widgetAttributes 'selectEvaluationObject', title: "Seleccionar unidade produtiva", label : "Unidade produtiva", submitLabel: "Novo análise"
 
-widgetAttributes 'listEvaluationObjects', title: "Unidades produtivas", label : "Unidade produtiva", submitLabel: "Novo análise"
+widgetAttributes 'listEvaluationObjects', label : "Unidade produtiva", submitLabel: "Novo análise"
 
-widgetAttributes 'createEvaluationObject', title: "Cadastrar nova unidade produtiva", submitLabel: "Cadastrar"
+widgetAttributes 'createEvaluationObject', submitLabel: "Cadastrar"
 
 widgetAttributes 'tabs', submitLabel: 'Avaliar', previousLabel: 'Anterior', nextLabel: 'Próximo', pagination: true
 
 widgetAttributes 'form', method: 'post', formClass: 'form-horizontal'
 
 widgetAttributes 'analyses', title: 'Selecionar análise', submitLabel: 'Ver análise'
-
-// nome vai aparecer onde um nome for necessário
-title 'Etapas para preenchimento do Software:'
-
-// Aba de descrição do conteúdo: um texto em markdown que você vai escrever
-// (esse texto também pode estar num arquivo)
-description '''O emprego do Software SustenAgro para avaliação da sustentabilidade do sistema de produção de cana-de-açúcar prevê as seguintes etapas::
-
-1. Cadastro ou seleção da unidade produtiva
-2. Caracterização do sistema de produção
-3. Seleção e avaliação dos indicadores de sustentabilidade – Índice de Sustentabilidade
-4. Análise da Eficiência da Tecnologia e de custos
-5. Análise dos resultados na Matriz de Sustentabilidade
-6. Gerenciamento da sustentabilidade
-
-'''
 
 
 /*
