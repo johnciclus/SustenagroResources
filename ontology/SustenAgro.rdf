@@ -351,8 +351,8 @@
 
     <owl:DatatypeProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasJustification">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label xml:lang="en">Has justification</rdfs:label>
-        <rdfs:label xml:lang="pt">Tem justificativa</rdfs:label>
+        <rdfs:label xml:lang="en">has justification</rdfs:label>
+        <rdfs:label xml:lang="pt">tem justificativa</rdfs:label>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     
@@ -1127,6 +1127,7 @@
         <rdfs:label xml:lang="en">Economic indicator</rdfs:label>
         <rdfs:label xml:lang="pt">Indicador econômico</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator"/>
+        <relevance rdf:datatype="&xsd;double">1.0</relevance>
     </owl:Class>
     
 
@@ -1276,6 +1277,7 @@
         <rdfs:label xml:lang="en">Environmental indicator</rdfs:label>
         <rdfs:label xml:lang="pt">Indicador ambiental</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator"/>
+        <relevance rdf:datatype="&xsd;double">1.0</relevance>
     </owl:Class>
     
 
@@ -2408,6 +2410,7 @@
         <rdfs:label xml:lang="en">Social indicator</rdfs:label>
         <rdfs:label xml:lang="pt">Indicador social</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator"/>
+        <relevance rdf:datatype="&xsd;double">1.0</relevance>
     </owl:Class>
     
 

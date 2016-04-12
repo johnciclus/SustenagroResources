@@ -20,17 +20,17 @@
             <g:each var="i" in="${(0..9)}">
                 <tr data-index="${i}">
                     <td>
-                        <g:render template="/widgets/label" model="[id: id+'['+i+'][name]', label: (i+1)]"></g:render>
+                        <g:render template="/widgets/label" model="[id: id+'['+i+'][:hasName]', label: (i+1)]"></g:render>
                     </td>
                     <td>
-                        <g:render template="/widgets/textArea" model="[id: id+'['+i+'][name]']"> </g:render>
+                        <g:render template="/widgets/textArea" model="[id: id+'['+i+'][:hasName]']"> </g:render>
                     </td>
                     <td>
-                        <g:render template="/widgets/textArea" model="[id: id+'['+i+'][justification]']"> </g:render>
+                        <g:render template="/widgets/textArea" model="[id: id+'['+i+'][:hasJustification]']"> </g:render>
                     </td>
                     <td>
                         <g:each var="option" in="${options}">
-                            <g:render template="/widgets/radioInput" model="[id: id+'['+i+'][value]', value: option.id, label: option.label]" ></g:render>
+                            <g:render template="/widgets/radioInput" model="[id: id+'['+i+'][ui:value]', value: option.id, label: option.label]" ></g:render>
                         </g:each>
                     </td>
                 </tr>

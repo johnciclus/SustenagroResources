@@ -62,7 +62,7 @@ class ToolController {
             def node = new Node(k)
             def propertyInstances = [:]
             def now = new Date()
-            println new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(now)
+            //println new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(now)
 
             //http://www.w3.org/2001/XMLSchema#dateTime
 
@@ -109,7 +109,7 @@ class ToolController {
             if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
                 sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
                     ['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]],
-                    ['widget': 'specificIndicators', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: [':hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:hasDataValue': 'Valor']]]
+                    ['widget': 'specificIndicators', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: [':hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]]
                 ]])
         }
 
@@ -151,11 +151,10 @@ class ToolController {
         def weightedIndividuals = [:]
         def featureInstances = [:]
         def extraFeatures = [:]
-        def extraFeatureInstances = [:]
         def uri = ''
 
-        properties[k.toURI('rdfs:label')] = k['ui:Analysis'].label+ " " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now)
-        properties[k.toURI(':appliedTo')] = evalObjURI
+        properties[k.toURI('rdfs:label')] = [value: k['ui:Analysis'].label+ " " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now), dataType: k.toURI('rdfs:Literal')]
+        properties[k.toURI(':appliedTo')] = [value: evalObjURI, dataType: k[':appliedTo'].range]
 
         dsl.featureMap.each{ key, feature ->
             individualKeys += feature.getIndividualKeys()
@@ -190,26 +189,19 @@ class ToolController {
                     if(!map.hasProperty(attr[1]) && !map[attr[1]]){
                         map[attr[1]] = [:]
                     }
-                    map[attr[1]][attr[2]] = value
+                    map[attr[1]][attr[2]] = [value: value, dataType: k[attr[2]].range]
                 }
             }
         }
 
-        extraFeatures.each{ key, feature ->
-            uri = k.toURI(key)
-            extraFeatureInstances[uri] = []
-            feature.each{ fKey, fProperties ->
-                extraFeatureInstances[uri].push(fProperties)
-            }
-        }
 
-        println extraFeatureInstances
+        Uri.printTree(extraFeatures)
 
         node.insertAnalysis(analysisId, properties)
 
         node.insertFeatures(analysisId, featureInstances)
 
-
+        node.insertExtraFeatures(analysisId, extraFeatures)
         /*
         def value
 
@@ -292,6 +284,7 @@ class ToolController {
         def efficiencyTabs = []
 
         evalObjId = evalObjId.substring(evalObjId.lastIndexOf('#')+1)
+
         evaluationObjects.each{
             it.id = it.id.substring(it.id.lastIndexOf('#')+1)
         }
