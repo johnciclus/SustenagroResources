@@ -252,7 +252,7 @@ class AdminController {
             def cmds = commands.findAll{ it.contains(params['word']) }
             def identifiers = k[':Indicator'].selectSubject(params.word)
             Uri.simpleDomain(identifiers,'http://bio.icmc.usp.br/sustenagro#','')
-            def labels = k[':Indicator'].selectLabel(params.word)
+            def labels = k[':Indicator'].findByLabel(params.word)
             cmds.each{list.push(['name': it, 'value': it, 'score': 2000, 'meta': 'command'])}
             identifiers.each{list.push(['name': it.s, 'value': it.s, 'score': 2000, 'meta': 'identifier'])}
             labels.each{list.push(['name': it.label, 'value': it.label, 'score': 2000, 'meta': 'label'])}
@@ -324,10 +324,6 @@ class AdminController {
 
     def selectSubject(String word){
         k.select('distinct ?s').query("?s ?p ?o. FILTER regex(str(?s), 'http://bio.icmc.usp.br/sustenagro#$word', 'i')")
-    }
-
-    def selectLabel(String word){
-        k.select('distinct ?label').query("?s rdfs:label ?label. FILTER regex(str(?label), '$word', 'i')")
     }
     */
 }

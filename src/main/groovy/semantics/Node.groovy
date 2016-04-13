@@ -545,14 +545,6 @@ class Node {
         k.select("distinct ?attribute").query("?attribute rdfs:subClassOf <$URI>. ?indicator rdfs:subClassOf ?attribute. FILTER( ?attribute != <$URI> && ?attribute != ?indicator)")
     }
 
-    def outgoingLinks(){
-        k.query("<$URI> ?p ?o", '', '*')
-    }
-
-    def incomingLinks(){
-        k.query("?s ?p <$URI>", '', '*')
-    }
-
     def getFeaturesURI(){
         def result = k.select('?featuresURI').query("<$URI> :features ?featuresURI.")
         def prefixes = k.getPrefixesMap()
@@ -583,9 +575,9 @@ class Node {
         def result
 
         query =    "?user a <http://semantic.icmc.usp.br/sustenagro#User>. "+
-                    "?user <http://semantic.icmc.usp.br/sustenagro#hasUserName> ?username. "+
-                    "?user <http://semantic.icmc.usp.br/sustenagro#hasPassword> ?password. "+
-                    "FILTER (?username = 'root' && ?password = SHA256('root'))"
+                "?user <http://semantic.icmc.usp.br/sustenagro#hasUserName> ?username. "+
+                "?user <http://semantic.icmc.usp.br/sustenagro#hasPassword> ?password. "+
+                "FILTER (?username = 'root' && ?password = SHA256('root'))"
 
         result = k.query(query)
 
@@ -616,11 +608,24 @@ class Node {
         //(result.size()==1)? result[0] : result
     }
 
+    def isFunctional(){
+        def query = "<$URI> a owl:FunctionalProperty"
+        return (k.query(query).size() > 0)
+    }
+
+    def outgoingLinks(){
+        k.query("<$URI> ?p ?o", '', '*')
+    }
+
+    def incomingLinks(){
+        k.query("?s ?p <$URI>", '', '*')
+    }
+
     def selectSubject(String word){
         k.select('distinct ?s').query("?s ?p ?o. FILTER regex(str(?s), ':$word', 'i')")
     }
 
-    def selectLabel(String word){
+    def findByLabel(String word){
         k.select('distinct ?label').query("?s rdfs:label ?label. FILTER regex(str(?label), '$word', 'i')")
     }
 
@@ -666,16 +671,11 @@ class Node {
                   "rdfs:label '" + properties[name].value + "'@en. "
 
         sparql += createTriples(evalObjId, properties)
-        /*
 
 
-        sparql += '.'
-
-        /*
         sparql.split(';').each{
             println it
         }
-        */
 
         k.insert(sparql)
     }
@@ -746,34 +746,65 @@ class Node {
         properties.each { key, property ->
             switch (property.dataType) {
                 case k.toURI('xsd:string'):
-                    sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:string"
-                    break
-                case k.toURI('xsd:date'):
-                    sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:date"
-                    break
-                case k.toURI('xsd:double'):
-                    sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:double"
-                    break
-                case k.toURI('xsd:float'):
-                    sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:float"
-                    break
-                case k.toURI('owl:real'):
-                    sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^owl:real"
-                    break
-                case k.toURI('rdfs:Literal'):
-                    sparql += "<${k.toURI(key)}> '" + property.value + "'@" + k.lang
-                    break
-                default:
-                    // Implement for arraylist
-                    if (k.isURI(property.value))
-                        sparql += "<${k.toURI(key)}> <" + property.value + ">"
-                    else {
-                        println "Default: " + key + " : " + property.value
-                        sparql += "<${k.toURI(key)}> '" + property.value + "'@" + k.lang
+                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
+                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:string; " }
+                    }
+                    else{
+                        sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:string; "
                     }
                     break
+                case k.toURI('xsd:date'):
+                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
+                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:date; " }
+                    }
+                    else{
+                        sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:date; "
+                    }
+                    break
+                case k.toURI('xsd:double'):
+                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
+                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:double; " }
+                    }
+                    else{
+                        sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:double; "
+                    }
+                    break
+                case k.toURI('xsd:float'):
+                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
+                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:float; " }
+                    }
+                    else{
+                        sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:float; "
+                    }
+                    break
+                case k.toURI('owl:real'):
+                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
+                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^owl:real; " }
+                    }
+                    else{
+                        sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^owl:real; "
+                    }
+                    break
+                case k.toURI('rdfs:Literal'):
+                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
+                        property.value.each{ sparql += "<${k.toURI(key)}> '" + it + "'@" + k.lang + "; " }
+                    }
+                    else{
+                        sparql += "<${k.toURI(key)}> '" + property.value + "'@" + k.lang + "; "
+                    }
+                    break
+                default:
+                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
+                        property.value.each{ if(k.isURI(it)) {  sparql += "<${k.toURI(key)}> <" + it + ">; " } }
+                    }
+                    else if(property.value.getClass() == String && k.isURI(property.value)){
+                        sparql += "<${k.toURI(key)}> <" + property.value + ">; "
+                    }
+                    else {
+                        println "Default: " + key + " : " + property.value
+                        sparql += "<${k.toURI(key)}> '" + property.value + "'@" + k.lang + "; "
+                    }
             }
-            sparql += "; "
         }
         if(sparql.length()>2 && sparql.contains('; '))
             sparql = sparql[0..-3]+"."

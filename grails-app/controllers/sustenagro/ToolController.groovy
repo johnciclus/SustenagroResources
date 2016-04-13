@@ -72,6 +72,8 @@ class ToolController {
                 }
             }
 
+            Uri.printTree(propertyInstances)
+
             id = slugify.slugify(params[name])
             node.insertEvaluationObject(id, params[type], propertyInstances)
         }

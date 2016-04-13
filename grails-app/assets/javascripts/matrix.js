@@ -13,16 +13,37 @@ function Matrix(container, parameters){
     var qds= params['quadrants'] || [4, 3];
     var recomendations= params['recomendations'] || [];
 
+    var ndx = qds[0];
+    var ndy = qds[1];
+    var n = (ndx+ndy-1);
+    var margin = 40;
+    var colors = []
+    var w_rect = (width-(2*margin))/ndx, h_rect = (height-(2*margin))/ndy;
+    var R = '00', G = '00', B = '00';
+    var dc = 255/(n-1);
+
     var svg = d3.select(container).append("svg:svg")
         .attr("width", width)
         .attr("height", height)
         .attr("xmlns", "http://www.w3.org/2000/svg");
 
-    var margin = 40;
-
-    var w_rect = (width-(2*margin))/qds[0], h_rect = (height-(2*margin))/qds[1];
-
-    var colors = ["#000000", "#707070", "#A9A9A9", "#0086B2", "#319c21", "#7CFC00"]
+    for(var i=0; i<n; i++){
+        if(i == 0 || i == (n-1)){
+            G = parseInt((i*dc)).toString(16);
+            R = parseInt((n-1-i)*dc).toString(16);
+        }
+        else{
+            G = parseInt((i*dc)+dc).toString(16);
+            R = parseInt(((n-1-i)*dc)+dc).toString(16);
+        }
+        if(G.length == 1){
+            G = G+G;
+        }
+        if(R.length == 1){
+            R = R+R;
+        }
+        colors.push('#'+R+G+B)
+    }
 
     var dx = (rx[1] - rx[0])/qds[0];
     var dy = (ry[1] - ry[0])/qds[1];
@@ -39,9 +60,9 @@ function Matrix(container, parameters){
                 .attr("width", w_rect)
                 .attr("height", h_rect)
                 .style("stroke", "#000")
-                .style("fill", colors[i-j+2])
-                .attr("fill-opacity", 0.2)
-                .attr("stroke-opacity", 0.2)
+                .style("fill", colors[i+ndy-j-1])
+                .attr("fill-opacity", 0.4)
+                .attr("stroke-opacity", 0.4)
         }
     }
     svg.append("svg:line")

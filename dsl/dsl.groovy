@@ -20,12 +20,12 @@ evaluationObject ':ProductionUnit', {
     // Production unit name
     instance ':hasName', label: "Nome da unidade produtiva ou fazenda", placeholder: "Nome"
 
+    // Agricultural production system
+    instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções"
+
     // Production unit type
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
     type label: "Tipo da unidade produtiva", header: "Opções"
-
-    // Agricultural production system
-    instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções"
 
     // Origem da cana (própria, fornecedor, arrendamento)
     instance  ':hasSugarcaneSource', label: "Origem da cana", header: "Opções"
@@ -156,7 +156,11 @@ report {
                                              "Cenário muito favorável, Baixo desempenho dos indicadores",
                                              "Cenário muito favorável, Médio desempenho dos indicadores",
                                              "Cenário muito favorável, Alto desempenho dos indicadores"]
-
+    
+    sustainabilitySemaphore value: sustainability,
+                            label: 'Indice da sustentabilidade',
+                            range: [-150,150]
+    
     text    '**Mapa da microregião**'
     
     map     url: data.'Microregion'.map()

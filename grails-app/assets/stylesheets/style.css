@@ -47,6 +47,10 @@ fieldset{
   background-size: cover;
 }
 
+.ide {
+	background-color: #DDDDDD;
+}
+
 .page{
 	min-height: 100vh;
 	
