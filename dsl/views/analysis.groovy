@@ -13,7 +13,7 @@ tabs([id: 'main', activeTab: 'tab_1', pagination: false],
         ]],
          ['widget': 'tab', attrs: [label: 'Resultados'], widgets: [
                  ['widget': 'tabs', attrs: [id : 'results'], widgets: [
-                         ['widget': 'tab', attrs: [label: 'Resultados da Avaliação'], widgets: [
+                         ['widget': 'tab', attrs: [label: 'Planilhas'], widgets: [
                                  ['widget': 'text',       attrs: [text: '**Eficiência da produção**']],
                                  ['widget': 'tableReport',attrs: [header: ['label': 'Variável', 'valueTypeLabel': 'Valor cadastrado', 'value': 'Valor'], data: dataReader.':ProductionEfficiencyFeature']],
                                  ['widget': 'text',       attrs: [text: 'Índice de eficiência da produção: '+ vars['cost_production_efficiency']]],

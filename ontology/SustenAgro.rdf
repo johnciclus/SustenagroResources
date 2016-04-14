@@ -439,7 +439,7 @@
 
     <owl:Class rdf:about="http://dbpedia.org/ontology/Provider">
         <rdfs:label xml:lang="en">Provider</rdfs:label>
-        <rdfs:label xml:lang="pt">Fornecedor</rdfs:label>
+        <rdfs:label xml:lang="pt">Fornecedor / Arrendamento / Parceria</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionUnit"/>
     </owl:Class>
     
