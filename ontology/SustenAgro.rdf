@@ -209,6 +209,16 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasEvaluationObject -->
+
+    <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasEvaluationObject">
+        <rdfs:label xml:lang="en">has evaluation object</rdfs:label>
+        <rdfs:label xml:lang="pt">tem objeto de avalição</rdfs:label>
+        <rdfs:range rdf:resource="&semanticUI;EvaluationObject"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#hasMicroRegion -->
 
     <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasMicroRegion">
@@ -216,6 +226,16 @@
         <rdfs:label xml:lang="en">has microregion</rdfs:label>
         <rdfs:label xml:lang="pt">tem microregion</rdfs:label>
         <rdfs:range rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#hasOwner -->
+
+    <owl:ObjectProperty rdf:about="http://semantic.icmc.usp.br/sustenagro#hasOwner">
+        <rdfs:label xml:lang="en">has owner</rdfs:label>
+        <rdfs:label xml:lang="pt">tem proprietário</rdfs:label>
+        <rdfs:range rdf:resource="&semanticUI;User"/>
     </owl:ObjectProperty>
     
 
@@ -1124,8 +1144,8 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#EconomicIndicator -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#EconomicIndicator">
-        <rdfs:label xml:lang="en">Economic indicator</rdfs:label>
-        <rdfs:label xml:lang="pt">Indicador econômico</rdfs:label>
+        <rdfs:label xml:lang="en">Economic dimension</rdfs:label>
+        <rdfs:label xml:lang="pt">Dimensão econômica</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator"/>
         <relevance rdf:datatype="&xsd;double">1.0</relevance>
     </owl:Class>
@@ -1274,8 +1294,8 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#EnvironmentalIndicator -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#EnvironmentalIndicator">
-        <rdfs:label xml:lang="en">Environmental indicator</rdfs:label>
-        <rdfs:label xml:lang="pt">Indicador ambiental</rdfs:label>
+        <rdfs:label xml:lang="en">Environmental dimension</rdfs:label>
+        <rdfs:label xml:lang="pt">Dimensão ambiental</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator"/>
         <relevance rdf:datatype="&xsd;double">1.0</relevance>
     </owl:Class>
@@ -2407,8 +2427,8 @@
     <!-- http://semantic.icmc.usp.br/sustenagro#SocialIndicator -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SocialIndicator">
-        <rdfs:label xml:lang="en">Social indicator</rdfs:label>
-        <rdfs:label xml:lang="pt">Indicador social</rdfs:label>
+        <rdfs:label xml:lang="en">Social dimension</rdfs:label>
+        <rdfs:label xml:lang="pt">Dimensão social</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://semantic.icmc.usp.br/sustenagro#SustainabilityIndicator"/>
         <relevance rdf:datatype="&xsd;double">1.0</relevance>
     </owl:Class>
@@ -3002,6 +3022,14 @@
             </owl:Restriction>
         </rdfs:subClassOf>
         <relevance rdf:datatype="&xsd;double">2.0</relevance>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#Variable -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#Variable">
+        <rdfs:subClassOf rdf:resource="&semanticUI;Feature"/>
     </owl:Class>
     
 

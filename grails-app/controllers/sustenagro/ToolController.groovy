@@ -22,8 +22,9 @@ class ToolController {
         def evaluationObjects = [:]
         def analyses = [:]
         def activeTab = 'tab_0'
+        def username = springSecurityService.getPrincipal().username
 
-        k['ui:EvaluationObject'].getIndividualsIdLabel().each{
+        k[':'+username].getEvaluationObjectsIdLabel().each{
             evaluationObjects[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
         }
 
@@ -45,6 +46,7 @@ class ToolController {
         gui.setData('analysisId', null)
         gui.setData('activeTab', activeTab)
         gui.setData('evaluationObject', evaluationObject)
+        gui.setData('username', username)
         gui.setData('id', id)
         gui.renderView(actionName)
 
@@ -52,11 +54,12 @@ class ToolController {
     }
 
     def createEvaluationObject() {
-        def id = ''
         def name = k.toURI(':hasName')
+        def id = slugify.slugify(params[name])
         def type = k.toURI(params['evalObjType'])
         def evaluationObject = dsl.evaluationObject
         def username = springSecurityService.getPrincipal().username
+        def user = k.toURI(':'+username)
         //println username
 
         if(params['evalObjType'] && params[name] && params[type]){
@@ -64,20 +67,25 @@ class ToolController {
             def node = new Node(k)
             def propertyInstances = [:]
             def now = new Date()
+
             //println new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(now)
 
             //http://www.w3.org/2001/XMLSchema#dateTime
-
+            propertyInstances[k.toURI(':hasOwner')] = [value: user, dataType: k.toURI('ui:User')]
             evaluationObject.model.each{ ins ->
                 if(params[ins.id] && ins.id != type){
                     propertyInstances[k.toURI(ins.id)] = [value: params[ins.id], dataType: ins.dataType]
                 }
             }
 
-            //Uri.printTree(propertyInstances)
-
-            id = slugify.slugify(params[name])
             node.insertEvaluationObject(id, params[type], propertyInstances)
+
+            propertyInstances = [:]
+            propertyInstances[k.toURI(':hasEvaluationObject')] = [value: k.toURI(':'+id), dataType: k.toURI('ui:EvaluationObject')]
+
+            println propertyInstances
+
+            node.insertTriples(user, propertyInstances)
         }
 
         //k.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
@@ -90,8 +98,9 @@ class ToolController {
         def analyses = [:]
         def sustainabilityTabs = []
         def efficiencyTabs = []
+        def username = springSecurityService.getPrincipal().username
 
-        k['ui:EvaluationObject'].getIndividualsIdLabel().each{
+        k[':'+username].getEvaluationObjectsIdLabel().each{
             evaluationObjects[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
         }
 
@@ -288,8 +297,9 @@ class ToolController {
         def analyses = [:]
         def sustainabilityTabs = []
         def efficiencyTabs = []
+        def username = springSecurityService.getPrincipal().username
 
-        k['ui:EvaluationObject'].getIndividualsIdLabel().each{
+        k[':'+username].getEvaluationObjectsIdLabel().each{
             evaluationObjects[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
         }
 

@@ -156,8 +156,14 @@ class Node {
 
     def getIndividualsIdValueLabel(){
         k.select('distinct ?id ?value ?label')
-                .query("?id a <$URI>; rdfs:label ?label; ui:hasDataValue ?value.",
-                "ORDER BY ?label")
+            .query("?id a <$URI>; rdfs:label ?label; ui:hasDataValue ?value.",
+            "ORDER BY ?label")
+    }
+
+    def getEvaluationObjectsIdLabel(){
+        k.select('distinct ?id ?value ?label')
+            .query("<$URI> :hasEvaluationObject ?id. ?id rdfs:label ?label.",
+            "ORDER BY ?label")
     }
 
     def getAnalysesIdLabel(){
@@ -739,9 +745,12 @@ class Node {
         k.insert(sparql)
     }
 
+    def insertTriples(String id, Map properties = [:]){
+        k.insert(createTriples(id, properties))
+    }
+
     def createTriples(String id, Map properties = [:]){
-        def url = k.toURI(id)
-        String sparql = "<" + url + "> "
+        String sparql = "<" + k.toURI(id) + "> "
 
         properties.each { key, property ->
             switch (property.dataType) {
