@@ -165,7 +165,7 @@ class GUIDSL {
 
     def listEvaluationObjects(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         def defaultAttrs =  _widgetAttrs['listEvaluationObjects']
-        def evaluationObjects = _k['ui:EvaluationObject'].getIndividualsIdLabel()
+        def evaluationObjects = _k[':'+attrs.username].getEvaluationObjectsIdLabel() //_k['ui:EvaluationObject'].getIndividualsIdLabel()
 
         defaultAttrs.each{key, value->
             if(!attrs.containsKey(key))
@@ -278,8 +278,6 @@ class GUIDSL {
         def tab_prefix = 'tab_'
         def activeTab = extAttrs.activeTab ? extAttrs.activeTab : tab_prefix+'0'
         def pre = extAttrs.id ?  extAttrs.id+'_' : ''
-        println pre
-        println activeTab
 
         attrs['id'] = pre + 'tabs'
         attrs['tabs'] = [:]
@@ -308,7 +306,7 @@ class GUIDSL {
                 }
             }
         }
-        Uri.printTree(attrs)
+        //Uri.printTree(attrs)
         if(attrs['tabs'][activeTab]) {
             attrs['tabs'][activeTab].attrs['widgetClass'] = 'active'
 

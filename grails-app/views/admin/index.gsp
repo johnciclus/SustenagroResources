@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta name="layout" content="main"/>
+		<meta name="layout" content="decisioner"/>
 		<title>SustenAgro - Admin</title>
 		<asset:javascript src="ace-min-noconflict/ace.js"/>
         <asset:javascript src="ace-min-noconflict/ext-language_tools.js"/>
@@ -22,10 +22,7 @@
 				<div class="tab-content">
 					<div id="dsl" class="tab-pane fade in active">
 						<div class="row">
-							<div class="col-md-8">
-								<h5 class="text-primary">DSL Code</h5>
-							</div>
-							<div class="col-md-4">
+							<div class="col-md-12">
 								<form id="dsl_form" action="/admin/dsl" method="post" class="form-inline-block pull-right" role="form">
 									<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Salvar </button>
 								</form>
@@ -106,10 +103,7 @@
 					</div>
                     <div id="gui" class="tab-pane fade">
                         <div class="row">
-                            <div class="col-md-8">
-                                <h5 class="text-primary">GUI Code</h5>
-                            </div>
-                            <div class="col-md-4">
+                            <div class="col-md-12">
                                 <form id="gui_form" action="/admin/gui" method="post" class="form-inline-block pull-right" role="form">
                                     <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Salvar </button>
                                 </form>
@@ -190,10 +184,7 @@
                     </div>
                     <div id="views" class="tab-pane fade">
                         <div class="row">
-                            <div class="col-md-8">
-                                <h5 class="text-primary">Views</h5>
-                            </div>
-                            <div class="col-md-4">
+                            <div class="col-md-12">
                                 <form id="view_form" action="/admin/views" method="post" class="form-inline-block pull-right" role="form">
                                     <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Salvar </button>
                                 </form>
@@ -312,10 +303,7 @@
 					</div>
 					<div id="ontology" class="tab-pane fade">
 						<div class="row">
-							<div class="col-md-8">
-								<h5 class="text-primary">Ontology</h5>
-							</div>
-							<div class="col-md-4">
+							<div class="col-md-12">
 								<form id="ontology_form" action="/admin/ontology" method="post" class="form-inline-block pull-right" role="form">
 									<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Salvar </button>
 								</form>

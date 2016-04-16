@@ -18,20 +18,20 @@ evaluationObject ':ProductionUnit', {
     //type or instance
 
     // Production unit name
-    instance ':hasName', label: "Nome da unidade produtiva ou fazenda", placeholder: "Nome"
+    instance ':hasName', label: "Nome da unidade produtiva ou fazenda", placeholder: "Nome", required: true
+
+    // Agricultural production system
+    instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções", required: true
 
     // Production unit type
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
-    type label: "Tipo da unidade produtiva", header: "Opções"
-
-    // Agricultural production system
-    instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções"
+    type label: "Tipo da unidade produtiva", header: "Opções"//, required: true
 
     // Origem da cana (própria, fornecedor, arrendamento)
-    instance  ':hasSugarcaneSource', label: "Origem da cana", header: "Opções"
+    instance  ':hasSugarcaneSource', label: "Origem da cana", header: "Opções"//, required: true
 
     // Microrregião produtora
-    instance ':hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
+    instance ':hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções", required: true
 
     //Municipios envolvidos
 
@@ -42,37 +42,37 @@ evaluationObject ':ProductionUnit', {
     //instance ':hasLinkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos", placeholder: "Descrição"
 
     // Municípios envolvidos (localização da sede)
-    
+
     // Data de início do plantio
-    instance ':hasBeginningOfPlantingDate', label: "Data de início do plantio"
+    instance ':hasBeginningOfPlantingDate', label: "Data de início do plantio", required: true
 
     // Data de término do plantio
-    instance ':hasFinishOfPlantingDate', label: "Data de término do plantio"
+    instance ':hasFinishOfPlantingDate', label: "Data de término do plantio", required: true
 
     // Data de início da colheita
-    instance ':hasBeginningOfHarvestDate', label: "Data de início da colheita"
+    instance ':hasBeginningOfHarvestDate', label: "Data de início da colheita", required: true
 
     // Data de término da colheita
-    instance ':hasFinishOfHarvestDate', label: "Data de término da colheita"
-    
-    // Longevidade do canvial (cana de ano, cana de ano e meio);
-    instance ':hasCanavialLongevity', label: "Longevidade do canvial", header: "Opções"
-    
+    instance ':hasFinishOfHarvestDate', label: "Data de término da colheita", required: true
+
+    // Longevidade do canavial (cana de ano, cana de ano e meio);
+    instance ':hasCanavialLongevity', label: "Longevidade do canvial (tempo em anos e meses)", header: "Opções", required: true
+
     // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
     instance ':hasInnovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
-    
+
     //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
     instance ':hasFinancing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição"
 
     // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
     instance ':hasPartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)", widget: 'textAreaForm', placeholder: "Descrição"
-    
-    //Tipo de organização/gestão da usina ou produtor (grupo econômico, convencional, familiar); 
-    
+
+    //Tipo de organização/gestão da usina ou produtor (grupo econômico, convencional, familiar);
+
     //Tipo de estrutura da usina/produtor de cana (Greenfield, tradicional...)
-    
+
     // Disponibilização dos resultados da avaliação: Público | privado
-    instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções"
+    instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções", required: true
 
 
     // Valor total investido em tecnologia na fase agrícola (até a fase atual)
@@ -83,7 +83,7 @@ evaluationObject ':ProductionUnit', {
 
     // Valor total previsto para investimento para escoamento da produção
     //instance ':hasTotalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
-    
+
 }
 
 
@@ -120,16 +120,16 @@ report {
     environment =   weightedSum(data.':EnvironmentalIndicator')             //.equation({value*weight}))
     economic    =   weightedSum(data.':EconomicIndicator')
     social      =   weightedSum(data.':SocialIndicator')
-    
+
     sustainability = (environment + social + economic)/3
 
     cost_production_efficiency = sum(data.':ProductionEfficiencyFeature')
 
-    technologicalEfficiencyInTheField = weightedSum(data.':TechnologicalEfficiencyInTheField')  //.equation({value*weight}))
-    technologicalEfficiencyInTheIndustrial = weightedSum(data.':TechnologicalEfficiencyInTheIndustrial')
+    technologicalEfficiencyInTheField = 0.8*weightedSum(data.':TechnologicalEfficiencyInTheField')  //.equation({value*weight}))
+    technologicalEfficiencyInTheIndustrial = 0.2*weightedSum(data.':TechnologicalEfficiencyInTheIndustrial')
 
     efficiency = cost_production_efficiency *
-                 (technologicalEfficiencyInTheField+technologicalEfficiencyInTheIndustrial)
+            (technologicalEfficiencyInTheField+technologicalEfficiencyInTheIndustrial)
 
     //economic =      2.0 * analysis.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
     //        analysis.'Eficiência energética das caldeiras para cogeração de energia'
@@ -137,27 +137,35 @@ report {
     //social =        3 * analysis.EnergyEfficiencyOfBoilersForCogeneration + 7 *
     //        analysis.OperationalEfficiencyPlant
 
+
     sustainabilityMatrix    x: sustainability,
-                            y: efficiency,
-                            label_x: 'Indice da sustentabilidade',
-                            label_y: 'Indice de eficiência',
-                            range_x: [-50,150],
-                            range_y: [-30,60],
-                            quadrants: [4,3],
-                            recomendations: ["Cenário desfavorável, Muito baixo desempenho dos indicadores",
-                                             "Cenário desfavorável, Baixo desempenho dos indicadores",
-                                             "Cenário desfavorável, Médio desempenho dos indicadores",
-                                             "Cenário desfavorável, Alto desempenho dos indicadores",
-                                             "Cenário propício, Muito baixo desempenho dos indicadores",
-                                             "Cenário propício, Baixo desempenho dos indicadores",
-                                             "Cenário propício, Médio desempenho dos indicadores",
-                                             "Cenário propício, Alto desempenho dos indicadores",
-                                             "Cenário muito favorável, Muito baixo desempenho dos indicadores",
-                                             "Cenário muito favorável, Baixo desempenho dos indicadores",
-                                             "Cenário muito favorável, Médio desempenho dos indicadores",
-                                             "Cenário muito favorável, Alto desempenho dos indicadores"]
+            y: efficiency,
+            label_x: 'Indice da sustentabilidade',
+            label_y: 'Indice de eficiência',
+            range_x: [-60,60],
+            range_y: [-70,710],
+            quadrants: [4,3],
+                        recomendations: ["Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ desfavorável ao sistema de produção de cana / sistema de produção de cana na fase inicial de implementação (avaliação de sustentabilidade comprometida) ou com muito baixa sustentabilidade – sistema de produção de cana não recomendado.",
+                             "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ desfavorável ao sistema de produção de cana / sistema de produção de cana com baixa sustentabilidade – recomendam-se ações corretivas.",
+                             "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ desfavorável ao sistema de produção de cana / Avaliação da sustentabilidade com médio desempenho – recomenda-se acompanhamento com restrições.",
+                             "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ desfavorável ao sistema de produção de cana / Avaliação da sustentabilidade com bom desempenho – sistema de produção de cana recomendado.",
+                             "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ propícia para o sistema cana / Avaliação da sustentabilidade: sistema de produção de cana na fase inicial de implementação ou com muito baixa sustentabilidade – gerenciamento recomendado com restrições.",
+                             "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ propícia para o sistema cana / Avaliação da sustentabilidade: com baixo desempenho - recomenda-se ações corretivas.",
+                             "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ propícia para o sistema cana / Avaliação da sustentabilidade: com médio desempenho - monitoramento e gerenciamento recomendado.",
+                             "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ propícia para o sistema cana / Avaliação da sustentabilidade: com bom desempenho – sistema de produção de cana recomendado.",
+                             "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ favorável para o sistema cana – recomenda-se investimentos no sistema avaliado / Avaliação da sustentabilidade: com muito baixo desempenho – recomenda-se ações corretivas.",
+                             "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ favorável para o sistema cana – recomenda-se investimentos no sistema avaliado / Avaliação da sustentabilidade: com baixo desempenho - gerenciamento recomendado.",
+                             "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ favorável para o sistema cana – recomenda-se investimentos no sistema avaliado / Avaliação da sustentabilidade: com médio desempenho – monitoramento recomendado.",
+                             "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ favorável para o sistema cana – recomenda-se investimentos no sistema avaliado / Avaliação da sustentabilidade: com bom desempenho - sistema de produção de cana fortemente recomendado."]
+
+
+
+    sustainabilitySemaphore value: sustainability,
+            label: 'Índice da sustentabilidade geral',
+            range: [-60,60]
+
 
     text    '**Mapa da microregião**'
-    
+
     map     url: data.'Microregion'.map()
 }

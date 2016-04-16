@@ -23,11 +23,12 @@ class EvaluationObject {
 
     def instance(Map attrs = [:], String id, String prop = ''){
         def uri = k.toURI(id)
-        //def featureId = k.shortURI(uri)
         def range = (id != _id)? k[uri].range : uri
         def dataType = (range)? range : k.toURI('xsd:string')
         def widget = (attrs['widget'])? attrs['widget'] : gui['dataTypeToWidget'].find { k.toURI(it.key) == dataType }.value
         def request = []
+
+        attrs['id'] = uri
 
         if(prop?.trim()){
             request = [prop, dataType]
@@ -41,15 +42,11 @@ class EvaluationObject {
 
         widget = (widget)? widget : 'textForm'
 
-        if((id == _id) && prop == 'rdfs:subClassOf')
-            widget = 'multipleCategoryForm'
-
         if(widget == 'categoryForm')
             attrs['selectType'] = (attrs['multipleSelection'])? 'checkbox' : 'radio'
 
-        attrs['id'] = uri
-
-        //println uri
+        if(!k[uri].isFunctional())
+            widget = 'multipleCategoryForm'
 
         model << [id: uri,
                   range: range,

@@ -17,7 +17,7 @@ tabs([activeTab: activeTab, pagination: false], [
     ['widget': 'tab', attrs: [label: 'Cadastrar nova unidade produtiva / fazenda'], widgets:[
         ['widget': 'createEvaluationObject', attrs : [id: evaluationObject.getURI()], widgets: evaluationObject.widgets]
     ]],
-    ['widget': 'tab', attrs: [label: 'Unidades produtivas'], widgets:[
-        ['widget': 'listEvaluationObjects', attrs : [id: id]]
+    ['widget': 'tab', attrs: [label: 'Selecionar unidade produtiva / fazenda'], widgets:[
+        ['widget': 'listEvaluationObjects', attrs : [id: id, username: username]]
     ]]
 ])

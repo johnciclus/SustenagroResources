@@ -17,9 +17,13 @@
     </thead>
 
     <tbody>
+    <g:if test="${data.size() == 1}">
+        <g:set var="checked" value="checked" />
+    </g:if>
+
     <g:each status="i" var="row" in="${data}">
         <tr data-index="${i}">
-            <td><input data-index="${i}" type="<%=selectType%>" name="<%=id%>" value="<%=row.id%>" ></td>
+            <td><input data-index="${i}" type="<%=selectType%>" name="<%=id%>" value="<%=row.id%>" <%=checked%> <g:if test="${required}">required</g:if>></td>
             <td><%=row.label%></td>
         </tr>
     </g:each>

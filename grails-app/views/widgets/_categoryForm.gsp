@@ -3,5 +3,5 @@
 </div>
 
 <div class="col-sm-8">
-    <g:render template="/widgets/category" model="[id: id, data: data, header: header, selectType: selectType]"/>
+    <g:render template="/widgets/category" model="[id: id, data: data, header: header, selectType: selectType, required: required]"/>
 </div>
