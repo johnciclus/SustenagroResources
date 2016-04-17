@@ -60,10 +60,12 @@ info:
         version: '@info.app.version@'
         grailsVersion: '@info.app.grailsVersion@'
 spring:
-
     groovy:
         template:
             check-template-location: false
+
+#server:
+#    port: 80                                             # The port to listen on
 
 ---
 grails:

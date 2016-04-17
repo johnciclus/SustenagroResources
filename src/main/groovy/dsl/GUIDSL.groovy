@@ -1,5 +1,6 @@
 package dsl
 
+
 import groovy.io.FileType
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
@@ -44,6 +45,8 @@ class GUIDSL {
         viewsMap['tool']['index'] = []
         viewsMap['tool']['analysis'] = []
         viewsMap['tool']['scenario'] = []
+        viewsMap['user'] = [:]
+        viewsMap['user']['signup'] = []
 
         // Create CompilerConfiguration and assign
         // the DelegatingScript class as the base script class.
@@ -83,6 +86,8 @@ class GUIDSL {
         viewsMap['tool']['index'] = []
         viewsMap['tool']['analysis'] = []
         viewsMap['tool']['scenario'] = []
+        viewsMap['user'] = [:]
+        viewsMap['user']['signup'] = []
 
         _sandbox.register()
 

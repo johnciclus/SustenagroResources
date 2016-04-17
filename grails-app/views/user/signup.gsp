@@ -7,20 +7,15 @@
 <body>
 <div class="row">
     <div class="col-sm-6 col-sm-offset-3 login">
-        <div class="page-header">
-            <h1>Bem-vindo!</h1>
-        </div>
-        <div>
-            <p>Por favor preencha o formulário</p>
-        </div>
+        <g:if test="${inputs}">
+            <g:each in="${inputs}">
+                <div class="section">
+                    <g:render template="/widgets/${it.widget}" model="${it.attrs}" />
+                </div>
+            </g:each>
+        </g:if>
 
         <form action='/user/createUser' method='post' id='signUpForm' class='form-horizontal'>
-            <div class="form-group">
-                <label for="name" class="col-sm-4 control-label">Nome:</label>
-                <div class="col-sm-8">
-                    <input type='text' name='name' id='name' class='form-control'/>
-                </div>
-            </div>
 
             <div class="form-group">
                 <label for="surname" class="col-sm-4 control-label">Sobrenome:</label>

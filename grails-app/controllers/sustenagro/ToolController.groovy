@@ -67,14 +67,18 @@ class ToolController {
             def node = new Node(k)
             def propertyInstances = [:]
             def now = new Date()
-
+            def value
             //println new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(now)
 
             //http://www.w3.org/2001/XMLSchema#dateTime
             propertyInstances[k.toURI(':hasOwner')] = [value: user, dataType: k.toURI('ui:User')]
             evaluationObject.model.each{ ins ->
-                if(params[ins.id] && ins.id != type){
-                    propertyInstances[k.toURI(ins.id)] = [value: params[ins.id], dataType: ins.dataType]
+                if(params[ins.id] && ins.id != type) {
+                    value = params[ins.id]
+                    if (ins.dataType == 'http://www.w3.org/2001/XMLSchema#date') {
+                        value =  new SimpleDateFormat("dd/MM/yyyy").parse(value).format("yyyy-MM-dd");
+                    }
+                    propertyInstances[k.toURI(ins.id)] = [value: value, dataType: ins.dataType]
                 }
             }
 
@@ -83,7 +87,7 @@ class ToolController {
             propertyInstances = [:]
             propertyInstances[k.toURI(':hasEvaluationObject')] = [value: k.toURI(':'+id), dataType: k.toURI('ui:EvaluationObject')]
 
-            println propertyInstances
+            //println propertyInstances
 
             node.insertTriples(user, propertyInstances)
         }

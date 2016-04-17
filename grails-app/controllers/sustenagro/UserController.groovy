@@ -3,10 +3,18 @@ package sustenagro
 import semantics.Node
 
 class UserController {
-    def springSecurityService
     def k
+    def dsl
+    def gui
+    def springSecurityService
 
     def signup() {
+        dsl.clean(controllerName, actionName)
+        gui.setView(controllerName, actionName)
+        gui.pageHeader([text: 'Bem-vindo!'])
+        gui.div([text: 'Por favor preencha o formulário'])
+        gui.form([id: 'signUpForm', action: '/user/createUser'], [[widget: 'formGroup', attrs: [widgetName: 'textForm', model: [label: 'Nome:', placeholder: 'Nome', required: true, id: 'http://semantic.icmc.usp.br/sustenagro#hasName']]]])
+        render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
     }
 
     def createUser(){

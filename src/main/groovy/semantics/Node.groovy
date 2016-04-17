@@ -762,14 +762,6 @@ class Node {
                         sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:string; "
                     }
                     break
-                case k.toURI('xsd:date'):
-                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
-                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:date; " }
-                    }
-                    else{
-                        sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:date; "
-                    }
-                    break
                 case k.toURI('xsd:double'):
                     if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
                         property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:double; " }
@@ -792,6 +784,38 @@ class Node {
                     }
                     else{
                         sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^owl:real; "
+                    }
+                    break
+                case k.toURI('xsd:date'):
+                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
+                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:date; " }
+                    }
+                    else{
+                        sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:date; "
+                    }
+                    break
+                case k.toURI('xsd:time'):
+                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
+                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:time; " }
+                    }
+                    else{
+                        sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:time; "
+                    }
+                    break
+                case k.toURI('xsd:dateTime'):
+                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
+                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:dateTime; " }
+                    }
+                    else{
+                        sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:dateTime; "
+                    }
+                    break
+                case k.toURI('xsd:duration'):
+                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
+                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:duration; " }
+                    }
+                    else{
+                        sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:duration; "
                     }
                     break
                 case k.toURI('rdfs:Literal'):

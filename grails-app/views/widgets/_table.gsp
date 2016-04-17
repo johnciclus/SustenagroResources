@@ -1,14 +1,14 @@
 <table data-toggle="table"
-       data-click-to-select="true"
-       data-select-item-name="<%=id%>"
-       data-single-select=false
+    data-click-to-select="true"
     <g:if test="${data.size()>5}">
         data-height="240"
     </g:if>
     <g:if test="${header == null}">
         data-show-header=false
+    </g:if>
+    <g:if test="${selectType == 'checkbox'}">
+        data-single-select=false
     </g:if>>
-
     <thead>
     <tr>
         <th></th>

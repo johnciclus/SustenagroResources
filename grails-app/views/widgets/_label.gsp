@@ -1,1 +1,1 @@
-<label for="<%=id%>" class="control-label"><%=label%></label>
+<label for="<%=id%>" class="<%=widgetClass%>"><%=label%></label>
