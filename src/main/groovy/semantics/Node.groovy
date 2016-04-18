@@ -479,7 +479,7 @@ class Node {
         def query = "<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
                 "?id rdfs:subClassOf <$URI>." +
                 "?ind a ?id." +
-                "?ind :hasName ?name."+
+                "?ind ui:hasName ?name."+
                 "?ind :hasJustification ?justification."+
                 "optional {?id <http://semantic.icmc.usp.br/sustenagro#relevance> ?relevance}."+
                 "?ind ui:value ?valueType." +
@@ -660,7 +660,7 @@ class Node {
 
     def insertEvaluationObject(String id, Object type, Map properties = [:]){
         def evalObjId = k.toURI(":"+id)
-        def name = k.toURI(':hasName')
+        def name = k.toURI('ui:hasName')
 
         String sparql = "<" + evalObjId + "> "
 

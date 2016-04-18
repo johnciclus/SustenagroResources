@@ -1,5 +1,6 @@
 package sustenagro
 
+import grails.converters.JSON
 import semantics.Node
 
 class UserController {
@@ -11,15 +12,16 @@ class UserController {
     def signup() {
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
-        gui.pageHeader([text: 'Bem-vindo!'])
-        gui.div([text: 'Por favor preencha o formulário'])
-        gui.form([id: 'signUpForm', action: '/user/createUser'], [[widget: 'formGroup', attrs: [widgetName: 'textForm', model: [label: 'Nome:', placeholder: 'Nome', required: true, id: 'http://semantic.icmc.usp.br/sustenagro#hasName']]]])
+        gui.renderView(actionName)
         render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
     }
 
     def createUser(){
+
+
+
         if( params.username && params.password){
-            def username = params.username
+            //def username = params.username
             def password = springSecurityService.encodePassword(params.password)
             def uri = k.toURI(':'+username)
             def usernameDataType = k[k.toURI('ui:hasUserName')].range
@@ -46,5 +48,17 @@ class UserController {
         flash.message = 'Usuário cadastrado com sucesso'
 
         redirect(controller: 'login', action: 'auth')
+    }
+
+    def username_availability(){
+        def username = params['http://purl.org/biodiv/semanticUI#hasUserName']
+
+        println username
+
+        println k[':'+username].exist()
+
+        def respond = k[':'+username].exist().toString() //['respond': 'true']
+
+        render respond
     }
 }

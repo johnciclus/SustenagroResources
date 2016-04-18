@@ -18,7 +18,7 @@ evaluationObject ':ProductionUnit', {
     //type or instance
 
     // Production unit name
-    instance ':hasName', label: "Nome da unidade produtiva ou fazenda", placeholder: "Nome", required: true
+    instance 'ui:hasName', label: "Nome da unidade produtiva ou fazenda", placeholder: "Nome", required: true
 
     // Agricultural production system
     instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções", required: true
@@ -31,7 +31,10 @@ evaluationObject ':ProductionUnit', {
     instance  ':hasSugarcaneSource', label: "Origem da cana", header: "Opções", required: true
 
     // Microrregião produtora
-    instance ':hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções", required: true
+    instance 'ui:hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
+
+    instance ':hasOtherMicroregion', label: "Outra microrregião"
+
 
     //Municipios envolvidos
 

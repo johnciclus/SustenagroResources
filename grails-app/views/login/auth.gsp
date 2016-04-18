@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta name="layout" content="${gspLayout ?: 'main'}"/>
-    <title><g:message code='springSecurity.login.title'/></title>
+    <title>SustenAgro - login</title>
 </head>
 
 <body>
@@ -20,8 +20,6 @@
         <div>
             <p>Por favor insira os dados de usuário</p>
         </div>
-
-
 
         <form action='/login/authenticate' method='post' id='loginForm' class='form-horizontal'>
             <div class="form-group">

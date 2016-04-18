@@ -1,6 +1,6 @@
 <table data-toggle="table"
     data-click-to-select="true"
-    <g:if test="${data.size()>5}">
+    <g:if test="${data && data.size()>5}">
         data-height="240"
     </g:if>
     <g:if test="${header == null}">
@@ -17,7 +17,7 @@
     </thead>
 
     <tbody>
-    <g:if test="${data.size() == 1}">
+    <g:if test="${data && data.size() == 1}">
         <g:set var="checked" value="checked" />
     </g:if>
 

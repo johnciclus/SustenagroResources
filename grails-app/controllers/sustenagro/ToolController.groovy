@@ -54,7 +54,7 @@ class ToolController {
     }
 
     def createEvaluationObject() {
-        def name = k.toURI(':hasName')
+        def name = k.toURI('ui:hasName')
         def id = slugify.slugify(params[name])
         def type = k.toURI(params['evalObjType'])
         def evaluationObject = dsl.evaluationObject
@@ -127,7 +127,7 @@ class ToolController {
             if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
                 sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
                     ['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]],
-                    ['widget': 'specificIndicators', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: [':hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]]
+                    ['widget': 'specificIndicators', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]]
                 ]])
         }
 

@@ -183,6 +183,37 @@
     
 
 
+    <!-- http://purl.org/biodiv/semanticUI#hasEvaluationObject -->
+
+    <owl:ObjectProperty rdf:about="&semanticUI;hasEvaluationObject">
+        <rdfs:label xml:lang="en">has evaluation object</rdfs:label>
+        <rdfs:label xml:lang="pt">tem objeto de avalição</rdfs:label>
+        <rdfs:range rdf:resource="&semanticUI;EvaluationObject"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasMicroRegion -->
+
+    <owl:ObjectProperty rdf:about="&semanticUI;hasMicroRegion">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has microregion</rdfs:label>
+        <rdfs:label xml:lang="pt">tem microregion</rdfs:label>
+        <rdfs:range rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasOwner -->
+
+    <owl:ObjectProperty rdf:about="&semanticUI;hasOwner">
+        <rdfs:label xml:lang="en">has owner</rdfs:label>
+        <rdfs:label xml:lang="pt">tem proprietário</rdfs:label>
+        <rdfs:range rdf:resource="&semanticUI;User"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://purl.org/biodiv/semanticUI#hasRole -->
 
     <owl:ObjectProperty rdf:about="&semanticUI;hasRole">
@@ -245,6 +276,28 @@
     
 
 
+    <!-- http://purl.org/biodiv/semanticUI#hasEmail -->
+
+    <owl:DatatypeProperty rdf:about="&semanticUI;hasEmail">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has email</rdfs:label>
+        <rdfs:label xml:lang="pt">tem email</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasName -->
+
+    <owl:DatatypeProperty rdf:about="&semanticUI;hasName">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has name</rdfs:label>
+        <rdfs:label xml:lang="pt">tem nome</rdfs:label>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://purl.org/biodiv/semanticUI#hasPassword -->
 
     <owl:DatatypeProperty rdf:about="&semanticUI;hasPassword">
@@ -252,6 +305,17 @@
         <rdfs:label xml:lang="en">has password</rdfs:label>
         <rdfs:label xml:lang="en">tem senha</rdfs:label>
         <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasSurname -->
+
+    <owl:DatatypeProperty rdf:about="&semanticUI;hasSurname">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has surname</rdfs:label>
+        <rdfs:label xml:lang="pt">tem sobrenome</rdfs:label>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     
 

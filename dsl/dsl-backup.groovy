@@ -18,7 +18,7 @@ evaluationObject ':ProductionUnit', {
     //type or instance
 
     // Production unit name
-    instance ':hasName', label: "Nome da unidade produtiva", placeholder: "Nome"
+    instance 'ui:hasName', label: "Nome da unidade produtiva", placeholder: "Nome"
 
     // Production unit type
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
