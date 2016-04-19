@@ -10,6 +10,9 @@ class UserController {
     def springSecurityService
 
     def signup() {
+        //println ctx.getClass()
+        //println grailsApplication.mainContext.getResource(.getResource('/views/widgets/_date.gsp').getFile().text
+
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
         gui.renderView(actionName)
@@ -17,48 +20,47 @@ class UserController {
     }
 
     def createUser(){
+        def node = new Node(k, '')
+        def base = k.toURI('ui:')
+        def user
+        def properties = [:]
+        def usernameURI = k.toURI('ui:hasUserName')
+        def passwordURI = k.toURI('ui:hasPassword')
+        def passwordConfirmURI = k.toURI('ui:hasPassword-confirm')
+        def termsofuseURI = k.toURI('ui:termsofuse')
+        def userRole = Role.find{ authority == 'ROLE_USER'}
 
+        if( params[usernameURI] && params[passwordURI] && params[passwordURI] == params[passwordConfirmURI] && params[termsofuseURI] == 'yes'){
+            params.each{
+                if(it.key == passwordURI){
+                    properties[it.key] = [value: springSecurityService.encodePassword(it.value), dataType: k[it.key].range]
+                }
+                else if(it.key.startsWith(base) && it.key != passwordConfirmURI && it.key != termsofuseURI)
+                    properties[it.key] = [value: it.value, dataType: k[it.key].range]
+            }
+            properties[k.toURI('ui:hasRole')] = [value: k.toURI(':userRole'), dataType: k.toURI('ui:Role')]
 
-
-        if( params.username && params.password){
-            //def username = params.username
-            def password = springSecurityService.encodePassword(params.password)
-            def uri = k.toURI(':'+username)
-            def usernameDataType = k[k.toURI('ui:hasUserName')].range
-            def passwordDataType = k[k.toURI('ui:hasPassword')].range
-            def roleDataType     = k.toURI('ui:Role')
-            def user
-            def userRole = Role.find{ authority == 'ROLE_USER'}
-            println userRole
+            def uri = k.toURI(':'+properties[usernameURI].value)
 
             if(!k[uri].exist()){
-                def node = new Node(k, '')
-                def properties = [:]
-
-                properties[k.toURI('ui:hasUserName')] = [value: username, dataType: usernameDataType]
-                properties[k.toURI('ui:hasPassword')] = [value: password, dataType: passwordDataType]
-                properties[k.toURI('ui:hasRole')]     = [value: k.toURI(':userRole'), dataType: roleDataType]
                 node.insertUser(uri, properties)
 
-                user = new User(username, password, true).save()
+                user = new User(properties[usernameURI].value, properties[passwordURI].value, true).save()
                 UserRole.create user, userRole
             }
+
+            flash.message = 'Usuário cadastrado com sucesso'
         }
-
-        flash.message = 'Usuário cadastrado com sucesso'
-
         redirect(controller: 'login', action: 'auth')
     }
 
-    def username_availability(){
+    def usernameAvailability(){
         def username = params['http://purl.org/biodiv/semanticUI#hasUserName']
+        render !k[':'+username].exist()
+    }
 
-        println username
-
-        println k[':'+username].exist()
-
-        def respond = k[':'+username].exist().toString() //['respond': 'true']
-
-        render respond
+    def emailAvailability(){
+        def email = params['http://purl.org/biodiv/semanticUI#hasEmail']
+        render (!k['http://purl.org/biodiv/semanticUI#hasEmail'].findSubject(email).size() > 0)
     }
 }

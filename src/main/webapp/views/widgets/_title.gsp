@@ -1,0 +1,1 @@
+<h5 class="text-primary <%=widgetClass%>"><%=text%></h5>

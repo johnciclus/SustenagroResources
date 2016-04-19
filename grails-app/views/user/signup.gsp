@@ -31,16 +31,22 @@
             },
             'http://purl.org/biodiv/semanticUI#hasUserName': {
                 noSpace: true,
-                remote: "username_availability"
+                remote: "usernameAvailability"
             },
             'http://purl.org/biodiv/semanticUI#hasPassword': {
                 noSpace: true,
-                minLength: 5
+                minlength: 5
             },
             'http://purl.org/biodiv/semanticUI#hasPassword-confirm': {
                 noSpace: true,
-                minLength: 5,
+                minlength: 5,
                 equalTo: "input[name='http://purl.org/biodiv/semanticUI#hasPassword']"
+            }
+        },
+        messages: {
+            'http://purl.org/biodiv/semanticUI#hasUserName': {
+                noSpace: "Espaço em branco não é permitido.",
+                remote: jQuery.validator.format("{0} já está atribuído no sistema.")
             }
         },
         errorPlacement: function(error, element) {

@@ -302,6 +302,7 @@ class ToolController {
         def sustainabilityTabs = []
         def efficiencyTabs = []
         def username = springSecurityService.getPrincipal().username
+        def res
 
         k[':'+username].getEvaluationObjectsIdLabel().each{
             evaluationObjects[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
@@ -315,6 +316,10 @@ class ToolController {
 
 
         dsl.featureMap.eachWithIndex { key, feature, int i ->
+            res = k[key].getChildrenIndividuals(uri, '?ind ?id ?valueType ?weightType')
+            println key
+            Uri.printTree(res)
+
             if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
                 sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]]])
             if(feature.model.superClass.contains(k.toURI(':EfficiencyIndicator')))
@@ -325,48 +330,18 @@ class ToolController {
         gui.setView(controllerName, actionName)
 
         /*
-        println uri
+        def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
+        def technologyTypes = fea.evalObject(k.toURI([params.id]))
+        def name = k[uri].label
+        def report
 
-        dsl.featureMap.each{ key, fea ->
-            fea.model.subClass.each{ featureKey, feature ->
-                feature.subClass.each{ indKey, ind->
-                    println indKey
-                    println ind
-                }
-            }
-        }
-        */
+        dsl.data = new DataReader(k, uri)
+        dsl.assessmentProgram()
+        dsl.viewsMap['tool']['data'] = dsl._analyzesMap['http://purl.org/biodiv/semanticUI#Analysis'].widgets
 
-        if(uri?.trim()){
-            dsl.setData(new DataReader(k, uri))
-            dsl.runReport()
-        }
+        //Closure within map for reference it
 
-        gui.setData('evaluationObjects', evaluationObjects)
-        gui.setData('evalObjId', evalObjId)
-        gui.setData('analyses', analyses)
-        gui.setData('analysisId', analysisId)
-        gui.setData('vars', dsl.getVariables())
-        gui.setData('dataReader', dsl.getData('data'))
-        gui.setData('sustainabilityTabs', sustainabilityTabs)
-        gui.setData('efficiencyTabs', efficiencyTabs)
-        gui.setData('reportView', dsl.getReportView())
-
-        gui.renderView(actionName)
-
-        /*
-       def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
-       def technologyTypes = fea.evalObject(k.toURI([params.id]))
-       def name = k[uri].label
-       def report
-
-       dsl.data = new DataReader(k, uri)
-       dsl.assessmentProgram()
-       dsl.viewsMap['tool']['data'] = dsl._analyzesMap['http://purl.org/biodiv/semanticUI#Analysis'].widgets
-
-       //Closure within map for reference it
-
-       if (assessmentID != null) {
+        if (assessmentID != null) {
 
            dsl.dimensions.each{ String dim ->
                k[dim].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value ?weight').each{
@@ -391,8 +366,25 @@ class ToolController {
 
            //def file = new File("reports/${evaluationID}.html")
            //file.write(page.toString())
-       }
-       */
+        }
+        */
+
+        if(uri?.trim()){
+            dsl.setData(new DataReader(k, uri))
+            dsl.runReport()
+        }
+
+        gui.setData('evaluationObjects', evaluationObjects)
+        gui.setData('evalObjId', evalObjId)
+        gui.setData('analyses', analyses)
+        gui.setData('analysisId', analysisId)
+        gui.setData('vars', dsl.getVariables())
+        gui.setData('dataReader', dsl.getData('data'))
+        gui.setData('sustainabilityTabs', sustainabilityTabs)
+        gui.setData('efficiencyTabs', efficiencyTabs)
+        gui.setData('reportView', dsl.getReportView())
+
+        gui.renderView(actionName)
 
         render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
     }

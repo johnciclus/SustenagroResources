@@ -1,0 +1,1 @@
+<button id="<%=id%>-clear" type="button" class="btn btn-default btn-sm clear"><span class="glyphicon glyphicon-trash"></span></button>

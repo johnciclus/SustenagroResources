@@ -16,6 +16,7 @@ class AdminController {
     def dsl
     def gui
     def k
+    //def ctx
 
     def index(){
         def indicators = k[':Indicator'].getIndicators()
@@ -38,10 +39,12 @@ class AdminController {
 
         OutputStream out = new ByteArrayOutputStream()
         //ontology.getManager().saveOntology(ontology.getOntology(), new ManchesterSyntaxDocumentFormat(), out)
+        println grailsApplication.mainContext.getResource('/dsl/dsl.groovy').file
+        println grailsApplication.mainContext.getResource('/dsl/gui.groovy').file
 
-        render(view: actionName, model: [dsl_code: new File('dsl/dsl.groovy').text,
-                                         gui_code: new File('dsl/gui.groovy').text,
-                                         views: new File('dsl/views/analysis.groovy').text,
+        render(view: actionName, model: [dsl_code: grailsApplication.mainContext.getResource('/dsl/dsl.groovy').file.text,
+                                         gui_code: grailsApplication.mainContext.getResource('/dsl/gui.groovy').file.text,
+                                         views: grailsApplication.mainContext.getResource('/dsl/views/analysis.groovy').file.text,
                                          ontology: new String(out.toByteArray(), "UTF-8"),
                                          indicators: indicators,
                                          dimensions: dimensions])
@@ -51,14 +54,14 @@ class AdminController {
         def response = dsl.reload(params['code'])
 
         if(response.status == 'ok')
-            new File('dsl/dsl.groovy').write(params['code'])
+            grailsApplication.mainContext.getResource('/dsl/dsl.groovy').file.write(params['code'])
 
         render response as XML
     }
 
     def dslReset(){
-        def file = new File('dsl/dsl.groovy')
-        file.write(new File('dsl/dsl-backup.groovy').text)
+        def file = grailsApplication.mainContext.getResource('/dsl/dsl.groovy').file
+        file.write(grailsApplication.mainContext.getResource('/dsl/dsl-backup.groovy').file.text)
 
         def response = dsl.reload(file.text)
 
@@ -69,14 +72,14 @@ class AdminController {
         def response  = gui.reload(params['code'])
 
         if(response.status == 'ok')
-            new File('dsl/gui.groovy').write(params['code'])
+            grailsApplication.mainContext.getResource('/dsl/gui.groovy').file.write(params['code'])
 
         render response as XML
     }
 
     def guiReset(){
-        def file = new File('dsl/gui.groovy')
-        file.write(new File('dsl/gui-backup.groovy').text)
+        def file = grailsApplication.mainContext.getResource('/dsl/gui.groovy').file
+        file.write(grailsApplication.mainContext.getResource('/dsl/gui-backup.groovy').text)
 
         def response = gui.reload(file.text)
 
@@ -86,7 +89,7 @@ class AdminController {
     def views(){
         def response = [:]
         if(params['views']) {
-            def file = new File('dsl/views/analysis.groovy')
+            def file = grailsApplication.mainContext.getResource('/dsl/views/analysis.groovy').file
             file.write(params['views'])
 
             response.status = 'ok'
@@ -95,9 +98,9 @@ class AdminController {
     }
 
     def viewsReset(){
-        def file = new File('dsl/views/analysis.groovy')
+        def file = grailsApplication.mainContext.getResource('/dsl/views/analysis.groovy').file
 
-        file.write(new File('dsl/views/analysis.groovy').text)
+        file.write(grailsApplication.mainContext.getResource('/dsl/views/analysis.groovy').file.text)
 
         //def response = gui.reload(file.text)
 
@@ -170,7 +173,7 @@ class AdminController {
         OutputStream out = new ByteArrayOutputStream()
         manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), out)
 
-        File file = new File("/home/dilvan/javabkp/var/www/sustenagro/SustenAgroRDF.rdf")
+        File file = grailsApplication.mainContext.getResource("/ontology/SustenAgro.rdf").file
 
         manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
 
@@ -183,7 +186,7 @@ class AdminController {
 
         //k.g.commit()
 
-        //File localFolder = new File("TestingOntology")
+        //File localFolder = grailsApplication.mainContext.getResource("/TestingOntology").file
         //manager.addIRIMapper(new AutoIRIMapper(localFolder, true))
         //OWLOntology o = manager.createOntology(example_save_iri);
         //println 'Ontology loaded'

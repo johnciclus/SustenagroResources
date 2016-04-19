@@ -13,7 +13,7 @@ class Ontology {
 
     public Ontology(String path){
         manager = OWLManager.createOWLOntologyManager()
-        ontology = manager.loadOntologyFromOntologyDocument(new File(path))
+        ontology = manager.loadOntologyFromOntologyDocument(grailsApplication.mainContext.getResource(path).file)
     }
 
     public OWLOntologyManager getManager(){

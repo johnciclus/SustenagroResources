@@ -125,9 +125,10 @@ class Node {
 
     def getMap(String args){
         def sparql = "<$URI> :appliedTo ?evalobj. " +
-                     "?evalobj :hasMicroRegion ?microregion. " +
+                     "?evalobj ui:hasMicroRegion ?microregion. " +
                      "?microregion <http://dbpedia.org/property/pt/mapa> ?map."
         def result = k.select('distinct '+args).query(sparql)
+
         result.metaClass.map = { (delegate.size()==1)? delegate[0]['map'] :delegate.collect { it['map'] } }
         return result
     }
@@ -614,6 +615,10 @@ class Node {
         //(result.size()==1)? result[0] : result
     }
 
+    def findSubject(String args){
+        k.query("?subject <$URI> '$args'")
+    }
+
     def isFunctional(){
         def query = "<$URI> a owl:FunctionalProperty"
         return (k.query(query).size() > 0)
@@ -655,7 +660,7 @@ class Node {
     }
 
     def exist(){
-        k.query("<$URI> rdf:type ?type").size() > 1 ? true : false
+        k.query("<$URI> rdf:type ?type").size() > 0 ? true : false
     }
 
     def insertEvaluationObject(String id, Object type, Map properties = [:]){
@@ -741,6 +746,8 @@ class Node {
         String sparql = "<" + userId + "> rdf:type ui:User. "
 
         sparql += createTriples(userId, properties)
+
+        println sparql
 
         k.insert(sparql)
     }

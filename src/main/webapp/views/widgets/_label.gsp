@@ -1,0 +1,1 @@
+<label for="<%=id%>" class="<%=widgetClass%>"><%=label%></label>
