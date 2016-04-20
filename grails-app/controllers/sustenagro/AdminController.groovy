@@ -1,13 +1,16 @@
 package sustenagro
 
 import grails.rest.*
+import org.codehaus.groovy.runtime.ResourceGroovyMethods
 import org.semanticweb.owlapi.model.*
 import org.semanticweb.owlapi.io.StringDocumentSource
 import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat
 import org.semanticweb.owlapi.formats.ManchesterSyntaxDocumentFormat
 import grails.converters.*
+import org.yaml.snakeyaml.Yaml
 import utils.Uri
 import grails.plugin.springsecurity.annotation.Secured
+import yaml.Yaml2Owl
 
 @Secured('ROLE_ADMIN')
 class AdminController {
@@ -167,19 +170,50 @@ class AdminController {
     }
 
     def ontology(){
-        def manager = ontology.getManager()
-        OWLOntology ontologyMan = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
 
-        OutputStream out = new ByteArrayOutputStream()
-        manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), out)
+        String file = 'sustenagro.yaml'
+        def format = 'manchester'
 
-        File file = grailsApplication.mainContext.getResource("/ontology/SustenAgro.rdf").file
+        // Just reads YAML
+        Map yaml = (Map) new Yaml().load((String) params['ontology'])
 
-        manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
+        // Save yaml file
+        File yamlFile = new File('/ontology/SustenAgro.yaml')
+        ResourceGroovyMethods.write(yamlFile, (String) params['ontology'])
 
-        k.removeAll()
 
-        k.loadRDF(new ByteArrayInputStream(out.toByteArray()))
+        // Creating Yaml2Owl
+        def onto = new Yaml2Owl((String) yaml.ontology)
+
+        // Reading Map as ontology
+        onto.readYaml(yaml)
+
+        onto.factory //OwlDataFactory
+        onto.manager //OWLOntologyManager
+        onto.onto //OWLOntology
+
+        //println 'Saving ...'
+        //if (file.endsWith('.yaml'))
+//            file = file.substring(0, file.length()-5)
+//
+//        file = file + '.owl'
+        onto.save('/ontology/SustenAgro.rdf')
+//        println "Saved: $file"
+
+
+        //def manager = ontology.getManager()
+        //OWLOntology ontologyMan = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
+
+        //OutputStream out = new ByteArrayOutputStream()
+        //onto.manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), out)
+
+        //File file = grailsApplication.mainContext.getResource("/ontology/SustenAgro.rdf").file
+
+        //manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
+
+        //k.removeAll()
+
+        //k.loadRDF(new ByteArrayInputStream(out.toByteArray()))
 
         //error not load data properties
         //k.g.loadRDF(new ByteArrayInputStream(out.toByteArray()), 'http://bio.icmc.usp.br/sustenagro#', 'rdf-xml', null)

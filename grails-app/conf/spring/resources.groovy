@@ -5,7 +5,7 @@ import dsl.DSL
 import dsl.GUIDSL
 import org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext
 beans = {
-    //ontology(Ontology, 'ontology/SustenAgroRDF.rdf')
+    ontology(Ontology, 'ontology/SustenAgroRDF.rdf')
     //ctx = grailsApplication.mainContext
     slugify(Slugify)
     md(PegDownProcessor)
