@@ -303,6 +303,7 @@ class ToolController {
         def efficiencyTabs = []
         def username = springSecurityService.getPrincipal().username
         def res
+        def values = [:]
 
         k[':'+username].getEvaluationObjectsIdLabel().each{
             evaluationObjects[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
@@ -316,14 +317,24 @@ class ToolController {
 
 
         dsl.featureMap.eachWithIndex { key, feature, int i ->
-            res = k[key].getChildrenIndividuals(uri, '?ind ?id ?valueType ?weightType')
+            res = k[key].getChildrenIndividuals(uri, '?id ?ind ?valueType ?weightType')
             println key
             Uri.printTree(res)
+            res.each{
+                if(it.ind.startsWith(it.id)){
+                    values[it.id] = [:]
+                    values[it.id].value = it.valueType
+                    if(it.weightType)
+                        values[it.id].weight = it.weightType
+                }
+            }
+
+            Uri.printTree(values)
 
             if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
-                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]]])
+                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: values, weights: [:]]]]])
             if(feature.model.superClass.contains(k.toURI(':EfficiencyIndicator')))
-                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]]])
+                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: values, weights: [:]]]]])
         }
 
         dsl.clean(controllerName, actionName)
