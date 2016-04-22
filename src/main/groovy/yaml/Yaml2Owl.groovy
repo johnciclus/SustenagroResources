@@ -17,7 +17,7 @@
 
 package yaml
 
-import groovy.sparql.Sparql
+//import groovy.sparql.Sparql
 import groovy.transform.CompileStatic
 
 
@@ -324,6 +324,7 @@ class Yaml2Owl {
         elem1
     }
 
+    /*
     def readYaml(Map yaml) {
         prefix.defaultPrefix = yaml.ontology
 
@@ -337,6 +338,7 @@ class Yaml2Owl {
 
         readYaml2(yaml)
     }
+
 
     @TypeChecked(SKIP)
     def readYaml2(Map yaml) {
@@ -547,5 +549,5 @@ class Yaml2Owl {
         file = file + '.owl'
         onto.save(file, format)
         println "Saved: $file"
-    }
+    }*/
 }

@@ -4874,28 +4874,6 @@
     
 
 
-    <!-- http://semantic.icmc.usp.br/sustenagro#admin -->
-
-    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#admin">
-        <rdf:type rdf:resource="&semanticUI;User"/>
-        <semanticUI:hasPassword rdf:datatype="&xsd;string">8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918</semanticUI:hasPassword>
-        <semanticUI:hasUserName rdf:datatype="&xsd;string">admin</semanticUI:hasUserName>
-        <semanticUI:hasRole rdf:resource="http://semantic.icmc.usp.br/sustenagro#adminRole"/>
-        <semanticUI:hasRole rdf:resource="http://semantic.icmc.usp.br/sustenagro#userRole"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://semantic.icmc.usp.br/sustenagro#adminRole -->
-
-    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#adminRole">
-        <rdf:type rdf:resource="&semanticUI;Role"/>
-        <rdfs:label xml:lang="en">Admin role</rdfs:label>
-        <rdfs:label xml:lang="pt">Perfil de administrador</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://semantic.icmc.usp.br/sustenagro#inappropriateDisposal -->
 
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#inappropriateDisposal">
@@ -5011,27 +4989,6 @@
         <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
         <rdfs:label xml:lang="en">Public</rdfs:label>
         <rdfs:label xml:lang="pt">Público</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://semantic.icmc.usp.br/sustenagro#user -->
-
-    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#user">
-        <rdf:type rdf:resource="&semanticUI;User"/>
-        <semanticUI:hasPassword rdf:datatype="&xsd;string">04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb</semanticUI:hasPassword>
-        <semanticUI:hasUserName rdf:datatype="&xsd;string">user</semanticUI:hasUserName>
-        <semanticUI:hasRole rdf:resource="http://semantic.icmc.usp.br/sustenagro#userRole"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://semantic.icmc.usp.br/sustenagro#userRole -->
-
-    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#userRole">
-        <rdf:type rdf:resource="&semanticUI;Role"/>
-        <rdfs:label xml:lang="en">User role</rdfs:label>
-        <rdfs:label xml:lang="pt">Perfil de usuário</rdfs:label>
     </owl:NamedIndividual>
     
 

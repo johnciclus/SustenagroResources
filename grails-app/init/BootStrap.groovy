@@ -17,10 +17,10 @@ class BootStrap {
             roles = k[it.user].getRoles()
 
             roles.each { role ->
-                if (role.role == k.toURI(':userRole')) {
+                if (role.role == k.toURI('ui:userRole')) {
                     UserRole.create user, userRole
                 }
-                if (role.role == k.toURI(':adminRole')) {
+                if (role.role == k.toURI('ui:adminRole')) {
                     UserRole.create user, adminRole
                 }
             }

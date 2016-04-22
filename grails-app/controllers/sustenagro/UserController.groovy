@@ -10,9 +10,6 @@ class UserController {
     def springSecurityService
 
     def signup() {
-        //println ctx.getClass()
-        //println grailsApplication.mainContext.getResource(.getResource('/views/widgets/_date.gsp').getFile().text
-
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
         gui.renderView(actionName)

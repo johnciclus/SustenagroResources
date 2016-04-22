@@ -68,10 +68,9 @@ class ToolController {
             def propertyInstances = [:]
             def now = new Date()
             def value
-            //println new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(now)
 
-            //http://www.w3.org/2001/XMLSchema#dateTime
             propertyInstances[k.toURI(':hasOwner')] = [value: user, dataType: k.toURI('ui:User')]
+            propertyInstances[k.toURI('ui:createAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now), dataType: k.toURI('xsd:dateTime')]
             evaluationObject.model.each{ ins ->
                 if(params[ins.id] && ins.id != type) {
                     value = params[ins.id]
@@ -174,6 +173,7 @@ class ToolController {
 
         properties[k.toURI('rdfs:label')] = [value: k['ui:Analysis'].label+ " " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now), dataType: k.toURI('rdfs:Literal')]
         properties[k.toURI(':appliedTo')] = [value: evalObjURI, dataType: k[':appliedTo'].range]
+        properties[k.toURI('ui:createAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now), dataType: k.toURI('xsd:dateTime')]
 
         dsl.featureMap.each{ key, feature ->
             individualKeys += feature.getIndividualKeys()
@@ -221,75 +221,7 @@ class ToolController {
         node.insertFeatures(analysisId, featureInstances)
 
         node.insertExtraFeatures(analysisId, extraFeatures)
-        /*
-        def value
 
-        indicators.each{
-            if(params[it.id]){
-                if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
-                    value = k.dataSchema(Integer.parseInt(params[it.id]))
-                }
-                else{
-                    value = "<" + params[it.id] + ">"
-                }
-
-                k.insert( "<" +it.id+'-'+name +">"+
-                        " rdf:type <"+ it.id +">;"+
-                        " dc:isPartOf :"+ name +";"+
-                        " :value "+  value +".")
-                k.insert( ":" + name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+name+">.")
-            }
-        }
-
-        def features = k[':ProductionEfficiencyFeature'].getGrandchildren('?id ?label ?subClass ?category ?valueType')
-
-        features.each{
-            if(params[it.id]){
-                if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
-                    value = k.dataSchema(Integer.parseInt(params[it.id]))
-                }
-                else{
-                    value = "<" + params[it.id] + ">"
-                }
-
-                k.insert( "<" +it.id+'-'+name +">"+
-                        " rdf:type <"+ it.id +">;"+
-                        " dc:isPartOf :"+ name +";"+
-                        " :value "+  value +".")
-                k.insert( ":" + name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+name+">.")
-
-            }
-        }
-
-        def TechnologicalEfficiency = k[':TechnologicalEfficiencyFeature'].getGrandchildren('?id ?label ?subClass ?category ?valueType')
-        def weighted
-
-        TechnologicalEfficiency.each{
-            if(params[it.id]){
-                if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
-                    value = k.dataSchema(Integer.parseInt(params[it.id]))
-                }
-                else{
-                    value = "<" + params[it.id] + ">"
-                }
-
-                if(it.subClass == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'){
-                    weighted = "<" +params[it.id+'-optimization'] + ">"
-                }
-                else if(it.subClass == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField'){
-                    weighted = "<" +params[it.id+'-alignment'] + ">"
-                }
-
-                k.insert( "<" +it.id+'-'+name +">"+
-                        " rdf:type <"+ it.id +">;"+
-                        " dc:isPartOf :"+ name +";"+
-                        " :value "+ value +";"+
-                        " :hasWeight "+ weighted +"." )
-
-                k.insert( ":" + name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+name+">.")
-            }
-        }
-        */
         redirect(action: 'analysis', id: analysisId)
     }
 
@@ -318,8 +250,8 @@ class ToolController {
 
         dsl.featureMap.eachWithIndex { key, feature, int i ->
             res = k[key].getChildrenIndividuals(uri, '?id ?ind ?valueType ?weightType')
-            println key
-            Uri.printTree(res)
+            //println key
+            //Uri.printTree(res)
             res.each{
                 if(it.ind.startsWith(it.id)){
                     values[it.id] = [:]
@@ -329,7 +261,7 @@ class ToolController {
                 }
             }
 
-            Uri.printTree(values)
+            //Uri.printTree(values)
 
             if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
                 sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: values, weights: [:]]]]])

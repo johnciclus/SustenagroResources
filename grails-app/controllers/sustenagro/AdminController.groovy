@@ -4,8 +4,6 @@ import grails.rest.*
 import org.codehaus.groovy.runtime.ResourceGroovyMethods
 import org.semanticweb.owlapi.model.*
 import org.semanticweb.owlapi.io.StringDocumentSource
-import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat
-import org.semanticweb.owlapi.formats.ManchesterSyntaxDocumentFormat
 import grails.converters.*
 import org.yaml.snakeyaml.Yaml
 import utils.Uri
@@ -19,12 +17,12 @@ class AdminController {
     def dsl
     def gui
     def k
-    //def ctx
+    def path
 
     def index(){
         def indicators = k[':Indicator'].getIndicators()
         def dimensions = k[':Indicator'].getDimensions()
-
+        println path
         /*
         println indicators
         println dimensions
@@ -42,12 +40,12 @@ class AdminController {
 
         OutputStream out = new ByteArrayOutputStream()
         //ontology.getManager().saveOntology(ontology.getOntology(), new ManchesterSyntaxDocumentFormat(), out)
-        println grailsApplication.mainContext.getResource('/dsl/dsl.groovy').file
-        println grailsApplication.mainContext.getResource('/dsl/gui.groovy').file
+        //println new File(path+'dsl/dsl.groovy')
+        //println new File(path+'dsl/gui.groovy')
 
-        render(view: actionName, model: [dsl_code: grailsApplication.mainContext.getResource('/dsl/dsl.groovy').file.text,
-                                         gui_code: grailsApplication.mainContext.getResource('/dsl/gui.groovy').file.text,
-                                         views: grailsApplication.mainContext.getResource('/dsl/views/analysis.groovy').file.text,
+        render(view: actionName, model: [dsl_code: new File(path+'dsl/dsl.groovy').text,
+                                         gui_code: new File(path+'dsl/gui.groovy').text,
+                                         views: new File(path+'dsl/views/analysis.groovy').text,
                                          ontology: new String(out.toByteArray(), "UTF-8"),
                                          indicators: indicators,
                                          dimensions: dimensions])
@@ -57,14 +55,14 @@ class AdminController {
         def response = dsl.reload(params['code'])
 
         if(response.status == 'ok')
-            grailsApplication.mainContext.getResource('/dsl/dsl.groovy').file.write(params['code'])
+            new File(path+'dsl/dsl.groovy').write(params['code'])
 
         render response as XML
     }
 
     def dslReset(){
-        def file = grailsApplication.mainContext.getResource('/dsl/dsl.groovy').file
-        file.write(grailsApplication.mainContext.getResource('/dsl/dsl-backup.groovy').file.text)
+        def file = new File(path+'dsl/dsl.groovy')
+        file.write(new File(path+'dsl/dsl-backup.groovy').text)
 
         def response = dsl.reload(file.text)
 
@@ -75,14 +73,14 @@ class AdminController {
         def response  = gui.reload(params['code'])
 
         if(response.status == 'ok')
-            grailsApplication.mainContext.getResource('/dsl/gui.groovy').file.write(params['code'])
+            new File(path+'dsl/gui.groovy').write(params['code'])
 
         render response as XML
     }
 
     def guiReset(){
-        def file = grailsApplication.mainContext.getResource('/dsl/gui.groovy').file
-        file.write(grailsApplication.mainContext.getResource('/dsl/gui-backup.groovy').text)
+        def file = new File(path+'dsl/gui.groovy')
+        file.write(new File(path+'dsl/gui-backup.groovy'))
 
         def response = gui.reload(file.text)
 
@@ -92,7 +90,7 @@ class AdminController {
     def views(){
         def response = [:]
         if(params['views']) {
-            def file = grailsApplication.mainContext.getResource('/dsl/views/analysis.groovy').file
+            def file = new File(path+'dsl/views/analysis.groovy')
             file.write(params['views'])
 
             response.status = 'ok'
@@ -101,9 +99,9 @@ class AdminController {
     }
 
     def viewsReset(){
-        def file = grailsApplication.mainContext.getResource('/dsl/views/analysis.groovy').file
+        def file = new File(path+'dsl/views/analysis.groovy')
 
-        file.write(grailsApplication.mainContext.getResource('/dsl/views/analysis.groovy').file.text)
+        file.write(new File(path+'dsl/views/analysis.groovy').text)
 
         //def response = gui.reload(file.text)
 
@@ -170,7 +168,6 @@ class AdminController {
     }
 
     def ontology(){
-
         String file = 'sustenagro.yaml'
         def format = 'manchester'
 

@@ -265,6 +265,17 @@
     
 
 
+    <!-- http://purl.org/biodiv/semanticUI#createdAt -->
+
+    <owl:DatatypeProperty rdf:about="&semanticUI;createdAt">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">create at</rdfs:label>
+        <rdfs:label xml:lang="pt">Criado no</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://purl.org/biodiv/semanticUI#hasDataValue -->
 
     <owl:DatatypeProperty rdf:about="&semanticUI;hasDataValue">
@@ -327,6 +338,17 @@
         <rdfs:label xml:lang="en">has username</rdfs:label>
         <rdfs:label xml:lang="pt">tem nome de usuário</rdfs:label>
         <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#updateAt -->
+
+    <owl:DatatypeProperty rdf:about="&semanticUI;updateAt">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">update at</rdfs:label>
+        <rdfs:label xml:lang="pt">autalizado no</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
     
 
@@ -1391,6 +1413,49 @@
         <rdfs:label xml:lang="en">True</rdfs:label>
         <rdfs:label xml:lang="pt">Verdadeiro</rdfs:label>
         <semanticUI:hasDataValue rdf:datatype="&xsd;double">1.0</semanticUI:hasDataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#admin -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;admin">
+        <rdf:type rdf:resource="&semanticUI;User"/>
+        <semanticUI:hasPassword rdf:datatype="&xsd;string">8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918</semanticUI:hasPassword>
+        <semanticUI:hasUserName rdf:datatype="&xsd;string">admin</semanticUI:hasUserName>
+        <semanticUI:hasRole rdf:resource="&semanticUI;adminRole"/>
+        <semanticUI:hasRole rdf:resource="&semanticUI;userRole"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#adminRole -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;adminRole">
+        <rdf:type rdf:resource="&semanticUI;Role"/>
+        <rdfs:label xml:lang="en">Admin role</rdfs:label>
+        <rdfs:label xml:lang="pt">Perfil administrador</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#user -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;user">
+        <rdf:type rdf:resource="&semanticUI;User"/>
+        <semanticUI:hasPassword rdf:datatype="&xsd;string">04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb</semanticUI:hasPassword>
+        <semanticUI:hasUserName rdf:datatype="&xsd;string">user</semanticUI:hasUserName>
+        <semanticUI:hasRole rdf:resource="&semanticUI;userRole"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#userRole -->
+
+    <owl:NamedIndividual rdf:about="&semanticUI;userRole">
+        <rdf:type rdf:resource="&semanticUI;Role"/>
+        <rdfs:label xml:lang="en">User role</rdfs:label>
+        <rdfs:label xml:lang="pt">Perfil usuário</rdfs:label>
     </owl:NamedIndividual>
 </rdf:RDF>
 

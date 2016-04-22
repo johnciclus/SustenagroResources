@@ -58,10 +58,11 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-actuator"
     compile "org.springframework.boot:spring-boot-starter-tomcat"
 
+    compile "org.grails:grails-dependencies"
+    //compile "org.grails:grails-web-boot"
     compile "org.grails:grails-core"
     //compile "org.grails:grails-plugin-rest:3.1.4"
-    compile "org.grails:grails-dependencies"
-    compile "org.grails:grails-web-boot"
+
     compile "org.grails.plugins:spring-security-core:3.0.4"
     compile "org.grails.plugins:cache"
     compile "org.grails.plugins:hibernate4:5.0.2"
@@ -80,26 +81,37 @@ dependencies {
     compile 'org.kohsuke:groovy-sandbox:1.10'
 
     //To read YAML to OWL:
-    //compile 'org.codehaus.groovy:groovy-all:2.4.5'
+    //compile 'org.codehaus.groovy:groovy-all:2.4.3'
     compile 'net.sourceforge.owlapi:owlapi-distribution:3.4.10'
-    compile 'org.yaml:snakeyaml:1.17'
-    compile 'com.github.albaker:GroovySparql:0.9.0'
+    //compile 'org.yaml:snakeyaml:1.17'
+    //compile 'com.github.albaker:GroovySparql:0.9.0'       //Compilation Error
 
-
-    console "org.grails:grails-console"
     //profile "org.grails.profiles:web:3.1.4"
+
     runtime "org.grails.plugins:asset-pipeline"
     runtime "com.h2database:h2"
     testCompile "org.grails:grails-plugin-testing"
     testCompile "org.grails.plugins:geb"
-    testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
-    testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
+    //testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
+    //testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
+
+    console "org.grails:grails-console"
 }
 
 configurations {
     compile.exclude group: "org.slf4j", module: "slf4j-log4j12"
     runtime.exclude group: "org.slf4j", module: "slf4j-log4j12"
 }
+
+/*
+war {
+    from 'src/rootContent' // adds a file-set to the root of the archive
+    webInf { from 'src/additionalWebInf' } // adds a file-set to the WEB-INF dir.
+    classpath fileTree('additionalLibs') // adds a file-set to the WEB-INF/lib dir.
+    classpath configurations.moreLibs // adds a configuration to the WEB-INF/lib dir.
+    webXml = file('src/someWeb.xml') // copies a file to WEB-INF/web.xml
+}
+*/
 
 task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion

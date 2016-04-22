@@ -403,12 +403,18 @@ class Node {
                 "FILTER( ?subClass != ?id && ?subClass != <$URI> )"
 
         result = k.select('distinct '+args).query(query, "ORDER BY ?label")
+
         /*
         println URI
         println k.toURI(analysis)
         println query
         println result
         */
+
+        result.each{
+            if(it['relevance'])
+                it['totalValue'] = it.value * it.relevance;
+        }
 
         result.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
         result.metaClass.label = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
@@ -459,6 +465,12 @@ class Node {
                 return (delegate.size()==1)? delegate[0][id] : delegate.collect { it[id] }
             }
         }*/
+
+        result.each{
+            if(it['weight'])
+                it['totalValue'] = it.value * it.weight;
+        }
+
         result.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
         result.metaClass.label = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
         result.metaClass.value = { (delegate.size()==1)? delegate[0]['value'] :delegate.collect { it['value'] } }
@@ -684,9 +696,9 @@ class Node {
         sparql += createTriples(evalObjId, properties)
 
 
-        sparql.split(';').each{
+        /*sparql.split(';').each{
             println it
-        }
+        }*/
 
         k.insert(sparql)
     }
@@ -695,7 +707,7 @@ class Node {
         def analysisId = k.toURI(":"+id)
         String sparql = "<" + analysisId + "> rdf:type ui:Analysis. "
 
-        println properties
+        //println properties
 
         sparql += createTriples(analysisId, properties)
 
@@ -747,7 +759,7 @@ class Node {
 
         sparql += createTriples(userId, properties)
 
-        println sparql
+        //println sparql
 
         k.insert(sparql)
     }

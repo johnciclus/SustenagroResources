@@ -50,9 +50,9 @@ class DSL {
         //println _ctx.getResource(filename).getFile().text
 
         //_script = (DelegatingScript) _shell.parse(new File(filename).text)
-
-        println _ctx.getResource(filename).getFile()
-        _script = (DelegatingScript) _shell.parse(_ctx.getResource(filename).getFile().text)
+        //println _ctx.getBean('path')
+        //println new File(_ctx.getBean('path')+filename).toString()
+        _script = (DelegatingScript) _shell.parse(new File(_ctx.getBean('path')+filename).text)
         _script.setDelegate(this)
 
         // Run DSL script.
@@ -253,7 +253,7 @@ class DSL {
     }
 
     def methodMissing(String key, attrs){
-        println "DSL methodMissing: "+ key
+        //println "DSL methodMissing: "+ key
         if(attrs.getClass() == Object[]){
             def container = []
             def element = null
