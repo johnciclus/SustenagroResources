@@ -309,6 +309,17 @@
     
 
 
+    <!-- http://purl.org/biodiv/semanticUI#hasOrganization -->
+
+    <owl:DatatypeProperty rdf:about="&semanticUI;hasOrganization">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has organization</rdfs:label>
+        <rdfs:label xml:lang="pt">tem organização</rdfs:label>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://purl.org/biodiv/semanticUI#hasPassword -->
 
     <owl:DatatypeProperty rdf:about="&semanticUI;hasPassword">
@@ -316,6 +327,28 @@
         <rdfs:label xml:lang="en">has password</rdfs:label>
         <rdfs:label xml:lang="en">tem senha</rdfs:label>
         <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasPhoneNumber -->
+
+    <owl:DatatypeProperty rdf:about="&semanticUI;hasPhoneNumber">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has phone number</rdfs:label>
+        <rdfs:label xml:lang="pt">tem número de telefone</rdfs:label>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasPosition -->
+
+    <owl:DatatypeProperty rdf:about="&semanticUI;hasPosition">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">has position</rdfs:label>
+        <rdfs:label xml:lang="pt">tem cargo</rdfs:label>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     
 

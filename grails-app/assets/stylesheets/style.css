@@ -121,6 +121,11 @@ input[type="date"]::-webkit-input-placeholder{
 	margin: 0 auto;
 }
 
+.feature{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 .section{
 	margin-bottom: 20px;
 }
@@ -187,17 +192,11 @@ input[type="date"]::-webkit-input-placeholder{
 }
 
 .tab-content>.tab-pane legend {
-	padding-left: 15px;
-	padding-right: 15px;
+	padding: 0px 15px;
 }
 
 .tab-content>.tab-pane .form-group {
-	padding-left: 15px;
-	padding-right: 15px;
-}
 
-.clear{
-	margin-top: 9px;
 }
 
 .form-inline-block{
@@ -227,6 +226,8 @@ input[type="date"]::-webkit-input-placeholder{
 .has-error{
 	color: #d9534f;
 }
+
+.top-buffer { margin-top:10px; }
 
 #toolContent{
 	padding: 20px;

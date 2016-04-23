@@ -33,10 +33,11 @@ evaluationObject ':ProductionUnit', {
     // Microrregião produtora
     instance 'ui:hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
 
+    //Outra microrregião
     instance ':hasOtherMicroregion', label: "Outra microrregião"
 
-
     //Municipios envolvidos
+    instance ':hasMunicipalitiesInvolved', label: "Municípios envolvidos"
 
     // Data de fundação da unidade produção
     //instance ':hasEstablishmentDate', label: "Data de fundação da unidade produção"

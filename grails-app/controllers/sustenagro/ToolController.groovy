@@ -118,7 +118,7 @@ class ToolController {
             //println feature
             //println feature.model
 
-            if(feature.model.superClass.contains(k.toURI(':EfficiencyIndicator')))
+            if(feature.model.superClass.contains(k.toURI(':Variable')))
                 efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
                     ['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]
                 ]])
@@ -213,9 +213,6 @@ class ToolController {
             }
         }
 
-
-        //Uri.printTree(extraFeatures)
-
         node.insertAnalysis(analysisId, properties)
 
         node.insertFeatures(analysisId, featureInstances)
@@ -262,11 +259,11 @@ class ToolController {
             }
 
             //Uri.printTree(values)
+            if(feature.model.superClass.contains(k.toURI(':Variable')))
+                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: values, weights: [:]]]]])
 
             if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
                 sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: values, weights: [:]]]]])
-            if(feature.model.superClass.contains(k.toURI(':EfficiencyIndicator')))
-                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: values, weights: [:]]]]])
         }
 
         dsl.clean(controllerName, actionName)

@@ -1,6 +1,8 @@
 package dsl
 
 import org.springframework.context.ApplicationContext
+import utils.Uri
+
 /**
  * Created by john on 27/02/16.
  */

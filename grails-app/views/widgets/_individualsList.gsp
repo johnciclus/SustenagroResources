@@ -1,8 +1,8 @@
 <g:each var="feature" in="${subClasses}">
     <g:if test="${feature.value.weightIndividuals}"> <g:set var="firstColWidth" value="4" /> </g:if>
-    <g:else> <g:set var="firstColWidth" value="6" /> </g:else>
-    <div class="form-group">
-        <label for="<%= feature.value.id %>" class="col-sm-${firstColWidth} control-label">${feature.value.label}</label>
+    <g:else> <g:set var="firstColWidth" value="5" /> </g:else>
+    <div class="form-group feature">
+        <label for="<%= feature.value.id %>" class="col-sm-${firstColWidth} col-sm-offset-1 control-label">${feature.value.label}</label>
         <g:set var="hasValue" value="${values[feature.value.id] != null && values[feature.value.id].value}" />
         <div class="col-sm-5">
             <g:if test="${feature.value.valueTypes.contains('http://purl.org/biodiv/semanticUI#Boolean') || feature.value.valueTypes.contains('http://purl.org/biodiv/semanticUI#Categorical')}">
@@ -31,8 +31,9 @@
                 </select>
             </div>
         </g:if>
-        <div class="col-sm-1">
-            <g:render template="/widgets/clearButton" model="[id: feature.value.id]"/>
+        <div class="col-sm-12 text-center top-buffer">
+            <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"> Justificativa</span></button>
+            <g:render template="/widgets/clearButton" model="[id: feature.value.id, label: 'Apagar', widgetClass: 'btn-xs']"/>
         </div>
     </div>
 </g:each>
