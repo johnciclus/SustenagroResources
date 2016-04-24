@@ -1,5 +1,5 @@
 <div class="col-sm-4 text-right">
-    <label for="<%=id%>" class="control-label"><%=label%></label>
+    <g:render template="/widgets/label" model="[id: id, label: label, widgetClass: 'control-label']"/>
 </div>
 
 <div class="col-sm-8">

@@ -3,6 +3,7 @@ package dsl
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
 import org.springframework.context.ApplicationContext
+import org.springframework.core.io.Resource
 import semantics.DataReader
 import utils.Uri
 
@@ -46,8 +47,12 @@ class DSL {
 
         // Configure the GroovyShell and pass the compiler configuration.
         //_shell = new GroovyShell(this.class.classLoader, binding, cc)
+        //println _ctx.getResource(filename).getFile().text
 
-        _script = (DelegatingScript) _shell.parse(new File(filename).text)
+        //_script = (DelegatingScript) _shell.parse(new File(filename).text)
+        //println _ctx.getBean('path')
+        //println new File(_ctx.getBean('path')+filename).toString()
+        _script = (DelegatingScript) _shell.parse(new File(_ctx.getBean('path')+filename).text)
         _script.setDelegate(this)
 
         // Run DSL script.
@@ -248,7 +253,7 @@ class DSL {
     }
 
     def methodMissing(String key, attrs){
-        println "DSL methodMissing: "+ key
+        //println "DSL methodMissing: "+ key
         if(attrs.getClass() == Object[]){
             def container = []
             def element = null

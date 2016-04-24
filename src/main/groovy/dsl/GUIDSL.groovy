@@ -1,5 +1,6 @@
 package dsl
 
+
 import groovy.io.FileType
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
@@ -44,6 +45,8 @@ class GUIDSL {
         viewsMap['tool']['index'] = []
         viewsMap['tool']['analysis'] = []
         viewsMap['tool']['scenario'] = []
+        viewsMap['user'] = [:]
+        viewsMap['user']['signup'] = []
 
         // Create CompilerConfiguration and assign
         // the DelegatingScript class as the base script class.
@@ -59,7 +62,9 @@ class GUIDSL {
         //_shell = new GroovyShell(this.class.classLoader, binding, cc)
         _ctx = applicationContext
 
-        _script = (DelegatingScript) _shell.parse(new File(filename).text)
+        //_script = (DelegatingScript) _shell.parse(new File(filename).text)
+        //println new File(_ctx.getBean('path')+filename).toString()
+        _script = (DelegatingScript) _shell.parse(new File(_ctx.getBean('path')+filename).text)
         _script.setDelegate(this)
 
         // Run DSL script.
@@ -83,6 +88,8 @@ class GUIDSL {
         viewsMap['tool']['index'] = []
         viewsMap['tool']['analysis'] = []
         viewsMap['tool']['scenario'] = []
+        viewsMap['user'] = [:]
+        viewsMap['user']['signup'] = []
 
         _sandbox.register()
 
@@ -503,8 +510,8 @@ class GUIDSL {
 
     def renderView(String name){
         _sandbox.register()
-
-        _script = (DelegatingScript) _shell.parse(new File("dsl/views/${name}.groovy").text)
+        //        _script = (DelegatingScript) _shell.parse(new File("dsl/views/${name}.groovy").text)
+        _script = (DelegatingScript) _shell.parse(new File(_ctx.getBean('path')+"dsl/views/${name}.groovy").text)
         _script.setDelegate(this)
 
         try {
@@ -530,7 +537,7 @@ class GUIDSL {
     }
 
     def getWidgetsNames(){
-        def dir = new File("grails-app/views/widgets/")
+        def dir = new File(_ctx.getBean('path')+"views/widgets/")
         def widgetsList = []
         def name
 

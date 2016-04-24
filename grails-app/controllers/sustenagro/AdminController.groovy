@@ -1,13 +1,14 @@
 package sustenagro
 
 import grails.rest.*
+import org.codehaus.groovy.runtime.ResourceGroovyMethods
 import org.semanticweb.owlapi.model.*
 import org.semanticweb.owlapi.io.StringDocumentSource
-import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat
-import org.semanticweb.owlapi.formats.ManchesterSyntaxDocumentFormat
 import grails.converters.*
+import org.yaml.snakeyaml.Yaml
 import utils.Uri
 import grails.plugin.springsecurity.annotation.Secured
+import yaml.Yaml2Owl
 
 @Secured('ROLE_ADMIN')
 class AdminController {
@@ -16,11 +17,12 @@ class AdminController {
     def dsl
     def gui
     def k
+    def path
 
     def index(){
         def indicators = k[':Indicator'].getIndicators()
         def dimensions = k[':Indicator'].getDimensions()
-
+        println path
         /*
         println indicators
         println dimensions
@@ -38,10 +40,12 @@ class AdminController {
 
         OutputStream out = new ByteArrayOutputStream()
         //ontology.getManager().saveOntology(ontology.getOntology(), new ManchesterSyntaxDocumentFormat(), out)
+        //println new File(path+'dsl/dsl.groovy')
+        //println new File(path+'dsl/gui.groovy')
 
-        render(view: actionName, model: [dsl_code: new File('dsl/dsl.groovy').text,
-                                         gui_code: new File('dsl/gui.groovy').text,
-                                         views: new File('dsl/views/analysis.groovy').text,
+        render(view: actionName, model: [dsl_code: new File(path+'dsl/dsl.groovy').text,
+                                         gui_code: new File(path+'dsl/gui.groovy').text,
+                                         views: new File(path+'dsl/views/analysis.groovy').text,
                                          ontology: new String(out.toByteArray(), "UTF-8"),
                                          indicators: indicators,
                                          dimensions: dimensions])
@@ -51,14 +55,14 @@ class AdminController {
         def response = dsl.reload(params['code'])
 
         if(response.status == 'ok')
-            new File('dsl/dsl.groovy').write(params['code'])
+            new File(path+'dsl/dsl.groovy').write(params['code'])
 
         render response as XML
     }
 
     def dslReset(){
-        def file = new File('dsl/dsl.groovy')
-        file.write(new File('dsl/dsl-backup.groovy').text)
+        def file = new File(path+'dsl/dsl.groovy')
+        file.write(new File(path+'dsl/dsl-backup.groovy').text)
 
         def response = dsl.reload(file.text)
 
@@ -69,14 +73,14 @@ class AdminController {
         def response  = gui.reload(params['code'])
 
         if(response.status == 'ok')
-            new File('dsl/gui.groovy').write(params['code'])
+            new File(path+'dsl/gui.groovy').write(params['code'])
 
         render response as XML
     }
 
     def guiReset(){
-        def file = new File('dsl/gui.groovy')
-        file.write(new File('dsl/gui-backup.groovy').text)
+        def file = new File(path+'dsl/gui.groovy')
+        file.write(new File(path+'dsl/gui-backup.groovy'))
 
         def response = gui.reload(file.text)
 
@@ -86,7 +90,7 @@ class AdminController {
     def views(){
         def response = [:]
         if(params['views']) {
-            def file = new File('dsl/views/analysis.groovy')
+            def file = new File(path+'dsl/views/analysis.groovy')
             file.write(params['views'])
 
             response.status = 'ok'
@@ -95,9 +99,9 @@ class AdminController {
     }
 
     def viewsReset(){
-        def file = new File('dsl/views/analysis.groovy')
+        def file = new File(path+'dsl/views/analysis.groovy')
 
-        file.write(new File('dsl/views/analysis.groovy').text)
+        file.write(new File(path+'dsl/views/analysis.groovy').text)
 
         //def response = gui.reload(file.text)
 
@@ -164,26 +168,56 @@ class AdminController {
     }
 
     def ontology(){
-        def manager = ontology.getManager()
-        OWLOntology ontologyMan = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
+        String file = 'sustenagro.yaml'
+        def format = 'manchester'
 
-        OutputStream out = new ByteArrayOutputStream()
-        manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), out)
+        // Just reads YAML
+        Map yaml = (Map) new Yaml().load((String) params['ontology'])
 
-        File file = new File("/home/dilvan/javabkp/var/www/sustenagro/SustenAgroRDF.rdf")
+        // Save yaml file
+        File yamlFile = new File('/ontology/SustenAgro.yaml')
+        ResourceGroovyMethods.write(yamlFile, (String) params['ontology'])
 
-        manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
 
-        k.removeAll()
+        // Creating Yaml2Owl
+        def onto = new Yaml2Owl((String) yaml.ontology)
 
-        k.loadRDF(new ByteArrayInputStream(out.toByteArray()))
+        // Reading Map as ontology
+        onto.readYaml(yaml)
+
+        onto.factory //OwlDataFactory
+        onto.manager //OWLOntologyManager
+        onto.onto //OWLOntology
+
+        //println 'Saving ...'
+        //if (file.endsWith('.yaml'))
+//            file = file.substring(0, file.length()-5)
+//
+//        file = file + '.owl'
+        onto.save('/ontology/SustenAgro.rdf')
+//        println "Saved: $file"
+
+
+        //def manager = ontology.getManager()
+        //OWLOntology ontologyMan = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
+
+        //OutputStream out = new ByteArrayOutputStream()
+        //onto.manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), out)
+
+        //File file = grailsApplication.mainContext.getResource("/ontology/SustenAgro.rdf").file
+
+        //manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
+
+        //k.removeAll()
+
+        //k.loadRDF(new ByteArrayInputStream(out.toByteArray()))
 
         //error not load data properties
         //k.g.loadRDF(new ByteArrayInputStream(out.toByteArray()), 'http://bio.icmc.usp.br/sustenagro#', 'rdf-xml', null)
 
         //k.g.commit()
 
-        //File localFolder = new File("TestingOntology")
+        //File localFolder = grailsApplication.mainContext.getResource("/TestingOntology").file
         //manager.addIRIMapper(new AutoIRIMapper(localFolder, true))
         //OWLOntology o = manager.createOntology(example_save_iri);
         //println 'Ontology loaded'

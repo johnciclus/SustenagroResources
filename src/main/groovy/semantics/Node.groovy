@@ -125,9 +125,10 @@ class Node {
 
     def getMap(String args){
         def sparql = "<$URI> :appliedTo ?evalobj. " +
-                     "?evalobj :hasMicroRegion ?microregion. " +
+                     "?evalobj ui:hasMicroRegion ?microregion. " +
                      "?microregion <http://dbpedia.org/property/pt/mapa> ?map."
         def result = k.select('distinct '+args).query(sparql)
+
         result.metaClass.map = { (delegate.size()==1)? delegate[0]['map'] :delegate.collect { it['map'] } }
         return result
     }
@@ -402,12 +403,18 @@ class Node {
                 "FILTER( ?subClass != ?id && ?subClass != <$URI> )"
 
         result = k.select('distinct '+args).query(query, "ORDER BY ?label")
+
         /*
         println URI
         println k.toURI(analysis)
         println query
         println result
         */
+
+        result.each{
+            if(it['relevance'])
+                it['totalValue'] = it.value * it.relevance;
+        }
 
         result.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
         result.metaClass.label = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
@@ -458,6 +465,12 @@ class Node {
                 return (delegate.size()==1)? delegate[0][id] : delegate.collect { it[id] }
             }
         }*/
+
+        result.each{
+            if(it['weight'])
+                it['totalValue'] = it.value * it.weight;
+        }
+
         result.metaClass.ind = { (delegate.size()==1)? delegate[0]['ind'] :delegate.collect { it['ind'] } }
         result.metaClass.label = { (delegate.size()==1)? delegate[0]['label'] :delegate.collect { it['label'] } }
         result.metaClass.value = { (delegate.size()==1)? delegate[0]['value'] :delegate.collect { it['value'] } }
@@ -479,7 +492,7 @@ class Node {
         def query = "<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
                 "?id rdfs:subClassOf <$URI>." +
                 "?ind a ?id." +
-                "?ind :hasName ?name."+
+                "?ind ui:hasName ?name."+
                 "?ind :hasJustification ?justification."+
                 "optional {?id <http://semantic.icmc.usp.br/sustenagro#relevance> ?relevance}."+
                 "?ind ui:value ?valueType." +
@@ -614,6 +627,10 @@ class Node {
         //(result.size()==1)? result[0] : result
     }
 
+    def findSubject(String args){
+        k.query("?subject <$URI> '$args'")
+    }
+
     def isFunctional(){
         def query = "<$URI> a owl:FunctionalProperty"
         return (k.query(query).size() > 0)
@@ -655,12 +672,12 @@ class Node {
     }
 
     def exist(){
-        k.query("<$URI> rdf:type ?type").size() > 1 ? true : false
+        k.query("<$URI> rdf:type ?type").size() > 0 ? true : false
     }
 
     def insertEvaluationObject(String id, Object type, Map properties = [:]){
         def evalObjId = k.toURI(":"+id)
-        def name = k.toURI(':hasName')
+        def name = k.toURI('ui:hasName')
 
         String sparql = "<" + evalObjId + "> "
 
@@ -679,9 +696,9 @@ class Node {
         sparql += createTriples(evalObjId, properties)
 
 
-        sparql.split(';').each{
+        /*sparql.split(';').each{
             println it
-        }
+        }*/
 
         k.insert(sparql)
     }
@@ -690,7 +707,7 @@ class Node {
         def analysisId = k.toURI(":"+id)
         String sparql = "<" + analysisId + "> rdf:type ui:Analysis. "
 
-        println properties
+        //println properties
 
         sparql += createTriples(analysisId, properties)
 
@@ -742,6 +759,8 @@ class Node {
 
         sparql += createTriples(userId, properties)
 
+        //println sparql
+
         k.insert(sparql)
     }
 
@@ -760,14 +779,6 @@ class Node {
                     }
                     else{
                         sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:string; "
-                    }
-                    break
-                case k.toURI('xsd:date'):
-                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
-                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:date; " }
-                    }
-                    else{
-                        sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:date; "
                     }
                     break
                 case k.toURI('xsd:double'):
@@ -792,6 +803,38 @@ class Node {
                     }
                     else{
                         sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^owl:real; "
+                    }
+                    break
+                case k.toURI('xsd:date'):
+                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
+                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:date; " }
+                    }
+                    else{
+                        sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:date; "
+                    }
+                    break
+                case k.toURI('xsd:time'):
+                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
+                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:time; " }
+                    }
+                    else{
+                        sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:time; "
+                    }
+                    break
+                case k.toURI('xsd:dateTime'):
+                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
+                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:dateTime; " }
+                    }
+                    else{
+                        sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:dateTime; "
+                    }
+                    break
+                case k.toURI('xsd:duration'):
+                    if(property.value.getClass() == String[] || property.value.getClass() == Object[]){
+                        property.value.each{ sparql += "<${k.toURI(key)}> \"" + it + "\"^^xsd:duration; " }
+                    }
+                    else{
+                        sparql += "<${k.toURI(key)}> \"" + property.value + "\"^^xsd:duration; "
                     }
                     break
                 case k.toURI('rdfs:Literal'):

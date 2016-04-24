@@ -54,7 +54,7 @@ class ToolController {
     }
 
     def createEvaluationObject() {
-        def name = k.toURI(':hasName')
+        def name = k.toURI('ui:hasName')
         def id = slugify.slugify(params[name])
         def type = k.toURI(params['evalObjType'])
         def evaluationObject = dsl.evaluationObject
@@ -67,14 +67,17 @@ class ToolController {
             def node = new Node(k)
             def propertyInstances = [:]
             def now = new Date()
+            def value
 
-            //println new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(now)
-
-            //http://www.w3.org/2001/XMLSchema#dateTime
             propertyInstances[k.toURI(':hasOwner')] = [value: user, dataType: k.toURI('ui:User')]
+            propertyInstances[k.toURI('ui:createAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now), dataType: k.toURI('xsd:dateTime')]
             evaluationObject.model.each{ ins ->
-                if(params[ins.id] && ins.id != type){
-                    propertyInstances[k.toURI(ins.id)] = [value: params[ins.id], dataType: ins.dataType]
+                if(params[ins.id] && ins.id != type) {
+                    value = params[ins.id]
+                    if (ins.dataType == 'http://www.w3.org/2001/XMLSchema#date') {
+                        value =  new SimpleDateFormat("dd/MM/yyyy").parse(value).format("yyyy-MM-dd");
+                    }
+                    propertyInstances[k.toURI(ins.id)] = [value: value, dataType: ins.dataType]
                 }
             }
 
@@ -83,7 +86,7 @@ class ToolController {
             propertyInstances = [:]
             propertyInstances[k.toURI(':hasEvaluationObject')] = [value: k.toURI(':'+id), dataType: k.toURI('ui:EvaluationObject')]
 
-            println propertyInstances
+            //println propertyInstances
 
             node.insertTriples(user, propertyInstances)
         }
@@ -115,7 +118,7 @@ class ToolController {
             //println feature
             //println feature.model
 
-            if(feature.model.superClass.contains(k.toURI(':EfficiencyIndicator')))
+            if(feature.model.superClass.contains(k.toURI(':Variable')))
                 efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
                     ['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]
                 ]])
@@ -123,7 +126,7 @@ class ToolController {
             if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
                 sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
                     ['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]],
-                    ['widget': 'specificIndicators', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: [':hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]]
+                    ['widget': 'specificIndicators', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]]
                 ]])
         }
 
@@ -170,6 +173,7 @@ class ToolController {
 
         properties[k.toURI('rdfs:label')] = [value: k['ui:Analysis'].label+ " " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now), dataType: k.toURI('rdfs:Literal')]
         properties[k.toURI(':appliedTo')] = [value: evalObjURI, dataType: k[':appliedTo'].range]
+        properties[k.toURI('ui:createAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now), dataType: k.toURI('xsd:dateTime')]
 
         dsl.featureMap.each{ key, feature ->
             individualKeys += feature.getIndividualKeys()
@@ -209,83 +213,12 @@ class ToolController {
             }
         }
 
-
-        //Uri.printTree(extraFeatures)
-
         node.insertAnalysis(analysisId, properties)
 
         node.insertFeatures(analysisId, featureInstances)
 
         node.insertExtraFeatures(analysisId, extraFeatures)
-        /*
-        def value
 
-        indicators.each{
-            if(params[it.id]){
-                if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
-                    value = k.dataSchema(Integer.parseInt(params[it.id]))
-                }
-                else{
-                    value = "<" + params[it.id] + ">"
-                }
-
-                k.insert( "<" +it.id+'-'+name +">"+
-                        " rdf:type <"+ it.id +">;"+
-                        " dc:isPartOf :"+ name +";"+
-                        " :value "+  value +".")
-                k.insert( ":" + name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+name+">.")
-            }
-        }
-
-        def features = k[':ProductionEfficiencyFeature'].getGrandchildren('?id ?label ?subClass ?category ?valueType')
-
-        features.each{
-            if(params[it.id]){
-                if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
-                    value = k.dataSchema(Integer.parseInt(params[it.id]))
-                }
-                else{
-                    value = "<" + params[it.id] + ">"
-                }
-
-                k.insert( "<" +it.id+'-'+name +">"+
-                        " rdf:type <"+ it.id +">;"+
-                        " dc:isPartOf :"+ name +";"+
-                        " :value "+  value +".")
-                k.insert( ":" + name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+name+">.")
-
-            }
-        }
-
-        def TechnologicalEfficiency = k[':TechnologicalEfficiencyFeature'].getGrandchildren('?id ?label ?subClass ?category ?valueType')
-        def weighted
-
-        TechnologicalEfficiency.each{
-            if(params[it.id]){
-                if(it.valueType == "http://bio.icmc.usp.br/sustenagro#Real"){
-                    value = k.dataSchema(Integer.parseInt(params[it.id]))
-                }
-                else{
-                    value = "<" + params[it.id] + ">"
-                }
-
-                if(it.subClass == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheIndustrial'){
-                    weighted = "<" +params[it.id+'-optimization'] + ">"
-                }
-                else if(it.subClass == 'http://bio.icmc.usp.br/sustenagro#TechnologicalEfficiencyInTheField'){
-                    weighted = "<" +params[it.id+'-alignment'] + ">"
-                }
-
-                k.insert( "<" +it.id+'-'+name +">"+
-                        " rdf:type <"+ it.id +">;"+
-                        " dc:isPartOf :"+ name +";"+
-                        " :value "+ value +";"+
-                        " :hasWeight "+ weighted +"." )
-
-                k.insert( ":" + name +" <http://purl.org/dc/terms/hasPart> <"+ it.id+'-'+name+">.")
-            }
-        }
-        */
         redirect(action: 'analysis', id: analysisId)
     }
 
@@ -298,6 +231,8 @@ class ToolController {
         def sustainabilityTabs = []
         def efficiencyTabs = []
         def username = springSecurityService.getPrincipal().username
+        def res
+        def values = [:]
 
         k[':'+username].getEvaluationObjectsIdLabel().each{
             evaluationObjects[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
@@ -311,58 +246,42 @@ class ToolController {
 
 
         dsl.featureMap.eachWithIndex { key, feature, int i ->
+            res = k[key].getChildrenIndividuals(uri, '?id ?ind ?valueType ?weightType')
+            //println key
+            //Uri.printTree(res)
+            res.each{
+                if(it.ind.startsWith(it.id)){
+                    values[it.id] = [:]
+                    values[it.id].value = it.valueType
+                    if(it.weightType)
+                        values[it.id].weight = it.weightType
+                }
+            }
+
+            //Uri.printTree(values)
+            if(feature.model.superClass.contains(k.toURI(':Variable')))
+                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: values, weights: [:]]]]])
+
             if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
-                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]]])
-            if(feature.model.superClass.contains(k.toURI(':EfficiencyIndicator')))
-                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]]])
+                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: values, weights: [:]]]]])
         }
 
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
 
         /*
-        println uri
+        def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
+        def technologyTypes = fea.evalObject(k.toURI([params.id]))
+        def name = k[uri].label
+        def report
 
-        dsl.featureMap.each{ key, fea ->
-            fea.model.subClass.each{ featureKey, feature ->
-                feature.subClass.each{ indKey, ind->
-                    println indKey
-                    println ind
-                }
-            }
-        }
-        */
+        dsl.data = new DataReader(k, uri)
+        dsl.assessmentProgram()
+        dsl.viewsMap['tool']['data'] = dsl._analyzesMap['http://purl.org/biodiv/semanticUI#Analysis'].widgets
 
-        if(uri?.trim()){
-            dsl.setData(new DataReader(k, uri))
-            dsl.runReport()
-        }
+        //Closure within map for reference it
 
-        gui.setData('evaluationObjects', evaluationObjects)
-        gui.setData('evalObjId', evalObjId)
-        gui.setData('analyses', analyses)
-        gui.setData('analysisId', analysisId)
-        gui.setData('vars', dsl.getVariables())
-        gui.setData('dataReader', dsl.getData('data'))
-        gui.setData('sustainabilityTabs', sustainabilityTabs)
-        gui.setData('efficiencyTabs', efficiencyTabs)
-        gui.setData('reportView', dsl.getReportView())
-
-        gui.renderView(actionName)
-
-        /*
-       def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
-       def technologyTypes = fea.evalObject(k.toURI([params.id]))
-       def name = k[uri].label
-       def report
-
-       dsl.data = new DataReader(k, uri)
-       dsl.assessmentProgram()
-       dsl.viewsMap['tool']['data'] = dsl._analyzesMap['http://purl.org/biodiv/semanticUI#Analysis'].widgets
-
-       //Closure within map for reference it
-
-       if (assessmentID != null) {
+        if (assessmentID != null) {
 
            dsl.dimensions.each{ String dim ->
                k[dim].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value ?weight').each{
@@ -387,8 +306,25 @@ class ToolController {
 
            //def file = new File("reports/${evaluationID}.html")
            //file.write(page.toString())
-       }
-       */
+        }
+        */
+
+        if(uri?.trim()){
+            dsl.setData(new DataReader(k, uri))
+            dsl.runReport()
+        }
+
+        gui.setData('evaluationObjects', evaluationObjects)
+        gui.setData('evalObjId', evalObjId)
+        gui.setData('analyses', analyses)
+        gui.setData('analysisId', analysisId)
+        gui.setData('vars', dsl.getVariables())
+        gui.setData('dataReader', dsl.getData('data'))
+        gui.setData('sustainabilityTabs', sustainabilityTabs)
+        gui.setData('efficiencyTabs', efficiencyTabs)
+        gui.setData('reportView', dsl.getReportView())
+
+        gui.renderView(actionName)
 
         render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
     }

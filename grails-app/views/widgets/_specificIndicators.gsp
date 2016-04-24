@@ -20,10 +20,10 @@
             <g:each var="i" in="${(0..9)}">
                 <tr data-index="${i}">
                     <td>
-                        <g:render template="/widgets/label" model="[id: id+'['+i+'][:hasName]', label: (i+1)]"></g:render>
+                        <g:render template="/widgets/label" model="[id: id+'['+i+'][ui:hasName]', label: (i+1)]"></g:render>
                     </td>
                     <td>
-                        <g:render template="/widgets/textArea" model="[id: id+'['+i+'][:hasName]']"> </g:render>
+                        <g:render template="/widgets/textArea" model="[id: id+'['+i+'][ui:hasName]']"> </g:render>
                     </td>
                     <td>
                         <g:render template="/widgets/textArea" model="[id: id+'['+i+'][:hasJustification]']"> </g:render>

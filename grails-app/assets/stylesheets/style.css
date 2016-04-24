@@ -39,6 +39,14 @@ fieldset{
 	margin-bottom: 22px;
 }
 
+input::-webkit-calendar-picker-indicator{
+    display: none;
+}
+
+input[type="date"]::-webkit-input-placeholder{
+    visibility: hidden !important;
+}
+
 .full {
   background: url(/assets/sugarcane.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -113,6 +121,11 @@ fieldset{
 	margin: 0 auto;
 }
 
+.feature{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 .section{
 	margin-bottom: 20px;
 }
@@ -179,17 +192,11 @@ fieldset{
 }
 
 .tab-content>.tab-pane legend {
-	padding-left: 15px;
-	padding-right: 15px;
+	padding: 0px 15px;
 }
 
 .tab-content>.tab-pane .form-group {
-	padding-left: 15px;
-	padding-right: 15px;
-}
 
-.clear{
-	margin-top: 9px;
 }
 
 .form-inline-block{
@@ -215,6 +222,12 @@ fieldset{
     margin-top: 50px;
     margin-bottom: 100px;
 }
+
+.has-error{
+	color: #d9534f;
+}
+
+.top-buffer { margin-top:10px; }
 
 #toolContent{
 	padding: 20px;
@@ -251,6 +264,7 @@ fieldset{
     margin: 0;
     padding: 0;
 }
+
 
 
 
