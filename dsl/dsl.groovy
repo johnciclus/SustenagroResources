@@ -18,17 +18,17 @@ evaluationObject ':ProductionUnit', {
     //type or instance
 
     // Production unit name
-    instance 'ui:hasName', label: "Nome da unidade produtiva ou fazenda", placeholder: "Nome", required: true
+    instance 'ui:hasName', label: "Nome da unidade produtiva ou fazenda", placeholder: "Nome"
 
     // Agricultural production system
-    instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções", required: true
+    instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções"
 
     // Production unit type
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
-    type label: "Tipo da unidade produtiva", header: "Opções", required: true
+    type label: "Tipo da unidade produtiva", header: "Opções"
 
     // Origem da cana (própria, fornecedor, arrendamento)
-    instance  ':hasSugarcaneSource', label: "Origem da cana", header: "Opções", required: true
+    instance  ':hasSugarcaneSource', label: "Origem da cana", header: "Opções"
 
     // Microrregião produtora
     instance 'ui:hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
@@ -76,7 +76,7 @@ evaluationObject ':ProductionUnit', {
     //Tipo de estrutura da usina/produtor de cana (Greenfield, tradicional...)
 
     // Disponibilização dos resultados da avaliação: Público | privado
-    instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções", required: true
+    instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções"
 
 
     // Valor total investido em tecnologia na fase agrícola (até a fase atual)
@@ -96,14 +96,14 @@ evaluationObject ':ProductionUnit', {
 // mostrar algum indicador. No exemplo abaixo, o indicador "co2 emission"
 // (fictício) não é mostrado.
 
-feature ':EnvironmentalIndicator'
+feature ':EnvironmentalIndicator', 'extraFeatures': true
 //{
 //    exclude 'co2 emission'
 //}
 
-feature ':EconomicIndicator'
+feature ':EconomicIndicator', 'extraFeatures': true
 
-feature ':SocialIndicator'
+feature ':SocialIndicator', 'extraFeatures': true
 
 feature ':ProductionEfficiencyFeature'
 

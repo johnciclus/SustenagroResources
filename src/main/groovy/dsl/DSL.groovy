@@ -116,15 +116,19 @@ class DSL {
         _evaluationObjectInstance
     }
 
-    def feature(String id, Closure closure = {}){
+    def feature(Map attrs, String id, Closure closure = {}){
         String uri = _k.toURI(id)
-        def feature = new Feature(uri, _ctx)
+        def feature = new Feature(uri, attrs, _ctx)
 
         closure.resolveStrategy = Closure.DELEGATE_FIRST
         closure.delegate = feature
         closure()
 
         _featureMap[uri] = feature
+    }
+
+    def feature(String id, Closure closure = {}){
+        feature([:], id, closure)
     }
 
     def getFeatureMap(){
@@ -303,7 +307,7 @@ class DSL {
             else{
                 println 'Unknown method: '+ key
                 attrs.eachWithIndex{ it, int i ->
-                    println "Attrs ["+i+"]"
+                    println "Attrs ["+i+"]: ("+it+")"
                     Uri.printTree(it)
                 }
             }

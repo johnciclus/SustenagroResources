@@ -56,13 +56,12 @@ class ToolController {
     def createEvaluationObject() {
         def name = k.toURI('ui:hasName')
         def id = slugify.slugify(params[name])
-        def type = k.toURI(params['evalObjType'])
+        def type = k.toURI('rdfs:subClassOf')
         def evaluationObject = dsl.evaluationObject
         def username = springSecurityService.getPrincipal().username
         def user = k.toURI(':'+username)
-        //println username
 
-        if(params['evalObjType'] && params[name] && params[type]){
+        if(params[name] && params[type]){
 
             def node = new Node(k)
             def propertyInstances = [:]
@@ -112,22 +111,22 @@ class ToolController {
         }
 
         def options = k[':SustainabilityCategory'].getIndividualsIdValueLabel()
+        def widgets
 
         dsl.featureMap.eachWithIndex { key, feature, int i ->
             //println key
             //println feature
             //println feature.model
+            widgets = []
+            widgets.push(['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]])
+            if(feature.attrs.extraFeatures){
+                widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]])
+            }
 
             if(feature.model.superClass.contains(k.toURI(':Variable')))
-                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
-                    ['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]
-                ]])
-
-            if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
-                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
-                    ['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]],
-                    ['widget': 'specificIndicators', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]]
-                ]])
+                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: widgets])
+            else if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
+                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: widgets])
         }
 
         /*

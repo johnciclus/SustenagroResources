@@ -627,6 +627,22 @@ class Node {
         //(result.size()==1)? result[0] : result
     }
 
+    def getRestriction(String property){
+        def select = ''
+        def query = ''
+        def result
+        def propertyURI = k.toURI(property);
+
+        query = "<$URI> rdfs:subClassOf ?o. "+
+                "?o owl:onProperty ?property. "+
+                "optional {?o owl:onClass ?class. } "+
+                "optional {?o owl:cardinality ?cardinality. }"+
+                "optional {?o owl:qualifiedCardinality ?cardinality. }"+
+                "FILTER (?property = <$propertyURI>)"
+
+        result = k.query(query)
+    }
+
     def findSubject(String args){
         k.query("?subject <$URI> '$args'")
     }

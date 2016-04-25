@@ -229,6 +229,11 @@ input[type="date"]::-webkit-input-placeholder{
 
 .top-buffer { margin-top:10px; }
 
+.form-group.required .control-label:after {
+	content:"*";
+	color:red;
+}
+
 #toolContent{
 	padding: 20px;
 	background-color: #fff;
