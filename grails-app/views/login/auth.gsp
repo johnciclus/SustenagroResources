@@ -49,7 +49,7 @@
             </p>
 
             <div class="form-group col-sm-12 text-center">
-                <input type="submit" id="submit" value="Ingresar" class="btn btn-primary"/>
+                <input type="submit" id="submit" value="Entrar" class="btn btn-primary"/>
             </div>
         </form>
     </div>

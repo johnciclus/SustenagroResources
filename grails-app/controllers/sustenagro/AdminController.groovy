@@ -193,11 +193,11 @@ class AdminController {
 
         //println 'Saving ...'
         //if (file.endsWith('.yaml'))
-//            file = file.substring(0, file.length()-5)
-//
-//        file = file + '.owl'
-        onto.save(path +'ontology/SustenAgroAll.rdf')//, 'manchester')
-//        println "Saved: $file"
+        //    file = file.substring(0, file.length()-5)
+
+        //    file = file + '.owl'
+        onto.save(path + 'ontology/SustenAgroAll.rdf')//, 'manchester')
+        //    println "Saved: $file"
 
 
         //def manager = ontology.getManager()

@@ -407,7 +407,7 @@ class Yaml2Owl {
                     def onto = new Yaml2Owl(yaml2.ontology)
                     onto.readYaml(yaml2)
 
-                    onto.save(it.file+'.owl', 'manchester')
+                    onto.save('/www/sustenagro/ontology/'+it.file+'.man.owl', 'manchester')
                     importOnt(yaml2.ontology, it.file+'.owl')
                     prefix.setPrefix(it.prefix+':', yaml2.ontology)
                 }
