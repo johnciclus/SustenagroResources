@@ -122,7 +122,7 @@ hasUserName:
 mapa:
   subPropertyOf: DataProperty
   label: [has map @en, tem mapa @pt]
-  range: anyURI
+  #range: anyURI
 
 hasPassword:
   subPropertyOf: DataProperty
@@ -140,7 +140,7 @@ asNumber:
   label: [valor numérico @pt, as number @en]
   functional: true
   domain: Categorical
-  #range: real
+  #range: double
 
 
 #

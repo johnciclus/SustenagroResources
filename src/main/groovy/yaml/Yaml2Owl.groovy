@@ -76,6 +76,7 @@ class Yaml2Owl {
 
     String baseIRI
     String format = ''
+    String baseFolder = ''
 
     def remap = [
             'label': 'rdfs:label',
@@ -93,7 +94,8 @@ class Yaml2Owl {
                     'range', 'domain', 'functional', 'inverse', 'inverseFunctional', 'transitive',
                     'type', 'int', 'integer', 'real', 'double', 'float', 'string', 'uri', 'date']
 
-    Yaml2Owl(String iri = null) {
+    Yaml2Owl(String iri = null, String baseFolder = '') {
+        this.baseFolder = baseFolder
         manager = OWLManager.createOWLOntologyManager()
         factory = manager.OWLDataFactory
         prefix = new DefaultPrefixManager()
@@ -184,7 +186,7 @@ class Yaml2Owl {
         if (obj in Integer || obj in Long)
             return factory.getOWLLiteral(obj.toString(), OWL2Datatype.XSD_INTEGER)
         if (obj in Float || obj in Double)
-            return factory.getOWLLiteral(obj.toString(), OWL2Datatype.OWL_REAL)
+            return factory.getOWLLiteral(obj.toString(), OWL2Datatype.XSD_DOUBLE)
         if (obj in String) {
             String str = obj.trim()
             def length = str.length()
@@ -389,7 +391,7 @@ class Yaml2Owl {
                 yaml[key].each {
                     println "Reading $it ontology ..."
 
-                    def yaml2 = new Yaml().load(new FileReader('/www/sustenagro/ontology/'+it))
+                    def yaml2 = new Yaml().load(new FileReader(baseFolder+it))
                     readYaml2(yaml2)
 
                     println "Finished (reading $it)."
@@ -401,7 +403,7 @@ class Yaml2Owl {
                 yaml[key].each {
                     println "Reading ${it.file} ontology ..."
 
-                    def yaml2 = new Yaml().load(new FileReader('/www/sustenagro/ontology/'+it.file))
+                    def yaml2 = new Yaml().load(new FileReader(baseFolder+it.file))
                     def onto = new Yaml2Owl(yaml2.ontology)
                     onto.readYaml(yaml2)
 
@@ -554,7 +556,7 @@ class Yaml2Owl {
             }
         }
     }
-    /*
+
     static void main(String[] args) {
         String file = 'sustenagro.yaml'
         String format = ''
@@ -578,5 +580,4 @@ class Yaml2Owl {
         onto.save(file, format)
         println "Saved: $file"
     }
-    */
 }

@@ -171,18 +171,18 @@ class AdminController {
     def ontology(){
         def response = [:]
         String file = 'sustenagro.yaml'
-        def format = 'manchester'
+        //def format = 'manchester'
 
         // Just reads YAML
         Map yaml = (Map) new Yaml().load((String) params['ontology'])
 
         // Save yaml file
-        File yamlFile = new File(path+'ontology/sustenagro.yaml')
+        File yamlFile = new File(path + 'ontology/sustenagro.yaml')
         ResourceGroovyMethods.write(yamlFile, (String) params['ontology'])
 
         //println yaml.ontology
         // Creating Yaml2Owl
-        def onto = new Yaml2Owl((String) yaml.ontology)
+        def onto = new Yaml2Owl((String) yaml.ontology, path+'ontology/')
 
         // Reading Map as ontology
         onto.readYaml(yaml)
@@ -196,7 +196,7 @@ class AdminController {
 //            file = file.substring(0, file.length()-5)
 //
 //        file = file + '.owl'
-        onto.save(path+'ontology/SustenAgroAll.rdf')
+        onto.save(path +'ontology/SustenAgroAll.rdf')//, 'manchester')
 //        println "Saved: $file"
 
 
