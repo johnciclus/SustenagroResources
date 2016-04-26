@@ -2,7 +2,7 @@
     <g:if test="${feature.value.weightIndividuals}"> <g:set var="firstColWidth" value="4" /> </g:if>
     <g:else> <g:set var="firstColWidth" value="5" /> </g:else>
     <div class="form-group feature">
-        <label for="<%= feature.value.id %>" class="col-sm-${firstColWidth} col-sm-offset-1 control-label">${feature.value.label}</label>
+        <label for="<%= feature.value.id %>" class="col-sm-${firstColWidth} control-label">${feature.value.label}</label>
         <g:set var="hasValue" value="${values[feature.value.id] != null && values[feature.value.id].value}" />
         <div class="col-sm-5">
             <g:if test="${feature.value.valueTypes.contains('http://purl.org/biodiv/semanticUI#Boolean') || feature.value.valueTypes.contains('http://purl.org/biodiv/semanticUI#Categorical')}">

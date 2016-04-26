@@ -122,7 +122,7 @@ hasUserName:
 mapa:
   subPropertyOf: DataProperty
   label: [has map @en, tem mapa @pt]
-  range: uri
+  range: anyURI
 
 hasPassword:
   subPropertyOf: DataProperty

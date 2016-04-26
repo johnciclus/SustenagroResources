@@ -196,7 +196,7 @@ input[type="date"]::-webkit-input-placeholder{
 }
 
 .tab-content>.tab-pane .form-group {
-
+	margin: 0px 15px 45px 15px;
 }
 
 .form-inline-block{

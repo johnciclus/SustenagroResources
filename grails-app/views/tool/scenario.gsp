@@ -3,6 +3,8 @@
 <head>
     <meta name="layout" content="main"/>
     <title>SustenAgro - Tool - Analysis</title>
+    <asset:javascript src="jquery.validate.min.js"/>
+    <asset:javascript src="localization/messages_pt_BR.min.js"/>
 </head>
 <body>
 <div class="row main">
@@ -36,6 +38,34 @@
         var name = $(this).attr('id').replace('-clear', '');
         $("input:radio").filter(function(index) {return $(this).attr('name')===name;})
                 .removeAttr('checked');
+    });
+
+    $.validator.addMethod("weightRequired", function(value, element, arg){
+        console.log('weightRequired');
+        return arg != value;
+    }, "Value must not equal arg.");
+
+    $("form").validate({
+        submitHandler: function(form) {
+            console.log('valid form');
+            // do other things for a valid form
+            form.submit();
+        },
+        errorClass: "has-error",
+        errorPlacement: function(error, element) {
+            var form_group = $(element).parents('.form-group');
+            form_group.children(':last-child').append(error);
+        },
+        highlight: function(element, errorClass, validClass) {
+            //console.log('highlight');
+            var form_group = $(element).parents('.form-group');
+            form_group.addClass(errorClass).removeClass(validClass);
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            //console.log('unhighlight');
+            var form_group = $(element).parents('.form-group');
+            form_group.removeClass(errorClass).addClass(validClass);
+        }
     });
 </script>
 </body>

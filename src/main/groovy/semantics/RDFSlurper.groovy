@@ -2,7 +2,7 @@ package semantics
 
 //import com.tinkerpop.blueprints.Vertex
 //import com.tinkerpop.blueprints.impls.sail.SailTokens
-import groovySparql.Sparql
+import groovySparql.SparqlBase
 
 import org.apache.jena.update.UpdateExecutionFactory
 import org.apache.jena.update.UpdateFactory
@@ -206,7 +206,7 @@ class RDFSlurper {
     //Logger log = Logger.getLogger(RDFSlurper.class);
 
     private Map<String, String> _prefixes = [:]
-    private Sparql sparql
+    private SparqlBase sparql
     private String select = '*'
 
     RDFSlurper(){
@@ -217,7 +217,7 @@ class RDFSlurper {
         //g = new SparqlRepositorySailGraph(endpoint, update)
         //"http://localhost:8000/sparql/", "http://localhost:8000/update/")
         // SPARQL 1.0 or 1.1 endpoint
-        sparql = new Sparql(endpoint: endpoint)
+        sparql = new SparqlBase(endpoint: endpoint)
     }
 
     RDFSlurper(String url){
@@ -228,7 +228,7 @@ class RDFSlurper {
         //g = new SparqlRepositorySailGraph(url, url)
 
         // SPARQL 1.0 or 1.1 endpoint
-        sparql = new Sparql(endpoint: url)
+        sparql = new SparqlBase(endpoint: url)
 
         addDefaultNamespaces()
 

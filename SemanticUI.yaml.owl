@@ -1,0 +1,3078 @@
+Prefix: : <http://purl.org/biodiv/semanticUI#>
+Prefix: dc: <http://purl.org/dc/elements/1.1/>
+Prefix: pt: <http://dbpedia.org/property/pt/>
+Prefix: dbp: <http://dbpedia.org/ontology/>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix: terms: <http://purl.org/dc/terms/>
+
+
+
+Ontology: <http://purl.org/biodiv/semanticUI#>
+
+
+AnnotationProperty: terms:title
+
+    Annotations: 
+        rdfs:label "title"@en,
+        rdfs:label "título"@pt
+    
+    Annotations: 
+        rdfs:label "title"@en,
+        rdfs:label "título"@pt
+    
+    Range: 
+        <http://www.w3.org/2000/01/rdf-schema#Literal>
+    
+    
+AnnotationProperty: rdfs:label
+
+    Annotations: 
+        rdfs:label "nome"@pt,
+        rdfs:label "label"@en
+    
+    Annotations: 
+        rdfs:label "label"@en,
+        rdfs:label "nome"@pt
+    
+    
+AnnotationProperty: dc:creator
+
+    
+AnnotationProperty: terms:description
+
+    
+Datatype: rdfs:Literal
+
+    
+Datatype: owl:real
+
+    
+Datatype: rdf:PlainLiteral
+
+    
+Datatype: xsd:integer
+
+    
+Datatype: xsd:anyURI
+
+    
+ObjectProperty: value
+
+    Annotations: 
+        rdfs:label "valor"@pt,
+        rdfs:label "value"@en
+    
+    Characteristics: 
+        Functional
+    
+    Range: 
+        Value
+    
+    
+ObjectProperty: dbp:hasPart
+
+    Annotations: 
+        rdfs:label "tem parte"@pt,
+        rdfs:label "has part"@en
+    
+    InverseOf: 
+        dbp:isPartOf
+    
+    
+ObjectProperty: hasRole
+
+    Annotations: 
+        rdfs:label "tem perfil"@pt,
+        rdfs:label "has role"@en
+    
+    Range: 
+        Role
+    
+    
+ObjectProperty: dbp:isPartOf
+
+    Annotations: 
+        rdfs:label "part of"@en,
+        rdfs:label "parte de"@pt
+    
+    InverseOf: 
+        dbp:hasPart
+    
+    
+ObjectProperty: dbp:state
+
+    Annotations: 
+        rdfs:label "estado"@pt,
+        rdfs:label "state"@en
+    
+    SubPropertyOf: 
+        dbp:isPartOf
+    
+    Range: 
+        dbp:State
+    
+    
+ObjectProperty: hasWeight
+
+    Annotations: 
+        rdfs:label "has weight"@en,
+        rdfs:label "tem peso"@pt
+    
+    Characteristics: 
+        Functional
+    
+    Range: 
+        Value
+    
+    
+ObjectProperty: hasUserName
+
+    Annotations: 
+        rdfs:label "has username"@en,
+        rdfs:label "tem nome de usuário"@pt
+    
+    Characteristics: 
+        Functional
+    
+    
+DataProperty: hasPassword
+
+    Annotations: 
+        rdfs:label "has password"@en,
+        rdfs:label "tem senha"@en
+    
+    Characteristics: 
+        Functional
+    
+    
+DataProperty: pt:mapa
+
+    Annotations: 
+        rdfs:label "has map"@en,
+        rdfs:label "tem mapa"@pt
+    
+    Range: 
+        xsd:anyURI
+    
+    
+DataProperty: hasDataValue
+
+    Annotations: 
+        rdfs:label "tem valor do dado"@pt,
+        rdfs:label "has data value"@en
+    
+    Characteristics: 
+        Functional
+    
+    Range: 
+        rdfs:Literal
+    
+    
+DataProperty: asNumber
+
+    Annotations: 
+        rdfs:label "as number"@en,
+        rdfs:label "valor numérico"@pt
+    
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        Categorical
+    
+    SubPropertyOf: 
+        hasDataValue
+    
+    
+Class: dbp:PopulatedPlace
+
+    Annotations: 
+        rdfs:label "Lugar povoado"@pt,
+        rdfs:label "Populated place"@en
+    
+    SubClassOf: 
+        dbp:Place
+    
+    
+Class: dbp:State
+
+    Annotations: 
+        rdfs:label "Estado"@pt,
+        rdfs:label "State"@en
+    
+    SubClassOf: 
+        dbp:PopulatedPlace
+    
+    
+Class: Feature
+
+    Annotations: 
+        rdfs:label "Característica"@pt,
+        rdfs:label "Feature"@en
+    
+    
+Class: dbp:City
+
+    Annotations: 
+        rdfs:label "Cidade"@pt,
+        rdfs:label "City"@en
+    
+    SubClassOf: 
+        dbp:Settlement
+    
+    
+Class: dbp:Place
+
+    Annotations: 
+        rdfs:label "Place"@en,
+        rdfs:label "Lugar"@pt
+    
+    
+Class: Real
+
+    Annotations: 
+        rdfs:label "Real"@pt,
+        rdfs:label "Real"@en
+    
+    SubClassOf: 
+        Value
+    
+    
+Class: dbp:Region
+
+    Annotations: 
+        rdfs:label "Região"@pt,
+        rdfs:label "Region"@en
+    
+    SubClassOf: 
+        dbp:PopulatedPlace
+    
+    
+Class: User
+
+    Annotations: 
+        rdfs:label "Usuário"@pt,
+        rdfs:label "User"@en
+    
+    
+Class: Boolean
+
+    Annotations: 
+        rdfs:label "Boolean"@en,
+        rdfs:label "Boleana"@pt
+    
+    SubClassOf: 
+        Categorical
+    
+    
+Class: dbp:Settlement
+
+    Annotations: 
+        rdfs:label "Settlement"@en,
+        rdfs:label "Assentamento"@pt
+    
+    SubClassOf: 
+        dbp:PopulatedPlace
+    
+    
+Class: dbp:GovernmentalAdministrativeRegion
+
+    Annotations: 
+        rdfs:label "Governmental administrative region"@en,
+        rdfs:label "Região administrativa governamental"@pt
+    
+    SubClassOf: 
+        dbp:AdministrativeRegion
+    
+    
+Class: dbp:AdministrativeRegion
+
+    Annotations: 
+        rdfs:label "Administrative region"@en,
+        rdfs:label "Região administrativa"@pt
+    
+    SubClassOf: 
+        dbp:Region
+    
+    
+Class: dbp:Country
+
+    Annotations: 
+        rdfs:label "Country"@en,
+        rdfs:label "País"@pt
+    
+    SubClassOf: 
+        dbp:PopulatedPlace
+    
+    
+Class: Role
+
+    Annotations: 
+        rdfs:label "Role"@en,
+        rdfs:label "Perfil"@pt
+    
+    
+Class: Weighted
+
+    Annotations: 
+        rdfs:label "Ponderado"@pt,
+        rdfs:label "Weighted"@en
+    
+    SubClassOf: 
+        Feature,
+        hasWeight some Value
+    
+    
+Class: Value
+
+    Annotations: 
+        rdfs:label "Valor"@pt,
+        rdfs:label "Value"@en
+    
+    
+Class: dbp:Municipality
+
+    Annotations: 
+        rdfs:label "Municipality"@en,
+        rdfs:label "Município"@pt
+    
+    SubClassOf: 
+        dbp:GovernmentalAdministrativeRegion
+    
+    
+Class: Scenario
+
+    Annotations: 
+        rdfs:label "Cenário"@pt,
+        rdfs:label "Scenario"@en
+    
+    
+Class: EvaluationObject
+
+    Annotations: 
+        rdfs:label "Evaluation object"@en,
+        rdfs:label "Objeto de avaliação"@pt
+    
+    
+Class: Analysis
+
+    Annotations: 
+        rdfs:label "Analysis"@en,
+        rdfs:label "Análise"@pt
+    
+    
+Class: Integer
+
+    Annotations: 
+        rdfs:label "Inteiro"@pt,
+        rdfs:label "Integer"@en
+    
+    SubClassOf: 
+        hasDataValue some xsd:integer,
+        Real
+    
+    
+Class: <http://dbpedia.org/page/Mesoregion_(Brazil)>
+
+    Annotations: 
+        rdfs:label "Mesoregion"@en,
+        rdfs:label "Meso região"@pt
+    
+    SubClassOf: 
+        dbp:GovernmentalAdministrativeRegion
+    
+    
+Class: Categorical
+
+    Annotations: 
+        rdfs:label "Categórico"@pt,
+        rdfs:label "Categorical"@en
+    
+    SubClassOf: 
+        Value
+    
+    
+Class: <http://dbpedia.org/page/Microregion_(Brazil)>
+
+    Annotations: 
+        rdfs:label "Microregion"@en,
+        rdfs:label "Microregião"@pt
+    
+    SubClassOf: 
+        dbp:GovernmentalAdministrativeRegion
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Cornélio_Procópio>
+
+    Annotations: 
+        rdfs:label "Microrregião de Cornélio Procópio"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Pioneiro_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro CornelioProcopio.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Soledade>
+
+    Annotations: 
+        rdfs:label "Microrregião de Soledade"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense>,
+     pt:mapa  "RioGrandedoSul Micro Soledade.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Paranaense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Noroeste Paranaense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Itajaí>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Vale do Itajaí"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Umuarama>
+
+    Annotations: 
+        rdfs:label "Microrregião de Umuarama"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Paranaense>,
+     pt:mapa  "Parana Micro Umuarama.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Mogi_Guaçu>
+
+    Annotations: 
+        rdfs:label "Microrregião de Mogi Guaçu"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Campinas>,
+     pt:mapa  "SaoPaulo MesoMicroMunicip.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Curitiba>
+
+    Annotations: 
+        rdfs:label "Mesorregião Metropolitana de Curitiba"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Novo_Horizonte>
+
+    Annotations: 
+        rdfs:label "Microrregião de Novo Horizonte"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro NovoHorizonte.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Lajeado-Estrela>
+
+    Annotations: 
+        rdfs:label "Microrregião de Lajeado-Estrela"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Rio-Grandense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro LajeadoEstrela.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Cascavel_(Paraná)>
+
+    Annotations: 
+        rdfs:label "Microrregião de Cascavel (Paraná)"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Paranaense>,
+     pt:mapa  "Parana Micro Cascavel.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Guarapuava>
+
+    Annotations: 
+        rdfs:label "Microrregião de Guarapuava"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Centro-Sul_Paranaense>,
+     pt:mapa  "Parana Micro Guarapuava.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Canoinhas>
+
+    Annotations: 
+        rdfs:label "Microrregião de Canoinhas"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Catarinense>,
+     pt:mapa  "SantaCatarina_Micro_Canoinhas.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Floraí>
+
+    Annotations: 
+        rdfs:label "Microrregião de Floraí"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense>,
+     pt:mapa  "Parana Micro Florai.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Faxinal>
+
+    Annotations: 
+        rdfs:label "Microrregião de Faxinal"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro Faxinal.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Pato_Branco>
+
+    Annotations: 
+        rdfs:label "Microrregião de Pato Branco"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Paranaense>,
+     pt:mapa  "Parana_Micro_PatoBranco.svg"
+    
+    
+Individual: TrueVal
+
+    Annotations: 
+        rdfs:label "True"@en,
+        rdfs:label "Verdadeiro"@pt
+    
+    Types: 
+        Boolean
+    
+    Facts:  
+     asNumber  "1.0"^^owl:real
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Santo_Ângelo>
+
+    Annotations: 
+        rdfs:label "Microrregião de Santo Ângelo"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense>,
+     pt:mapa  "RioGrandedoSul Micro SantoAngelo.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos>
+
+    Annotations: 
+        rdfs:label "Microrregião de São José dos Campos"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Paraíba_Paulista>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro SaoJosedosCampos.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Ocidental_Paranaense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Centro Ocidental Paranaense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Campos_do_Jordão>
+
+    Annotations: 
+        rdfs:label "Microrregião de Campos do Jordão"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Paraíba_Paulista>,
+     pt:mapa  "SaoPaulo Micro CamposdoJordao.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Jaguariaíva>
+
+    Annotations: 
+        rdfs:label "Microrregião de Jaguariaíva"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro Jaguariaiva.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Xanxerê>
+
+    Annotations: 
+        rdfs:label "Microrregião de Xanxerê"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Catarinense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     pt:mapa  "SantaCatarina_Micro_Xanxere.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_de_Araraquara>
+
+    Annotations: 
+        rdfs:label "Mesorregião de Araraquara"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Lapa>
+
+    Annotations: 
+        rdfs:label "Microrregião de Lapa"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Curitiba>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro Lapa.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Santa_Catarina>
+
+    Annotations: 
+        rdfs:label "Santa Catarina"
+    
+    Types: 
+        dbp:State
+    
+    Facts:  
+     dbp:isPartOf  Brazil
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Rio_do_Sul>
+
+    Annotations: 
+        rdfs:label "Microrregião de Rio do Sul"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Itajaí>,
+     pt:mapa  "SantaCatarina_Micro_RiodoSul.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Bauru>
+
+    Annotations: 
+        rdfs:label "Microrregião de Bauru"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Bauru>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Bauru.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Camaquã>
+
+    Annotations: 
+        rdfs:label "Microrregião de Camaquã"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre>,
+     pt:mapa  "RioGrandedoSul Micro Camaqua.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Vacaria>
+
+    Annotations: 
+        rdfs:label "Microrregião de Vacaria"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Nordeste_Rio-Grandense>,
+     pt:mapa  "RioGrandedoSul Micro Vacaria.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_de_Marília>
+
+    Annotations: 
+        rdfs:label "Mesorregião de Marília"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Araraquara>
+
+    Annotations: 
+        rdfs:label "Microrregião de Araraquara"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Araraquara>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Araraquara.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Batatais>
+
+    Annotations: 
+        rdfs:label "Microrregião de Batatais"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Batatais.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Telêmaco_Borba>
+
+    Annotations: 
+        rdfs:label "Microrregião de Telêmaco Borba"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Paranaense>,
+     pt:mapa  "Parana Micro TelemacoBorba.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Concórdia>
+
+    Annotations: 
+        rdfs:label "Microrregião de Concórdia"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Catarinense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     pt:mapa  "SantaCatarina_Micro_Concordia.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_de_Presidente_Prudente>
+
+    Annotations: 
+        rdfs:label "Mesorregião de Presidente Prudente"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Joinville>
+
+    Annotations: 
+        rdfs:label "Microrregião de Joinville"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Catarinense>,
+     pt:mapa  "SantaCatarina_Micro_Joinville.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Noroeste Rio-Grandense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Wenceslau_Braz>
+
+    Annotations: 
+        rdfs:label "Microrregião de Wenceslau Braz"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Pioneiro_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro WenceslauBraz.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Guaporé>
+
+    Annotations: 
+        rdfs:label "Microrregião de Guaporé"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Nordeste_Rio-Grandense>,
+     pt:mapa  "RioGrandedoSul Micro Guapore.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Erechim>
+
+    Annotations: 
+        rdfs:label "Microrregião de Erechim"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense>,
+     pt:mapa  "RioGrandedoSul Micro Erechim.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_da_Campanha_Meridional>
+
+    Annotations: 
+        rdfs:label "Microrregião da Campanha Meridional"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Rio-Grandense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro CampanhaMeridional.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Caraguatatuba>
+
+    Annotations: 
+        rdfs:label "Microrregião de Caraguatatuba"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Paraíba_Paulista>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Caraguatatuba.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Gramado-Canela>
+
+    Annotations: 
+        rdfs:label "Microrregião de Gramado-Canela"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro GramadoCanela.svg"
+    
+    
+Individual: FalseVal
+
+    Annotations: 
+        rdfs:label "Falso"@pt,
+        rdfs:label "False"@en
+    
+    Types: 
+        Boolean
+    
+    Facts:  
+     asNumber  "-1.0"^^owl:real
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Apucarana>
+
+    Annotations: 
+        rdfs:label "Microrregião de Apucarana"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense>,
+     pt:mapa  "Parana Micro Apucarana.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Sananduva>
+
+    Annotations: 
+        rdfs:label "Microrregião de Sananduva"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense>,
+     pt:mapa  "RioGrandedoSul Micro Sananduva.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Franca>
+
+    Annotations: 
+        rdfs:label "Microrregião de Franca"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto>,
+     pt:mapa  "SaoPaulo Micro Franca.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_São_Paulo>
+
+    Annotations: 
+        rdfs:label "Microrregião de São Paulo"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_São_Paulo>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro SaoPaulo.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Pirassununga>
+
+    Annotations: 
+        rdfs:label "Microrregião de Pirassununga"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Campinas>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Pirassununga.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Paulínia>
+
+    Annotations: 
+        rdfs:label "Microrregião de Paulínia"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Campinas>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo_Micro_Paulinia.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Lins>
+
+    Annotations: 
+        rdfs:label "Microrregião de Lins"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Bauru>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Lins.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Avaré>
+
+    Annotations: 
+        rdfs:label "Microrregião de Avaré"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Bauru>,
+     pt:mapa  "SaoPaulo Micro Avare.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Ijuí>
+
+    Annotations: 
+        rdfs:label "Microrregião de Ijuí"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro Ijui.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Votuporanga>
+
+    Annotations: 
+        rdfs:label "Microrregião de Votuporanga"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Votuporanga.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Santa_Maria>
+
+    Annotations: 
+        rdfs:label "Microrregião de Santa Maria"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Ocidental_Rio-Grandense>,
+     pt:mapa  "RioGrandedoSul Micro SantaMaria.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Paraíba_Paulista>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Vale do Paraíba Paulista"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Araçatuba>
+
+    Annotations: 
+        rdfs:label "Microrregião de Araçatuba"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Araçatuba>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Aracatuba.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_do_Litoral_Lagunar>
+
+    Annotations: 
+        rdfs:label "Microrregião do Litoral Lagunar"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Rio-Grandense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro LitoralLagunar.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Chapecó>
+
+    Annotations: 
+        rdfs:label "Microrregião de Chapecó"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Catarinense>,
+     pt:mapa  "SantaCatarina_Micro_Chapeco.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Pelotas>
+
+    Annotations: 
+        rdfs:label "Microrregião de Pelotas"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Rio-Grandense>,
+     pt:mapa  "RioGrandedoSul Micro Pelotas.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Cerro_Azul>
+
+    Annotations: 
+        rdfs:label "Microrregião de Cerro Azul"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Curitiba>,
+     pt:mapa  "Parana Micro CerroAzul.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Ituporanga>
+
+    Annotations: 
+        rdfs:label "Microrregião de Ituporanga"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Itajaí>,
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     pt:mapa  "SantaCatarina_Micro_Ituporanga.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Adamantina>
+
+    Annotations: 
+        rdfs:label "Microrregião de Adamantina"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Presidente_Prudente>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Adamantina.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Ocidental_Rio-Grandense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Centro Ocidental Rio-Grandense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Ribeirão_Preto>
+
+    Annotations: 
+        rdfs:label "Microrregião de Ribeirão Preto"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto>,
+     pt:mapa  "SaoPaulo Micro RibeiraoPreto.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Pioneiro_Paranaense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Norte Pioneiro Paranaense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Prudentópolis>
+
+    Annotations: 
+        rdfs:label "Microrregião de Prudentópolis"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Paranaense>,
+     pt:mapa  "Parana Micro Prudentopolis.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Tupã>
+
+    Annotations: 
+        rdfs:label "Microrregião de Tupã"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Marília>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Tupa.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Cerro_Largo>
+
+    Annotations: 
+        rdfs:label "Microrregião de Cerro Largo"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro CerroLargo.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_Macro_Metropolitana_Paulista>
+
+    Annotations: 
+        rdfs:label "Mesorregião Macro Metropolitana Paulista"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_São_Jerônimo>
+
+    Annotations: 
+        rdfs:label "Microrregião de São Jerônimo"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro SaoJeronimo.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Três_Passos>
+
+    Annotations: 
+        rdfs:label "Microrregião de Três Passos"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro TresPassos.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Irati>
+
+    Annotations: 
+        rdfs:label "Microrregião de Irati"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro Irati.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Paraná>
+
+    Annotations: 
+        rdfs:label "Paraná"
+    
+    Types: 
+        dbp:State
+    
+    Facts:  
+     dbp:isPartOf  Brazil
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_São_Bento_do_Sul>
+
+    Annotations: 
+        rdfs:label "Microrregião de São Bento do Sul"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Catarinense>,
+     pt:mapa  "SantaCatarina_Micro_SaoBentodoSul.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Joaçaba>
+
+    Annotations: 
+        rdfs:label "Microrregião de Joaçaba"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Catarinense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     pt:mapa  "SantaCatarina_Micro_Joacaba.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Paranaense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Oeste Paranaense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Jaboticabal>
+
+    Annotations: 
+        rdfs:label "Microrregião de Jaboticabal"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto>,
+     pt:mapa  "SaoPaulo Micro Jaboticabal.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Rio_Claro>
+
+    Annotations: 
+        rdfs:label "Microrregião de Rio Claro"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Piracicaba>,
+     pt:mapa  "SaoPaulo Micro RioClaro.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto>
+
+    Annotations: 
+        rdfs:label "Mesorregião de São José do Rio Preto"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Bragança_Paulista>
+
+    Annotations: 
+        rdfs:label "Microrregião de Bragança Paulista"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Macro_Metropolitana_Paulista>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro BragancaPaulista.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_de_Piracicaba>
+
+    Annotations: 
+        rdfs:label "Mesorregião de Piracicaba"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Nhandeara>
+
+    Annotations: 
+        rdfs:label "Microrregião de Nhandeara"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto>,
+     pt:mapa  "SaoPaulo Micro Nhandeara.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Rio-Grandense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Centro Oriental Rio-Grandense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_de_Araçatuba>
+
+    Annotations: 
+        rdfs:label "Mesorregião de Araçatuba"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Montenegro>
+
+    Annotations: 
+        rdfs:label "Microrregião de Montenegro"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro Montenegro.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Paranaense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Centro Oriental Paranaense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Londrina>
+
+    Annotations: 
+        rdfs:label "Microrregião de Londrina"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense>,
+     pt:mapa  "Parana Micro Londrina.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Assaí>
+
+    Annotations: 
+        rdfs:label "Microrregião de Assaí"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Pioneiro_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro Assai.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Jaguarão>
+
+    Annotations: 
+        rdfs:label "Microrregião de Jaguarão"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Rio-Grandense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro Jaguarao.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_da_Grande_Florianópolis>
+
+    Annotations: 
+        rdfs:label "Mesorregião da Grande Florianópolis"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Andradina>
+
+    Annotations: 
+        rdfs:label "Microrregião de Andradina"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Araçatuba>,
+     pt:mapa  "SaoPaulo Micro Andradina.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Jacarezinho>
+
+    Annotations: 
+        rdfs:label "Microrregião de Jacarezinho"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Pioneiro_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro Jacarezinho.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre>
+
+    Annotations: 
+        rdfs:label "Mesorregião Metropolitana de Porto Alegre"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Florianópolis>
+
+    Annotations: 
+        rdfs:label "Microrregião de Florianópolis"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_da_Grande_Florianópolis>,
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     pt:mapa  "SantaCatarina_Micro_Florianopolis.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Botucatu>
+
+    Annotations: 
+        rdfs:label "Microrregião de Botucatu"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Bauru>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo_Micro_Botucatu.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Santa_Cruz_do_Sul>
+
+    Annotations: 
+        rdfs:label "Microrregião de Santa Cruz do Sul"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Rio-Grandense>,
+     pt:mapa  "RioGrandedoSul Micro SantaCruzdoSul.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Barretos>
+
+    Annotations: 
+        rdfs:label "Microrregião de Barretos"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto>,
+     pt:mapa  "SaoPaulo Micro Barretos.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Catanduva>
+
+    Annotations: 
+        rdfs:label "Microrregião de Catanduva"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto>,
+     pt:mapa  "SaoPaulo Micro Catanduva.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Campo_Mourão>
+
+    Annotations: 
+        rdfs:label "Microrregião de Campo Mourão"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Ocidental_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro CampoMourao.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_São_Paulo>
+
+    Annotations: 
+        rdfs:label "Mesorregião Metropolitana de São Paulo"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_de_Assis>
+
+    Annotations: 
+        rdfs:label "Mesorregião de Assis"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Dracena>
+
+    Annotations: 
+        rdfs:label "Microrregião de Dracena"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Presidente_Prudente>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Dracena.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Piedade>
+
+    Annotations: 
+        rdfs:label "Microrregião de Piedade"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Macro_Metropolitana_Paulista>,
+     pt:mapa  "SaoPaulo Micro Piedade.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Catarinense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Sul Catarinense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Caxias_do_Sul>
+
+    Annotations: 
+        rdfs:label "Microrregião de Caxias do Sul"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Nordeste_Rio-Grandense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro CaxiasdoSul.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Amparo>
+
+    Annotations: 
+        rdfs:label "Microrregião de Amparo"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Campinas>,
+     pt:mapa  "SaoPaulo Micro Amparo.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Jundiaí>
+
+    Annotations: 
+        rdfs:label "Microrregião de Jundiaí"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Macro_Metropolitana_Paulista>,
+     pt:mapa  "SaoPaulo Micro Jundiai.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Ibaiti>
+
+    Annotations: 
+        rdfs:label "Microrregião de Ibaiti"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Pioneiro_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro Ibaiti.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Toledo>
+
+    Annotations: 
+        rdfs:label "Microrregião de Toledo"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Paranaense>,
+     pt:mapa  "Parana Micro Toledo.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Catarinense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Norte Catarinense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Tijucas>
+
+    Annotations: 
+        rdfs:label "Microrregião de Tijucas"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_da_Grande_Florianópolis>,
+     pt:mapa  "SantaCatarina_Micro_Tijucas.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Itajaí>
+
+    Annotations: 
+        rdfs:label "Microrregião de Itajaí"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Itajaí>,
+     pt:mapa  "SantaCatarina_Micro_Itajai.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_de_Itapetininga>
+
+    Annotations: 
+        rdfs:label "Mesorregião de Itapetininga"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Araranguá>
+
+    Annotations: 
+        rdfs:label "Microrregião de Araranguá"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Catarinense>,
+     pt:mapa  "SantaCatarina_Micro_Ararangua.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Tubarão>
+
+    Annotations: 
+        rdfs:label "Microrregião de Tubarão"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Catarinense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     pt:mapa  "SantaCatarina_Micro_Tubarao.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Rio-Grandense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Sudeste Rio-Grandense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Paranaense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Sudoeste Paranaense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Santiago>
+
+    Annotations: 
+        rdfs:label "Microrregião de Santiago"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Ocidental_Rio-Grandense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro Santiago.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_da_Campanha_Central>
+
+    Annotations: 
+        rdfs:label "Microrregião da Campanha Central"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Rio-Grandense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro CampanhaCentral.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Criciúma>
+
+    Annotations: 
+        rdfs:label "Microrregião de Criciúma"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Catarinense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     pt:mapa  "SantaCatarina_Micro_Criciuma.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>
+
+    Annotations: 
+        rdfs:label "Rio Grande do Sul"
+    
+    Types: 
+        dbp:State
+    
+    Facts:  
+     dbp:isPartOf  Brazil
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Pitanga>
+
+    Annotations: 
+        rdfs:label "Microrregião de Pitanga"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Centro-Sul_Paranaense>,
+     pt:mapa  "Parana Micro Pitanga.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_São_José_do_Rio_Preto>
+
+    Annotations: 
+        rdfs:label "Microrregião de São José do Rio Preto"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto>,
+     pt:mapa  "SaoPaulo Micro SaoJosedoRioPreto.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Mogi_Mirim>
+
+    Annotations: 
+        rdfs:label "Microrregião de Mogi Mirim"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Campinas>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro MojiMirim.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Passo_Fundo>
+
+    Annotations: 
+        rdfs:label "Microrregião de Passo Fundo"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense>,
+     pt:mapa  "RioGrandedoSul Micro PassoFundo.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Astorga>
+
+    Annotations: 
+        rdfs:label "Microrregião de Astorga"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro Astorga.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Birigui>
+
+    Annotations: 
+        rdfs:label "Microrregião de Birigui"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Araçatuba>,
+     pt:mapa  "SaoPaulo Micro Birigui.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Blumenau>
+
+    Annotations: 
+        rdfs:label "Microrregião de Blumenau"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Itajaí>,
+     pt:mapa  "SantaCatarina_Micro_Blumenau.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Curitiba>
+
+    Annotations: 
+        rdfs:label "Microrregião de Curitiba"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Curitiba>,
+     pt:mapa  "Parana Micro Curitiba.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Itapetininga>
+
+    Annotations: 
+        rdfs:label "Microrregião de Itapetininga"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Itapetininga>,
+     pt:mapa  "SaoPaulo Micro Itapetininga.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Registro>
+
+    Annotations: 
+        rdfs:label "Microrregião de Registro"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Litoral_Sul_Paulista>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Registro.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_União_da_Vitória>
+
+    Annotations: 
+        rdfs:label "Microrregião de União da Vitória"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro UniaoDaVitoria.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Carazinho>
+
+    Annotations: 
+        rdfs:label "Microrregião de Carazinho"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro Carazinho.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Capanema>
+
+    Annotations: 
+        rdfs:label "Microrregião de Capanema"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Paranaense>,
+     pt:mapa  "Parana Micro Capanema.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Palmas>
+
+    Annotations: 
+        rdfs:label "Microrregião de Palmas"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Centro-Sul_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro Palmas.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_de_Campinas>
+
+    Annotations: 
+        rdfs:label "Mesorregião de Campinas"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Assis>
+
+    Annotations: 
+        rdfs:label "Microrregião de Assis"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Assis>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Assis.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Cachoeira_do_Sul>
+
+    Annotations: 
+        rdfs:label "Microrregião de Cachoeira do Sul"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Rio-Grandense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro CachoeiradoSul.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Porto_Alegre>
+
+    Annotations: 
+        rdfs:label "Microrregião de Porto Alegre"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre>,
+     pt:mapa  "RioGrandedoSul Micro PortoAlegre.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Sorocaba>
+
+    Annotations: 
+        rdfs:label "Microrregião de Sorocaba"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Macro_Metropolitana_Paulista>,
+     pt:mapa  "SaoPaulo Micro Sorocaba.svg"
+    
+    
+Individual: Brazil
+
+    Annotations: 
+        rdfs:label "Brazil"@en,
+        rdfs:label "Brasil"@pt
+    
+    Types: 
+        dbp:Country
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Bananal>
+
+    Annotations: 
+        rdfs:label "Microrregião de Bananal"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Paraíba_Paulista>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Bananal.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_de_Bauru>
+
+    Annotations: 
+        rdfs:label "Mesorregião de Bauru"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Ponta_Grossa>
+
+    Annotations: 
+        rdfs:label "Microrregião de Ponta Grossa"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Paranaense>,
+     pt:mapa  "Parana Micro PontaGrossa.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_da_Campanha_Ocidental>
+
+    Annotations: 
+        rdfs:label "Microrregião da Campanha Ocidental"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Rio-Grandense>,
+     pt:mapa  "RioGrandedoSul Micro CampanhaOcidental.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_São_Miguel_do_Oeste>
+
+    Annotations: 
+        rdfs:label "Microrregião de São Miguel do Oeste"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Catarinense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     pt:mapa  "SantaCatarina_Micro_SaoMiguelDOeste.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Maringá>
+
+    Annotations: 
+        rdfs:label "Microrregião de Maringá"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense>,
+     pt:mapa  "Parana Micro Maringa.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_São_Joaquim_da_Barra>
+
+    Annotations: 
+        rdfs:label "Microrregião de São Joaquim da Barra"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto>,
+     pt:mapa  "SaoPaulo Micro SaoJoaquimdaBarra.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Não-Me-Toque>
+
+    Annotations: 
+        rdfs:label "Microrregião de Não-Me-Toque"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro NaoMeToque.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Capão_Bonito>
+
+    Annotations: 
+        rdfs:label "Microrregião de Capão Bonito"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Itapetininga>,
+     pt:mapa  "SaoPaulo Micro CampaoBonito.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos>
+
+    Annotations: 
+        rdfs:label "Microrregião de São Carlos"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Araraquara>,
+     pt:mapa  "SaoPaulo Micro SaoCarlos.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/São_Paulo>
+
+    Annotations: 
+        rdfs:label "São Paulo"
+    
+    Types: 
+        dbp:State
+    
+    Facts:  
+     dbp:isPartOf  Brazil
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Jaú>
+
+    Annotations: 
+        rdfs:label "Microrregião de Jaú"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Bauru>,
+     pt:mapa  "SaoPaulo Micro Jau.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Itanhaém>
+
+    Annotations: 
+        rdfs:label "Microrregião de Itanhaém"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Litoral_Sul_Paulista>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Itanhaem.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Franco_da_Rocha>
+
+    Annotations: 
+        rdfs:label "Microrregião de Franco da Rocha"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_São_Paulo>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro FrancodaRocha.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Auriflama>
+
+    Annotations: 
+        rdfs:label "Microrregião de Auriflama"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto>,
+     pt:mapa  "SaoPaulo Micro Auriflama.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Rio-Grandense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Sudoeste Rio-Grandense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Itapeva>
+
+    Annotations: 
+        rdfs:label "Microrregião de Itapeva"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Itapetininga>,
+     pt:mapa  "SaoPaulo Micro Itapeva.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_São_João_da_Boa_Vista>
+
+    Annotations: 
+        rdfs:label "Microrregião de São João da Boa Vista"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Campinas>,
+     pt:mapa  "SaoPaulo Micro SaoJoaodaBoaVista.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Cruz_Alta>
+
+    Annotations: 
+        rdfs:label "Microrregião de Cruz Alta"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro CruzAlta.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Campinas>
+
+    Annotations: 
+        rdfs:label "Microrregião de Campinas"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Campinas>,
+     pt:mapa  "SaoPaulo Micro Campinas.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Litoral_Sul_Paulista>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Litoral Sul Paulista"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Osório>
+
+    Annotations: 
+        rdfs:label "Microrregião de Osório"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre>,
+     pt:mapa  "RioGrandedoSul Micro Osorio.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Tabuleiro>
+
+    Annotations: 
+        rdfs:label "Microrregião de Tabuleiro"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_da_Grande_Florianópolis>,
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>,
+     pt:mapa  "SantaCatarina_Micro_Tabuleiro.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Centro-Sul_Paranaense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Centro-Sul Paranaense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto>
+
+    Annotations: 
+        rdfs:label "Mesorregião de Ribeirão Preto"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Tatuí>
+
+    Annotations: 
+        rdfs:label "Microrregião de Tatuí"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Itapetininga>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Tatui.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Limeira>
+
+    Annotations: 
+        rdfs:label "Microrregião de Limeira"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Piracicaba>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Limeira.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_São_Mateus_do_Sul>
+
+    Annotations: 
+        rdfs:label "Microrregião de São Mateus do Sul"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro SaoMateusdoSul.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Foz_do_Iguaçu>
+
+    Annotations: 
+        rdfs:label "Microrregião de Foz do Iguaçu"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro FozdoIguacu.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Paranaguá>
+
+    Annotations: 
+        rdfs:label "Microrregião de Paranaguá"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Curitiba>,
+     pt:mapa  "Parana Micro Paranagua.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Francisco_Beltrão>
+
+    Annotations: 
+        rdfs:label "Microrregião de Francisco Beltrão"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana_Micro_FranciscoBeltrao.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_do_Rio_Negro_(Paraná)>
+
+    Annotations: 
+        rdfs:label "Microrregião do Rio Negro (Paraná)"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Curitiba>,
+     pt:mapa  "Parana Micro RioNegro.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Ourinhos>
+
+    Annotations: 
+        rdfs:label "Microrregião de Ourinhos"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Assis>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Ourinhos.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Piracicaba>
+
+    Annotations: 
+        rdfs:label "Microrregião de Piracicaba"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Piracicaba>,
+     pt:mapa  "SaoPaulo Micro Piracicaba.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Guarulhos>
+
+    Annotations: 
+        rdfs:label "Microrregião de Guarulhos"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_São_Paulo>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Guarulhos.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Paranavaí>
+
+    Annotations: 
+        rdfs:label "Microrregião de Paranavaí"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Paranaense>,
+     pt:mapa  "Parana Micro Paranavai.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Frederico_Westphalen>
+
+    Annotations: 
+        rdfs:label "Microrregião de Frederico Westphalen"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense>,
+     pt:mapa  "RioGrandedoSul Micro FredericoWestphalen.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Vale_do_Rio_dos_Sinos>
+
+    Annotations: 
+        rdfs:label "Vale do Rio dos Sinos"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "Rio do sinos vale.jpg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Santa_Rosa>
+
+    Annotations: 
+        rdfs:label "Microrregião de Santa Rosa"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense>,
+     pt:mapa  "RioGrandedoSul Micro SantaRosa.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Jales>
+
+    Annotations: 
+        rdfs:label "Microrregião de Jales"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto>,
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     pt:mapa  "SaoPaulo Micro Jales.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Ituverava>
+
+    Annotations: 
+        rdfs:label "Microrregião de Ituverava"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto>,
+     pt:mapa  "SaoPaulo Micro Ituverava.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Porecatu>
+
+    Annotations: 
+        rdfs:label "Microrregião de Porecatu"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro Porecatu.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Presidente_Prudente>
+
+    Annotations: 
+        rdfs:label "Microrregião de Presidente Prudente"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Presidente_Prudente>,
+     pt:mapa  "SaoPaulo Micro PresidentePrudente.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Restinga_Seca>
+
+    Annotations: 
+        rdfs:label "Microrregião de Restinga Seca"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Ocidental_Rio-Grandense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     pt:mapa  "RioGrandedoSul Micro RestingaSeca.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_das_Serras_de_Sudeste>
+
+    Annotations: 
+        rdfs:label "Microrregião das Serras de Sudeste"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Rio-Grandense>,
+     pt:mapa  "RioGrandedoSul Micro SerrasdeSudeste.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Cianorte>
+
+    Annotations: 
+        rdfs:label "Microrregião de Cianorte"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Paranaense>,
+     pt:mapa  "Parana Micro Cianorte.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_do_Paraibuna_e_Paraitinga>
+
+    Annotations: 
+        rdfs:label "Microrregião do Paraibuna e Paraitinga"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Paraíba_Paulista>,
+     pt:mapa  "SaoPaulo_Micro_ParaibunaParaitinga.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Nordeste_Rio-Grandense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Nordeste Rio-Grandense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Rio_Grande_do_Sul>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Guaratinguetá>
+
+    Annotations: 
+        rdfs:label "Microrregião de Guaratinguetá"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Paraíba_Paulista>,
+     pt:mapa  "SaoPaulo Micro Guaratingueta.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Catarinense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Oeste Catarinense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Santa_Catarina>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Marília>
+
+    Annotations: 
+        rdfs:label "Microrregião de Marília"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/São_Paulo>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_de_Marília>,
+     pt:mapa  "SaoPaulo Micro Marilia.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Ivaiporã>
+
+    Annotations: 
+        rdfs:label "Microrregião de Ivaiporã"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense>,
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     pt:mapa  "Parana Micro Ivaipora.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Microrregião_de_Goioerê>
+
+    Annotations: 
+        rdfs:label "Microrregião de Goioerê"
+    
+    Types: 
+        <http://dbpedia.org/page/Microregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>,
+     dbp:isPartOf  <http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Ocidental_Paranaense>,
+     pt:mapa  "Parana_Micro_Goioere.svg"
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Norte Central Paranaense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>
+    
+    
+Individual: <http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Paranaense>
+
+    Annotations: 
+        rdfs:label "Mesorregião do Sudeste Paranaense"
+    
+    Types: 
+        <http://dbpedia.org/page/Mesoregion_(Brazil)>
+    
+    Facts:  
+     dbp:state  <http://pt.dbpedia.org/resource/Paraná>
+    
+    
