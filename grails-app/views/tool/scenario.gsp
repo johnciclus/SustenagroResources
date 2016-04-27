@@ -45,28 +45,42 @@
         return arg != value;
     }, "Value must not equal arg.");
 
-    $("form").validate({
-        submitHandler: function(form) {
-            console.log('valid form');
-            // do other things for a valid form
-            form.submit();
-        },
-        errorClass: "has-error",
-        errorPlacement: function(error, element) {
-            var form_group = $(element).parents('.form-group');
-            form_group.children(':last-child').append(error);
-        },
-        highlight: function(element, errorClass, validClass) {
-            //console.log('highlight');
-            var form_group = $(element).parents('.form-group');
-            form_group.addClass(errorClass).removeClass(validClass);
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            //console.log('unhighlight');
-            var form_group = $(element).parents('.form-group');
-            form_group.removeClass(errorClass).addClass(validClass);
+    var rules = {};
+
+    $("input[type='radio']").each(function(){
+        var name = $(this).attr('name');
+        if($("[name^='"+name+"-']").length){
+            rules[name] = {};           //dual dependence
         }
     });
+
+    for(var k in rules){
+        //console.log(k);
+        //console.log(rules[k]);
+    }
+
+    $("form").each( function(index){
+        $(this).validate({
+            rules: rules,
+            ignore: '',
+            errorClass: "has-error",
+            errorPlacement: function(error, element) {
+                var form_group = $(element).parents('.form-group');
+                form_group.children(':last-child').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                //console.log('highlight');
+                var form_group = $(element).parents('.form-group');
+                form_group.addClass(errorClass).removeClass(validClass);
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                //console.log('unhighlight');
+                var form_group = $(element).parents('.form-group');
+                form_group.removeClass(errorClass).addClass(validClass);
+            }
+        });
+    });
+
 </script>
 </body>
 </html>

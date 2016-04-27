@@ -32,8 +32,8 @@
                 $.post('/tool/analyses',
 					{ 'evaluation_object_id':  $('#evaluation_object_id').val()},
 					function( data ) {
-						$('#analyses_form').html(data);
-						$('#analyses_form table').bootstrapTable();
+						$('#analyses_form_container').html(data);
+						$('#analyses_form_container table').bootstrapTable();
 						$('#new_analysis').prop('disabled', false);
 					}
                 );
@@ -65,8 +65,6 @@
                     }
                 });
             });
-
-
 
             $(".datepicker").datepicker({
                 format: 'dd/mm/yyyy',

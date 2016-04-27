@@ -15,11 +15,11 @@ ontology: http://semantic.icmc.usp.br/sustenagro#
 
 # As ontologias que você inclui. No nosso caso vai ser sempre uma
 includes:
-  - SemanticUI.yaml
+  - semanticUI.yaml
 
 #imports:
 #  - prefix: ui
-#    file: SemanticUI.yaml #http://purl.org/biodiv/semanticUI#
+#    file: semanticUI.yaml #http://purl.org/biodiv/semanticUI#
 
 #OWLImports:
 #  - prefix: ui
