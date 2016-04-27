@@ -33,6 +33,8 @@ import org.semanticweb.owlapi.model.OWLOntologyAlreadyExistsException
 import org.semanticweb.owlapi.model.OWLOntologyCreationException
 import org.semanticweb.owlapi.model.OWLOntologyDocumentAlreadyExistsException
 import org.semanticweb.owlapi.model.UnloadableImportException
+import org.semanticweb.owlapi.util.OWLOntologyMerger
+import org.semanticweb.owlapi.util.OWLOntologyURIChanger
 
 import static groovy.transform.TypeCheckingMode.SKIP
 //import groovy.sparql.Sparql
@@ -332,6 +334,28 @@ class Yaml2Owl {
         }
     }
 
+    def merge() {
+        OWLOntologyMerger merger = new OWLOntologyMerger(manager);
+        // We merge all of the loaded ontologies.  Since an OWLOntologyManager is an OWLOntologySetProvider we
+        // just pass this in.  We also need to specify the URI of the new ontology that will be created.
+        //IRI mergedOntologyIRI = IRI.create(onto.getOntologyID().getOntologyIRI());
+        OWLOntology merged = merger.createMergedOntology(manager, null)//onto.getOntologyID().getOntologyIRI());
+        // Print out the axioms in the merged ontology.
+        //for (OWLAxiom ax : merged.getAxioms()) {
+        //    System.out.println(ax);
+        //}
+        // Save to RDF/XML
+        for (OWLOntology ont:manager.ontologies)
+            if (ont != merged)
+                manager.removeOntology(ont)
+        def changer = new OWLOntologyURIChanger(manager)
+        manager.applyChanges(changer.getChanges(merged, onto.getOntologyID().getOntologyIRI()))
+        //merged.setO.getOntologyID().se
+        //manager.saveOntology(merged, new ManchesterOWLSyntaxOntologyFormat(), IRI.create(new File(file).toURI()))
+        onto = merged
+        //save(merged, file, formatType)
+    }
+
     def save(String file, formatType = format) {
         def ontFormat = manager.getOntologyFormat(onto)
         def saveFormat
@@ -366,13 +390,13 @@ class Yaml2Owl {
         prefix.setPrefix('xsd:', 'http://www.w3.org/2001/XMLSchema#')
         prefix.setPrefix('rdfs:', 'http://www.w3.org/2000/01/rdf-schema#')
 
+        baseIRI = yaml.ontology
+
         readYaml2(yaml)
     }
 
     @TypeChecked(SKIP)
     def readYaml2(Map yaml) {
-
-        baseIRI = yaml.ontology
 
         yaml.keySet().each{ key ->
 
@@ -393,6 +417,9 @@ class Yaml2Owl {
 
                     def yaml2 = new Yaml().load(new FileReader(baseFolder+it))
                     readYaml2(yaml2)
+                    // Recover baseIRI for this ontology
+                    //baseIRI = yaml.ontology
+                    //prefix.setPrefix(it.prefix+':', yaml2.ontology)
 
                     println "Finished (reading $it)."
                 }
@@ -407,15 +434,19 @@ class Yaml2Owl {
                     def onto = new Yaml2Owl(yaml2.ontology)
                     onto.readYaml(yaml2)
 
-                    onto.save(it.file+'.owl', 'manchester')
-                    importOnt(yaml2.ontology, it.file+'.owl')
+                    def file = baseFolder + it.file
+                    if (file.endsWith('.yaml'))
+                        file = file.substring(0, file.length()-5)
+
+                    onto.save(file + '.owl')
+                    importOnt(yaml2.ontology, file + '.owl')
                     prefix.setPrefix(it.prefix+':', yaml2.ontology)
                 }
                 return
             }
             if (key == 'OWLImports') {
                 yaml[key].each {
-                    importOnt(it.uri, it.file)
+                    importOnt(it.uri, baseFolder + it.file)
                     prefix.setPrefix(it.prefix+':', it.uri)
                 }
                 return
@@ -559,7 +590,7 @@ class Yaml2Owl {
 
     static void main(String[] args) {
         String file = 'sustenagro.yaml'
-        String format = ''
+        String format = 'manchester'
         if (args.length > 1)  file = args[0]
         if (args.length > 2)  format = args[1]
 
@@ -577,6 +608,7 @@ class Yaml2Owl {
             file = file.substring(0, file.length()-5)
 
         file = file + '.owl'
+        //onto.merge()
         onto.save(file, format)
         println "Saved: $file"
     }
