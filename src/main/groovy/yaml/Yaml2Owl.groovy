@@ -594,15 +594,17 @@ class Yaml2Owl {
 
     static void main(String[] args) {
         String file = 'sustenagro.yaml'
+        def base = './ontology/'
+        
         String format = 'manchester'
         if (args.length > 1)  file = args[0]
         if (args.length > 2)  format = args[1]
 
-        Map yaml = (Map) new Yaml().load(new FileReader(file))
+        Map yaml = (Map) new Yaml().load(new FileReader(base+file))
 
         println "Ontology: ${yaml.ontology}"
 
-        def onto = new Yaml2Owl((String) yaml.ontology)
+        def onto = new Yaml2Owl((String) yaml.ontology, base)
         //onto.format = format
 
         onto.readYaml(yaml)
@@ -613,7 +615,7 @@ class Yaml2Owl {
 
         file = file + '.owl'
         //onto.merge()
-        onto.save(file, format)
+        onto.save(base+file, format)
         println "Saved: $file"
     }
 }
