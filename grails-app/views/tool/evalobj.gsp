@@ -49,6 +49,16 @@
             $("form").each( function(index){
                 $(this).validate({
                     errorClass: "has-error",
+                    rules: {
+                        'http://purl.org/biodiv/semanticUI#name': {
+                            remote: "evaluationObjectNameAvailability"
+                        }
+                    },
+                    messages: {
+                        'http://purl.org/biodiv/semanticUI#name': {
+                            remote: jQuery.validator.format("{0} já está atribuído no sistema.")
+                        }
+                    },
                     errorPlacement: function(error, element) {
                         var form_group = $(element).parents('.form-group');
                         form_group.children(':last-child').append(error);

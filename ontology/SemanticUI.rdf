@@ -259,8 +259,19 @@
     <!-- http://dbpedia.org/property/pt/mapa -->
 
     <owl:DatatypeProperty rdf:about="&pt;mapa">
-        <rdfs:label xml:lang="en">has map</rdfs:label>
-        <rdfs:label xml:lang="pt">tem mapa</rdfs:label>
+        <rdfs:label xml:lang="en">map</rdfs:label>
+        <rdfs:label xml:lang="pt">mapa</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#PhoneNumber -->
+
+    <owl:DatatypeProperty rdf:about="&semanticUI;PhoneNumber">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">phone number</rdfs:label>
+        <rdfs:label xml:lang="pt">número de telefone</rdfs:label>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     
 
@@ -276,101 +287,79 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#hasDataValue -->
+    <!-- http://purl.org/biodiv/semanticUI#dataValue -->
 
-    <owl:DatatypeProperty rdf:about="&semanticUI;hasDataValue">
+    <owl:DatatypeProperty rdf:about="&semanticUI;dataValue">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label xml:lang="en">has data value</rdfs:label>
-        <rdfs:label xml:lang="pt">tem valor do dado</rdfs:label>
+        <rdfs:label xml:lang="en">data value</rdfs:label>
+        <rdfs:label xml:lang="pt">valor do dado</rdfs:label>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#hasEmail -->
+    <!-- http://purl.org/biodiv/semanticUI#email -->
 
-    <owl:DatatypeProperty rdf:about="&semanticUI;hasEmail">
+    <owl:DatatypeProperty rdf:about="&semanticUI;email">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label xml:lang="en">has email</rdfs:label>
-        <rdfs:label xml:lang="pt">tem email</rdfs:label>
+        <rdfs:label xml:lang="en">email</rdfs:label>
+        <rdfs:label xml:lang="pt">email</rdfs:label>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#hasName -->
+    <!-- http://purl.org/biodiv/semanticUI#name -->
 
-    <owl:DatatypeProperty rdf:about="&semanticUI;hasName">
+    <owl:DatatypeProperty rdf:about="&semanticUI;name">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label xml:lang="en">has name</rdfs:label>
-        <rdfs:label xml:lang="pt">tem nome</rdfs:label>
+        <rdfs:label xml:lang="en">name</rdfs:label>
+        <rdfs:label xml:lang="pt">nome</rdfs:label>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#hasOrganization -->
+    <!-- http://purl.org/biodiv/semanticUI#organization -->
 
-    <owl:DatatypeProperty rdf:about="&semanticUI;hasOrganization">
+    <owl:DatatypeProperty rdf:about="&semanticUI;organization">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label xml:lang="en">has organization</rdfs:label>
-        <rdfs:label xml:lang="pt">tem organização</rdfs:label>
+        <rdfs:label xml:lang="en">organization</rdfs:label>
+        <rdfs:label xml:lang="pt">organização</rdfs:label>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#hasPassword -->
+    <!-- http://purl.org/biodiv/semanticUI#password -->
 
-    <owl:DatatypeProperty rdf:about="&semanticUI;hasPassword">
+    <owl:DatatypeProperty rdf:about="&semanticUI;password">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label xml:lang="en">has password</rdfs:label>
-        <rdfs:label xml:lang="en">tem senha</rdfs:label>
+        <rdfs:label xml:lang="en">password</rdfs:label>
+        <rdfs:label xml:lang="en">senha</rdfs:label>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#hasPhoneNumber -->
+    <!-- http://purl.org/biodiv/semanticUI#position -->
 
-    <owl:DatatypeProperty rdf:about="&semanticUI;hasPhoneNumber">
+    <owl:DatatypeProperty rdf:about="&semanticUI;position">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label xml:lang="en">has phone number</rdfs:label>
-        <rdfs:label xml:lang="pt">tem número de telefone</rdfs:label>
+        <rdfs:label xml:lang="en">position</rdfs:label>
+        <rdfs:label xml:lang="pt">cargo</rdfs:label>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#hasPosition -->
+    <!-- http://purl.org/biodiv/semanticUI#surname -->
 
-    <owl:DatatypeProperty rdf:about="&semanticUI;hasPosition">
+    <owl:DatatypeProperty rdf:about="&semanticUI;surname">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label xml:lang="en">has position</rdfs:label>
-        <rdfs:label xml:lang="pt">tem cargo</rdfs:label>
+        <rdfs:label xml:lang="en">surname</rdfs:label>
+        <rdfs:label xml:lang="pt">sobrenome</rdfs:label>
         <rdfs:range rdf:resource="&rdfs;Literal"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/biodiv/semanticUI#hasSurname -->
-
-    <owl:DatatypeProperty rdf:about="&semanticUI;hasSurname">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label xml:lang="en">has surname</rdfs:label>
-        <rdfs:label xml:lang="pt">tem sobrenome</rdfs:label>
-        <rdfs:range rdf:resource="&rdfs;Literal"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/biodiv/semanticUI#hasUserName -->
-
-    <owl:DatatypeProperty rdf:about="&semanticUI;hasUserName">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
-        <rdfs:label xml:lang="en">has username</rdfs:label>
-        <rdfs:label xml:lang="pt">tem nome de usuário</rdfs:label>
-        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -382,6 +371,17 @@
         <rdfs:label xml:lang="en">update at</rdfs:label>
         <rdfs:label xml:lang="pt">autalizado no</rdfs:label>
         <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#userName -->
+
+    <owl:DatatypeProperty rdf:about="&semanticUI;userName">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:label xml:lang="en">username</rdfs:label>
+        <rdfs:label xml:lang="pt">nome de usuário</rdfs:label>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -570,7 +570,7 @@
         <rdfs:label xml:lang="pt">Inteiro</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&semanticUI;hasDataValue"/>
+                <owl:onProperty rdf:resource="&semanticUI;dataValue"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onDataRange rdf:resource="&xsd;integer"/>
             </owl:Restriction>
@@ -1434,7 +1434,7 @@
         <rdf:type rdf:resource="&semanticUI;Boolean"/>
         <rdfs:label xml:lang="en">False</rdfs:label>
         <rdfs:label xml:lang="pt">Falso</rdfs:label>
-        <semanticUI:hasDataValue rdf:datatype="&xsd;double">-1.0</semanticUI:hasDataValue>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">-1.0</semanticUI:dataValue>
     </owl:NamedIndividual>
     
 
@@ -1445,7 +1445,7 @@
         <rdf:type rdf:resource="&semanticUI;Boolean"/>
         <rdfs:label xml:lang="en">True</rdfs:label>
         <rdfs:label xml:lang="pt">Verdadeiro</rdfs:label>
-        <semanticUI:hasDataValue rdf:datatype="&xsd;double">1.0</semanticUI:hasDataValue>
+        <semanticUI:dataValue rdf:datatype="&xsd;double">1.0</semanticUI:dataValue>
     </owl:NamedIndividual>
     
 
@@ -1454,8 +1454,8 @@
 
     <owl:NamedIndividual rdf:about="&semanticUI;admin">
         <rdf:type rdf:resource="&semanticUI;User"/>
-        <semanticUI:hasPassword rdf:datatype="&xsd;string">8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918</semanticUI:hasPassword>
-        <semanticUI:hasUserName rdf:datatype="&xsd;string">admin</semanticUI:hasUserName>
+        <semanticUI:password rdf:datatype="&xsd;string">8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918</semanticUI:password>
+        <semanticUI:userName rdf:datatype="&xsd;string">admin</semanticUI:userName>
         <semanticUI:hasRole rdf:resource="&semanticUI;adminRole"/>
         <semanticUI:hasRole rdf:resource="&semanticUI;userRole"/>
     </owl:NamedIndividual>
@@ -1476,8 +1476,8 @@
 
     <owl:NamedIndividual rdf:about="&semanticUI;user">
         <rdf:type rdf:resource="&semanticUI;User"/>
-        <semanticUI:hasPassword rdf:datatype="&xsd;string">04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb</semanticUI:hasPassword>
-        <semanticUI:hasUserName rdf:datatype="&xsd;string">user</semanticUI:hasUserName>
+        <semanticUI:password rdf:datatype="&xsd;string">04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb</semanticUI:password>
+        <semanticUI:userName rdf:datatype="&xsd;string">user</semanticUI:userName>
         <semanticUI:hasRole rdf:resource="&semanticUI;userRole"/>
     </owl:NamedIndividual>
     

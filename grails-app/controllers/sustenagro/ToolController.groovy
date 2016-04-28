@@ -54,7 +54,7 @@ class ToolController {
     }
 
     def createEvaluationObject() {
-        def name = k.toURI('ui:hasName')
+        def name = k.toURI('ui:name')
         def id = slugify.slugify(params[name])
         def type = k.toURI('rdfs:subClassOf')
         def evaluationObject = dsl.evaluationObject
@@ -120,7 +120,7 @@ class ToolController {
             widgets = []
             widgets.push(['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]])
             if(feature.attrs.extraFeatures){
-                widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]])
+                widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:name': 'Nome', ':justification': 'Justificativa', 'ui:value': 'Valor']]])
             }
 
             if(feature.model.superClass.contains(k.toURI(':Variable')))
@@ -170,7 +170,7 @@ class ToolController {
         def extraFeatures = [:]
         def uri = ''
 
-        properties[k.toURI('rdfs:label')] = [value: k['ui:Analysis'].label+ " " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now), dataType: k.toURI('rdfs:Literal')]
+        properties[k.toURI('rdfs:label')] = [value: k[':Harvest'].label+ " " + k[evalObjURI].getAttr('?harvestYear'), dataType: k.toURI('rdfs:Literal')]     //new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now)
         properties[k.toURI(':appliedTo')] = [value: evalObjURI, dataType: k[':appliedTo'].range]
         properties[k.toURI('ui:createAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now), dataType: k.toURI('xsd:dateTime')]
 
@@ -349,5 +349,10 @@ class ToolController {
         def id =  uri.substring(uri.lastIndexOf('#')+1)
 
         redirect( action: 'analysis', id: id)
+    }
+
+    def evaluationObjectNameAvailability(){
+        def name = slugify.slugify(params['http://purl.org/biodiv/semanticUI#name'])
+        render !k[':'+name].exist()
     }
 }

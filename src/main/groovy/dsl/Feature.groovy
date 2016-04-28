@@ -23,7 +23,7 @@ class Feature {
         _attrs = attrs
 
         _model = [label: _k[_uri].label, subClass: [:], superClass: _k[_uri].getSuperClass()]
-        grandChildren = _k[_uri].getGrandchildren('?id ?label ?subClass ?relevance ?category ?weight')
+        grandChildren = _k[_uri].getGrandchildren('?id ?label ?subClass ?relevance ?category ?weight ?weightLabel')
 
         _k[_uri].getSubClass('?label').each{ subClass ->
             _model['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]

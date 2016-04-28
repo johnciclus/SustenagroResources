@@ -18,7 +18,7 @@ evaluationObject ':ProductionUnit', {
     //type or instance
 
     // Production unit name
-    instance 'ui:hasName', label: "Nome da unidade produtiva ou fazenda", placeholder: "Nome"
+    instance 'ui:name', label: "Nome da unidade produtiva ou fazenda", placeholder: "Nome"
 
     // Agricultural production system
     instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções"
@@ -34,42 +34,43 @@ evaluationObject ':ProductionUnit', {
     instance 'ui:hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
 
     //Outra microrregião
-    instance ':hasOtherMicroregion', label: "Outra microrregião"
+    instance ':otherMicroregion', label: "Outra microrregião"
 
-    //Municipios envolvidos
-    instance ':hasMunicipalitiesInvolved', label: "Municípios envolvidos"
+    //Municípios envolvidos (localização da sede)
+    instance ':municipalitiesInvolved', label: "Municípios envolvidos"
 
     // Data de fundação da unidade produção
-    //instance ':hasEstablishmentDate', label: "Data de fundação da unidade produção"
+    //instance ':establishmentDate', label: "Data de fundação da unidade produção"
 
     //Ligação com outros grupos empresariais ou de investimentos
-    //instance ':hasLinkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos", placeholder: "Descrição"
-
-    // Municípios envolvidos (localização da sede)
+    //instance ':linkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos", placeholder: "Descrição"
 
     // Data de início do plantio
-    instance ':hasBeginningOfPlantingDate', label: "Data de início do plantio", placeholder: "dd/mm/yyyy"
+    instance ':harvestYear', label: "Safra (Ano)", placeholder: "yyyy"
+
+    // Data de início do plantio
+    instance ':beginningOfPlantingDate', label: "Data de início do plantio", placeholder: "dd/mm/yyyy"
 
     // Data de término do plantio
-    instance ':hasFinishOfPlantingDate', label: "Data de término do plantio", placeholder: "dd/mm/yyyy"
+    instance ':finishOfPlantingDate', label: "Data de término do plantio", placeholder: "dd/mm/yyyy"
 
     // Data de início da colheita
-    instance ':hasBeginningOfHarvestDate', label: "Data de início da colheita", placeholder: "dd/mm/yyyy"
+    instance ':beginningOfHarvestDate', label: "Data de início da colheita", placeholder: "dd/mm/yyyy"
 
     // Data de término da colheita
-    instance ':hasFinishOfHarvestDate', label: "Data de término da colheita", placeholder: "dd/mm/yyyy"
+    instance ':finishOfHarvestDate', label: "Data de término da colheita", placeholder: "dd/mm/yyyy"
 
     // Longevidade do canavial (cana de ano, cana de ano e meio);
-    instance ':hasCanavialLongevity', label: "Longevidade do canavial (tempo em anos e meses)", header: "Opções"
+    instance ':canavialLongevity', label: "Longevidade do canavial (tempo em anos e meses)", header: "Opções"
 
     // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
-    instance ':hasInnovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
+    instance ':innovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
 
     //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
-    instance ':hasFinancing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição"
+    instance ':financing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição"
 
     // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
-    instance ':hasPartnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)", widget: 'textAreaForm', placeholder: "Descrição"
+    instance ':partnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)", widget: 'textAreaForm', placeholder: "Descrição"
 
     //Tipo de organização/gestão da usina ou produtor (grupo econômico, convencional, familiar);
 
@@ -80,13 +81,13 @@ evaluationObject ':ProductionUnit', {
 
 
     // Valor total investido em tecnologia na fase agrícola (até a fase atual)
-    //instance ':hasTotalValueInvestedInTechnologicInAgriculturalPhase', label: "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
+    //instance ':totalValueInvestedInTechnologicInAgriculturalPhase', label: "Valor total investido em tecnologia na fase agrícola (até a fase atual)"
 
     // Valor total investido em tecnologia na fase industrial (até a fase atual)
-    //instance ':hasTotalValueInvestedInTechnologicInIndustrialPhase', label: "Valor total investido em tecnologia na fase industrial (até a fase atual)"
+    //instance ':totalValueInvestedInTechnologicInIndustrialPhase', label: "Valor total investido em tecnologia na fase industrial (até a fase atual)"
 
     // Valor total previsto para investimento para escoamento da produção
-    //instance ':hasTotalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
+    //instance ':totalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
 
 }
 

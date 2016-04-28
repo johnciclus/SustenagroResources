@@ -416,8 +416,12 @@ class Yaml2Owl {
                     println "Reading $it ontology ..."
 
                     def yaml2 = new Yaml().load(new FileReader(baseFolder+it))
+                    baseIRI = yaml2.ontology
                     readYaml2(yaml2)
+
+                    //baseIRI = yaml.ontology
                     // Recover baseIRI for this ontology
+                    //prefix.defaultPrefix = yaml.ontology
                     //baseIRI = yaml.ontology
                     //prefix.setPrefix(it.prefix+':', yaml2.ontology)
 

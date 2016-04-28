@@ -23,11 +23,13 @@
             <g:elseif test="${feature.value.valueType.contains('http://purl.org/biodiv/semanticUI#Real')}">
                 <input type="text" class="form-control" name="${feature.value.id}" value="${values[feature.value.id]}">
             </g:elseif>
-            <g:if test="${feature.value.weightIndividuals}">
-                <g:set var="hasWeight" value="${values[feature.value.id] != null && values[feature.value.id].weight}" />
-                <div>
-                    <label class="control-label">Weight</label>
-                    <select id="<%= feature.value.weightId %>>" name="<%= feature.value.weightId %>" class="form-control clear">
+        </div>
+        <g:if test="${feature.value.weightIndividuals}">
+            <g:set var="hasWeight" value="${values[feature.value.id] != null && values[feature.value.id].weight}" />
+            <div class="row">
+                <label for="<%= feature.value.weightId %>" class="col-sm-6 control-label weight-label"><%= feature.value.weightLabel %></label>
+                <div class="col-sm-6 text-right">
+                    <select id="<%= feature.value.weightId %>" name="<%= feature.value.weightId %>" class="form-control clear">
                         <g:if test="${hasWeight == false}">
                             <option selected disabled hidden value=''></option>
                         </g:if>
@@ -36,7 +38,7 @@
                         </g:each>
                     </select>
                 </div>
-            </g:if>
-        </div>
+            </div>
+        </g:if>
     </div>
 </g:each>
