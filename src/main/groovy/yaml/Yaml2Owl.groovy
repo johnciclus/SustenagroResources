@@ -206,13 +206,13 @@ class Yaml2Owl {
             return factory.getOWLAnonymousIndividual(iri.toString())
         if (iri)
             (OWLIndividual) getEntity(iri, EntityType.NAMED_INDIVIDUAL)
-        else factory.getOWLAnonymousIndividual()
+        else factory.OWLAnonymousIndividual
     }
 
     @TypeChecked(SKIP)
     def OWLIndividual makeIndividual(Map ind, String id = null){
 
-        def indiv = id ? getEntity(id, EntityType.NAMED_INDIVIDUAL) : factory.getOWLAnonymousIndividual()
+        def indiv = id ? getEntity(id, EntityType.NAMED_INDIVIDUAL) : factory.OWLAnonymousIndividual
 
         ind.keySet().each {
             if (it == 'type'){
@@ -349,7 +349,7 @@ class Yaml2Owl {
             if (ont != merged)
                 manager.removeOntology(ont)
         def changer = new OWLOntologyURIChanger(manager)
-        manager.applyChanges(changer.getChanges(merged, onto.getOntologyID().getOntologyIRI()))
+        manager.applyChanges(changer.getChanges(merged, onto.ontologyID.ontologyIRI))
         //merged.setO.getOntologyID().se
         //manager.saveOntology(merged, new ManchesterOWLSyntaxOntologyFormat(), IRI.create(new File(file).toURI()))
         onto = merged
@@ -365,7 +365,7 @@ class Yaml2Owl {
             case 'owl-xml': saveFormat= new OWLXMLOntologyFormat(); break
             default: saveFormat= new RDFXMLOntologyFormat()
         }
-        if (ontFormat.isPrefixOWLOntologyFormat())
+        if (ontFormat.prefixOWLOntologyFormat)
             saveFormat.copyPrefixesFrom(ontFormat.asPrefixOWLOntologyFormat())
         saveFormat.copyPrefixesFrom(prefix)
         try {
