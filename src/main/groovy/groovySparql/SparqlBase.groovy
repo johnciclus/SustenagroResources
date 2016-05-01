@@ -544,8 +544,13 @@ class SparqlBase {
                 //closure.delegate = row
                 //closure.call()
             }
-        } finally {
-            qe.close()
+        }
+        catch (all){
+            println 'Exception: '+all
+        }
+        finally {
+            if(qe)
+                qe.close()
         }
         return res
     }

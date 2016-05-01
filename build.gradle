@@ -82,6 +82,7 @@ dependencies {
 
     //To read YAML to OWL:
     //compile 'org.codehaus.groovy:groovy-all:2.4.3'
+    compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7'
     compile 'net.sourceforge.owlapi:owlapi-distribution:3.4.10'
     //compile 'org.yaml:snakeyaml:1.17'
     //compile 'com.github.albaker:GroovySparql:0.9.0'       //Compilation Error

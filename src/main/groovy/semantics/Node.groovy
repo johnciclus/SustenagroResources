@@ -149,6 +149,16 @@ class Node {
         k.query("?id a ui:Analysis. ?id :appliedTo <$URI>")
     }
 
+    def getIndividuals(){
+        /*
+        select * where {
+            ?individual rdf:type owl:NamedIndividual.
+                    ?individual ?outProperty ?outObject.
+
+        }
+        */
+    }
+
     def getIndividualsIdLabel(){
         k.select('distinct ?id ?label')
          .query("?id a <$URI>; rdfs:label ?label.",
@@ -595,7 +605,7 @@ class Node {
         def result
 
         query =    "?user a <http://semantic.icmc.usp.br/sustenagro#User>. "+
-                "?user <http://semantic.icmc.usp.br/sustenagro#userName> ?username. "+
+                "?user <http://semantic.icmc.usp.br/sustenagro#username> ?username. "+
                 "?user <http://semantic.icmc.usp.br/sustenagro#password> ?password. "+
                 "FILTER (?username = 'root' && ?password = SHA256('root'))"
 
@@ -610,7 +620,7 @@ class Node {
         def result
 
         query = "?user a ui:User. "+
-                "?user ui:userName ?username. "+
+                "?user ui:username ?username. "+
                 "?user ui:password ?password. "
 
         result = k.query(query)

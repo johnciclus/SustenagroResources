@@ -40,6 +40,8 @@ class ToolController {
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
 
+        //Uri.printTree(evaluationObject.widgets)
+
         gui.setData('evaluationObjects', evaluationObjects)
         gui.setData('evalObjId', evalObjId)
         gui.setData('analyses', analyses)

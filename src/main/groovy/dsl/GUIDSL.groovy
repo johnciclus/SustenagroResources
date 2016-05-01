@@ -218,7 +218,7 @@ class GUIDSL {
             attrs.widgets[key]['attrs']['data'] = _k[arg[1]].getLabelDescription(arg[0].toString())
         }
 
-        //Uri.printTree(attrs)
+        Uri.printTree(attrs)
 
         view.push(['widget': 'createEvaluationObject', 'request': request, 'attrs': attrs])
     }

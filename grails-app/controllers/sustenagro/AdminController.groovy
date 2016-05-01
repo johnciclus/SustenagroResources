@@ -1,14 +1,12 @@
 package sustenagro
 
-import grails.rest.*
 import org.codehaus.groovy.runtime.ResourceGroovyMethods
-import org.semanticweb.owlapi.model.*
-import org.semanticweb.owlapi.io.StringDocumentSource
 import grails.converters.*
 import org.yaml.snakeyaml.Yaml
 import utils.Uri
 import grails.plugin.springsecurity.annotation.Secured
 import yaml.Yaml2Owl
+import groovyx.net.http.RESTClient
 
 @Secured('ROLE_ADMIN')
 class AdminController {
@@ -56,6 +54,8 @@ class AdminController {
 
         if(response.status == 'ok')
             new File(path+'dsl/dsl.groovy').write(params['code'])
+
+        println response
 
         render response as XML
     }
@@ -170,8 +170,6 @@ class AdminController {
 
     def ontology(){
         def response = [:]
-        String file = 'sustenagro.yaml'
-        //def format = 'manchester'
 
         // Just reads YAML
         Map yaml = (Map) new Yaml().load((String) params['ontology'])
@@ -196,9 +194,23 @@ class AdminController {
         //    file = file.substring(0, file.length()-5)
 
         //    file = file + '.owl'
-        onto.save(path + 'ontology/SustenAgroAll.rdf')//, 'manchester')
+        onto.save(path + 'ontology/SustenAgro.rdf')//, 'manchester')
         //    println "Saved: $file"
 
+        def endPoint = 'http://localhost:9999/blazegraph/namespace/kb/sparql'
+
+        def rest = new RESTClient(endPoint)
+        rest.delete([:])
+
+        rest.post(
+                body: new File(path + 'ontology/SemanticUI.rdf').text,
+                requestContentType: 'application/xml'
+        )
+
+        rest.post(
+                body: new File(path + 'ontology/SustenAgro.rdf').text,
+                requestContentType: 'application/xml'
+        )
 
         //def manager = ontology.getManager()
         //OWLOntology ontologyMan = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))

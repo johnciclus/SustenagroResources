@@ -29,7 +29,7 @@
             'http://purl.org/biodiv/semanticUI#email': {
                 email: true
             },
-            'http://purl.org/biodiv/semanticUI#userName': {
+            'http://purl.org/biodiv/semanticUI#username': {
                 noSpace: true,
                 remote: "usernameAvailability"
             },
@@ -44,7 +44,7 @@
             }
         },
         messages: {
-            'http://purl.org/biodiv/semanticUI#userName': {
+            'http://purl.org/biodiv/semanticUI#username': {
                 noSpace: "Espaço em branco não é permitido.",
                 remote: jQuery.validator.format("{0} já está atribuído no sistema.")
             }

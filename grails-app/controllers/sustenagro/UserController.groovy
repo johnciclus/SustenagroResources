@@ -21,7 +21,7 @@ class UserController {
         def base = k.toURI('ui:')
         def user
         def properties = [:]
-        def usernameURI = k.toURI('ui:userName')
+        def usernameURI = k.toURI('ui:username')
         def passwordURI = k.toURI('ui:password')
         def passwordConfirmURI = k.toURI('ui:password-confirm')
         def termsofuseURI = k.toURI('ui:termsofuse')
@@ -52,7 +52,7 @@ class UserController {
     }
 
     def usernameAvailability(){
-        def username = params['http://purl.org/biodiv/semanticUI#userName']
+        def username = params['http://purl.org/biodiv/semanticUI#username']
         render !k[':'+username].exist()
     }
 

@@ -3,7 +3,7 @@
 # associados:
 # label: description
 # a string description fica associada a chave label
-# Quando se quer uma lista de coisas, o - é usado:
+# Quando se quer uma lista de coisas, o - é usado, exemplo:
 # cidades:
 #   - New York
 #   - San Franciso
@@ -14,12 +14,12 @@
 ontology: http://semantic.icmc.usp.br/sustenagro#
 
 # As ontologias que você inclui. No nosso caso vai ser sempre uma
-includes:
-  - SemanticUI.yaml
+#includes:
+#  - SemanticUI.yaml
 
-#imports:
-#  - prefix: ui
-#    file: SemanticUI.yaml #http://purl.org/biodiv/semanticUI#
+imports:
+  - prefix: ui
+    file: SemanticUI.yaml #http://purl.org/biodiv/semanticUI#
 
 #OWLImports:
 #  - prefix: ui
@@ -41,37 +41,28 @@ map:
 #     cada pessoa só pode ter um CPF
 #
 
-description:
-  subPropertyOf: AnnotationProperty
-  label:
-    - description @en
-    - descrição @pt
-
 relevance:
   subPropertyOf: AnnotationProperty
   domain: Indicator
   label: [relevance @en, relevância @pt]
 
-title:
-  subPropertyOf: AnnotationProperty
-  label: [título @pt, title @en]
-  range: Literal
-
 hasSugarcaneSource:
   subPropertyOf: ObjectProperty
-  label:
-    - Tem origem da cana @pt
-    - has sugarcane source @en
+  label: [has sugarcane source @en, tem origem da cana @pt]
   functional: true
   range: SugarcaneSourceCategory
 
 hasAvailabilityOfEvaluationResults:
   subPropertyOf: ObjectProperty
-  label:
-    - has availability of evaluations results @en
-    - Tem disponibilização dos resultados da avaliação @pt
+  label: [has availability of evaluations results @en, tem disponibilização dos resultados da avaliação @pt]
   functional: true
   range: AvailabilityOfEvaluationResultsCategory
+  
+hasAgriculturalProductionSystem:
+  subPropertyOf: ObjectProperty
+  label: [has agricultural production system @en, tem sistema de produção agrícola @pt]
+  functional: true
+  range: AgriculturalProductionSystemCategory
 
 hasFinishOfPlantingDate:
   subPropertyOf: DataProperty
@@ -313,6 +304,18 @@ TrainingAttribute:
   label:
     - Training attribute @en
     - Atributo de treinamento @pt
+
+AvailabilityOfEvaluationResultsCategory:
+  is_a: Categorical
+  label:
+    - Availability of evaluations results category @en
+    - Categoria da disponibilização dos resultados da avaliação @pt
+
+SugarcaneSourceCategory:
+  is_a: Categorical
+  label:
+    - Sugarcane source category @en
+    - Categoria do origem da cana @pt
 
 #
 # Daqui em diante não coloquei em ordem
@@ -1457,3 +1460,27 @@ NoValue:
   type: YesNo
   label: [No @en, Não @pt]
   asNumber: -1.0
+  
+LeaseOrigin:
+  type: SugarcaneSourceCategory
+  label: [Lease origin @en, Arredamento / Parceria @pt]
+
+OwnOrigin:
+  type: SugarcaneSourceCategory
+  label: [Own origin @en, Própria @pt]
+  
+SupplierOrigin:
+  type: SugarcaneSourceCategory
+  label: [Supplier origin @en, Fornecedor @pt]
+
+Private:
+  type: AvailabilityOfEvaluationResultsCategory
+  label: [Private @en, Privado @pt]
+
+Public:
+  type: AvailabilityOfEvaluationResultsCategory
+  label: [Public @en, Público @pt]
+  
+SugarcaneProductionSystem:
+  type: AgriculturalProductionSystemCategory
+  label: [Sugarcane production system @en, Sistema de produção de cana-de-açucar @pt]

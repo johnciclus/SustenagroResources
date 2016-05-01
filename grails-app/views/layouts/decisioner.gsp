@@ -29,18 +29,6 @@
 
     <g:layoutBody/>
 
-    <div class="row footer">
-        <div class="col-sm-4">
-            <asset:image src='embrapa-ma.jpg' class="img-centered" height="75" />
-        </div>
-        <div class="col-sm-4">
-            <asset:image src='logo-icmc.jpg' class="img-centered" height="75" />
-        </div>
-        <div class="col-sm-4">
-            <asset:image src='intermidia.png' class="img-centered" height="75" />
-        </div>
-    </div>
-
     <script type="application/javascript">
         $('#logout').click(function(e){
             $.post('/logout', function( data ) {

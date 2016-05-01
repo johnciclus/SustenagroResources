@@ -410,10 +410,9 @@ class Yaml2Owl {
                 }
                 return
             }
-
             if (key == 'includes') {
                 yaml[key].each {
-                    println "Reading $it ontology ..."
+                    //println "Reading $it ontology ..."
 
                     def yaml2 = new Yaml().load(new FileReader(baseFolder+it))
                     baseIRI = yaml2.ontology
@@ -429,10 +428,9 @@ class Yaml2Owl {
                 }
                 return
             }
-
             if (key == 'imports') {
                 yaml[key].each {
-                    println "Reading ${it.file} ontology ..."
+                    //println "Reading ${it.file} ontology ..."
 
                     def yaml2 = new Yaml().load(new FileReader(baseFolder+it.file))
                     def onto = new Yaml2Owl(yaml2.ontology)
@@ -442,8 +440,8 @@ class Yaml2Owl {
                     if (file.endsWith('.yaml'))
                         file = file.substring(0, file.length()-5)
 
-                    onto.save(file + '.owl')
-                    importOnt(yaml2.ontology, file + '.owl')
+                    onto.save(file + '.rdf')
+                    importOnt(yaml2.ontology, file + '.rdf')
                     prefix.setPrefix(it.prefix+':', yaml2.ontology)
                 }
                 return
@@ -595,7 +593,7 @@ class Yaml2Owl {
     static void main(String[] args) {
         String file = 'sustenagro.yaml'
         def base = './ontology/'
-        
+
         String format = 'manchester'
         if (args.length > 1)  file = args[0]
         if (args.length > 2)  format = args[1]
