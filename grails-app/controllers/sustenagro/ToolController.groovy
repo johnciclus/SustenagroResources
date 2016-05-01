@@ -40,6 +40,8 @@ class ToolController {
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
 
+        //Uri.printTree(evaluationObject.widgets)
+
         gui.setData('evaluationObjects', evaluationObjects)
         gui.setData('evalObjId', evalObjId)
         gui.setData('analyses', analyses)
@@ -54,15 +56,14 @@ class ToolController {
     }
 
     def createEvaluationObject() {
-        def name = k.toURI('ui:hasName')
+        def name = k.toURI('ui:name')
         def id = slugify.slugify(params[name])
-        def type = k.toURI(params['evalObjType'])
+        def type = k.toURI('rdfs:subClassOf')
         def evaluationObject = dsl.evaluationObject
         def username = springSecurityService.getPrincipal().username
         def user = k.toURI(':'+username)
-        //println username
 
-        if(params['evalObjType'] && params[name] && params[type]){
+        if(params[name] && params[type]){
 
             def node = new Node(k)
             def propertyInstances = [:]
@@ -112,22 +113,22 @@ class ToolController {
         }
 
         def options = k[':SustainabilityCategory'].getIndividualsIdValueLabel()
+        def widgets
 
         dsl.featureMap.eachWithIndex { key, feature, int i ->
             //println key
             //println feature
             //println feature.model
+            widgets = []
+            widgets.push(['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]])
+            if(feature.attrs.extraFeatures){
+                widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:name': 'Nome', ':justification': 'Justificativa', 'ui:value': 'Valor']]])
+            }
 
             if(feature.model.superClass.contains(k.toURI(':Variable')))
-                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
-                    ['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]]
-                ]])
-
-            if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
-                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [
-                    ['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]],
-                    ['widget': 'specificIndicators', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]]
-                ]])
+                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: widgets])
+            else if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
+                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: widgets])
         }
 
         /*
@@ -171,7 +172,7 @@ class ToolController {
         def extraFeatures = [:]
         def uri = ''
 
-        properties[k.toURI('rdfs:label')] = [value: k['ui:Analysis'].label+ " " + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now), dataType: k.toURI('rdfs:Literal')]
+        properties[k.toURI('rdfs:label')] = [value: k[':Harvest'].label+ " " + k[evalObjURI].getAttr('?harvestYear'), dataType: k.toURI('rdfs:Literal')]     //new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now)
         properties[k.toURI(':appliedTo')] = [value: evalObjURI, dataType: k[':appliedTo'].range]
         properties[k.toURI('ui:createAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now), dataType: k.toURI('xsd:dateTime')]
 
@@ -350,5 +351,10 @@ class ToolController {
         def id =  uri.substring(uri.lastIndexOf('#')+1)
 
         redirect( action: 'analysis', id: id)
+    }
+
+    def evaluationObjectNameAvailability(){
+        def name = slugify.slugify(params['http://purl.org/biodiv/semanticUI#name'])
+        render !k[':'+name].exist()
     }
 }

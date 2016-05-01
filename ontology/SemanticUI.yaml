@@ -18,14 +18,14 @@ map:
   Settlement: dbp:Settlement
   PopulatedPlace: dbp:PopulatedPlace
   Place: dbp:Place
-  Municipality: dbp:Municipality
-  GovernmentalAdministrativeRegion: dbp:GovernmentalAdministrativeRegion
   Region: dbp:Region
   AdministrativeRegion: dbp:AdministrativeRegion
+  GovernmentalAdministrativeRegion: dbp:GovernmentalAdministrativeRegion
   Mesoregion: http://dbpedia.org/page/Mesoregion_(Brazil)
+  Microregion: http://dbpedia.org/page/Microregion_(Brazil)
+  Municipality: dbp:Municipality
   City: dbp:City
   Settlement: dbp:Settlement
-  Microregion: http://dbpedia.org/page/Microregion_(Brazil)
   Country: dbp:Country
   Brasil: http://pt.dbpedia.org/resource/Brasil
 
@@ -85,7 +85,7 @@ title:
 
 value:
   subPropertyOf: ObjectProperty
-  label: [valor @pt, value @en]
+  label: [tem valor @pt, has value @en]
   functional: true
   range: Value
 
@@ -95,7 +95,8 @@ isPartOf:
 
 state:
   subPropertyOf: isPartOf
-  label: [estado @pt, state @en]
+  label: [ tem estado @pt, has state @en]
+  functional: true
   range: State
 
 hasRole:
@@ -114,33 +115,97 @@ hasWeight:
   functional: true
   range: Value
 
-hasUserName:
+hasEvaluationObject:
   subPropertyOf: ObjectProperty
-  label: [tem nome de usuário @pt, has username @en]
+  label: [tem objeto de avalição @pt, has evaluation object @en]
+
+hasMicroRegion:
+  subPropertyOf: ObjectProperty
+  label: [tem microregion @pt, has microregion @en]
   functional: true
+
+hasOwner:
+  subPropertyOf: ObjectProperty
+  label: [tem proprietário @pt, has owner @en]
+  range: User
+
+createdAt:
+  subPropertyOf: DataProperty
+  label: [create at @en, criado no @pt]
+  functional: true
+  range: dateTime
+
+updateAt:
+  subPropertyOf: DataProperty
+  label: [update at @en, autalizado no @pt]
+  functional: true
+  range: dateTime
 
 mapa:
   subPropertyOf: DataProperty
-  label: [has map @en, tem mapa @pt]
-  range: uri
+  label: [map @en, mapa @pt]
+  #range: anyURI
 
-hasPassword:
+name:
   subPropertyOf: DataProperty
-  label: [has password @en, tem senha @en]
+  label: [name @en, nome @pt]
   functional: true
+  range: Literal
 
-hasDataValue:
+surname:
   subPropertyOf: DataProperty
-  label: [tem valor do dado @pt, has data value @en]
+  label: [surname @en, sobrenome @pt]
+  functional: true
+  range: Literal
+
+organization:
+  subPropertyOf: DataProperty
+  label: [organization @en, organização @pt]
+  functional: true
+  range: Literal
+
+position:
+  subPropertyOf: DataProperty
+  label: [position @en, cargo @pt]
+  functional: true
+  range: Literal
+
+email:
+  subPropertyOf: DataProperty
+  label: [email @en, email @pt]
+  functional: true
+  range: string
+
+username:
+  subPropertyOf: DataProperty
+  label: [username @en, nome de usuário @pt]
+  functional: true
+  range: string
+
+password:
+  subPropertyOf: DataProperty
+  label: [password @en, senha @en]
+  functional: true
+  range: string
+
+phoneNumber:
+  subPropertyOf: DataProperty
+  label: [phone number @en, número de telefone @pt]
+  functional: true
+  range: Literal
+
+dataValue:
+  subPropertyOf: DataProperty
+  label: [data value @en, valor do dado @pt]
   functional: true
   range: Literal
 
 asNumber:
-  subPropertyOf: hasDataValue
-  label: [valor numérico @pt, as number @en]
+  subPropertyOf: dataValue
+  label: [as number @en, valor numérico @pt]
   functional: true
   domain: Categorical
-  #range: real
+  #range: double
 
 
 #
@@ -191,7 +256,7 @@ Boolean:
 Integer:
   is_a: Real
   label: [Inteiro @pt, Integer @en]
-  hasDataValue: integer
+  dataValue: integer
 
 AdministrativeRegion:
   is_a: Region
@@ -255,3 +320,25 @@ FalseVal:
 Brazil:
   type: Country
   label: [Brazil @en, Brasil @pt]
+
+AdminRole:
+  type: Role
+  label: [Admin role @en, Perfil administrador @pt]
+
+UserRole:
+  type: Role
+  label: [User role @en, Perfil usuário @pt]
+
+user:
+  type: User
+  label: [user @en, user @pt]
+  username: user
+  password: 04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb
+  hasRole: UserRole
+
+admin:
+  type: User
+  label: [admin @en, admin @pt]
+  username: admin
+  password: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+  hasRole: [UserRole, AdminRole]

@@ -3,6 +3,8 @@
 <head>
     <meta name="layout" content="main"/>
     <title>SustenAgro - Tool - Analysis</title>
+    <asset:javascript src="jquery.validate.min.js"/>
+    <asset:javascript src="localization/messages_pt_BR.min.js"/>
 </head>
 <body>
 <div class="row main">
@@ -37,6 +39,50 @@
         $("input:radio").filter(function(index) {return $(this).attr('name')===name;})
                 .removeAttr('checked');
     });
+
+    var rules = {};
+
+    $("input[type='radio']").each(function(){
+        var e1Name = $(this).attr('name');
+        var e2 = $("[name^='"+e1Name+"-']");
+        if(e2.length){
+            var e2Name = $(e2).attr('name');
+            rules[e1Name] = {required: function(element) {
+                var name = $(element).attr('name');
+                return (($("[name^='"+name+"-']").val() != null) != $(element).is(':checked'));
+            }};
+            rules[e2Name] = {required: function(element) {
+                var name = $(element).attr('name');
+                var anotherName = name.substring(0, name.lastIndexOf('-'));
+                return (($(element).val() != null) != $("[name='"+anotherName+"']").is(':checked'));
+            }};
+        }
+    });
+
+    $("form").each( function(index){
+        $(this).validate({
+            rules: rules,
+            ignore: '',
+            errorClass: "has-error",
+            errorPlacement: function(error, element) {
+                var form_group = $(element).parents('.form-group');
+                form_group.append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                //console.log('highlight');
+                var form_group = $(element).parents('.form-group');
+                $(element).addClass(errorClass).removeClass(validClass);
+                form_group.addClass(errorClass).removeClass(validClass);
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                //console.log('unhighlight');
+                var form_group = $(element).parents('.form-group');
+                $(element).removeClass(errorClass).addClass(validClass);
+                form_group.removeClass(errorClass).addClass(validClass);
+            }
+        });
+    });
+
 </script>
 </body>
 </html>

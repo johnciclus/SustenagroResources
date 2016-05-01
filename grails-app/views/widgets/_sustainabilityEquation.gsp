@@ -1,9 +1,9 @@
 <p>
-    \[ÍndiceAmbiental = \sum_{i=1}^n ÍndicadorAmbiental * Peso \]
-0
-    \[ÍndiceEconômico = \sum_{i=1}^n ÍndicadorEconômico * Peso \]
+    \[ÍndiceAmbiental = \sum_{i=1}^n (ÍndicadorAmbiental_i * PesoDoÍndicadorAmbiental_i) \]
 
-    \[ÍndiceSocial = \sum_{i=1}^n ÍndicadorSocial * Peso \]
+    \[ÍndiceEconômico = \sum_{i=1}^n (ÍndicadorEconômico_i * PesoDoÍndicadorEconômico_i) \]
+
+    \[ÍndiceSocial = \sum_{i=1}^n (ÍndicadorSocial_i * PesoDoÍndicadorSocial_i) \]
 
     \[ÍndiceDaSustentabilidade = \sum  \frac{(ÍndiceAmbiental + ÍndiceEconômico + ÍndiceSocial)}{3} \]
 

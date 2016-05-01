@@ -56,7 +56,7 @@ import org.apache.jena.rdf.model.Literal
  *
  */
 @Slf4j
-class Sparql {
+class SparqlBase {
 
     String endpoint
     String updateEndpoint
@@ -76,8 +76,8 @@ class Sparql {
      * @param url sparql endpoint URL
      * @return instance of Sparql
      */
-    static Sparql newInstance(String url) {
-        new Sparql(endpoint:url)
+    static SparqlBase newInstance(String url) {
+        new SparqlBase(endpoint:url)
     }
 
     /**
@@ -85,8 +85,8 @@ class Sparql {
      * @param model Apache Jena model
      * @return instance of Sparql
      */
-    static Sparql newInstance(Model model) {
-        new Sparql(model:model)
+    static SparqlBase newInstance(Model model) {
+        new SparqlBase(model:model)
     }
 
 //    static Sparql fromCsvFile(String filename) {
@@ -98,7 +98,7 @@ class Sparql {
      * Construct the Sparql object with an Apache Jena model
      * @param model
      */
-    Sparql(Model model) { this.model = model }
+    SparqlBase(Model model) { this.model = model }
 
     /**
      * Constructor
@@ -106,7 +106,7 @@ class Sparql {
      * If updateEndpoint is not set, this parameter will be used for SPARQL update
      * @param endpoint
      */
-    Sparql(String endpoint) { this.endpoint = endpoint }
+    SparqlBase(String endpoint) { this.endpoint = endpoint }
 
     /**
      * Constructor
@@ -116,7 +116,7 @@ class Sparql {
      * @param model
      * @param config
      */
-    Sparql(Model model, Map config) {
+    SparqlBase(Model model, Map config) {
         this.model = model
         this.config = config
     }
@@ -126,7 +126,7 @@ class Sparql {
      * @param endpoint
      * @param config
      */
-    Sparql(String endpoint, Map config) {
+    SparqlBase(String endpoint, Map config) {
         this.endpoint = endpoint
         this.config = config
     }
@@ -137,7 +137,7 @@ class Sparql {
      * This allows this class to be easliy used in dependency injection frameworks, where you can either —
      * constructor injection or property injection post-construction
      */
-    Sparql() { }
+    SparqlBase() { }
 
     /**
      * <code>eachRow</code>
@@ -544,8 +544,13 @@ class Sparql {
                 //closure.delegate = row
                 //closure.call()
             }
-        } finally {
-            qe.close()
+        }
+        catch (all){
+            println 'Exception: '+all
+        }
+        finally {
+            if(qe)
+                qe.close()
         }
         return res
     }

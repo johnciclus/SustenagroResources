@@ -32,8 +32,8 @@
                 $.post('/tool/analyses',
 					{ 'evaluation_object_id':  $('#evaluation_object_id').val()},
 					function( data ) {
-						$('#analyses_form').html(data);
-						$('#analyses_form table').bootstrapTable();
+						$('#analyses_form_container').html(data);
+						$('#analyses_form_container table').bootstrapTable();
 						$('#new_analysis').prop('disabled', false);
 					}
                 );
@@ -46,22 +46,34 @@
 				loadAnalyses(); // render objeval evaluation_object_id
 			});
 
-            $("#create_form").validate({
-                errorClass: "has-error",
-                errorPlacement: function(error, element) {
-                    var form_group = $(element).parents('.form-group');
-					form_group.children(':last-child').append(error);
-                },
-				highlight: function(element, errorClass, validClass) {
-					console.log('highlight');
-					var form_group = $(element).parents('.form-group');
-					form_group.addClass(errorClass).removeClass(validClass);
-				},
-				unhighlight: function(element, errorClass, validClass) {
-					console.log('unhighlight');
-					var form_group = $(element).parents('.form-group');
-					form_group.removeClass(errorClass).addClass(validClass);
-				}
+            $("form").each( function(index){
+                $(this).validate({
+                    errorClass: "has-error",
+                    rules: {
+                        'http://purl.org/biodiv/semanticUI#name': {
+                            remote: "evaluationObjectNameAvailability"
+                        }
+                    },
+                    messages: {
+                        'http://purl.org/biodiv/semanticUI#name': {
+                            remote: jQuery.validator.format("{0} já está atribuído no sistema.")
+                        }
+                    },
+                    errorPlacement: function(error, element) {
+                        var form_group = $(element).parents('.form-group');
+                        form_group.children(':last-child').append(error);
+                    },
+                    highlight: function(element, errorClass, validClass) {
+                        //console.log('highlight');
+                        var form_group = $(element).parents('.form-group');
+                        form_group.addClass(errorClass).removeClass(validClass);
+                    },
+                    unhighlight: function(element, errorClass, validClass) {
+                        //console.log('unhighlight');
+                        var form_group = $(element).parents('.form-group');
+                        form_group.removeClass(errorClass).addClass(validClass);
+                    }
+                });
             });
 
             $(".datepicker").datepicker({

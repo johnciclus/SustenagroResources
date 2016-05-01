@@ -1,6 +1,6 @@
 package semantics
 
-import groovySparql.Sparql
+import groovySparql.SparqlBase
 
 /**
  * Created by john on 12/2/15.
@@ -8,13 +8,13 @@ import groovySparql.Sparql
 class Know {
 
     private Map _prefixes = [:]
-    private Sparql sparql
+    private SparqlBase sparql
     private String select = '*'
     private String lang = 'en'
     def DSL = [:]
 
     public Know(String url){
-        sparql = new Sparql(endpoint: url)
+        sparql = new SparqlBase(endpoint: url)
         addDefaultNamespaces()
         setLang('pt')
     }

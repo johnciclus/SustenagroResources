@@ -21,9 +21,9 @@ class UserController {
         def base = k.toURI('ui:')
         def user
         def properties = [:]
-        def usernameURI = k.toURI('ui:hasUserName')
-        def passwordURI = k.toURI('ui:hasPassword')
-        def passwordConfirmURI = k.toURI('ui:hasPassword-confirm')
+        def usernameURI = k.toURI('ui:username')
+        def passwordURI = k.toURI('ui:password')
+        def passwordConfirmURI = k.toURI('ui:password-confirm')
         def termsofuseURI = k.toURI('ui:termsofuse')
         def userRole = Role.find{ authority == 'ROLE_USER'}
 
@@ -52,12 +52,12 @@ class UserController {
     }
 
     def usernameAvailability(){
-        def username = params['http://purl.org/biodiv/semanticUI#hasUserName']
+        def username = params['http://purl.org/biodiv/semanticUI#username']
         render !k[':'+username].exist()
     }
 
     def emailAvailability(){
-        def email = params['http://purl.org/biodiv/semanticUI#hasEmail']
-        render (!k['http://purl.org/biodiv/semanticUI#hasEmail'].findSubject(email).size() > 0)
+        def email = params['http://purl.org/biodiv/semanticUI#email']
+        render (!k['http://purl.org/biodiv/semanticUI#email'].findSubject(email).size() > 0)
     }
 }

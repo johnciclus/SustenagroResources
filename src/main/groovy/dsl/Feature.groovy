@@ -12,16 +12,18 @@ class Feature {
     private def _ctx
     private def _k
     private def _model = [:]
+    private def _attrs
 
-    Feature(String id, ApplicationContext applicationContext){
+    Feature(String id, Map attrs, ApplicationContext applicationContext){
         def grandChildren
         _ctx  = applicationContext
         _k    = _ctx.getBean('k')
         _uri  = _k.toURI(id)
         _name = _uri.substring(_uri.lastIndexOf('#')+1)
+        _attrs = attrs
 
         _model = [label: _k[_uri].label, subClass: [:], superClass: _k[_uri].getSuperClass()]
-        grandChildren = _k[_uri].getGrandchildren('?id ?label ?subClass ?relevance ?category ?weight')
+        grandChildren = _k[_uri].getGrandchildren('?id ?label ?subClass ?relevance ?category ?weight ?weightLabel')
 
         _k[_uri].getSubClass('?label').each{ subClass ->
             _model['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
@@ -131,6 +133,10 @@ class Feature {
 
     def getModel(){
         return _model
+    }
+
+    def getAttrs(){
+        return _attrs
     }
 
     def conditional(String arg, String type, Closure closure = {}){

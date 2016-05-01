@@ -21,23 +21,25 @@ class EvaluationObject {
         widgets = []
     }
 
-    def instance(Map attrs = [:], String id, String prop = ''){
+    def instance(Map attrs = [:], String id){
         def uri = k.toURI(id)
-        def range = (id != _id)? k[uri].range : uri
+        def range = (id != 'rdfs:subClassOf')? k[uri].range : _id
         def dataType = (range)? range : k.toURI('xsd:string')
         def widget = (attrs['widget'])? attrs['widget'] : gui['dataTypeToWidget'].find { k.toURI(it.key) == dataType }.value
         def request = []
+        def prop
 
         attrs['id'] = uri
+        attrs['required'] = (attrs['required'])? attrs['required'] : (k[_id].getRestriction(uri).size > 0)
 
-        if(prop?.trim()){
+        if(id == 'rdfs:subClassOf'){
+            prop = id
             request = [prop, dataType]
+            attrs['required'] = true
         }
-        else{
-            if(k[uri].type.contains(k.toURI('owl:ObjectProperty'))){
-                prop = 'rdf:type'
-                request = [prop, dataType]
-            }
+        else if(k[uri].type.contains(k.toURI('owl:ObjectProperty'))){
+            prop = 'rdf:type'
+            request = [prop, dataType]
         }
 
         widget = (widget)? widget : 'textForm'
@@ -60,8 +62,8 @@ class EvaluationObject {
                      attrs: attrs]
     }
 
-    def type(Map attrs = [:], String id=_id){
-        instance(attrs, id, 'rdfs:subClassOf')
+    def type(Map attrs = [:], String id='rdfs:subClassOf'){
+        instance(attrs, id)
     }
 
     def getURI(){

@@ -8,7 +8,7 @@
 
 <body>
 <div class="row">
-    <div class="col-sm-6 col-sm-offset-3 login">
+    <div class="col-sm-8 col-sm-offset-2 login">
         <g:if test="${inputs}">
             <g:each in="${inputs}">
                 <div class="section">
@@ -26,25 +26,25 @@
     $("#signUpForm").validate({
         errorClass: "has-error",
         rules: {
-            'http://purl.org/biodiv/semanticUI#hasEmail': {
+            'http://purl.org/biodiv/semanticUI#email': {
                 email: true
             },
-            'http://purl.org/biodiv/semanticUI#hasUserName': {
+            'http://purl.org/biodiv/semanticUI#username': {
                 noSpace: true,
                 remote: "usernameAvailability"
             },
-            'http://purl.org/biodiv/semanticUI#hasPassword': {
+            'http://purl.org/biodiv/semanticUI#password': {
                 noSpace: true,
                 minlength: 5
             },
-            'http://purl.org/biodiv/semanticUI#hasPassword-confirm': {
+            'http://purl.org/biodiv/semanticUI#password-confirm': {
                 noSpace: true,
                 minlength: 5,
-                equalTo: "input[name='http://purl.org/biodiv/semanticUI#hasPassword']"
+                equalTo: "input[name='http://purl.org/biodiv/semanticUI#password']"
             }
         },
         messages: {
-            'http://purl.org/biodiv/semanticUI#hasUserName': {
+            'http://purl.org/biodiv/semanticUI#username': {
                 noSpace: "Espaço em branco não é permitido.",
                 remote: jQuery.validator.format("{0} já está atribuído no sistema.")
             }

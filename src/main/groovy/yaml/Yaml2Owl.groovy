@@ -1,44 +1,68 @@
 /*
- *    Copyright (c) Dilvan A. Moreira 2016. All rights reserved.
- *    This file is part of ePad.
+ *    Copyright (C) 2016 Dilvan de Abreu Moreira
  *
- *     ePad is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License.
+ *    This program is free software: you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
  *
- *     ePad is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
  *
- *     You should have received a copy of the GNU General Public License
- *     along with ePad.  If not, see <http://www.gnu.org/licenses/>.
+ *    You should have received a copy of the GNU General Public License
+ *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package yaml
 
-//import groovy.sparql.Sparql
-import groovy.transform.CompileStatic
-
+import groovySparql.SparqlBase
 
 //#!/usr/bin/env groovy
 //
 //@Grab('net.sourceforge.owlapi:owlapi-distribution:3.4.10')
 //@Grab('org.yaml:snakeyaml:1.17')
 //@Grab('com.github.albaker:GroovySparql:0.9.0')
+
+import groovy.transform.CompileStatic
 import groovy.transform.TypeChecked
+import groovySparql.SparqlBase
+import org.semanticweb.owlapi.io.OWLOntologyCreationIOException
+import org.semanticweb.owlapi.model.OWLOntologyAlreadyExistsException
+import org.semanticweb.owlapi.model.OWLOntologyCreationException
+import org.semanticweb.owlapi.model.OWLOntologyDocumentAlreadyExistsException
+import org.semanticweb.owlapi.model.UnloadableImportException
+import org.semanticweb.owlapi.util.OWLOntologyMerger
+import org.semanticweb.owlapi.util.OWLOntologyURIChanger
+
+import static groovy.transform.TypeCheckingMode.SKIP
+//import groovy.sparql.Sparql
 import org.coode.owlapi.manchesterowlsyntax.ManchesterOWLSyntaxOntologyFormat
 import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.io.OWLFunctionalSyntaxOntologyFormat
 import org.semanticweb.owlapi.io.OWLOntologyCreationIOException
 import org.semanticweb.owlapi.io.OWLXMLOntologyFormat
 import org.semanticweb.owlapi.io.RDFXMLOntologyFormat
-import org.semanticweb.owlapi.model.*
+import org.semanticweb.owlapi.model.AddImport
+import org.semanticweb.owlapi.model.EntityType
+import org.semanticweb.owlapi.model.IRI
+import org.semanticweb.owlapi.model.OWLAnnotationSubject
+import org.semanticweb.owlapi.model.OWLAnnotationValue
+import org.semanticweb.owlapi.model.OWLClass
+import org.semanticweb.owlapi.model.OWLClassExpression
+import org.semanticweb.owlapi.model.OWLDataFactory
+import org.semanticweb.owlapi.model.OWLDataProperty
+import org.semanticweb.owlapi.model.OWLDataRange
+import org.semanticweb.owlapi.model.OWLEntity
+import org.semanticweb.owlapi.model.OWLIndividual
+import org.semanticweb.owlapi.model.OWLNamedIndividual
+import org.semanticweb.owlapi.model.OWLObjectProperty
+import org.semanticweb.owlapi.model.OWLOntology
+import org.semanticweb.owlapi.model.OWLOntologyManager
 import org.semanticweb.owlapi.util.DefaultPrefixManager
 import org.semanticweb.owlapi.vocab.OWL2Datatype
 import org.yaml.snakeyaml.Yaml
-
-import static groovy.transform.TypeCheckingMode.SKIP
 
 /**
  * Created by dilvan on 4/7/16.
@@ -54,6 +78,7 @@ class Yaml2Owl {
 
     String baseIRI
     String format = ''
+    String baseFolder = ''
 
     def remap = [
             'label': 'rdfs:label',
@@ -71,7 +96,8 @@ class Yaml2Owl {
                     'range', 'domain', 'functional', 'inverse', 'inverseFunctional', 'transitive',
                     'type', 'int', 'integer', 'real', 'double', 'float', 'string', 'uri', 'date']
 
-    Yaml2Owl(String iri = null) {
+    Yaml2Owl(String iri = null, String baseFolder = '') {
+        this.baseFolder = baseFolder
         manager = OWLManager.createOWLOntologyManager()
         factory = manager.OWLDataFactory
         prefix = new DefaultPrefixManager()
@@ -85,10 +111,18 @@ class Yaml2Owl {
                 'ObjectProperty' : factory.getOWLObjectProperty(IRI.create(OWL+'ObjectProperty')),
                 'integer': factory.getOWLDatatype(IRI.create(XSD+'integer')),
                 'real': factory.getOWLDatatype(IRI.create(OWL+'real')),
-                'uri': factory.getOWLDatatype(IRI.create(XSD+'anyURI')),
+                'anyURI': factory.getOWLDatatype(IRI.create(XSD+'anyURI')),
                 'Literal': factory.getOWLDatatype(IRI.create(RDFS+'Literal')),
                 'double': factory.getOWLDatatype(IRI.create(XSD+'double')),
                 'int': factory.getOWLDatatype(IRI.create(XSD+'int')),
+                'boolean': factory.getOWLDatatype(IRI.create(XSD+'boolean')),
+                'date': factory.getOWLDatatype(IRI.create(XSD+'date')),
+                'dateTime': factory.getOWLDatatype(IRI.create(XSD+'dateTime')),
+                'gDay': factory.getOWLDatatype(IRI.create(XSD+'gDay')),
+                'gMonth': factory.getOWLDatatype(IRI.create(XSD+'gMonth')),
+                'gMonthDay': factory.getOWLDatatype(IRI.create(XSD+'gMonthDay')),
+                'gYear': factory.getOWLDatatype(IRI.create(XSD+'gYear')),
+                'gYearMonth': factory.getOWLDatatype(IRI.create(XSD+'gYearMonth')),
                 'string': factory.getOWLDatatype(IRI.create(XSD+'string'))
         ]
     }
@@ -121,7 +155,7 @@ class Yaml2Owl {
             entities = manager.getOntology(imp).getEntitiesInSignature(toIRI(iri, imp.toString()))
             if (!entities.empty) return entities[0]
         }
-        if (! entType) return null
+        if (!entType) return null
         factory.getOWLEntity(entType, toIRI(iri))
     }
 
@@ -154,7 +188,7 @@ class Yaml2Owl {
         if (obj in Integer || obj in Long)
             return factory.getOWLLiteral(obj.toString(), OWL2Datatype.XSD_INTEGER)
         if (obj in Float || obj in Double)
-            return factory.getOWLLiteral(obj.toString(), OWL2Datatype.OWL_REAL)
+            return factory.getOWLLiteral(obj.toString(), OWL2Datatype.XSD_DOUBLE)
         if (obj in String) {
             String str = obj.trim()
             def length = str.length()
@@ -172,13 +206,13 @@ class Yaml2Owl {
             return factory.getOWLAnonymousIndividual(iri.toString())
         if (iri)
             (OWLIndividual) getEntity(iri, EntityType.NAMED_INDIVIDUAL)
-        else factory.getOWLAnonymousIndividual()
+        else factory.OWLAnonymousIndividual
     }
 
     @TypeChecked(SKIP)
     def OWLIndividual makeIndividual(Map ind, String id = null){
 
-        def indiv = id ? getEntity(id, EntityType.NAMED_INDIVIDUAL) : factory.getOWLAnonymousIndividual()
+        def indiv = id ? getEntity(id, EntityType.NAMED_INDIVIDUAL) : factory.OWLAnonymousIndividual
 
         ind.keySet().each {
             if (it == 'type'){
@@ -217,7 +251,7 @@ class Yaml2Owl {
     @TypeChecked(SKIP)
     def OWLIndividual makeIndividual(String subj, String property, String obj){
 
-       // println "tripla: $subj $property : $obj"
+        // println "tripla: $subj $property : $obj"
         def indiv = getEntity(subj, EntityType.NAMED_INDIVIDUAL)
 
         if (property == 'type'){
@@ -285,8 +319,6 @@ class Yaml2Owl {
         try {
             if (file) manager.loadOntologyFromOntologyDocument(new File(file))
             else manager.loadOntologyFromOntologyDocument(IRI.create(name))
-        } catch (OWLOntologyCreationException e) {
-            println "Error: There was a problem in creating and loading the ontology $name: ${e.message}"
         } catch (UnloadableImportException e) {
             println "Error: Ontology $name imports ontologies and one of this imports could not be loaded for what ever reason: $e.message"
         } catch (OWLOntologyCreationIOException e) {
@@ -295,7 +327,33 @@ class Yaml2Owl {
             println "Error: The specified documentIRI ($name) is already the document IRI for a loaded ontology: $e.message"
         } catch (OWLOntologyAlreadyExistsException e) {
             println "Error: The manager already contains an ontology whose ontology IRI and version IRI is the same as the ontology IRI ($name) and version IRI of the ontology contained in the document pointed to by documentIRI: $e.message."
+        } catch (OWLOntologyCreationException e) {
+            println "Error: There was a problem in creating and loading the ontology $name: ${e.message}"
+        } catch (e) {
+            println "Error: There was a problem in creating and loading the ontology $name: ${e.message}"
         }
+    }
+
+    def merge() {
+        OWLOntologyMerger merger = new OWLOntologyMerger(manager);
+        // We merge all of the loaded ontologies.  Since an OWLOntologyManager is an OWLOntologySetProvider we
+        // just pass this in.  We also need to specify the URI of the new ontology that will be created.
+        //IRI mergedOntologyIRI = IRI.create(onto.getOntologyID().getOntologyIRI());
+        OWLOntology merged = merger.createMergedOntology(manager, null)//onto.getOntologyID().getOntologyIRI());
+        // Print out the axioms in the merged ontology.
+        //for (OWLAxiom ax : merged.getAxioms()) {
+        //    System.out.println(ax);
+        //}
+        // Save to RDF/XML
+        for (OWLOntology ont:manager.ontologies)
+            if (ont != merged)
+                manager.removeOntology(ont)
+        def changer = new OWLOntologyURIChanger(manager)
+        manager.applyChanges(changer.getChanges(merged, onto.ontologyID.ontologyIRI))
+        //merged.setO.getOntologyID().se
+        //manager.saveOntology(merged, new ManchesterOWLSyntaxOntologyFormat(), IRI.create(new File(file).toURI()))
+        onto = merged
+        //save(merged, file, formatType)
     }
 
     def save(String file, formatType = format) {
@@ -306,9 +364,8 @@ class Yaml2Owl {
             case 'manchester': saveFormat= new ManchesterOWLSyntaxOntologyFormat(); break
             case 'owl-xml': saveFormat= new OWLXMLOntologyFormat(); break
             default: saveFormat= new RDFXMLOntologyFormat()
-
         }
-        if (ontFormat.isPrefixOWLOntologyFormat())
+        if (ontFormat.prefixOWLOntologyFormat)
             saveFormat.copyPrefixesFrom(ontFormat.asPrefixOWLOntologyFormat())
         saveFormat.copyPrefixesFrom(prefix)
         try {
@@ -324,7 +381,6 @@ class Yaml2Owl {
         elem1
     }
 
-    /*
     def readYaml(Map yaml) {
         prefix.defaultPrefix = yaml.ontology
 
@@ -338,7 +394,6 @@ class Yaml2Owl {
 
         readYaml2(yaml)
     }
-
 
     @TypeChecked(SKIP)
     def readYaml2(Map yaml) {
@@ -355,37 +410,45 @@ class Yaml2Owl {
                 }
                 return
             }
-
             if (key == 'includes') {
                 yaml[key].each {
-                    println "Reading $it ontology ..."
+                    //println "Reading $it ontology ..."
 
-                    def yaml2 = new Yaml().load(new FileReader(it))
+                    def yaml2 = new Yaml().load(new FileReader(baseFolder+it))
+                    baseIRI = yaml2.ontology
                     readYaml2(yaml2)
+
+                    //baseIRI = yaml.ontology
+                    // Recover baseIRI for this ontology
+                    //prefix.defaultPrefix = yaml.ontology
+                    //baseIRI = yaml.ontology
+                    //prefix.setPrefix(it.prefix+':', yaml2.ontology)
 
                     println "Finished (reading $it)."
                 }
                 return
             }
-
-
             if (key == 'imports') {
                 yaml[key].each {
-                    println "Reading ${it.file} ontology ..."
+                    //println "Reading ${it.file} ontology ..."
 
-                    def yaml2 = new Yaml().load(new FileReader(it.file))
+                    def yaml2 = new Yaml().load(new FileReader(baseFolder+it.file))
                     def onto = new Yaml2Owl(yaml2.ontology)
                     onto.readYaml(yaml2)
 
-                    onto.save(it.file+'.owl', 'manchester')
-                    importOnt(yaml2.ontology, it.file+'.owl')
+                    def file = baseFolder + it.file
+                    if (file.endsWith('.yaml'))
+                        file = file.substring(0, file.length()-5)
+
+                    onto.save(file + '.rdf')
+                    importOnt(yaml2.ontology, file + '.rdf')
                     prefix.setPrefix(it.prefix+':', yaml2.ontology)
                 }
                 return
             }
             if (key == 'OWLImports') {
                 yaml[key].each {
-                    importOnt(it.uri, it.file)
+                    importOnt(it.uri, baseFolder + it.file)
                     prefix.setPrefix(it.prefix+':', it.uri)
                 }
                 return
@@ -395,7 +458,7 @@ class Yaml2Owl {
                 return
             }
             if (key == 'addFrom') {
-               return
+                return
             }
 
             if (yaml[key].subPropertyOf) {
@@ -511,17 +574,17 @@ class Yaml2Owl {
             if (key == 'addFrom') {
                 yaml[key].each { cmd ->
                     // SPARQL 1.0 or 1.1 endpoint
-                    def sparql = new Sparql(endpoint: cmd.endpoint) //, user:"user", pass:"pass")
+                    def sparql = new SparqlBase(endpoint: cmd.endpoint) //, user:"user", pass:"pass")
 
                     String template = cmd.template
-                    sparql.eachRow(cmd.query, { Map row ->
+                    sparql.eachRow(cmd.query) { Map row ->
                         //println row['uri1']
                         for (String line : template.split('\n')) {
                             //println "line: $line"
                             def elem = line.split(' ')
                             makeIndividual(parseElem(elem[0], row), parseElem(elem[1], row), parseElem(elem[2], row))
                         }
-                    })
+                    }
                 }
             }
         }
@@ -529,16 +592,18 @@ class Yaml2Owl {
 
     static void main(String[] args) {
         String file = 'sustenagro.yaml'
-        def format = 'manchester'
+        def base = './ontology/'
+
+        String format = 'manchester'
         if (args.length > 1)  file = args[0]
         if (args.length > 2)  format = args[1]
 
-        Map yaml = (Map) new Yaml().load(new FileReader(file))
+        Map yaml = (Map) new Yaml().load(new FileReader(base+file))
 
         println "Ontology: ${yaml.ontology}"
 
-        def onto = new Yaml2Owl((String) yaml.ontology)
-        onto.format = format
+        def onto = new Yaml2Owl((String) yaml.ontology, base)
+        //onto.format = format
 
         onto.readYaml(yaml)
 
@@ -547,7 +612,8 @@ class Yaml2Owl {
             file = file.substring(0, file.length()-5)
 
         file = file + '.owl'
-        onto.save(file, format)
+        //onto.merge()
+        onto.save(base+file, format)
         println "Saved: $file"
-    }*/
+    }
 }

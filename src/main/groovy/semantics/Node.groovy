@@ -22,7 +22,7 @@ class Node {
 
         //owl:DatatypeProperty
         this.patterns['mapa']       = "<$URI> <http://dbpedia.org/property/pt/mapa> ?mapa. "
-
+        this.patterns['harvestYear']= "<$URI> :harvestYear ?harvestYear. "
         //owl:TransitiveProperty
 
         // owl:AnnotationProperty
@@ -138,7 +138,7 @@ class Node {
     }
 
     def getLabelDataValue(){
-        k.query("?id a <$URI>; rdfs:label ?label; ui:hasDataValue ?dataValue")
+        k.query("?id a <$URI>; rdfs:label ?label; ui:dataValue ?dataValue")
     }
 
     def getLabelAppliedTo(){
@@ -149,6 +149,16 @@ class Node {
         k.query("?id a ui:Analysis. ?id :appliedTo <$URI>")
     }
 
+    def getIndividuals(){
+        /*
+        select * where {
+            ?individual rdf:type owl:NamedIndividual.
+                    ?individual ?outProperty ?outObject.
+
+        }
+        */
+    }
+
     def getIndividualsIdLabel(){
         k.select('distinct ?id ?label')
          .query("?id a <$URI>; rdfs:label ?label.",
@@ -157,7 +167,7 @@ class Node {
 
     def getIndividualsIdValueLabel(){
         k.select('distinct ?id ?value ?label')
-            .query("?id a <$URI>; rdfs:label ?label; ui:hasDataValue ?value.",
+            .query("?id a <$URI>; rdfs:label ?label; ui:dataValue ?value.",
             "ORDER BY ?label")
     }
 
@@ -174,7 +184,7 @@ class Node {
     }
 
     def getOptions() {
-        k.query("?id rdf:type <$URI>. ?id rdfs:label ?label. ?id ui:hasDataValue ?value.")
+        k.query("?id rdf:type <$URI>. ?id rdfs:label ?label. ?id ui:dataValue ?value.")
     }
 
     def getSuperClass(Map params = [:]){
@@ -265,6 +275,7 @@ class Node {
                                 ?id rdfs:subClassOf ?z.
                                 ?z owl:onProperty ui:hasWeight.
                                 ?z owl:onClass ?weight.
+                                ?weight rdfs:label ?weightLabel.
                              } '''
             }
 
@@ -391,7 +402,7 @@ class Node {
                 "?ind a ?id." +
 
                 "?ind ui:value ?valueType."+
-                "?valueType ui:hasDataValue ?value."+
+                "?valueType ui:dataValue ?value."+
                 "?valueType rdfs:label ?valueTypeLabel."+
 
                 "optional {"+
@@ -444,12 +455,12 @@ class Node {
                     "?ind a ?id." +
 
                     "?ind ui:value ?valueType." +
-                    "?valueType ui:hasDataValue ?value." +
+                    "?valueType ui:dataValue ?value." +
                     "?valueType rdfs:label ?valueTypeLabel."+
 
                     "optional {"+
                         "?ind ui:hasWeight ?weightType." +
-                        "?weightType ui:hasDataValue ?weight."+
+                        "?weightType ui:dataValue ?weight."+
                         "?weightType rdfs:label ?weightTypeLabel."+
                     "}"+
                     "FILTER( ?id != <$URI> )"
@@ -492,11 +503,11 @@ class Node {
         def query = "<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
                 "?id rdfs:subClassOf <$URI>." +
                 "?ind a ?id." +
-                "?ind ui:hasName ?name."+
-                "?ind :hasJustification ?justification."+
+                "?ind ui:name ?name."+
+                "?ind :justification ?justification."+
                 "optional {?id <http://semantic.icmc.usp.br/sustenagro#relevance> ?relevance}."+
                 "?ind ui:value ?valueType." +
-                "?valueType ui:hasDataValue ?value." +
+                "?valueType ui:dataValue ?value." +
                 "?valueType rdfs:label ?valueTypeLabel."+
 
                 "FILTER( ?id = <$URI> )"
@@ -594,8 +605,8 @@ class Node {
         def result
 
         query =    "?user a <http://semantic.icmc.usp.br/sustenagro#User>. "+
-                "?user <http://semantic.icmc.usp.br/sustenagro#hasUserName> ?username. "+
-                "?user <http://semantic.icmc.usp.br/sustenagro#hasPassword> ?password. "+
+                "?user <http://semantic.icmc.usp.br/sustenagro#username> ?username. "+
+                "?user <http://semantic.icmc.usp.br/sustenagro#password> ?password. "+
                 "FILTER (?username = 'root' && ?password = SHA256('root'))"
 
         result = k.query(query)
@@ -609,8 +620,8 @@ class Node {
         def result
 
         query = "?user a ui:User. "+
-                "?user ui:hasUserName ?username. "+
-                "?user ui:hasPassword ?password. "
+                "?user ui:username ?username. "+
+                "?user ui:password ?password. "
 
         result = k.query(query)
         //(result.size()==1)? result[0] : result
@@ -625,6 +636,22 @@ class Node {
 
         result = k.query(query)
         //(result.size()==1)? result[0] : result
+    }
+
+    def getRestriction(String property){
+        def select = ''
+        def query = ''
+        def result
+        def propertyURI = k.toURI(property);
+
+        query = "<$URI> rdfs:subClassOf ?o. "+
+                "?o owl:onProperty ?property. "+
+                "optional {?o owl:onClass ?class. } "+
+                "optional {?o owl:cardinality ?cardinality. }"+
+                "optional {?o owl:qualifiedCardinality ?cardinality. }"+
+                "FILTER (?property = <$propertyURI>)"
+
+        result = k.query(query)
     }
 
     def findSubject(String args){
@@ -677,7 +704,7 @@ class Node {
 
     def insertEvaluationObject(String id, Object type, Map properties = [:]){
         def evalObjId = k.toURI(":"+id)
-        def name = k.toURI('ui:hasName')
+        def name = k.toURI('ui:name')
 
         String sparql = "<" + evalObjId + "> "
 

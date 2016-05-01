@@ -197,7 +197,6 @@ class GUIDSL {
 
     def createEvaluationObject(Map attrs = [:], ArrayList widgets = [], ArrayList view = viewsMap[_controller][_action]){
         def defaultAttrs =  _widgetAttrs['createEvaluationObject']
-        def uri = _k.toURI(attrs.id)
         def request        = [:]
 
         defaultAttrs.each{key, value->
@@ -207,7 +206,6 @@ class GUIDSL {
 
         request['widgets']    = [:]
         attrs['widgets']      = [:]
-        attrs['evalObjType']  = uri
 
         widgets.each{
             if(it.request) {
@@ -220,7 +218,7 @@ class GUIDSL {
             attrs.widgets[key]['attrs']['data'] = _k[arg[1]].getLabelDescription(arg[0].toString())
         }
 
-        //Uri.printTree(attrs)
+        Uri.printTree(attrs)
 
         view.push(['widget': 'createEvaluationObject', 'request': request, 'attrs': attrs])
     }

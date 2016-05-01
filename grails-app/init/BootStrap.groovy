@@ -17,10 +17,10 @@ class BootStrap {
             roles = k[it.user].getRoles()
 
             roles.each { role ->
-                if (role.role == k.toURI('ui:userRole')) {
+                if (role.role == k.toURI('ui:UserRole')) {
                     UserRole.create user, userRole
                 }
-                if (role.role == k.toURI('ui:adminRole')) {
+                if (role.role == k.toURI('ui:AdminRole')) {
                     UserRole.create user, adminRole
                 }
             }
@@ -30,6 +30,7 @@ class BootStrap {
             it.flush()
             it.clear()
         }
+
         /*
         println "User.count"
         println User.count()
