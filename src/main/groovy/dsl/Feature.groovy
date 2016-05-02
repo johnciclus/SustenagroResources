@@ -30,8 +30,8 @@ class Feature {
             grandChildren.each{
                 if(it.subClass == subClass.subClass) {
                     _model['subClass'][subClass.subClass]['subClass'][it.id] = it
-                    _model['subClass'][subClass.subClass]['subClass'][it.id]['valueTypes'] = _k[it.category].getSuperClass()
-                    _model['subClass'][subClass.subClass]['subClass'][it.id]['categoryIndividuals'] = _k[it.category].getIndividualsIdLabel()
+                    _model['subClass'][subClass.subClass]['subClass'][it.id]['valueTypes'] = _k[it.id].getCollectionIndividualsTypes()   //_k[it.category].getSuperClass()
+                    _model['subClass'][subClass.subClass]['subClass'][it.id]['categoryIndividuals'] = _k[it.id].getCollectionIndividuals()  //_k[it.category].getIndividualsIdLabel()
                     if(it.weight){
                         _model['subClass'][subClass.subClass]['subClass'][it.id]['weightId'] = it.id + '-' + it.weight.substring(it.weight.lastIndexOf('#')+1)
                         _model['subClass'][subClass.subClass]['subClass'][it.id]['weightIndividuals'] = _k[it.weight].getIndividualsIdLabel()

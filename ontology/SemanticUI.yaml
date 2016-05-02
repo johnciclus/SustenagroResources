@@ -119,10 +119,11 @@ hasEvaluationObject:
   subPropertyOf: ObjectProperty
   label: [tem objeto de avalição @pt, has evaluation object @en]
 
-hasMicroRegion:
+hasMicroregion:
   subPropertyOf: ObjectProperty
   label: [tem microregion @pt, has microregion @en]
   functional: true
+  range: Microregion
 
 hasOwner:
   subPropertyOf: ObjectProperty

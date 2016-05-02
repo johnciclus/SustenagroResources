@@ -165,6 +165,48 @@ class Node {
                 "ORDER BY ?label")
     }
 
+    def getCollectionIndividuals(){
+        def query = ''
+        def result
+
+        query += "<$URI> rdfs:subClassOf ?y. " +
+                "?y owl:onProperty ui:value. "+
+                "?y owl:onClass*/owl:someValuesFrom ?category. "+
+                "optional {"+
+                "   ?category owl:oneOf ?collection. "+
+                "   ?collection rdf:rest*/rdf:first ?id. "+
+                "}"+
+                "optional {"+
+                "   ?id a ?category. "+
+                "}"+
+                "?id rdfs:label ?label. "+
+                "?id ui:dataValue ?dataValue. "+
+                "FILTER(?category != <http://purl.org/biodiv/semanticUI#Categorical>)"
+
+        k.select('distinct ?category ?id ?label ?dataValue').query(query, "ORDER BY ?label")
+    }
+
+    def getCollectionIndividualsTypes(){
+        def query = ''
+        def result
+
+        query += "<$URI> rdfs:subClassOf ?y. " +
+                "?y owl:onProperty ui:value. "+
+                "?y owl:onClass*/owl:someValuesFrom ?category. "+
+                "optional {"+
+                "   ?category owl:oneOf ?collection. "+
+                "   ?collection rdf:rest*/rdf:first ?element. "+
+                "   ?element a ?types. "+
+                "}"+
+                "optional{"+
+                "   ?category rdfs:subClassOf ?types. "+
+                "}"+
+                "FILTER(?category != <http://purl.org/biodiv/semanticUI#Categorical>)"
+
+        result = k.select('distinct ?types').query(query, "ORDER BY ?elementLabel")
+        result.collect{ it['types'] }
+    }
+
     def getIndividualsIdValueLabel(){
         k.select('distinct ?id ?value ?label')
             .query("?id a <$URI>; rdfs:label ?label; ui:dataValue ?value.",
@@ -268,7 +310,7 @@ class Node {
             if(argsList.contains('category')){
                 query += ''' ?id rdfs:subClassOf ?y.
                              ?y owl:onProperty ui:value.
-                             ?y owl:onClass ?category. '''
+                             ?y owl:someValuesFrom ?category. '''
             }
             if(argsList.contains('weight')){
                 query += ''' optional {
@@ -279,7 +321,7 @@ class Node {
                              } '''
             }
 
-            query += "FILTER(?subClass != <$URI> && ?subClass != ?id)"
+            query += "FILTER(?subClass != <$URI> && ?subClass != ?id && ?category != ui:Categorical)"
         }
 
         result = k.select('distinct '+args).query(query, "ORDER BY ?label")
@@ -650,6 +692,18 @@ class Node {
                 "optional {?o owl:cardinality ?cardinality. }"+
                 "optional {?o owl:qualifiedCardinality ?cardinality. }"+
                 "FILTER (?property = <$propertyURI>)"
+
+        result = k.query(query)
+    }
+
+    def getMicroregions(){
+        def select = ''
+        def query = ''
+        def result
+
+        query = "?id rdf:type <http://dbpedia.org/page/Microregion_(Brazil)>. "+
+                "?id <http://dbpedia.org/ontology/state> <$URI>. " +
+                "?id rdfs:label ?label. "
 
         result = k.query(query)
     }

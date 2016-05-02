@@ -570,6 +570,7 @@ class Yaml2Owl {
             }
             //println "Key $key: ${yaml[key]}"
         }
+        def obj
         yaml.keySet().each { key ->
             if (key == 'addFrom') {
                 yaml[key].each { cmd ->
@@ -582,7 +583,8 @@ class Yaml2Owl {
                         for (String line : template.split('\n')) {
                             //println "line: $line"
                             def elem = line.split(' ')
-                            makeIndividual(parseElem(elem[0], row), parseElem(elem[1], row), parseElem(elem[2], row))
+                            obj = (elem[1] == 'label') ? parseElem(elem[2], row)+' @pt' : parseElem(elem[2], row)
+                            makeIndividual(parseElem(elem[0], row), parseElem(elem[1], row), obj)
                         }
                     }
                 }

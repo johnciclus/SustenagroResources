@@ -28,60 +28,74 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			function loadAnalyses(){
-                $.post('/tool/analyses',
-					{ 'evaluation_object_id':  $('#evaluation_object_id').val()},
-					function( data ) {
-						$('#analyses_form_container').html(data);
-						$('#analyses_form_container table').bootstrapTable();
-						$('#new_analysis').prop('disabled', false);
-					}
-                );
-            }
+            $(document).ready(function() {
+                function loadAnalyses() {
+                    $.post('/tool/analyses',
+                            {'evaluation_object_id': $('#evaluation_object_id').val()},
+                            function (data) {
+                                $('#analyses_form_container').html(data);
+                                $('#analyses_form_container table').bootstrapTable();
+                                $('#new_analysis').prop('disabled', false);
+                            }
+                    );
+                }
 
-			if($('#evaluation_object_id').val()!=null){
-				loadAnalyses();
-			}
-			$('#evaluation_object_id').change( function(){
-				loadAnalyses(); // render objeval evaluation_object_id
-			});
+                if ($('#evaluation_object_id').val() != null) {
+                    loadAnalyses();
+                }
+                $('#evaluation_object_id').change(function () {
+                    loadAnalyses(); // render objeval evaluation_object_id
+                });
 
-            $("form").each( function(index){
-                $(this).validate({
-                    errorClass: "has-error",
-                    rules: {
-                        'http://purl.org/biodiv/semanticUI#name': {
-                            remote: "evaluationObjectNameAvailability"
+                $("input[name='http://dbpedia.org/ontology/state']").change(function () {
+                    $.post('/tool/microregions',
+                            {'http://dbpedia.org/ontology/state': $(this).val()},
+                            function (data) {
+                                var form_group = $("label[for='http://purl.org/biodiv/semanticUI#hasMicroregion']").parents('.form-group');
+                                form_group.children(':last-child').html(data);
+                                form_group.find('table').bootstrapTable()
+                            }
+                    );
+                });
+
+                $("form").each(function (index) {
+                    $(this).validate({
+                        errorClass: "has-error",
+                        rules: {
+                            'http://purl.org/biodiv/semanticUI#name': {
+                                remote: "evaluationObjectNameAvailability"
+                            }
+                        },
+                        messages: {
+                            'http://purl.org/biodiv/semanticUI#name': {
+                                remote: jQuery.validator.format("{0} já está atribuído no sistema.")
+                            }
+                        },
+                        errorPlacement: function (error, element) {
+                            var form_group = $(element).parents('.form-group');
+                            form_group.children(':last-child').append(error);
+                        },
+                        highlight: function (element, errorClass, validClass) {
+                            //console.log('highlight');
+                            var form_group = $(element).parents('.form-group');
+                            form_group.addClass(errorClass).removeClass(validClass);
+                        },
+                        unhighlight: function (element, errorClass, validClass) {
+                            //console.log('unhighlight');
+                            var form_group = $(element).parents('.form-group');
+                            form_group.removeClass(errorClass).addClass(validClass);
                         }
-                    },
-                    messages: {
-                        'http://purl.org/biodiv/semanticUI#name': {
-                            remote: jQuery.validator.format("{0} já está atribuído no sistema.")
-                        }
-                    },
-                    errorPlacement: function(error, element) {
-                        var form_group = $(element).parents('.form-group');
-                        form_group.children(':last-child').append(error);
-                    },
-                    highlight: function(element, errorClass, validClass) {
-                        //console.log('highlight');
-                        var form_group = $(element).parents('.form-group');
-                        form_group.addClass(errorClass).removeClass(validClass);
-                    },
-                    unhighlight: function(element, errorClass, validClass) {
-                        //console.log('unhighlight');
-                        var form_group = $(element).parents('.form-group');
-                        form_group.removeClass(errorClass).addClass(validClass);
-                    }
+                    });
+                });
+
+                $(".datepicker").datepicker({
+                    format: 'dd/mm/yyyy',
+                    language: "pt-BR",
+                    todayBtn: true,
+                    autoclose: true
                 });
             });
-
-            $(".datepicker").datepicker({
-                format: 'dd/mm/yyyy',
-                language: "pt-BR",
-                todayBtn: true,
-                autoclose: true
-            });
 		</script>
+
 	</body>
 </html>

@@ -20,7 +20,7 @@
                     </div>
                 </g:each>
             </g:if>
-            <g:elseif test="${feature.value.valueType.contains('http://purl.org/biodiv/semanticUI#Real')}">
+            <g:elseif test="${feature.value.valueTypes.contains('http://purl.org/biodiv/semanticUI#Real')}">
                 <input type="text" class="form-control" name="${feature.value.id}" value="${values[feature.value.id]}">
             </g:elseif>
         </div>

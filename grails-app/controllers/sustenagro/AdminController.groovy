@@ -55,7 +55,7 @@ class AdminController {
         if(response.status == 'ok')
             new File(path+'dsl/dsl.groovy').write(params['code'])
 
-        println response
+        //println response
 
         render response as XML
     }
@@ -135,7 +135,7 @@ class AdminController {
             sparql += " rdfs:subClassOf _:b. "+
                     " _:b owl:onClass <"+ k.toURI(":" + params.valuetype) +">"
 
-            println sparql
+            //println sparql
 
             k.insert(sparql)
 
@@ -212,6 +212,8 @@ class AdminController {
                 requestContentType: 'application/xml'
         )
 
+        dsl.reload(new File(path+'dsl/dsl.groovy').text)
+
         //def manager = ontology.getManager()
         //OWLOntology ontologyMan = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
 
@@ -244,7 +246,7 @@ class AdminController {
 
     def attributes(){
         def attr = k[':'+params['dimension']].getAttributes()
-        println attr
+        //println attr
 
         Uri.simpleDomain(attr, 'http://bio.icmc.usp.br/sustenagro#')
 
@@ -256,7 +258,7 @@ class AdminController {
         def data = [:]
         def result = Uri.simpleDomain(k[':'+id].getIndicator(), "http://bio.icmc.usp.br/sustenagro#", '')
 
-        println result
+        //println result
 
         if(result.size() == 1){
             data['indicator'] = result[0]

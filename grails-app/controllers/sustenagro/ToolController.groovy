@@ -1,5 +1,6 @@
 package sustenagro
 
+import grails.converters.JSON
 import semantics.DataReader
 import semantics.Node
 import grails.plugin.springsecurity.annotation.Secured
@@ -131,12 +132,13 @@ class ToolController {
                 sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: widgets])
         }
 
-        /*
+
         dsl.featureMap.each{ key, feature ->
             println feature.model.label
             println feature.uri
             Uri.printTree(feature.model)
         }
+        /*
         println evaluationObjects
         println analyses
         */
@@ -356,5 +358,10 @@ class ToolController {
     def evaluationObjectNameAvailability(){
         def name = slugify.slugify(params['http://purl.org/biodiv/semanticUI#name'])
         render !k[':'+name].exist()
+    }
+
+    def microregions(){
+        def microregions = k[params['http://dbpedia.org/ontology/state']].getMicroregions()
+        render( template: '/widgets/category', model: [id: 'http://purl.org/biodiv/semanticUI#hasMicroregion', data: microregions, header: 'Opções', selectType: 'radio']);
     }
 }
