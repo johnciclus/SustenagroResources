@@ -213,7 +213,7 @@ class Know {
                 return true
             return false
         }
-        else if(id.class.isArray()){
+        else if(id.getClass().isArray()){
             def isArray = true
             id.each{
                 isArray = (it != null && it != '' && !it.contains(" ") && it.startsWith('http://')) ? isArray && true : isArray && false

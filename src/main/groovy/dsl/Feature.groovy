@@ -178,6 +178,35 @@ class Feature {
         }
         return individuals
     }
+
+    def getValueIndividuals(){
+        def individuals = [:]
+        _model.subClass.each{ subClassKey, subClass ->
+            subClass.subClass.each{ indKey, indValue ->
+                if(indValue.categoryIndividuals) {
+                    indValue.categoryIndividuals.each {
+                        individuals[it.id] = it
+                    }
+                }
+            }
+        }
+        return individuals
+    }
+
+    def getWeightIndividuals(){
+        def individuals = [:]
+        _model.subClass.each{ subClassKey, subClass ->
+            subClass.subClass.each{ indKey, indValue ->
+                if(indValue.weightIndividuals){
+                    indValue.weightIndividuals.each{
+                        individuals[it.id] = it
+                    }
+                }
+            }
+        }
+        return individuals
+    }
+
     def getIndividualKeys(){
         def individuals = []
         _model.subClass.each{ subClassKey, subClass ->

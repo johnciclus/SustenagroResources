@@ -123,7 +123,7 @@ class ToolController {
             widgets = []
             widgets.push(['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]])
             if(feature.attrs.extraFeatures){
-                widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:name': 'Nome', ':justification': 'Justificativa', 'ui:value': 'Valor']]])
+                widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]])
             }
 
             if(feature.model.superClass.contains(k.toURI(':Variable')))
@@ -169,8 +169,11 @@ class ToolController {
         def properties = [:]
         def node = new Node(k)
         def individualKeys = []
-        def weightedIndividualsKeys = []
-        def weightedIndividuals = [:]
+        def paramValue
+        def paramWeight
+        def paramJustification
+        def valueIndividuals = [:]
+        def weightIndividuals = [:]
         def featureInstances = [:]
         def extraFeatures = [:]
         def uri = ''
@@ -179,32 +182,35 @@ class ToolController {
         properties[k.toURI(':appliedTo')] = [value: evalObjURI, dataType: k[':appliedTo'].range]
         properties[k.toURI('ui:createAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now), dataType: k.toURI('xsd:dateTime')]
 
-        dsl.featureMap.each{ key, feature ->
-            individualKeys += feature.getIndividualKeys()
-            weightedIndividualsKeys += feature.getWeightedIndividualKeys()
-            extraFeatures[key] = [:]
-        }
-        println individualKeys
-        println weightedIndividualsKeys
+        /*dsl.featureMap.each{ key, feature ->
+            println feature.model.label
+            println feature.uri
+            Uri.printTree(feature.model)
+        }*/
 
-        weightedIndividualsKeys.each{
-            uri = k.toURI(it)
-            if(params[uri]){
-                weightedIndividuals[uri.substring(0, uri.lastIndexOf('-'))] = params[uri]
-            }
+        dsl.featureMap.each{ key, feature ->
+            valueIndividuals << feature.getValueIndividuals()
+            weightIndividuals << feature.getWeightIndividuals()
+            individualKeys += feature.getIndividualKeys()
+            extraFeatures[key] = [:]
         }
 
         individualKeys.each{
             uri = k.toURI(it)
-            if(params[uri]){
-                if(!weightedIndividuals[uri]){
-                    featureInstances[uri] = ['value': params[uri]]
-                }
-                else{
-                    featureInstances[uri] = ['value': params[uri], 'weight': weightedIndividuals[uri]]
-                }
+            paramValue = params[uri]
+            paramWeight = params[uri+'-weight']
+            paramJustification = params[uri+'-justification']
+            if(paramValue){
+                featureInstances[uri] = k.isURI(paramValue)? ['value': paramValue] : ['value': valueIndividuals[paramValue]]
+                if(paramWeight)
+                    featureInstances[uri]['weight'] = k.isURI(paramWeight)? ['value': paramWeight] : weightIndividuals[paramWeight]
+                if(paramJustification)
+                    featureInstances[uri]['justification'] = paramJustification
+
+                //println uri + ' - ' +featureInstances[uri]
             }
         }
+
 
         def attr
         extraFeatures.each{ key, map ->
@@ -218,6 +224,8 @@ class ToolController {
                 }
             }
         }
+
+        //println extraFeatures
 
         node.insertAnalysis(analysisId, properties)
 
