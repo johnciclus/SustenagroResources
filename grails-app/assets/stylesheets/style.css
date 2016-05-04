@@ -126,6 +126,11 @@ input[type="date"]::-webkit-input-placeholder{
     margin-bottom: 60px;
 }
 
+.feature .row{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 .feature .radio{
 	margin-left: 15px;
 	margin-right: 15px;

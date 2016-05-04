@@ -18,7 +18,7 @@ evaluationObject ':ProductionUnit', {
     //type or instance
 
     // Production unit name
-    instance 'ui:name', label: "Nome da unidade produtiva ou fazenda", placeholder: "Nome"
+    instance 'ui:hasName', label: "Nome da unidade produtiva ou fazenda", placeholder: "Nome"
 
     // Agricultural production system
     instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções"
@@ -37,10 +37,10 @@ evaluationObject ':ProductionUnit', {
     instance 'ui:hasMicroregion', label: "Microrregião da unidade produtiva", header: "Opções"
 
     //Outra microrregião
-    instance ':otherMicroregion', label: "Outra microrregião"
+    //instance ':otherMicroregion', label: "Outra microrregião"
 
     //Municípios envolvidos (localização da sede)
-    instance ':municipalitiesInvolved', label: "Municípios envolvidos"
+    instance ':municipalitiesInvolved', label: "Municípios envolvidos (localização da sede)"
 
     // Data de fundação da unidade produção
     //instance ':establishmentDate', label: "Data de fundação da unidade produção"

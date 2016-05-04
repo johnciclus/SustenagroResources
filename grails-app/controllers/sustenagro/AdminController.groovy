@@ -189,6 +189,8 @@ class AdminController {
         onto.manager //OWLOntologyManager
         onto.onto //OWLOntology
 
+        onto.merge()
+
         //println 'Saving ...'
         //if (file.endsWith('.yaml'))
         //    file = file.substring(0, file.length()-5)
@@ -202,10 +204,10 @@ class AdminController {
         def rest = new RESTClient(endPoint)
         rest.delete([:])
 
-        rest.post(
+        /*rest.post(
                 body: new File(path + 'ontology/SemanticUI.rdf').text,
                 requestContentType: 'application/xml'
-        )
+        )*/
 
         rest.post(
                 body: new File(path + 'ontology/SustenAgro.rdf').text,

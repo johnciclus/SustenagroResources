@@ -57,7 +57,7 @@ class ToolController {
     }
 
     def createEvaluationObject() {
-        def name = k.toURI('ui:name')
+        def name = k.toURI('ui:hasName')
         def id = slugify.slugify(params[name])
         def type = k.toURI('rdfs:subClassOf')
         def evaluationObject = dsl.evaluationObject
@@ -132,7 +132,7 @@ class ToolController {
                 sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: widgets])
         }
 
-
+        /*
         dsl.featureMap.each{ key, feature ->
             println feature.model.label
             println feature.uri
@@ -161,6 +161,7 @@ class ToolController {
     }
 
     def createScenario(){
+
         def now = new Date()
         def evalObjURI = k.toURI(params.evalObjInstance)
         def name = evalObjURI.substring(evalObjURI.lastIndexOf('#')+1)
@@ -183,6 +184,8 @@ class ToolController {
             weightedIndividualsKeys += feature.getWeightedIndividualKeys()
             extraFeatures[key] = [:]
         }
+        println individualKeys
+        println weightedIndividualsKeys
 
         weightedIndividualsKeys.each{
             uri = k.toURI(it)
@@ -356,7 +359,7 @@ class ToolController {
     }
 
     def evaluationObjectNameAvailability(){
-        def name = slugify.slugify(params['http://purl.org/biodiv/semanticUI#name'])
+        def name = slugify.slugify(params['http://purl.org/biodiv/semanticUI#hasName'])
         render !k[':'+name].exist()
     }
 

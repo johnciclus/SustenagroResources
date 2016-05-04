@@ -1474,8 +1474,8 @@
 
     <owl:NamedIndividual rdf:about="&semanticUI;admin">
         <rdf:type rdf:resource="&semanticUI;User"/>
-        <semanticUI:password rdf:datatype="&xsd;string">8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918</semanticUI:password>
-        <semanticUI:username rdf:datatype="&xsd;string">admin</semanticUI:username>
+        <semanticUI:hasPassword rdf:datatype="&xsd;string">8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918</semanticUI:hasPassword>
+        <semanticUI:hasUsername rdf:datatype="&xsd;string">admin</semanticUI:hasUsername>
         <semanticUI:hasRole rdf:resource="&semanticUI;AdminRole"/>
         <semanticUI:hasRole rdf:resource="&semanticUI;UserRole"/>
     </owl:NamedIndividual>
@@ -1486,8 +1486,8 @@
 
     <owl:NamedIndividual rdf:about="&semanticUI;user">
         <rdf:type rdf:resource="&semanticUI;User"/>
-        <semanticUI:password rdf:datatype="&xsd;string">04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb</semanticUI:password>
-        <semanticUI:username rdf:datatype="&xsd;string">user</semanticUI:username>
+        <semanticUI:hasPassword rdf:datatype="&xsd;string">04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb</semanticUI:hasPassword>
+        <semanticUI:hasUsername rdf:datatype="&xsd;string">user</semanticUI:hasUsername>
         <semanticUI:hasRole rdf:resource="&semanticUI;UserRole"/>
     </owl:NamedIndividual>
 </rdf:RDF>

@@ -1,0 +1,2369 @@
+{
+  "ontology": "http://semantic.icmc.usp.br/sustenagro#",
+  "imports": [
+    {
+      "prefix": "ui",
+      "file": "SemanticUI.yaml"
+    }
+  ],
+  "prefix": {
+    "dbp": "http://dbpedia.org/ontology/"
+  },
+  "map": {
+    "Provider": "http://dbpedia.org/ontology/Provider",
+    "PhysicalPlant": "http://dbpedia.org/resource/PhysicalPlant",
+    "state": "dbp:state",
+    "State": "dbp:State",
+    "Microregion": "http://dbpedia.org/page/Microregion_(Brazil)"
+  },
+  "relevance": {
+    "subPropertyOf": "AnnotationProperty",
+    "domain": "Indicator",
+    "label": [
+      "relevance @en",
+      "relevância @pt"
+    ]
+  },
+  "hasSugarcaneSource": {
+    "subPropertyOf": "ObjectProperty",
+    "label": [
+      "has sugarcane source @en",
+      "tem origem da cana @pt"
+    ],
+    "functional": true,
+    "range": "SugarcaneSourceCategory"
+  },
+  "hasAvailabilityOfEvaluationResults": {
+    "subPropertyOf": "ObjectProperty",
+    "label": [
+      "has availability of evaluations results @en",
+      "tem disponibilização dos resultados da avaliação @pt"
+    ],
+    "functional": true,
+    "range": "AvailabilityOfEvaluationResultsCategory"
+  },
+  "hasAgriculturalProductionSystem": {
+    "subPropertyOf": "ObjectProperty",
+    "label": [
+      "has agricultural production system @en",
+      "tem sistema de produção agrícola @pt"
+    ],
+    "functional": true,
+    "range": "AgriculturalProductionSystemCategory"
+  },
+  "hasTotalValuePlaneedForInvestmentToProductionDrainage": {
+    "subPropertyOf": "DataProperty",
+    "functional": true,
+    "label": [
+      "has total value planed for investment to production drainage @en",
+      "Valor total previsto para investimento para escoamento da produção @pt"
+    ],
+    "range": "double"
+  },
+  "otherMicroregion": {
+    "subPropertyOf": "DataProperty",
+    "functional": true,
+    "label": [
+      "other microregion @en",
+      "outra microrregião @pt"
+    ],
+    "range": "Literal"
+  },
+  "municipalitiesInvolved": {
+    "subPropertyOf": "DataProperty",
+    "functional": true,
+    "label": [
+      "municipalities involved @en",
+      "municípios envolvidos @pt"
+    ],
+    "range": "Literal"
+  },
+  "establishmentDate": {
+    "subPropertyOf": "DataProperty",
+    "functional": true,
+    "label": [
+      "establishment date @en",
+      "data de fundação da unidade produção @pt"
+    ],
+    "range": "date"
+  },
+  "harvestYear": {
+    "subPropertyOf": "DataProperty",
+    "functional": true,
+    "label": [
+      "harvest year @en",
+      "ano da safra @pt"
+    ],
+    "range": "Literal"
+  },
+  "beginningOfPlantingDate": {
+    "subPropertyOf": "DataProperty",
+    "functional": true,
+    "label": [
+      "beginning of planting date @en",
+      "data de início do plantio @pt"
+    ],
+    "range": "date"
+  },
+  "beginningOfHarvestDate": {
+    "subPropertyOf": "DataProperty",
+    "functional": true,
+    "label": [
+      "beginning of harvest date @en",
+      "data de início da colheita @pt"
+    ],
+    "range": "date"
+  },
+  "finishOfHarvestDate": {
+    "subPropertyOf": "DataProperty",
+    "functional": true,
+    "label": [
+      "finish of harvest date @en",
+      "data de término da colheita @pt"
+    ],
+    "range": "date"
+  },
+  "finishOfPlantingDate": {
+    "subPropertyOf": "DataProperty",
+    "functional": true,
+    "label": [
+      "finish of planting date @en",
+      "data de término do plantio @pt"
+    ],
+    "range": "date"
+  },
+  "canavialLongevity": {
+    "subPropertyOf": "DataProperty",
+    "functional": true,
+    "label": [
+      "canavial longevity @en",
+      "longevidade do canavial @pt"
+    ],
+    "range": "Literal"
+  },
+  "innovationDevelopmentProjects": {
+    "subPropertyOf": "DataProperty",
+    "functional": true,
+    "label": [
+      "innovation development projects @en",
+      "projetos de inovação e/ou desenvolvimento (BNDES - Finep) @pt"
+    ],
+    "range": "Literal"
+  },
+  "financing": {
+    "subPropertyOf": "DataProperty",
+    "functional": true,
+    "label": [
+      "financing @en",
+      "financiamento (crédito agrícola - custeio de maquinário - BNDES) @pt"
+    ],
+    "range": "Literal"
+  },
+  "partnershipsForResearchOrImprovementOfTheSystem": {
+    "subPropertyOf": "DataProperty",
+    "functional": true,
+    "label": [
+      "partnerships for research or improvement of the system @en",
+      "parcerias para pesquisa ou aprimoramento do sistema @pt"
+    ],
+    "range": "Literal"
+  },
+  "AvailabilityOfEvaluationResultsCategory": {
+    "is_a": "Categorical",
+    "label": [
+      "Availability of evaluations results category @en",
+      "Categoria da disponibilização dos resultados da avaliação @pt"
+    ]
+  },
+  "SugarcaneSourceCategory": {
+    "is_a": "Categorical",
+    "label": [
+      "Sugarcane source category @en",
+      "Categoria do origem da cana @pt"
+    ]
+  },
+  "AgriculturalProductionSystemCategory": {
+    "is_a": "Categorical",
+    "label": [
+      "Agricultural production system category @en",
+      "Categoria de sistema de produção agrícola @pt"
+    ]
+  },
+  "SustainabilityCategory": {
+    "is_a": "Categorical",
+    "label": [
+      "Sustainability category @en",
+      "Categoría de sustentabilidade @pt"
+    ]
+  },
+  "ExistNo": {
+    "is_a": "Boolean",
+    "label": [
+      "Exist/No exist @en",
+      "Existe/Não existe @pt"
+    ]
+  },
+  "DontExist": {
+    "type": "ExistNo",
+    "label": [
+      "Doesn't Exist @en",
+      "Não Existe @pt"
+    ],
+    "asNumber": -1
+  },
+  "Exist": {
+    "type": "ExistNo",
+    "label": [
+      "Exist @en",
+      "Existe @pt"
+    ],
+    "asNumber": 1
+  },
+  "YesNo": {
+    "is_a": "Boolean",
+    "label": [
+      "Yes/No @en",
+      "Sim/Não @pt"
+    ]
+  },
+  "YesValue": {
+    "type": "YesNo",
+    "label": [
+      "Yes @en",
+      "Sim @pt"
+    ],
+    "asNumber": 1
+  },
+  "NoValue": {
+    "type": "YesNo",
+    "label": [
+      "No @en",
+      "Não @pt"
+    ],
+    "asNumber": -1
+  },
+  "LeaseOrigin": {
+    "type": "SugarcaneSourceCategory",
+    "label": [
+      "Lease origin @en",
+      "Arredamento / Parceria @pt"
+    ]
+  },
+  "OwnOrigin": {
+    "type": "SugarcaneSourceCategory",
+    "label": [
+      "Own origin @en",
+      "Própria @pt"
+    ]
+  },
+  "SupplierOrigin": {
+    "type": "SugarcaneSourceCategory",
+    "label": [
+      "Supplier origin @en",
+      "Fornecedor @pt"
+    ]
+  },
+  "lessSustainable": {
+    "type": "SustainabilityCategory",
+    "label": [
+      "Less sustainable @en",
+      "Menos sustentável @pt"
+    ],
+    "dataValue": -1
+  },
+  "moreSustainable": {
+    "type": "SustainabilityCategory",
+    "label": [
+      "More sustainable @en",
+      "Mais sustentável @pt"
+    ],
+    "dataValue": 1
+  },
+  "SugarcaneProductionSystem": {
+    "type": "AgriculturalProductionSystemCategory",
+    "label": [
+      "Sugarcane production system @en",
+      "Sistema de produção de cana-de-açucar @pt"
+    ]
+  },
+  "Private": {
+    "type": "AvailabilityOfEvaluationResultsCategory",
+    "label": [
+      "Private @en",
+      "Privado @pt"
+    ]
+  },
+  "Public": {
+    "type": "AvailabilityOfEvaluationResultsCategory",
+    "label": [
+      "Public @en",
+      "Público @pt"
+    ]
+  },
+  "ProductionUnit": {
+    "is_a": "EvaluationObject",
+    "label": [
+      "Unidade produtiva @pt",
+      "Production unit @en"
+    ],
+    "hasName": "Literal",
+    "harvestYear": "Literal",
+    "hasAgriculturalProductionSystem": "AgriculturalProductionSystemCategory",
+    "hasSugarcaneSource": "SugarcaneSourceCategory",
+    "state": "State",
+    "hasMicroregion": "Microregion",
+    "hasAvailabilityOfEvaluationResults": "AvailabilityOfEvaluationResultsCategory"
+  },
+  "PhysicalPlant": {
+    "is_a": "ProductionUnit",
+    "label": [
+      "Usina @pt",
+      "Plant @en"
+    ]
+  },
+  "Provider": {
+    "is_a": "ProductionUnit",
+    "label": [
+      "Provider @en",
+      "Fornecedor @pt"
+    ]
+  },
+  "Harvest": {
+    "label": [
+      "Harvest @en",
+      "Safra @pt"
+    ]
+  },
+  "Indicator": {
+    "is_a": "Feature",
+    "label": [
+      "Indicador @pt",
+      "Indicator @en"
+    ],
+    "value": "Categorical"
+  },
+  "Variable": {
+    "is_a": "Feature",
+    "label": [
+      "Variável @pt",
+      "Variable @en"
+    ]
+  },
+  "SustainabilityIndicator": {
+    "is_a": "Indicator",
+    "label": [
+      "Sustainability Indicator @en",
+      "Indicador de sustentabilidade @pt"
+    ]
+  },
+  "ProductionEfficiencyFeature": {
+    "is_a": "Variable",
+    "label": [
+      "Production efficiency @en",
+      "Eficiência da produção @pt"
+    ]
+  },
+  "TechnologicalEfficiencyFeature": {
+    "is_a": "Variable",
+    "label": [
+      "Technological efficiency @en",
+      "Eficiência tecnológica @pt"
+    ],
+    "hasWeight": [
+      {
+        "label": [
+          "Indireta @pt",
+          "Indirect @en"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Nula @pt",
+          "Null @en"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "Direct @en",
+          "Direta @pt"
+        ],
+        "asNumber": 2
+      }
+    ]
+  },
+  "SugarcaneQuality": {
+    "is_a": "ProductionEfficiencyFeature",
+    "label": [
+      "Qualidade da cana-de-açucar @pt",
+      "Sugarcane quality @en"
+    ]
+  },
+  "SugarcaneValueInATR": {
+    "is_a": "SugarcaneQuality",
+    "label": [
+      "Sugarcane value in ATR/Hectare (Consider the productivity and quality of sugarcane) @en",
+      "Valor da cana em ATR/hectare (considera a produtividade e qualidade da cana) @pt"
+    ],
+    "value": [
+      {
+        "label": [
+          "Lowest @en",
+          "Menor @pt"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "Igual ou superior @pt",
+          "Equal or higher @en"
+        ],
+        "asNumber": 2
+      }
+    ]
+  },
+  "Logistic": {
+    "is_a": "ProductionEfficiencyFeature",
+    "label": [
+      "Logistic @en",
+      "Logística @pt"
+    ]
+  },
+  "PlanningOfHarvestFront": {
+    "is_a": "Logistic",
+    "label": [
+      "Monitoramento e organização do transporte e planejamento das frentes de colheita (maquinário)  @pt",
+      "Monitoring and transport organization and planning of harvesting fronts (machinery) @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Inappropriate @en",
+          "Inadequado @pt"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "No @en",
+          "Não @pt"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "Adequate @en",
+          "Appropriate @pt"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Enhanced @en",
+          "Otimizado @pt"
+        ],
+        "asNumber": 2
+      }
+    ]
+  },
+  "TransportTechnologiesAndOrganization": {
+    "is_a": "Logistic",
+    "label": [
+      "Tecnologias de transporte da cana e organização das frentes de corte @pt",
+      "sugarcane transport technologies and organization in cutting fronts @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Romeo and Juliet @en",
+          "Romeu e Julieta  @pt"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "Treminhão @pt",
+          "Road train @en"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Multiple triple trailer truck @en",
+          "Rodotrem @pt"
+        ],
+        "asNumber": 2
+      }
+    ]
+  },
+  "MarketVariable": {
+    "is_a": "ProductionEfficiencyFeature",
+    "label": [
+      "Variável de mercado @pt",
+      "Market variable @en"
+    ]
+  },
+  "AccessToInternalMarket": {
+    "is_a": "MarketVariable",
+    "label": [
+      "Access to the internal market (Etanol) @en",
+      "Acesso ao mercado interno (Etanol) @pt"
+    ],
+    "value": [
+      {
+        "label": [
+          "No @en",
+          "Não @pt"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "Yes @en",
+          "Sim @pt"
+        ],
+        "asNumber": 1
+      }
+    ]
+  },
+  "AccessToInternationalMarket": {
+    "is_a": "MarketVariable",
+    "label": [
+      "Access to the international market (function of the attendance to international certifications) @en",
+      "Acesso ao mercado internacional (função do atendimento a certificações internacionais) @pt"
+    ],
+    "value": [
+      {
+        "label": [
+          "No @en",
+          "Não @pt"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "Yes @en",
+          "Sim @pt"
+        ],
+        "asNumber": 2
+      }
+    ]
+  },
+  "LocalIncomeGeneration": {
+    "is_a": "MarketVariable",
+    "label": [
+      "Geração de renda local @pt",
+      "Local income generation @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Yes @en",
+          "Sim @pt"
+        ],
+        "asNumber": 2
+      },
+      {
+        "label": [
+          "No @en",
+          "Não @pt"
+        ],
+        "asNumber": 0
+      }
+    ]
+  },
+  "PriceQuaranteePolicyAndProductionInTheField": {
+    "is_a": "MarketVariable",
+    "label": [
+      "Políticas de garantia de preço e de produção no campo (financiamento da safra agrícola) @pt",
+      "Price guarantee policy and production in the field (financing the harvest) @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Yes @en",
+          "Sim @pt"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "No @en",
+          "Não @pt"
+        ],
+        "asNumber": 0
+      }
+    ]
+  },
+  "PoliticalVariable": {
+    "is_a": "ProductionEfficiencyFeature",
+    "label": [
+      "Political variables (environmental and social)@en",
+      "Variáveis políticas (ambientais e sociais) @pt"
+    ]
+  },
+  "ComplianceToStateEnvironmentalProtocols": {
+    "is_a": "PoliticalVariable",
+    "label": [
+      "Atendimento a protocolos ambientais estaduais @pt",
+      "Compliance with state environmental protocols @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "No @en",
+          "Não @pt"
+        ],
+        "asNumber": -2
+      },
+      {
+        "label": [
+          "Yes @en",
+          "Sim @pt"
+        ],
+        "asNumber": 2
+      }
+    ]
+  },
+  "ComplianceWithNationalCommitmentToAdequacyToGoodWorkingConditions": {
+    "is_a": "PoliticalVariable",
+    "label": [
+      "Atendimento ao compromisso nacional para adequação às boas condições de trabalho @pt",
+      "Compliance with the national commitment to good working conditions @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Yes @en",
+          "Sim @pt"
+        ],
+        "asNumber": 2
+      },
+      {
+        "label": [
+          "No @en",
+          "Não @pt"
+        ],
+        "asNumber": -2
+      }
+    ]
+  },
+  "ComplianceWithAgriculturalAndEconomicZoning": {
+    "is_a": "PoliticalVariable",
+    "label": [
+      "Compliance with agricultural and economic zoning (AEZ) @en",
+      "Atendimento ao zoneamento agrícola e econômico (ZAE) @pt"
+    ],
+    "value": [
+      {
+        "label": [
+          "Yes @en",
+          "Sim @pt"
+        ],
+        "asNumber": 2
+      },
+      {
+        "label": [
+          "No @en",
+          "Não @pt"
+        ],
+        "asNumber": -2
+      }
+    ]
+  },
+  "GovernmentSubsidy": {
+    "label": [
+      "Government incentive @en",
+      "Incentivo do governo  @pt"
+    ],
+    "is_a": "PoliticalVariable",
+    "value": [
+      {
+        "label": [
+          "Business emerging @en",
+          "Empresa nascente @pt"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "For the Sector @en",
+          "Para o setor @pt"
+        ],
+        "asNumber": 0
+      }
+    ]
+  },
+  "PublicPoliciesForSector": {
+    "label": [
+      "Public policies for the sector @en",
+      "Políticas públicas para o setor @pt"
+    ],
+    "is_a": "PoliticalVariable",
+    "value": [
+      {
+        "label": [
+          "Formuladas sem considerar a realidade do campo ou do produtor @pt",
+          "Formulated without considering the reality of the field or producer @en"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "Direcionada para inovação com redução de custo @pt",
+          "Directed to innovation with cost reduction @en"
+        ],
+        "asNumber": 1
+      }
+    ]
+  },
+  "AdherenceToAgricultureProgramLowCarbon": {
+    "is_a": "PoliticalVariable",
+    "label": [
+      "Adesão ao Programa de Agricultura de Baixo Carbono • Programa 1: Recuperação de Pastagens Degradadas; • Programa 2: Integração Lavoura-Pecuária-Floresta (iLPF) e Sistemas Agroflorestais (SAFs); • Programa 3: Sistema Plantio Direto (SPD); • Programa 4: Fixação Biológica de Nitrogênio (FBN); • Programa 5: Florestas Plantadas (matas ciliares e recuperação de APP’s); • Programa 6: Tratamento de Dejetos Animais (resíduos da produção); • Programa 7: Adaptação às Mudanças Climáticas. @pt",
+      "Adherence to agriculture program low carbon @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Em substituição a áreas degradadas @pt",
+          "Replacing degraded areas @en"
+        ],
+        "asNumber": 3
+      },
+      {
+        "label": [
+          "Replacing areas of native forests @en",
+          "Em substituição a áreas de matas nativas @pt"
+        ],
+        "asNumber": -2
+      },
+      {
+        "label": [
+          "Replacing pasture @en",
+          "Em substituição a pasto @pt"
+        ],
+        "asNumber": 2
+      },
+      {
+        "label": [
+          "Replacing sugarcane and similar cultures @en",
+          "Em substituição a cana-de-açucar e culturas similares @pt"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Em substituição a culturas alimentares @pt",
+          "Replacing food crops @en"
+        ],
+        "asNumber": -1
+      }
+    ]
+  },
+  "ProductionVariable": {
+    "is_a": "ProductionEfficiencyFeature",
+    "label": [
+      "Production variables @en",
+      "Variáveis de produção @pt"
+    ]
+  },
+  "BalanceComponentsThatInterfereWithSugarcaneProductivity": {
+    "is_a": "ProductionVariable",
+    "label": [
+      "Balance components that interfere with sugarcane productivity (soil map, planning the use of inputs, etc.) @en",
+      "Balanço de componentes que interferem na produtividade da cana (mapa de solos, planejamento do uso de insumos, etc) @pt"
+    ],
+    "value": [
+      {
+        "label": [
+          "Favorable @en",
+          "Favorável @pt"
+        ],
+        "asNumber": 2
+      },
+      {
+        "label": [
+          "Unfavorable @en",
+          "Desfavorável @pt"
+        ],
+        "asNumber": -2
+      }
+    ]
+  },
+  "UseOfMoreEfficientInputs": {
+    "is_a": "ProductionVariable",
+    "label": [
+      "Use of more efficient inputs @en",
+      "Uso de insumos mais eficientes @pt"
+    ],
+    "value": [
+      {
+        "label": [
+          "Yes @en",
+          "Sim @pt"
+        ],
+        "asNumber": 2
+      },
+      {
+        "label": [
+          "No @en",
+          "Não @pt"
+        ],
+        "asNumber": 0
+      }
+    ]
+  },
+  "TechnologicalEfficiencyInTheField": {
+    "is_a": "TechnologicalEfficiencyFeature",
+    "label": [
+      "Technological efficiency in the field @en",
+      "Eficiência tecnológica no campo @pt"
+    ]
+  },
+  "TechnologicalEfficiencyInTheIndustrial": {
+    "is_a": "TechnologicalEfficiencyFeature",
+    "label": [
+      "Technological efficiency in the industry @en",
+      "Eficiência tecnológica na industrial @pt"
+    ]
+  },
+  "SugarcanePlanting": {
+    "is_a": "TechnologicalEfficiencyInTheField",
+    "label": [
+      "Plantio de cana @pt",
+      "Sugarcane planting @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Uncontrolled seedling @en",
+          "Muda não controlada @pt"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "With healthy seedling @en",
+          "Com muda sadia @pt"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Muda Pré-brotada (MPB) @pt",
+          "Pre-budded seedling @en"
+        ],
+        "asNumber": 2
+      }
+    ]
+  },
+  "VinasseUse": {
+    "is_a": "TechnologicalEfficiencyInTheField",
+    "label": [
+      "Uso da vinhaça @pt",
+      "Vinasse use @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Inappropriate disposal @en",
+          "Descarte inadequado @pt"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "Adequate disposal (channels and coated tanks) @en",
+          "Descarte adequado (canais e tanques revestidos)  @pt"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "Emprego para fertirrigação / Biogás @pt",
+          "Employment for fertigation / Biogas @en"
+        ],
+        "asNumber": 1
+      }
+    ]
+  },
+  "AgriculturalCuttingType": {
+    "is_a": "TechnologicalEfficiencyInTheField",
+    "label": [
+      "Tipo de corte @pt",
+      "Cutting type @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Manual em áreas aptas a mecanização @pt",
+          "Manual in suitable areas to mechanization @en"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "Manual with burning @en",
+          "Manual com queima @pt"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "Mecanizado with burning @en",
+          "Mecanizado com queima @pt"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Raw mechanized @en",
+          "Mecanizado crua @pt"
+        ],
+        "asNumber": 2
+      }
+    ]
+  },
+  "PriceEqualizationPolicy": {
+    "is_a": "TechnologicalEfficiencyInTheField",
+    "label": [
+      "Stable price policy (tanking - price guarantee - warrant) @en",
+      "Política de estabilidade preços (tancagem - garantia de preço - warrant) @pt"
+    ],
+    "value": [
+      {
+        "label": [
+          "Favorável (com estoques) @pt",
+          "Favourable (with inventories) @en"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Desfavorável (sem estoques) @pt",
+          "Unfavorable (without stocks) @en"
+        ],
+        "asNumber": -1
+      }
+    ]
+  },
+  "ProducersOrPlantsOrganization": {
+    "is_a": "TechnologicalEfficiencyInTheField",
+    "label": [
+      "Organização de produtores ou usinas @pt",
+      "Producers or plants organization @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Yes @en",
+          "Sim @pt"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "No @en",
+          "Não @pt"
+        ],
+        "asNumber": 0
+      }
+    ]
+  },
+  "SugarcaneMechanization": {
+    "is_a": "TechnologicalEfficiencyInTheField",
+    "label": [
+      "Sugarcane mechanization @en",
+      "Mecanização da cana @pt"
+    ],
+    "value": [
+      {
+        "label": [
+          "Inadequada – aumento de custos de produção @pt",
+          "Inappropiate - increase of production costs @en"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "Adequada – com redução de perdas visíveis e invisíveis @pt",
+          "Appropriate - with reduced visible and invisible losses @en"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Com eficiência para o ambiente de produção – emprego de técnicas para reduzir a compactação do solo @pt",
+          "With efficiency for the production environment - use of techniques to reduce soil compactation @en"
+        ],
+        "asNumber": 2
+      }
+    ]
+  },
+  "AgriculturalManagement": {
+    "label": [
+      "Management @en",
+      "Manejo @pt"
+    ],
+    "is_a": "TechnologicalEfficiencyInTheField",
+    "value": [
+      {
+        "label": [
+          "Preparation / Plantation / Manual maintenance of sugarcane field in suitable areas to mechanization @en",
+          "Preparo / plantio / manutenção do canavial manual em áreas aptas a mecanização @pt"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "Preparation / Plantation / Manual sugarcane maintenance according to constraints of the size of the area and slope @en",
+          "Preparo / plantio / manutenção do canavial manual em função de restrições do tamanho da área e declividade @pt"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "Preparo / plantio / manutenção do canavial usando mecanização @pt",
+          "Preparation / Plantation / Mechanized maintenance of sugarcane field @en"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Preparo / plantio / manutenção do canavial (automatizados ou empregando sistemas de informação? Por ex sensoriamento remoto ou agricultura de precisão) @pt",
+          "Preparation / Plantation / Automated or system information based maintenance @en"
+        ],
+        "asNumber": 2
+      }
+    ]
+  },
+  "AgriculturalVarieties": {
+    "is_a": "TechnologicalEfficiencyInTheField",
+    "label": [
+      "Varieties @en",
+      "Variedades@pt"
+    ],
+    "value": [
+      {
+        "label": [
+          "Adaptadas @pt",
+          "Adapted @en"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Conventional @en",
+          "Convencional @pt"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "Adaptadas e resistentes @pt",
+          "Adapted and resistant @en"
+        ],
+        "asNumber": 2
+      }
+    ]
+  },
+  "PresenceOfInnovationsInTheField": {
+    "label": [
+      "Presença de inovações no campo @pt",
+      "Presence of innovations in the field @en"
+    ],
+    "is_a": "TechnologicalEfficiencyInTheField",
+    "value": [
+      {
+        "label": [
+          "Adhesion and use of innovations @en",
+          "Adesão e uso das Inovações @pt"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Difficulty of adhesion and use of innovations @en",
+          "Dificuldade de adesão e uso das Inovações @pt"
+        ],
+        "asNumber": 0
+      }
+    ]
+  },
+  "UseOfMoreResistantStrainsToTheEthanolConcentration": {
+    "is_a": "TechnologicalEfficiencyInTheIndustrial",
+    "label": [
+      "Use of more resistant strains to the ethanol concentration @en",
+      "Utilização de cepas mais resistentes a concentração do etanol @pt"
+    ],
+    "value": [
+      {
+        "label": [
+          "Alcohol content below 7GL @en",
+          "Grau alcoólico abaixo de 7GL @pt"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "7 to 9GL @en",
+          "7 a 9GL @pt"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "Above 9 GL @en",
+          "Acima de 9 GL @pt"
+        ],
+        "asNumber": 1
+      }
+    ]
+  },
+  "ReductionInWaterConsumption": {
+    "is_a": "TechnologicalEfficiencyInTheIndustrial",
+    "label": [
+      "Consumo de água @pt",
+      "Water consumption @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "maior do que 4 m3/ton @pt",
+          "more than 4 m3/ton @en"
+        ],
+        "asNumber": -3
+      },
+      {
+        "label": [
+          "2.0 até 4.0 m3/ton @pt",
+          "2.0 to 4.0 m3/ton @en"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "de 1.0 a 2.0 m3/ton @pt",
+          "from 1.0 to 2.0 m3/ton @en"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "0.7 m3/ton até 1.0 m3/ton @pt",
+          "0.7 m3/ton to 1.0 m3/ton @en"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "0.7 m3/ton @pt",
+          "0.7 m3/ton @en"
+        ],
+        "asNumber": 2
+      },
+      {
+        "label": [
+          "menor do que 0.7 m3/ton @pt",
+          "less than 0.7 m3/ton @en"
+        ],
+        "asNumber": 3
+      }
+    ]
+  },
+  "DevelopmentOfNewTechniquesForReduingWaterConsumption": {
+    "is_a": "TechnologicalEfficiencyInTheIndustrial",
+    "label": [
+      "Desenvolvimento de novas técnicas para redução do consumo de água @pt",
+      "Development of new techniques for reduing water consumption @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "não @pt",
+          "no @en"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "sim @pt",
+          "yes @en"
+        ],
+        "asNumber": 1
+      }
+    ]
+  },
+  "WaterProduction": {
+    "is_a": "TechnologicalEfficiencyInTheIndustrial",
+    "label": [
+      "Produção de água @pt",
+      "Water production @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "não @pt",
+          "no @en"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "sim @pt",
+          "yes @en"
+        ],
+        "asNumber": 1
+      }
+    ]
+  },
+  "ElectricityProduction": {
+    "label": [
+      "Electricity production @en",
+      "Produção de energia elétrica @pt"
+    ],
+    "is_a": "TechnologicalEfficiencyInTheIndustrial",
+    "value": [
+      {
+        "label": [
+          "Purchasing power @en",
+          "Compra energia @pt"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "Production for own consumption @en",
+          "Produz para consumo próprio @pt"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Produz para consumo e venda @pt",
+          "Production for consumption and sale @en"
+        ],
+        "asNumber": 2
+      }
+    ]
+  },
+  "BagasseAndStrawDestination": {
+    "is_a": "TechnologicalEfficiencyInTheIndustrial",
+    "label": [
+      "Bagasse and straw destination for 2nd generation ethanol production @en",
+      "Destinação do bagaço e palha para produção de etanol de 2nd geração @pt"
+    ],
+    "value": [
+      {
+        "label": [
+          "Yes @en",
+          "Sim @pt"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "No @en",
+          "Não @pt"
+        ],
+        "asNumber": 0
+      }
+    ]
+  },
+  "FiltercakeAndAshesDestination": {
+    "is_a": "TechnologicalEfficiencyInTheIndustrial",
+    "label": [
+      "Destinação de torta de filtro e cinza @pt",
+      "Filtercake and ashes destination @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Reuse in the field @en",
+          "Reutilização no campo @pt"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Descarte Inadequado @pt",
+          "Inadequate disposal @en"
+        ],
+        "asNumber": -1
+      }
+    ]
+  },
+  "RawMaterialDiversificationWithImprovedInputs": {
+    "is_a": "TechnologicalEfficiencyInTheIndustrial",
+    "label": [
+      "Diversificação da matéria prima com insumos melhorados @pt",
+      "Raw material diversification with improved inputs @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Use of sugarcane / biomass @en",
+          "Uso de cana energia / biomassa @pt"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Uso de cana convencional @pt",
+          "Use of conventional sugarcane @en"
+        ],
+        "asNumber": 0
+      }
+    ]
+  },
+  "AtmosphericPollutantsEmission": {
+    "is_a": "TechnologicalEfficiencyInTheIndustrial",
+    "label": [
+      "Emissão de poluentes atmosféricos @pt",
+      "Atmospheric pollutants emission @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Use of systems reducing emissions @en",
+          "Emprego de sistemas redutores de emissões de gases @pt"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Não emprega nenhuma técnica de redução de gases @pt",
+          "Does not use gas reduction technique @en"
+        ],
+        "asNumber": -1
+      }
+    ]
+  },
+  "AdequacyOfBoilers": {
+    "is_a": "TechnologicalEfficiencyInTheIndustrial",
+    "label": [
+      "Adequação das caldeiras @pt",
+      "Adequacy of boilers @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Less efficient boilers (low pressure) @en",
+          "Caldeiras menos eficientes (de baixa pressão) @pt"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "Caldeiras mais eficientes (novas e com maior pressão) @pt",
+          "More efficient boilers (new and high pressure) @en"
+        ],
+        "asNumber": 1
+      }
+    ]
+  },
+  "BagasseDestination": {
+    "is_a": "TechnologicalEfficiencyInTheIndustrial",
+    "label": [
+      "Destinação do bagaço @pt",
+      "Bagasse destination @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Improper disposal of bagasse @en",
+          "Descarte inadequado do bagaço @pt"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "Use or sale of bagasse to produce electricity @en",
+          "Emprego ou venda do bagaço para produção de energia elétrica @pt"
+        ],
+        "asNumber": 1
+      }
+    ]
+  },
+  "VinasseConcentration": {
+    "is_a": "TechnologicalEfficiencyInTheIndustrial",
+    "label": [
+      "Concentração da vinhaça @pt",
+      "Vinasse concentration @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Por evaporação empregando vapor vegetal ou membrana @pt",
+          "By evaporation using steam vegetable or membrane @en"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Não concentrar a vinhaça @pt",
+          "Do not concentrate vinasse @en"
+        ],
+        "asNumber": 0
+      }
+    ]
+  },
+  "VinasseTransport": {
+    "is_a": "TechnologicalEfficiencyInTheIndustrial",
+    "label": [
+      "Transporte da vinhaça @pt",
+      "Vinasse transport @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Sem revestimento @pt",
+          "Uncoated @en"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "Transporte da vinhaça com tubulação ou canais e tanques com revestimento @pt",
+          "Vinasse transport with tubing or channels and tanks coated @en"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Para fertirrigação ou de biodigestão para produção de energia elétrica @pt",
+          "For fertigation or digestion for the production of electricity @en"
+        ],
+        "asNumber": 2
+      }
+    ]
+  },
+  "FermentationEfficiency": {
+    "is_a": "TechnologicalEfficiencyInTheIndustrial",
+    "label": [
+      "Eficiência da fermentação @pt",
+      "Fermentation efficiency @en"
+    ],
+    "value": [
+      {
+        "label": [
+          "Abaixo de 88% @pt",
+          "Below 88% @en"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "88% a 90% @pt",
+          "88% to 90% @en"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "Acima de 90% @pt",
+          "Above 90% @en"
+        ],
+        "asNumber": 1
+      }
+    ]
+  },
+  "EconomicIndicator": {
+    "is_a": "SustainabilityIndicator",
+    "relevance": 1,
+    "label": [
+      "Economic dimension @en",
+      "Dimensão econômica @pt"
+    ]
+  },
+  "EnvironmentalIndicator": {
+    "is_a": "SustainabilityIndicator",
+    "relevance": 1,
+    "label": [
+      "Dimensão ambiental @pt",
+      "Environmental dimension @en"
+    ]
+  },
+  "SocialIndicator": {
+    "is_a": "SustainabilityIndicator",
+    "relevance": 1,
+    "label": [
+      "Social dimension @en",
+      "Dimensão social @pt"
+    ]
+  },
+  "GeneralAttribute": {
+    "is_a": "EnvironmentalIndicator",
+    "label": [
+      "Atributos gerais @pt",
+      "General attribute @en"
+    ]
+  },
+  "AdequateDestinationOfVinasse": {
+    "is_a": "GeneralAttribute",
+    "label": [
+      "Adequada destinação da vinhaça @pt",
+      "Adequate destination of vinasse @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "AttendanceToSprayingRestriction": {
+    "is_a": "GeneralAttribute",
+    "label": [
+      "Atendimento à restrição da pulverização aérea para aplicação de maturadores (Instrução Normativa Conjunta 1/2012//DAS/MAPA) @pt",
+      "Attendance to restriction on aerial spraying for applying maturing (Joint Normative Instruction 1/2012/DAS/MAPA) @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "UseOfTechniquesForBiologicalPestControl": {
+    "is_a": "GeneralAttribute",
+    "label": [
+      "Use of techniques for biological pest control @en",
+      "Emprego de técnicas para controle biológico de pragas @pt"
+    ],
+    "relevance": 2,
+    "value": [
+      {
+        "label": [
+          "Usa @pt",
+          "Use @en"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Não usa @pt",
+          "Not use @en"
+        ],
+        "asNumber": -1
+      }
+    ]
+  },
+  "PlantingAttribute": {
+    "is_a": "EnvironmentalIndicator",
+    "label": [
+      "Atributo Plantio @pt",
+      "Planting attribute @en"
+    ]
+  },
+  "PlantationTypeUsed": {
+    "is_a": "PlantingAttribute",
+    "label": [
+      "Plantation type used @en",
+      "Tipo de plantio utilizado @pt"
+    ],
+    "relevance": 2,
+    "value": [
+      {
+        "label": [
+          "Mechanized @en",
+          "Mecanizado @pt"
+        ],
+        "asNumber": 2
+      },
+      {
+        "label": [
+          "Semimechanized @en",
+          "Semimecanizado @pt"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "Manual @en",
+          "Manual @pt"
+        ],
+        "asNumber": -2
+      }
+    ]
+  },
+  "UseOfAdequateVarietyToTheClimateAndSoilConditions": {
+    "is_a": "PlantingAttribute",
+    "label": [
+      "Use of adequate variety to the climate and soil conditions @en",
+      "Emprego de variedade adequada às condições de clima e solo @pt"
+    ],
+    "relevance": 3,
+    "value": "YesNo"
+  },
+  "RationalUseOfInputs": {
+    "is_a": "PlantingAttribute",
+    "label": [
+      "Rational use of inputs @en",
+      "Uso racional de insumos @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "PlantationPlanAccordingToTheRegionalFeatures": {
+    "is_a": "PlantingAttribute",
+    "label": [
+      "Plano de plantio de acordo com as caracteristícas regionais (ambiente de produção) @pt",
+      "Plantation plan according to the regional features (production environment) @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "RenewalOfAreaWithSugarcaneUsingRotationWithFoodCrops": {
+    "is_a": "PlantingAttribute",
+    "label": [
+      "Renewal of area with sugarcane using rotation with food crops @en",
+      "Renovação da área com cana utilizando rotação com culturas alimentares @pt"
+    ],
+    "relevance": 3,
+    "value": "YesNo"
+  },
+  "HarvestAttribute": {
+    "is_a": "EnvironmentalIndicator",
+    "label": [
+      "Harvest attribute @en",
+      "Atributo colheita @pt"
+    ]
+  },
+  "HarvestTypeUsed": {
+    "is_a": "HarvestAttribute",
+    "label": [
+      "Tipo de colheta utilizada (manual ou mecanizada) @pt",
+      "Harvest type used (manual or mechanized) @en"
+    ],
+    "relevance": 2,
+    "value": [
+      {
+        "label": [
+          "Manual @en",
+          "Manual @pt"
+        ],
+        "asNumber": -2
+      },
+      {
+        "label": [
+          "Mechanized @en",
+          "Mecanizado @pt"
+        ],
+        "asNumber": 2
+      },
+      {
+        "label": [
+          "Semi-mechanized @en",
+          "Semimecanizado @pt"
+        ],
+        "asNumber": 0
+      }
+    ]
+  },
+  "UseOfBurningInAreasWithHigherSlopeOf12": {
+    "is_a": "HarvestAttribute",
+    "label": [
+      "Use of burning in areas with slope higher than 12% @en",
+      "Uso de queima em áreas com declive acima de 12% @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "UseOfBurningInAreasWithLowerSlopeOf12": {
+    "is_a": "HarvestAttribute",
+    "label": [
+      "Uso de queima em áreas com declive inferior a 12% @pt",
+      "Use of burning in areas with lower slope of 12% @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "TrafficControl": {
+    "is_a": "HarvestAttribute",
+    "label": [
+      "Controle de tráfego @pt",
+      "Traffic control @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "AtmosphereAttribute": {
+    "is_a": "EnvironmentalIndicator",
+    "label": [
+      "Atributo atmosfera @pt",
+      "Atmosphere attribute @en"
+    ]
+  },
+  "AbsoluteEmissionsOfGreenhouseGases": {
+    "is_a": "AtmosphereAttribute",
+    "label": [
+      "Emissões absolutas de gases de efeito estufa (GEE) ou gases associados @pt",
+      "Absolute emissions of greenhouse gases (GEE) or associated gases @en"
+    ],
+    "relevance": 3,
+    "value": [
+      {
+        "label": [
+          "Atende aos valores determinados @pt",
+          "Meets determined values @en"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Não atende @pt",
+          "Does not meet @en"
+        ],
+        "asNumber": -1
+      }
+    ]
+  },
+  "EmissionControlnAccordanceWithResolutions": {
+    "is_a": "AtmosphereAttribute",
+    "label": [
+      "Emission control in accordance with resolutions CONAMA 382/2006 and 436/2011 @en",
+      "Controle de emissões de acordo com as resoluções CONAMA 382/2006 e 436/2011 @pt"
+    ],
+    "relevance": 3,
+    "value": "YesNo"
+  },
+  "SoilsAttribute": {
+    "is_a": "EnvironmentalIndicator",
+    "label": [
+      "Atributo solos @pt",
+      "Soils attribute @en"
+    ]
+  },
+  "ReuseOfStrawComingFromTheHarvestForGroundCover": {
+    "is_a": "SoilsAttribute",
+    "label": [
+      "Reutilização da palhada ou palhiço oriundo da colheita para cobertura do solo @pt",
+      "Reuse of straw coming from the harvest for ground cover @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "UseOfTechniquesOfGreenManure": {
+    "is_a": "SoilsAttribute",
+    "label": [
+      "Use of techniques of green manure @en",
+      "Emprego de técnicas de adubação verde @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "PlantingPlanConsideringThePrecursorUseOfArea": {
+    "is_a": "SoilsAttribute",
+    "label": [
+      "Planting plan considering the precursor use of area @en",
+      "Plano de plantio considerando o uso precursor da área @pt"
+    ],
+    "relevance": 2,
+    "value": [
+      {
+        "label": [
+          "Em substituição a áreas de matas nativas @pt",
+          "In replacement of areas of native forests @en"
+        ],
+        "asNumber": -2
+      },
+      {
+        "label": [
+          "Em substituição a pasto @pt",
+          "In replacement of pasture @en"
+        ],
+        "asNumber": 2
+      },
+      {
+        "label": [
+          "In replacement of degraded areas @en",
+          "Em substituição a áreas degradadas @pt"
+        ],
+        "asNumber": 3
+      },
+      {
+        "label": [
+          "Em substituição a cana e culturas similares @pt",
+          "In replacement of cane and similar cultures @en"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Em substituição a culturas alimentares @pt",
+          "In replacement of food crops @en"
+        ],
+        "asNumber": -1
+      }
+    ]
+  },
+  "PlanningTheProductionEnvironmentInAccordanceWithAptitudePedologicalOrEdaphic": {
+    "is_a": "SoilsAttribute",
+    "label": [
+      "Planning the production environment in accordance with pedological or edaphic aptitude @en",
+      "Planejamento do ambiente de produção segundo aptidão pedológica ou edáfica @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "UseOfCakeFIlterInTheOrganicManureInAreaWithSugarcane": {
+    "is_a": "SoilsAttribute",
+    "label": [
+      "Uso de torta de filtro na adubação orgânica em área com cana (plantio, soca, reforma) @pt",
+      "Use of cake fIlter in the organic manure in area with sugarcane @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "UseOfAdequateTerracingToTheSoilSlopeAndHarvestMechanization": {
+    "is_a": "SoilsAttribute",
+    "label": [
+      "Use of terracing adequate to the soil slope and harvest mechanization @en",
+      "Uso de terraceamento adequado a declividade do solo e mecanização da colheita @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "AttendanceToLaw7802-1989": {
+    "is_a": "SoilsAttribute",
+    "label": [
+      "Attendance to Law No. 7.802 / 1989 which provides for the transport, storage, marketing, waste disposal and pesticide packaging and the like. @en",
+      "Atendimento a Lei n°7.802/1989 que dispõe sobre o transporte, armazenamento, comercialização, destino final dos resíduos e embalagens de agrotóxicos e afins. @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "WaterAttribute": {
+    "is_a": "EnvironmentalIndicator",
+    "label": [
+      "Atributo água @pt",
+      "Water attribute @en"
+    ]
+  },
+  "AdequateStructureForInstallationOrExpansionOfWaterReuse": {
+    "is_a": "WaterAttribute",
+    "label": [
+      "Estrutura adequada para instalação ou ampliação do reuso da água (circuito fechado) @pt",
+      "Adequate structure for installation or expansion of water reuse (closed circuit) @en"
+    ],
+    "relevance": 3,
+    "value": "YesNo"
+  },
+  "ItOwnOrGrantsForWaterCatchmentAccordingToCurrentRegulations": {
+    "is_a": "WaterAttribute",
+    "label": [
+      "It own or grants for water catchment according to current regulations @en",
+      "Possui ou outorga para captação de água segundo a norma vigente @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "ReducingWaterConsumptionInSugarcaneProcessing": {
+    "is_a": "WaterAttribute",
+    "label": [
+      "Redução do consumo de água no processamento da cana @pt",
+      "Reducing water consumption in sugarcane processing @en"
+    ],
+    "relevance": 3,
+    "value": "YesNo"
+  },
+  "EmploymentOfAdequateIrrigationToWaterUsePolicy": {
+    "is_a": "WaterAttribute",
+    "label": [
+      "Employment of adequate irrigation to water use policy @en",
+      "Emprego de irrigação adequado a política de uso da água @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "BiodiversityAttribute": {
+    "is_a": "EnvironmentalIndicator",
+    "label": [
+      "Biodiversity attribute @en",
+      "Atributo biodiversidade @pt"
+    ]
+  },
+  "ComplianceWithCurrentEnvironmentalLegislation": {
+    "is_a": "BiodiversityAttribute",
+    "label": [
+      "Cumprimento da Legislação ambiental vigente @pt",
+      "Compliance with current environmental legislation @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "ProtectionPlanAndConservationOfRemainingAreas-Protected": {
+    "is_a": "BiodiversityAttribute",
+    "label": [
+      "Plano de proteção e conservação de áreas remanescentes/protegidas (Áreas de Proteção Permanente, Reserva Legal) @pt",
+      "Protection plan and conservation of remaining areas / protected (Permanent Protection Areas, Legal Reserve) @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "NaturalRecoveryAndInducedAreas": {
+    "is_a": "BiodiversityAttribute",
+    "label": [
+      "Áreas em recuperação natural e induzida (reflorestamento) @pt",
+      "Natural recovery and induced areas (reforestation) @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "HealthAttribute": {
+    "is_a": "SocialIndicator",
+    "label": [
+      "Atributo de saúde @pt",
+      "Health attribute @en"
+    ]
+  },
+  "ComplianceWithRegulatoryNorm24": {
+    "is_a": "HealthAttribute",
+    "label": [
+      "Cumprimento a Norma Regulamentadora 24 que trata do bem-estar do trabalhador @pt",
+      "Compliance with regulatory norm 24 which deals with employee welfare @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "AttendanceOfRequirementsOfAdequateEquipmentUsageNorm31": {
+    "is_a": "HealthAttribute",
+    "label": [
+      "Atendimento de requisitos de uso de equipamento adequado para aplicação de agrotóxicos de acordo com a Norma Reguladora 31 @pt",
+      "Attendance of requirements of adequate equipment usage for pesticide application according to regulatory norm 31 @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "TrainingAttribute": {
+    "is_a": "SocialIndicator",
+    "label": [
+      "Training attribute @en",
+      "Atributo Capacitação @pt"
+    ]
+  },
+  "ExistenceOfTrainingProgramsAndTrainingToWorkers": {
+    "is_a": "TrainingAttribute",
+    "label": [
+      "Existence of training programs and training to workers @en",
+      "Existência de programas de capacitação e treinamento ao trabalhador @pt"
+    ],
+    "relevance": 2,
+    "value": "ExistNo"
+  },
+  "RegulatoryAttendanceAttribute": {
+    "is_a": "SocialIndicator",
+    "label": [
+      "Regulatory attendance attribute @en",
+      "Atributo atendimento normativo @pt"
+    ]
+  },
+  "FulfillmentOfLaborLaws": {
+    "is_a": "RegulatoryAttendanceAttribute",
+    "label": [
+      "Cumprimento das leis trabalhistas de acordo com a Lei N°5.889/73* acrescida da Lei N° 11.718/2008* que tratam das relações de trabalho no setor rural. @pt",
+      "Fulfillment of labor laws in accordance with law 5.889/73 plus the law 11.718/2008 that deal with labor relations in the rural sector. @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "InitiativesOrActionsThatPromoteTheLocalCommunityWell-Being": {
+    "is_a": "RegulatoryAttendanceAttribute",
+    "label": [
+      "Iniciativas ou ações que promovam o bem-estar da comunidade local de acordo com as normas de Responsabilidade Social Empresarial (RSE) @pt",
+      "Initiatives or actions that promote the local community well-being according to the standards of corporate social responsibility (CSR) @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "SafetyAttribute": {
+    "is_a": "SocialIndicator",
+    "label": [
+      "Safety attribute @en",
+      "Atributo segurança @pt"
+    ]
+  },
+  "TrainingRoutineInWorkerSafety": {
+    "is_a": "SafetyAttribute",
+    "label": [
+      "Rotina de treinamento em segurança do trabalhador @pt",
+      "Training routine in worker safety @en"
+    ],
+    "relevance": 2,
+    "value": "ExistNo"
+  },
+  "JobsAttribute": {
+    "is_a": "SocialIndicator",
+    "label": [
+      "Atributo Empregos @pt",
+      "Jobs attribute @en"
+    ]
+  },
+  "RemunerationCompatibleWithAgreedMinimumWageBetweenUnionAndPlant": {
+    "is_a": "JobsAttribute",
+    "label": [
+      "Remuneration compatible with agreed minimum wage between trade union and plant @en",
+      "Remuneração compatível com piso salarial acordado entre sindicato e usina @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "EmploymentFormalization": {
+    "is_a": "JobsAttribute",
+    "label": [
+      "Formalização de emprego @pt",
+      "Employment formalization @en"
+    ],
+    "relevance": 2,
+    "value": [
+      {
+        "label": [
+          "Menor que 79% @pt",
+          "Lower than 79% @en"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "Entre 80% e 90% @pt",
+          "Between 80% and 90% @en"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "Maior que 91% @pt",
+          "Greater than 91% @en"
+        ],
+        "asNumber": 1
+      }
+    ]
+  },
+  "IndustrialUnityAttribute": {
+    "is_a": "EconomicIndicator",
+    "label": [
+      "Atributo unidade industrial @pt",
+      "Industrial unity attribute @en"
+    ]
+  },
+  "BiofuelInfrastructureAvailable": {
+    "is_a": "IndustrialUnityAttribute",
+    "label": [
+      "Infrastructure available for the production of second and third generation biofuels @en",
+      "Infraestrutura disponível para produção de biocombustíveis de segunda e terceira geração @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "UsesOrInvestestInMoreResistantYeast": {
+    "is_a": "IndustrialUnityAttribute",
+    "label": [
+      "Uses or invests in more resistant yeast for better efficiency in ethanol production @en",
+      "Utiliza ou investe em leveduras mais resistentes para melhor eficiência na produção de etanol @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "CostAttribute": {
+    "is_a": "EconomicIndicator",
+    "label": [
+      "Atributo de custo @pt",
+      "Cost attribute @en"
+    ]
+  },
+  "SugarcaneTransportOptimizationForIndustry": {
+    "is_a": "CostAttribute",
+    "label": [
+      "Sugarcane transport optimization for industry @en",
+      "Otimização do transporte da cana de açucar para a indústria @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "BufferStocks": {
+    "is_a": "CostAttribute",
+    "label": [
+      "Have fuel stocks in order to regulate supply  / demand and prices of ethanol (buffer stocks) @en",
+      "Ter estoques de combustível de modo a regular oferta/demanda do etanol e preços (estoques reguladores) @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "InvestmentRatioMachinesVersusProductionReturnOnAssets": {
+    "is_a": "CostAttribute",
+    "label": [
+      "Relação entre investimento de máquinas versus produção de cana e retorno do imobilizado @pt",
+      "Investment relationship between machines versus sugarcane production and return on assets @en"
+    ],
+    "relevance": 2,
+    "value": [
+      {
+        "label": [
+          "Positive @en",
+          "Positivo @pt"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Negative @en",
+          "Negativo @pt"
+        ],
+        "asNumber": -1
+      }
+    ]
+  },
+  "EnergyAttribute": {
+    "is_a": "EconomicIndicator",
+    "label": [
+      "Atributo de energia @pt",
+      "Energy attribute @en"
+    ]
+  },
+  "GradualReplacementOfDieselUseByRenewableFuelInTheFleet": {
+    "is_a": "EnergyAttribute",
+    "label": [
+      "Substituição gradativa do uso de diesel por combustível renovável na frota @pt",
+      "Gradual replacement of diesel use by renewable fuel in the fleet @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "ElectricityProductionForOwnConsumptionAndExport": {
+    "is_a": "EnergyAttribute",
+    "label": [
+      "Bioelectricity production for own consumption and export @en",
+      "Produção de bioeletricidade para consumo próprio e exportação @pt"
+    ],
+    "relevance": 3,
+    "value": [
+      {
+        "label": [
+          "Does not supply the auto-demand or is partial @en",
+          "Não supre a própria demanda ou esta é parcial @pt"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "Supre totalmente e comercializa o excedente @pt",
+          "Supplies fully and market the surplus @en"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Supre totalmente a própria demanda @pt",
+          "Supplies fully his own demand @en"
+        ],
+        "asNumber": 0
+      }
+    ]
+  },
+  "PlanToReplacementOfOldBoilersWithMoreEfficientBoilersForCogeneration": {
+    "is_a": "EnergyAttribute",
+    "label": [
+      "Plano de substituição das caldeiras antigas por caldeiras mais eficientes para cogeração de energia @pt",
+      "Plan to replacement of old boilers with more efficient boilers for cogeneration @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "ProductivityAttribute": {
+    "is_a": "EconomicIndicator",
+    "label": [
+      "Atributo de produtividade @pt",
+      "Productivity attribute @en"
+    ]
+  },
+  "CropPlanning": {
+    "is_a": "ProductivityAttribute",
+    "label": [
+      "Planejamento de safra @pt",
+      "Crop planning @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "AgriculturalPlanningObservingManagementTechniquesPlantingAndHarvestingSeasons": {
+    "is_a": "ProductivityAttribute",
+    "label": [
+      "Agricultural planning observing management techniques and planting and harvesting seasons @en",
+      "Planejamento agrícola observando as técnicas de manejo e épocas de plantio e colheita @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "PlanToExpandProductionViaImprovedProductivity": {
+    "is_a": "ProductivityAttribute",
+    "label": [
+      "Plano de expansão da produção via melhoria da produtividade @pt",
+      "Plan to expand production via improved productivity @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "ProductivityOfSugarcanePerHectare": {
+    "label": [
+      "Produtividade de cana-de-açucar por hectare @pt",
+      "Productivity of sugarcane per hectare @en"
+    ],
+    "relevance": 2,
+    "is_a": "ProductivityAttribute",
+    "value": [
+      {
+        "label": [
+          "Lower than 64 Tn/Ha @en",
+          "Menor que 64 Ton/ha @pt"
+        ],
+        "asNumber": -2
+      },
+      {
+        "label": [
+          "85 Ton/ha @pt",
+          "85 Tn/ha @en"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "Greater than 85 Tn/ha @en",
+          "Maior que 85 Ton/ha @pt"
+        ],
+        "asNumber": 2
+      },
+      {
+        "label": [
+          "81-75 Ton/ha @pt",
+          "81-75 Tn/ha @en"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "74-64 Tn/ha @en",
+          "74-64 Ton/ha @pt"
+        ],
+        "asNumber": -1
+      }
+    ]
+  },
+  "TotalRecoverableSugarIndex": {
+    "is_a": "ProductivityAttribute",
+    "label": [
+      "ATR index (total recoverable sugar) per ton of sugarcane @en",
+      "Índice de ATR (açúcares totais recuperáveis) por tonelada de cana-de-açucar @pt"
+    ],
+    "relevance": 2,
+    "value": [
+      {
+        "label": [
+          "140 a 145 kg @pt",
+          "140 to 145 kg @en"
+        ],
+        "asNumber": 1
+      },
+      {
+        "label": [
+          "130 a 139 kg @pt",
+          "130 to 139 kg @en"
+        ],
+        "asNumber": 0
+      }
+    ]
+  },
+  "SharingOfRisksBetweenSuppliersAndProductionPlant": {
+    "is_a": "ProductivityAttribute",
+    "label": [
+      "Compartilhamento dos riscos de produção entre fornecedores e usina @pt",
+      "Sharing of risks between suppliers and production plant @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "ReformAndOrRotationCropForTheNextHarvest": {
+    "is_a": "ProductivityAttribute",
+    "label": [
+      "Reform and / or rotation crop for the next harvest @en",
+      "Reforma e/ou rotação de cultura para a próxima safra @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "LogisticsPlanningOfTheFieldSucarcaneToThePlant": {
+    "is_a": "ProductivityAttribute",
+    "label": [
+      "Logistics planning of the field sugarcane to the plant @en",
+      "Planejamento logístico da cana do campo para a usina @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "ProductionEvaluationBasedOnMarketDecision": {
+    "is_a": "ProductivityAttribute",
+    "label": [
+      "Production evaluation (Ethanol / Sugar / Bioelectricity) based on market-decision and / or prices @en",
+      "Avaliação da produção (etanol/açúcar/bioeletricidade) com base na decisão de mercado e/ou preços @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "SubProductsAttribute": {
+    "is_a": "EconomicIndicator",
+    "label": [
+      "Subproducts attribute @en",
+      "Atributo subprodutos @pt"
+    ]
+  },
+  "UseOfFilterCakeWhichPartiallyReplacedMineralFertilizer": {
+    "is_a": "SubProductsAttribute",
+    "label": [
+      "Uso de torta de filtro em substituição parcial a adubação mineral @pt",
+      "Use of filter cake which partially replaced mineral fertilizer @en"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  },
+  "UseOfVinasseToFertigation": {
+    "is_a": "SubProductsAttribute",
+    "label": [
+      "Uso da vinhaça para fertirrigação (em substituição parcial a adubação mineral) @pt",
+      "Use of vinasse to fertigation (which partially replaced mineral fertilizer) @en"
+    ],
+    "relevance": 2,
+    "value": [
+      {
+        "label": [
+          "Uso parcial @pt",
+          "Partial usage @en"
+        ],
+        "asNumber": 0
+      },
+      {
+        "label": [
+          "Não usa @pt",
+          "Do not use @en"
+        ],
+        "asNumber": -1
+      },
+      {
+        "label": [
+          "Total usage @en",
+          "Uso total @pt"
+        ],
+        "asNumber": 1
+      }
+    ]
+  },
+  "InvestmentsAttribute": {
+    "is_a": "EconomicIndicator",
+    "label": [
+      "Atributo de investimentos @pt",
+      "Investments attribute @en"
+    ]
+  },
+  "InvestmentsInNewTechnologiesAndIndustrialProcessesWhichContributeACleanerAndSustainableProduction": {
+    "is_a": "InvestmentsAttribute",
+    "label": [
+      "Investments in new technologies and industrial processes which contribute a cleaner and sustainable production @en",
+      "Investimentos em novas tecnologias e processos industriais que favoreçam uma produção mais limpa e sustentável @pt"
+    ],
+    "relevance": 2,
+    "value": "YesNo"
+  }
+}

@@ -125,7 +125,7 @@ class Node {
 
     def getMap(String args){
         def sparql = "<$URI> :appliedTo ?evalobj. " +
-                     "?evalobj ui:hasMicroRegion ?microregion. " +
+                     "?evalobj ui:hasMicroregion ?microregion. " +
                      "?microregion <http://dbpedia.org/property/pt/mapa> ?map."
         def result = k.select('distinct '+args).query(sparql)
 
@@ -184,6 +184,21 @@ class Node {
                 "FILTER(?category != <http://purl.org/biodiv/semanticUI#Categorical>)"
 
         k.select('distinct ?category ?id ?label ?dataValue').query(query, "ORDER BY ?label")
+    }
+
+    def getWeightIndividuals(){
+        def query = ''
+        def result
+
+        query += "<$URI> rdfs:subClassOf ?y. " +
+                "?y owl:onProperty ui:hasWeight. "+
+                "?y owl:onClass*/owl:someValuesFrom ?weights. "+
+                "?weights owl:oneOf ?collection. "+
+                "?collection rdf:rest*/rdf:first ?id. "+
+                "?id rdfs:label ?label. "+
+                "?id ui:asNumber ?dataValue. "
+
+        k.select('distinct ?id ?label ?dataValue').query(query, "ORDER BY ?label")
     }
 
     def getCollectionIndividualsTypes(){
@@ -310,14 +325,13 @@ class Node {
             if(argsList.contains('category')){
                 query += ''' ?id rdfs:subClassOf ?y.
                              ?y owl:onProperty ui:value.
-                             ?y owl:someValuesFrom ?category. '''
+                             ?y owl:onClass*/owl:someValuesFrom ?category. '''
             }
             if(argsList.contains('weight')){
                 query += ''' optional {
                                 ?id rdfs:subClassOf ?z.
                                 ?z owl:onProperty ui:hasWeight.
-                                ?z owl:onClass ?weight.
-                                ?weight rdfs:label ?weightLabel.
+                                ?z owl:onClass*/owl:someValuesFrom ?weight.
                              } '''
             }
 
@@ -545,7 +559,7 @@ class Node {
         def query = "<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
                 "?id rdfs:subClassOf <$URI>." +
                 "?ind a ?id." +
-                "?ind ui:name ?name."+
+                "?ind ui:hasName ?name."+
                 "?ind :justification ?justification."+
                 "optional {?id <http://semantic.icmc.usp.br/sustenagro#relevance> ?relevance}."+
                 "?ind ui:value ?valueType." +
@@ -662,8 +676,8 @@ class Node {
         def result
 
         query = "?user a ui:User. "+
-                "?user ui:username ?username. "+
-                "?user ui:password ?password. "
+                "?user ui:hasUsername ?username. "+
+                "?user ui:hasPassword ?password. "
 
         result = k.query(query)
         //(result.size()==1)? result[0] : result
@@ -758,7 +772,7 @@ class Node {
 
     def insertEvaluationObject(String id, Object type, Map properties = [:]){
         def evalObjId = k.toURI(":"+id)
-        def name = k.toURI('ui:name')
+        def name = k.toURI('ui:hasName')
 
         String sparql = "<" + evalObjId + "> "
 

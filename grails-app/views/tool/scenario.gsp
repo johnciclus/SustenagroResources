@@ -40,16 +40,25 @@
                 .removeAttr('checked');
     });
 
+    $(".justify").click(function(){
+        var name = $(this).attr('id').replace('-justify', '');
+        var element = $("label[for='"+name+"-justification']").parent();
+        if($(element).hasClass( "hidden" ))
+            $(element).addClass('show').removeClass('hidden');
+        else if($(element).hasClass( "show" ))
+            $(element).addClass('hidden').removeClass('show');
+    });
+
     var rules = {};
 
     $("input[type='radio']").each(function(){
         var e1Name = $(this).attr('name');
-        var e2 = $("[name^='"+e1Name+"-']");
+        var e2 = $("[name^='"+e1Name+"-weight']");
         if(e2.length){
             var e2Name = $(e2).attr('name');
             rules[e1Name] = {required: function(element) {
                 var name = $(element).attr('name');
-                return (($("[name^='"+name+"-']").val() != null) != $(element).is(':checked'));
+                return (($("[name^='"+name+"-weight']").val() != null) != $(element).is(':checked'));
             }};
             rules[e2Name] = {required: function(element) {
                 var name = $(element).attr('name');

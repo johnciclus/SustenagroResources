@@ -31,12 +31,12 @@
             $(document).ready(function() {
                 function loadAnalyses() {
                     $.post('/tool/analyses',
-                            {'evaluation_object_id': $('#evaluation_object_id').val()},
-                            function (data) {
-                                $('#analyses_form_container').html(data);
-                                $('#analyses_form_container table').bootstrapTable();
-                                $('#new_analysis').prop('disabled', false);
-                            }
+                        {'evaluation_object_id': $('#evaluation_object_id').val()},
+                        function (data) {
+                            $('#analyses_form_container').html(data);
+                            $('#analyses_form_container table').bootstrapTable();
+                            $('#new_analysis').prop('disabled', false);
+                        }
                     );
                 }
 
@@ -62,12 +62,12 @@
                     $(this).validate({
                         errorClass: "has-error",
                         rules: {
-                            'http://purl.org/biodiv/semanticUI#name': {
+                            'http://purl.org/biodiv/semanticUI#hasName': {
                                 remote: "evaluationObjectNameAvailability"
                             }
                         },
                         messages: {
-                            'http://purl.org/biodiv/semanticUI#name': {
+                            'http://purl.org/biodiv/semanticUI#hasName': {
                                 remote: jQuery.validator.format("{0} já está atribuído no sistema.")
                             }
                         },
