@@ -6,7 +6,9 @@
 		<asset:javascript src="ace-min-noconflict/ace.js"/>
         <asset:javascript src="ace-min-noconflict/ext-language_tools.js"/>
         <asset:javascript src="bootstrap-table-old.min.js"/>
+        <asset:javascript src="bootstrap-treeview.min.js"/>
         <asset:stylesheet href="bootstrap-table.min.css"/>
+        <asset:stylesheet href="bootstrap-treeview.min.css"/>
 	</head>
 	<body>
         <div class="row main">
@@ -30,10 +32,108 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div id="tree" class="col-md-3 col-sm-3">
+
+                            </div>
+                            <div class="col-md-9 col-sm-9">
                                 <pre id="ontEditor" class="ace_editor editor ace-tm">${ontology}</pre>
                             </div>
+                            <script type="text/javascript">
 
+                                var ontology;
+                                var classes = [];
+
+                                function classify(id){
+                                    if(ontology[id] && ontology[id]['is_a']){
+                                        findClass(id, classes);
+                                        return 'class'
+                                    }
+                                }
+
+                                function findClass(id, container){
+                                    if(ontology[id] && ontology[id]['is_a']){
+                                        var is_a = ontology[id]['is_a'];
+                                        var parent = findClass(is_a, container);
+
+                                        if(parent != null){
+                                            var exist = false;
+
+                                            for(var i in parent['nodes']){
+                                                if(parent['nodes'][i].id == id){
+                                                    exist = true;
+                                                }
+                                            }
+                                            if('nodes' in parent && !exist){
+                                                parent['nodes'].push({id: id, text: id});
+                                            }
+                                        }
+                                        else{
+                                            //var parent = findClass(ontology[is_a], container);
+                                            console.log(id);
+                                            console.log(is_a);
+                                            console.log(parent);
+
+                                            for(var c in classes){
+                                                for(var i in classes[c]['nodes']){
+                                                    if(classes[c]['nodes'][i].id == is_a){
+                                                        console.log(classes[c]['nodes'][i].id)
+                                                    }
+                                                }
+                                            }
+
+                                            /*for(var i in container){
+                                                container.id
+                                            }
+                                            if(parent != null){
+                                                var exist = false;
+
+                                                for(var i in parent['nodes']){
+                                                    if(parent['nodes'][i].id == id){
+                                                        exist = true;
+                                                    }
+                                                }
+                                                if('nodes' in parent && !exist){
+                                                    parent['nodes'].push({id: id, text: id});
+                                                }
+                                            }*/
+                                        }
+                                    }
+                                    else{
+                                        var parent = null;
+                                        for(var classID in container){
+                                            if(container[classID].id == id){
+                                                parent = container[classID];
+                                            }
+                                        }
+                                        if(parent == null){
+                                            container.push({id: id, text: id, nodes: []});
+                                            parent = container[container.length - 1]
+                                        }
+                                        return parent
+                                    }
+                                }
+
+                                function defineTree( ont ){
+                                    ontology = ont;
+                                    console.log(ontology);
+                                    for(var id in ontology){
+                                        classify(id);
+                                    }
+                                    /*
+                                    console.log('defineTree');
+                                    console.log(ontology);
+
+                                    for(var id in ontology){
+                                        console.log(id + ' '+classify(id));
+                                    }
+                                    */
+                                    $('#tree').treeview({data: classes, levels: 1});
+                                };
+
+                                $.get('/admin/ontologyAsJSON', function( data ) {
+                                    defineTree(data);
+                                });
+                            </script>
                             <script type="application/javascript">
                                 var ontEditor = ace.edit("ontEditor");
                                 ontEditor.setTheme("ace/theme/chrome");

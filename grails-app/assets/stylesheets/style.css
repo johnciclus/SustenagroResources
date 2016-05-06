@@ -287,6 +287,11 @@ input[type="date"]::-webkit-input-placeholder{
     padding: 0;
 }
 
+.treeview .list-group-item {
+	font-size: 14px;
+	padding: 10px 15px;
+}
+
 
 
 

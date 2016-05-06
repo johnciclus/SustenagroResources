@@ -168,6 +168,13 @@ class AdminController {
 
     }
 
+    def ontologyAsJSON(){
+        File yamlFile = new File(path + 'ontology/sustenagro.yaml');
+        Map yaml = (Map) new Yaml().load(yamlFile.text);
+        //println yaml
+        render yaml as JSON
+    }
+
     def ontology(){
         def response = [:]
 
