@@ -5,7 +5,7 @@
         <div class="row">
             <label class="col-sm-8 control-label">${feature.value.label}</label>
             <div class="col-sm-4 text-right">
-                <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"> Justificativa</span></button>
+                <button id="<%= feature.value.id + '-justify' %>" type="button" class="btn btn-default justify btn-xs"><span class="glyphicon glyphicon-pencil">Justificativa</span></button>
                 <g:render template="/widgets/clearButton" model="[id: feature.value.id, label: 'Apagar', widgetClass: 'btn-xs']"/>
             </div>
         </div>
@@ -20,16 +20,22 @@
                     </div>
                 </g:each>
             </g:if>
-            <g:elseif test="${feature.value.valueType.contains('http://purl.org/biodiv/semanticUI#Real')}">
+            <g:elseif test="${feature.value.valueTypes.contains('http://purl.org/biodiv/semanticUI#Real')}">
                 <input type="text" class="form-control" name="${feature.value.id}" value="${values[feature.value.id]}">
             </g:elseif>
+        </div>
+        <div class="row hidden">
+            <label for="<%= feature.value.id + '-justification' %>" class="col-sm-4 control-label weight-label">Justificativa</label>
+            <div class="col-sm-8 text-right">
+                <g:render template="/widgets/textArea" model="[id: feature.value.id + '-justification', placeholder: 'Justificativa']"/>
+            </div>
         </div>
         <g:if test="${feature.value.weightIndividuals}">
             <g:set var="hasWeight" value="${values[feature.value.id] != null && values[feature.value.id].weight}" />
             <div class="row">
-                <label for="<%= feature.value.weightId %>" class="col-sm-6 control-label weight-label"><%= feature.value.weightLabel %></label>
-                <div class="col-sm-6 text-right">
-                    <select id="<%= feature.value.weightId %>" name="<%= feature.value.weightId %>" class="form-control clear">
+                <label for="<%= feature.value.id + '-weight' %>" class="col-sm-4 control-label weight-label">Peso</label>
+                <div class="col-sm-8 text-right">
+                    <select id="<%= feature.value.id + '-weight' %>" name="<%= feature.value.id + '-weight' %>" class="form-control clear">
                         <g:if test="${hasWeight == false}">
                             <option selected disabled hidden value=''></option>
                         </g:if>

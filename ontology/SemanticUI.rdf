@@ -107,12 +107,13 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#hasMicroRegion -->
+    <!-- http://purl.org/biodiv/semanticUI#hasMicroregion -->
 
-    <owl:ObjectProperty rdf:about="http://purl.org/biodiv/semanticUI#hasMicroRegion">
+    <owl:ObjectProperty rdf:about="http://purl.org/biodiv/semanticUI#hasMicroregion">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:label xml:lang="en">has microregion</rdfs:label>
         <rdfs:label xml:lang="pt">tem microregion</rdfs:label>
+        <rdfs:range rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
     </owl:ObjectProperty>
     
 
@@ -213,9 +214,9 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#email -->
+    <!-- http://purl.org/biodiv/semanticUI#hasEmail -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#email">
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasEmail">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:label xml:lang="en">email</rdfs:label>
         <rdfs:label xml:lang="pt">email</rdfs:label>
@@ -224,9 +225,9 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#name -->
+    <!-- http://purl.org/biodiv/semanticUI#hasName -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#name">
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasName">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:label xml:lang="en">name</rdfs:label>
         <rdfs:label xml:lang="pt">nome</rdfs:label>
@@ -235,9 +236,9 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#organization -->
+    <!-- http://purl.org/biodiv/semanticUI#hasOrganization -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#organization">
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasOrganization">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:label xml:lang="en">organization</rdfs:label>
         <rdfs:label xml:lang="pt">organização</rdfs:label>
@@ -246,20 +247,20 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#password -->
+    <!-- http://purl.org/biodiv/semanticUI#hasPassword -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#password">
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasPassword">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:label xml:lang="en">password</rdfs:label>
-        <rdfs:label xml:lang="en">senha</rdfs:label>
+        <rdfs:label xml:lang="pt">senha</rdfs:label>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#phoneNumber -->
+    <!-- http://purl.org/biodiv/semanticUI#hasPhoneNumber -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#phoneNumber">
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasPhoneNumber">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:label xml:lang="en">phone number</rdfs:label>
         <rdfs:label xml:lang="pt">número de telefone</rdfs:label>
@@ -268,9 +269,9 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#position -->
+    <!-- http://purl.org/biodiv/semanticUI#hasPosition -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#position">
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasPosition">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:label xml:lang="en">position</rdfs:label>
         <rdfs:label xml:lang="pt">cargo</rdfs:label>
@@ -279,13 +280,24 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#surname -->
+    <!-- http://purl.org/biodiv/semanticUI#hasSurname -->
 
-    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#surname">
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasSurname">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:label xml:lang="en">surname</rdfs:label>
         <rdfs:label xml:lang="pt">sobrenome</rdfs:label>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/biodiv/semanticUI#hasUsername -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#hasUsername">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label xml:lang="en">username</rdfs:label>
+        <rdfs:label xml:lang="pt">nome de usuário</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
 
@@ -297,17 +309,6 @@
         <rdfs:label xml:lang="en">update at</rdfs:label>
         <rdfs:label xml:lang="pt">autalizado no</rdfs:label>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://purl.org/biodiv/semanticUI#username -->
-
-    <owl:DatatypeProperty rdf:about="http://purl.org/biodiv/semanticUI#username">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:label xml:lang="en">username</rdfs:label>
-        <rdfs:label xml:lang="pt">nome de usuário</rdfs:label>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
 
@@ -578,12 +579,52 @@
     
 
 
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_Central_Espírito-Santense -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_Central_Espírito-Santense">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião Central Espírito-Santense</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_Central_Mineira -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_Central_Mineira">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião Central Mineira</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_Litoral_Norte_Espírito-Santense -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_Litoral_Norte_Espírito-Santense">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião Litoral Norte Espírito-Santense</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://pt.dbpedia.org/resource/Mesorregião_Macro_Metropolitana_Paulista -->
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_Macro_Metropolitana_Paulista">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião Macro Metropolitana Paulista</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião Macro Metropolitana Paulista</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Belo_Horizonte -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Belo_Horizonte">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião Metropolitana de Belo Horizonte</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -592,7 +633,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Curitiba">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião Metropolitana de Curitiba</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião Metropolitana de Curitiba</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
     </owl:NamedIndividual>
     
@@ -602,7 +643,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião Metropolitana de Porto Alegre</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião Metropolitana de Porto Alegre</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
     </owl:NamedIndividual>
     
@@ -612,7 +653,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_São_Paulo">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião Metropolitana de São Paulo</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião Metropolitana de São Paulo</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
     </owl:NamedIndividual>
     
@@ -622,8 +663,18 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_da_Grande_Florianópolis">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião da Grande Florianópolis</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião da Grande Florianópolis</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_da_Zona_da_Mata -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_da_Zona_da_Mata">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião da Zona da Mata</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -632,7 +683,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_de_Araraquara">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião de Araraquara</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião de Araraquara</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
     </owl:NamedIndividual>
     
@@ -642,7 +693,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_de_Araçatuba">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião de Araçatuba</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião de Araçatuba</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
     </owl:NamedIndividual>
     
@@ -652,7 +703,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_de_Assis">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião de Assis</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião de Assis</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
     </owl:NamedIndividual>
     
@@ -662,7 +713,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_de_Bauru">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião de Bauru</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião de Bauru</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
     </owl:NamedIndividual>
     
@@ -672,7 +723,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_de_Campinas">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião de Campinas</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião de Campinas</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
     </owl:NamedIndividual>
     
@@ -682,7 +733,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_de_Itapetininga">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião de Itapetininga</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião de Itapetininga</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
     </owl:NamedIndividual>
     
@@ -692,7 +743,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_de_Marília">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião de Marília</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião de Marília</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
     </owl:NamedIndividual>
     
@@ -702,7 +753,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_de_Piracicaba">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião de Piracicaba</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião de Piracicaba</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
     </owl:NamedIndividual>
     
@@ -712,7 +763,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_de_Presidente_Prudente">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião de Presidente Prudente</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião de Presidente Prudente</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
     </owl:NamedIndividual>
     
@@ -722,7 +773,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião de Ribeirão Preto</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião de Ribeirão Preto</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
     </owl:NamedIndividual>
     
@@ -732,8 +783,18 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião de São José do Rio Preto</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião de São José do Rio Preto</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_do_Campo_das_Vertentes -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Campo_das_Vertentes">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião do Campo das Vertentes</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -742,8 +803,18 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Centro-Sul_Paranaense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Centro-Sul Paranaense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Centro-Sul Paranaense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Fluminense -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Fluminense">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião do Centro Fluminense</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_de_Janeiro"/>
     </owl:NamedIndividual>
     
 
@@ -752,7 +823,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Ocidental_Paranaense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Centro Ocidental Paranaense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Centro Ocidental Paranaense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
     </owl:NamedIndividual>
     
@@ -762,7 +833,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Ocidental_Rio-Grandense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Centro Ocidental Rio-Grandense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Centro Ocidental Rio-Grandense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
     </owl:NamedIndividual>
     
@@ -772,7 +843,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Paranaense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Centro Oriental Paranaense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Centro Oriental Paranaense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
     </owl:NamedIndividual>
     
@@ -782,8 +853,18 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Rio-Grandense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Centro Oriental Rio-Grandense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Centro Oriental Rio-Grandense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_do_Jequitinhonha -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Jequitinhonha">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião do Jequitinhonha</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -792,7 +873,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Litoral_Sul_Paulista">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Litoral Sul Paulista</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Litoral Sul Paulista</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
     </owl:NamedIndividual>
     
@@ -802,8 +883,28 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Nordeste_Rio-Grandense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Nordeste Rio-Grandense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Nordeste Rio-Grandense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Espírito-Santense -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Espírito-Santense">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião do Noroeste Espírito-Santense</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Fluminense -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Fluminense">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião do Noroeste Fluminense</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_de_Janeiro"/>
     </owl:NamedIndividual>
     
 
@@ -812,7 +913,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Paranaense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Noroeste Paranaense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Noroeste Paranaense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
     </owl:NamedIndividual>
     
@@ -822,8 +923,18 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Noroeste Rio-Grandense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Noroeste Rio-Grandense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_de_Minas -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_de_Minas">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião do Noroeste de Minas</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -832,7 +943,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Catarinense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Norte Catarinense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Norte Catarinense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
     </owl:NamedIndividual>
     
@@ -842,8 +953,18 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Norte Central Paranaense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Norte Central Paranaense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Fluminense -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Fluminense">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião do Norte Fluminense</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_de_Janeiro"/>
     </owl:NamedIndividual>
     
 
@@ -852,8 +973,18 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Pioneiro_Paranaense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Norte Pioneiro Paranaense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Norte Pioneiro Paranaense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_do_Norte_de_Minas -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_de_Minas">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião do Norte de Minas</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -862,7 +993,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Catarinense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Oeste Catarinense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Oeste Catarinense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
     </owl:NamedIndividual>
     
@@ -872,8 +1003,18 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Paranaense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Oeste Paranaense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Oeste Paranaense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_de_Minas -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_de_Minas">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião do Oeste de Minas</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -882,7 +1023,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Paranaense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Sudeste Paranaense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Sudeste Paranaense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
     </owl:NamedIndividual>
     
@@ -892,7 +1033,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Rio-Grandense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Sudeste Rio-Grandense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Sudeste Rio-Grandense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
     </owl:NamedIndividual>
     
@@ -902,7 +1043,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Paranaense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Sudoeste Paranaense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Sudoeste Paranaense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
     </owl:NamedIndividual>
     
@@ -912,7 +1053,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Rio-Grandense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Sudoeste Rio-Grandense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Sudoeste Rio-Grandense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
     </owl:NamedIndividual>
     
@@ -922,8 +1063,48 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Catarinense">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Sul Catarinense</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Sul Catarinense</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Espírito-Santense -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Espírito-Santense">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião do Sul Espírito-Santense</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Fluminense -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Fluminense">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião do Sul Fluminense</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_de_Janeiro"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_do_Sul_e_Sudoeste_de_Minas -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_e_Sudoeste_de_Minas">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião do Sul e Sudoeste de Minas</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_do_Triângulo_Mineiro_e_Alto_Paranaíba -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Triângulo_Mineiro_e_Alto_Paranaíba">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião do Triângulo Mineiro e Alto Paranaíba</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -932,8 +1113,18 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Itajaí">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Vale do Itajaí</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Vale do Itajaí</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Mucuri -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Mucuri">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião do Vale do Mucuri</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -942,8 +1133,42 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Paraíba_Paulista">
         <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
-        <rdfs:label>Mesorregião do Vale do Paraíba Paulista</rdfs:label>
+        <rdfs:label xml:lang="pt">Mesorregião do Vale do Paraíba Paulista</rdfs:label>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Rio_Doce -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Rio_Doce">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Mesoregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Mesorregião do Vale do Rio Doce</rdfs:label>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_da_Barra_de_São_Francisco -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_da_Barra_de_São_Francisco">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião da Barra de São Francisco</rdfs:label>
+        <pt:mapa>EspiritoSanto Micro BarradeSaoFrancisco.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Espírito-Santense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_da_Baía_da_Ilha_Grande -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_da_Baía_da_Ilha_Grande">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião da Baía da Ilha Grande</rdfs:label>
+        <pt:mapa>RiodeJaneiro Micro BaiadaIlhaGrande.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Fluminense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_de_Janeiro"/>
     </owl:NamedIndividual>
     
 
@@ -952,7 +1177,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_da_Campanha_Central">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião da Campanha Central</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião da Campanha Central</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro CampanhaCentral.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -964,7 +1189,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_da_Campanha_Meridional">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião da Campanha Meridional</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião da Campanha Meridional</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro CampanhaMeridional.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -976,10 +1201,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_da_Campanha_Ocidental">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião da Campanha Ocidental</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião da Campanha Ocidental</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro CampanhaOcidental.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_da_Montanha -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_da_Montanha">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião da Montanha</rdfs:label>
+        <pt:mapa>EspiritoSanto Micro Montanha.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Litoral_Norte_Espírito-Santense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
     </owl:NamedIndividual>
     
 
@@ -988,7 +1225,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_das_Serras_de_Sudeste">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião das Serras de Sudeste</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião das Serras de Sudeste</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro SerrasdeSudeste.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -1000,10 +1237,70 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Adamantina">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Adamantina</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Adamantina</rdfs:label>
         <pt:mapa>SaoPaulo Micro Adamantina.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Presidente_Prudente"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Afonso_Cláudio -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Afonso_Cláudio">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Afonso Cláudio</rdfs:label>
+        <pt:mapa>EspiritoSanto Micro AfonsoClaudio.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Central_Espírito-Santense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Aimorés -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Aimorés">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Aimorés</rdfs:label>
+        <pt:mapa>MinasGerais Micro Aimores.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Rio_Doce"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Alegre -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Alegre">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Alegre</rdfs:label>
+        <pt:mapa>EspiritoSanto Micro Alegre.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Espírito-Santense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Alfenas -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Alfenas">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Alfenas</rdfs:label>
+        <pt:mapa>MinasGerais Micro Alfenas.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_e_Sudoeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Almenara -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Almenara">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Almenara</rdfs:label>
+        <pt:mapa>MinasGerais Micro Almenara.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Jequitinhonha"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1012,7 +1309,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Amparo">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Amparo</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Amparo</rdfs:label>
         <pt:mapa>SaoPaulo Micro Amparo.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Campinas"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1024,10 +1321,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Andradina">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Andradina</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Andradina</rdfs:label>
         <pt:mapa>SaoPaulo Micro Andradina.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Araçatuba"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Andrelândia -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Andrelândia">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Andrelândia</rdfs:label>
+        <pt:mapa>MinasGerais Micro Andrelandia.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_e_Sudoeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1036,7 +1345,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Apucarana">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Apucarana</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Apucarana</rdfs:label>
         <pt:mapa>Parana Micro Apucarana.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1048,7 +1357,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Araranguá">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Araranguá</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Araranguá</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_Ararangua.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Catarinense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
@@ -1060,10 +1369,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Araraquara">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Araraquara</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Araraquara</rdfs:label>
         <pt:mapa>SaoPaulo Micro Araraquara.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Araraquara"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Araxá -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Araxá">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Araxá</rdfs:label>
+        <pt:mapa>MinasGerais Micro Araxa.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Triângulo_Mineiro_e_Alto_Paranaíba"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1072,10 +1393,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Araçatuba">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Araçatuba</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Araçatuba</rdfs:label>
         <pt:mapa>SaoPaulo Micro Aracatuba.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Araçatuba"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Araçuaí -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Araçuaí">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Araçuaí</rdfs:label>
+        <pt:mapa>MinasGerais Micro Aracuai.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Jequitinhonha"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1084,7 +1417,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Assaí">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Assaí</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Assaí</rdfs:label>
         <pt:mapa>Parana Micro Assai.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Pioneiro_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1096,7 +1429,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Assis">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Assis</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Assis</rdfs:label>
         <pt:mapa>SaoPaulo Micro Assis.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Assis"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1108,7 +1441,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Astorga">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Astorga</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Astorga</rdfs:label>
         <pt:mapa>Parana Micro Astorga.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1120,7 +1453,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Auriflama">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Auriflama</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Auriflama</rdfs:label>
         <pt:mapa>SaoPaulo Micro Auriflama.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1132,7 +1465,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Avaré">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Avaré</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Avaré</rdfs:label>
         <pt:mapa>SaoPaulo Micro Avare.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Bauru"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1144,10 +1477,34 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Bananal">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Bananal</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Bananal</rdfs:label>
         <pt:mapa>SaoPaulo Micro Bananal.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Paraíba_Paulista"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Barbacena -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Barbacena">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Barbacena</rdfs:label>
+        <pt:mapa>MinasGerais Micro Barbacena.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Campo_das_Vertentes"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Barra_do_Piraí -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Barra_do_Piraí">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Barra do Piraí</rdfs:label>
+        <pt:mapa>RiodeJaneiro Micro BarradoPirai.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Fluminense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_de_Janeiro"/>
     </owl:NamedIndividual>
     
 
@@ -1156,7 +1513,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Barretos">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Barretos</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Barretos</rdfs:label>
         <pt:mapa>SaoPaulo Micro Barretos.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1168,7 +1525,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Batatais">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Batatais</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Batatais</rdfs:label>
         <pt:mapa>SaoPaulo Micro Batatais.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1180,10 +1537,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Bauru">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Bauru</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Bauru</rdfs:label>
         <pt:mapa>SaoPaulo Micro Bauru.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Bauru"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Belo_Horizonte -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Belo_Horizonte">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Belo Horizonte</rdfs:label>
+        <pt:mapa>MinasGerais Micro BeloHorizonte.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Belo_Horizonte"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1192,7 +1561,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Birigui">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Birigui</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Birigui</rdfs:label>
         <pt:mapa>SaoPaulo Micro Birigui.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Araçatuba"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1204,10 +1573,34 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Blumenau">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Blumenau</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Blumenau</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_Blumenau.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Itajaí"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Bocaiuva -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Bocaiuva">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Bocaiuva</rdfs:label>
+        <pt:mapa>MinasGerais Micro Bocaiuva.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Bom_Despacho -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Bom_Despacho">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Bom Despacho</rdfs:label>
+        <pt:mapa>MinasGerais Micro BomDespacho.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Central_Mineira"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1216,7 +1609,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Botucatu">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Botucatu</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Botucatu</rdfs:label>
         <pt:mapa>SaoPaulo_Micro_Botucatu.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Bauru"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1228,7 +1621,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Bragança_Paulista">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Bragança Paulista</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Bragança Paulista</rdfs:label>
         <pt:mapa>SaoPaulo Micro BragancaPaulista.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Macro_Metropolitana_Paulista"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1240,10 +1633,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Cachoeira_do_Sul">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Cachoeira do Sul</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Cachoeira do Sul</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro CachoeiradoSul.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Cachoeiro_de_Itapemirim -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Cachoeiro_de_Itapemirim">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Cachoeiro de Itapemirim</rdfs:label>
+        <pt:mapa>EspiritoSanto Micro CachoeirodeItapemirim.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Espírito-Santense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
     </owl:NamedIndividual>
     
 
@@ -1252,7 +1657,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Camaquã">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Camaquã</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Camaquã</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro Camaqua.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -1264,10 +1669,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Campinas">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Campinas</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Campinas</rdfs:label>
         <pt:mapa>SaoPaulo Micro Campinas.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Campinas"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Campo_Belo -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Campo_Belo">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Campo Belo</rdfs:label>
+        <pt:mapa>MinasGerais Micro CampoBelo.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1276,7 +1693,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Campo_Mourão">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Campo Mourão</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Campo Mourão</rdfs:label>
         <pt:mapa>Parana Micro CampoMourao.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Ocidental_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1288,10 +1705,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Campos_do_Jordão">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Campos do Jordão</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Campos do Jordão</rdfs:label>
         <pt:mapa>SaoPaulo Micro CamposdoJordao.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Paraíba_Paulista"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Campos_dos_Goytacazes -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Campos_dos_Goytacazes">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Campos dos Goytacazes</rdfs:label>
+        <pt:mapa>RiodeJaneiro Micro CamposdosGoytacazes.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Fluminense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_de_Janeiro"/>
     </owl:NamedIndividual>
     
 
@@ -1300,10 +1729,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Canoinhas">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Canoinhas</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Canoinhas</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_Canoinhas.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Catarinense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Cantagalo-Cordeiro -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Cantagalo-Cordeiro">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Cantagalo-Cordeiro</rdfs:label>
+        <pt:mapa>RiodeJaneiro Micro CantagaloCordeiro.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Fluminense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_de_Janeiro"/>
     </owl:NamedIndividual>
     
 
@@ -1312,10 +1753,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Capanema">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Capanema</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Capanema</rdfs:label>
         <pt:mapa>Parana Micro Capanema.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Capelinha -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Capelinha">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Capelinha</rdfs:label>
+        <pt:mapa>MinasGerais Micro Capelinha.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Jequitinhonha"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1324,7 +1777,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Capão_Bonito">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Capão Bonito</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Capão Bonito</rdfs:label>
         <pt:mapa>SaoPaulo Micro CampaoBonito.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Itapetininga"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1336,10 +1789,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Caraguatatuba">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Caraguatatuba</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Caraguatatuba</rdfs:label>
         <pt:mapa>SaoPaulo Micro Caraguatatuba.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Paraíba_Paulista"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Caratinga -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Caratinga">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Caratinga</rdfs:label>
+        <pt:mapa>MinasGerais Micro Caratinga.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Rio_Doce"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1348,10 +1813,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Carazinho">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Carazinho</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Carazinho</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro Carazinho.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Cataguases -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Cataguases">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Cataguases</rdfs:label>
+        <pt:mapa>MinasGerais Micro Cataguases.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_da_Zona_da_Mata"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1360,7 +1837,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Catanduva">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Catanduva</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Catanduva</rdfs:label>
         <pt:mapa>SaoPaulo Micro Catanduva.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1372,7 +1849,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Caxias_do_Sul">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Caxias do Sul</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Caxias do Sul</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro CaxiasdoSul.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Nordeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -1384,7 +1861,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Cerro_Azul">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Cerro Azul</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Cerro Azul</rdfs:label>
         <pt:mapa>Parana Micro CerroAzul.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Curitiba"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1396,7 +1873,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Cerro_Largo">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Cerro Largo</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Cerro Largo</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro CerroLargo.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -1408,7 +1885,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Chapecó">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Chapecó</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Chapecó</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_Chapeco.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Catarinense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
@@ -1420,10 +1897,34 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Cianorte">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Cianorte</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Cianorte</rdfs:label>
         <pt:mapa>Parana Micro Cianorte.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Colatina -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Colatina">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Colatina</rdfs:label>
+        <pt:mapa>EspiritoSanto Micro Colatina.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Espírito-Santense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Conceição_do_Mato_Dentro -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Conceição_do_Mato_Dentro">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Conceição do Mato Dentro</rdfs:label>
+        <pt:mapa>MinasGerais Micro ConceicaodoMatoDentro.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Belo_Horizonte"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1432,10 +1933,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Concórdia">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Concórdia</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Concórdia</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_Concordia.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Catarinense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Conselheiro_Lafaiete -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Conselheiro_Lafaiete">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Conselheiro Lafaiete</rdfs:label>
+        <pt:mapa>MinasGerais Micro ConselheiroLafaiete.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Belo_Horizonte"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1444,7 +1957,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Cornélio_Procópio">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Cornélio Procópio</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Cornélio Procópio</rdfs:label>
         <pt:mapa>Parana Micro CornelioProcopio.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Pioneiro_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1456,7 +1969,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Criciúma">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Criciúma</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Criciúma</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_Criciuma.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Catarinense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
@@ -1468,7 +1981,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Cruz_Alta">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Cruz Alta</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Cruz Alta</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro CruzAlta.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -1480,10 +1993,46 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Curitiba">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Curitiba</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Curitiba</rdfs:label>
         <pt:mapa>Parana Micro Curitiba.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Curitiba"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Curvelo -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Curvelo">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Curvelo</rdfs:label>
+        <pt:mapa>MinasGerais Micro Curvelo.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Central_Mineira"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Diamantina -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Diamantina">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Diamantina</rdfs:label>
+        <pt:mapa>MinasGerais Micro Diamantina.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Jequitinhonha"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Divinópolis -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Divinópolis">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Divinópolis</rdfs:label>
+        <pt:mapa>MinasGerais Micro Divinopolis.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1492,7 +2041,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Dracena">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Dracena</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Dracena</rdfs:label>
         <pt:mapa>SaoPaulo Micro Dracena.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Presidente_Prudente"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1504,7 +2053,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Erechim">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Erechim</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Erechim</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro Erechim.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -1516,7 +2065,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Faxinal">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Faxinal</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Faxinal</rdfs:label>
         <pt:mapa>Parana Micro Faxinal.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1528,7 +2077,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Floraí">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Floraí</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Floraí</rdfs:label>
         <pt:mapa>Parana Micro Florai.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1540,10 +2089,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Florianópolis">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Florianópolis</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Florianópolis</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_Florianopolis.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_da_Grande_Florianópolis"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Formiga -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Formiga">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Formiga</rdfs:label>
+        <pt:mapa>MinasGerais Micro Formiga.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1552,7 +2113,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Foz_do_Iguaçu">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Foz do Iguaçu</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Foz do Iguaçu</rdfs:label>
         <pt:mapa>Parana Micro FozdoIguacu.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1564,7 +2125,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Franca">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Franca</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Franca</rdfs:label>
         <pt:mapa>SaoPaulo Micro Franca.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1576,7 +2137,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Francisco_Beltrão">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Francisco Beltrão</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Francisco Beltrão</rdfs:label>
         <pt:mapa>Parana_Micro_FranciscoBeltrao.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1588,7 +2149,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Franco_da_Rocha">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Franco da Rocha</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Franco da Rocha</rdfs:label>
         <pt:mapa>SaoPaulo Micro FrancodaRocha.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_São_Paulo"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1600,10 +2161,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Frederico_Westphalen">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Frederico Westphalen</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Frederico Westphalen</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro FredericoWestphalen.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Frutal -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Frutal">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Frutal</rdfs:label>
+        <pt:mapa>MinasGerais Micro Frutal.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Triângulo_Mineiro_e_Alto_Paranaíba"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1612,10 +2185,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Goioerê">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Goioerê</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Goioerê</rdfs:label>
         <pt:mapa>Parana_Micro_Goioere.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Ocidental_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Governador_Valadares -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Governador_Valadares">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Governador Valadares</rdfs:label>
+        <pt:mapa>MinasGerais Micro GovernadorValadares.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Rio_Doce"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1624,10 +2209,34 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Gramado-Canela">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Gramado-Canela</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Gramado-Canela</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro GramadoCanela.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Grão_Mogol -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Grão_Mogol">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Grão Mogol</rdfs:label>
+        <pt:mapa>MinasGerais Micro GraoMogol.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Guanhães -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Guanhães">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Guanhães</rdfs:label>
+        <pt:mapa>MinasGerais Micro Guanhares.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Rio_Doce"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1636,10 +2245,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Guaporé">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Guaporé</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Guaporé</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro Guapore.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Nordeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Guarapari -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Guarapari">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Guarapari</rdfs:label>
+        <pt:mapa>EspiritoSanto Micro Guarapari.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Central_Espírito-Santense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
     </owl:NamedIndividual>
     
 
@@ -1648,7 +2269,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Guarapuava">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Guarapuava</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Guarapuava</rdfs:label>
         <pt:mapa>Parana Micro Guarapuava.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro-Sul_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1660,7 +2281,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Guaratinguetá">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Guaratinguetá</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Guaratinguetá</rdfs:label>
         <pt:mapa>SaoPaulo Micro Guaratingueta.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Paraíba_Paulista"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1672,7 +2293,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Guarulhos">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Guarulhos</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Guarulhos</rdfs:label>
         <pt:mapa>SaoPaulo Micro Guarulhos.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_São_Paulo"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1684,7 +2305,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ibaiti">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Ibaiti</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Ibaiti</rdfs:label>
         <pt:mapa>Parana Micro Ibaiti.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Pioneiro_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1696,10 +2317,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ijuí">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Ijuí</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Ijuí</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro Ijui.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Ipatinga -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ipatinga">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Ipatinga</rdfs:label>
+        <pt:mapa>MinasGerais Micro Ipatinga.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Rio_Doce"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1708,10 +2341,34 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Irati">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Irati</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Irati</rdfs:label>
         <pt:mapa>Parana Micro Irati.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Itabira -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itabira">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Itabira</rdfs:label>
+        <pt:mapa>MinasGerais Micro Itabira.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Belo_Horizonte"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Itaguara -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itaguara">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Itaguara</rdfs:label>
+        <pt:mapa>MinasGerais Micro Itaguara.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Belo_Horizonte"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1720,10 +2377,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itajaí">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Itajaí</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Itajaí</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_Itajai.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Itajaí"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Itajubá -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itajubá">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Itajubá</rdfs:label>
+        <pt:mapa>MinasGerais Micro Itajuba.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_e_Sudoeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1732,10 +2401,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itanhaém">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Itanhaém</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Itanhaém</rdfs:label>
         <pt:mapa>SaoPaulo Micro Itanhaem.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Litoral_Sul_Paulista"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Itaperuna -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itaperuna">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Itaperuna</rdfs:label>
+        <pt:mapa>RiodeJaneiro Micro Itaperuna.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Fluminense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_de_Janeiro"/>
     </owl:NamedIndividual>
     
 
@@ -1744,7 +2425,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itapetininga">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Itapetininga</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Itapetininga</rdfs:label>
         <pt:mapa>SaoPaulo Micro Itapetininga.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Itapetininga"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1756,10 +2437,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Itapeva">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Itapeva</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Itapeva</rdfs:label>
         <pt:mapa>SaoPaulo Micro Itapeva.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Itapetininga"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Ituiutaba -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ituiutaba">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Ituiutaba</rdfs:label>
+        <pt:mapa>MinasGerais Micro Ituiutaba.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Triângulo_Mineiro_e_Alto_Paranaíba"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1768,7 +2461,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ituporanga">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Ituporanga</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Ituporanga</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_Ituporanga.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Itajaí"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
@@ -1780,7 +2473,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ituverava">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Ituverava</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Ituverava</rdfs:label>
         <pt:mapa>SaoPaulo Micro Ituverava.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1792,7 +2485,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ivaiporã">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Ivaiporã</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Ivaiporã</rdfs:label>
         <pt:mapa>Parana Micro Ivaipora.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1804,7 +2497,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Jaboticabal">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Jaboticabal</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Jaboticabal</rdfs:label>
         <pt:mapa>SaoPaulo Micro Jaboticabal.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1816,7 +2509,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Jacarezinho">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Jacarezinho</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Jacarezinho</rdfs:label>
         <pt:mapa>Parana Micro Jacarezinho.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Pioneiro_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1828,7 +2521,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Jaguariaíva">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Jaguariaíva</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Jaguariaíva</rdfs:label>
         <pt:mapa>Parana Micro Jaguariaiva.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1840,7 +2533,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Jaguarão">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Jaguarão</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Jaguarão</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro Jaguarao.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -1852,10 +2545,34 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Jales">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Jales</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Jales</rdfs:label>
         <pt:mapa>SaoPaulo Micro Jales.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Janaúba -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Janaúba">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Janaúba</rdfs:label>
+        <pt:mapa>MinasGerais Micro Janauba.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Januária -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Januária">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Januária</rdfs:label>
+        <pt:mapa>MinasGerais Micro Januaria.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1864,7 +2581,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Jaú">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Jaú</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Jaú</rdfs:label>
         <pt:mapa>SaoPaulo Micro Jau.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Bauru"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1876,7 +2593,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Joaçaba">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Joaçaba</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Joaçaba</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_Joacaba.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Catarinense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
@@ -1888,10 +2605,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Joinville">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Joinville</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Joinville</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_Joinville.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Catarinense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Juiz_de_Fora -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Juiz_de_Fora">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Juiz de Fora</rdfs:label>
+        <pt:mapa>MinasGerais Micro JuizdeFora.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_da_Zona_da_Mata"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1900,7 +2629,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Jundiaí">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Jundiaí</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Jundiaí</rdfs:label>
         <pt:mapa>SaoPaulo Micro Jundiai.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Macro_Metropolitana_Paulista"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1912,7 +2641,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Lajeado-Estrela">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Lajeado-Estrela</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Lajeado-Estrela</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro LajeadoEstrela.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -1924,10 +2653,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Lapa">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Lapa</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Lapa</rdfs:label>
         <pt:mapa>Parana Micro Lapa.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Curitiba"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Lavras -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Lavras">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Lavras</rdfs:label>
+        <pt:mapa>MinasGerais Micro Lavras.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Campo_das_Vertentes"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1936,10 +2677,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Limeira">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Limeira</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Limeira</rdfs:label>
         <pt:mapa>SaoPaulo Micro Limeira.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Piracicaba"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Linhares -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Linhares">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Linhares</rdfs:label>
+        <pt:mapa>EspiritoSanto Micro Linhares.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Litoral_Norte_Espírito-Santense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
     </owl:NamedIndividual>
     
 
@@ -1948,7 +2701,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Lins">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Lins</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Lins</rdfs:label>
         <pt:mapa>SaoPaulo Micro Lins.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Bauru"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1960,10 +2713,46 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Londrina">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Londrina</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Londrina</rdfs:label>
         <pt:mapa>Parana Micro Londrina.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Macaé -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Macaé">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Macaé</rdfs:label>
+        <pt:mapa>RiodeJaneiro Micro Macae.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Fluminense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_de_Janeiro"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Manhuaçu -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Manhuaçu">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Manhuaçu</rdfs:label>
+        <pt:mapa>MinasGerais Micro Manhuacu.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_da_Zona_da_Mata"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Mantena -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Mantena">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Mantena</rdfs:label>
+        <pt:mapa>MinasGerais Micro Mantena.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Rio_Doce"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -1972,7 +2761,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Maringá">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Maringá</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Maringá</rdfs:label>
         <pt:mapa>Parana Micro Maringa.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -1984,7 +2773,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Marília">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Marília</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Marília</rdfs:label>
         <pt:mapa>SaoPaulo Micro Marilia.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Marília"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -1996,7 +2785,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Mogi_Guaçu">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Mogi Guaçu</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Mogi Guaçu</rdfs:label>
         <pt:mapa>SaoPaulo MesoMicroMunicip.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Campinas"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2008,7 +2797,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Mogi_Mirim">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Mogi Mirim</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Mogi Mirim</rdfs:label>
         <pt:mapa>SaoPaulo Micro MojiMirim.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Campinas"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2020,10 +2809,46 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Montenegro">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Montenegro</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Montenegro</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro Montenegro.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Montes_Claros -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Montes_Claros">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Montes Claros</rdfs:label>
+        <pt:mapa>MinasGerais Micro MontesClaros.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Muriaé -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Muriaé">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Muriaé</rdfs:label>
+        <pt:mapa>MinasGerais Micro Muriae.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_da_Zona_da_Mata"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Nanuque -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Nanuque">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Nanuque</rdfs:label>
+        <pt:mapa>MinasGerais Micro Nanuque.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Mucuri"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2032,10 +2857,34 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Nhandeara">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Nhandeara</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Nhandeara</rdfs:label>
         <pt:mapa>SaoPaulo Micro Nhandeara.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Nova_Friburgo -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Nova_Friburgo">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Nova Friburgo</rdfs:label>
+        <pt:mapa>RiodeJaneiro Micro NovaFriburgo.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Fluminense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_de_Janeiro"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Nova_Venécia -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Nova_Venécia">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Nova Venécia</rdfs:label>
+        <pt:mapa>EspiritoSanto Micro NovaVenecia.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Espírito-Santense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
     </owl:NamedIndividual>
     
 
@@ -2044,7 +2893,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Novo_Horizonte">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Novo Horizonte</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Novo Horizonte</rdfs:label>
         <pt:mapa>SaoPaulo Micro NovoHorizonte.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2056,10 +2905,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Não-Me-Toque">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Não-Me-Toque</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Não-Me-Toque</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro NaoMeToque.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Oliveira -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Oliveira">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Oliveira</rdfs:label>
+        <pt:mapa>MinasGerais Micro Oliveira.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2068,7 +2929,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Osório">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Osório</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Osório</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro Osorio.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -2080,10 +2941,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ourinhos">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Ourinhos</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Ourinhos</rdfs:label>
         <pt:mapa>SaoPaulo Micro Ourinhos.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Assis"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Ouro_Preto -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ouro_Preto">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Ouro Preto</rdfs:label>
+        <pt:mapa>MinasGerais Micro OuroPreto.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Belo_Horizonte"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2092,10 +2965,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Palmas">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Palmas</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Palmas</rdfs:label>
         <pt:mapa>Parana Micro Palmas.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro-Sul_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Paracatu -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Paracatu">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Paracatu</rdfs:label>
+        <pt:mapa>MinasGerais Micro Paracatu.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2104,7 +2989,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Paranaguá">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Paranaguá</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Paranaguá</rdfs:label>
         <pt:mapa>Parana Micro Paranagua.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Curitiba"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -2116,10 +3001,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Paranavaí">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Paranavaí</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Paranavaí</rdfs:label>
         <pt:mapa>Parana Micro Paranavai.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Pará_de_Minas -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Pará_de_Minas">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Pará de Minas</rdfs:label>
+        <pt:mapa>MinasGerais Micro ParadeMinas.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Belo_Horizonte"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2128,10 +3025,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Passo_Fundo">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Passo Fundo</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Passo Fundo</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro PassoFundo.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Passos -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Passos">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Passos</rdfs:label>
+        <pt:mapa>MinasGerais Micro Passos.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_e_Sudoeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2140,10 +3049,34 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Pato_Branco">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Pato Branco</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Pato Branco</rdfs:label>
         <pt:mapa>Parana_Micro_PatoBranco.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sudoeste_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Patos_de_Minas -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Patos_de_Minas">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Patos de Minas</rdfs:label>
+        <pt:mapa>MinasGerais Micro PatosdeMinas.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Triângulo_Mineiro_e_Alto_Paranaíba"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Patrocínio -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Patrocínio">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Patrocínio</rdfs:label>
+        <pt:mapa>MinasGerais Micro Patrocinio.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Triângulo_Mineiro_e_Alto_Paranaíba"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2152,10 +3085,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Paulínia">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Paulínia</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Paulínia</rdfs:label>
         <pt:mapa>SaoPaulo_Micro_Paulinia.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Campinas"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Pedra_Azul -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Pedra_Azul">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Pedra Azul</rdfs:label>
+        <pt:mapa>MinasGerais Micro PedraAzul.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Jequitinhonha"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2164,10 +3109,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Pelotas">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Pelotas</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Pelotas</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro Pelotas.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Peçanha -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Peçanha">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Peçanha</rdfs:label>
+        <pt:mapa>MinasGerais Micro Pecanha.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Rio_Doce"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2176,7 +3133,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Piedade">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Piedade</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Piedade</rdfs:label>
         <pt:mapa>SaoPaulo Micro Piedade.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Macro_Metropolitana_Paulista"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2188,10 +3145,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Piracicaba">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Piracicaba</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Piracicaba</rdfs:label>
         <pt:mapa>SaoPaulo Micro Piracicaba.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Piracicaba"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Pirapora -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Pirapora">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Pirapora</rdfs:label>
+        <pt:mapa>MinasGerais Micro Pirapora.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2200,7 +3169,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Pirassununga">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Pirassununga</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Pirassununga</rdfs:label>
         <pt:mapa>SaoPaulo Micro Pirassununga.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Campinas"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2212,10 +3181,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Pitanga">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Pitanga</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Pitanga</rdfs:label>
         <pt:mapa>Parana Micro Pitanga.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro-Sul_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Piumhi -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Piumhi">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Piumhi</rdfs:label>
+        <pt:mapa>MinasGerais Micro Piui.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2224,10 +3205,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ponta_Grossa">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Ponta Grossa</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Ponta Grossa</rdfs:label>
         <pt:mapa>Parana Micro PontaGrossa.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Ponte_Nova -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ponte_Nova">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Ponte Nova</rdfs:label>
+        <pt:mapa>MinasGerais Micro PonteNova.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_da_Zona_da_Mata"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2236,7 +3229,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Porecatu">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Porecatu</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Porecatu</rdfs:label>
         <pt:mapa>Parana Micro Porecatu.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Central_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -2248,10 +3241,34 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Porto_Alegre">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Porto Alegre</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Porto Alegre</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro PortoAlegre.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Pouso_Alegre -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Pouso_Alegre">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Pouso Alegre</rdfs:label>
+        <pt:mapa>MinasGerais Micro PousoAlegre.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_e_Sudoeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Poços_de_Caldas -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Poços_de_Caldas">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Poços de Caldas</rdfs:label>
+        <pt:mapa>MinasGerais Micro PocosdeCaldas.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_e_Sudoeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2260,7 +3277,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Presidente_Prudente">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Presidente Prudente</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Presidente Prudente</rdfs:label>
         <pt:mapa>SaoPaulo Micro PresidentePrudente.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Presidente_Prudente"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2272,7 +3289,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Prudentópolis">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Prudentópolis</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Prudentópolis</rdfs:label>
         <pt:mapa>Parana Micro Prudentopolis.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -2284,7 +3301,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Registro">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Registro</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Registro</rdfs:label>
         <pt:mapa>SaoPaulo Micro Registro.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Litoral_Sul_Paulista"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2296,7 +3313,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Restinga_Seca">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Restinga Seca</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Restinga Seca</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro RestingaSeca.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Ocidental_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -2308,7 +3325,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ribeirão_Preto">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Ribeirão Preto</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Ribeirão Preto</rdfs:label>
         <pt:mapa>SaoPaulo Micro RibeiraoPreto.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2320,7 +3337,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Rio_Claro">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Rio Claro</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Rio Claro</rdfs:label>
         <pt:mapa>SaoPaulo Micro RioClaro.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Piracicaba"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2332,10 +3349,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Rio_do_Sul">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Rio do Sul</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Rio do Sul</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_RiodoSul.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Itajaí"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Salinas -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Salinas">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Salinas</rdfs:label>
+        <pt:mapa>MinasGerais Micro Salinas.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2344,7 +3373,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Sananduva">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Sananduva</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Sananduva</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro Sananduva.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -2356,7 +3385,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Santa_Cruz_do_Sul">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Santa Cruz do Sul</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Santa Cruz do Sul</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro SantaCruzdoSul.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -2368,10 +3397,34 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Santa_Maria">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Santa Maria</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Santa Maria</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro SantaMaria.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Ocidental_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Santa_Maria_Madalena -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Santa_Maria_Madalena">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Santa Maria Madalena</rdfs:label>
+        <pt:mapa>RiodeJaneiro Micro SantaMariaMadalena.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Fluminense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_de_Janeiro"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Santa_Rita_do_Sapucaí -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Santa_Rita_do_Sapucaí">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Santa Rita do Sapucaí</rdfs:label>
+        <pt:mapa>MinasGerais Micro SantaRitadoSapucai.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_e_Sudoeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2380,10 +3433,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Santa_Rosa">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Santa Rosa</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Santa Rosa</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro SantaRosa.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Santa_Teresa -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Santa_Teresa">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Santa Teresa</rdfs:label>
+        <pt:mapa>EspiritoSanto Micro SantaTeresa.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Central_Espírito-Santense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
     </owl:NamedIndividual>
     
 
@@ -2392,10 +3457,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Santiago">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Santiago</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Santiago</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro Santiago.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Ocidental_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Santo_Antônio_de_Pádua -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Santo_Antônio_de_Pádua">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Santo Antônio de Pádua</rdfs:label>
+        <pt:mapa>RiodeJaneiro Micro SantoAntoniodePadua.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Fluminense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_de_Janeiro"/>
     </owl:NamedIndividual>
     
 
@@ -2404,10 +3481,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Santo_Ângelo">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Santo Ângelo</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Santo Ângelo</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro SantoAngelo.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Sete_Lagoas -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Sete_Lagoas">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Sete Lagoas</rdfs:label>
+        <pt:mapa>MinasGerais Micro SeteLagoas.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Belo_Horizonte"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2416,7 +3505,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Soledade">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Soledade</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Soledade</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro Soledade.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -2428,7 +3517,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Sorocaba">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Sorocaba</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Sorocaba</rdfs:label>
         <pt:mapa>SaoPaulo Micro Sorocaba.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Macro_Metropolitana_Paulista"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2440,7 +3529,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Bento_do_Sul">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de São Bento do Sul</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São Bento do Sul</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_SaoBentodoSul.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Catarinense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
@@ -2452,7 +3541,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Carlos">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de São Carlos</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São Carlos</rdfs:label>
         <pt:mapa>SaoPaulo Micro SaoCarlos.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Araraquara"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2464,7 +3553,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Jerônimo">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de São Jerônimo</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São Jerônimo</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro SaoJeronimo.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -2476,7 +3565,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Joaquim_da_Barra">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de São Joaquim da Barra</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São Joaquim da Barra</rdfs:label>
         <pt:mapa>SaoPaulo Micro SaoJoaquimdaBarra.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Ribeirão_Preto"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2488,7 +3577,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_José_do_Rio_Preto">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de São José do Rio Preto</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São José do Rio Preto</rdfs:label>
         <pt:mapa>SaoPaulo Micro SaoJosedoRioPreto.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2500,7 +3589,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_José_dos_Campos">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de São José dos Campos</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São José dos Campos</rdfs:label>
         <pt:mapa>SaoPaulo Micro SaoJosedosCampos.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Paraíba_Paulista"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2512,10 +3601,46 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_João_da_Boa_Vista">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de São João da Boa Vista</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São João da Boa Vista</rdfs:label>
         <pt:mapa>SaoPaulo Micro SaoJoaodaBoaVista.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Campinas"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_João_del-Rei -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_João_del-Rei">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de São João del-Rei</rdfs:label>
+        <pt:mapa>MinasGerais Micro SaoJoaoDelRei.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Campo_das_Vertentes"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_Lourenço -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Lourenço">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de São Lourenço</rdfs:label>
+        <pt:mapa>MinasGerais Micro SaoLourenco.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_e_Sudoeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_Mateus -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Mateus">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de São Mateus</rdfs:label>
+        <pt:mapa>EspiritoSanto Micro SaoMateus.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Litoral_Norte_Espírito-Santense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
     </owl:NamedIndividual>
     
 
@@ -2524,7 +3649,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Mateus_do_Sul">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de São Mateus do Sul</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São Mateus do Sul</rdfs:label>
         <pt:mapa>Parana Micro SaoMateusdoSul.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -2536,7 +3661,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Miguel_do_Oeste">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de São Miguel do Oeste</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São Miguel do Oeste</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_SaoMiguelDOeste.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Catarinense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
@@ -2548,10 +3673,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Paulo">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de São Paulo</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de São Paulo</rdfs:label>
         <pt:mapa>SaoPaulo Micro SaoPaulo.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_São_Paulo"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_São_Sebastião_do_Paraíso -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_São_Sebastião_do_Paraíso">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de São Sebastião do Paraíso</rdfs:label>
+        <pt:mapa>MinasGerais Micro SaoSebastiaodoParaiso.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_e_Sudoeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2560,7 +3697,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Tabuleiro">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Tabuleiro</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Tabuleiro</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_Tabuleiro.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_da_Grande_Florianópolis"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
@@ -2572,7 +3709,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Tatuí">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Tatuí</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Tatuí</rdfs:label>
         <pt:mapa>SaoPaulo Micro Tatui.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Itapetininga"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2584,10 +3721,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Telêmaco_Borba">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Telêmaco Borba</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Telêmaco Borba</rdfs:label>
         <pt:mapa>Parana Micro TelemacoBorba.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Oriental_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Teófilo_Otoni -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Teófilo_Otoni">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Teófilo Otoni</rdfs:label>
+        <pt:mapa>MinasGerais Micro TeofiloOtoni.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Mucuri"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2596,7 +3745,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Tijucas">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Tijucas</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Tijucas</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_Tijucas.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_da_Grande_Florianópolis"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
@@ -2608,10 +3757,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Toledo">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Toledo</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Toledo</rdfs:label>
         <pt:mapa>Parana Micro Toledo.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Três_Marias -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Três_Marias">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Três Marias</rdfs:label>
+        <pt:mapa>MinasGerais Micro TresMarias.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Central_Mineira"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2620,10 +3781,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Três_Passos">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Três Passos</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Três Passos</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro TresPassos.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Três_Rios -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Três_Rios">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Três Rios</rdfs:label>
+        <pt:mapa>RiodeJaneiro Micro TresRios.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Centro_Fluminense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_de_Janeiro"/>
     </owl:NamedIndividual>
     
 
@@ -2632,7 +3805,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Tubarão">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Tubarão</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Tubarão</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_Tubarao.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Catarinense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
@@ -2644,10 +3817,46 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Tupã">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Tupã</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Tupã</rdfs:label>
         <pt:mapa>SaoPaulo Micro Tupa.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_Marília"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Uberaba -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Uberaba">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Uberaba</rdfs:label>
+        <pt:mapa>MinasGerais Micro Uberaba.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Triângulo_Mineiro_e_Alto_Paranaíba"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Uberlândia -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Uberlândia">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Uberlândia</rdfs:label>
+        <pt:mapa>MinasGerais Micro Uberlandia.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Triângulo_Mineiro_e_Alto_Paranaíba"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Ubá -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Ubá">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Ubá</rdfs:label>
+        <pt:mapa>MinasGerais Micro Uba.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_da_Zona_da_Mata"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2656,10 +3865,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Umuarama">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Umuarama</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Umuarama</rdfs:label>
         <pt:mapa>Parana Micro Umuarama.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Unaí -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Unaí">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Unaí</rdfs:label>
+        <pt:mapa>MinasGerais Micro Unai.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Noroeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2668,7 +3889,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_União_da_Vitória">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de União da Vitória</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de União da Vitória</rdfs:label>
         <pt:mapa>Parana Micro UniaoDaVitoria.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -2680,10 +3901,46 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Vacaria">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Vacaria</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Vacaria</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro Vacaria.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Nordeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Varginha -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Varginha">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Varginha</rdfs:label>
+        <pt:mapa>MinasGerais Micro Varginha.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_e_Sudoeste_de_Minas"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Vitória -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Vitória">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Vitória</rdfs:label>
+        <pt:mapa>EspiritoSanto Micro Vitoria.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Central_Espírito-Santense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_de_Viçosa -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Viçosa">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião de Viçosa</rdfs:label>
+        <pt:mapa>MinasGerais Micro Vicosa.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_da_Zona_da_Mata"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Minas_Gerais"/>
     </owl:NamedIndividual>
     
 
@@ -2692,7 +3949,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Votuporanga">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Votuporanga</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Votuporanga</rdfs:label>
         <pt:mapa>SaoPaulo Micro Votuporanga.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_de_São_José_do_Rio_Preto"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
@@ -2704,7 +3961,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Wenceslau_Braz">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Wenceslau Braz</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Wenceslau Braz</rdfs:label>
         <pt:mapa>Parana Micro WenceslauBraz.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Norte_Pioneiro_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -2716,10 +3973,22 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Xanxerê">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Xanxerê</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Xanxerê</rdfs:label>
         <pt:mapa>SantaCatarina_Micro_Xanxere.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Catarinense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Santa_Catarina"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_do_Itapemirim -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_do_Itapemirim">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião do Itapemirim</rdfs:label>
+        <pt:mapa>EspiritoSanto Micro Itapemirim.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Espírito-Santense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)"/>
     </owl:NamedIndividual>
     
 
@@ -2728,7 +3997,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_do_Litoral_Lagunar">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião do Litoral Lagunar</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião do Litoral Lagunar</rdfs:label>
         <pt:mapa>RioGrandedoSul Micro LitoralLagunar.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sudeste_Rio-Grandense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
@@ -2740,10 +4009,32 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_do_Paraibuna_e_Paraitinga">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião do Paraibuna e Paraitinga</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião do Paraibuna e Paraitinga</rdfs:label>
         <pt:mapa>SaoPaulo_Micro_ParaibunaParaitinga.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Vale_do_Paraíba_Paulista"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/São_Paulo"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Microrregião_do_Vale_do_Paraíba_Fluminense -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_do_Vale_do_Paraíba_Fluminense">
+        <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+        <rdfs:label xml:lang="pt">Microrregião do Vale do Paraíba Fluminense</rdfs:label>
+        <pt:mapa>RiodeJaneiro Micro ValedoParaibaFluminense.svg</pt:mapa>
+        <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Sul_Fluminense"/>
+        <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_de_Janeiro"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Minas_Gerais -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Minas_Gerais">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/State"/>
+        <rdfs:label xml:lang="pt">Minas Gerais</rdfs:label>
+        <dbp:isPartOf rdf:resource="http://purl.org/biodiv/semanticUI#Brazil"/>
     </owl:NamedIndividual>
     
 
@@ -2752,7 +4043,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Paraná">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/State"/>
-        <rdfs:label>Paraná</rdfs:label>
+        <rdfs:label xml:lang="pt">Paraná</rdfs:label>
         <dbp:isPartOf rdf:resource="http://purl.org/biodiv/semanticUI#Brazil"/>
     </owl:NamedIndividual>
     
@@ -2762,7 +4053,17 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/State"/>
-        <rdfs:label>Rio Grande do Sul</rdfs:label>
+        <rdfs:label xml:lang="pt">Rio Grande do Sul</rdfs:label>
+        <dbp:isPartOf rdf:resource="http://purl.org/biodiv/semanticUI#Brazil"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Rio_de_Janeiro -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Rio_de_Janeiro">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/State"/>
+        <rdfs:label xml:lang="pt">Rio de Janeiro</rdfs:label>
         <dbp:isPartOf rdf:resource="http://purl.org/biodiv/semanticUI#Brazil"/>
     </owl:NamedIndividual>
     
@@ -2772,7 +4073,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Santa_Catarina">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/State"/>
-        <rdfs:label>Santa Catarina</rdfs:label>
+        <rdfs:label xml:lang="pt">Santa Catarina</rdfs:label>
         <dbp:isPartOf rdf:resource="http://purl.org/biodiv/semanticUI#Brazil"/>
     </owl:NamedIndividual>
     
@@ -2782,7 +4083,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/São_Paulo">
         <rdf:type rdf:resource="http://dbpedia.org/ontology/State"/>
-        <rdfs:label>São Paulo</rdfs:label>
+        <rdfs:label xml:lang="pt">São Paulo</rdfs:label>
         <dbp:isPartOf rdf:resource="http://purl.org/biodiv/semanticUI#Brazil"/>
     </owl:NamedIndividual>
     
@@ -2792,10 +4093,20 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Vale_do_Rio_dos_Sinos">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Vale do Rio dos Sinos</rdfs:label>
+        <rdfs:label xml:lang="pt">Vale do Rio dos Sinos</rdfs:label>
         <pt:mapa>Rio do sinos vale.jpg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Porto_Alegre"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Rio_Grande_do_Sul"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://pt.dbpedia.org/resource/Espírito_Santo_(estado) -->
+
+    <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Espírito_Santo_(estado)">
+        <rdf:type rdf:resource="http://dbpedia.org/ontology/State"/>
+        <rdfs:label xml:lang="pt">Espírito Santo (estado)</rdfs:label>
+        <dbp:isPartOf rdf:resource="http://purl.org/biodiv/semanticUI#Brazil"/>
     </owl:NamedIndividual>
     
 
@@ -2804,7 +4115,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_de_Cascavel_(Paraná)">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião de Cascavel (Paraná)</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião de Cascavel (Paraná)</rdfs:label>
         <pt:mapa>Parana Micro Cascavel.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_do_Oeste_Paranaense"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -2816,7 +4127,7 @@
 
     <owl:NamedIndividual rdf:about="http://pt.dbpedia.org/resource/Microrregião_do_Rio_Negro_(Paraná)">
         <rdf:type rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-        <rdfs:label>Microrregião do Rio Negro (Paraná)</rdfs:label>
+        <rdfs:label xml:lang="pt">Microrregião do Rio Negro (Paraná)</rdfs:label>
         <pt:mapa>Parana Micro RioNegro.svg</pt:mapa>
         <dbp:isPartOf rdf:resource="http://pt.dbpedia.org/resource/Mesorregião_Metropolitana_de_Curitiba"/>
         <dbp:state rdf:resource="http://pt.dbpedia.org/resource/Paraná"/>
@@ -2882,8 +4193,8 @@
         <rdf:type rdf:resource="http://purl.org/biodiv/semanticUI#User"/>
         <rdfs:label xml:lang="en">admin</rdfs:label>
         <rdfs:label xml:lang="pt">admin</rdfs:label>
-        <password>8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918</password>
-        <username>admin</username>
+        <hasPassword>8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918</hasPassword>
+        <hasUsername>admin</hasUsername>
         <hasRole rdf:resource="http://purl.org/biodiv/semanticUI#AdminRole"/>
         <hasRole rdf:resource="http://purl.org/biodiv/semanticUI#UserRole"/>
     </owl:NamedIndividual>
@@ -2896,8 +4207,8 @@
         <rdf:type rdf:resource="http://purl.org/biodiv/semanticUI#User"/>
         <rdfs:label xml:lang="en">user</rdfs:label>
         <rdfs:label xml:lang="pt">user</rdfs:label>
-        <password>04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb</password>
-        <username>user</username>
+        <hasUsername>user</hasUsername>
+        <hasPassword>04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb</hasPassword>
         <hasRole rdf:resource="http://purl.org/biodiv/semanticUI#UserRole"/>
     </owl:NamedIndividual>
 </rdf:RDF>

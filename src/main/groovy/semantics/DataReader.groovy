@@ -36,7 +36,7 @@ class DataReader {
 
         if(classList.contains(k.toURI(':TechnologicalEfficiencyFeature'))){
             try{
-                res = k[uri].getChildrenIndividuals(id, '?ind ?label ?valueTypeLabel ?value ?weightTypeLabel ?weight')
+                res = k[uri].getChildrenIndividuals(id, '?ind ?label ?valueTypeLabel ?value ?weightTypeLabel ?weight ?justification')
                 //res = k[uri].getIndividualsFeatureValueWeight(id, '?ind ?label ?valueTypeLabel ?value ?weightType ?weightTypeLabel ?weight')
             }
             catch (e){
@@ -45,9 +45,9 @@ class DataReader {
         }
         else if(classList.contains(k.toURI('ui:Feature'))){
             try{
-                res = k[uri].getGrandChildrenIndividuals(id, '?ind ?label ?valueTypeLabel ?value ?relevance')
+                res = k[uri].getGrandChildrenIndividuals(id, '?ind ?label ?valueTypeLabel ?value ?relevance ?justification')
                 k[uri].getChildrenExtraIndividuals(id, '?ind ?name ?justification ?valueTypeLabel ?value ?relevance').each{
-                    res.push([ind: it.ind, label: 'Indicador específico: '+it.name+', justificativa: '+it.justification, valueTypeLabel: it.valueTypeLabel, value: it.value, relevance: it.relevance])
+                    res.push([ind: it.ind, label: it.name, justification: it.justification, valueTypeLabel: it.valueTypeLabel, value: it.value, totalValue: it.value*it.relevance, relevance: it.relevance])
                 }
             }
             catch (e){

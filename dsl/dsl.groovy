@@ -18,7 +18,7 @@ evaluationObject ':ProductionUnit', {
     //type or instance
 
     // Production unit name
-    instance 'ui:name', label: "Nome da unidade produtiva ou fazenda", placeholder: "Nome"
+    instance 'ui:hasName', label: "Nome da unidade produtiva ou fazenda", placeholder: "Nome"
 
     // Agricultural production system
     instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções"
@@ -34,16 +34,16 @@ evaluationObject ':ProductionUnit', {
     instance 'dbp:state', label: "Estado", header: "Estados"
 
     // Microrregião produtora
-    instance 'ui:hasMicroRegion', label: "Microrregião da unidade produtiva", header: "Opções"
+    instance 'ui:hasMicroregion', label: "Microrregião da unidade produtiva", header: "Opções"
 
     //Outra microrregião
-    instance ':otherMicroregion', label: "Outra microrregião"
+    //instance ':otherMicroregion', label: "Outra microrregião"
 
     //Municípios envolvidos (localização da sede)
-    instance ':municipalitiesInvolved', label: "Municípios envolvidos"
+    instance ':municipalitiesInvolved', label: "Municípios envolvidos (localização da sede)"
 
     // Data de fundação da unidade produção
-    instance ':establishmentDate', label: "Data de fundação da unidade produção"
+    //instance ':establishmentDate', label: "Data de fundação da unidade produção"
 
     //Ligação com outros grupos empresariais ou de investimentos
     //instance ':linkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos", placeholder: "Descrição"
@@ -67,10 +67,10 @@ evaluationObject ':ProductionUnit', {
     instance ':canavialLongevity', label: "Longevidade do canavial (tempo em anos e meses)", header: "Opções"
 
     // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
-    instance ':innovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição"
+    instance ':innovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição", widget: 'textAreaForm'
 
     //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
-    instance ':financing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição"
+    instance ':financing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição", widget: 'textAreaForm'
 
     // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
     instance ':partnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)", widget: 'textAreaForm', placeholder: "Descrição"

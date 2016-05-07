@@ -6,7 +6,9 @@
 		<asset:javascript src="ace-min-noconflict/ace.js"/>
         <asset:javascript src="ace-min-noconflict/ext-language_tools.js"/>
         <asset:javascript src="bootstrap-table-old.min.js"/>
+        <asset:javascript src="bootstrap-treeview.min.js"/>
         <asset:stylesheet href="bootstrap-table.min.css"/>
+        <asset:stylesheet href="bootstrap-treeview.min.css"/>
 	</head>
 	<body>
         <div class="row main">
@@ -16,8 +18,6 @@
                     <li><a data-toggle="tab" href="#dsl">DSL Main</a></li>
                     <li><a data-toggle="tab" href="#gui">DSL Graphical User Interface</a></li>
                     <li><a data-toggle="tab" href="#views">Views</a></li>
-                    <li><a data-toggle="tab" href="#indicators">Indicators Editor</a></li>
-					<li><a data-toggle="tab" href="#widgets">Widgets</a></li>
 				</ul>
 				<div class="tab-content">
                     <div id="ontology" class="tab-pane fade in active">
@@ -32,11 +32,114 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-4 col-sm-4">
+                                <p class="title">Classes</p>
+                                <div id="classesTree">
+
+                                </div>
+                                <p class="title">Propiedades</p>
+                                <div id="propertiesTree">
+
+                                </div>
+                                <p class="title">Individuos</p>
+                                <div id="individualsTree">
+
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-sm-8">
                                 <pre id="ontEditor" class="ace_editor editor ace-tm">${ontology}</pre>
                             </div>
-
                             <script type="application/javascript">
+                                var ontology;
+                                var classes = [];
+
+                                function getLabel(id, lang){
+                                    if(ontology[id]){
+                                        var label = ''
+                                        for(var lg in ontology[id]['label']){
+                                            if(ontology[id]['label'][lg].search(lang) != -1){
+                                                label = ontology[id]['label'][lg].replace('@'+lang, '');
+                                            }
+                                        }
+                                        return label
+                                    }
+                                    else{
+                                        return id
+                                    }
+                                }
+
+                                function setRootNodes(id, property){
+                                    if(ontology[id] && ontology[id][property]){
+                                        setRootNodes(ontology[id][property], property);
+                                    }
+                                    else{
+                                        var exist = false;
+                                        for(var elId in classes){
+                                            if(classes[elId].id == id){
+                                                exist = true;
+                                            }
+                                        }
+                                        if(!exist){
+                                            classes.push({id: id, text: getLabel(id, 'pt'), nodes: []});
+                                        }
+                                    }
+                                }
+
+                                function setChildNodes(node, property){
+                                    var nodes = {};
+                                    var childNode;
+                                    for (var id in ontology) {
+                                        if (ontology[id][property] == node.id) {
+                                            childNode = {id: id, text: getLabel(id, 'pt')};
+                                            nodes[id] = childNode;
+                                            if (!node['nodes']) {   node['nodes'] = []; }
+                                            node.nodes.push(childNode);
+                                        }
+                                    }
+                                    return nodes;
+                                }
+
+                                function defineTree(div, property){
+                                    var nodes = {};
+                                    var nodesbyLevel = {};
+                                    var nodesTmp;
+                                    var size = 0;
+
+                                    for(var id in ontology){
+                                        if(ontology[id][property]){
+                                            setRootNodes(id, property);
+                                        }
+                                    }
+
+                                    for(var id in classes){
+                                        nodes[classes[id].id] = classes[id];
+                                        size++;
+                                    }
+
+                                    while(size>0){
+                                        for(var id in nodes){
+                                            nodesTmp = setChildNodes(nodes[id], property);
+                                            for (var nId in nodesTmp) { nodesbyLevel[nId] = nodesTmp[nId]; }
+                                        }
+
+                                        nodes = nodesbyLevel;
+                                        nodesbyLevel = {};
+                                        size = 0;
+
+                                        for(var id in nodes){ size++; }
+                                    }
+
+                                    $(div).treeview({
+                                        data: classes,
+                                        levels: 1,
+                                        onNodeSelected: function(event, node) {
+                                            ontEditor.find(node.id+':');
+                                        }
+                                        });
+
+                                    classes = [];
+                                };
+
                                 var ontEditor = ace.edit("ontEditor");
                                 ontEditor.setTheme("ace/theme/chrome");
                                 ontEditor.getSession().setMode("ace/mode/yaml");
@@ -60,6 +163,14 @@
                                     );
                                     event.preventDefault();
                                 });
+
+                                $.get('/admin/ontologyAsJSON', function( data ) {
+                                    ontology = data;
+                                    defineTree('#classesTree', 'is_a');
+                                    defineTree('#propertiesTree', 'subPropertyOf');
+                                    defineTree('#individualsTree', 'type');
+                                });
+
                             </script>
                         </div>
                     </div>

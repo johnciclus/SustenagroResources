@@ -371,7 +371,7 @@ class SparqlBase {
             UpdateProcessor up = UpdateExecutionFactory.createRemoteForm(request, endpoint);
             up.execute();
         } catch (Exception e) {
-            System.err.println("Error $endpoint $queryString ${e.getMessage()}");
+            System.err.println("Error $endpoint $sparql ${e.getMessage()}");
             e.printStackTrace();
         }
         //Context ctx = new Context()

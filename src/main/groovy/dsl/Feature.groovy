@@ -23,18 +23,20 @@ class Feature {
         _attrs = attrs
 
         _model = [label: _k[_uri].label, subClass: [:], superClass: _k[_uri].getSuperClass()]
-        grandChildren = _k[_uri].getGrandchildren('?id ?label ?subClass ?relevance ?category ?weight ?weightLabel')
+        grandChildren = _k[_uri].getGrandchildren('?id ?label ?subClass ?relevance ?category ?weight')
 
         _k[_uri].getSubClass('?label').each{ subClass ->
             _model['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
             grandChildren.each{
                 if(it.subClass == subClass.subClass) {
                     _model['subClass'][subClass.subClass]['subClass'][it.id] = it
-                    _model['subClass'][subClass.subClass]['subClass'][it.id]['valueTypes'] = _k[it.category].getSuperClass()
-                    _model['subClass'][subClass.subClass]['subClass'][it.id]['categoryIndividuals'] = _k[it.category].getIndividualsIdLabel()
+                    _model['subClass'][subClass.subClass]['subClass'][it.id]['valueTypes'] = _k[it.id].getCollectionIndividualsTypes()   //_k[it.category].getSuperClass()
+                    _model['subClass'][subClass.subClass]['subClass'][it.id]['categoryIndividuals'] = _k[it.id].getCollectionIndividuals()  //_k[it.category].getIndividualsIdLabel()
+
                     if(it.weight){
-                        _model['subClass'][subClass.subClass]['subClass'][it.id]['weightId'] = it.id + '-' + it.weight.substring(it.weight.lastIndexOf('#')+1)
-                        _model['subClass'][subClass.subClass]['subClass'][it.id]['weightIndividuals'] = _k[it.weight].getIndividualsIdLabel()
+                        _model['subClass'][subClass.subClass]['subClass'][it.id]['weightIndividuals'] = _k[it.id].getWeightIndividuals()
+                        //_model['subClass'][subClass.subClass]['subClass'][it.id]['weightId'] = it.id + '-' + it.weight.substring(it.weight.lastIndexOf('#')+1)
+                        //_model['subClass'][subClass.subClass]['subClass'][it.id]['weightIndividuals'] = _k[it.weight].getIndividualsIdLabel()
                     }
                 }
             }
@@ -176,6 +178,35 @@ class Feature {
         }
         return individuals
     }
+
+    def getValueIndividuals(){
+        def individuals = [:]
+        _model.subClass.each{ subClassKey, subClass ->
+            subClass.subClass.each{ indKey, indValue ->
+                if(indValue.categoryIndividuals) {
+                    indValue.categoryIndividuals.each {
+                        individuals[it.id] = it
+                    }
+                }
+            }
+        }
+        return individuals
+    }
+
+    def getWeightIndividuals(){
+        def individuals = [:]
+        _model.subClass.each{ subClassKey, subClass ->
+            subClass.subClass.each{ indKey, indValue ->
+                if(indValue.weightIndividuals){
+                    indValue.weightIndividuals.each{
+                        individuals[it.id] = it
+                    }
+                }
+            }
+        }
+        return individuals
+    }
+
     def getIndividualKeys(){
         def individuals = []
         _model.subClass.each{ subClassKey, subClass ->

@@ -6,7 +6,14 @@
     <asset:stylesheet href="bootstrap-table.min.css"/>
     <asset:javascript src="bootstrap-table.min.js"/>
     <asset:javascript src="d3.min.js"/>
+    <asset:javascript src="md5.min.js"/>
+    <asset:javascript src="jspdf/jspdf.min.js"/>
+    <asset:javascript src="jspdf/from_html.min.js"/>
+    <asset:javascript src="jspdf/from_html.min.js"/>
+    <asset:javascript src="jspdf/split_text_to_size.min.js"/>
+    <asset:javascript src="jspdf/standard_fonts_metrics.min.js"/>
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
 </head>
 <body>
 <div class="row main">

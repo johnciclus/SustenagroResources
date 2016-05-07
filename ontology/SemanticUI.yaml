@@ -49,7 +49,8 @@ addFrom:
       ?state rdfs:label ?label3.
       # To restrict to the south:
       filter (?state = dbrec-pt:São_Paulo || ?state = dbrec-pt:Paraná ||
-              ?state = dbrec-pt:Santa_Catarina || ?state = dbrec-pt:Rio_Grande_do_Sul)
+              ?state = dbrec-pt:Santa_Catarina || ?state = dbrec-pt:Rio_Grande_do_Sul ||
+              ?state = dbrec-pt:Minas_Gerais || ?state = dbrec-pt:Rio_de_Janeiro || ?state = <http://pt.dbpedia.org/resource/Espírito_Santo_(estado)> )
       }
     template: |
       ?state type State
@@ -119,10 +120,11 @@ hasEvaluationObject:
   subPropertyOf: ObjectProperty
   label: [tem objeto de avalição @pt, has evaluation object @en]
 
-hasMicroRegion:
+hasMicroregion:
   subPropertyOf: ObjectProperty
   label: [tem microregion @pt, has microregion @en]
   functional: true
+  range: Microregion
 
 hasOwner:
   subPropertyOf: ObjectProperty
@@ -146,49 +148,49 @@ mapa:
   label: [map @en, mapa @pt]
   #range: anyURI
 
-name:
+hasName:
   subPropertyOf: DataProperty
   label: [name @en, nome @pt]
   functional: true
   range: Literal
 
-surname:
+hasSurname:
   subPropertyOf: DataProperty
   label: [surname @en, sobrenome @pt]
   functional: true
   range: Literal
 
-organization:
+hasOrganization:
   subPropertyOf: DataProperty
   label: [organization @en, organização @pt]
   functional: true
   range: Literal
 
-position:
+hasPosition:
   subPropertyOf: DataProperty
   label: [position @en, cargo @pt]
   functional: true
   range: Literal
 
-email:
+hasEmail:
   subPropertyOf: DataProperty
   label: [email @en, email @pt]
   functional: true
   range: string
 
-username:
+hasUsername:
   subPropertyOf: DataProperty
   label: [username @en, nome de usuário @pt]
   functional: true
   range: string
 
-password:
+hasPassword:
   subPropertyOf: DataProperty
-  label: [password @en, senha @en]
+  label: [password @en, senha @pt]
   functional: true
   range: string
 
-phoneNumber:
+hasPhoneNumber:
   subPropertyOf: DataProperty
   label: [phone number @en, número de telefone @pt]
   functional: true
@@ -276,8 +278,8 @@ City:
 
 Region:
   label: [Região @pt, Region @en]
-  is_a: PopulatedPlace
 
+  is_a: PopulatedPlace
 Microregion:
   is_a: GovernmentalAdministrativeRegion
   label: [Microregião @pt, Microregion @en]
@@ -297,8 +299,7 @@ Country:
 
 GovernmentalAdministrativeRegion:
   is_a: AdministrativeRegion
-  label: [Região administrativa governamental @pt,
-          Governmental administrative region @en]
+  label: [Região administrativa governamental @pt, Governmental administrative region @en]
 
 Place:
   label: [Place @en, Lugar @pt]
@@ -332,13 +333,13 @@ UserRole:
 user:
   type: User
   label: [user @en, user @pt]
-  username: user
-  password: 04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb
+  hasUsername: user
+  hasPassword: 04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb
   hasRole: UserRole
 
 admin:
   type: User
   label: [admin @en, admin @pt]
-  username: admin
-  password: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+  hasUsername: admin
+  hasPassword: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
   hasRole: [UserRole, AdminRole]
