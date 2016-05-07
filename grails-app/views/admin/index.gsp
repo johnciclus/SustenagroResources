@@ -32,109 +32,114 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div id="tree" class="col-md-3 col-sm-3">
+                            <div class="col-md-4 col-sm-4">
+                                <p class="title">Classes</p>
+                                <div id="classesTree">
 
+                                </div>
+                                <p class="title">Propiedades</p>
+                                <div id="propertiesTree">
+
+                                </div>
+                                <p class="title">Individuos</p>
+                                <div id="individualsTree">
+
+                                </div>
                             </div>
-                            <div class="col-md-9 col-sm-9">
+                            <div class="col-md-8 col-sm-8">
                                 <pre id="ontEditor" class="ace_editor editor ace-tm">${ontology}</pre>
                             </div>
-                            <script type="text/javascript">
-
+                            <script type="application/javascript">
                                 var ontology;
                                 var classes = [];
 
-                                function classify(id){
-                                    if(ontology[id] && ontology[id]['is_a']){
-                                        findClass(id, classes);
-                                        return 'class'
-                                    }
-                                }
-
-                                function findClass(id, container){
-                                    if(ontology[id] && ontology[id]['is_a']){
-                                        var is_a = ontology[id]['is_a'];
-                                        var parent = findClass(is_a, container);
-
-                                        if(parent != null){
-                                            var exist = false;
-
-                                            for(var i in parent['nodes']){
-                                                if(parent['nodes'][i].id == id){
-                                                    exist = true;
-                                                }
-                                            }
-                                            if('nodes' in parent && !exist){
-                                                parent['nodes'].push({id: id, text: id});
+                                function getLabel(id, lang){
+                                    if(ontology[id]){
+                                        var label = ''
+                                        for(var lg in ontology[id]['label']){
+                                            if(ontology[id]['label'][lg].search(lang) != -1){
+                                                label = ontology[id]['label'][lg].replace('@'+lang, '');
                                             }
                                         }
-                                        else{
-                                            //var parent = findClass(ontology[is_a], container);
-                                            console.log(id);
-                                            console.log(is_a);
-                                            console.log(parent);
-
-                                            for(var c in classes){
-                                                for(var i in classes[c]['nodes']){
-                                                    if(classes[c]['nodes'][i].id == is_a){
-                                                        console.log(classes[c]['nodes'][i].id)
-                                                    }
-                                                }
-                                            }
-
-                                            /*for(var i in container){
-                                                container.id
-                                            }
-                                            if(parent != null){
-                                                var exist = false;
-
-                                                for(var i in parent['nodes']){
-                                                    if(parent['nodes'][i].id == id){
-                                                        exist = true;
-                                                    }
-                                                }
-                                                if('nodes' in parent && !exist){
-                                                    parent['nodes'].push({id: id, text: id});
-                                                }
-                                            }*/
-                                        }
+                                        return label
                                     }
                                     else{
-                                        var parent = null;
-                                        for(var classID in container){
-                                            if(container[classID].id == id){
-                                                parent = container[classID];
-                                            }
-                                        }
-                                        if(parent == null){
-                                            container.push({id: id, text: id, nodes: []});
-                                            parent = container[container.length - 1]
-                                        }
-                                        return parent
+                                        return id
                                     }
                                 }
 
-                                function defineTree( ont ){
-                                    ontology = ont;
-                                    console.log(ontology);
-                                    for(var id in ontology){
-                                        classify(id);
+                                function setRootNodes(id, property){
+                                    if(ontology[id] && ontology[id][property]){
+                                        setRootNodes(ontology[id][property], property);
                                     }
-                                    /*
-                                    console.log('defineTree');
-                                    console.log(ontology);
+                                    else{
+                                        var exist = false;
+                                        for(var elId in classes){
+                                            if(classes[elId].id == id){
+                                                exist = true;
+                                            }
+                                        }
+                                        if(!exist){
+                                            classes.push({id: id, text: getLabel(id, 'pt'), nodes: []});
+                                        }
+                                    }
+                                }
+
+                                function setChildNodes(node, property){
+                                    var nodes = {};
+                                    var childNode;
+                                    for (var id in ontology) {
+                                        if (ontology[id][property] == node.id) {
+                                            childNode = {id: id, text: getLabel(id, 'pt')};
+                                            nodes[id] = childNode;
+                                            if (!node['nodes']) {   node['nodes'] = []; }
+                                            node.nodes.push(childNode);
+                                        }
+                                    }
+                                    return nodes;
+                                }
+
+                                function defineTree(div, property){
+                                    var nodes = {};
+                                    var nodesbyLevel = {};
+                                    var nodesTmp;
+                                    var size = 0;
 
                                     for(var id in ontology){
-                                        console.log(id + ' '+classify(id));
+                                        if(ontology[id][property]){
+                                            setRootNodes(id, property);
+                                        }
                                     }
-                                    */
-                                    $('#tree').treeview({data: classes, levels: 1});
+
+                                    for(var id in classes){
+                                        nodes[classes[id].id] = classes[id];
+                                        size++;
+                                    }
+
+                                    while(size>0){
+                                        for(var id in nodes){
+                                            nodesTmp = setChildNodes(nodes[id], property);
+                                            for (var nId in nodesTmp) { nodesbyLevel[nId] = nodesTmp[nId]; }
+                                        }
+
+                                        nodes = nodesbyLevel;
+                                        nodesbyLevel = {};
+                                        size = 0;
+
+                                        for(var id in nodes){ size++; }
+                                    }
+
+                                    $(div).treeview({
+                                        data: classes,
+                                        levels: 1,
+                                        onNodeSelected: function(event, node) {
+                                            ontEditor.find(node.id+':');
+                                        }
+                                        });
+
+                                    classes = [];
                                 };
 
-                                $.get('/admin/ontologyAsJSON', function( data ) {
-                                    defineTree(data);
-                                });
-                            </script>
-                            <script type="application/javascript">
                                 var ontEditor = ace.edit("ontEditor");
                                 ontEditor.setTheme("ace/theme/chrome");
                                 ontEditor.getSession().setMode("ace/mode/yaml");
@@ -158,6 +163,14 @@
                                     );
                                     event.preventDefault();
                                 });
+
+                                $.get('/admin/ontologyAsJSON', function( data ) {
+                                    ontology = data;
+                                    defineTree('#classesTree', 'is_a');
+                                    defineTree('#propertiesTree', 'subPropertyOf');
+                                    defineTree('#individualsTree', 'type');
+                                });
+
                             </script>
                         </div>
                     </div>
