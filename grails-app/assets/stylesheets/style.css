@@ -301,7 +301,9 @@ input[type="date"]::-webkit-input-placeholder{
 	font-weight: bold;
 	color: #2196f3;
 	text-align: center;
-	border: 1px solid #dddddd;
+	border-left: 1px solid #dddddd;
+	border-top: 1px solid #dddddd;
+	border-right: 1px solid #dddddd;
 
 	border-top-right-radius: 3px;
 	border-top-left-radius: 3px;
@@ -309,6 +311,11 @@ input[type="date"]::-webkit-input-placeholder{
 	-webkit-box-shadow: inset 0 -2px 0 #2196f3;
 }
 
+.treesViews{
+	height: 800px;
+	margin-top: 5px;
+	overflow-y: auto;
+}
 
 
 

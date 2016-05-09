@@ -101,13 +101,14 @@
     </div>
 
     <script type="application/javascript">
-        $('#logout').click(function(e){
-            $.post('/logout', function( data ) {
-                $(location).attr('href', '/');
+        $(document).ready(function() {
+            $('#logout').click(function(e){
+                $.post('/logout', function( data ) {
+                    $(location).attr('href', '/');
+                });
+                return false;
             });
-            return false;
         });
-
     </script>
 </div>
 </body>

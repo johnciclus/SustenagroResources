@@ -3,6 +3,7 @@ prefix:
   pt: http://dbpedia.org/property/pt/
   terms: http://purl.org/dc/terms/
   dbp: http://dbpedia.org/ontology/
+  inds: http://semantic.icmc.usp.br/inds#
 
 ontology: http://purl.org/biodiv/semanticUI#
 
@@ -28,6 +29,8 @@ map:
   Settlement: dbp:Settlement
   Country: dbp:Country
   Brasil: http://pt.dbpedia.org/resource/Brasil
+  admin: inds:admin
+  user: inds:user
 
 addFrom:
   - endpoint: http://pt.dbpedia.org/sparql

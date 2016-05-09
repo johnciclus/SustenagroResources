@@ -183,7 +183,7 @@ SugarcaneSourceCategory:
   is_a: Categorical
   label:
     - Sugarcane source category @en
-    - Categoria do origem da cana @pt
+    - Categoria do origem da cana-de-acucar @pt
 
 AgriculturalProductionSystemCategory:
   is_a: Categorical

@@ -816,14 +816,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Does not meet</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não atende</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Meets determined values</rdfs:label>
                                 <rdfs:label xml:lang="pt">Atende aos valores determinados</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Does not meet</rdfs:label>
+                                <rdfs:label xml:lang="pt">Não atende</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -848,14 +848,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">No</rdfs:label>
                                 <rdfs:label xml:lang="pt">Não</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Yes</rdfs:label>
+                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -879,14 +879,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">No</rdfs:label>
                                 <rdfs:label xml:lang="pt">Não</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Yes</rdfs:label>
+                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -910,14 +910,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">More efficient boilers (new and high pressure)</rdfs:label>
-                                <rdfs:label xml:lang="pt">Caldeiras mais eficientes (novas e com maior pressão)</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Less efficient boilers (low pressure)</rdfs:label>
                                 <rdfs:label xml:lang="pt">Caldeiras menos eficientes (de baixa pressão)</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">More efficient boilers (new and high pressure)</rdfs:label>
+                                <rdfs:label xml:lang="pt">Caldeiras mais eficientes (novas e com maior pressão)</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -975,9 +975,9 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Replacing sugarcane and similar cultures</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a cana-de-açucar e culturas similares</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Replacing areas of native forests</rdfs:label>
+                                <rdfs:label xml:lang="pt">Em substituição a áreas de matas nativas</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">Replacing pasture</rdfs:label>
@@ -985,19 +985,19 @@
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Replacing areas of native forests</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a áreas de matas nativas</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Replacing degraded areas</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a áreas degradadas</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Replacing sugarcane and similar cultures</rdfs:label>
+                                <rdfs:label xml:lang="pt">Em substituição a cana-de-açucar e culturas similares</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">Replacing food crops</rdfs:label>
                                 <rdfs:label xml:lang="pt">Em substituição a culturas alimentares</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Replacing degraded areas</rdfs:label>
+                                <rdfs:label xml:lang="pt">Em substituição a áreas degradadas</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -1021,11 +1021,6 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Manual with burning</rdfs:label>
-                                <rdfs:label xml:lang="pt">Manual com queima</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Manual in suitable areas to mechanization</rdfs:label>
                                 <rdfs:label xml:lang="pt">Manual em áreas aptas a mecanização</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
@@ -1039,6 +1034,11 @@
                                 <rdfs:label xml:lang="en">Raw mechanized</rdfs:label>
                                 <rdfs:label xml:lang="pt">Mecanizado crua</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Manual with burning</rdfs:label>
+                                <rdfs:label xml:lang="pt">Manual com queima</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -1067,14 +1067,14 @@
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Preparation / Plantation / Mechanized maintenance of sugarcane field</rdfs:label>
-                                <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial usando mecanização</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Preparation / Plantation / Manual sugarcane maintenance according to constraints of the size of the area and slope</rdfs:label>
                                 <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial manual em função de restrições do tamanho da área e declividade</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Preparation / Plantation / Mechanized maintenance of sugarcane field</rdfs:label>
+                                <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial usando mecanização</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">Preparation / Plantation / Automated or system information based maintenance</rdfs:label>
@@ -1130,9 +1130,9 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Adapted and resistant</rdfs:label>
-                                <rdfs:label xml:lang="pt">Adaptadas e resistentes</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Adapted</rdfs:label>
+                                <rdfs:label xml:lang="pt">Adaptadas</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">Conventional</rdfs:label>
@@ -1140,9 +1140,9 @@
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Adapted</rdfs:label>
-                                <rdfs:label xml:lang="pt">Adaptadas</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Adapted and resistant</rdfs:label>
+                                <rdfs:label xml:lang="pt">Adaptadas e resistentes</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -1268,14 +1268,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">No</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Yes</rdfs:label>
                                 <rdfs:label xml:lang="pt">Sim</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">No</rdfs:label>
+                                <rdfs:label xml:lang="pt">Não</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -1330,14 +1330,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Unfavorable</rdfs:label>
-                                <rdfs:label xml:lang="pt">Desfavorável</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Favorable</rdfs:label>
                                 <rdfs:label xml:lang="pt">Favorável</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Unfavorable</rdfs:label>
+                                <rdfs:label xml:lang="pt">Desfavorável</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -1405,14 +1405,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">No</rdfs:label>
                                 <rdfs:label xml:lang="pt">Não</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Yes</rdfs:label>
+                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -1436,14 +1436,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">No</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Yes</rdfs:label>
                                 <rdfs:label xml:lang="pt">Sim</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">No</rdfs:label>
+                                <rdfs:label xml:lang="pt">Não</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -1601,9 +1601,9 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Production for consumption and sale</rdfs:label>
-                                <rdfs:label xml:lang="pt">Produz para consumo e venda</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Purchasing power</rdfs:label>
+                                <rdfs:label xml:lang="pt">Compra energia</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">Production for own consumption</rdfs:label>
@@ -1611,9 +1611,9 @@
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Purchasing power</rdfs:label>
-                                <rdfs:label xml:lang="pt">Compra energia</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Production for consumption and sale</rdfs:label>
+                                <rdfs:label xml:lang="pt">Produz para consumo e venda</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -1642,14 +1642,14 @@
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Supplies fully his own demand</rdfs:label>
-                                <rdfs:label xml:lang="pt">Supre totalmente a própria demanda</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Supplies fully and market the surplus</rdfs:label>
                                 <rdfs:label xml:lang="pt">Supre totalmente e comercializa o excedente</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Supplies fully his own demand</rdfs:label>
+                                <rdfs:label xml:lang="pt">Supre totalmente a própria demanda</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -1691,11 +1691,6 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Lower than 79%</rdfs:label>
-                                <rdfs:label xml:lang="pt">Menor que 79%</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Between 80% and 90%</rdfs:label>
                                 <rdfs:label xml:lang="pt">Entre 80% e 90%</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
@@ -1704,6 +1699,11 @@
                                 <rdfs:label xml:lang="en">Greater than 91%</rdfs:label>
                                 <rdfs:label xml:lang="pt">Maior que 91%</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Lower than 79%</rdfs:label>
+                                <rdfs:label xml:lang="pt">Menor que 79%</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -1793,14 +1793,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">88% to 90%</rdfs:label>
-                                <rdfs:label xml:lang="pt">88% a 90%</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Below 88%</rdfs:label>
                                 <rdfs:label xml:lang="pt">Abaixo de 88%</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">88% to 90%</rdfs:label>
+                                <rdfs:label xml:lang="pt">88% a 90%</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">Above 90%</rdfs:label>
@@ -1829,14 +1829,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Inadequate disposal</rdfs:label>
-                                <rdfs:label xml:lang="pt">Descarte Inadequado</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Reuse in the field</rdfs:label>
                                 <rdfs:label xml:lang="pt">Reutilização no campo</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Inadequate disposal</rdfs:label>
+                                <rdfs:label xml:lang="pt">Descarte Inadequado</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -1887,14 +1887,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Business emerging</rdfs:label>
-                                <rdfs:label xml:lang="pt">Empresa nascente</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">For the Sector</rdfs:label>
                                 <rdfs:label xml:lang="pt">Para o setor</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Business emerging</rdfs:label>
+                                <rdfs:label xml:lang="pt">Empresa nascente</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -1954,11 +1954,6 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Manual</rdfs:label>
-                                <rdfs:label xml:lang="pt">Manual</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Semi-mechanized</rdfs:label>
                                 <rdfs:label xml:lang="pt">Semimecanizado</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
@@ -1967,6 +1962,11 @@
                                 <rdfs:label xml:lang="en">Mechanized</rdfs:label>
                                 <rdfs:label xml:lang="pt">Mecanizado</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Manual</rdfs:label>
+                                <rdfs:label xml:lang="pt">Manual</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -2044,14 +2044,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Negative</rdfs:label>
-                                <rdfs:label xml:lang="pt">Negativo</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Positive</rdfs:label>
                                 <rdfs:label xml:lang="pt">Positivo</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Negative</rdfs:label>
+                                <rdfs:label xml:lang="pt">Negativo</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -2130,14 +2130,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">No</rdfs:label>
                                 <rdfs:label xml:lang="pt">Não</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Yes</rdfs:label>
+                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -2249,6 +2249,11 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
+                                <rdfs:label xml:lang="en">Appropriate</rdfs:label>
+                                <rdfs:label xml:lang="pt">Apropriado</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Enhanced</rdfs:label>
                                 <rdfs:label xml:lang="pt">Otimizado</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
@@ -2262,11 +2267,6 @@
                                 <rdfs:label xml:lang="en">Inappropriate</rdfs:label>
                                 <rdfs:label xml:lang="pt">Inadequado</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Appropriate</rdfs:label>
-                                <rdfs:label xml:lang="pt">Apropriado</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -2329,14 +2329,14 @@
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Semimechanized</rdfs:label>
-                                <rdfs:label xml:lang="pt">Semimecanizado</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Mechanized</rdfs:label>
                                 <rdfs:label xml:lang="pt">Mecanizado</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Semimechanized</rdfs:label>
+                                <rdfs:label xml:lang="pt">Semimecanizado</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -2371,19 +2371,9 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">In replacement of food crops</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a culturas alimentares</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">In replacement of cane and similar cultures</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a cana e culturas similares</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">In replacement of degraded areas</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a áreas degradadas</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">In replacement of areas of native forests</rdfs:label>
+                                <rdfs:label xml:lang="pt">Em substituição a áreas de matas nativas</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">In replacement of pasture</rdfs:label>
@@ -2391,9 +2381,19 @@
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">In replacement of areas of native forests</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a áreas de matas nativas</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">In replacement of degraded areas</rdfs:label>
+                                <rdfs:label xml:lang="pt">Em substituição a áreas degradadas</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">In replacement of cane and similar cultures</rdfs:label>
+                                <rdfs:label xml:lang="pt">Em substituição a cana e culturas similares</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">In replacement of food crops</rdfs:label>
+                                <rdfs:label xml:lang="pt">Em substituição a culturas alimentares</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -2459,14 +2459,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Unfavorable (without stocks)</rdfs:label>
-                                <rdfs:label xml:lang="pt">Desfavorável (sem estoques)</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Favourable (with inventories)</rdfs:label>
                                 <rdfs:label xml:lang="pt">Favorável (com estoques)</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Unfavorable (without stocks)</rdfs:label>
+                                <rdfs:label xml:lang="pt">Desfavorável (sem estoques)</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -2490,14 +2490,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">No</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Yes</rdfs:label>
                                 <rdfs:label xml:lang="pt">Sim</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">No</rdfs:label>
+                                <rdfs:label xml:lang="pt">Não</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -2521,14 +2521,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">No</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Yes</rdfs:label>
                                 <rdfs:label xml:lang="pt">Sim</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">No</rdfs:label>
+                                <rdfs:label xml:lang="pt">Não</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -2574,24 +2574,6 @@
         <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#EvaluationObject"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#hasName"/>
-                <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#harvestYear"/>
-                <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasAvailabilityOfEvaluationResults"/>
-                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasSugarcaneSource"/>
                 <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
             </owl:Restriction>
@@ -2604,14 +2586,32 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#hasMicroregion"/>
-                <owl:someValuesFrom rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
+                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasAgriculturalProductionSystem"/>
+                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasAgriculturalProductionSystem"/>
-                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory"/>
+                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasAvailabilityOfEvaluationResults"/>
+                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#hasName"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#harvestYear"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#hasMicroregion"/>
+                <owl:someValuesFrom rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2651,9 +2651,9 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Greater than 85 Tn/ha</rdfs:label>
-                                <rdfs:label xml:lang="pt">Maior que 85 Ton/ha</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">81-75 Tn/ha</rdfs:label>
+                                <rdfs:label xml:lang="pt">81-75 Ton/ha</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">74-64 Tn/ha</rdfs:label>
@@ -2661,9 +2661,9 @@
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">81-75 Tn/ha</rdfs:label>
-                                <rdfs:label xml:lang="pt">81-75 Ton/ha</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Lower than 64 Tn/Ha</rdfs:label>
+                                <rdfs:label xml:lang="pt">Menor que 64 Ton/ha</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">85 Tn/ha</rdfs:label>
@@ -2671,9 +2671,9 @@
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Lower than 64 Tn/Ha</rdfs:label>
-                                <rdfs:label xml:lang="pt">Menor que 64 Ton/ha</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Greater than 85 Tn/ha</rdfs:label>
+                                <rdfs:label xml:lang="pt">Maior que 85 Ton/ha</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -2715,14 +2715,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Directed to innovation with cost reduction</rdfs:label>
-                                <rdfs:label xml:lang="pt">Direcionada para inovação com redução de custo</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Formulated without considering the reality of the field or producer</rdfs:label>
                                 <rdfs:label xml:lang="pt">Formuladas sem considerar a realidade do campo ou do produtor</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Directed to innovation with cost reduction</rdfs:label>
+                                <rdfs:label xml:lang="pt">Direcionada para inovação com redução de custo</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -2763,14 +2763,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Use of conventional sugarcane</rdfs:label>
-                                <rdfs:label xml:lang="pt">Uso de cana convencional</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Use of sugarcane / biomass</rdfs:label>
                                 <rdfs:label xml:lang="pt">Uso de cana energia / biomassa</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Use of conventional sugarcane</rdfs:label>
+                                <rdfs:label xml:lang="pt">Uso de cana convencional</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -2811,19 +2811,9 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">2.0 to 4.0 m3/ton</rdfs:label>
-                                <rdfs:label xml:lang="pt">2.0 até 4.0 m3/ton</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">more than 4 m3/ton</rdfs:label>
-                                <rdfs:label xml:lang="pt">maior do que 4 m3/ton</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-3.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">less than 0.7 m3/ton</rdfs:label>
-                                <rdfs:label xml:lang="pt">menor do que 0.7 m3/ton</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">0.7 m3/ton to 1.0 m3/ton</rdfs:label>
+                                <rdfs:label xml:lang="pt">0.7 m3/ton até 1.0 m3/ton</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">0.7 m3/ton</rdfs:label>
@@ -2831,9 +2821,19 @@
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">0.7 m3/ton to 1.0 m3/ton</rdfs:label>
-                                <rdfs:label xml:lang="pt">0.7 m3/ton até 1.0 m3/ton</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">less than 0.7 m3/ton</rdfs:label>
+                                <rdfs:label xml:lang="pt">menor do que 0.7 m3/ton</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">more than 4 m3/ton</rdfs:label>
+                                <rdfs:label xml:lang="pt">maior do que 4 m3/ton</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-3.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">2.0 to 4.0 m3/ton</rdfs:label>
+                                <rdfs:label xml:lang="pt">2.0 até 4.0 m3/ton</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">from 1.0 to 2.0 m3/ton</rdfs:label>
@@ -2998,9 +2998,9 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">With efficiency for the production environment - use of techniques to reduce soil compactation</rdfs:label>
-                                <rdfs:label xml:lang="pt">Com eficiência para o ambiente de produção – emprego de técnicas para reduzir a compactação do solo</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Inappropiate - increase of production costs</rdfs:label>
+                                <rdfs:label xml:lang="pt">Inadequada – aumento de custos de produção</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">Appropriate - with reduced visible and invisible losses</rdfs:label>
@@ -3008,9 +3008,9 @@
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Inappropiate - increase of production costs</rdfs:label>
-                                <rdfs:label xml:lang="pt">Inadequada – aumento de custos de produção</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">With efficiency for the production environment - use of techniques to reduce soil compactation</rdfs:label>
+                                <rdfs:label xml:lang="pt">Com eficiência para o ambiente de produção – emprego de técnicas para reduzir a compactação do solo</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -3034,9 +3034,9 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Pre-budded seedling</rdfs:label>
-                                <rdfs:label xml:lang="pt">Muda Pré-brotada (MPB)</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Uncontrolled seedling</rdfs:label>
+                                <rdfs:label xml:lang="pt">Muda não controlada</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">With healthy seedling</rdfs:label>
@@ -3044,9 +3044,9 @@
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Uncontrolled seedling</rdfs:label>
-                                <rdfs:label xml:lang="pt">Muda não controlada</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Pre-budded seedling</rdfs:label>
+                                <rdfs:label xml:lang="pt">Muda Pré-brotada (MPB)</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -3071,7 +3071,7 @@
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory">
         <rdfs:label xml:lang="en">Sugarcane source category</rdfs:label>
-        <rdfs:label xml:lang="pt">Categoria do origem da cana</rdfs:label>
+        <rdfs:label xml:lang="pt">Categoria do origem da cana-de-acucar</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
     </owl:Class>
     
@@ -3107,14 +3107,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Equal or higher</rdfs:label>
-                                <rdfs:label xml:lang="pt">Igual ou superior</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Lowest</rdfs:label>
                                 <rdfs:label xml:lang="pt">Menor</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Equal or higher</rdfs:label>
+                                <rdfs:label xml:lang="pt">Igual ou superior</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -3158,9 +3158,9 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Direct</rdfs:label>
-                                <rdfs:label xml:lang="pt">Direta</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Indirect</rdfs:label>
+                                <rdfs:label xml:lang="pt">Indireta</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">Null</rdfs:label>
@@ -3168,9 +3168,9 @@
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Indirect</rdfs:label>
-                                <rdfs:label xml:lang="pt">Indireta</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Direct</rdfs:label>
+                                <rdfs:label xml:lang="pt">Direta</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -3290,9 +3290,9 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Multiple triple trailer truck</rdfs:label>
-                                <rdfs:label xml:lang="pt">Rodotrem</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Romeo and Juliet</rdfs:label>
+                                <rdfs:label xml:lang="pt">Romeu e Julieta</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">Road train</rdfs:label>
@@ -3300,9 +3300,9 @@
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Romeo and Juliet</rdfs:label>
-                                <rdfs:label xml:lang="pt">Romeu e Julieta</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Multiple triple trailer truck</rdfs:label>
+                                <rdfs:label xml:lang="pt">Rodotrem</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -3459,14 +3459,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">7 to 9GL</rdfs:label>
-                                <rdfs:label xml:lang="pt">7 a 9GL</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Alcohol content below 7GL</rdfs:label>
                                 <rdfs:label xml:lang="pt">Grau alcoólico abaixo de 7GL</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">7 to 9GL</rdfs:label>
+                                <rdfs:label xml:lang="pt">7 a 9GL</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">Above 9 GL</rdfs:label>
@@ -3495,14 +3495,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Not use</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não usa</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Use</rdfs:label>
                                 <rdfs:label xml:lang="pt">Usa</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Not use</rdfs:label>
+                                <rdfs:label xml:lang="pt">Não usa</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -3544,14 +3544,14 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Do not use</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não usa</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">Partial usage</rdfs:label>
                                 <rdfs:label xml:lang="pt">Uso parcial</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Do not use</rdfs:label>
+                                <rdfs:label xml:lang="pt">Não usa</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">Total usage</rdfs:label>
@@ -3639,11 +3639,6 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Vinasse transport with tubing or channels and tanks coated</rdfs:label>
-                                <rdfs:label xml:lang="pt">Transporte da vinhaça com tubulação ou canais e tanques com revestimento</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
                                 <rdfs:label xml:lang="en">For fertigation or digestion for the production of electricity</rdfs:label>
                                 <rdfs:label xml:lang="pt">Para fertirrigação ou de biodigestão para produção de energia elétrica</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
@@ -3652,6 +3647,11 @@
                                 <rdfs:label xml:lang="en">Uncoated</rdfs:label>
                                 <rdfs:label xml:lang="pt">Sem revestimento</rdfs:label>
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <rdfs:label xml:lang="en">Vinasse transport with tubing or channels and tanks coated</rdfs:label>
+                                <rdfs:label xml:lang="pt">Transporte da vinhaça com tubulação ou canais e tanques com revestimento</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -3675,9 +3675,9 @@
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Employment for fertigation / Biogas</rdfs:label>
-                                <rdfs:label xml:lang="pt">Emprego para fertirrigação / Biogás</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Inappropriate disposal</rdfs:label>
+                                <rdfs:label xml:lang="pt">Descarte inadequado</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
                                 <rdfs:label xml:lang="en">Adequate disposal (channels and coated tanks)</rdfs:label>
@@ -3685,9 +3685,9 @@
                                 <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
                             </rdf:Description>
                             <rdf:Description>
-                                <rdfs:label xml:lang="en">Inappropriate disposal</rdfs:label>
-                                <rdfs:label xml:lang="pt">Descarte inadequado</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+                                <rdfs:label xml:lang="en">Employment for fertigation / Biogas</rdfs:label>
+                                <rdfs:label xml:lang="pt">Emprego para fertirrigação / Biogás</rdfs:label>
+                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
                             </rdf:Description>
                         </owl:oneOf>
                     </owl:Class>
@@ -7368,9 +7368,9 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#admin -->
+    <!-- http://semantic.icmc.usp.br/inds#admin -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/biodiv/semanticUI#admin">
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/inds#admin">
         <rdf:type rdf:resource="http://purl.org/biodiv/semanticUI#User"/>
         <rdfs:label xml:lang="en">admin</rdfs:label>
         <rdfs:label xml:lang="pt">admin</rdfs:label>
@@ -7382,14 +7382,14 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#user -->
+    <!-- http://semantic.icmc.usp.br/inds#user -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/biodiv/semanticUI#user">
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/inds#user">
         <rdf:type rdf:resource="http://purl.org/biodiv/semanticUI#User"/>
         <rdfs:label xml:lang="en">user</rdfs:label>
         <rdfs:label xml:lang="pt">user</rdfs:label>
-        <ui:hasUsername>user</ui:hasUsername>
         <ui:hasPassword>04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb</ui:hasPassword>
+        <ui:hasUsername>user</ui:hasUsername>
         <ui:hasRole rdf:resource="http://purl.org/biodiv/semanticUI#UserRole"/>
     </owl:NamedIndividual>
     

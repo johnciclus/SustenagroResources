@@ -6,6 +6,7 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:terms="http://purl.org/dc/terms/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:inds="http://semantic.icmc.usp.br/inds#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -4187,9 +4188,9 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#admin -->
+    <!-- http://semantic.icmc.usp.br/inds#admin -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/biodiv/semanticUI#admin">
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/inds#admin">
         <rdf:type rdf:resource="http://purl.org/biodiv/semanticUI#User"/>
         <rdfs:label xml:lang="en">admin</rdfs:label>
         <rdfs:label xml:lang="pt">admin</rdfs:label>
@@ -4201,14 +4202,14 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#user -->
+    <!-- http://semantic.icmc.usp.br/inds#user -->
 
-    <owl:NamedIndividual rdf:about="http://purl.org/biodiv/semanticUI#user">
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/inds#user">
         <rdf:type rdf:resource="http://purl.org/biodiv/semanticUI#User"/>
         <rdfs:label xml:lang="en">user</rdfs:label>
         <rdfs:label xml:lang="pt">user</rdfs:label>
-        <hasUsername>user</hasUsername>
         <hasPassword>04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb</hasPassword>
+        <hasUsername>user</hasUsername>
         <hasRole rdf:resource="http://purl.org/biodiv/semanticUI#UserRole"/>
     </owl:NamedIndividual>
 </rdf:RDF>

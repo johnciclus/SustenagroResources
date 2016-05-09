@@ -32,6 +32,7 @@ class Know {
         addNamespace('dbpr','http://dbpedia.org/resource/')
         addNamespace('pt','http://dbpedia.org/property/pt/')
         addNamespace('ui','http://purl.org/biodiv/semanticUI#')
+        addNamespace('inds','http://semantic.icmc.usp.br/inds#')
         addNamespace('','http://semantic.icmc.usp.br/sustenagro#')
     }
 
@@ -83,7 +84,7 @@ class Know {
 
     def toURI(String id){
         if (id==null || id == '' ) return null
-        if (id == ':') return null
+        if (id == ':') return _prefixes['']
         if (!id.contains(' ')){
             if (id.startsWith('_:')) return id
             if (id.startsWith('http:')) return id

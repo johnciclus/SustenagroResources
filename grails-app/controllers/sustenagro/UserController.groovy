@@ -53,7 +53,7 @@ class UserController {
 
     def usernameAvailability(){
         def username = params['http://purl.org/biodiv/semanticUI#hasUsername']
-        render !k[':'+username].exist()
+        render !k['inds:'+username].exist()
     }
 
     def emailAvailability(){

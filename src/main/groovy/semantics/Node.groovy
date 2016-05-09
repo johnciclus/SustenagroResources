@@ -229,15 +229,11 @@ class Node {
     }
 
     def getEvaluationObjectsIdLabel(){
-        k.select('distinct ?id ?value ?label')
-            .query("<$URI> :hasEvaluationObject ?id. ?id rdfs:label ?label.",
-            "ORDER BY ?label")
+        k.select('distinct ?id ?label').query("<$URI> :hasEvaluationObject ?id. ?id rdfs:label ?label.", "ORDER BY ?label")
     }
 
     def getAnalysesIdLabel(){
-        k.select('distinct ?id ?label')
-            .query("?id :appliedTo <$URI>; rdfs:label ?label.",
-            "ORDER BY ?label")
+        k.select('distinct ?id ?label').query("?id :appliedTo <$URI>; rdfs:label ?label.", "ORDER BY ?label")
     }
 
     def getOptions() {
@@ -774,7 +770,7 @@ class Node {
     }
 
     def insertEvaluationObject(String id, Object type, Map properties = [:]){
-        def evalObjId = k.toURI(":"+id)
+        def evalObjId = k.toURI("inds:"+id)
         def name = k.toURI('ui:hasName')
 
         String sparql = "<" + evalObjId + "> "
@@ -802,7 +798,7 @@ class Node {
     }
 
     def insertAnalysis(String id, Map properties = [:]){
-        def analysisId = k.toURI(":"+id)
+        def analysisId = k.toURI("inds:"+id)
         String sparql = "<" + analysisId + "> rdf:type ui:Analysis. "
 
         //println properties
@@ -813,12 +809,14 @@ class Node {
     }
 
     def insertFeatures(String id, Map individuals = [:]){
-        def analysisId = k.toURI(":"+id)
+        def analysisId = k.toURI("inds:"+id)
         String sparql = ''
         String featureId = ''
+        String indsBase = k.toURI('inds:')
+        String domainBase = k.toURI(':')
 
         individuals.each{
-            featureId = it.key+'-'+id
+            featureId = (it.key+'-'+id).replace(domainBase, indsBase)
             sparql += "<" + featureId +"> rdf:type <"+ it.key +">. "
 
             if(it.value.justification)
@@ -852,7 +850,7 @@ class Node {
     }
 
     def insertExtraFeatures(String id, Map individuals = [:]){
-        def analysisId = k.toURI(":"+id)
+        def analysisId = k.toURI("inds:"+id)
         String sparql = ''
         String featureId = ''
 
@@ -872,7 +870,7 @@ class Node {
     }
 
     def insertUser(String id, Map properties = [:]){
-        def userId = k.toURI(id)
+        def userId = k.toURI('inds:'+id)
         String sparql = "<" + userId + "> rdf:type ui:User. "
 
         sparql += createTriples(userId, properties)

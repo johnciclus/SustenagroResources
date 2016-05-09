@@ -1,10 +1,8 @@
 package sustenagro
 
-import grails.converters.JSON
 import semantics.DataReader
 import semantics.Node
 import grails.plugin.springsecurity.annotation.Secured
-import utils.Uri
 
 import java.text.SimpleDateFormat
 
@@ -25,12 +23,12 @@ class ToolController {
         def activeTab = 'tab_0'
         def username = springSecurityService.getPrincipal().username
 
-        k[':'+username].getEvaluationObjectsIdLabel().each{
+        k['inds:'+username].getEvaluationObjectsIdLabel().each{
             evaluationObjects[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
         }
 
         if(id){
-            k[':'+id].getAnalysesIdLabel().each{
+            k['inds:'+id].getAnalysesIdLabel().each{
                 analyses[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
             }
 
@@ -62,7 +60,7 @@ class ToolController {
         def type = k.toURI('rdfs:subClassOf')
         def evaluationObject = dsl.evaluationObject
         def username = springSecurityService.getPrincipal().username
-        def user = k.toURI(':'+username)
+        def user = k.toURI('inds:'+username)
 
         if(params[name] && params[type]){
 
@@ -83,12 +81,13 @@ class ToolController {
                 }
             }
 
+            //println id
+            //println propertyInstances
+
             node.insertEvaluationObject(id, params[type], propertyInstances)
 
             propertyInstances = [:]
-            propertyInstances[k.toURI(':hasEvaluationObject')] = [value: k.toURI(':'+id), dataType: k.toURI('ui:EvaluationObject')]
-
-            //println propertyInstances
+            propertyInstances[k.toURI(':hasEvaluationObject')] = [value: k.toURI('inds:'+id), dataType: k.toURI('ui:EvaluationObject')]
 
             node.insertTriples(user, propertyInstances)
         }
@@ -98,14 +97,14 @@ class ToolController {
     }
 
     def scenario(){
-        def uri = k.toURI(':'+params.id)
+        def uri = k.toURI('inds:'+params.id)
         def evaluationObjects = [:]
         def analyses = [:]
         def sustainabilityTabs = []
         def efficiencyTabs = []
         def username = springSecurityService.getPrincipal().username
 
-        k[':'+username].getEvaluationObjectsIdLabel().each{
+        k['inds:'+username].getEvaluationObjectsIdLabel().each{
             evaluationObjects[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
         }
 
@@ -161,7 +160,6 @@ class ToolController {
     }
 
     def createScenario(){
-
         def now = new Date()
         def evalObjURI = k.toURI(params.evalObjInstance)
         def name = evalObjURI.substring(evalObjURI.lastIndexOf('#')+1)
@@ -237,7 +235,7 @@ class ToolController {
     }
 
     def analysis(){
-        def uri = params.id ? k.toURI(":"+params.id) : null
+        def uri = params.id ? k.toURI("inds:"+params.id) : null
         def evalObjId = k[uri].getAttr('appliedTo')
         def evaluationObjects = [:]
         def analysisId = params.id
@@ -248,7 +246,7 @@ class ToolController {
         def res
         def values = [:]
 
-        k[':'+username].getEvaluationObjectsIdLabel().each{
+        k['inds:'+username].getEvaluationObjectsIdLabel().each{
             evaluationObjects[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
         }
 
@@ -257,7 +255,8 @@ class ToolController {
         }
 
         evalObjId = evalObjId.substring(evalObjId.lastIndexOf('#')+1)
-
+        def options = k[':SustainabilityCategory'].getIndividualsIdValueLabel()
+        def widgets
 
         dsl.featureMap.eachWithIndex { key, feature, int i ->
             res = k[key].getChildrenIndividuals(uri, '?id ?ind ?valueType ?weightType')
@@ -272,12 +271,19 @@ class ToolController {
                 }
             }
 
+            println values
+
+            widgets = []
+            widgets.push(['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: values, weights: [:]]])
+            if(feature.attrs.extraFeatures){
+                widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]])
+            }
+
             //Uri.printTree(values)
             if(feature.model.superClass.contains(k.toURI(':Variable')))
-                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: values, weights: [:]]]]])
-
+                efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: widgets])
             if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
-                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: [['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: values, weights: [:]]]]])
+                sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: widgets])
         }
 
         dsl.clean(controllerName, actionName)
@@ -368,7 +374,7 @@ class ToolController {
 
     def evaluationObjectNameAvailability(){
         def name = slugify.slugify(params['http://purl.org/biodiv/semanticUI#hasName'])
-        render !k[':'+name].exist()
+        render !k['inds:'+name].exist()
     }
 
     def microregions(){
