@@ -815,16 +815,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Meets determined values</rdfs:label>
-                                <rdfs:label xml:lang="pt">Atende aos valores determinados</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Does not meet</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não atende</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#beeded23-aafb-4101-9aa4-1b557386ab2f"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#fe341515-c80d-4d2d-bbea-ee2eb2a8a6af"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -847,16 +839,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">No</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#252b06d3-a265-4ae5-8b1f-a17a76a370eb"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#e9928f90-76a1-42ea-9eaa-b401d79f9c86"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -878,16 +862,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">No</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#01b4d2ec-d7c9-43c6-8d4f-275d5d1df80e"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#2cba4e9a-d6e5-49f6-af93-e2c1aaedbe10"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -909,16 +885,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Less efficient boilers (low pressure)</rdfs:label>
-                                <rdfs:label xml:lang="pt">Caldeiras menos eficientes (de baixa pressão)</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">More efficient boilers (new and high pressure)</rdfs:label>
-                                <rdfs:label xml:lang="pt">Caldeiras mais eficientes (novas e com maior pressão)</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#3cbf30ff-f3ee-4199-9a7b-24c4a5c5f929"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#eea0e137-d686-457b-8634-a553ee94987d"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -974,31 +942,11 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Replacing areas of native forests</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a áreas de matas nativas</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Replacing pasture</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a pasto</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Replacing sugarcane and similar cultures</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a cana-de-açucar e culturas similares</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Replacing food crops</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a culturas alimentares</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Replacing degraded areas</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a áreas degradadas</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#4bdcfe0a-389d-4837-b96c-cd3bdf615319"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#e33561b5-4d64-4f63-acf1-10068f40bf49"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#22d08779-ab55-45d9-9b81-55e02479918f"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#d91161a3-2fb8-4397-8d94-7339eb9259b8"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#ca626605-aac9-4426-b1e4-f793495f78e4"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1020,26 +968,10 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Manual in suitable areas to mechanization</rdfs:label>
-                                <rdfs:label xml:lang="pt">Manual em áreas aptas a mecanização</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Mecanizado with burning</rdfs:label>
-                                <rdfs:label xml:lang="pt">Mecanizado com queima</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Raw mechanized</rdfs:label>
-                                <rdfs:label xml:lang="pt">Mecanizado crua</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Manual with burning</rdfs:label>
-                                <rdfs:label xml:lang="pt">Manual com queima</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#f4256dea-a42b-4ead-8766-2cbbed03c58a"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#10048b41-c1b3-4466-94c4-f3bf1d718c42"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#d4a3bc60-ed27-49b5-afa2-837da8d27da9"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#19033384-df79-47ae-b34f-c4a325d28637"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1061,26 +993,10 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Preparation / Plantation / Manual maintenance of sugarcane field in suitable areas to mechanization</rdfs:label>
-                                <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial manual em áreas aptas a mecanização</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Preparation / Plantation / Manual sugarcane maintenance according to constraints of the size of the area and slope</rdfs:label>
-                                <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial manual em função de restrições do tamanho da área e declividade</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Preparation / Plantation / Mechanized maintenance of sugarcane field</rdfs:label>
-                                <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial usando mecanização</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Preparation / Plantation / Automated or system information based maintenance</rdfs:label>
-                                <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial (automatizados ou empregando sistemas de informação? Por ex sensoriamento remoto ou agricultura de precisão)</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#3716c0ea-08e2-48aa-8e94-75fbd65d28f3"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#41e68f2e-ce1b-4573-b521-825fa95f0051"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#52eedf31-4e63-4948-9fe4-39ba26d6f8c9"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#6662e095-61a5-4d66-a6dd-c25cf7d26284"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1129,21 +1045,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Adapted</rdfs:label>
-                                <rdfs:label xml:lang="pt">Adaptadas</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Conventional</rdfs:label>
-                                <rdfs:label xml:lang="pt">Convencional</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Adapted and resistant</rdfs:label>
-                                <rdfs:label xml:lang="pt">Adaptadas e resistentes</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#d5101bdd-79ce-4063-ae06-b6a1daf07fc4"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#d5681c8c-e420-4e8e-8ec7-2484aa2f85cf"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#86ef7c1e-4555-4f63-91cf-0612a8448c39"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1175,16 +1079,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Use of systems reducing emissions</rdfs:label>
-                                <rdfs:label xml:lang="pt">Emprego de sistemas redutores de emissões de gases</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Does not use gas reduction technique</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não emprega nenhuma técnica de redução de gases</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#4ff2b3ad-2b7e-48db-b2c8-ca4330029d81"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#e68f8219-692f-4cd1-a86b-2906457cf47d"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1267,16 +1163,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">No</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#7973ffc1-e87c-43ca-80a3-82b7e6f83910"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#433cf8ff-98db-4632-bbbf-65c390227f2e"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1298,16 +1186,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Improper disposal of bagasse</rdfs:label>
-                                <rdfs:label xml:lang="pt">Descarte inadequado do bagaço</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Use or sale of bagasse to produce electricity</rdfs:label>
-                                <rdfs:label xml:lang="pt">Emprego ou venda do bagaço para produção de energia elétrica</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#7c680f18-93a7-4c00-9fde-ae2578c8cb6a"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#72d08876-a9d1-4301-aa52-9347f4bd819c"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1329,16 +1209,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Favorable</rdfs:label>
-                                <rdfs:label xml:lang="pt">Favorável</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Unfavorable</rdfs:label>
-                                <rdfs:label xml:lang="pt">Desfavorável</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#13880056-a7ad-4b5d-997f-f842d0768bca"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#8730d8b0-50b7-4e39-9217-7439ddc37edd"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1404,16 +1276,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">No</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#8bc3ea96-2fd1-41d4-8afa-94d8ac58d362"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#67b35270-8cd4-404e-9f7d-102e660b1139"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1435,16 +1299,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">No</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#6a8dc098-e3b2-454e-97b7-6ca650383354"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#c83ea894-f14e-45e0-9c49-e14647cc62ea"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1483,16 +1339,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">No</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#56288c88-18dd-4bef-b361-75f1f186a020"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#cf21ffff-aed8-4b38-8a97-4afce758ee16"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1558,16 +1406,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">no</rdfs:label>
-                                <rdfs:label xml:lang="pt">não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#37ac185e-54a7-45da-b5c1-ac83a39e2d8c"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#74445d6f-4001-4637-8f01-1d5bc1cc95b6"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1600,21 +1440,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Purchasing power</rdfs:label>
-                                <rdfs:label xml:lang="pt">Compra energia</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Production for own consumption</rdfs:label>
-                                <rdfs:label xml:lang="pt">Produz para consumo próprio</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Production for consumption and sale</rdfs:label>
-                                <rdfs:label xml:lang="pt">Produz para consumo e venda</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#79596ef2-4b0c-4f94-9846-3d6cf804e045"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#8fac671e-2dbf-4b58-9471-238b68031ab6"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#d05559a3-3be6-4b7d-a3c5-4c3ecd2faf80"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1636,21 +1464,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Does not supply the auto-demand or is partial</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não supre a própria demanda ou esta é parcial</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Supplies fully and market the surplus</rdfs:label>
-                                <rdfs:label xml:lang="pt">Supre totalmente e comercializa o excedente</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Supplies fully his own demand</rdfs:label>
-                                <rdfs:label xml:lang="pt">Supre totalmente a própria demanda</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#0fa59436-b77f-4c2b-b3fa-ab3e90e5821a"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#36eab05b-1618-4c1d-b58f-82437c33569d"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#cec14eb9-0c41-436c-b6eb-c69469c74704"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1690,21 +1506,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Between 80% and 90%</rdfs:label>
-                                <rdfs:label xml:lang="pt">Entre 80% e 90%</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Greater than 91%</rdfs:label>
-                                <rdfs:label xml:lang="pt">Maior que 91%</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Lower than 79%</rdfs:label>
-                                <rdfs:label xml:lang="pt">Menor que 79%</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#505f6630-1779-4472-afa5-cdc1f371ab08"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#27ddb2c4-f819-4f11-81e5-b4da02ff6dfd"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#db829e96-dada-45d7-b7ef-23bc65f887cb"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1792,21 +1596,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Below 88%</rdfs:label>
-                                <rdfs:label xml:lang="pt">Abaixo de 88%</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">88% to 90%</rdfs:label>
-                                <rdfs:label xml:lang="pt">88% a 90%</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Above 90%</rdfs:label>
-                                <rdfs:label xml:lang="pt">Acima de 90%</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#7419b0ee-77ce-4f62-a739-3c4082bdf37b"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#140747ce-92df-41c1-b560-e35a41f57c14"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#3bbfc26f-d2aa-43eb-9593-37b968aa4fd2"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1828,16 +1620,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Reuse in the field</rdfs:label>
-                                <rdfs:label xml:lang="pt">Reutilização no campo</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Inadequate disposal</rdfs:label>
-                                <rdfs:label xml:lang="pt">Descarte Inadequado</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#7401dac9-d586-42eb-86db-ee722c1b2b52"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#ba5d4ac1-bb76-464d-bc00-1e6310f5969d"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1886,16 +1670,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">For the Sector</rdfs:label>
-                                <rdfs:label xml:lang="pt">Para o setor</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Business emerging</rdfs:label>
-                                <rdfs:label xml:lang="pt">Empresa nascente</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#e58c006c-7b2f-4f0e-9095-542b2e849040"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#0347f039-accf-499a-b91e-aa2110bfd221"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -1953,21 +1729,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Semi-mechanized</rdfs:label>
-                                <rdfs:label xml:lang="pt">Semimecanizado</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Mechanized</rdfs:label>
-                                <rdfs:label xml:lang="pt">Mecanizado</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Manual</rdfs:label>
-                                <rdfs:label xml:lang="pt">Manual</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#cfb53278-ecd1-42b2-b0d3-a7bacfc4ef16"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#87151113-cfb0-495a-89f1-0ab477e596f1"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#64058c33-1fba-498e-8b77-9d005af9b242"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2043,16 +1807,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Positive</rdfs:label>
-                                <rdfs:label xml:lang="pt">Positivo</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Negative</rdfs:label>
-                                <rdfs:label xml:lang="pt">Negativo</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#1e80aed2-aff6-4558-8532-7b1c9d8a6a4d"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#3a4bf122-3ea5-4050-b61e-737a3f4c0558"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2129,16 +1885,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">No</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#2a341c27-8277-453e-be61-826ac63a98b1"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#bc422ed6-c735-4756-98c5-f41cab2eda65"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2248,26 +1996,10 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Appropriate</rdfs:label>
-                                <rdfs:label xml:lang="pt">Apropriado</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Enhanced</rdfs:label>
-                                <rdfs:label xml:lang="pt">Otimizado</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">No</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Inappropriate</rdfs:label>
-                                <rdfs:label xml:lang="pt">Inadequado</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#bc710b75-e7a1-45e4-aac8-aa5b969cf2a3"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#fef8ec2c-92fa-47cc-9bbb-4d9f85476917"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#a4e57f25-ddc9-432b-94f1-96ff6eabc1c0"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#b6726fa8-c3c4-47af-9a6e-a0abefaadbde"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2323,21 +2055,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Manual</rdfs:label>
-                                <rdfs:label xml:lang="pt">Manual</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Mechanized</rdfs:label>
-                                <rdfs:label xml:lang="pt">Mecanizado</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Semimechanized</rdfs:label>
-                                <rdfs:label xml:lang="pt">Semimecanizado</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#b5c89f12-22eb-431b-9dc4-0eb30a9241f3"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#5cb41d31-c043-4ecf-a9e5-8ff66cffa331"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#53e60f21-f6d5-403f-b61a-184029cc8497"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2370,31 +2090,11 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">In replacement of areas of native forests</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a áreas de matas nativas</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">In replacement of pasture</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a pasto</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">In replacement of degraded areas</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a áreas degradadas</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">In replacement of cane and similar cultures</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a cana e culturas similares</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">In replacement of food crops</rdfs:label>
-                                <rdfs:label xml:lang="pt">Em substituição a culturas alimentares</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#50b6f68c-13c0-4a48-ae87-a12821feed21"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#b15cb6ca-599f-40ae-8ff0-56734f34c8e9"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#ecfc8526-0925-4574-a847-bd2e96947079"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#89c216cf-f85f-47cd-b162-a82ef759dd5b"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#ebadc5c7-413b-45cc-a143-eb458a366db2"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2427,16 +2127,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Difficulty of adhesion and use of innovations</rdfs:label>
-                                <rdfs:label xml:lang="pt">Dificuldade de adesão e uso das Inovações</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Adhesion and use of innovations</rdfs:label>
-                                <rdfs:label xml:lang="pt">Adesão e uso das Inovações</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#edc18912-8d54-4b9f-abdf-ceb609014335"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#1f4eefe9-3dcc-4fe6-9535-dafa7c7c0e2e"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2458,16 +2150,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Favourable (with inventories)</rdfs:label>
-                                <rdfs:label xml:lang="pt">Favorável (com estoques)</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Unfavorable (without stocks)</rdfs:label>
-                                <rdfs:label xml:lang="pt">Desfavorável (sem estoques)</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#5174b6d8-dc17-42a5-9f73-5da72d1022ab"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#4704b63d-1971-4d5d-9d14-0dca5e0b8097"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2489,16 +2173,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">No</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#8f02174d-1c85-4b8b-92c8-19fa0d923981"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#846ff950-0e8d-4ebd-824b-2d9773f2fccc"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2520,16 +2196,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">No</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#01f56b82-b4d1-400c-9b64-2983bc81cc20"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#95960545-d02e-4836-95b3-a03f00c478a3"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2574,8 +2242,14 @@
         <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#EvaluationObject"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasSugarcaneSource"/>
-                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
+                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#harvestYear"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#hasMicroregion"/>
+                <owl:someValuesFrom rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2586,32 +2260,26 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasAgriculturalProductionSystem"/>
-                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasAvailabilityOfEvaluationResults"/>
                 <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasSugarcaneSource"/>
+                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasAgriculturalProductionSystem"/>
+                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#hasName"/>
                 <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#harvestYear"/>
-                <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#hasMicroregion"/>
-                <owl:someValuesFrom rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2650,31 +2318,11 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">81-75 Tn/ha</rdfs:label>
-                                <rdfs:label xml:lang="pt">81-75 Ton/ha</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">74-64 Tn/ha</rdfs:label>
-                                <rdfs:label xml:lang="pt">74-64 Ton/ha</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Lower than 64 Tn/Ha</rdfs:label>
-                                <rdfs:label xml:lang="pt">Menor que 64 Ton/ha</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">85 Tn/ha</rdfs:label>
-                                <rdfs:label xml:lang="pt">85 Ton/ha</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Greater than 85 Tn/ha</rdfs:label>
-                                <rdfs:label xml:lang="pt">Maior que 85 Ton/ha</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#c709d7a7-0974-4136-8c84-4dcf389285ff"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#4651cb1b-53b1-40e6-8ac4-65a14a5d5100"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#c0e5bc4e-3d6d-40c8-b07e-dcebae3b2a7e"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#0587ff60-f3b1-409a-bd15-90fa539d0c17"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#5d96de19-8041-47e9-ba61-e6d148f8f1e3"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2714,16 +2362,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Formulated without considering the reality of the field or producer</rdfs:label>
-                                <rdfs:label xml:lang="pt">Formuladas sem considerar a realidade do campo ou do produtor</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Directed to innovation with cost reduction</rdfs:label>
-                                <rdfs:label xml:lang="pt">Direcionada para inovação com redução de custo</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#11040929-ed29-48c6-9cb7-d16560a2869c"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#aeec900d-fa05-4023-8117-4415d8e025ff"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2762,16 +2402,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Use of sugarcane / biomass</rdfs:label>
-                                <rdfs:label xml:lang="pt">Uso de cana energia / biomassa</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Use of conventional sugarcane</rdfs:label>
-                                <rdfs:label xml:lang="pt">Uso de cana convencional</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#ecf958aa-1b6a-4f6e-bc45-d1a5abdad229"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#4e9e1945-fba6-47cc-bbad-32070ed74d31"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2810,36 +2442,12 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">0.7 m3/ton to 1.0 m3/ton</rdfs:label>
-                                <rdfs:label xml:lang="pt">0.7 m3/ton até 1.0 m3/ton</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">0.7 m3/ton</rdfs:label>
-                                <rdfs:label xml:lang="pt">0.7 m3/ton</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">less than 0.7 m3/ton</rdfs:label>
-                                <rdfs:label xml:lang="pt">menor do que 0.7 m3/ton</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">more than 4 m3/ton</rdfs:label>
-                                <rdfs:label xml:lang="pt">maior do que 4 m3/ton</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-3.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">2.0 to 4.0 m3/ton</rdfs:label>
-                                <rdfs:label xml:lang="pt">2.0 até 4.0 m3/ton</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">from 1.0 to 2.0 m3/ton</rdfs:label>
-                                <rdfs:label xml:lang="pt">de 1.0 a 2.0 m3/ton</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#9ef3d93b-29c5-44cc-8109-148a290c8070"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#dc35e428-f592-4421-905b-41c0d31d9b9e"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#0ade844c-13be-461e-bb3d-588bbfe501aa"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#a785fb67-39d8-44f7-8a40-1fa6ba7192c5"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#f5d1650f-df29-40ff-83a8-94aa463c46e7"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#38096f9a-dbea-4d97-8167-828cd8785cc3"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -2997,21 +2605,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Inappropiate - increase of production costs</rdfs:label>
-                                <rdfs:label xml:lang="pt">Inadequada – aumento de custos de produção</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Appropriate - with reduced visible and invisible losses</rdfs:label>
-                                <rdfs:label xml:lang="pt">Adequada – com redução de perdas visíveis e invisíveis</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">With efficiency for the production environment - use of techniques to reduce soil compactation</rdfs:label>
-                                <rdfs:label xml:lang="pt">Com eficiência para o ambiente de produção – emprego de técnicas para reduzir a compactação do solo</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#4cd0bc86-154d-40e4-8690-2168b5cd593b"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#58c57cf7-be3b-403d-8f3c-3e876761bd7c"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#30518ac8-f974-4c1a-855f-59612274dc12"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3033,21 +2629,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Uncontrolled seedling</rdfs:label>
-                                <rdfs:label xml:lang="pt">Muda não controlada</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">With healthy seedling</rdfs:label>
-                                <rdfs:label xml:lang="pt">Com muda sadia</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Pre-budded seedling</rdfs:label>
-                                <rdfs:label xml:lang="pt">Muda Pré-brotada (MPB)</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#94a98369-0843-4f88-9df9-90494f95d7ea"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#a5cae35d-13ae-4cb1-822f-0179633f0e09"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#6d39de74-8b0d-454a-88ea-da766cc1b6a5"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3106,16 +2690,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Lowest</rdfs:label>
-                                <rdfs:label xml:lang="pt">Menor</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Equal or higher</rdfs:label>
-                                <rdfs:label xml:lang="pt">Igual ou superior</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#b58a39ef-ca6a-43d0-8d28-aef74ef8eba8"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#75ec931b-5823-483f-8ad7-017c9fb25c86"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3157,21 +2733,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Indirect</rdfs:label>
-                                <rdfs:label xml:lang="pt">Indireta</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Null</rdfs:label>
-                                <rdfs:label xml:lang="pt">Nula</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Direct</rdfs:label>
-                                <rdfs:label xml:lang="pt">Direta</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#ea2e3d55-8142-40cc-8eba-f0e37662b306"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#a34e17e8-315d-47f5-99ae-e0ff7f7743af"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#6d8bb3be-c33f-408b-85e5-bc5a8aa1345f"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3213,16 +2777,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">130 to 139 kg</rdfs:label>
-                                <rdfs:label xml:lang="pt">130 a 139 kg</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">140 to 145 kg</rdfs:label>
-                                <rdfs:label xml:lang="pt">140 a 145 kg</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#17eeea81-03a6-4932-a93f-399d346e689a"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#9c1d2d03-c813-4e73-9ab9-7402cc0d5b94"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3289,21 +2845,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Romeo and Juliet</rdfs:label>
-                                <rdfs:label xml:lang="pt">Romeu e Julieta</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Road train</rdfs:label>
-                                <rdfs:label xml:lang="pt">Treminhão</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Multiple triple trailer truck</rdfs:label>
-                                <rdfs:label xml:lang="pt">Rodotrem</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#baf8d5ab-2d16-4c8e-89a4-2887aeff11b6"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#839f2c64-23b7-44c0-a833-94964400a56c"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#85db7d68-1e88-4e34-9537-69776d513bb0"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3427,16 +2971,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">No</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">Sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#c86a54e7-d89e-42ba-a2d5-4afac4cb4a3c"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#ef7ee738-e20c-497f-aa97-f8268d8b9b5f"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3458,21 +2994,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Alcohol content below 7GL</rdfs:label>
-                                <rdfs:label xml:lang="pt">Grau alcoólico abaixo de 7GL</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">7 to 9GL</rdfs:label>
-                                <rdfs:label xml:lang="pt">7 a 9GL</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Above 9 GL</rdfs:label>
-                                <rdfs:label xml:lang="pt">Acima de 9 GL</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#a8ed82f8-bd1b-4fc8-95a2-62935d387315"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#b64e1b1f-0acd-445d-9fcc-d71e06355794"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#6e4635aa-14cf-4b97-af77-769596c2ea27"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3494,16 +3018,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Use</rdfs:label>
-                                <rdfs:label xml:lang="pt">Usa</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Not use</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não usa</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#76bce91c-512a-4b76-ad0a-8308d72508d2"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#73279113-d38b-4945-a17f-65260f355c3a"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3543,21 +3059,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Partial usage</rdfs:label>
-                                <rdfs:label xml:lang="pt">Uso parcial</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Do not use</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não usa</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Total usage</rdfs:label>
-                                <rdfs:label xml:lang="pt">Uso total</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#514426ab-0abe-40b8-9429-23dc51c7574a"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#e9320d43-23cd-4199-a716-b6e27173ed33"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#a9b6e4db-e913-483e-a913-9dd1a19b9568"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3607,16 +3111,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Do not concentrate vinasse</rdfs:label>
-                                <rdfs:label xml:lang="pt">Não concentrar a vinhaça</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">By evaporation using steam vegetable or membrane</rdfs:label>
-                                <rdfs:label xml:lang="pt">Por evaporação empregando vapor vegetal ou membrana</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#18a7ede5-3d66-4eac-8820-9e44913e0179"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#0311d041-d449-451d-b986-62c1706a8710"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3638,21 +3134,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">For fertigation or digestion for the production of electricity</rdfs:label>
-                                <rdfs:label xml:lang="pt">Para fertirrigação ou de biodigestão para produção de energia elétrica</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Uncoated</rdfs:label>
-                                <rdfs:label xml:lang="pt">Sem revestimento</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Vinasse transport with tubing or channels and tanks coated</rdfs:label>
-                                <rdfs:label xml:lang="pt">Transporte da vinhaça com tubulação ou canais e tanques com revestimento</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#e4ac7c61-fc68-4d19-87df-c49659dd3c76"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#65060937-9762-42ad-a511-4f0b79eb8576"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#0e8ec47d-c679-42aa-82b8-246e93f50d26"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3674,21 +3158,9 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Inappropriate disposal</rdfs:label>
-                                <rdfs:label xml:lang="pt">Descarte inadequado</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Adequate disposal (channels and coated tanks)</rdfs:label>
-                                <rdfs:label xml:lang="pt">Descarte adequado (canais e tanques revestidos)</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">Employment for fertigation / Biogas</rdfs:label>
-                                <rdfs:label xml:lang="pt">Emprego para fertirrigação / Biogás</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#22096a7b-be74-40b6-a659-4ae47818cbc5"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#2da7e971-7b37-42b3-ad30-a3dae7260387"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#a7a66aa4-aa03-483a-a9c3-75c76943d8b6"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -3720,16 +3192,8 @@
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:oneOf rdf:parseType="Collection">
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">no</rdfs:label>
-                                <rdfs:label xml:lang="pt">não</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
-                            </rdf:Description>
-                            <rdf:Description>
-                                <rdfs:label xml:lang="en">yes</rdfs:label>
-                                <rdfs:label xml:lang="pt">sim</rdfs:label>
-                                <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
-                            </rdf:Description>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#050bd548-26b5-4a25-a081-968afcd828e8"/>
+                            <rdf:Description rdf:about="http://semantic.icmc.usp.br/sustenagro#a532e555-9b6d-4989-bcf8-a9f2dc253168"/>
                         </owl:oneOf>
                     </owl:Class>
                 </owl:someValuesFrom>
@@ -7499,6 +6963,516 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#a34e17e8-315d-47f5-99ae-e0ff7f7743af -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#a34e17e8-315d-47f5-99ae-e0ff7f7743af">
+        <rdfs:label xml:lang="en">Null</rdfs:label>
+        <rdfs:label xml:lang="pt">Nula</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#a4e57f25-ddc9-432b-94f1-96ff6eabc1c0 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#a4e57f25-ddc9-432b-94f1-96ff6eabc1c0">
+        <rdfs:label xml:lang="en">Appropriate</rdfs:label>
+        <rdfs:label xml:lang="pt">Apropriado</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#a532e555-9b6d-4989-bcf8-a9f2dc253168 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#a532e555-9b6d-4989-bcf8-a9f2dc253168">
+        <rdfs:label xml:lang="en">yes</rdfs:label>
+        <rdfs:label xml:lang="pt">sim</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#a5cae35d-13ae-4cb1-822f-0179633f0e09 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#a5cae35d-13ae-4cb1-822f-0179633f0e09">
+        <rdfs:label xml:lang="en">Uncontrolled seedling</rdfs:label>
+        <rdfs:label xml:lang="pt">Muda não controlada</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#a785fb67-39d8-44f7-8a40-1fa6ba7192c5 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#a785fb67-39d8-44f7-8a40-1fa6ba7192c5">
+        <rdfs:label xml:lang="en">2.0 to 4.0 m3/ton</rdfs:label>
+        <rdfs:label xml:lang="pt">2.0 até 4.0 m3/ton</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#a7a66aa4-aa03-483a-a9c3-75c76943d8b6 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#a7a66aa4-aa03-483a-a9c3-75c76943d8b6">
+        <rdfs:label xml:lang="en">Employment for fertigation / Biogas</rdfs:label>
+        <rdfs:label xml:lang="pt">Emprego para fertirrigação / Biogás</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#a8ed82f8-bd1b-4fc8-95a2-62935d387315 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#a8ed82f8-bd1b-4fc8-95a2-62935d387315">
+        <rdfs:label xml:lang="en">7 to 9GL</rdfs:label>
+        <rdfs:label xml:lang="pt">7 a 9GL</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#a9b6e4db-e913-483e-a913-9dd1a19b9568 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#a9b6e4db-e913-483e-a913-9dd1a19b9568">
+        <rdfs:label xml:lang="en">Partial usage</rdfs:label>
+        <rdfs:label xml:lang="pt">Uso parcial</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#aeec900d-fa05-4023-8117-4415d8e025ff -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#aeec900d-fa05-4023-8117-4415d8e025ff">
+        <rdfs:label xml:lang="en">Formulated without considering the reality of the field or producer</rdfs:label>
+        <rdfs:label xml:lang="pt">Formuladas sem considerar a realidade do campo ou do produtor</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#b15cb6ca-599f-40ae-8ff0-56734f34c8e9 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#b15cb6ca-599f-40ae-8ff0-56734f34c8e9">
+        <rdfs:label xml:lang="en">In replacement of pasture</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a pasto</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#b58a39ef-ca6a-43d0-8d28-aef74ef8eba8 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#b58a39ef-ca6a-43d0-8d28-aef74ef8eba8">
+        <rdfs:label xml:lang="en">Equal or higher</rdfs:label>
+        <rdfs:label xml:lang="pt">Igual ou superior</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#b5c89f12-22eb-431b-9dc4-0eb30a9241f3 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#b5c89f12-22eb-431b-9dc4-0eb30a9241f3">
+        <rdfs:label xml:lang="en">Semimechanized</rdfs:label>
+        <rdfs:label xml:lang="pt">Semimecanizado</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#b64e1b1f-0acd-445d-9fcc-d71e06355794 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#b64e1b1f-0acd-445d-9fcc-d71e06355794">
+        <rdfs:label xml:lang="en">Above 9 GL</rdfs:label>
+        <rdfs:label xml:lang="pt">Acima de 9 GL</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#b6726fa8-c3c4-47af-9a6e-a0abefaadbde -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#b6726fa8-c3c4-47af-9a6e-a0abefaadbde">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ba5d4ac1-bb76-464d-bc00-1e6310f5969d -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#ba5d4ac1-bb76-464d-bc00-1e6310f5969d">
+        <rdfs:label xml:lang="en">Reuse in the field</rdfs:label>
+        <rdfs:label xml:lang="pt">Reutilização no campo</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#baf8d5ab-2d16-4c8e-89a4-2887aeff11b6 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#baf8d5ab-2d16-4c8e-89a4-2887aeff11b6">
+        <rdfs:label xml:lang="en">Multiple triple trailer truck</rdfs:label>
+        <rdfs:label xml:lang="pt">Rodotrem</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#bc422ed6-c735-4756-98c5-f41cab2eda65 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#bc422ed6-c735-4756-98c5-f41cab2eda65">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#bc710b75-e7a1-45e4-aac8-aa5b969cf2a3 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#bc710b75-e7a1-45e4-aac8-aa5b969cf2a3">
+        <rdfs:label xml:lang="en">Enhanced</rdfs:label>
+        <rdfs:label xml:lang="pt">Otimizado</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#beeded23-aafb-4101-9aa4-1b557386ab2f -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#beeded23-aafb-4101-9aa4-1b557386ab2f">
+        <rdfs:label xml:lang="en">Does not meet</rdfs:label>
+        <rdfs:label xml:lang="pt">Não atende</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#c0e5bc4e-3d6d-40c8-b07e-dcebae3b2a7e -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#c0e5bc4e-3d6d-40c8-b07e-dcebae3b2a7e">
+        <rdfs:label xml:lang="en">Lower than 64 Tn/Ha</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor que 64 Ton/ha</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#c709d7a7-0974-4136-8c84-4dcf389285ff -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#c709d7a7-0974-4136-8c84-4dcf389285ff">
+        <rdfs:label xml:lang="en">81-75 Tn/ha</rdfs:label>
+        <rdfs:label xml:lang="pt">81-75 Ton/ha</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#c83ea894-f14e-45e0-9c49-e14647cc62ea -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#c83ea894-f14e-45e0-9c49-e14647cc62ea">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#c86a54e7-d89e-42ba-a2d5-4afac4cb4a3c -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#c86a54e7-d89e-42ba-a2d5-4afac4cb4a3c">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ca626605-aac9-4426-b1e4-f793495f78e4 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#ca626605-aac9-4426-b1e4-f793495f78e4">
+        <rdfs:label xml:lang="en">Replacing food crops</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a culturas alimentares</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#cec14eb9-0c41-436c-b6eb-c69469c74704 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#cec14eb9-0c41-436c-b6eb-c69469c74704">
+        <rdfs:label xml:lang="en">Supplies fully his own demand</rdfs:label>
+        <rdfs:label xml:lang="pt">Supre totalmente a própria demanda</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#cf21ffff-aed8-4b38-8a97-4afce758ee16 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#cf21ffff-aed8-4b38-8a97-4afce758ee16">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#cfb53278-ecd1-42b2-b0d3-a7bacfc4ef16 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#cfb53278-ecd1-42b2-b0d3-a7bacfc4ef16">
+        <rdfs:label xml:lang="en">Mechanized</rdfs:label>
+        <rdfs:label xml:lang="pt">Mecanizado</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#d05559a3-3be6-4b7d-a3c5-4c3ecd2faf80 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#d05559a3-3be6-4b7d-a3c5-4c3ecd2faf80">
+        <rdfs:label xml:lang="en">Production for own consumption</rdfs:label>
+        <rdfs:label xml:lang="pt">Produz para consumo próprio</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#d4a3bc60-ed27-49b5-afa2-837da8d27da9 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#d4a3bc60-ed27-49b5-afa2-837da8d27da9">
+        <rdfs:label xml:lang="en">Mecanizado with burning</rdfs:label>
+        <rdfs:label xml:lang="pt">Mecanizado com queima</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#d5101bdd-79ce-4063-ae06-b6a1daf07fc4 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#d5101bdd-79ce-4063-ae06-b6a1daf07fc4">
+        <rdfs:label xml:lang="en">Conventional</rdfs:label>
+        <rdfs:label xml:lang="pt">Convencional</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#d5681c8c-e420-4e8e-8ec7-2484aa2f85cf -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#d5681c8c-e420-4e8e-8ec7-2484aa2f85cf">
+        <rdfs:label xml:lang="en">Adapted and resistant</rdfs:label>
+        <rdfs:label xml:lang="pt">Adaptadas e resistentes</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#d91161a3-2fb8-4397-8d94-7339eb9259b8 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#d91161a3-2fb8-4397-8d94-7339eb9259b8">
+        <rdfs:label xml:lang="en">Replacing sugarcane and similar cultures</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a cana-de-açucar e culturas similares</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#db829e96-dada-45d7-b7ef-23bc65f887cb -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#db829e96-dada-45d7-b7ef-23bc65f887cb">
+        <rdfs:label xml:lang="en">Lower than 79%</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor que 79%</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#dc35e428-f592-4421-905b-41c0d31d9b9e -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#dc35e428-f592-4421-905b-41c0d31d9b9e">
+        <rdfs:label xml:lang="en">0.7 m3/ton to 1.0 m3/ton</rdfs:label>
+        <rdfs:label xml:lang="pt">0.7 m3/ton até 1.0 m3/ton</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#e33561b5-4d64-4f63-acf1-10068f40bf49 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#e33561b5-4d64-4f63-acf1-10068f40bf49">
+        <rdfs:label xml:lang="en">Replacing areas of native forests</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a áreas de matas nativas</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#e4ac7c61-fc68-4d19-87df-c49659dd3c76 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#e4ac7c61-fc68-4d19-87df-c49659dd3c76">
+        <rdfs:label xml:lang="en">Uncoated</rdfs:label>
+        <rdfs:label xml:lang="pt">Sem revestimento</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#e58c006c-7b2f-4f0e-9095-542b2e849040 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#e58c006c-7b2f-4f0e-9095-542b2e849040">
+        <rdfs:label xml:lang="en">Business emerging</rdfs:label>
+        <rdfs:label xml:lang="pt">Empresa nascente</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#e68f8219-692f-4cd1-a86b-2906457cf47d -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#e68f8219-692f-4cd1-a86b-2906457cf47d">
+        <rdfs:label xml:lang="en">Use of systems reducing emissions</rdfs:label>
+        <rdfs:label xml:lang="pt">Emprego de sistemas redutores de emissões de gases</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#e9320d43-23cd-4199-a716-b6e27173ed33 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#e9320d43-23cd-4199-a716-b6e27173ed33">
+        <rdfs:label xml:lang="en">Total usage</rdfs:label>
+        <rdfs:label xml:lang="pt">Uso total</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#e9928f90-76a1-42ea-9eaa-b401d79f9c86 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#e9928f90-76a1-42ea-9eaa-b401d79f9c86">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ea2e3d55-8142-40cc-8eba-f0e37662b306 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#ea2e3d55-8142-40cc-8eba-f0e37662b306">
+        <rdfs:label xml:lang="en">Direct</rdfs:label>
+        <rdfs:label xml:lang="pt">Direta</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ebadc5c7-413b-45cc-a143-eb458a366db2 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#ebadc5c7-413b-45cc-a143-eb458a366db2">
+        <rdfs:label xml:lang="en">In replacement of degraded areas</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a áreas degradadas</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ecf958aa-1b6a-4f6e-bc45-d1a5abdad229 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#ecf958aa-1b6a-4f6e-bc45-d1a5abdad229">
+        <rdfs:label xml:lang="en">Use of sugarcane / biomass</rdfs:label>
+        <rdfs:label xml:lang="pt">Uso de cana energia / biomassa</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ecfc8526-0925-4574-a847-bd2e96947079 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#ecfc8526-0925-4574-a847-bd2e96947079">
+        <rdfs:label xml:lang="en">In replacement of areas of native forests</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a áreas de matas nativas</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#edc18912-8d54-4b9f-abdf-ceb609014335 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#edc18912-8d54-4b9f-abdf-ceb609014335">
+        <rdfs:label xml:lang="en">Adhesion and use of innovations</rdfs:label>
+        <rdfs:label xml:lang="pt">Adesão e uso das Inovações</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#eea0e137-d686-457b-8634-a553ee94987d -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#eea0e137-d686-457b-8634-a553ee94987d">
+        <rdfs:label xml:lang="en">Less efficient boilers (low pressure)</rdfs:label>
+        <rdfs:label xml:lang="pt">Caldeiras menos eficientes (de baixa pressão)</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#ef7ee738-e20c-497f-aa97-f8268d8b9b5f -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#ef7ee738-e20c-497f-aa97-f8268d8b9b5f">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#f4256dea-a42b-4ead-8766-2cbbed03c58a -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#f4256dea-a42b-4ead-8766-2cbbed03c58a">
+        <rdfs:label xml:lang="en">Manual in suitable areas to mechanization</rdfs:label>
+        <rdfs:label xml:lang="pt">Manual em áreas aptas a mecanização</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#f5d1650f-df29-40ff-83a8-94aa463c46e7 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#f5d1650f-df29-40ff-83a8-94aa463c46e7">
+        <rdfs:label xml:lang="en">less than 0.7 m3/ton</rdfs:label>
+        <rdfs:label xml:lang="pt">menor do que 0.7 m3/ton</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#fe341515-c80d-4d2d-bbea-ee2eb2a8a6af -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#fe341515-c80d-4d2d-bbea-ee2eb2a8a6af">
+        <rdfs:label xml:lang="en">Meets determined values</rdfs:label>
+        <rdfs:label xml:lang="pt">Atende aos valores determinados</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#fef8ec2c-92fa-47cc-9bbb-4d9f85476917 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#fef8ec2c-92fa-47cc-9bbb-4d9f85476917">
+        <rdfs:label xml:lang="en">Inappropriate</rdfs:label>
+        <rdfs:label xml:lang="pt">Inadequado</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#lessSustainable -->
 
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#lessSustainable">
@@ -7517,6 +7491,836 @@
         <rdfs:label xml:lang="en">More sustainable</rdfs:label>
         <rdfs:label xml:lang="pt">Mais sustentável</rdfs:label>
         <ui:dataValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:dataValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#0ade844c-13be-461e-bb3d-588bbfe501aa -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#0ade844c-13be-461e-bb3d-588bbfe501aa">
+        <rdfs:label xml:lang="en">from 1.0 to 2.0 m3/ton</rdfs:label>
+        <rdfs:label xml:lang="pt">de 1.0 a 2.0 m3/ton</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#0e8ec47d-c679-42aa-82b8-246e93f50d26 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#0e8ec47d-c679-42aa-82b8-246e93f50d26">
+        <rdfs:label xml:lang="en">Vinasse transport with tubing or channels and tanks coated</rdfs:label>
+        <rdfs:label xml:lang="pt">Transporte da vinhaça com tubulação ou canais e tanques com revestimento</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#0fa59436-b77f-4c2b-b3fa-ab3e90e5821a -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#0fa59436-b77f-4c2b-b3fa-ab3e90e5821a">
+        <rdfs:label xml:lang="en">Does not supply the auto-demand or is partial</rdfs:label>
+        <rdfs:label xml:lang="pt">Não supre a própria demanda ou esta é parcial</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#01b4d2ec-d7c9-43c6-8d4f-275d5d1df80e -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#01b4d2ec-d7c9-43c6-8d4f-275d5d1df80e">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#01f56b82-b4d1-400c-9b64-2983bc81cc20 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#01f56b82-b4d1-400c-9b64-2983bc81cc20">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#0311d041-d449-451d-b986-62c1706a8710 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#0311d041-d449-451d-b986-62c1706a8710">
+        <rdfs:label xml:lang="en">Do not concentrate vinasse</rdfs:label>
+        <rdfs:label xml:lang="pt">Não concentrar a vinhaça</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#0347f039-accf-499a-b91e-aa2110bfd221 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#0347f039-accf-499a-b91e-aa2110bfd221">
+        <rdfs:label xml:lang="en">For the Sector</rdfs:label>
+        <rdfs:label xml:lang="pt">Para o setor</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#050bd548-26b5-4a25-a081-968afcd828e8 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#050bd548-26b5-4a25-a081-968afcd828e8">
+        <rdfs:label xml:lang="en">no</rdfs:label>
+        <rdfs:label xml:lang="pt">não</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#0587ff60-f3b1-409a-bd15-90fa539d0c17 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#0587ff60-f3b1-409a-bd15-90fa539d0c17">
+        <rdfs:label xml:lang="en">85 Tn/ha</rdfs:label>
+        <rdfs:label xml:lang="pt">85 Ton/ha</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#1e80aed2-aff6-4558-8532-7b1c9d8a6a4d -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#1e80aed2-aff6-4558-8532-7b1c9d8a6a4d">
+        <rdfs:label xml:lang="en">Positive</rdfs:label>
+        <rdfs:label xml:lang="pt">Positivo</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#1f4eefe9-3dcc-4fe6-9535-dafa7c7c0e2e -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#1f4eefe9-3dcc-4fe6-9535-dafa7c7c0e2e">
+        <rdfs:label xml:lang="en">Difficulty of adhesion and use of innovations</rdfs:label>
+        <rdfs:label xml:lang="pt">Dificuldade de adesão e uso das Inovações</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#10048b41-c1b3-4466-94c4-f3bf1d718c42 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#10048b41-c1b3-4466-94c4-f3bf1d718c42">
+        <rdfs:label xml:lang="en">Manual with burning</rdfs:label>
+        <rdfs:label xml:lang="pt">Manual com queima</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#11040929-ed29-48c6-9cb7-d16560a2869c -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#11040929-ed29-48c6-9cb7-d16560a2869c">
+        <rdfs:label xml:lang="en">Directed to innovation with cost reduction</rdfs:label>
+        <rdfs:label xml:lang="pt">Direcionada para inovação com redução de custo</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#13880056-a7ad-4b5d-997f-f842d0768bca -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#13880056-a7ad-4b5d-997f-f842d0768bca">
+        <rdfs:label xml:lang="en">Favorable</rdfs:label>
+        <rdfs:label xml:lang="pt">Favorável</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#140747ce-92df-41c1-b560-e35a41f57c14 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#140747ce-92df-41c1-b560-e35a41f57c14">
+        <rdfs:label xml:lang="en">Below 88%</rdfs:label>
+        <rdfs:label xml:lang="pt">Abaixo de 88%</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#17eeea81-03a6-4932-a93f-399d346e689a -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#17eeea81-03a6-4932-a93f-399d346e689a">
+        <rdfs:label xml:lang="en">130 to 139 kg</rdfs:label>
+        <rdfs:label xml:lang="pt">130 a 139 kg</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#18a7ede5-3d66-4eac-8820-9e44913e0179 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#18a7ede5-3d66-4eac-8820-9e44913e0179">
+        <rdfs:label xml:lang="en">By evaporation using steam vegetable or membrane</rdfs:label>
+        <rdfs:label xml:lang="pt">Por evaporação empregando vapor vegetal ou membrana</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#19033384-df79-47ae-b34f-c4a325d28637 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#19033384-df79-47ae-b34f-c4a325d28637">
+        <rdfs:label xml:lang="en">Raw mechanized</rdfs:label>
+        <rdfs:label xml:lang="pt">Mecanizado crua</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#2a341c27-8277-453e-be61-826ac63a98b1 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#2a341c27-8277-453e-be61-826ac63a98b1">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#2cba4e9a-d6e5-49f6-af93-e2c1aaedbe10 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#2cba4e9a-d6e5-49f6-af93-e2c1aaedbe10">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#2da7e971-7b37-42b3-ad30-a3dae7260387 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#2da7e971-7b37-42b3-ad30-a3dae7260387">
+        <rdfs:label xml:lang="en">Adequate disposal (channels and coated tanks)</rdfs:label>
+        <rdfs:label xml:lang="pt">Descarte adequado (canais e tanques revestidos)</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#22d08779-ab55-45d9-9b81-55e02479918f -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#22d08779-ab55-45d9-9b81-55e02479918f">
+        <rdfs:label xml:lang="en">Replacing degraded areas</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a áreas degradadas</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">3.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#22096a7b-be74-40b6-a659-4ae47818cbc5 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#22096a7b-be74-40b6-a659-4ae47818cbc5">
+        <rdfs:label xml:lang="en">Inappropriate disposal</rdfs:label>
+        <rdfs:label xml:lang="pt">Descarte inadequado</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#252b06d3-a265-4ae5-8b1f-a17a76a370eb -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#252b06d3-a265-4ae5-8b1f-a17a76a370eb">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#27ddb2c4-f819-4f11-81e5-b4da02ff6dfd -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#27ddb2c4-f819-4f11-81e5-b4da02ff6dfd">
+        <rdfs:label xml:lang="en">Greater than 91%</rdfs:label>
+        <rdfs:label xml:lang="pt">Maior que 91%</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#3a4bf122-3ea5-4050-b61e-737a3f4c0558 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#3a4bf122-3ea5-4050-b61e-737a3f4c0558">
+        <rdfs:label xml:lang="en">Negative</rdfs:label>
+        <rdfs:label xml:lang="pt">Negativo</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#3bbfc26f-d2aa-43eb-9593-37b968aa4fd2 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#3bbfc26f-d2aa-43eb-9593-37b968aa4fd2">
+        <rdfs:label xml:lang="en">88% to 90%</rdfs:label>
+        <rdfs:label xml:lang="pt">88% a 90%</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#3cbf30ff-f3ee-4199-9a7b-24c4a5c5f929 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#3cbf30ff-f3ee-4199-9a7b-24c4a5c5f929">
+        <rdfs:label xml:lang="en">More efficient boilers (new and high pressure)</rdfs:label>
+        <rdfs:label xml:lang="pt">Caldeiras mais eficientes (novas e com maior pressão)</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#30518ac8-f974-4c1a-855f-59612274dc12 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#30518ac8-f974-4c1a-855f-59612274dc12">
+        <rdfs:label xml:lang="en">Inappropiate - increase of production costs</rdfs:label>
+        <rdfs:label xml:lang="pt">Inadequada – aumento de custos de produção</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#36eab05b-1618-4c1d-b58f-82437c33569d -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#36eab05b-1618-4c1d-b58f-82437c33569d">
+        <rdfs:label xml:lang="en">Supplies fully and market the surplus</rdfs:label>
+        <rdfs:label xml:lang="pt">Supre totalmente e comercializa o excedente</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#37ac185e-54a7-45da-b5c1-ac83a39e2d8c -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#37ac185e-54a7-45da-b5c1-ac83a39e2d8c">
+        <rdfs:label xml:lang="en">yes</rdfs:label>
+        <rdfs:label xml:lang="pt">sim</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#3716c0ea-08e2-48aa-8e94-75fbd65d28f3 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#3716c0ea-08e2-48aa-8e94-75fbd65d28f3">
+        <rdfs:label xml:lang="en">Preparation / Plantation / Automated or system information based maintenance</rdfs:label>
+        <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial (automatizados ou empregando sistemas de informação? Por ex sensoriamento remoto ou agricultura de precisão)</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#38096f9a-dbea-4d97-8167-828cd8785cc3 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#38096f9a-dbea-4d97-8167-828cd8785cc3">
+        <rdfs:label xml:lang="en">0.7 m3/ton</rdfs:label>
+        <rdfs:label xml:lang="pt">0.7 m3/ton</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#4bdcfe0a-389d-4837-b96c-cd3bdf615319 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#4bdcfe0a-389d-4837-b96c-cd3bdf615319">
+        <rdfs:label xml:lang="en">Replacing pasture</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a pasto</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#4cd0bc86-154d-40e4-8690-2168b5cd593b -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#4cd0bc86-154d-40e4-8690-2168b5cd593b">
+        <rdfs:label xml:lang="en">With efficiency for the production environment - use of techniques to reduce soil compactation</rdfs:label>
+        <rdfs:label xml:lang="pt">Com eficiência para o ambiente de produção – emprego de técnicas para reduzir a compactação do solo</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#4e9e1945-fba6-47cc-bbad-32070ed74d31 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#4e9e1945-fba6-47cc-bbad-32070ed74d31">
+        <rdfs:label xml:lang="en">Use of conventional sugarcane</rdfs:label>
+        <rdfs:label xml:lang="pt">Uso de cana convencional</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#4ff2b3ad-2b7e-48db-b2c8-ca4330029d81 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#4ff2b3ad-2b7e-48db-b2c8-ca4330029d81">
+        <rdfs:label xml:lang="en">Does not use gas reduction technique</rdfs:label>
+        <rdfs:label xml:lang="pt">Não emprega nenhuma técnica de redução de gases</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#41e68f2e-ce1b-4573-b521-825fa95f0051 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#41e68f2e-ce1b-4573-b521-825fa95f0051">
+        <rdfs:label xml:lang="en">Preparation / Plantation / Manual maintenance of sugarcane field in suitable areas to mechanization</rdfs:label>
+        <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial manual em áreas aptas a mecanização</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#433cf8ff-98db-4632-bbbf-65c390227f2e -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#433cf8ff-98db-4632-bbbf-65c390227f2e">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#4651cb1b-53b1-40e6-8ac4-65a14a5d5100 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#4651cb1b-53b1-40e6-8ac4-65a14a5d5100">
+        <rdfs:label xml:lang="en">74-64 Tn/ha</rdfs:label>
+        <rdfs:label xml:lang="pt">74-64 Ton/ha</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#4704b63d-1971-4d5d-9d14-0dca5e0b8097 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#4704b63d-1971-4d5d-9d14-0dca5e0b8097">
+        <rdfs:label xml:lang="en">Unfavorable (without stocks)</rdfs:label>
+        <rdfs:label xml:lang="pt">Desfavorável (sem estoques)</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#5cb41d31-c043-4ecf-a9e5-8ff66cffa331 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#5cb41d31-c043-4ecf-a9e5-8ff66cffa331">
+        <rdfs:label xml:lang="en">Mechanized</rdfs:label>
+        <rdfs:label xml:lang="pt">Mecanizado</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#5d96de19-8041-47e9-ba61-e6d148f8f1e3 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#5d96de19-8041-47e9-ba61-e6d148f8f1e3">
+        <rdfs:label xml:lang="en">Greater than 85 Tn/ha</rdfs:label>
+        <rdfs:label xml:lang="pt">Maior que 85 Ton/ha</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#50b6f68c-13c0-4a48-ae87-a12821feed21 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#50b6f68c-13c0-4a48-ae87-a12821feed21">
+        <rdfs:label xml:lang="en">In replacement of food crops</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a culturas alimentares</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#505f6630-1779-4472-afa5-cdc1f371ab08 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#505f6630-1779-4472-afa5-cdc1f371ab08">
+        <rdfs:label xml:lang="en">Between 80% and 90%</rdfs:label>
+        <rdfs:label xml:lang="pt">Entre 80% e 90%</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#514426ab-0abe-40b8-9429-23dc51c7574a -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#514426ab-0abe-40b8-9429-23dc51c7574a">
+        <rdfs:label xml:lang="en">Do not use</rdfs:label>
+        <rdfs:label xml:lang="pt">Não usa</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#5174b6d8-dc17-42a5-9f73-5da72d1022ab -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#5174b6d8-dc17-42a5-9f73-5da72d1022ab">
+        <rdfs:label xml:lang="en">Favourable (with inventories)</rdfs:label>
+        <rdfs:label xml:lang="pt">Favorável (com estoques)</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#52eedf31-4e63-4948-9fe4-39ba26d6f8c9 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#52eedf31-4e63-4948-9fe4-39ba26d6f8c9">
+        <rdfs:label xml:lang="en">Preparation / Plantation / Manual sugarcane maintenance according to constraints of the size of the area and slope</rdfs:label>
+        <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial manual em função de restrições do tamanho da área e declividade</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#53e60f21-f6d5-403f-b61a-184029cc8497 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#53e60f21-f6d5-403f-b61a-184029cc8497">
+        <rdfs:label xml:lang="en">Manual</rdfs:label>
+        <rdfs:label xml:lang="pt">Manual</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#56288c88-18dd-4bef-b361-75f1f186a020 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#56288c88-18dd-4bef-b361-75f1f186a020">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#58c57cf7-be3b-403d-8f3c-3e876761bd7c -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#58c57cf7-be3b-403d-8f3c-3e876761bd7c">
+        <rdfs:label xml:lang="en">Appropriate - with reduced visible and invisible losses</rdfs:label>
+        <rdfs:label xml:lang="pt">Adequada – com redução de perdas visíveis e invisíveis</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#6a8dc098-e3b2-454e-97b7-6ca650383354 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#6a8dc098-e3b2-454e-97b7-6ca650383354">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#6d39de74-8b0d-454a-88ea-da766cc1b6a5 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#6d39de74-8b0d-454a-88ea-da766cc1b6a5">
+        <rdfs:label xml:lang="en">With healthy seedling</rdfs:label>
+        <rdfs:label xml:lang="pt">Com muda sadia</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#6d8bb3be-c33f-408b-85e5-bc5a8aa1345f -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#6d8bb3be-c33f-408b-85e5-bc5a8aa1345f">
+        <rdfs:label xml:lang="en">Indirect</rdfs:label>
+        <rdfs:label xml:lang="pt">Indireta</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#6e4635aa-14cf-4b97-af77-769596c2ea27 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#6e4635aa-14cf-4b97-af77-769596c2ea27">
+        <rdfs:label xml:lang="en">Alcohol content below 7GL</rdfs:label>
+        <rdfs:label xml:lang="pt">Grau alcoólico abaixo de 7GL</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#64058c33-1fba-498e-8b77-9d005af9b242 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#64058c33-1fba-498e-8b77-9d005af9b242">
+        <rdfs:label xml:lang="en">Manual</rdfs:label>
+        <rdfs:label xml:lang="pt">Manual</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#65060937-9762-42ad-a511-4f0b79eb8576 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#65060937-9762-42ad-a511-4f0b79eb8576">
+        <rdfs:label xml:lang="en">For fertigation or digestion for the production of electricity</rdfs:label>
+        <rdfs:label xml:lang="pt">Para fertirrigação ou de biodigestão para produção de energia elétrica</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#6662e095-61a5-4d66-a6dd-c25cf7d26284 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#6662e095-61a5-4d66-a6dd-c25cf7d26284">
+        <rdfs:label xml:lang="en">Preparation / Plantation / Mechanized maintenance of sugarcane field</rdfs:label>
+        <rdfs:label xml:lang="pt">Preparo / plantio / manutenção do canavial usando mecanização</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#67b35270-8cd4-404e-9f7d-102e660b1139 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#67b35270-8cd4-404e-9f7d-102e660b1139">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#7c680f18-93a7-4c00-9fde-ae2578c8cb6a -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#7c680f18-93a7-4c00-9fde-ae2578c8cb6a">
+        <rdfs:label xml:lang="en">Use or sale of bagasse to produce electricity</rdfs:label>
+        <rdfs:label xml:lang="pt">Emprego ou venda do bagaço para produção de energia elétrica</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#72d08876-a9d1-4301-aa52-9347f4bd819c -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#72d08876-a9d1-4301-aa52-9347f4bd819c">
+        <rdfs:label xml:lang="en">Improper disposal of bagasse</rdfs:label>
+        <rdfs:label xml:lang="pt">Descarte inadequado do bagaço</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#73279113-d38b-4945-a17f-65260f355c3a -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#73279113-d38b-4945-a17f-65260f355c3a">
+        <rdfs:label xml:lang="en">Not use</rdfs:label>
+        <rdfs:label xml:lang="pt">Não usa</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#7401dac9-d586-42eb-86db-ee722c1b2b52 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#7401dac9-d586-42eb-86db-ee722c1b2b52">
+        <rdfs:label xml:lang="en">Inadequate disposal</rdfs:label>
+        <rdfs:label xml:lang="pt">Descarte Inadequado</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#7419b0ee-77ce-4f62-a739-3c4082bdf37b -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#7419b0ee-77ce-4f62-a739-3c4082bdf37b">
+        <rdfs:label xml:lang="en">Above 90%</rdfs:label>
+        <rdfs:label xml:lang="pt">Acima de 90%</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#74445d6f-4001-4637-8f01-1d5bc1cc95b6 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#74445d6f-4001-4637-8f01-1d5bc1cc95b6">
+        <rdfs:label xml:lang="en">no</rdfs:label>
+        <rdfs:label xml:lang="pt">não</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#75ec931b-5823-483f-8ad7-017c9fb25c86 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#75ec931b-5823-483f-8ad7-017c9fb25c86">
+        <rdfs:label xml:lang="en">Lowest</rdfs:label>
+        <rdfs:label xml:lang="pt">Menor</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#76bce91c-512a-4b76-ad0a-8308d72508d2 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#76bce91c-512a-4b76-ad0a-8308d72508d2">
+        <rdfs:label xml:lang="en">Use</rdfs:label>
+        <rdfs:label xml:lang="pt">Usa</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#79596ef2-4b0c-4f94-9846-3d6cf804e045 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#79596ef2-4b0c-4f94-9846-3d6cf804e045">
+        <rdfs:label xml:lang="en">Purchasing power</rdfs:label>
+        <rdfs:label xml:lang="pt">Compra energia</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#7973ffc1-e87c-43ca-80a3-82b7e6f83910 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#7973ffc1-e87c-43ca-80a3-82b7e6f83910">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#8bc3ea96-2fd1-41d4-8afa-94d8ac58d362 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#8bc3ea96-2fd1-41d4-8afa-94d8ac58d362">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#8f02174d-1c85-4b8b-92c8-19fa0d923981 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#8f02174d-1c85-4b8b-92c8-19fa0d923981">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#8fac671e-2dbf-4b58-9471-238b68031ab6 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#8fac671e-2dbf-4b58-9471-238b68031ab6">
+        <rdfs:label xml:lang="en">Production for consumption and sale</rdfs:label>
+        <rdfs:label xml:lang="pt">Produz para consumo e venda</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#839f2c64-23b7-44c0-a833-94964400a56c -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#839f2c64-23b7-44c0-a833-94964400a56c">
+        <rdfs:label xml:lang="en">Road train</rdfs:label>
+        <rdfs:label xml:lang="pt">Treminhão</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#846ff950-0e8d-4ebd-824b-2d9773f2fccc -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#846ff950-0e8d-4ebd-824b-2d9773f2fccc">
+        <rdfs:label xml:lang="en">Yes</rdfs:label>
+        <rdfs:label xml:lang="pt">Sim</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#85db7d68-1e88-4e34-9537-69776d513bb0 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#85db7d68-1e88-4e34-9537-69776d513bb0">
+        <rdfs:label xml:lang="en">Romeo and Juliet</rdfs:label>
+        <rdfs:label xml:lang="pt">Romeu e Julieta</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#86ef7c1e-4555-4f63-91cf-0612a8448c39 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#86ef7c1e-4555-4f63-91cf-0612a8448c39">
+        <rdfs:label xml:lang="en">Adapted</rdfs:label>
+        <rdfs:label xml:lang="pt">Adaptadas</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#87151113-cfb0-495a-89f1-0ab477e596f1 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#87151113-cfb0-495a-89f1-0ab477e596f1">
+        <rdfs:label xml:lang="en">Semi-mechanized</rdfs:label>
+        <rdfs:label xml:lang="pt">Semimecanizado</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#8730d8b0-50b7-4e39-9217-7439ddc37edd -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#8730d8b0-50b7-4e39-9217-7439ddc37edd">
+        <rdfs:label xml:lang="en">Unfavorable</rdfs:label>
+        <rdfs:label xml:lang="pt">Desfavorável</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#89c216cf-f85f-47cd-b162-a82ef759dd5b -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#89c216cf-f85f-47cd-b162-a82ef759dd5b">
+        <rdfs:label xml:lang="en">In replacement of cane and similar cultures</rdfs:label>
+        <rdfs:label xml:lang="pt">Em substituição a cana e culturas similares</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#9c1d2d03-c813-4e73-9ab9-7402cc0d5b94 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#9c1d2d03-c813-4e73-9ab9-7402cc0d5b94">
+        <rdfs:label xml:lang="en">140 to 145 kg</rdfs:label>
+        <rdfs:label xml:lang="pt">140 a 145 kg</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#9ef3d93b-29c5-44cc-8109-148a290c8070 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#9ef3d93b-29c5-44cc-8109-148a290c8070">
+        <rdfs:label xml:lang="en">more than 4 m3/ton</rdfs:label>
+        <rdfs:label xml:lang="pt">maior do que 4 m3/ton</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-3.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#94a98369-0843-4f88-9df9-90494f95d7ea -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#94a98369-0843-4f88-9df9-90494f95d7ea">
+        <rdfs:label xml:lang="en">Pre-budded seedling</rdfs:label>
+        <rdfs:label xml:lang="pt">Muda Pré-brotada (MPB)</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#95960545-d02e-4836-95b3-a03f00c478a3 -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#95960545-d02e-4836-95b3-a03f00c478a3">
+        <rdfs:label xml:lang="en">No</rdfs:label>
+        <rdfs:label xml:lang="pt">Não</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
     </owl:NamedIndividual>
 </rdf:RDF>
 

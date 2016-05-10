@@ -1,1 +1,1 @@
-<textarea id="<%=id%>" name="<%=id%>"  class="form-control" rows="3" placeholder="<%=placeholder%>"></textarea>
+<textarea id="<%=id%>" name="<%=id%>"  class="form-control" rows="3" placeholder="<%=placeholder%>"><%=text%></textarea>

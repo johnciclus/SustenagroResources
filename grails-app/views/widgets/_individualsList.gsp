@@ -27,7 +27,14 @@
         <div class="row hidden">
             <label for="<%= feature.value.id + '-justification' %>" class="col-sm-4 control-label weight-label">Justificativa</label>
             <div class="col-sm-8 text-right">
-                <g:render template="/widgets/textArea" model="[id: feature.value.id + '-justification', placeholder: 'Justificativa']"/>
+                <g:set var="hasJustification" value="${values[feature.value.id] != null && values[feature.value.id].justification}" />
+                <g:if test="${hasJustification}">
+                    <g:set var="text" value="${values[feature.value.id].justification}" />
+                </g:if>
+                <g:else>
+                    <g:set var="text" value="" />
+                </g:else>
+                <g:render template="/widgets/textArea" model="[id: feature.value.id + '-justification', text: text, placeholder: 'Justificativa']"/>
             </div>
         </div>
         <g:if test="${feature.value.weightIndividuals}">

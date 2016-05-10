@@ -24,7 +24,7 @@
         $('.pager a').click(function (e) {
             var id = $(this).attr('href');
             id = id.substring(0, id.lastIndexOf('_tab_'));
-            var main_id = $('#main_tabs li.active a').attr('href')
+            var main_id = $('#main_tabs li.active a').attr('href');
             main_id = main_id.substring(0, main_id.lastIndexOf('_tab_'));
             if (id != main_id) {
                 var parent_id = $('.nav-tabs a[href="' + $(this).attr('href') + '"]').parents('.tab-pane').attr('id')

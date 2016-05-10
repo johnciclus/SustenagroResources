@@ -769,6 +769,10 @@ class Node {
         k.query("<$URI> rdf:type ?type").size() > 0 ? true : false
     }
 
+    def getAnalysisLabel(String label){
+        k.query("?id :appliedTo <$URI>. ?id rdfs:label ?label. filter contains(?label,'$label')")
+    }
+
     def insertEvaluationObject(String id, Object type, Map properties = [:]){
         def evalObjId = k.toURI("inds:"+id)
         def name = k.toURI('ui:hasName')

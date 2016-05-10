@@ -63,6 +63,7 @@ import org.semanticweb.owlapi.model.OWLOntologyManager
 import org.semanticweb.owlapi.util.DefaultPrefixManager
 import org.semanticweb.owlapi.vocab.OWL2Datatype
 import org.yaml.snakeyaml.Yaml
+import java.util.UUID
 
 /**
  * Created by dilvan on 4/7/16.
@@ -211,8 +212,7 @@ class Yaml2Owl {
 
     @TypeChecked(SKIP)
     def OWLIndividual makeIndividual(Map ind, String id = null){
-
-        def indiv = id ? getEntity(id, EntityType.NAMED_INDIVIDUAL) : factory.OWLAnonymousIndividual
+        def indiv = id ? getEntity(id, EntityType.NAMED_INDIVIDUAL) : factory.getOWLNamedIndividual(IRI.create(prefix.defaultPrefix+UUID.randomUUID().toString())) //factory.OWLAnonymousIndividual
 
         ind.keySet().each {
             if (it == 'type'){

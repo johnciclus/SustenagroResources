@@ -3,7 +3,6 @@ package sustenagro
 import semantics.DataReader
 import semantics.Node
 import grails.plugin.springsecurity.annotation.Secured
-
 import java.text.SimpleDateFormat
 
 @Secured(['ROLE_USER', 'ROLE_ADMIN'])
@@ -120,7 +119,7 @@ class ToolController {
             //println feature
             //println feature.model
             widgets = []
-            widgets.push(['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:], weights: [:]]])
+            widgets.push(['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: [:]]])
             if(feature.attrs.extraFeatures){
                 widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]])
             }
@@ -162,8 +161,10 @@ class ToolController {
     def createScenario(){
         def now = new Date()
         def evalObjURI = k.toURI(params.evalObjInstance)
-        def name = evalObjURI.substring(evalObjURI.lastIndexOf('#')+1)
-        def analysisId = name+"-analysis-"+new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(now)
+        def evalObjName = evalObjURI.substring(evalObjURI.lastIndexOf('#')+1)
+        def name = k[':Harvest'].label+ " " + k[evalObjURI].getAttr('?harvestYear')
+        def analysisSize = k[evalObjURI].getAnalysisLabel(name).size();
+        def analysisId = evalObjName+"-analysis-"+new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(now)
         def properties = [:]
         def node = new Node(k)
         def individualKeys = []
@@ -176,7 +177,10 @@ class ToolController {
         def extraFeatures = [:]
         def uri = ''
 
-        properties[k.toURI('rdfs:label')] = [value: k[':Harvest'].label+ " " + k[evalObjURI].getAttr('?harvestYear'), dataType: k.toURI('rdfs:Literal')]     //new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now)
+        if(analysisSize > 0)
+            name += " ($analysisSize)"
+
+        properties[k.toURI('rdfs:label')] = [value: name, dataType: k.toURI('rdfs:Literal')]     //new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now)
         properties[k.toURI(':appliedTo')] = [value: evalObjURI, dataType: k[':appliedTo'].range]
         properties[k.toURI('ui:createAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now), dataType: k.toURI('xsd:dateTime')]
 
@@ -259,27 +263,29 @@ class ToolController {
         def widgets
 
         dsl.featureMap.eachWithIndex { key, feature, int i ->
-            res = k[key].getChildrenIndividuals(uri, '?id ?ind ?valueType ?weightType')
+            //res = k[key].getChildrenIndividuals(uri, '?id ?ind ?valueType ?weightType')
+            res = k[key].getGrandChildrenIndividuals(uri, '?id ?ind ?justification ?valueType ?weightType')
+
             //println key
             //Uri.printTree(res)
             res.each{
-                if(it.ind.startsWith(it.id)){
-                    values[it.id] = [:]
+                values[it.id] = [:]
+                if(it.valueType)
                     values[it.id].value = it.valueType
-                    if(it.weightType)
-                        values[it.id].weight = it.weightType
-                }
+                if(it.weightType)
+                    values[it.id].weight = it.weightType
+                if(it.justification)
+                    values[it.id].justification = it.justification
             }
 
-            println values
+            //Uri.printTree(values)
 
             widgets = []
-            widgets.push(['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: values, weights: [:]]])
+            widgets.push(['widget': 'individualsPanel', attrs : [data : feature.model.subClass, values: values]])
             if(feature.attrs.extraFeatures){
                 widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]])
             }
 
-            //Uri.printTree(values)
             if(feature.model.superClass.contains(k.toURI(':Variable')))
                 efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: widgets])
             if(feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
