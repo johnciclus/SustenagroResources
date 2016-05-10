@@ -3,12 +3,12 @@
 	<head>
 		<meta name="layout" content="decisioner"/>
 		<title>SustenAgro - Admin</title>
-		<asset:javascript src="ace-min-noconflict/ace.js"/>
-        <asset:javascript src="ace-min-noconflict/ext-language_tools.js"/>
-        <asset:javascript src="bootstrap-table-old.min.js"/>
-        <asset:javascript src="bootstrap-treeview.min.js"/>
-        <asset:stylesheet href="bootstrap-table.min.css"/>
-        <asset:stylesheet href="bootstrap-treeview.min.css"/>
+        <script src="/assets/ace-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/assets/ace-min-noconflict/ext-language_tools.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/assets/bootstrap-table-old.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/assets/bootstrap-treeview.min.js" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" href="/assets/bootstrap-table.min.css">
+        <link rel="stylesheet" href="/assets/bootstrap-treeview.min.css">
 	</head>
 	<body>
         <div class="row main">
@@ -49,7 +49,7 @@
                             <div class="col-md-8 col-sm-8">
                                 <pre id="ontEditor" class="ace_editor editor ace-tm">${ontology}</pre>
                             </div>
-                            <script type="application/javascript">
+                            <script type="application/javascript" charset="utf-8">
                                 $(document).ready(function() {
                                     var ontology;
                                     var classes = [];

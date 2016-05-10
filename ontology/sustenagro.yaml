@@ -286,7 +286,7 @@ Harvest:
 
 Indicator:
   is_a: Feature
-  label: [Indicador @pt, Indicator @en]
+  label: [Indicador.... @pt, Indicator @en]
   value: Categorical
 
 Variable:

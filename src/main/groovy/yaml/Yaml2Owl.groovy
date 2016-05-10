@@ -172,7 +172,9 @@ class Yaml2Owl {
 
     @TypeChecked(SKIP)
     def restriction(OWLClass subj, OWLObjectProperty prop, Collection individuals){
-        restriction(subj, prop, factory.getOWLObjectOneOf((Set<OWLIndividual>) individuals.collect{ makeIndividual(it)}))
+        def baseName = subj.IRI.toString()
+        def index = 0
+        restriction(subj, prop, factory.getOWLObjectOneOf((Set<OWLIndividual>) individuals.collect{ makeIndividual(it, baseName+'-'+index++)}))
     }
 
     @TypeChecked(SKIP)
@@ -212,7 +214,7 @@ class Yaml2Owl {
 
     @TypeChecked(SKIP)
     def OWLIndividual makeIndividual(Map ind, String id = null){
-        def indiv = id ? getEntity(id, EntityType.NAMED_INDIVIDUAL) : factory.getOWLNamedIndividual(IRI.create(prefix.defaultPrefix+UUID.randomUUID().toString())) //factory.OWLAnonymousIndividual
+        def indiv = id ? getEntity(id, EntityType.NAMED_INDIVIDUAL) : factory.getOWLAnonymousIndividual()
 
         ind.keySet().each {
             if (it == 'type'){

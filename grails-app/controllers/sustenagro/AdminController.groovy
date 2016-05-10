@@ -1,6 +1,5 @@
 package sustenagro
 
-import org.codehaus.groovy.runtime.ResourceGroovyMethods
 import grails.converters.*
 import org.yaml.snakeyaml.Yaml
 import utils.Uri
@@ -181,9 +180,12 @@ class AdminController {
         // Just reads YAML
         Map yaml = (Map) new Yaml().load((String) params['ontology'])
 
+        println "Ontology"
+        println params['ontology']
+
         // Save yaml file
         File yamlFile = new File(path + 'ontology/sustenagro.yaml')
-        ResourceGroovyMethods.write(yamlFile, (String) params['ontology'])
+        yamlFile.write(params['ontology'])
 
         //println yaml.ontology
         // Creating Yaml2Owl
