@@ -315,6 +315,7 @@ input[type="date"]::-webkit-input-placeholder{
 	height: 800px;
 	margin-top: 5px;
 	overflow-y: auto;
+	border: 1px solid #dddddd;
 }
 
 

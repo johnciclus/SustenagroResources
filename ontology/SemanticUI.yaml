@@ -3,7 +3,7 @@ prefix:
   pt: http://dbpedia.org/property/pt/
   terms: http://purl.org/dc/terms/
   dbp: http://dbpedia.org/ontology/
-  inds: http://semantic.icmc.usp.br/inds#
+  inds: http://semantic.icmc.usp.br/individuals#
 
 ontology: http://purl.org/biodiv/semanticUI#
 

@@ -173,6 +173,9 @@ class Yaml2Owl {
     @TypeChecked(SKIP)
     def restriction(OWLClass subj, OWLObjectProperty prop, Collection individuals){
         def baseName = subj.IRI.toString()
+        // We were using anonymous individuals, but due to problems with blanknodes, we are now
+        // creating named individuals based on the class name(ClassURI+'-'+index). Caution: We do not test if the
+        // generated uri is already used for something else.
         def index = 0
         restriction(subj, prop, factory.getOWLObjectOneOf((Set<OWLIndividual>) individuals.collect{ makeIndividual(it, baseName+'-'+index++)}))
     }

@@ -180,8 +180,8 @@ class AdminController {
         // Just reads YAML
         Map yaml = (Map) new Yaml().load((String) params['ontology'])
 
-        println "Ontology"
-        println params['ontology']
+        //println "Ontology"
+        //println params['ontology']
 
         // Save yaml file
         File yamlFile = new File(path + 'ontology/sustenagro.yaml')

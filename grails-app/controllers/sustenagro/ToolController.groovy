@@ -3,6 +3,8 @@ package sustenagro
 import semantics.DataReader
 import semantics.Node
 import grails.plugin.springsecurity.annotation.Secured
+import utils.Uri
+
 import java.text.SimpleDateFormat
 
 @Secured(['ROLE_USER', 'ROLE_ADMIN'])
@@ -114,7 +116,7 @@ class ToolController {
         def options = k[':SustainabilityCategory'].getIndividualsIdValueLabel()
         def widgets
 
-        dsl.featureMap.eachWithIndex { key, feature, int i ->
+        dsl.featureMap.eachWithIndex{ key, feature, int i ->
             //println key
             //println feature
             //println feature.model
@@ -205,7 +207,7 @@ class ToolController {
             if(paramValue){
                 featureInstances[uri] = k.isURI(paramValue)? ['value': paramValue] : ['value': valueIndividuals[paramValue]]
                 if(paramWeight)
-                    featureInstances[uri]['weight'] = k.isURI(paramWeight)? ['value': paramWeight] : weightIndividuals[paramWeight]
+                    featureInstances[uri]['weight'] = k.isURI(paramWeight)? paramWeight : weightIndividuals[paramWeight]
                 if(paramJustification)
                     featureInstances[uri]['justification'] = paramJustification
 
@@ -226,6 +228,8 @@ class ToolController {
                 }
             }
         }
+        //println analysisId
+        //Uri.printTree(featureInstances)
 
         //println extraFeatures
 
@@ -234,6 +238,29 @@ class ToolController {
         node.insertFeatures(analysisId, featureInstances)
 
         node.insertExtraFeatures(analysisId, extraFeatures)
+
+        redirect(action: 'analysis', id: analysisId)
+    }
+
+    def updateScenario(){
+        def now = new Date()
+        def analysisId = params.analysisId
+        def analysisURI = k.toURI('inds:'+analysisId)
+        def evalObjURI = k[analysisURI].getAttr('appliedTo')
+        def evalObjName = evalObjURI.substring(evalObjURI.lastIndexOf('#')+1)
+        def name = k[analysisURI].getAttr('label')
+        def node = new Node(k)
+        def properties = [:]
+
+        println evalObjURI
+        println evalObjName
+        println name
+
+        properties[k.toURI('rdfs:label')] = [value: name, dataType: k.toURI('rdfs:Literal')]     //new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now)
+        properties[k.toURI(':appliedTo')] = [value: evalObjURI, dataType: k[':appliedTo'].range]
+        properties[k.toURI('ui:createAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now), dataType: k.toURI('xsd:dateTime')]
+
+        node.deleteAnalysis(analysisId)
 
         redirect(action: 'analysis', id: analysisId)
     }
@@ -268,6 +295,7 @@ class ToolController {
 
             //println key
             //Uri.printTree(res)
+
             res.each{
                 values[it.id] = [:]
                 if(it.valueType)

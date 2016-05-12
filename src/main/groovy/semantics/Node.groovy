@@ -459,7 +459,7 @@ class Node {
 
                 "optional {"+
                     "?ind ui:hasWeight ?weightType." +
-                    "?weightType ui:hasWeight ?weight."+
+                    "?weightType ui:dataValue ?weight."+
                     "?weightType rdfs:label ?weightTypeLabel."+
                 "}"+
                 "optional {"+
@@ -982,6 +982,10 @@ class Node {
             sparql = sparql[0..-3]+"."
 
         return sparql
+    }
+
+    def deleteAnalysis(String id){
+        println k.toURI('inds:'+id)
     }
 
     def propertyToList = {ArrayList source, String property ->

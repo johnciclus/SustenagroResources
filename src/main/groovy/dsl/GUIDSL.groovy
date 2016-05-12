@@ -327,7 +327,7 @@ class GUIDSL {
                     attrs['tabs'][tab_prefix + (widgets.size() - 1)].attrs['finalPagLabel'] = extAttrs['finalPagLabel']
                 }
                 if (extAttrs['submit'])
-                    attrs['tabs'][tab_prefix + (widgets.size() - 1)].attrs['submitLabel'] = defaultAttrs['submitLabel']
+                    attrs['tabs'][tab_prefix + (widgets.size() - 1)].attrs['submitLabel'] = extAttrs['submitLabel'] ? extAttrs['submitLabel'] : defaultAttrs['submitLabel']
 
                 attrs['tabs'].eachWithIndex { tab, int i ->
                     if (i > 0) {

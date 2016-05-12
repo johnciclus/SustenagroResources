@@ -32,7 +32,7 @@ class Know {
         addNamespace('dbpr','http://dbpedia.org/resource/')
         addNamespace('pt','http://dbpedia.org/property/pt/')
         addNamespace('ui','http://purl.org/biodiv/semanticUI#')
-        addNamespace('inds','http://semantic.icmc.usp.br/inds#')
+        addNamespace('inds','http://semantic.icmc.usp.br/individuals#')
         addNamespace('','http://semantic.icmc.usp.br/sustenagro#')
     }
 
