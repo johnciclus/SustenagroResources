@@ -30,7 +30,6 @@ class BootStrap {
             it.flush()
             it.clear()
         }
-
         /*
         println "User.count"
         println User.count()

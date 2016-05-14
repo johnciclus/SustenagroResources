@@ -14,7 +14,7 @@
             </div>
 
             <g:if test='${flash.message}'>
-                <div class="alert alert-info" role="alert">
+                <div class="alert alert-success" role="alert">
                 <p>${flash.message}</p>
                 </div>
             </g:if>

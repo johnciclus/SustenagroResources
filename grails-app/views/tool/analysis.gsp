@@ -7,6 +7,8 @@
     <asset:javascript src="bootstrap-table.min.js"/>
     <asset:javascript src="d3.min.js"/>
     <asset:javascript src="md5.min.js"/>
+    <asset:javascript src="jquery.validate.min.js"/>
+    <asset:javascript src="localization/messages_pt_BR.min.js"/>
     <asset:javascript src="jspdf/jspdf.min.js"/>
     <asset:javascript src="jspdf/from_html.min.js"/>
     <asset:javascript src="jspdf/from_html.min.js"/>

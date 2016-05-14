@@ -56,12 +56,12 @@ class ToolController {
     }
 
     def createEvaluationObject() {
-        def name = k.toURI('ui:hasName')
-        def id = slugify.slugify(params[name])
-        def type = k.toURI('rdfs:subClassOf')
-        def evaluationObject = dsl.evaluationObject
         def username = springSecurityService.getPrincipal().username
         def user = k.toURI('inds:'+username)
+        def name = k.toURI('ui:hasName')
+        def id = slugify.slugify(username+'-'+params[name])
+        def type = k.toURI('rdfs:subClassOf')
+        def evaluationObject = dsl.evaluationObject
 
         if(params[name] && params[type]){
 
@@ -169,15 +169,6 @@ class ToolController {
         def analysisId = evalObjName+"-analysis-"+new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(now)
         def properties = [:]
         def node = new Node(k)
-        def individualKeys = []
-        def paramValue
-        def paramWeight
-        def paramJustification
-        def valueIndividuals = [:]
-        def weightIndividuals = [:]
-        def featureInstances = [:]
-        def extraFeatures = [:]
-        def uri = ''
 
         if(analysisSize > 0)
             name += " ($analysisSize)"
@@ -186,24 +177,68 @@ class ToolController {
         properties[k.toURI(':appliedTo')] = [value: evalObjURI, dataType: k[':appliedTo'].range]
         properties[k.toURI('ui:createAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now), dataType: k.toURI('xsd:dateTime')]
 
-        /*dsl.featureMap.each{ key, feature ->
-            println feature.model.label
-            println feature.uri
-            Uri.printTree(feature.model)
-        }*/
+        node.insertAnalysis(analysisId, properties)
+
+        node.insertFeatures(analysisId, getFeatures(params))
+
+        node.insertExtraFeatures(analysisId, getExtraFeatures(params))
+
+        redirect(action: 'analysis', id: analysisId)
+    }
+
+    def updateScenario(){
+        def now = new Date()
+        def analysisId = params.analysisId
+        def analysisURI = k.toURI('inds:'+analysisId)
+        def evalObjURI = k[analysisURI].getAttr('appliedTo')
+        def createAt = k[analysisURI].getAttr('createAt')
+        def name = k[analysisURI].getAttr('label')
+        def node = new Node(k)
+        def properties = [:]
+
+
+        if(!createAt)
+            createAt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now)
+        println analysisURI
+        println createAt
+
+        properties[k.toURI('rdfs:label')] = [value: name, dataType: k.toURI('rdfs:Literal')]     //new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now)
+        properties[k.toURI(':appliedTo')] = [value: evalObjURI, dataType: k[':appliedTo'].range]
+        properties[k.toURI('ui:createAt')] = [value: createAt, dataType: k.toURI('xsd:dateTime')]
+        properties[k.toURI('ui:updateAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now), dataType: k.toURI('xsd:dateTime')]
+
+        node.deleteAnalysis(analysisId)
+
+        node.insertAnalysis(analysisId, properties)
+
+        node.insertFeatures(analysisId, getFeatures(params))
+
+        node.insertExtraFeatures(analysisId, getExtraFeatures(params))
+
+        redirect(action: 'analysis', id: analysisId)
+    }
+
+    def getFeatures(parameters){
+        def featureInstances = [:]
+        def valueIndividuals = [:]
+        def weightIndividuals = [:]
+        def individualKeys = []
+        def paramValue
+        def paramWeight
+        def paramJustification
+        def uri
 
         dsl.featureMap.each{ key, feature ->
             valueIndividuals << feature.getValueIndividuals()
             weightIndividuals << feature.getWeightIndividuals()
             individualKeys += feature.getIndividualKeys()
-            extraFeatures[key] = [:]
         }
 
         individualKeys.each{
             uri = k.toURI(it)
-            paramValue = params[uri]
-            paramWeight = params[uri+'-weight']
-            paramJustification = params[uri+'-justification']
+            paramValue = parameters[uri]
+            paramWeight = parameters[uri+'-weight']
+            paramJustification = parameters[uri+'-justification']
             if(paramValue){
                 featureInstances[uri] = k.isURI(paramValue)? ['value': paramValue] : ['value': valueIndividuals[paramValue]]
                 if(paramWeight)
@@ -215,10 +250,19 @@ class ToolController {
             }
         }
 
+        return featureInstances;
+    }
 
+    def getExtraFeatures(parameters){
+        def extraFeatures = [:]
         def attr
+
+        dsl.featureMap.each{ key, feature ->
+            extraFeatures[key] = [:]
+        }
+
         extraFeatures.each{ key, map ->
-            params.each{ pKey, value ->
+            parameters.each{ pKey, value ->
                 if(pKey.getClass() == String && pKey.startsWith(key) && value){
                     attr = pKey.tokenize('[]')
                     if(!map.hasProperty(attr[1]) && !map[attr[1]]){
@@ -228,41 +272,8 @@ class ToolController {
                 }
             }
         }
-        //println analysisId
-        //Uri.printTree(featureInstances)
 
-        //println extraFeatures
-
-        node.insertAnalysis(analysisId, properties)
-
-        node.insertFeatures(analysisId, featureInstances)
-
-        node.insertExtraFeatures(analysisId, extraFeatures)
-
-        redirect(action: 'analysis', id: analysisId)
-    }
-
-    def updateScenario(){
-        def now = new Date()
-        def analysisId = params.analysisId
-        def analysisURI = k.toURI('inds:'+analysisId)
-        def evalObjURI = k[analysisURI].getAttr('appliedTo')
-        def evalObjName = evalObjURI.substring(evalObjURI.lastIndexOf('#')+1)
-        def name = k[analysisURI].getAttr('label')
-        def node = new Node(k)
-        def properties = [:]
-
-        println evalObjURI
-        println evalObjName
-        println name
-
-        properties[k.toURI('rdfs:label')] = [value: name, dataType: k.toURI('rdfs:Literal')]     //new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now)
-        properties[k.toURI(':appliedTo')] = [value: evalObjURI, dataType: k[':appliedTo'].range]
-        properties[k.toURI('ui:createAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now), dataType: k.toURI('xsd:dateTime')]
-
-        node.deleteAnalysis(analysisId)
-
-        redirect(action: 'analysis', id: analysisId)
+        return extraFeatures;
     }
 
     def analysis(){
@@ -407,7 +418,9 @@ class ToolController {
     }
 
     def evaluationObjectNameAvailability(){
-        def name = slugify.slugify(params['http://purl.org/biodiv/semanticUI#hasName'])
+        def username = springSecurityService.getPrincipal().username
+        def name = slugify.slugify(username+'-'+params[k.toURI('ui:hasName')])
+        println name
         render !k['inds:'+name].exist()
     }
 

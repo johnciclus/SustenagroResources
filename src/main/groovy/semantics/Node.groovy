@@ -23,6 +23,8 @@ class Node {
         //owl:DatatypeProperty
         this.patterns['mapa']       = "<$URI> <http://dbpedia.org/property/pt/mapa> ?mapa. "
         this.patterns['harvestYear']= "<$URI> :harvestYear ?harvestYear. "
+        this.patterns['createAt']   = "<$URI> ui:createAt ?createAt. "
+        this.patterns['updateAt']   = "<$URI> ui:updateAt ?updateAt. "
         //owl:TransitiveProperty
 
         // owl:AnnotationProperty
@@ -725,6 +727,10 @@ class Node {
         k.query("?subject <$URI> '$args'")
     }
 
+    def findSubjectByEmail(String args){
+        k.query("?id a <$URI>. ?id ui:hasEmail '$args'")
+    }
+
     def isFunctional(){
         def query = "<$URI> a owl:FunctionalProperty"
         return (k.query(query).size() > 0)
@@ -985,7 +991,8 @@ class Node {
     }
 
     def deleteAnalysis(String id){
-        println k.toURI('inds:'+id)
+        def uri = k.toURI('inds:'+id)
+        k.delete("?s ?p1 <$uri>. <$uri> ?p2 ?o.")
     }
 
     def propertyToList = {ArrayList source, String property ->

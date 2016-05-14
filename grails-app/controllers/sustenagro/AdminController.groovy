@@ -52,7 +52,7 @@ class AdminController {
         def response = dsl.reload(params['code'])
 
         if(response.status == 'ok')
-            new File(path+'dsl/dsl.groovy').write(params['code'])
+            new File(path+'dsl/dsl.groovy').write(params['code'],'utf-8')
 
         //println response
 
@@ -61,7 +61,7 @@ class AdminController {
 
     def dslReset(){
         def file = new File(path+'dsl/dsl.groovy')
-        file.write(new File(path+'dsl/dsl-backup.groovy').text)
+        file.write(new File(path+'dsl/dsl-backup.groovy').text,'utf-8')
 
         def response = dsl.reload(file.text)
 
@@ -72,14 +72,14 @@ class AdminController {
         def response  = gui.reload(params['code'])
 
         if(response.status == 'ok')
-            new File(path+'dsl/gui.groovy').write(params['code'])
+            new File(path+'dsl/gui.groovy').write(params['code'],'utf-8')
 
         render response as XML
     }
 
     def guiReset(){
         def file = new File(path+'dsl/gui.groovy')
-        file.write(new File(path+'dsl/gui-backup.groovy'))
+        file.write(new File(path+'dsl/gui-backup.groovy'),'utf-8')
 
         def response = gui.reload(file.text)
 
@@ -90,7 +90,7 @@ class AdminController {
         def response = [:]
         if(params['views']) {
             def file = new File(path+'dsl/views/analysis.groovy')
-            file.write(params['views'])
+            file.write(params['views'],'utf-8')
 
             response.status = 'ok'
         }
@@ -101,7 +101,7 @@ class AdminController {
     def viewsReset(){
         def file = new File(path+'dsl/views/analysis.groovy')
 
-        file.write(new File(path+'dsl/views/analysis.groovy').text)
+        file.write(new File(path+'dsl/views/analysis.groovy').text,'utf-8')
 
         //def response = gui.reload(file.text)
 
@@ -177,6 +177,8 @@ class AdminController {
     def ontology(){
         def response = [:]
 
+        println params['ontology']
+
         // Just reads YAML
         Map yaml = (Map) new Yaml().load((String) params['ontology'])
 
@@ -185,7 +187,7 @@ class AdminController {
 
         // Save yaml file
         File yamlFile = new File(path + 'ontology/sustenagro.yaml')
-        yamlFile.write(params['ontology'])
+        yamlFile.write(params['ontology'],'utf-8')
 
         //println yaml.ontology
         // Creating Yaml2Owl
@@ -212,11 +214,6 @@ class AdminController {
 
         def rest = new RESTClient(endPoint)
         rest.delete([:])
-
-        /*rest.post(
-                body: new File(path + 'ontology/SemanticUI.rdf').text,
-                requestContentType: 'application/xml'
-        )*/
 
         rest.post(
                 body: new File(path + 'ontology/SustenAgro.rdf').text,
@@ -248,6 +245,7 @@ class AdminController {
         //manager.addIRIMapper(new AutoIRIMapper(localFolder, true))
         //OWLOntology o = manager.createOntology(example_save_iri);
         //println 'Ontology loaded'
+
         render response as XML
     }
 

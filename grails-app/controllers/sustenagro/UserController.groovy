@@ -35,14 +35,15 @@ class UserController {
                 else if(it.key.startsWith(base) && it.key != passwordConfirmURI && it.key != termsofuseURI)
                     properties[it.key] = [value: it.value, dataType: k[it.key].range]
             }
-            properties[k.toURI('ui:hasRole')] = [value: k.toURI(':userRole'), dataType: k.toURI('ui:Role')]
+            properties[k.toURI('ui:hasRole')] = [value: k.toURI('ui:UserRole'), dataType: k.toURI('ui:Role')]
 
-            def uri = k.toURI(':'+properties[usernameURI].value)
+            def username = properties[usernameURI].value
+            def uri = k.toURI('inds:'+username)
 
             if(!k[uri].exist()){
-                node.insertUser(uri, properties)
+                node.insertUser(username, properties)
 
-                user = new User(properties[usernameURI].value, properties[passwordURI].value, true).save()
+                user = new User(username, properties[passwordURI].value, true).save()
                 UserRole.create user, userRole
             }
 
@@ -52,12 +53,13 @@ class UserController {
     }
 
     def usernameAvailability(){
-        def username = params['http://purl.org/biodiv/semanticUI#hasUsername']
+        def username = params[k.toURI('ui:hasUsername')]
         render !k['inds:'+username].exist()
     }
 
     def emailAvailability(){
-        def email = params['http://purl.org/biodiv/semanticUI#email']
-        render (!k['http://purl.org/biodiv/semanticUI#email'].findSubject(email).size() > 0)
+        def hasEmail = k.toURI('ui:hasEmail')
+        def email = params[hasEmail]
+        render (k['ui:User'].findSubjectByEmail(email).size() == 0)
     }
 }
