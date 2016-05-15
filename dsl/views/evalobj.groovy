@@ -1,4 +1,4 @@
-navBarRoute 'evaluationObjects': evaluationObjects, 'evalObjId': evalObjId, 'analyses': analyses, 'analysisId': analysisId
+navBarRoute 'username': username, 'userId': userId, 'evalObjId': evalObjId, 'analysisId': analysisId
 
 title 'text': 'Etapas para preenchimento do Software:'
 

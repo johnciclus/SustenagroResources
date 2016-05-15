@@ -1,4 +1,4 @@
-navBarRoute 'evaluationObjects': evaluationObjects, 'evalObjId': evalObjId, 'analyses': analyses, 'analysisId': analysisId
+navBarRoute 'username': username, 'userId': userId, 'evalObjId': evalObjId, 'analysisId': analysisId
 
 tabs([id: 'main', activeTab: 'tab_1', pagination: false],
         [['widget': 'tab', attrs: [label: 'Avaliação'], widgets: [

@@ -381,12 +381,43 @@ class GUIDSL {
     }
 
     def navBarRoute(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
-        def defaultAttrs = _widgetAttrs['navBarRoute']
-        defaultAttrs.each{key, value->
-            if(!attrs.containsKey(key))
-                attrs[key] = value
+        def attributes = _widgetAttrs['navBarRoute'].clone()
+        def roles = _k['inds:'+attrs.username].getAttr('hasRole')
+        def users = [:]
+        def evaluationObjects = [:]
+        def analyses = [:]
+
+        attrs.each { key, value ->
+            if(!attributes.containsKey(key)){
+                attributes[key] = value
+            }
         }
-        view.push(['widget': 'navbarRoute', 'attrs': attrs])
+
+        if(roles.contains(_k.toURI('ui:AdminRole'))){
+            _k['ui:User'].getIndividuals('?hasUsername').each{
+                users[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.hasUsername]
+            }
+        }
+
+        if(attrs.userId){
+            _k['inds:'+attrs.userId].getEvaluationObjectsIdLabel().each{
+                evaluationObjects[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
+            }
+        }
+
+        if(attrs.evalObjId){
+            _k['inds:'+attrs.evalObjId].getAnalysesIdLabel().each{
+                analyses[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
+            }
+        }
+
+        attributes['users'] = users
+
+        attributes['evaluationObjects'] = evaluationObjects
+
+        attributes['analyses'] = analyses
+
+        view.push(['widget': 'navbarRoute', 'attrs': attributes])
     }
 
     def methodMissing(String key, attrs){

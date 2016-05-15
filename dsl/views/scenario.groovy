@@ -1,4 +1,4 @@
-navBarRoute 'evaluationObjects': evaluationObjects, 'evalObjId': evalObjId, 'analyses': analyses, 'analysisId': analysisId
+navBarRoute 'username': username, 'userId': userId, 'evalObjId': evalObjId, 'analysisId': analysisId
 
 form([action: '/tool/createScenario', formClass: ''], [
     ['widget': 'hiddenInput', attrs: [id: 'evalObjInstance', value: uri]],

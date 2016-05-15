@@ -16,40 +16,36 @@ class ToolController {
     def springSecurityService
 
     def evalobj() {
-        def id = params.id
-        def evalObjId = (id)? id : null
-        def evaluationObject = dsl.evaluationObject
-        def evaluationObjects = [:]
-        def analyses = [:]
-        def activeTab = 'tab_0'
         def username = springSecurityService.getPrincipal().username
+        def evalObjId = (params.id)? params.id : null
+        def evaluationObject = dsl.evaluationObject
+        def activeTab = 'tab_0'
+        def roles = k['inds:'+username].getAttr('hasRole')
+        def userId = username
 
-        k['inds:'+username].getEvaluationObjectsIdLabel().each{
-            evaluationObjects[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
+        if(roles.contains(k.toURI('ui:AdminRole'))){
+            if(evalObjId){
+                userId = k['inds:'+evalObjId].getAttr('hasOwner')
+                userId = userId.substring(userId.lastIndexOf('#')+1)
+            }
+            if(params.user)
+                userId = params.user
         }
 
-        if(id){
-            k['inds:'+id].getAnalysesIdLabel().each{
-                analyses[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
-            }
-
-            evalObjId = evalObjId.substring(evalObjId.lastIndexOf('#')+1)
+        if(evalObjId){
             activeTab = 'tab_1'
         }
 
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
 
-        //Uri.printTree(evaluationObject.widgets)
-
-        gui.setData('evaluationObjects', evaluationObjects)
+        gui.setData('username', username)
+        gui.setData('userId', userId)
         gui.setData('evalObjId', evalObjId)
-        gui.setData('analyses', analyses)
         gui.setData('analysisId', null)
         gui.setData('activeTab', activeTab)
         gui.setData('evaluationObject', evaluationObject)
-        gui.setData('username', username)
-        gui.setData('id', id)
+
         gui.renderView(actionName)
 
         render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
@@ -98,19 +94,21 @@ class ToolController {
     }
 
     def scenario(){
+        def username = springSecurityService.getPrincipal().username
         def uri = k.toURI('inds:'+params.id)
-        def evaluationObjects = [:]
-        def analyses = [:]
         def sustainabilityTabs = []
         def efficiencyTabs = []
-        def username = springSecurityService.getPrincipal().username
+        def roles = k['inds:'+username].getAttr('hasRole')
+        def userId = username
+        def evalObjId = uri.substring(uri.lastIndexOf('#')+1)
 
-        k['inds:'+username].getEvaluationObjectsIdLabel().each{
-            evaluationObjects[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
-        }
-
-        k[uri].getAnalysesIdLabel().each {
-            analyses[it.id.substring(it.id.lastIndexOf('#') + 1)] = [label: it.label]
+        if(roles.contains(k.toURI('ui:AdminRole'))){
+            if(evalObjId){
+                userId = k['inds:'+evalObjId].getAttr('hasOwner')
+                userId = userId.substring(userId.lastIndexOf('#')+1)
+            }
+            if(params.user)
+                userId = params.user
         }
 
         def options = k[':SustainabilityCategory'].getIndividualsIdValueLabel()
@@ -145,9 +143,9 @@ class ToolController {
 
         dsl.clean(controllerName, actionName)
         gui.setView(controllerName, actionName)
-        gui.setData('evaluationObjects', evaluationObjects)
-        gui.setData('evalObjId', params.id)
-        gui.setData('analyses', analyses)
+        gui.setData('username', username)
+        gui.setData('userId', userId)
+        gui.setData('evalObjId', evalObjId)
         gui.setData('analysisId', null)
         gui.setData('uri', uri)
         gui.setData('efficiencyTabs', efficiencyTabs)
@@ -277,26 +275,30 @@ class ToolController {
     }
 
     def analysis(){
-        def uri = params.id ? k.toURI("inds:"+params.id) : null
-        def evalObjId = k[uri].getAttr('appliedTo')
-        def evaluationObjects = [:]
+        def username = springSecurityService.getPrincipal().username
+        def userId = username
         def analysisId = params.id
-        def analyses = [:]
+        def uri = analysisId ? k.toURI("inds:"+analysisId) : null
+        def evalObjId = k[uri].getAttr('appliedTo')
         def sustainabilityTabs = []
         def efficiencyTabs = []
-        def username = springSecurityService.getPrincipal().username
         def res
         def values = [:]
-
-        k['inds:'+username].getEvaluationObjectsIdLabel().each{
-            evaluationObjects[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
-        }
-
-        k[evalObjId].getAnalysesIdLabel().each {
-            analyses[it.id.substring(it.id.lastIndexOf('#') + 1)] = [label: it.label]
-        }
-
+        def roles = k['inds:'+username].getAttr('hasRole')
         evalObjId = evalObjId.substring(evalObjId.lastIndexOf('#')+1)
+
+        if(roles.contains(k.toURI('ui:AdminRole'))){
+            if(evalObjId){
+                userId = k['inds:'+evalObjId].getAttr('hasOwner')
+                println evalObjId
+                println userId
+                userId = userId.substring(userId.lastIndexOf('#')+1)
+            }
+            if(params.user)
+                userId = params.user
+        }
+
+
         def options = k[':SustainabilityCategory'].getIndividualsIdValueLabel()
         def widgets
 
@@ -379,9 +381,10 @@ class ToolController {
             dsl.runReport()
         }
 
-        gui.setData('evaluationObjects', evaluationObjects)
+        //gui.setData('evaluationObjects', evaluationObjects)
+        gui.setData('username', username)
+        gui.setData('userId', userId)
         gui.setData('evalObjId', evalObjId)
-        gui.setData('analyses', analyses)
         gui.setData('analysisId', analysisId)
         gui.setData('vars', dsl.getVariables())
         gui.setData('dataReader', dsl.getData('data'))

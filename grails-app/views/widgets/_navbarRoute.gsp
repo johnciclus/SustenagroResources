@@ -1,4 +1,24 @@
 <div class="btn-group" role="group" aria-label="route">
+    <g:if test="${userId && users}">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-default dropdown-toggle <g:if test='${userId}'> active </g:if>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <g:if test="${userId && users && users[userId]}">
+                    ${users[userId].label}
+                </g:if>
+                <g:else>
+                    <%= users %>
+                </g:else>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <g:if test="${users}">
+                    <g:each in="${users}">
+                        <li <g:if test="${it.key == userId}"> class="active" </g:if>><a href="/tool/evalobj?user=${it.key}">${it.value.label}</a></li>
+                    </g:each>
+                </g:if>
+            </ul>
+        </div>
+    </g:if>
     <div class="btn-group" role="group">
         <button type="button" class="btn btn-default dropdown-toggle <g:if test='${evalObjId}'> active </g:if>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <g:if test="${evalObjId && evaluationObjects && evaluationObjects[evalObjId]}">

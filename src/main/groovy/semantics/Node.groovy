@@ -13,27 +13,32 @@ class Node {
         this.URI = uri
 
         //rdf:Property
-        this.patterns['type']       = "<$URI> rdf:type ?type. "
-        this.patterns['superClass'] = "<$URI> rdfs:subClassOf ?superClass. "
+        this.patterns['type']       = " rdf:type ?type. "
+        this.patterns['superClass'] = " rdfs:subClassOf ?superClass. "
 
         //owl:ObjectProperty
-        this.patterns['appliedTo']  = "<$URI> :appliedTo ?appliedTo. "
-        this.patterns['range']      = "<$URI> rdfs:range ?range. "
+        this.patterns['range']      = " rdfs:range ?range. "
+        this.patterns['hasRole']    = " ui:hasRole ?hasRole. "
+        this.patterns['appliedTo']  = " :appliedTo ?appliedTo. "
+        this.patterns['hasOwner']   = " :hasOwner ?hasOwner. "
 
         //owl:DatatypeProperty
-        this.patterns['mapa']       = "<$URI> <http://dbpedia.org/property/pt/mapa> ?mapa. "
-        this.patterns['harvestYear']= "<$URI> :harvestYear ?harvestYear. "
-        this.patterns['createAt']   = "<$URI> ui:createAt ?createAt. "
-        this.patterns['updateAt']   = "<$URI> ui:updateAt ?updateAt. "
+        this.patterns['mapa']       = " <http://dbpedia.org/property/pt/mapa> ?mapa. "
+        this.patterns['createAt']   = " ui:createAt ?createAt. "
+        this.patterns['updateAt']   = " ui:updateAt ?updateAt. "
+        this.patterns['hasUsername']= " ui:hasUsername ?hasUsername. "
+        this.patterns['hasPassword']= " ui:hasPassword ?hasPassword. "
+        this.patterns['harvestYear']= " :harvestYear ?harvestYear. "
+
         //owl:TransitiveProperty
 
         // owl:AnnotationProperty
-        this.patterns['label']      = "<$URI> rdfs:label ?label. "
-        this.patterns['comment']    = "<$URI> rdfs:comment ?comment. "
-        this.patterns['weight']     = "<$URI> :weight ?weight. "
-        this.patterns['description']= "<$URI> dcterm:description ?description. "
-        this.patterns['title']      = "<$URI> dcterm:title ?title. "
-        this.patterns['creator']    = "<$URI> dc:creator ?creator. "
+        this.patterns['label']      = " rdfs:label ?label. "
+        this.patterns['comment']    = " rdfs:comment ?comment. "
+        this.patterns['weight']     = " :weight ?weight. "
+        this.patterns['description']= " dcterm:description ?description. "
+        this.patterns['title']      = " dcterm:title ?title. "
+        this.patterns['creator']    = " dc:creator ?creator. "
 
     }
 
@@ -47,7 +52,7 @@ class Node {
         //println argsList
         argsList.each{
             if(argsList.contains(it))
-                query += patterns[it]
+                query += "<$URI>"+patterns[it]
         }
         /*
         if(argsList.contains('label'))
@@ -151,7 +156,41 @@ class Node {
         k.query("?id a ui:Analysis. ?id :appliedTo <$URI>")
     }
 
-    def getIndividuals(){
+    def getIndividuals(String args){
+        def argsList = (args).tokenize(' ?')
+        def select = ''
+        def query = "?id a <$URI>. "
+        def order = ''
+        def result
+
+        //println argsList
+        argsList.each{
+            if(argsList.contains(it))
+                query +=  "?id"+patterns[it]
+        }
+
+        if(argsList.contains('label')){
+            order = 'order by ?label'
+        }
+        else if(argsList.size()==1){
+            order = 'order by ?'+argsList[0]
+        }
+
+        select = 'distinct '
+        argsList.add('id')
+        argsList.each{
+            select += '?'+it
+        }
+
+        println query
+
+        result = k.select(select).query(query, order)
+
+        if(argsList.size()==1){
+            result = result.collect{ it[argsList[0]]}
+        }
+
+        (result.size()==1)? result[0] : result
         /*
         select * where {
             ?individual rdf:type owl:NamedIndividual.
