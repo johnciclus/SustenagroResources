@@ -1,6 +1,5 @@
 package dsl
 
-
 import groovy.io.FileType
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
@@ -268,7 +267,7 @@ class GUIDSL {
 
     def map(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         //report << ['map', url]
-        view.push(['widget': 'map', 'attrs': [url: attrs.url]])
+        view.push(['widget': 'map', 'attrs': attrs])
     }
 
     def matrix(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
@@ -418,6 +417,11 @@ class GUIDSL {
         attributes['analyses'] = analyses
 
         view.push(['widget': 'navbarRoute', 'attrs': attributes])
+    }
+
+    def methodMissing(String key) {
+        println "methodMissing: key "+key
+        //new Node(_k, _k.toURI(props[key]))
     }
 
     def methodMissing(String key, attrs){

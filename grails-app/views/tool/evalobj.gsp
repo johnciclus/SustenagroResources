@@ -31,7 +31,7 @@
             $(document).ready(function() {
                 function loadAnalyses() {
                     $.post('/tool/analyses',
-                        {'evaluation_object_id': $('#evaluation_object_id').val()},
+                        {'id': $('#evaluation_object_id').val()},
                         function (data) {
                             $('#analyses_form_container').html(data);
                             $('#analyses_form_container table').bootstrapTable();
@@ -40,10 +40,23 @@
                     );
                 }
 
+                function loadEvaluationObject() {
+                    $.post('/tool/evaluationObject',
+                            {'id': $('#evaluation_object_id').val()},
+                            function (data) {
+                                $('#evaluation_object_container').html(data);
+                                $('#evaluation_object_container table').bootstrapTable();
+                            }
+                    );
+                }
+
                 if ($('#evaluation_object_id').val() != null) {
+                    loadEvaluationObject();
                     loadAnalyses();
                 }
+
                 $('#evaluation_object_id').change(function () {
+                    loadEvaluationObject();
                     loadAnalyses(); // render objeval evaluation_object_id
                 });
 

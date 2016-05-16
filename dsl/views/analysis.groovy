@@ -13,7 +13,7 @@ tabs([id: 'main', activeTab: 'tab_1', pagination: false],
                                 ]]
                         ]]
                 ]]
-         ]],
+        ]],
          ['widget': 'tab', attrs: [label: 'Resultados'], widgets: [
                  ['widget': 'tabs', attrs: [id : 'results'], widgets: [
                          ['widget': 'tab', attrs: [label: 'Planilhas da eficiência e custo'], widgets: [

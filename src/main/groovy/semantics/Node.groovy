@@ -133,11 +133,11 @@ class Node {
     def getMap(String args){
         def sparql = "<$URI> :appliedTo ?evalobj. " +
                      "?evalobj ui:hasMicroregion ?microregion. " +
+                     "?microregion rdfs:label ?label. "+
                      "?microregion <http://dbpedia.org/property/pt/mapa> ?map."
         def result = k.select('distinct '+args).query(sparql)
 
-        result.metaClass.map = { (delegate.size()==1)? delegate[0]['map'] :delegate.collect { it['map'] } }
-        return result
+        return (result.size()==1)? result[0] : result
     }
 
     def getLabelDescription(String property) {
@@ -182,7 +182,7 @@ class Node {
             select += '?'+it
         }
 
-        println query
+        //println query
 
         result = k.select(select).query(query, order)
 

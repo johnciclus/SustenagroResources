@@ -112,6 +112,12 @@ class DSL {
         _evaluationObjectInstance = object
     }
 
+    def evaluationObjectInfo(){
+        _reportView.push(['widget': 'evaluationObjectInfo', 'attrs': [:]])
+        def analyseURI = _props[_data].id
+
+    }
+
     def getEvaluationObject(){
         _evaluationObjectInstance
     }
@@ -250,9 +256,12 @@ class DSL {
         //println "propertyMissing: key, arg "+key+"->"+arg
         _props[key] = arg
     }
+    def methodMissing(){
+        println "methodMissing: key "
+    }
 
     def methodMissing(String key) {
-        //println "methodMissing: key "+key
+        println "methodMissing: key "+key
         //new Node(_k, _k.toURI(props[key]))
     }
 

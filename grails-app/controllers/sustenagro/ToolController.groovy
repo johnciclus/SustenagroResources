@@ -177,7 +177,7 @@ class ToolController {
 
         node.insertAnalysis(analysisId, properties)
 
-        node.insertFeatures(analysisId, getFeatures(params))
+        node.insertFeatures(analysisId, features(params))
 
         node.insertExtraFeatures(analysisId, getExtraFeatures(params))
 
@@ -197,8 +197,8 @@ class ToolController {
 
         if(!createAt)
             createAt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now)
-        println analysisURI
-        println createAt
+        //println analysisURI
+        //println createAt
 
         properties[k.toURI('rdfs:label')] = [value: name, dataType: k.toURI('rdfs:Literal')]     //new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now)
         properties[k.toURI(':appliedTo')] = [value: evalObjURI, dataType: k[':appliedTo'].range]
@@ -209,14 +209,14 @@ class ToolController {
 
         node.insertAnalysis(analysisId, properties)
 
-        node.insertFeatures(analysisId, getFeatures(params))
+        node.insertFeatures(analysisId, features(params))
 
         node.insertExtraFeatures(analysisId, getExtraFeatures(params))
 
         redirect(action: 'analysis', id: analysisId)
     }
 
-    def getFeatures(parameters){
+    def features(parameters){
         def featureInstances = [:]
         def valueIndividuals = [:]
         def weightIndividuals = [:]
@@ -274,6 +274,21 @@ class ToolController {
         return extraFeatures;
     }
 
+    def evaluationObject(){
+        def uri = k.toURI(params.id)
+        def data = []
+
+        k[uri].getDataProperties().each{
+            data.push([label: it.dataPropertyLabel, value: it.value])
+        }
+
+        k[uri].getObjectProperties().each{
+            data.push([label: it.objectPropertyLabel, value: it.valueLabel])
+        }
+
+        render( template: '/widgets/tableReport', model: [header: [label: 'Propiedade', value: 'Valor'], data: data]);
+    }
+
     def analysis(){
         def username = springSecurityService.getPrincipal().username
         def userId = username
@@ -290,8 +305,8 @@ class ToolController {
         if(roles.contains(k.toURI('ui:AdminRole'))){
             if(evalObjId){
                 userId = k['inds:'+evalObjId].getAttr('hasOwner')
-                println evalObjId
-                println userId
+                //println evalObjId
+                //println userId
                 userId = userId.substring(userId.lastIndexOf('#')+1)
             }
             if(params.user)
@@ -381,6 +396,10 @@ class ToolController {
             dsl.runReport()
         }
 
+        dsl.getReportView().each{
+            println it
+        }
+
         //gui.setData('evaluationObjects', evaluationObjects)
         gui.setData('username', username)
         gui.setData('userId', userId)
@@ -398,7 +417,7 @@ class ToolController {
     }
 
     def analyses(){
-        def uri = k.toURI(params.evaluation_object_id)
+        def uri = k.toURI(params.id)
         def analyses = k[uri].labelAppliedTo
         def model = gui.widgetAttrs['analyses']
         model.analyses = analyses
@@ -423,7 +442,7 @@ class ToolController {
     def evaluationObjectNameAvailability(){
         def username = springSecurityService.getPrincipal().username
         def name = slugify.slugify(username+'-'+params[k.toURI('ui:hasName')])
-        println name
+        //println name
         render !k['inds:'+name].exist()
     }
 
