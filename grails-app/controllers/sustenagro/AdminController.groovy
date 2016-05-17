@@ -177,8 +177,6 @@ class AdminController {
     def ontology(){
         def response = [:]
 
-        println params['ontology']
-
         // Just reads YAML
         Map yaml = (Map) new Yaml().load((String) params['ontology'])
 

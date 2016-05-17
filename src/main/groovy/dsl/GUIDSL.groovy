@@ -171,7 +171,7 @@ class GUIDSL {
 
     def listEvaluationObjects(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         def defaultAttrs =  _widgetAttrs['listEvaluationObjects']
-        def evaluationObjects = _k['inds:'+attrs.username].getEvaluationObjectsIdLabel() //_k['ui:EvaluationObject'].getIndividualsIdLabel()
+        def evaluationObjects = _k['inds:'+attrs.userId].getEvaluationObjectsIdLabel() //_k['ui:EvaluationObject'].getIndividualsIdLabel()
 
         defaultAttrs.each{key, value->
             if(!attrs.containsKey(key))

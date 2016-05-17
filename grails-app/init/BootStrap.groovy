@@ -30,14 +30,14 @@ class BootStrap {
             it.flush()
             it.clear()
         }
-        /*
+
         println "User.count"
         println User.count()
         println "Role.count"
         println Role.count()
         println "UserRole.count"
         println UserRole.count()
-        */
+
     }
     def destroy = {
 

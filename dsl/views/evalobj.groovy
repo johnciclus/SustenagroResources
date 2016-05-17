@@ -18,6 +18,6 @@ tabs([activeTab: activeTab, pagination: false], [
         ['widget': 'createEvaluationObject', attrs : [id: evaluationObject.getURI()], widgets: evaluationObject.widgets]
     ]],
     ['widget': 'tab', attrs: [label: 'Selecionar unidade produtiva / fazenda'], widgets:[
-        ['widget': 'listEvaluationObjects', attrs : [id: evalObjId, username: username]]
+        ['widget': 'listEvaluationObjects', attrs : [id: evalObjId, userId: userId]]
     ]]
 ])

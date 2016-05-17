@@ -29,11 +29,11 @@
             rules: {
                 'http://purl.org/biodiv/semanticUI#hasEmail': {
                     email: true,
-                    remote: "emailAvailability"
+                    remote: "/user/emailAvailability"
                 },
                 'http://purl.org/biodiv/semanticUI#hasUsername': {
                     noSpace: true,
-                    remote: "usernameAvailability"
+                    remote: "/user/usernameAvailability"
                 },
                 'http://purl.org/biodiv/semanticUI#hasPassword': {
                     noSpace: true,

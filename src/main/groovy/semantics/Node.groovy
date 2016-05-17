@@ -486,7 +486,7 @@ class Node {
     def getGrandChildrenIndividuals(String analysis, String args){
         def argsList = args.split(' ')
         def result
-        def query = "<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+        def query = "<"+k.toURI(analysis)+"> dc:hasPart ?ind." +
                 "?subClass rdfs:subClassOf <$URI>."+
                 "?id rdfs:subClassOf ?subClass." +
                 "?id rdfs:label ?label." +
@@ -543,7 +543,7 @@ class Node {
     def getChildrenIndividuals(String analysis, String args) {
         def argsList = args.split(' ')
         def result
-        def query = "<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+        def query = "<"+k.toURI(analysis)+"> dc:hasPart ?ind." +
                     "?id rdfs:subClassOf <$URI>." +
                     "?id rdfs:label ?label." +
                     "optional {?id :relevance ?relevance.}" +
@@ -599,7 +599,7 @@ class Node {
     def getChildrenExtraIndividuals(String analysis, String args) {
         def argsList = args.split(' ')
         def result
-        def query = "<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+        def query = "<"+k.toURI(analysis)+"> dc:hasPart ?ind." +
                 "?ind ui:hasName ?name."+
                 "?ind :hasJustification ?justification."+
                 "?ind ui:value ?valueType." +
@@ -1027,6 +1027,11 @@ class Node {
             sparql = sparql[0..-3]+"."
 
         return sparql
+    }
+
+    def deleteFeatures(String id){
+        def uri = k.toURI('inds:'+id)
+        k.delete("<$uri> dc:hasPart ?id. ?id ?p1 ?o. ?s ?p2 ?id")
     }
 
     def deleteAnalysis(String id){

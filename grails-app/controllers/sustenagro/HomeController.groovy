@@ -1,6 +1,9 @@
 package sustenagro
 
 class HomeController {
+    static allowedMethods = [index: "GET",
+                             contact: "GET"]
+
     def dsl
     def gui
 

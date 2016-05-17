@@ -4,6 +4,10 @@ import grails.converters.JSON
 import semantics.Node
 
 class UserController {
+    static allowedMethods = [signup: "GET",
+                             usernameAvailability: "GET",
+                             emailAvailability: "GET",
+                             createUser: "POST"]
     def k
     def dsl
     def gui

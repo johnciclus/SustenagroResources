@@ -54,19 +54,19 @@ relevance:
 
 hasSugarcaneSource:
   subPropertyOf: ObjectProperty
-  label: [has sugarcane source @en, tem origem da cana @pt]
+  label: [sugarcane source @en, origem da cana @pt]
   functional: true
   range: SugarcaneSourceCategory
 
 hasAvailabilityOfEvaluationResults:
   subPropertyOf: ObjectProperty
-  label: [has availability of evaluations results @en, tem disponibilização dos resultados da avaliação @pt]
+  label: [availability of evaluations results @en, disponibilização dos resultados da avaliação @pt]
   functional: true
   range: AvailabilityOfEvaluationResultsCategory
 
 hasAgriculturalProductionSystem:
   subPropertyOf: ObjectProperty
-  label: [has agricultural production system @en, tem sistema de produção agrícola @pt]
+  label: [agricultural production system @en, sistema de produção agrícola @pt]
   functional: true
   range: AgriculturalProductionSystemCategory
 

@@ -76,7 +76,7 @@
                         errorClass: "has-error",
                         rules: {
                             'http://purl.org/biodiv/semanticUI#hasName': {
-                                remote: "evaluationObjectNameAvailability"
+                                remote: "/tool/evaluationObjectNameAvailability"
                             }
                         },
                         messages: {

@@ -113,9 +113,16 @@ class DSL {
     }
 
     def evaluationObjectInfo(){
-        _reportView.push(['widget': 'evaluationObjectInfo', 'attrs': [:]])
         def analyseURI = _props[_data].id
-
+        def evalObjURI = _k[analyseURI].getAttr('appliedTo')
+        def data = []
+        _k[evalObjURI].getDataProperties().each{
+            data.push([label: it.dataPropertyLabel.capitalize(), value: it.value])
+        }
+        _k[evalObjURI].getObjectProperties().each{
+            data.push([label: it.objectPropertyLabel.capitalize(), value: it.valueLabel])
+        }
+        _reportView.push(['widget': 'evaluationObjectInfo', 'attrs': [data: data]])
     }
 
     def getEvaluationObject(){

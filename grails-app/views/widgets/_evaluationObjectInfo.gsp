@@ -1,4 +1,4 @@
 <div class="section">
-    <p><strong>Informação do objeto de avaliação</strong></p>
-
+    <p><strong>Informação geral</strong></p>
+    <g:render template="/widgets/tableReport" model="[header: [label: 'Propiedade', value: 'Valor'], data: data]"/>
 </div>
