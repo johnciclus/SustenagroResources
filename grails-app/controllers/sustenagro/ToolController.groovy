@@ -66,7 +66,6 @@ class ToolController {
         }else{
             response.sendError(404)
         }
-
     }
 
     def createEvaluationObject() {
@@ -134,9 +133,9 @@ class ToolController {
             def widgets
 
             dsl.featureMap.eachWithIndex { key, feature, int i ->
-                //println key
+                println key
                 //println feature
-                //println feature.model
+                Uri.printTree(feature.model)
                 widgets = []
                 widgets.push(['widget': 'individualsPanel', attrs: [data: feature.model.subClass, values: [:]]])
                 if (feature.attrs.extraFeatures) {

@@ -195,6 +195,18 @@ SustainabilityCategory:
     - Sustainability category @en
     - Categoría de sustentabilidade @pt
 
+ProductionEnvironmentAlignmentCategory:
+  is_a: Categorical
+  label:
+    - Production environment alignment @en
+    - Alinhamento ao ambiente de produção/produtor @pt
+    
+SugarcaneProcessingOptimizationCategory:
+  is_a: Categorical
+  label:
+    - Sugarcane processing optimization @en
+    - Otimização do processamento da cana-de-açucar @pt  
+
 # Constantes
 
 ExistNo:
@@ -259,6 +271,35 @@ Public:
   type: AvailabilityOfEvaluationResultsCategory
   label: [Public @en, Público @pt]
 
+IndirectOptimization:
+  type:  SugarcaneProcessingOptimizationCategory
+  label: [Indireta @pt, Indirect @en]
+  asNumber: 1.0
+
+NullOptimization:
+  type:  SugarcaneProcessingOptimizationCategory
+  label: [Nula @pt, Null @en]
+  asNumber: 0.0
+      
+DirectOptimization:
+  type:  SugarcaneProcessingOptimizationCategory
+  label: [Direct @en, Direta @pt]
+  asNumber: 2.0
+
+IndirectAlignment:
+  type:  ProductionEnvironmentAlignmentCategory
+  label: [Indireta @pt, Indirect @en]
+  asNumber: 1.0
+
+NullAlignment:
+  type:  ProductionEnvironmentAlignmentCategory
+  label: [Nula @pt, Null @en]
+  asNumber: 0.0
+
+DirectAlignment:
+  type:  ProductionEnvironmentAlignmentCategory
+  label: [Direct @en, Direta @pt]
+  asNumber: 2.0
 
 ProductionUnit:
   is_a: EvaluationObject
@@ -292,6 +333,11 @@ Indicator:
 Variable:
   is_a: Feature
   label: [Variável @pt, Variable @en]
+
+
+
+
+
 
 # Descendentes de Indicator
 

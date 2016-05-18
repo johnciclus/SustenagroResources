@@ -59,7 +59,7 @@ tabs([id: 'main', activeTab: 'tab_1', pagination: false],
                                                                                                                                    [label: 'Índice econômico', totalValue: vars['economic']],
                                                                                                                                    [label: 'Índice social', totalValue: vars['social']],
                                                                                                                                    [label: 'Índice da sustentabilidade', totalValue: vars['sustainability']]]]],
-                                 ['widget': 'text',       attrs: [text: '**Formula**']],
+                                 ['widget': 'text',       attrs: [text: '**Formulas**']],
                                  ['widget': 'sustainabilityEquation',       attrs: [:]],
                          ]],
                          ['widget': 'tab', attrs: [label: 'Relatório da Avaliação'], widgets: reportView]

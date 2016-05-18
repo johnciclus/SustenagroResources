@@ -87,6 +87,19 @@
                 rules: rules,
                 ignore: '',
                 errorClass: "has-error",
+                invalidHandler: function(event, validator) {
+                    var invalids = Object.keys(validator.invalid);
+                    var containers;
+                    var id;
+
+                    if(invalids[0]){
+                        containers = $("[name='"+invalids[0]+"']").parents("div[role='tabpanel']");
+                        for(var i = containers.length; i>0; i--){
+                            id = $(containers[i-1]).attr('id');
+                            $(".nav-tabs a[href='#"+id+"']").tab('show');
+                        }
+                    }
+                },
                 errorPlacement: function (error, element) {
                     var form_group = $(element).parents('.form-group');
                     form_group.append(error);

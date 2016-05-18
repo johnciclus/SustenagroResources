@@ -48,132 +48,6 @@ class AdminController {
                                          dimensions: dimensions])
     }
 
-    def dsl(){
-        def response = dsl.reload(params['code'])
-
-        if(response.status == 'ok')
-            new File(path+'dsl/dsl.groovy').write(params['code'],'utf-8')
-
-        //println response
-
-        render response as XML
-    }
-
-    def dslReset(){
-        def file = new File(path+'dsl/dsl.groovy')
-        file.write(new File(path+'dsl/dsl-backup.groovy').text,'utf-8')
-
-        def response = dsl.reload(file.text)
-
-        redirect(action: 'index')
-    }
-
-    def gui(){
-        def response  = gui.reload(params['code'])
-
-        if(response.status == 'ok')
-            new File(path+'dsl/gui.groovy').write(params['code'],'utf-8')
-
-        render response as XML
-    }
-
-    def guiReset(){
-        def file = new File(path+'dsl/gui.groovy')
-        file.write(new File(path+'dsl/gui-backup.groovy'),'utf-8')
-
-        def response = gui.reload(file.text)
-
-        redirect(action: 'index')
-    }
-
-    def views(){
-        def response = [:]
-        if(params['views']) {
-            def file = new File(path+'dsl/views/analysis.groovy')
-            file.write(params['views'],'utf-8')
-
-            response.status = 'ok'
-        }
-
-        render response as XML
-    }
-
-    def viewsReset(){
-        def file = new File(path+'dsl/views/analysis.groovy')
-
-        file.write(new File(path+'dsl/views/analysis.groovy').text,'utf-8')
-
-        //def response = gui.reload(file.text)
-
-        redirect(action: 'index')
-    }
-
-    def updateIndicator(){
-        def id = params.id_base
-
-        if(params.id_base != params.id){
-            def labels = [:]
-
-            params.each{ key, value ->
-                if(key.startsWith('label@')) {
-                    labels[key.substring(key.indexOf('@')+1)] = value
-                }
-            }
-
-            String sparql = "<"+ k.toURI(":" + params.id) +">"+
-                    " rdf:type <http://bio.icmc.usp.br/sustenagro#Indicator>; "+
-                    " rdfs:subClassOf <"+ k.toURI(":" + params.attribute) +">; "+
-                    " rdf:type owl:Class; "+
-                    " rdf:type owl:NamedIndividual; "+
-                    " <http://bio.icmc.usp.br/sustenagro#weight> \""+params.weight+"\"^^xsd:double; "
-
-            labels.each{ key, value ->
-                sparql += " rdfs:label \""+value+"\"@"+key+"; "
-            }
-
-            sparql += " rdfs:subClassOf _:b. "+
-                    " _:b owl:onClass <"+ k.toURI(":" + params.valuetype) +">"
-
-            //println sparql
-
-            k.insert(sparql)
-
-            //k.delete()
-        }
-        else{
-            def indicator = k[id].getIndicator()
-            Uri.simpleDomain(indicator, "http://bio.icmc.usp.br/sustenagro#", '')
-
-            def lang
-
-            indicator[0].each{ key, value ->
-                if(indicator[0][key] != params[key]){
-                    if(key.startsWith('label')){
-                        lang = key.getAt((key.indexOf('@')+1)..(key.size()-1))
-                        k.update("DELETE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label}\n" +
-                                "INSERT {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label \""+params[key]+"\"@$lang}\n" +
-                                "WHERE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label. \nFILTER (lang(?label) = '$lang')}")
-
-                    }
-                }
-            }
-        }
-        def respond = ['result': 'ok']
-
-        render respond as JSON
-    }
-
-    def indicatorsReset(){
-
-    }
-
-    def ontologyAsJSON(){
-        File yamlFile = new File(path + 'ontology/sustenagro.yaml');
-        Map yaml = (Map) new Yaml().load(yamlFile.text);
-        //println yaml
-        render yaml as JSON
-    }
-
     def ontology(){
         def response = [:]
 
@@ -250,6 +124,135 @@ class AdminController {
     def ontologyReset(){
 
     }
+
+    def ontologyAsJSON(){
+        File yamlFile = new File(path + 'ontology/sustenagro.yaml');
+        Map yaml = (Map) new Yaml().load(yamlFile.text);
+        //println yaml
+        render yaml as JSON
+    }
+
+    def dsl(){
+        def response = dsl.reload(params['code'])
+
+        if(response.status == 'ok')
+            new File(path+'dsl/dsl.groovy').write(params['code'],'utf-8')
+
+        //println response
+
+        render response as XML
+    }
+
+    def dslReset(){
+        def file = new File(path+'dsl/dsl.groovy')
+        file.write(new File(path+'dsl/dsl-backup.groovy').text,'utf-8')
+
+        def response = dsl.reload(file.text)
+
+        redirect(action: 'index')
+    }
+
+    def gui(){
+        def response  = gui.reload(params['code'])
+
+        if(response.status == 'ok')
+            new File(path+'dsl/gui.groovy').write(params['code'],'utf-8')
+
+        render response as XML
+    }
+
+    def guiReset(){
+        def file = new File(path+'dsl/gui.groovy')
+        file.write(new File(path+'dsl/gui-backup.groovy'),'utf-8')
+
+        def response = gui.reload(file.text)
+
+        redirect(action: 'index')
+    }
+
+    def views(){
+        def response = [:]
+        if(params['views']) {
+            def file = new File(path+'dsl/views/analysis.groovy')
+            file.write(params['views'],'utf-8')
+
+            response.status = 'ok'
+        }
+
+        render response as XML
+    }
+
+    def viewsReset(){
+        def file = new File(path+'dsl/views/analysis.groovy')
+
+        file.write(new File(path+'dsl/views/analysis.groovy').text,'utf-8')
+
+        //def response = gui.reload(file.text)
+
+        redirect(action: 'index')
+    }
+
+
+    def updateIndicator(){
+        def id = params.id_base
+
+        if(params.id_base != params.id){
+            def labels = [:]
+
+            params.each{ key, value ->
+                if(key.startsWith('label@')) {
+                    labels[key.substring(key.indexOf('@')+1)] = value
+                }
+            }
+
+            String sparql = "<"+ k.toURI(":" + params.id) +">"+
+                    " rdf:type <http://bio.icmc.usp.br/sustenagro#Indicator>; "+
+                    " rdfs:subClassOf <"+ k.toURI(":" + params.attribute) +">; "+
+                    " rdf:type owl:Class; "+
+                    " rdf:type owl:NamedIndividual; "+
+                    " <http://bio.icmc.usp.br/sustenagro#weight> \""+params.weight+"\"^^xsd:double; "
+
+            labels.each{ key, value ->
+                sparql += " rdfs:label \""+value+"\"@"+key+"; "
+            }
+
+            sparql += " rdfs:subClassOf _:b. "+
+                    " _:b owl:onClass <"+ k.toURI(":" + params.valuetype) +">"
+
+            //println sparql
+
+            k.insert(sparql)
+
+            //k.delete()
+        }
+        else{
+            def indicator = k[id].getIndicator()
+            Uri.simpleDomain(indicator, "http://bio.icmc.usp.br/sustenagro#", '')
+
+            def lang
+
+            indicator[0].each{ key, value ->
+                if(indicator[0][key] != params[key]){
+                    if(key.startsWith('label')){
+                        lang = key.getAt((key.indexOf('@')+1)..(key.size()-1))
+                        k.update("DELETE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label}\n" +
+                                "INSERT {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label \""+params[key]+"\"@$lang}\n" +
+                                "WHERE {<http://bio.icmc.usp.br/sustenagro#$id> rdfs:label ?label. \nFILTER (lang(?label) = '$lang')}")
+
+                    }
+                }
+            }
+        }
+        def respond = ['result': 'ok']
+
+        render respond as JSON
+    }
+
+    def indicatorsReset(){
+
+    }
+
+
 
     def attributes(){
         def attr = k[':'+params['dimension']].getAttributes()

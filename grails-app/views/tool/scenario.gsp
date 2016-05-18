@@ -27,7 +27,7 @@
             var main_id = $('#main_tabs li.active a').attr('href');
             main_id = main_id.substring(0, main_id.lastIndexOf('_tab_'));
             if (id != main_id) {
-                var parent_id = $('.nav-tabs a[href="' + $(this).attr('href') + '"]').parents('.tab-pane').attr('id')
+                var parent_id = $('.nav-tabs a[href="' + $(this).attr('href') + '"]').parents('.tab-pane').attr('id');
                 $('.nav-tabs a[href="' + '#' + parent_id + '"]').tab('show');
             }
             $('.nav-tabs a[href="' + $(this).attr('href') + '"]').tab('show');
@@ -37,9 +37,8 @@
         $(".clear").click(function () {
             var name = $(this).attr('id').replace('-clear', '');
             $("input:radio").filter(function (index) {
-                        return $(this).attr('name') === name;
-                    })
-                    .removeAttr('checked');
+                return $(this).attr('name') === name;
+            }).removeAttr('checked');
         });
 
         $(".justify").click(function () {
@@ -79,6 +78,19 @@
                 rules: rules,
                 ignore: '',
                 errorClass: "has-error",
+                invalidHandler: function(event, validator) {
+                    var invalids = Object.keys(validator.invalid);
+                    var containers;
+                    var id;
+
+                    if(invalids[0]){
+                        containers = $("[name='"+invalids[0]+"']").parents("div[role='tabpanel']");
+                        for(var i = containers.length; i>0; i--){
+                            id = $(containers[i-1]).attr('id');
+                            $(".nav-tabs a[href='#"+id+"']").tab('show');
+                        }
+                    }
+                },
                 errorPlacement: function (error, element) {
                     var form_group = $(element).parents('.form-group');
                     form_group.append(error);

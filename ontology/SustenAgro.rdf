@@ -2217,6 +2217,16 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#ProductionEnvironmentAlignmentCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ProductionEnvironmentAlignmentCategory">
+        <rdfs:label xml:lang="en">Production environment alignment</rdfs:label>
+        <rdfs:label xml:lang="pt">Alinhamento ao ambiente de produção/produtor</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
+    </owl:Class>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#ProductionEvaluationBasedOnMarketDecision -->
 
     <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#ProductionEvaluationBasedOnMarketDecision">
@@ -2248,8 +2258,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#hasName"/>
-                <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+                <owl:onProperty rdf:resource="http://dbpedia.org/ontology/state"/>
+                <owl:someValuesFrom rdf:resource="http://dbpedia.org/ontology/State"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2260,26 +2270,26 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasSugarcaneSource"/>
-                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasAvailabilityOfEvaluationResults"/>
                 <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://dbpedia.org/ontology/state"/>
-                <owl:someValuesFrom rdf:resource="http://dbpedia.org/ontology/State"/>
+                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasSugarcaneSource"/>
+                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneSourceCategory"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasAgriculturalProductionSystem"/>
                 <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#hasName"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2637,6 +2647,16 @@
                 </owl:someValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#SugarcaneProcessingOptimizationCategory -->
+
+    <owl:Class rdf:about="http://semantic.icmc.usp.br/sustenagro#SugarcaneProcessingOptimizationCategory">
+        <rdfs:label xml:lang="en">Sugarcane processing optimization</rdfs:label>
+        <rdfs:label xml:lang="pt">Otimização do processamento da cana-de-açucar</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#Categorical"/>
     </owl:Class>
     
 
@@ -7259,6 +7279,28 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#DirectAlignment -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#DirectAlignment">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionEnvironmentAlignmentCategory"/>
+        <rdfs:label xml:lang="en">Direct</rdfs:label>
+        <rdfs:label xml:lang="pt">Direta</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#DirectOptimization -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#DirectOptimization">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneProcessingOptimizationCategory"/>
+        <rdfs:label xml:lang="en">Direct</rdfs:label>
+        <rdfs:label xml:lang="pt">Direta</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#DontExist -->
 
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#DontExist">
@@ -7471,6 +7513,28 @@
     
 
 
+    <!-- http://semantic.icmc.usp.br/sustenagro#IndirectAlignment -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#IndirectAlignment">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionEnvironmentAlignmentCategory"/>
+        <rdfs:label xml:lang="en">Indirect</rdfs:label>
+        <rdfs:label xml:lang="pt">Indireta</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#IndirectOptimization -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#IndirectOptimization">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneProcessingOptimizationCategory"/>
+        <rdfs:label xml:lang="en">Indirect</rdfs:label>
+        <rdfs:label xml:lang="pt">Indireta</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://semantic.icmc.usp.br/sustenagro#InvestmentRatioMachinesVersusProductionReturnOnAssets-0 -->
 
     <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#InvestmentRatioMachinesVersusProductionReturnOnAssets-0">
@@ -7528,6 +7592,28 @@
         <rdfs:label xml:lang="en">No</rdfs:label>
         <rdfs:label xml:lang="pt">Não</rdfs:label>
         <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">-1.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#NullAlignment -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#NullAlignment">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#ProductionEnvironmentAlignmentCategory"/>
+        <rdfs:label xml:lang="en">Null</rdfs:label>
+        <rdfs:label xml:lang="pt">Nula</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://semantic.icmc.usp.br/sustenagro#NullOptimization -->
+
+    <owl:NamedIndividual rdf:about="http://semantic.icmc.usp.br/sustenagro#NullOptimization">
+        <rdf:type rdf:resource="http://semantic.icmc.usp.br/sustenagro#SugarcaneProcessingOptimizationCategory"/>
+        <rdfs:label xml:lang="en">Null</rdfs:label>
+        <rdfs:label xml:lang="pt">Nula</rdfs:label>
+        <ui:asNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#double">0.0</ui:asNumber>
     </owl:NamedIndividual>
     
 
