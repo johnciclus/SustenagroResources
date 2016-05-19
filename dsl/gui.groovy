@@ -24,7 +24,7 @@ widgetAttributes 'listEvaluationObjects', label : "Unidade produtiva", submitLab
 
 widgetAttributes 'createEvaluationObject', submitLabel: "Cadastrar"
 
-widgetAttributes 'tabs', submitLabel: 'Avaliar', previousLabel: 'Anterior', nextLabel: 'Próximo', pagination: true
+widgetAttributes 'tabs', submitLabel: 'Avaliar', previousLabel: 'Anterior', nextLabel: 'Próximo', pagination: true, submitTopButton: false
 
 widgetAttributes 'form', method: 'post', formClass: 'form-horizontal'
 

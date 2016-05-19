@@ -134,7 +134,7 @@
                                             data: classes,
                                             levels: 1,
                                             onNodeSelected: function(event, node) {
-                                                ontEditor.find(node.id+':');
+                                                ontEditor.find('\n'+node.id+':');
                                             }
                                             });
 

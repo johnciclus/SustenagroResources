@@ -112,12 +112,12 @@ class ToolController {
 
     def scenario() {
         def username = springSecurityService.getPrincipal().username
+        def userId = username
         def uri = k.toURI('inds:' + params.id)
         def sustainabilityTabs = []
         def efficiencyTabs = []
         def roles = k['inds:' + username].getAttr('hasRole')
-        def userId = username
-        def evalObjId = uri.substring(uri.lastIndexOf('#') + 1)
+        def evalObjId = params.id
 
         if (userId && k['inds:' + evalObjId].exist()) {
             if (roles.contains(k.toURI('ui:AdminRole'))) {
@@ -133,31 +133,20 @@ class ToolController {
             def widgets
 
             dsl.featureMap.eachWithIndex { key, feature, int i ->
-                println key
+                //println key
                 //println feature
-                Uri.printTree(feature.model)
+                //Uri.printTree(feature.model)
                 widgets = []
-                widgets.push(['widget': 'individualsPanel', attrs: [data: feature.model.subClass, values: [:]]])
+                widgets.push(['widget': 'individualsPanel', attrs: [data: feature.getModel(evalObjId).subClass, values: [:]]])
                 if (feature.attrs.extraFeatures) {
                     widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]])
                 }
 
-                if (feature.model.superClass.contains(k.toURI(':Variable')))
-                    efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: widgets])
-                else if (feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
-                    sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: widgets])
+                if (feature.getModel(evalObjId).superClass.contains(k.toURI(':Variable')))
+                    efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
+                else if (feature.getModel(evalObjId).superClass.contains(k.toURI(':SustainabilityIndicator')))
+                    sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
             }
-
-            /*
-            dsl.featureMap.each{ key, feature ->
-                println feature.model.label
-                println feature.uri
-                Uri.printTree(feature.model)
-            }
-            /*
-            println evaluationObjects
-            println analyses
-            */
 
             dsl.clean(controllerName, actionName)
             gui.setView(controllerName, actionName)
@@ -266,8 +255,6 @@ class ToolController {
                     featureInstances[uri]['weight'] = k.isURI(paramWeight)? paramWeight : weightIndividuals[paramWeight]
                 if(paramJustification)
                     featureInstances[uri]['justification'] = paramJustification
-
-                //println uri + ' - ' +featureInstances[uri]
             }
         }
 
@@ -363,15 +350,15 @@ class ToolController {
                 //Uri.printTree(values)
 
                 widgets = []
-                widgets.push(['widget': 'individualsPanel', attrs: [data: feature.model.subClass, values: values]])
+                widgets.push(['widget': 'individualsPanel', attrs: [data: feature.getModel(evalObjId).subClass, values: values]])
                 if (feature.attrs.extraFeatures) {
                     widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]])
                 }
 
-                if (feature.model.superClass.contains(k.toURI(':Variable')))
-                    efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: widgets])
-                if (feature.model.superClass.contains(k.toURI(':SustainabilityIndicator')))
-                    sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.model.label], widgets: widgets])
+                if (feature.getModel(evalObjId).superClass.contains(k.toURI(':Variable')))
+                    efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
+                if (feature.getModel(evalObjId).superClass.contains(k.toURI(':SustainabilityIndicator')))
+                    sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
             }
 
             dsl.clean(controllerName, actionName)

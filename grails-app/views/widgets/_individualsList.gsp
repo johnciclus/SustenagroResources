@@ -40,8 +40,8 @@
         <g:if test="${feature.value.weightIndividuals}">
             <g:set var="hasWeight" value="${values[feature.value.id] != null && values[feature.value.id].weight}" />
             <div class="row">
-                <label for="<%= feature.value.id + '-weight' %>" class="col-sm-4 control-label weight-label">Peso</label>
-                <div class="col-sm-8 text-right">
+                <label for="<%= feature.value.id + '-weight' %>" class="col-sm-6 control-label weight-label"><%= feature.value.weightLabel %></label>
+                <div class="col-sm-6 text-right">
                     <select id="<%= feature.value.id + '-weight' %>" name="<%= feature.value.id + '-weight' %>" class="form-control clear">
                         <g:if test="${hasWeight == false}">
                             <option selected disabled hidden value=''></option>

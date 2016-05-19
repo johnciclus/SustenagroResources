@@ -200,6 +200,11 @@ class Node {
         */
     }
 
+    def getIndividualsTriples(){
+        k.select('distinct ?s ?p ?o')
+                .query("?s ?p ?o. filter(STRSTARTS(STR(?s), 'http://semantic.icmc.usp.br/individuals#') && !isBlank(?o))")
+    }
+
     def getIndividualsIdLabel(){
         k.select('distinct ?id ?label')
          .query("?id a <$URI>; rdfs:label ?label.",
@@ -224,7 +229,7 @@ class Node {
                 "?id ui:dataValue ?dataValue. "+
                 "FILTER(?category != <http://purl.org/biodiv/semanticUI#Categorical>)"
 
-        k.select('distinct ?category ?id ?label ?dataValue').query(query, "ORDER BY ?label")
+        k.select('distinct ?category ?id ?label ?dataValue').query(query, "ORDER BY ?dataValue")
     }
 
     def getWeightIndividuals(){
@@ -234,8 +239,13 @@ class Node {
         query += "<$URI> rdfs:subClassOf ?y. " +
                 "?y owl:onProperty ui:hasWeight. "+
                 "?y owl:onClass*/owl:someValuesFrom ?weights. "+
-                "?weights owl:oneOf ?collection. "+
-                "?collection rdf:rest*/rdf:first ?id. "+
+                "optional {"+
+                "   ?weights owl:oneOf ?collection. "+
+                "   ?collection rdf:rest*/rdf:first ?id. "+
+                "}"+
+                "optional {"+
+                "   ?id a ?weights. "+
+                "}"+
                 "?id rdfs:label ?label. "+
                 "?id ui:asNumber ?dataValue. "
 
@@ -369,6 +379,7 @@ class Node {
                                 ?id rdfs:subClassOf ?z.
                                 ?z owl:onProperty ui:hasWeight.
                                 ?z owl:onClass*/owl:someValuesFrom ?weight.
+                                ?weight rdfs:label ?weightLabel.
                              } '''
             }
 

@@ -145,7 +145,7 @@ class DSL {
     }
 
     def getFeatureMap(){
-        _featureMap
+        return _featureMap
     }
 
     def getScenarioMap(){
@@ -263,6 +263,7 @@ class DSL {
         //println "propertyMissing: key, arg "+key+"->"+arg
         _props[key] = arg
     }
+
     def methodMissing(){
         println "methodMissing: key "
     }

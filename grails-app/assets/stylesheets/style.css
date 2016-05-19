@@ -318,6 +318,11 @@ input[type="date"]::-webkit-input-placeholder{
 	border: 1px solid #dddddd;
 }
 
+.formula{
+	overflow-x: auto;
+}
 
-
-
+.fixed-table-container input[type=radio], .fixed-table-container input[type=checkbox]{
+	margin-top: 4px;
+	margin-left: 20px;
+}

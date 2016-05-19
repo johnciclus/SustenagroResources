@@ -310,6 +310,10 @@ class GUIDSL {
                 }
             }
         }
+
+        attrs['submitTopButton'] = extAttrs['submitTopButton'] ? extAttrs['submitTopButton'] :  defaultAttrs['submitTopButton']
+        attrs['submitTopLabel'] = extAttrs['submitTopLabel'] ? extAttrs['submitTopLabel'] :  defaultAttrs['submitTopLabel']
+
         //Uri.printTree(attrs)
         if(attrs['tabs'][activeTab]) {
             attrs['tabs'][activeTab].attrs['widgetClass'] = 'active'

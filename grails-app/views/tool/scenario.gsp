@@ -31,6 +31,7 @@
                 $('.nav-tabs a[href="' + '#' + parent_id + '"]').tab('show');
             }
             $('.nav-tabs a[href="' + $(this).attr('href') + '"]').tab('show');
+            window.scrollTo(0, 0);
             e.preventDefault();
         });
 

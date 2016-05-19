@@ -15,7 +15,6 @@
     <asset:javascript src="jspdf/split_text_to_size.min.js"/>
     <asset:javascript src="jspdf/standard_fonts_metrics.min.js"/>
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-
 </head>
 <body>
 <div class="row main">
@@ -41,6 +40,7 @@
                 $('.nav-tabs a[href="'+'#'+parent_id+'"]').tab('show');
             }
             $('.nav-tabs a[href="'+$(this).attr('href')+'"]').tab('show');
+            window.scrollTo(0, 0);
             e.preventDefault();
         });
 

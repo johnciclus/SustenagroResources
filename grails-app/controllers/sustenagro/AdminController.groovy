@@ -2,6 +2,7 @@ package sustenagro
 
 import grails.converters.*
 import org.yaml.snakeyaml.Yaml
+import semantics.Node
 import utils.Uri
 import grails.plugin.springsecurity.annotation.Secured
 import yaml.Yaml2Owl
@@ -81,6 +82,8 @@ class AdminController {
         //    file = file + '.owl'
         onto.save(path + 'ontology/SustenAgro.rdf')//, 'manchester')
         //    println "Saved: $file"
+        def node = new Node(k)
+        println node.getIndividualsTriples()
 
         def endPoint = 'http://localhost:9999/blazegraph/namespace/kb/sparql'
 
@@ -192,7 +195,6 @@ class AdminController {
         redirect(action: 'index')
     }
 
-
     def updateIndicator(){
         def id = params.id_base
 
@@ -251,8 +253,6 @@ class AdminController {
     def indicatorsReset(){
 
     }
-
-
 
     def attributes(){
         def attr = k[':'+params['dimension']].getAttributes()
