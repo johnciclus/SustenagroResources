@@ -13,7 +13,9 @@
         </div>
     </div>
     <g:if test="${id}">
-        <g:render template="/widgets/tableReport" model="[header: [label: 'Propiedade', value: 'Valor'], data: data]" />
+        <div id="evaluation_object_container">
+
+        </div>
     </g:if>
     <g:render template="/widgets/formGroup" model="[widgetName: 'submit', widgetClass: 'col-sm-12 text-center', model: [value: submitLabel]]"/>
 </form>

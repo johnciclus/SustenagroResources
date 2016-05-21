@@ -6,6 +6,7 @@ import dsl.GUIDSL
 import org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext
 beans = {
     //ontology(Ontology, 'ontology/SustenAgroRDF.rdf')
+    lang(String, 'pt')
     path(String, '/www/sustenagro/')
     slugify(Slugify)
     md(PegDownProcessor)

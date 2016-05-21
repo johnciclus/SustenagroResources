@@ -3,6 +3,9 @@
         <g:each var="tab" in="${tabs}">
             <g:render template="/widgets/tab" model="${tab.value.attrs}" />
         </g:each>
+        <g:if test="${submitTopButton}">
+            <g:render template="/widgets/submitTopButton" model="[label: submitTopLabel]" />
+        </g:if>
     </ul>
 
     <div id="<%=id%>_content" class="tab-content">

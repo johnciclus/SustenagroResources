@@ -13,25 +13,32 @@ class Node {
         this.URI = uri
 
         //rdf:Property
-        this.patterns['type']       = "<$URI> rdf:type ?type. "
-        this.patterns['superClass'] = "<$URI> rdfs:subClassOf ?superClass. "
+        this.patterns['type']       = " rdf:type ?type. "
+        this.patterns['superClass'] = " rdfs:subClassOf ?superClass. "
 
         //owl:ObjectProperty
-        this.patterns['appliedTo']  = "<$URI> :appliedTo ?appliedTo. "
-        this.patterns['range']      = "<$URI> rdfs:range ?range. "
+        this.patterns['range']      = " rdfs:range ?range. "
+        this.patterns['hasRole']    = " ui:hasRole ?hasRole. "
+        this.patterns['appliedTo']  = " :appliedTo ?appliedTo. "
+        this.patterns['hasOwner']   = " :hasOwner ?hasOwner. "
 
         //owl:DatatypeProperty
-        this.patterns['mapa']       = "<$URI> <http://dbpedia.org/property/pt/mapa> ?mapa. "
-        this.patterns['harvestYear']= "<$URI> :harvestYear ?harvestYear. "
+        this.patterns['mapa']       = " <http://dbpedia.org/property/pt/mapa> ?mapa. "
+        this.patterns['createAt']   = " ui:createAt ?createAt. "
+        this.patterns['updateAt']   = " ui:updateAt ?updateAt. "
+        this.patterns['hasUsername']= " ui:hasUsername ?hasUsername. "
+        this.patterns['hasPassword']= " ui:hasPassword ?hasPassword. "
+        this.patterns['harvestYear']= " :harvestYear ?harvestYear. "
+
         //owl:TransitiveProperty
 
         // owl:AnnotationProperty
-        this.patterns['label']      = "<$URI> rdfs:label ?label. "
-        this.patterns['comment']    = "<$URI> rdfs:comment ?comment. "
-        this.patterns['weight']     = "<$URI> :weight ?weight. "
-        this.patterns['description']= "<$URI> dcterm:description ?description. "
-        this.patterns['title']      = "<$URI> dcterm:title ?title. "
-        this.patterns['creator']    = "<$URI> dc:creator ?creator. "
+        this.patterns['label']      = " rdfs:label ?label. "
+        this.patterns['comment']    = " rdfs:comment ?comment. "
+        this.patterns['weight']     = " :weight ?weight. "
+        this.patterns['description']= " dcterm:description ?description. "
+        this.patterns['title']      = " dcterm:title ?title. "
+        this.patterns['creator']    = " dc:creator ?creator. "
 
     }
 
@@ -45,7 +52,7 @@ class Node {
         //println argsList
         argsList.each{
             if(argsList.contains(it))
-                query += patterns[it]
+                query += "<$URI>"+patterns[it]
         }
         /*
         if(argsList.contains('label'))
@@ -126,11 +133,11 @@ class Node {
     def getMap(String args){
         def sparql = "<$URI> :appliedTo ?evalobj. " +
                      "?evalobj ui:hasMicroregion ?microregion. " +
+                     "?microregion rdfs:label ?label. "+
                      "?microregion <http://dbpedia.org/property/pt/mapa> ?map."
         def result = k.select('distinct '+args).query(sparql)
 
-        result.metaClass.map = { (delegate.size()==1)? delegate[0]['map'] :delegate.collect { it['map'] } }
-        return result
+        return (result.size()==1)? result[0] : result
     }
 
     def getLabelDescription(String property) {
@@ -149,7 +156,41 @@ class Node {
         k.query("?id a ui:Analysis. ?id :appliedTo <$URI>")
     }
 
-    def getIndividuals(){
+    def getIndividuals(String args){
+        def argsList = (args).tokenize(' ?')
+        def select = ''
+        def query = "?id a <$URI>. "
+        def order = ''
+        def result
+
+        //println argsList
+        argsList.each{
+            if(argsList.contains(it))
+                query +=  "?id"+patterns[it]
+        }
+
+        if(argsList.contains('label')){
+            order = 'order by ?label'
+        }
+        else if(argsList.size()==1){
+            order = 'order by ?'+argsList[0]
+        }
+
+        select = 'distinct '
+        argsList.add('id')
+        argsList.each{
+            select += '?'+it
+        }
+
+        //println query
+
+        result = k.select(select).query(query, order)
+
+        if(argsList.size()==1){
+            result = result.collect{ it[argsList[0]]}
+        }
+
+        (result.size()==1)? result[0] : result
         /*
         select * where {
             ?individual rdf:type owl:NamedIndividual.
@@ -157,6 +198,11 @@ class Node {
 
         }
         */
+    }
+
+    def getIndividualsTriples(){
+        k.select('distinct ?s ?p ?o')
+                .query("?s ?p ?o. filter(STRSTARTS(STR(?s), 'http://semantic.icmc.usp.br/individuals#') && !isBlank(?o))")
     }
 
     def getIndividualsIdLabel(){
@@ -183,7 +229,7 @@ class Node {
                 "?id ui:dataValue ?dataValue. "+
                 "FILTER(?category != <http://purl.org/biodiv/semanticUI#Categorical>)"
 
-        k.select('distinct ?category ?id ?label ?dataValue').query(query, "ORDER BY ?label")
+        k.select('distinct ?category ?id ?label ?dataValue').query(query, "ORDER BY ?dataValue")
     }
 
     def getWeightIndividuals(){
@@ -193,8 +239,13 @@ class Node {
         query += "<$URI> rdfs:subClassOf ?y. " +
                 "?y owl:onProperty ui:hasWeight. "+
                 "?y owl:onClass*/owl:someValuesFrom ?weights. "+
-                "?weights owl:oneOf ?collection. "+
-                "?collection rdf:rest*/rdf:first ?id. "+
+                "optional {"+
+                "   ?weights owl:oneOf ?collection. "+
+                "   ?collection rdf:rest*/rdf:first ?id. "+
+                "}"+
+                "optional {"+
+                "   ?id a ?weights. "+
+                "}"+
                 "?id rdfs:label ?label. "+
                 "?id ui:asNumber ?dataValue. "
 
@@ -229,15 +280,11 @@ class Node {
     }
 
     def getEvaluationObjectsIdLabel(){
-        k.select('distinct ?id ?value ?label')
-            .query("<$URI> :hasEvaluationObject ?id. ?id rdfs:label ?label.",
-            "ORDER BY ?label")
+        k.select('distinct ?id ?label').query("<$URI> :hasEvaluationObject ?id. ?id rdfs:label ?label.", "ORDER BY ?label")
     }
 
     def getAnalysesIdLabel(){
-        k.select('distinct ?id ?label')
-            .query("?id :appliedTo <$URI>; rdfs:label ?label.",
-            "ORDER BY ?label")
+        k.select('distinct ?id ?label').query("?id :appliedTo <$URI>; rdfs:label ?label.", "ORDER BY ?label")
     }
 
     def getOptions() {
@@ -332,6 +379,7 @@ class Node {
                                 ?id rdfs:subClassOf ?z.
                                 ?z owl:onProperty ui:hasWeight.
                                 ?z owl:onClass*/owl:someValuesFrom ?weight.
+                                ?weight rdfs:label ?weightLabel.
                              } '''
             }
 
@@ -449,7 +497,7 @@ class Node {
     def getGrandChildrenIndividuals(String analysis, String args){
         def argsList = args.split(' ')
         def result
-        def query = "<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+        def query = "<"+k.toURI(analysis)+"> dc:hasPart ?ind." +
                 "?subClass rdfs:subClassOf <$URI>."+
                 "?id rdfs:subClassOf ?subClass." +
                 "?id rdfs:label ?label." +
@@ -463,7 +511,7 @@ class Node {
 
                 "optional {"+
                     "?ind ui:hasWeight ?weightType." +
-                    "?weightType ui:hasWeight ?weight."+
+                    "?weightType ui:dataValue ?weight."+
                     "?weightType rdfs:label ?weightTypeLabel."+
                 "}"+
                 "optional {"+
@@ -506,7 +554,7 @@ class Node {
     def getChildrenIndividuals(String analysis, String args) {
         def argsList = args.split(' ')
         def result
-        def query = "<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+        def query = "<"+k.toURI(analysis)+"> dc:hasPart ?ind." +
                     "?id rdfs:subClassOf <$URI>." +
                     "?id rdfs:label ?label." +
                     "optional {?id :relevance ?relevance.}" +
@@ -562,7 +610,7 @@ class Node {
     def getChildrenExtraIndividuals(String analysis, String args) {
         def argsList = args.split(' ')
         def result
-        def query = "<"+k.toURI(analysis)+"> <http://purl.org/dc/terms/hasPart> ?ind." +
+        def query = "<"+k.toURI(analysis)+"> dc:hasPart ?ind." +
                 "?ind ui:hasName ?name."+
                 "?ind :hasJustification ?justification."+
                 "?ind ui:value ?valueType." +
@@ -729,6 +777,10 @@ class Node {
         k.query("?subject <$URI> '$args'")
     }
 
+    def findSubjectByEmail(String args){
+        k.query("?id a <$URI>. ?id ui:hasEmail '$args'")
+    }
+
     def isFunctional(){
         def query = "<$URI> a owl:FunctionalProperty"
         return (k.query(query).size() > 0)
@@ -773,8 +825,12 @@ class Node {
         k.query("<$URI> rdf:type ?type").size() > 0 ? true : false
     }
 
+    def getAnalysisLabel(String label){
+        k.query("?id :appliedTo <$URI>. ?id rdfs:label ?label. filter contains(?label,'$label')")
+    }
+
     def insertEvaluationObject(String id, Object type, Map properties = [:]){
-        def evalObjId = k.toURI(":"+id)
+        def evalObjId = k.toURI("inds:"+id)
         def name = k.toURI('ui:hasName')
 
         String sparql = "<" + evalObjId + "> "
@@ -802,7 +858,7 @@ class Node {
     }
 
     def insertAnalysis(String id, Map properties = [:]){
-        def analysisId = k.toURI(":"+id)
+        def analysisId = k.toURI("inds:"+id)
         String sparql = "<" + analysisId + "> rdf:type ui:Analysis. "
 
         //println properties
@@ -813,12 +869,14 @@ class Node {
     }
 
     def insertFeatures(String id, Map individuals = [:]){
-        def analysisId = k.toURI(":"+id)
+        def analysisId = k.toURI("inds:"+id)
         String sparql = ''
         String featureId = ''
+        String indsBase = k.toURI('inds:')
+        String domainBase = k.toURI(':')
 
         individuals.each{
-            featureId = it.key+'-'+id
+            featureId = (it.key+'-'+id).replace(domainBase, indsBase)
             sparql += "<" + featureId +"> rdf:type <"+ it.key +">. "
 
             if(it.value.justification)
@@ -852,7 +910,7 @@ class Node {
     }
 
     def insertExtraFeatures(String id, Map individuals = [:]){
-        def analysisId = k.toURI(":"+id)
+        def analysisId = k.toURI("inds:"+id)
         String sparql = ''
         String featureId = ''
 
@@ -872,7 +930,7 @@ class Node {
     }
 
     def insertUser(String id, Map properties = [:]){
-        def userId = k.toURI(id)
+        def userId = k.toURI('inds:'+id)
         String sparql = "<" + userId + "> rdf:type ui:User. "
 
         sparql += createTriples(userId, properties)
@@ -980,6 +1038,16 @@ class Node {
             sparql = sparql[0..-3]+"."
 
         return sparql
+    }
+
+    def deleteFeatures(String id){
+        def uri = k.toURI('inds:'+id)
+        k.delete("<$uri> dc:hasPart ?id. ?id ?p1 ?o. ?s ?p2 ?id")
+    }
+
+    def deleteAnalysis(String id){
+        def uri = k.toURI('inds:'+id)
+        k.delete("?s ?p1 <$uri>. <$uri> ?p2 ?o.")
     }
 
     def propertyToList = {ArrayList source, String property ->

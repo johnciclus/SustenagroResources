@@ -14,7 +14,7 @@
             </div>
 
             <g:if test='${flash.message}'>
-                <div class="alert alert-info" role="alert">
+                <div class="alert alert-success" role="alert">
                 <p>${flash.message}</p>
                 </div>
             </g:if>
@@ -58,23 +58,25 @@
     </div>
 
 <script type="text/javascript">
-    $("form").each( function(index){
-        $(this).validate({
-            errorClass: "has-error",
-            errorPlacement: function(error, element) {
-                var form_group = $(element).parents('.form-group');
-                form_group.children(':last-child').append(error);
-            },
-            highlight: function(element, errorClass, validClass) {
-                //console.log('highlight');
-                var form_group = $(element).parents('.form-group');
-                form_group.addClass(errorClass).removeClass(validClass);
-            },
-            unhighlight: function(element, errorClass, validClass) {
-                //console.log('unhighlight');
-                var form_group = $(element).parents('.form-group');
-                form_group.removeClass(errorClass).addClass(validClass);
-            }
+    $(document).ready(function() {
+        $("form").each(function (index) {
+            $(this).validate({
+                errorClass: "has-error",
+                errorPlacement: function (error, element) {
+                    var form_group = $(element).parents('.form-group');
+                    form_group.children(':last-child').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    //console.log('highlight');
+                    var form_group = $(element).parents('.form-group');
+                    form_group.addClass(errorClass).removeClass(validClass);
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    //console.log('unhighlight');
+                    var form_group = $(element).parents('.form-group');
+                    form_group.removeClass(errorClass).addClass(validClass);
+                }
+            });
         });
     });
     </script>

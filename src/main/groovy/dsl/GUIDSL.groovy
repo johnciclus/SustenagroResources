@@ -1,6 +1,5 @@
 package dsl
 
-
 import groovy.io.FileType
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.kohsuke.groovy.sandbox.SandboxTransformer
@@ -172,14 +171,14 @@ class GUIDSL {
 
     def listEvaluationObjects(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         def defaultAttrs =  _widgetAttrs['listEvaluationObjects']
-        def evaluationObjects = _k[':'+attrs.username].getEvaluationObjectsIdLabel() //_k['ui:EvaluationObject'].getIndividualsIdLabel()
+        def evaluationObjects = _k['inds:'+attrs.userId].getEvaluationObjectsIdLabel() //_k['ui:EvaluationObject'].getIndividualsIdLabel()
 
         defaultAttrs.each{key, value->
             if(!attrs.containsKey(key))
                 attrs[key] = value
         }
         if(attrs.id){
-            def uri = _k.toURI(':'+attrs.id)
+            def uri = _k.toURI('inds:'+attrs.id)
             attrs.id = uri
             attrs.data = []
             _k[uri].getDataProperties().each{
@@ -268,7 +267,7 @@ class GUIDSL {
 
     def map(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
         //report << ['map', url]
-        view.push(['widget': 'map', 'attrs': [url: attrs.url]])
+        view.push(['widget': 'map', 'attrs': attrs])
     }
 
     def matrix(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
@@ -311,6 +310,10 @@ class GUIDSL {
                 }
             }
         }
+
+        attrs['submitTopButton'] = extAttrs['submitTopButton'] ? extAttrs['submitTopButton'] :  defaultAttrs['submitTopButton']
+        attrs['submitTopLabel'] = extAttrs['submitTopLabel'] ? extAttrs['submitTopLabel'] :  defaultAttrs['submitTopLabel']
+
         //Uri.printTree(attrs)
         if(attrs['tabs'][activeTab]) {
             attrs['tabs'][activeTab].attrs['widgetClass'] = 'active'
@@ -327,7 +330,7 @@ class GUIDSL {
                     attrs['tabs'][tab_prefix + (widgets.size() - 1)].attrs['finalPagLabel'] = extAttrs['finalPagLabel']
                 }
                 if (extAttrs['submit'])
-                    attrs['tabs'][tab_prefix + (widgets.size() - 1)].attrs['submitLabel'] = defaultAttrs['submitLabel']
+                    attrs['tabs'][tab_prefix + (widgets.size() - 1)].attrs['submitLabel'] = extAttrs['submitLabel'] ? extAttrs['submitLabel'] : defaultAttrs['submitLabel']
 
                 attrs['tabs'].eachWithIndex { tab, int i ->
                     if (i > 0) {
@@ -381,12 +384,48 @@ class GUIDSL {
     }
 
     def navBarRoute(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
-        def defaultAttrs = _widgetAttrs['navBarRoute']
-        defaultAttrs.each{key, value->
-            if(!attrs.containsKey(key))
-                attrs[key] = value
+        def attributes = _widgetAttrs['navBarRoute'].clone()
+        def roles = _k['inds:'+attrs.username].getAttr('hasRole')
+        def users = [:]
+        def evaluationObjects = [:]
+        def analyses = [:]
+
+        attrs.each { key, value ->
+            if(!attributes.containsKey(key)){
+                attributes[key] = value
+            }
         }
-        view.push(['widget': 'navbarRoute', 'attrs': attrs])
+
+        if(roles.contains(_k.toURI('ui:AdminRole'))){
+            _k['ui:User'].getIndividuals('?hasUsername').each{
+                users[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.hasUsername]
+            }
+        }
+
+        if(attrs.userId){
+            _k['inds:'+attrs.userId].getEvaluationObjectsIdLabel().each{
+                evaluationObjects[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
+            }
+        }
+
+        if(attrs.evalObjId){
+            _k['inds:'+attrs.evalObjId].getAnalysesIdLabel().each{
+                analyses[it.id.substring(it.id.lastIndexOf('#')+1)] = [label: it.label]
+            }
+        }
+
+        attributes['users'] = users
+
+        attributes['evaluationObjects'] = evaluationObjects
+
+        attributes['analyses'] = analyses
+
+        view.push(['widget': 'navbarRoute', 'attrs': attributes])
+    }
+
+    def methodMissing(String key) {
+        println "methodMissing: key "+key
+        //new Node(_k, _k.toURI(props[key]))
     }
 
     def methodMissing(String key, attrs){

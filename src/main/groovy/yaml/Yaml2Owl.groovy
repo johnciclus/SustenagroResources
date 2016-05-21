@@ -63,6 +63,7 @@ import org.semanticweb.owlapi.model.OWLOntologyManager
 import org.semanticweb.owlapi.util.DefaultPrefixManager
 import org.semanticweb.owlapi.vocab.OWL2Datatype
 import org.yaml.snakeyaml.Yaml
+import java.util.UUID
 
 /**
  * Created by dilvan on 4/7/16.
@@ -171,7 +172,12 @@ class Yaml2Owl {
 
     @TypeChecked(SKIP)
     def restriction(OWLClass subj, OWLObjectProperty prop, Collection individuals){
-        restriction(subj, prop, factory.getOWLObjectOneOf((Set<OWLIndividual>) individuals.collect{ makeIndividual(it)}))
+        def baseName = subj.IRI.toString()
+        // We were using anonymous individuals, but due to problems with blanknodes, we are now
+        // creating named individuals based on the class name(ClassURI+'-'+index). Caution: We do not test if the
+        // generated uri is already used for something else.
+        def index = 0
+        restriction(subj, prop, factory.getOWLObjectOneOf((Set<OWLIndividual>) individuals.collect{ makeIndividual(it, baseName+'-'+index++)}))
     }
 
     @TypeChecked(SKIP)
@@ -211,8 +217,7 @@ class Yaml2Owl {
 
     @TypeChecked(SKIP)
     def OWLIndividual makeIndividual(Map ind, String id = null){
-
-        def indiv = id ? getEntity(id, EntityType.NAMED_INDIVIDUAL) : factory.OWLAnonymousIndividual
+        def indiv = id ? getEntity(id, EntityType.NAMED_INDIVIDUAL) : factory.getOWLAnonymousIndividual()
 
         ind.keySet().each {
             if (it == 'type'){
@@ -583,7 +588,7 @@ class Yaml2Owl {
                         for (String line : template.split('\n')) {
                             //println "line: $line"
                             def elem = line.split(' ')
-                            obj = (elem[1] == 'label') ? parseElem(elem[2], row)+' @pt' : parseElem(elem[2], row)
+                            obj = (elem[1] == 'label') ? parseElem(elem[2], row)+' @pt' : parseElem(elem[2], row)           //obj = parseElem(elem[2], row);  obj =+ (elem[3].starsWith('@')) ?  elem[3] : ''
                             makeIndividual(parseElem(elem[0], row), parseElem(elem[1], row), obj)
                         }
                     }

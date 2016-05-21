@@ -112,6 +112,19 @@ class DSL {
         _evaluationObjectInstance = object
     }
 
+    def evaluationObjectInfo(){
+        def analyseURI = _props[_data].id
+        def evalObjURI = _k[analyseURI].getAttr('appliedTo')
+        def data = []
+        _k[evalObjURI].getDataProperties().each{
+            data.push([label: it.dataPropertyLabel.capitalize(), value: it.value])
+        }
+        _k[evalObjURI].getObjectProperties().each{
+            data.push([label: it.objectPropertyLabel.capitalize(), value: it.valueLabel])
+        }
+        _reportView.push(['widget': 'evaluationObjectInfo', 'attrs': [data: data]])
+    }
+
     def getEvaluationObject(){
         _evaluationObjectInstance
     }
@@ -132,7 +145,7 @@ class DSL {
     }
 
     def getFeatureMap(){
-        _featureMap
+        return _featureMap
     }
 
     def getScenarioMap(){
@@ -251,8 +264,12 @@ class DSL {
         _props[key] = arg
     }
 
+    def methodMissing(){
+        println "methodMissing: key "
+    }
+
     def methodMissing(String key) {
-        //println "methodMissing: key "+key
+        println "methodMissing: key "+key
         //new Node(_k, _k.toURI(props[key]))
     }
 

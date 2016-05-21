@@ -19,49 +19,52 @@
     </div>
 </div>
 <script type="text/javascript">
-    jQuery.validator.addMethod("noSpace", function(value, element) {
-        return value.indexOf(" ") < 0 && value != "";
-    }, "Space are not allowed");
+    $(document).ready(function() {
+        jQuery.validator.addMethod("noSpace", function (value, element) {
+            return value.indexOf(" ") < 0 && value != "";
+        }, "Space are not allowed");
 
-    $("#signUpForm").validate({
-        errorClass: "has-error",
-        rules: {
-            'http://purl.org/biodiv/semanticUI#email': {
-                email: true
+        $("#signUpForm").validate({
+            errorClass: "has-error",
+            rules: {
+                'http://purl.org/biodiv/semanticUI#hasEmail': {
+                    email: true,
+                    remote: "/user/emailAvailability"
+                },
+                'http://purl.org/biodiv/semanticUI#hasUsername': {
+                    noSpace: true,
+                    remote: "/user/usernameAvailability"
+                },
+                'http://purl.org/biodiv/semanticUI#hasPassword': {
+                    noSpace: true,
+                    minlength: 5
+                },
+                'http://purl.org/biodiv/semanticUI#hasPassword-confirm': {
+                    noSpace: true,
+                    minlength: 5,
+                    equalTo: "input[name='http://purl.org/biodiv/semanticUI#hasPassword']"
+                }
             },
-            'http://purl.org/biodiv/semanticUI#username': {
-                noSpace: true,
-                remote: "usernameAvailability"
+            messages: {
+                'http://purl.org/biodiv/semanticUI#username': {
+                    noSpace: "Espaço em branco não é permitido.",
+                    remote: jQuery.validator.format("{0} já está atribuído no sistema.")
+                }
             },
-            'http://purl.org/biodiv/semanticUI#password': {
-                noSpace: true,
-                minlength: 5
+            errorPlacement: function (error, element) {
+                var form_group = $(element).parents('.form-group');
+                form_group.children(':last-child').append(error);
             },
-            'http://purl.org/biodiv/semanticUI#password-confirm': {
-                noSpace: true,
-                minlength: 5,
-                equalTo: "input[name='http://purl.org/biodiv/semanticUI#password']"
+            highlight: function (element, errorClass, validClass) {
+                var form_group = $(element).parents('.form-group');
+                form_group.addClass(errorClass).removeClass(validClass);
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                var form_group = $(element).parents('.form-group');
+                form_group.removeClass(errorClass).addClass(validClass);
             }
-        },
-        messages: {
-            'http://purl.org/biodiv/semanticUI#username': {
-                noSpace: "Espaço em branco não é permitido.",
-                remote: jQuery.validator.format("{0} já está atribuído no sistema.")
-            }
-        },
-        errorPlacement: function(error, element) {
-            var form_group = $(element).parents('.form-group');
-            form_group.children(':last-child').append(error);
-        },
-        highlight: function(element, errorClass, validClass) {
-            var form_group = $(element).parents('.form-group');
-            form_group.addClass(errorClass).removeClass(validClass);
-        },
-        unhighlight: function(element, errorClass, validClass) {
-            var form_group = $(element).parents('.form-group');
-            form_group.removeClass(errorClass).addClass(validClass);
-        }
-    })
+        });
+    });
 </script>
 </body>
 </html>

@@ -12,6 +12,7 @@ class Feature {
     private def _ctx
     private def _k
     private def _model = [:]
+    private def _conditional = []
     private def _attrs
 
     Feature(String id, Map attrs, ApplicationContext applicationContext){
@@ -23,7 +24,7 @@ class Feature {
         _attrs = attrs
 
         _model = [label: _k[_uri].label, subClass: [:], superClass: _k[_uri].getSuperClass()]
-        grandChildren = _k[_uri].getGrandchildren('?id ?label ?subClass ?relevance ?category ?weight')
+        grandChildren = _k[_uri].getGrandchildren('?id ?label ?subClass ?relevance ?category ?weight ?weightLabel')
 
         _k[_uri].getSubClass('?label').each{ subClass ->
             _model['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
@@ -36,7 +37,6 @@ class Feature {
                     if(it.weight){
                         _model['subClass'][subClass.subClass]['subClass'][it.id]['weightIndividuals'] = _k[it.id].getWeightIndividuals()
                         //_model['subClass'][subClass.subClass]['subClass'][it.id]['weightId'] = it.id + '-' + it.weight.substring(it.weight.lastIndexOf('#')+1)
-                        //_model['subClass'][subClass.subClass]['subClass'][it.id]['weightIndividuals'] = _k[it.weight].getIndividualsIdLabel()
                     }
                 }
             }
@@ -133,8 +133,33 @@ class Feature {
         return _name
     }
 
-    def getModel(){
-        return _model
+    def getModel(String evalObjId = null){
+        if(evalObjId && _conditional.size() > 0){
+            def uri = _k.toURI('inds:'+evalObjId)
+            def model = [:]
+            def evalObjTypes
+
+            _model.each{ key, value ->
+                if(key != 'subClass')
+                    model[key] = value
+            }
+            model['subClass'] = [:]
+
+            _conditional.each{
+                evalObjTypes = _k[uri].getType()
+                if(evalObjTypes.contains(it.objectType)){
+                    if(evalObjTypes.contains(it.isType)){
+                        model['subClass'][it.then.include] = _model['subClass'][it.then.include]
+                    }
+                }
+            }
+            //Uri.printTree(_model)
+            return model
+        }
+        else
+            return _model
+
+
     }
 
     def getAttrs(){
@@ -142,7 +167,7 @@ class Feature {
     }
 
     def conditional(String arg, String type, Closure closure = {}){
-        //_model << [conditional: [objectType: _k.toURI(arg), isType: _k.toURI(type), then: closure()]]
+        _conditional << [objectType: _k.toURI(arg), isType: _k.toURI(type), then: closure()]
     }
 
     def include(String arg){
@@ -171,6 +196,9 @@ class Feature {
 
     def getIndividuals(){
         def individuals = [:]
+
+        Uri.printTree(_conditional)
+
         _model.subClass.each{ subClassKey, subClass ->
             subClass.subClass.each{
                 individuals[it.key] = it.value

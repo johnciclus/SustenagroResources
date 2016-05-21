@@ -1,8 +1,8 @@
 package sustenagro
 
-import org.codehaus.groovy.runtime.ResourceGroovyMethods
 import grails.converters.*
 import org.yaml.snakeyaml.Yaml
+import semantics.Node
 import utils.Uri
 import grails.plugin.springsecurity.annotation.Secured
 import yaml.Yaml2Owl
@@ -49,11 +49,97 @@ class AdminController {
                                          dimensions: dimensions])
     }
 
+    def ontology(){
+        def response = [:]
+
+        // Just reads YAML
+        Map yaml = (Map) new Yaml().load((String) params['ontology'])
+
+        //println "Ontology"
+        //println params['ontology']
+
+        // Save yaml file
+        File yamlFile = new File(path + 'ontology/sustenagro.yaml')
+        yamlFile.write(params['ontology'],'utf-8')
+
+        //println yaml.ontology
+        // Creating Yaml2Owl
+        def onto = new Yaml2Owl((String) yaml.ontology, path+'ontology/')
+
+        // Reading Map as ontology
+        onto.readYaml(yaml)
+
+        onto.factory //OwlDataFactory
+        onto.manager //OWLOntologyManager
+        onto.onto //OWLOntology
+
+        onto.merge()
+
+        //println 'Saving ...'
+        //if (file.endsWith('.yaml'))
+        //    file = file.substring(0, file.length()-5)
+
+        //    file = file + '.owl'
+        onto.save(path + 'ontology/SustenAgro.rdf')//, 'manchester')
+        //    println "Saved: $file"
+        def node = new Node(k)
+        println node.getIndividualsTriples()
+
+        def endPoint = 'http://localhost:9999/blazegraph/namespace/kb/sparql'
+
+        def rest = new RESTClient(endPoint)
+        rest.delete([:])
+
+        rest.post(
+                body: new File(path + 'ontology/SustenAgro.rdf').text,
+                requestContentType: 'application/xml'
+        )
+
+        dsl.reload(new File(path+'dsl/dsl.groovy').text)
+
+        //def manager = ontology.getManager()
+        //OWLOntology ontologyMan = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
+
+        //OutputStream out = new ByteArrayOutputStream()
+        //onto.manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), out)
+
+        //File file = grailsApplication.mainContext.getResource("/ontology/SustenAgro.rdf").file
+
+        //manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
+
+        //k.removeAll()
+
+        //k.loadRDF(new ByteArrayInputStream(out.toByteArray()))
+
+        //error not load data properties
+        //k.g.loadRDF(new ByteArrayInputStream(out.toByteArray()), 'http://bio.icmc.usp.br/sustenagro#', 'rdf-xml', null)
+
+        //k.g.commit()
+
+        //File localFolder = grailsApplication.mainContext.getResource("/TestingOntology").file
+        //manager.addIRIMapper(new AutoIRIMapper(localFolder, true))
+        //OWLOntology o = manager.createOntology(example_save_iri);
+        //println 'Ontology loaded'
+
+        render response as XML
+    }
+
+    def ontologyReset(){
+
+    }
+
+    def ontologyAsJSON(){
+        File yamlFile = new File(path + 'ontology/sustenagro.yaml');
+        Map yaml = (Map) new Yaml().load(yamlFile.text);
+        //println yaml
+        render yaml as JSON
+    }
+
     def dsl(){
         def response = dsl.reload(params['code'])
 
         if(response.status == 'ok')
-            new File(path+'dsl/dsl.groovy').write(params['code'])
+            new File(path+'dsl/dsl.groovy').write(params['code'],'utf-8')
 
         //println response
 
@@ -62,7 +148,7 @@ class AdminController {
 
     def dslReset(){
         def file = new File(path+'dsl/dsl.groovy')
-        file.write(new File(path+'dsl/dsl-backup.groovy').text)
+        file.write(new File(path+'dsl/dsl-backup.groovy').text,'utf-8')
 
         def response = dsl.reload(file.text)
 
@@ -73,14 +159,14 @@ class AdminController {
         def response  = gui.reload(params['code'])
 
         if(response.status == 'ok')
-            new File(path+'dsl/gui.groovy').write(params['code'])
+            new File(path+'dsl/gui.groovy').write(params['code'],'utf-8')
 
         render response as XML
     }
 
     def guiReset(){
         def file = new File(path+'dsl/gui.groovy')
-        file.write(new File(path+'dsl/gui-backup.groovy'))
+        file.write(new File(path+'dsl/gui-backup.groovy'),'utf-8')
 
         def response = gui.reload(file.text)
 
@@ -91,7 +177,7 @@ class AdminController {
         def response = [:]
         if(params['views']) {
             def file = new File(path+'dsl/views/analysis.groovy')
-            file.write(params['views'])
+            file.write(params['views'],'utf-8')
 
             response.status = 'ok'
         }
@@ -102,7 +188,7 @@ class AdminController {
     def viewsReset(){
         def file = new File(path+'dsl/views/analysis.groovy')
 
-        file.write(new File(path+'dsl/views/analysis.groovy').text)
+        file.write(new File(path+'dsl/views/analysis.groovy').text,'utf-8')
 
         //def response = gui.reload(file.text)
 
@@ -165,91 +251,6 @@ class AdminController {
     }
 
     def indicatorsReset(){
-
-    }
-
-    def ontologyAsJSON(){
-        File yamlFile = new File(path + 'ontology/sustenagro.yaml');
-        Map yaml = (Map) new Yaml().load(yamlFile.text);
-        //println yaml
-        render yaml as JSON
-    }
-
-    def ontology(){
-        def response = [:]
-
-        // Just reads YAML
-        Map yaml = (Map) new Yaml().load((String) params['ontology'])
-
-        // Save yaml file
-        File yamlFile = new File(path + 'ontology/sustenagro.yaml')
-        ResourceGroovyMethods.write(yamlFile, (String) params['ontology'])
-
-        //println yaml.ontology
-        // Creating Yaml2Owl
-        def onto = new Yaml2Owl((String) yaml.ontology, path+'ontology/')
-
-        // Reading Map as ontology
-        onto.readYaml(yaml)
-
-        onto.factory //OwlDataFactory
-        onto.manager //OWLOntologyManager
-        onto.onto //OWLOntology
-
-        onto.merge()
-
-        //println 'Saving ...'
-        //if (file.endsWith('.yaml'))
-        //    file = file.substring(0, file.length()-5)
-
-        //    file = file + '.owl'
-        onto.save(path + 'ontology/SustenAgro.rdf')//, 'manchester')
-        //    println "Saved: $file"
-
-        def endPoint = 'http://localhost:9999/blazegraph/namespace/kb/sparql'
-
-        def rest = new RESTClient(endPoint)
-        rest.delete([:])
-
-        /*rest.post(
-                body: new File(path + 'ontology/SemanticUI.rdf').text,
-                requestContentType: 'application/xml'
-        )*/
-
-        rest.post(
-                body: new File(path + 'ontology/SustenAgro.rdf').text,
-                requestContentType: 'application/xml'
-        )
-
-        dsl.reload(new File(path+'dsl/dsl.groovy').text)
-
-        //def manager = ontology.getManager()
-        //OWLOntology ontologyMan = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
-
-        //OutputStream out = new ByteArrayOutputStream()
-        //onto.manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), out)
-
-        //File file = grailsApplication.mainContext.getResource("/ontology/SustenAgro.rdf").file
-
-        //manager.saveOntology(ontologyMan, new RDFXMLDocumentFormat(), IRI.create(file.toURI()))
-
-        //k.removeAll()
-
-        //k.loadRDF(new ByteArrayInputStream(out.toByteArray()))
-
-        //error not load data properties
-        //k.g.loadRDF(new ByteArrayInputStream(out.toByteArray()), 'http://bio.icmc.usp.br/sustenagro#', 'rdf-xml', null)
-
-        //k.g.commit()
-
-        //File localFolder = grailsApplication.mainContext.getResource("/TestingOntology").file
-        //manager.addIRIMapper(new AutoIRIMapper(localFolder, true))
-        //OWLOntology o = manager.createOntology(example_save_iri);
-        //println 'Ontology loaded'
-        render response as XML
-    }
-
-    def ontologyReset(){
 
     }
 

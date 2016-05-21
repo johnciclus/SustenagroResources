@@ -54,19 +54,19 @@ relevance:
 
 hasSugarcaneSource:
   subPropertyOf: ObjectProperty
-  label: [sugarcane source @en, origem da cana @pt]
+  label: [has sugarcane source @en, tem origem da cana @pt]
   functional: true
   range: SugarcaneSourceCategory
 
 hasAvailabilityOfEvaluationResults:
   subPropertyOf: ObjectProperty
-  label: [availability of evaluations results @en, disponibilização dos resultados da avaliação @pt]
+  label: [has availability of evaluations results @en, tem disponibilização dos resultados da avaliação @pt]
   functional: true
   range: AvailabilityOfEvaluationResultsCategory
 
 hasAgriculturalProductionSystem:
   subPropertyOf: ObjectProperty
-  label: [agricultural production system @en, sistema de produção agrícola @pt]
+  label: [has agricultural production system @en, tem sistema de produção agrícola @pt]
   functional: true
   range: AgriculturalProductionSystemCategory
 
@@ -195,18 +195,6 @@ SustainabilityCategory:
     - Sustainability category @en
     - Categoría de sustentabilidade @pt
 
-ProductionEnvironmentAlignmentCategory:
-  is_a: Categorical
-  label:
-    - Production environment alignment @en
-    - Alinhamento ao ambiente de produção/produtor @pt
-    
-SugarcaneProcessingOptimizationCategory:
-  is_a: Categorical
-  label:
-    - Sugarcane processing optimization @en
-    - Otimização do processamento da cana-de-açucar @pt  
-
 # Constantes
 
 ExistNo:
@@ -271,35 +259,6 @@ Public:
   type: AvailabilityOfEvaluationResultsCategory
   label: [Public @en, Público @pt]
 
-IndirectOptimization:
-  type:  SugarcaneProcessingOptimizationCategory
-  label: [Indireta @pt, Indirect @en]
-  asNumber: 1.0
-
-NullOptimization:
-  type:  SugarcaneProcessingOptimizationCategory
-  label: [Nula @pt, Null @en]
-  asNumber: 0.0
-      
-DirectOptimization:
-  type:  SugarcaneProcessingOptimizationCategory
-  label: [Direct @en, Direta @pt]
-  asNumber: 2.0
-
-IndirectAlignment:
-  type:  ProductionEnvironmentAlignmentCategory
-  label: [Indireta @pt, Indirect @en]
-  asNumber: 1.0
-
-NullAlignment:
-  type:  ProductionEnvironmentAlignmentCategory
-  label: [Nula @pt, Null @en]
-  asNumber: 0.0
-
-DirectAlignment:
-  type:  ProductionEnvironmentAlignmentCategory
-  label: [Direct @en, Direta @pt]
-  asNumber: 2.0
 
 ProductionUnit:
   is_a: EvaluationObject
@@ -334,8 +293,6 @@ Variable:
   is_a: Feature
   label: [Variável @pt, Variable @en]
 
-
-
 # Descendentes de Indicator
 
 SustainabilityIndicator:
@@ -351,15 +308,19 @@ ProductionEfficiencyFeature:
   label:
     - Production efficiency @en
     - Eficiência da produção @pt
-    
+
 TechnologicalEfficiencyFeature:
   is_a: Variable
   label:
     - Technological efficiency @en
     - Eficiência tecnológica @pt
-
-
-
+  hasWeight:
+    - label: [Indireta @pt, Indirect @en]
+      asNumber: 1.0
+    - label: [Nula @pt, Null @en]
+      asNumber: 0.0
+    - label: [Direct @en, Direta @pt]
+      asNumber: 2.0
 
 # Descendentes de ProductionEfficiencyFeature
 
@@ -553,13 +514,25 @@ AdherenceToAgricultureProgramLowCarbon:
   label: ["Adesão ao Programa de Agricultura de Baixo Carbono • Programa 1: Recuperação de Pastagens Degradadas; • Programa 2: Integração Lavoura-Pecuária-Floresta (iLPF) e Sistemas Agroflorestais (SAFs); • Programa 3: Sistema Plantio Direto (SPD); • Programa 4: Fixação Biológica de Nitrogênio (FBN); • Programa 5: Florestas Plantadas (matas ciliares e recuperação de APP’s); • Programa 6: Tratamento de Dejetos Animais (resíduos da produção); • Programa 7: Adaptação às Mudanças Climáticas. @pt", "Adherence to agriculture program low carbon @en"]
   value:
     - label:
-      - Accession @en
-      - Adesão @pt
+      - Em substituição a áreas degradadas @pt
+      - Replacing degraded areas @en
+      asNumber: 3.0
+    - label:
+      - Replacing areas of native forests @en
+      - Em substituição a áreas de matas nativas @pt
+      asNumber: -2.0
+    - label:
+      - Replacing pasture @en
+      - Em substituição a pasto @pt
       asNumber: 2.0
     - label:
-      - No @en
-      - Não @pt
-      asNumber: 0.0
+      - Replacing sugarcane and similar cultures @en
+      - Em substituição a cana-de-açucar e culturas similares @pt
+      asNumber: 1.0
+    - label:
+      - Em substituição a culturas alimentares @pt
+      - Replacing food crops @en
+      asNumber: -1.0
 
 ProductionVariable:
   is_a: ProductionEfficiencyFeature
@@ -597,14 +570,12 @@ TechnologicalEfficiencyInTheField:
   label:
     - Technological efficiency in the field @en
     - Eficiência tecnológica no campo @pt
-  hasWeight: ProductionEnvironmentAlignmentCategory
 
 TechnologicalEfficiencyInTheIndustrial:
   is_a: TechnologicalEfficiencyFeature
   label:
     - Technological efficiency in the industry @en
-    - Eficiência tecnológica na industria @pt
-  hasWeight: SugarcaneProcessingOptimizationCategory
+    - Eficiência tecnológica na industrial @pt
 
 # Descendentes de TechnologicalEfficiencyInTheField
 

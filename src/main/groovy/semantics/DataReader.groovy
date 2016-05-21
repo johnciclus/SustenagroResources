@@ -56,10 +56,10 @@ class DataReader {
         }
         else if(classList.contains(k.toURI('dbp:Region'))){
             try {
-                res = k[id].getMap('?map')
+                res = k[id].getMap('?map ?label')
             }
             catch (e) {
-                res = []
+                res = [:]
             }
         }
 

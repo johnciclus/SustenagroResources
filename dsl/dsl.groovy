@@ -144,7 +144,8 @@ report {
 
     //social =        3 * analysis.EnergyEfficiencyOfBoilersForCogeneration + 7 *
     //        analysis.OperationalEfficiencyPlant
-
+    
+    evaluationObjectInfo()
 
     sustainabilityMatrix    x: sustainability,
                             y: efficiency,
@@ -166,7 +167,7 @@ report {
                                                 "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ favorável para o sistema cana – recomenda-se investimentos no sistema avaliado / Avaliação da sustentabilidade: com médio desempenho – monitoramento recomendado.",
                                                 "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ favorável para o sistema cana – recomenda-se investimentos no sistema avaliado / Avaliação da sustentabilidade: com bom desempenho - sistema de produção de cana fortemente recomendado."]
 
-
+    
 
     sustainabilitySemaphore value: sustainability,
             label: 'Índice da sustentabilidade geral',
@@ -175,5 +176,5 @@ report {
 
     text    '**Mapa da microregião**'
 
-    map     url: data.'Microregion'.map()
+    map     data.'Microregion'
 }

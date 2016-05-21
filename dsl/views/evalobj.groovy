@@ -1,4 +1,4 @@
-navBarRoute 'evaluationObjects': evaluationObjects, 'evalObjId': evalObjId, 'analyses': analyses, 'analysisId': analysisId
+navBarRoute 'username': username, 'userId': userId, 'evalObjId': evalObjId, 'analysisId': analysisId
 
 title 'text': 'Etapas para preenchimento do Software:'
 
@@ -18,6 +18,6 @@ tabs([activeTab: activeTab, pagination: false], [
         ['widget': 'createEvaluationObject', attrs : [id: evaluationObject.getURI()], widgets: evaluationObject.widgets]
     ]],
     ['widget': 'tab', attrs: [label: 'Selecionar unidade produtiva / fazenda'], widgets:[
-        ['widget': 'listEvaluationObjects', attrs : [id: id, username: username]]
+        ['widget': 'listEvaluationObjects', attrs : [id: evalObjId, userId: userId]]
     ]]
 ])
