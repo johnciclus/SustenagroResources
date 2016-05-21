@@ -83,12 +83,14 @@ class AdminController {
         onto.save(path + 'ontology/SustenAgro.rdf')//, 'manchester')
         //    println "Saved: $file"
         def node = new Node(k)
-        println node.getIndividualsTriples()
+        //node.getIndividualsTriples()
+
+        node.deleteBaseOntology()
 
         def endPoint = 'http://localhost:9999/blazegraph/namespace/kb/sparql'
 
         def rest = new RESTClient(endPoint)
-        rest.delete([:])
+        //rest.delete([:])
 
         rest.post(
                 body: new File(path + 'ontology/SustenAgro.rdf').text,

@@ -68,8 +68,8 @@ class Know {
         sparql.update(f)
     }
 
-    def delete(String q){
-        def f = "$prefixes \n DELETE WHERE {$q}"
+    def delete(String q, String d=''){
+        def f = "$prefixes \n DELETE $d WHERE {$q}"
         sparql.update(f)
     }
 

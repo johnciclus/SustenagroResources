@@ -40,7 +40,7 @@ evaluationObject ':ProductionUnit', {
     //instance ':otherMicroregion', label: "Outra microrregião"
 
     //Municípios envolvidos (localização da sede)
-    instance ':municipalitiesInvolved', label: "Municípios envolvidos (localização da sede)"
+    instance ':municipalitiesInvolved', label: "Municípios envolvidos (localização da sede)", placeholder: "São Carlos, Jaguariúna, etc"
 
     // Data de fundação da unidade produção
     //instance ':establishmentDate', label: "Data de fundação da unidade produção"
@@ -64,7 +64,7 @@ evaluationObject ':ProductionUnit', {
     instance ':finishOfHarvestDate', label: "Data de término da colheita", placeholder: "dd/mm/yyyy"
 
     // Longevidade do canavial (cana de ano, cana de ano e meio);
-    instance ':canavialLongevity', label: "Longevidade do canavial (tempo em anos e meses)", header: "Opções"
+    instance ':canavialLongevity', label: "Longevidade do canavial (tempo em anos e meses)", placeholder: "Um ano e meio"
 
     // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
     instance ':innovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição", widget: 'textAreaForm'

@@ -80,6 +80,13 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="active"><a href="/login/auth">Inicie sessão</a></li>
                             <li><a href="/user/signup">Cadastre-se</a>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PT<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="en" href="/">English</a></li>
+                                    <li><a id="pt" href="/">Português</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </sec:ifNotLoggedIn>
             </div>

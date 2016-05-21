@@ -101,7 +101,7 @@ input[type="date"]::-webkit-input-placeholder{
 .content, .left-content, .right-content{
 	background-color: rgba(255, 255, 255, 1.00);
 	text-align: justify;
-	padding: 20px;
+
 }
 
 .content h5, .left-content h5, .right-content h5{
@@ -214,6 +214,11 @@ input[type="date"]::-webkit-input-placeholder{
 .tab-content>.tab-pane .form-group {
 	margin-left: 15px;
 	margin-right: 15px;
+}
+
+.tab-content>.tab-pane>.tab-content>.tab-pane {
+	height: 800px;
+	overflow-y: auto;
 }
 
 .form-inline-block{

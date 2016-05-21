@@ -30,6 +30,7 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
+        backToMainTab()
         $('.pager a').click(function(e){
             var id = $(this).attr('href');
             id = id.substring(0, id.lastIndexOf('_tab_'));
@@ -40,14 +41,15 @@
                 $('.nav-tabs a[href="'+'#'+parent_id+'"]').tab('show');
             }
             $('.nav-tabs a[href="'+$(this).attr('href')+'"]').tab('show');
-            window.scrollTo(0, 0);
+            backToMainTab();
             e.preventDefault();
         });
 
         $(".clear").click(function(){
             var name = $(this).attr('id').replace('-clear', '');
-            $("input:radio").filter(function(index) {return $(this).attr('name')===name;})
-                    .removeAttr('checked');
+            $("input[name='"+name+"']").removeAttr('checked');
+            $($("select[name^='"+name+"'] option")[0]).prop("selected", true);
+            $("textarea[name^='"+name+"']").val('');
         });
 
         $(".justify").click(function () {
@@ -118,6 +120,12 @@
                 }
             });
         });
+
+        function backToMainTab() {
+            $('html,body').animate({
+                scrollTop: 180
+            }, 'fast');
+        }
     });
 </script>
 </body>

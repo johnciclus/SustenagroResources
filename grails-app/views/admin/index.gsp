@@ -15,8 +15,8 @@
 			<div id="content" class="col-md-12 content">
 				<ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#ontology">Ontology Editor</a></li>
-                    <li><a data-toggle="tab" href="#dsl">DSL Main</a></li>
-                    <li><a data-toggle="tab" href="#gui">DSL Graphical User Interface</a></li>
+                    <li><a data-toggle="tab" href="#dsl">DSL SustenAgro</a></li>
+                    <li><a data-toggle="tab" href="#gui">DSL UI</a></li>
                     <li><a data-toggle="tab" href="#views">Views</a></li>
 				</ul>
 				<div class="tab-content">
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4 col-sm-4 treesViews">
+                            <div class="col-md-3 col-sm-3 treesViews">
                                 <p class="title">Classes</p>
                                 <div id="classesTree">
 
@@ -46,7 +46,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-md-8 col-sm-8">
+                            <div class="col-md-9 col-sm-9">
                                 <pre id="ontEditor" class="ace_editor editor ace-tm">${ontology}</pre>
                             </div>
                             <script type="application/javascript" charset="utf-8">

@@ -31,98 +31,15 @@ class Feature {
             grandChildren.each{
                 if(it.subClass == subClass.subClass) {
                     _model['subClass'][subClass.subClass]['subClass'][it.id] = it
-                    _model['subClass'][subClass.subClass]['subClass'][it.id]['valueTypes'] = _k[it.id].getCollectionIndividualsTypes()   //_k[it.category].getSuperClass()
-                    _model['subClass'][subClass.subClass]['subClass'][it.id]['categoryIndividuals'] = _k[it.id].getCollectionIndividuals()  //_k[it.category].getIndividualsIdLabel()
+                    _model['subClass'][subClass.subClass]['subClass'][it.id]['valueTypes'] = _k[it.id].getCollectionIndividualsTypes()
+                    _model['subClass'][subClass.subClass]['subClass'][it.id]['categoryIndividuals'] = _k[it.id].getCollectionIndividuals().capitalizeLabels()
 
                     if(it.weight){
-                        _model['subClass'][subClass.subClass]['subClass'][it.id]['weightIndividuals'] = _k[it.id].getWeightIndividuals()
-                        //_model['subClass'][subClass.subClass]['subClass'][it.id]['weightId'] = it.id + '-' + it.weight.substring(it.weight.lastIndexOf('#')+1)
+                        _model['subClass'][subClass.subClass]['subClass'][it.id]['weightIndividuals'] = _k[it.id].getWeightIndividuals().capitalizeLabels()
                     }
                 }
             }
         }
-        //def categoriesTmp = grandChildren.categoryList()
-        //def method = 'getIndividualsIdLabel'
-
-        //categoriesTmp.each{ key, value ->
-        //    categories[key] = _k[key]."${method}"()
-        //}
-
-        //categories[_k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
-        //categories[_k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
-
-        /*
-        categories += grandChildren.categoryList()
-
-        categories[_k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
-        categories[_k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
-
-        def method = 'getIndividualsIdLabel'
-
-        categories.each { key, value ->
-            value = _k[key]."${method}"().each{            //getIndividualsIdLabel().each {
-                value.push(it)
-            }
-        }
-        */
-        //def attrs = [:]
-        /*
-        dsl.dimensionsMap.each{ feature ->
-            _model[feature.key] = ['subClass': [:]]
-            grandChildren = _k[feature.key].getGrandchildren('?id ?label ?subClass ?category ?valueType ?weight')
-            _k[feature.key].getSubClass('?label').each{ subClass ->
-                _model[feature.key]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
-                grandChildren.each{
-                    if(it.subClass == subClass.subClass) {
-                        _model[feature.key]['subClass'][subClass.subClass]['subClass'][it.id] = it
-                    }
-                }
-            }
-            categories += grandChildren.categoryList()
-        }
-
-        dsl.featureMap.each{ feature ->
-            _model[feature.key] = ['subClass': [:]]
-            grandChildren = _k[feature.key].getGrandchildren('?id ?label ?subClass ?category ?valueType')
-            _k[feature.key].getSubClass('?label').each{ subClass ->
-                _model[feature.key]['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
-                grandChildren.each{
-                    if(it.subClass == subClass.subClass) {
-                        _model[feature.key]['subClass'][subClass.subClass]['subClass'][it.id] = it
-                    }
-                }
-            }
-            categories += grandChildren.categoryList()
-        }
-
-        categories[_k.toURI(':ProductionEnvironmentAlignmentCategory')] = []
-        categories[_k.toURI(':SugarcaneProcessingOptimizationCategory')] = []
-
-        def method = 'getIndividualsIdLabel'
-
-        categories.each { key, v ->
-            _k[key]."${method}"().each{            //getIndividualsIdLabel().each {
-                v.push(it)
-            }
-        }
-
-        /*
-        println "* Tree *"
-        Uri.printTree(_model)
-
-        println "Categories"
-        categories.each{ category ->
-            println category.key
-            category.value.each{
-                println "\t "+it
-            }
-        }
-
-        features: _model,
-        categories: categories,
-        technologyTypes: technologyTypes
-        */
-
     }
 
     def getUri(){
@@ -153,7 +70,6 @@ class Feature {
                     }
                 }
             }
-            //Uri.printTree(_model)
             return model
         }
         else
