@@ -13,12 +13,25 @@
 	<body>
         <div class="row main">
 			<div id="content" class="col-md-12 content">
-				<ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#ontology">Ontology Editor</a></li>
-                    <li><a data-toggle="tab" href="#dsl">DSL SustenAgro</a></li>
-                    <li><a data-toggle="tab" href="#gui">DSL UI</a></li>
-                    <li><a data-toggle="tab" href="#views">Views</a></li>
-				</ul>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a data-toggle="tab" href="#ontology">Ontology Editor</a></li>
+                        <li><a data-toggle="tab" href="#dsl">DSL SustenAgro</a></li>
+                        <li><a data-toggle="tab" href="#gui">DSL UI</a></li>
+                        <li><a data-toggle="tab" href="#views">Views</a></li>
+                    </ul>
+                    <div class="btn-group navbar-btn navbar-right">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            <sec:username/> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a id="welcome" href="#">Bem vindo <sec:username/>!</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a id="logout" href="/">Sair</a></li>
+                        </ul>
+                    </div>
+                </div>
 				<div class="tab-content">
                     <div id="ontology" class="tab-pane fade in active">
                         <div class="row">

@@ -17,11 +17,10 @@
             </g:each>
         </g:if>
     </div>
-
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
-        backToMainTab()
+        backToMainTab();
 
         $('.pager a').click(function (e) {
             var id = $(this).attr('href');
@@ -76,41 +75,67 @@
             }
         });
 
-        $("form").each(function (index) {
-            $(this).validate({
-                rules: rules,
-                ignore: '',
-                errorClass: "has-error",
-                invalidHandler: function (event, validator) {
-                    var invalids = Object.keys(validator.invalid);
-                    var containers;
-                    var id;
+        var validationParams = {
+            rules: rules,
+            ignore: '',
+            errorClass: "has-error",
+            invalidHandler: function (event, validator) {
+                var invalids = Object.keys(validator.invalid);
+                var containers;
+                var id;
 
-                    if (invalids[0]) {
-                        containers = $("[name='" + invalids[0] + "']").parents("div[role='tabpanel']");
-                        for (var i = containers.length; i > 0; i--) {
-                            id = $(containers[i - 1]).attr('id');
-                            $(".nav-tabs a[href='#" + id + "']").tab('show');
-                        }
+                if (invalids[0]) {
+                    containers = $("[name='" + invalids[0] + "']").parents("div[role='tabpanel']");
+                    for (var i = containers.length; i > 0; i--) {
+                        id = $(containers[i - 1]).attr('id');
+                        $(".nav-tabs a[href='#" + id + "']").tab('show');
                     }
-                },
-                errorPlacement: function (error, element) {
-                    var form_group = $(element).parents('.form-group');
-                    form_group.append(error);
-                },
-                highlight: function (element, errorClass, validClass) {
-                    //console.log('highlight');
-                    var form_group = $(element).parents('.form-group');
-                    $(element).addClass(errorClass).removeClass(validClass);
-                    form_group.addClass(errorClass).removeClass(validClass);
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    //console.log('unhighlight');
-                    var form_group = $(element).parents('.form-group');
-                    $(element).removeClass(errorClass).addClass(validClass);
-                    form_group.removeClass(errorClass).addClass(validClass);
                 }
+            },
+            errorPlacement: function (error, element) {
+                var form_group = $(element).parents('.form-group');
+                form_group.append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                //console.log('highlight');
+                var form_group = $(element).parents('.form-group');
+                $(element).addClass(errorClass).removeClass(validClass);
+                form_group.addClass(errorClass).removeClass(validClass);
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                //console.log('unhighlight');
+                var form_group = $(element).parents('.form-group');
+                $(element).removeClass(errorClass).addClass(validClass);
+                form_group.removeClass(errorClass).addClass(validClass);
+            }
+        };
+
+        $("form").each(function (index) {
+            $(this).validate(validationParams);
+        });
+
+        $('#save').click(function(){
+            var button = $(this);
+            var values = {};
+            var valid = true;
+
+            $("form").each(function (index) {
+                valid = valid && $(this).valid();
             });
+
+            if(valid){
+                button.button('loading');
+                $.each($('form').serializeArray(), function(i, field) {
+                    if(field.value)
+                        values[field.name] = field.value;
+                });
+                $.post('/tool/saveFeatures', values,
+                    function (data) {
+                        $('#route').parent().html(data);
+                        button.button('reset');
+                    }
+                );
+            }
         });
 
         function backToMainTab() {

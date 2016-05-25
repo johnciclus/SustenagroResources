@@ -2,7 +2,7 @@
 <form id="analyses_form" action="/tool/selectAnalysis" method="post" class="form-horizontal" >
     <input type="hidden" name="evaluation_object_id" value="${evaluation_object_id}">
     <div class="form-group required">
-        <label for="analysis" class="col-sm-4 control-label">Análises</label>
+        <label for="analysis" class="col-sm-4 control-label"><g:message code="analyses.label" /></label>
         <div class="col-sm-8">
             <table data-toggle="table"
                    data-click-to-select="true"
@@ -11,7 +11,7 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th data-field="name">Nome</th>
+                    <th data-field="name"><g:message code="label.name" /></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="form-group col-sm-12 text-center">
-        <input type="submit" class="btn btn-primary" value="<%=submitLabel%>"/>
+        <input type="submit" class="btn btn-primary" value="<g:message code="analyses.submit" />"/>
     </div>
 </form>
 

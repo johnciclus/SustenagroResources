@@ -1,6 +1,5 @@
 package sustenagro
 
-import grails.converters.JSON
 import semantics.Node
 
 class UserController {
@@ -65,5 +64,16 @@ class UserController {
         def hasEmail = k.toURI('ui:hasEmail')
         def email = params[hasEmail]
         render (k['ui:User'].findSubjectByEmail(email).size() == 0)
+    }
+
+    def setLang(){
+        if(params.lang){
+            session['lang'] = params.lang
+            k.setLang(session['lang'])
+            dsl.featureMap.eachWithIndex { key, feature, int i ->
+                 feature.reload()
+            }
+        }
+        render 'ok'
     }
 }

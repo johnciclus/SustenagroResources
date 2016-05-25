@@ -42,6 +42,28 @@ class Feature {
         }
     }
 
+    def reload(){
+        def grandChildren
+        _model = [:]
+        _model = [label: _k[_uri].label, subClass: [:], superClass: _k[_uri].getSuperClass()]
+        grandChildren = _k[_uri].getGrandchildren('?id ?label ?subClass ?relevance ?category ?weight ?weightLabel')
+
+        _k[_uri].getSubClass('?label').each{ subClass ->
+            _model['subClass'][subClass.subClass] = [label: subClass.label, 'subClass': [:]]
+            grandChildren.each{
+                if(it.subClass == subClass.subClass) {
+                    _model['subClass'][subClass.subClass]['subClass'][it.id] = it
+                    _model['subClass'][subClass.subClass]['subClass'][it.id]['valueTypes'] = _k[it.id].getCollectionIndividualsTypes()
+                    _model['subClass'][subClass.subClass]['subClass'][it.id]['categoryIndividuals'] = _k[it.id].getCollectionIndividuals().capitalizeLabels()
+
+                    if(it.weight){
+                        _model['subClass'][subClass.subClass]['subClass'][it.id]['weightIndividuals'] = _k[it.id].getWeightIndividuals().capitalizeLabels()
+                    }
+                }
+            }
+        }
+    }
+
     def getUri(){
         return _uri
     }

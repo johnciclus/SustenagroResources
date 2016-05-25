@@ -344,6 +344,7 @@ SustainabilityIndicator:
     - Sustainability Indicator @en
     - Indicador de sustentabilidade @pt
 
+
 # Descendentes de Variable
 
 ProductionEfficiencyFeature:
@@ -357,8 +358,6 @@ TechnologicalEfficiencyFeature:
   label:
     - Technological efficiency @en
     - Eficiência tecnológica @pt
-
-
 
 
 # Descendentes de ProductionEfficiencyFeature

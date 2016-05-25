@@ -43,7 +43,7 @@ class GUIDSL {
         viewsMap['tool'] = [:]
         viewsMap['tool']['index'] = []
         viewsMap['tool']['analysis'] = []
-        viewsMap['tool']['scenario'] = []
+        viewsMap['tool']['inputFeatures'] = []
         viewsMap['user'] = [:]
         viewsMap['user']['signup'] = []
 
@@ -86,7 +86,7 @@ class GUIDSL {
         viewsMap['tool'] = [:]
         viewsMap['tool']['index'] = []
         viewsMap['tool']['analysis'] = []
-        viewsMap['tool']['scenario'] = []
+        viewsMap['tool']['inputFeatures'] = []
         viewsMap['user'] = [:]
         viewsMap['user']['signup'] = []
 
@@ -280,8 +280,8 @@ class GUIDSL {
         def defaultAttrs = _widgetAttrs['tabs']
         def attrs = [:]
         def tab_prefix = 'tab_'
-        def activeTab = extAttrs.activeTab ? extAttrs.activeTab : tab_prefix+'0'
-        def pre = extAttrs.id ?  extAttrs.id+'_' : ''
+        def activeTab = extAttrs.containsKey('activeTab') ? extAttrs.activeTab : tab_prefix+'0'
+        def pre = extAttrs.containsKey('id') ?  extAttrs.id+'_' : ''
 
         attrs['id'] = pre + 'tabs'
         attrs['tabs'] = [:]
@@ -311,26 +311,28 @@ class GUIDSL {
             }
         }
 
-        attrs['submitTopButton'] = extAttrs['submitTopButton'] ? extAttrs['submitTopButton'] :  defaultAttrs['submitTopButton']
-        attrs['submitTopLabel'] = extAttrs['submitTopLabel'] ? extAttrs['submitTopLabel'] :  defaultAttrs['submitTopLabel']
+        attrs['submitTopButton'] = extAttrs.containsKey('submitTopButton') ? extAttrs['submitTopButton'] :  defaultAttrs['submitTopButton']
+        attrs['submitTopLabel'] = extAttrs.containsKey('submitTopLabel') ? extAttrs['submitTopLabel'] :  defaultAttrs['submitTopLabel']
+        attrs['saveTopButton'] = extAttrs.containsKey('saveTopButton') ? extAttrs['saveTopButton'] :  defaultAttrs['saveTopButton']
+        attrs['saveTopLabel'] = extAttrs.containsKey('saveTopLabel') ? extAttrs['saveTopLabel'] :  defaultAttrs['saveTopLabel']
 
         //Uri.printTree(attrs)
         if(attrs['tabs'][activeTab]) {
             attrs['tabs'][activeTab].attrs['widgetClass'] = 'active'
 
-            def pagination = extAttrs.containsKey('pagination') ? extAttrs.pagination : defaultAttrs.pagination
+            attrs['pagination'] = extAttrs.containsKey('pagination') ? extAttrs['pagination'] : defaultAttrs['pagination']
 
-            if (pagination) {
-                if (extAttrs['initialPag']){
+            if (attrs['pagination']) {
+                if (extAttrs.containsKey('initialPag')){
                     attrs['tabs'][tab_prefix + '0'].attrs['initialPag'] = extAttrs['initialPag']
                     attrs['tabs'][tab_prefix + '0'].attrs['initialPagLabel'] = extAttrs['initialPagLabel']
                 }
-                if (extAttrs['finalPag']){
+                if (extAttrs.containsKey('finalPag')){
                     attrs['tabs'][tab_prefix + (widgets.size() - 1)].attrs['finalPag'] = extAttrs['finalPag']
                     attrs['tabs'][tab_prefix + (widgets.size() - 1)].attrs['finalPagLabel'] = extAttrs['finalPagLabel']
                 }
-                if (extAttrs['submit'])
-                    attrs['tabs'][tab_prefix + (widgets.size() - 1)].attrs['submitLabel'] = extAttrs['submitLabel'] ? extAttrs['submitLabel'] : defaultAttrs['submitLabel']
+                if (extAttrs.containsKey('submit'))
+                    attrs['tabs'][tab_prefix + (widgets.size() - 1)].attrs['submitLabel'] = extAttrs.containsKey('submitLabel') ? extAttrs['submitLabel'] : defaultAttrs['submitLabel']
 
                 attrs['tabs'].eachWithIndex { tab, int i ->
                     if (i > 0) {

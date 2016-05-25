@@ -6,6 +6,7 @@
 		<asset:stylesheet href="bootstrap-table.min.css"/>
         <asset:stylesheet href="bootstrap-datepicker3.min.css"/>
 		<asset:javascript src="bootstrap-table.min.js"/>
+        <asset:javascript src="locale/bootstrap-table-pt-BR.min.js"/>
         <asset:javascript src="bootstrap-datepicker.min.js"/>
         <asset:javascript src="locales/bootstrap-datepicker.pt-BR.min.js"/>
         <asset:javascript src="jquery.validate.min.js"/>
@@ -30,7 +31,7 @@
 		<script type="text/javascript">
             $(document).ready(function() {
                 function loadAnalyses() {
-                    $.post('/tool/analyses',
+                    $.post('/tool/analysesView',
                         {'id': $('#evaluation_object_id').val()},
                         function (data) {
                             $('#analyses_form_container').html(data);
@@ -41,7 +42,7 @@
                 }
 
                 function loadEvaluationObject() {
-                    $.post('/tool/evaluationObject',
+                    $.post('/tool/evaluationObjectView',
                             {'id': $('#evaluation_object_id').val()},
                             function (data) {
                                 $('#evaluation_object_container').html(data);
@@ -53,15 +54,18 @@
                 if ($('#evaluation_object_id').val() != null) {
                     loadEvaluationObject();
                     loadAnalyses();
+
+                    console.log('Load Evaluation Object');
+                    console.log('Load Analyses');
                 }
 
                 $('#evaluation_object_id').change(function () {
                     loadEvaluationObject();
-                    loadAnalyses(); // render objeval evaluation_object_id
+                    loadAnalyses();
                 });
 
                 $("input[name='http://dbpedia.org/ontology/state']").change(function () {
-                    $.post('/tool/microregions',
+                    $.post('/tool/microregionsView',
                             {'http://dbpedia.org/ontology/state': $(this).val()},
                             function (data) {
                                 var form_group = $("label[for='http://purl.org/biodiv/semanticUI#hasMicroregion']").parents('.form-group');

@@ -12,11 +12,9 @@
             </select>
         </div>
     </div>
-    <g:if test="${id}">
-        <div id="evaluation_object_container">
+    <div id="evaluation_object_container">
 
-        </div>
-    </g:if>
+    </div>
     <g:render template="/widgets/formGroup" model="[widgetName: 'submit', widgetClass: 'col-sm-12 text-center', model: [value: submitLabel]]"/>
 </form>
 

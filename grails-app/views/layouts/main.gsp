@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Platform to support decision making on sustainability in agriculture">
+    <meta name="description" content="platform to support decision making in sustainable agriculture">
     <meta name="author" content="John Gararavito Suárez">
     <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
 
@@ -43,48 +43,69 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li <g:if test="${controllerName == null}"> class="active" </g:if> ><a href="/">
-                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                        Apresentação
-                    </a></li>
-                    <li <g:if test="${controllerName == 'tool'}"> class="active" </g:if> ><a href="/tool/evalobj">
-                        <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
-                        Avaliação
-                    </a></li>
+                    <li <g:if test="${controllerName == null}"> class="active" </g:if> >
+                        <a href="/">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> <g:message code="default.navbar.presentation" />
+                        </a>
+                    </li>
+                    <li <g:if test="${controllerName == 'tool'}"> class="active" </g:if> >
+                        <a href="/tool/evaluationObject">
+                            <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> <g:message code="default.navbar.assessment" />
+                        </a>
+                    </li>
                     <sec:ifAnyGranted roles="ROLE_ADMIN">
-                    <li <g:if test="${controllerName == 'admin'}"> class="active" </g:if> ><a target="_blank" href="/admin">
-                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                        Administração
-                    </a></li>
+                    <li <g:if test="${controllerName == 'admin'}"> class="active" </g:if>>
+                        <a target="_blank" href="/admin">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <g:message code="default.navbar.administration" />
+                        </a>
+                    </li>
                     </sec:ifAnyGranted>
-                    <li <g:if test="${controllerName == 'contact'}"> class="active" </g:if> ><a href="/home/contact">
-                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                        Contato
-                    </a></li>
+                    <li <g:if test="${controllerName == 'contact'}"> class="active" </g:if> >
+                        <a href="/home/contact">
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <g:message code="default.navbar.contact" />
+                        </a>
+                    </li>
                 </ul>
-
                     <sec:ifLoggedIn>
-                        <div class="btn-group navbar-btn navbar-right">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                <sec:username/> <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a id="welcome" href="#">Bem vindo <sec:username/>!</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a id="logout" href="/">Sair</a></li>
-                            </ul>
-                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a id='langLabel' href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <g:if test="${session.lang=='pt'}">PT</g:if>
+                                    <g:elseif test="${session.lang=='en'}">EN</g:elseif>
+                                    <g:else>PT</g:else>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a name="en" class="lang" href="/"><g:message code="default.lang.english" /></a></li>
+                                    <li><a name="pt" class="lang" href="/"><g:message code="default.lang.portuguese" /></a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <sec:username/> <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/"><g:message code="default.greeting.welcome"/> <sec:username/></a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a id="logout" href="/"><g:message code="default.actions.exit"/></a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </sec:ifLoggedIn>
                     <sec:ifNotLoggedIn>
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="/login/auth">Inicie sessão</a></li>
-                            <li><a href="/user/signup">Cadastre-se</a>
+                            <li class="active"><a href="/login/auth"><g:message code="default.actions.login"/></a></li>
+                            <li><a href="/user/signup"><g:message code="default.actions.signup"/></a>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PT<span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <g:if test="${session.lang=='pt'}">PT</g:if>
+                                    <g:elseif test="${session.lang=='en'}">EN</g:elseif>
+                                    <g:else test="${session.lang=='en'}">PT</g:else>
+                                    <span class="caret"></span>
+                                </a>
                                 <ul class="dropdown-menu">
-                                    <li><a id="en" href="/">English</a></li>
-                                    <li><a id="pt" href="/">Português</a></li>
+                                    <li><a name="en" class="lang" href="/"><g:message code="default.lang.english" /></a></li>
+                                    <li><a name="pt" class="lang" href="/"><g:message code="default.lang.portuguese" /></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -112,6 +133,13 @@
             $('#logout').click(function(e){
                 $.post('/logout', function( data ) {
                     $(location).attr('href', '/');
+                });
+                return false;
+            });
+
+            $('.lang').click(function(e){
+                $.post('/user/setLang', {lang: $(this).attr('name')}, function( data ) {
+                    location.reload();
                 });
                 return false;
             });

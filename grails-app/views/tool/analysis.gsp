@@ -5,6 +5,7 @@
     <title>SustenAgro - Tool - Scenario</title>
     <asset:stylesheet href="bootstrap-table.min.css"/>
     <asset:javascript src="bootstrap-table.min.js"/>
+    <asset:javascript src="locale/bootstrap-table-pt-BR.min.js"/>
     <asset:javascript src="d3.min.js"/>
     <asset:javascript src="md5.min.js"/>
     <asset:javascript src="jquery.validate.min.js"/>

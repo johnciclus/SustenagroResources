@@ -5,22 +5,24 @@ import semantics.Node
 import grails.plugin.springsecurity.annotation.Secured
 import utils.Uri
 
+import java.text.ParsePosition
 import java.text.SimpleDateFormat
 
 @Secured(['ROLE_USER', 'ROLE_ADMIN'])
 class ToolController {
-    static allowedMethods = [evalobj: "GET",
-                             scenario: "GET",
+    static allowedMethods = [evaluationObject: "GET",
+                             inputFeatures: "GET",
+                             saveFeatures: "POST",
                              analysis: "GET",
-                             evaluationObject: "POST",
                              createEvaluationObject: "POST",
-                             createScenario: "POST",
-                             updateScenario: "POST",
-                             analyses: "POST",
+                             createAnalysis: "POST",
+                             updateAnalysis: "POST",
                              selectEvaluationObject: "POST",
                              selectAnalysis: "POST",
                              evaluationObjectNameAvailability: "GET",
-                             microregions: "POST"
+                             evaluationObjectView: "POST",
+                             analysesView: "POST",
+                             microregionsView: "POST"
                             ]
     def dsl
     def gui
@@ -28,8 +30,8 @@ class ToolController {
     def slugify
     def springSecurityService
 
-    def evalobj() {
-        def username = springSecurityService.getPrincipal().username
+    def evaluationObject() {
+        def username = springSecurityService.principal.username
         def userId = username
         def evalObjId = (params.id)? params.id : null
         def evaluationObject = dsl.evaluationObject
@@ -69,7 +71,7 @@ class ToolController {
     }
 
     def createEvaluationObject() {
-        def username = springSecurityService.getPrincipal().username
+        def username = springSecurityService.principal.username
         def user = k.toURI('inds:'+username)
         def name = k.toURI('ui:hasName')
         def id = slugify.slugify(username+'-'+params[name])
@@ -107,17 +109,21 @@ class ToolController {
         }
 
         //k.g.saveRDF(new FileOutputStream('ontology/SustenAgroOntologyAndIndividuals.rdf'), 'rdf-xml')
-        redirect(action: 'scenario', id: id)
+        redirect(action: 'inputFeatures', id: id)
     }
 
-    def scenario() {
-        def username = springSecurityService.getPrincipal().username
+    def inputFeatures() {
+        def now = new Date()
+        def username = springSecurityService.principal.username
         def userId = username
         def uri = k.toURI('inds:' + params.id)
         def sustainabilityTabs = []
         def efficiencyTabs = []
         def roles = k['inds:' + username].getAttr('hasRole')
         def evalObjId = params.id
+        def analysisId = evalObjId+"-analysis-"+new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(now)
+
+        println session['lang']
 
         if (userId && k['inds:' + evalObjId].exist()) {
             if (roles.contains(k.toURI('ui:AdminRole'))) {
@@ -132,10 +138,14 @@ class ToolController {
             def options = k[':SustainabilityCategory'].getIndividualsIdValueLabel()
             def widgets
 
+
             dsl.featureMap.eachWithIndex { key, feature, int i ->
                 //println key
                 //println feature
                 //Uri.printTree(feature.model)
+                println key
+                println feature
+
                 widgets = []
                 widgets.push(['widget': 'individualsPanel', attrs: [data: feature.getModel(evalObjId).subClass, values: [:]]])
                 if (feature.attrs.extraFeatures) {
@@ -153,7 +163,7 @@ class ToolController {
             gui.setData('username', username)
             gui.setData('userId', userId)
             gui.setData('evalObjId', evalObjId)
-            gui.setData('analysisId', null)
+            gui.setData('analysisId', analysisId)
             gui.setData('uri', uri)
             gui.setData('efficiencyTabs', efficiencyTabs)
             gui.setData('sustainabilityTabs', sustainabilityTabs)
@@ -168,33 +178,59 @@ class ToolController {
         }
     }
 
-    def createScenario(){
-        def now = new Date()
-        def evalObjURI = k.toURI(params.evalObjInstance)
-        def evalObjName = evalObjURI.substring(evalObjURI.lastIndexOf('#')+1)
-        def name = k[':Harvest'].label+ " " + k[evalObjURI].getAttr('?harvestYear')
-        def analysisSize = k[evalObjURI].getAnalysisLabel(name).size();
-        def analysisId = evalObjName+"-analysis-"+new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(now)
-        def properties = [:]
-        def node = new Node(k)
+    def saveFeatures(){
+        def username = springSecurityService.principal.username
+        def userId = username
+        def input = []
+        def evalObjId
+        def analysisId = params.analysisId
 
-        if(analysisSize > 0)
+        createAnalysisAndFeatures(params)
+
+        evalObjId = k['inds:'+analysisId].getAttr('appliedTo')
+        evalObjId = evalObjId.substring(evalObjId.lastIndexOf('#') + 1)
+
+        gui.navBarRoute([username: username, userId: userId, evalObjId: evalObjId, analysisId: analysisId], input)
+
+        render( template: '/widgets/navbarRoute', model: input[0].attrs)
+    }
+
+    def createAnalysis(){
+        createAnalysisAndFeatures(params)
+        redirect(action: 'analysis', id: params.analysisId)
+    }
+
+    def createAnalysisAndFeatures(parameters){
+        def evalObjURI = k.toURI(parameters.evalObjInstance)
+        def analysisId = parameters.analysisId
+        def node = new Node(k)
+        def properties = [:]
+        def exist = k['inds:'+analysisId].exist()
+        def name = k[':Harvest'].label+ " " + k[evalObjURI].getAttr('?harvestYear')
+        def timestamp = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").parse(analysisId, new ParsePosition(analysisId.length()-19));
+        def analysisSize = k[evalObjURI].getAnalysisLabel(name).size();
+
+        if(exist){
+            name = k['inds:'+analysisId].getAttr('label')
+            properties[k.toURI('ui:updateAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date()), dataType: k.toURI('xsd:dateTime')]
+
+            node.deleteFeatures(analysisId)
+            node.deleteAnalysis(analysisId)
+        }
+        else if(!exist && analysisSize > 0){
             name += " ($analysisSize)"
+        }
 
         properties[k.toURI('rdfs:label')] = [value: name, dataType: k.toURI('rdfs:Literal')]     //new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now)
         properties[k.toURI(':appliedTo')] = [value: evalObjURI, dataType: k[':appliedTo'].range]
-        properties[k.toURI('ui:createAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now), dataType: k.toURI('xsd:dateTime')]
+        properties[k.toURI('ui:createAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(timestamp), dataType: k.toURI('xsd:dateTime')]
 
         node.insertAnalysis(analysisId, properties)
-
-        node.insertFeatures(analysisId, features(params))
-
-        node.insertExtraFeatures(analysisId, extraFeatures(params))
-
-        redirect(action: 'analysis', id: analysisId)
+        node.insertFeatures(analysisId, featuresInstances(parameters))
+        node.insertExtraFeatures(analysisId, extraFeaturesInstances(parameters))
     }
 
-    def updateScenario(){
+    def updateAnalysis(){
         def now = new Date()
         def analysisId = params.analysisId
         def analysisURI = k.toURI('inds:'+analysisId)
@@ -204,31 +240,22 @@ class ToolController {
         def node = new Node(k)
         def properties = [:]
 
-
-        if(!createAt)
-            createAt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now)
-        //println analysisURI
-        //println createAt
-
         properties[k.toURI('rdfs:label')] = [value: name, dataType: k.toURI('rdfs:Literal')]     //new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(now)
         properties[k.toURI(':appliedTo')] = [value: evalObjURI, dataType: k[':appliedTo'].range]
         properties[k.toURI('ui:createAt')] = [value: createAt, dataType: k.toURI('xsd:dateTime')]
         properties[k.toURI('ui:updateAt')] = [value: new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(now), dataType: k.toURI('xsd:dateTime')]
 
         node.deleteFeatures(analysisId)
-
         node.deleteAnalysis(analysisId)
 
         node.insertAnalysis(analysisId, properties)
-
-        node.insertFeatures(analysisId, features(params))
-
-        node.insertExtraFeatures(analysisId, extraFeatures(params))
+        node.insertFeatures(analysisId, featuresInstances(params))
+        node.insertExtraFeatures(analysisId, extraFeaturesInstances(params))
 
         redirect(action: 'analysis', id: analysisId)
     }
 
-    def features(parameters){
+    def featuresInstances(parameters){
         def featureInstances = [:]
         def valueIndividuals = [:]
         def weightIndividuals = [:]
@@ -261,15 +288,15 @@ class ToolController {
         return featureInstances;
     }
 
-    def extraFeatures(parameters){
-        def extraFeatures = [:]
+    def extraFeaturesInstances(parameters){
+        def extraFeaturesInstances = [:]
         def attr
 
         dsl.featureMap.each{ key, feature ->
-            extraFeatures[key] = [:]
+            extraFeaturesInstances[key] = [:]
         }
 
-        extraFeatures.each{ key, map ->
+        extraFeaturesInstances.each{ key, map ->
             parameters.each{ pKey, value ->
                 if(pKey.getClass() == String && pKey.startsWith(key) && value){
                     attr = pKey.tokenize('[]')
@@ -281,26 +308,11 @@ class ToolController {
             }
         }
 
-        return extraFeatures;
-    }
-
-    def evaluationObject(){
-        def uri = k.toURI(params.id)
-        def data = []
-
-        k[uri].getDataProperties().each{
-            data.push([label: it.dataPropertyLabel.capitalize(), value: it.value])
-        }
-
-        k[uri].getObjectProperties().each{
-            data.push([label: it.objectPropertyLabel.capitalize(), value: it.valueLabel])
-        }
-
-        render( template: '/widgets/tableReport', model: [header: [label: 'Propiedade', value: 'Valor'], data: data]);
+        return extraFeaturesInstances;
     }
 
     def analysis(){
-        def username = springSecurityService.getPrincipal().username
+        def username = springSecurityService.principal.username
         def userId = username
         def analysisId = params.id
         def uri = analysisId ? k.toURI("inds:"+analysisId) : null
@@ -427,20 +439,10 @@ class ToolController {
         }
     }
 
-    def analyses(){
-        def uri = k.toURI(params.id)
-        def analyses = k[uri].labelAppliedTo
-        def model = gui.widgetAttrs['analyses']
-        model.analyses = analyses
-        model.evaluation_object_id = uri
-
-        render( template: '/widgets/analyses', model: model);
-    }
-
     def selectEvaluationObject(){
         def uri = k.toURI(params.evaluation_object_id)
         def id =  uri.substring(uri.lastIndexOf('#')+1)
-        redirect(action: 'scenario', id: id)
+        redirect(action: 'inputFeatures', id: id)
     }
 
     def selectAnalysis(){
@@ -451,14 +453,39 @@ class ToolController {
     }
 
     def evaluationObjectNameAvailability(){
-        def username = springSecurityService.getPrincipal().username
+        def username = springSecurityService.principal.username
         def name = slugify.slugify(username+'-'+params[k.toURI('ui:hasName')])
         //println name
         render !k['inds:'+name].exist()
     }
 
-    def microregions(){
+    def evaluationObjectView(){
+        def uri = k.toURI(params.id)
+        def data = []
+
+        k[uri].getDataProperties().each{
+            data.push([label: it.dataPropertyLabel.capitalize(), value: it.value])
+        }
+
+        k[uri].getObjectProperties().each{
+            data.push([label: it.objectPropertyLabel.capitalize(), value: it.valueLabel])
+        }
+
+        render( template: '/widgets/tableReport', model: [header: [label: 'Propiedade', value: 'Valor'], data: data]);
+    }
+
+    def analysesView(){
+        def uri = k.toURI(params.id)
+        def model = gui.widgetAttrs['analyses'].clone()
+        model.analyses = k[uri].getLabelAppliedTo()
+        model.evaluation_object_id = uri
+
+        render( template: '/widgets/analyses', model: model);
+    }
+
+    def microregionsView(){
         def microregions = k[params['http://dbpedia.org/ontology/state']].getMicroregions()
         render( template: '/widgets/category', model: [id: 'http://purl.org/biodiv/semanticUI#hasMicroregion', data: microregions, header: 'Opções', selectType: 'radio']);
     }
+
 }

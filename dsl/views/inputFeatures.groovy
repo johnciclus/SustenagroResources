@@ -1,8 +1,9 @@
 navBarRoute 'username': username, 'userId': userId, 'evalObjId': evalObjId, 'analysisId': analysisId
 
-form([action: '/tool/createScenario', formClass: ''], [
+form([action: '/tool/createAnalysis', formClass: ''], [
     ['widget': 'hiddenInput', attrs: [id: 'evalObjInstance', value: uri]],
-    ['widget': 'tabs', attrs: [id: 'main', pagination: false, submitTopButton: true, submitTopLabel: 'Avaliar'], widgets: [
+    ['widget': 'hiddenInput', attrs: [id: 'analysisId', value: analysisId]],
+    ['widget': 'tabs', attrs: [id: 'main', pagination: false, submitTopButton: true, submitTopLabel: 'Avaliar', saveTopButton: true, saveTopLabel: 'Salvar'], widgets: [
         ['widget': 'tab', attrs: [label: 'Avaliação da eficiência e custo'], widgets: [
                 ['widget': 'tabs', attrs: [id : 'efficiency', finalPag: 'sustainability_tab_0', finalPagLabel: 'Próximo'], widgets: efficiencyTabs]
         ]],
