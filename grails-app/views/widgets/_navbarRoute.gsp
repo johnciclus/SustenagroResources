@@ -25,12 +25,12 @@
                ${evaluationObjects[evalObjId].label}
             </g:if>
             <g:else>
-                <%= evalObjTitle %>
+                <g:message code="evalObj.title" />
             </g:else>
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-            <li><a href="/tool/evaluationObject"><b><%= newEvalObjLabel %></b></a></li>
+            <li><a href="/tool/evaluationObject"><b><g:message code="evalObj.new.label" /></b></a></li>
             <li role="separator" class="divider"></li>
             <g:if test="${evaluationObjects}">
                 <g:each in="${evaluationObjects}">
@@ -46,12 +46,12 @@
                     ${analyses[analysisId].label}
                 </g:if>
                 <g:else>
-                    <%= analysesTitle %>
+                    <g:message code="analyses.title" />
                 </g:else>
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="/tool/inputFeatures/${evalObjId}"><b><%= newAnalysisLabel %></b></a></li>
+                <li><a href="/tool/inputFeatures/${evalObjId}"><b><g:message code="analyses.new.label" /></b></a></li>
                 <li role="separator" class="divider"></li>
                 <g:if test="${analyses}">
                     <g:each in="${analyses}">

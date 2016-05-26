@@ -26,7 +26,7 @@
                     </select>
                 </g:elseif>
                 <g:else>
-                    <input id="${tag}" type="text" class="form-control input input-text-lg" name="${tag}" value="${indicator[tag]}" >
+                    <input id="${tag}" type="text" class="form-control input input-text-lg" name="${tag}" value="${indicator[tag]}" />
                 </g:else>
             </div>
         </g:each>
@@ -38,9 +38,9 @@
                data-sort-order="desc">
             <thead>
             <tr>
-                <th data-field="id" data-sortable="true">ID</th>
-                <th data-field="name" data-sortable="true">Name</th>
-                <th data-field="value" data-sortable="true">Value</th>
+                <th data-field="id" data-sortable="true"><g:message code="label.id"/></th>
+                <th data-field="name" data-sortable="true"><g:message code="label.name"/></th>
+                <th data-field="value" data-sortable="true"><g:message code="label.value"/></th>
             </tr>
             </thead>
             <tbody>
@@ -61,6 +61,6 @@
         </table>
     </div>
     <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Salvar </button>
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> <g:message code="default.form.save"/></button>
     </div>
 </form>

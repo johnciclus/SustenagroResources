@@ -8,7 +8,7 @@ form([action: '/tool/createAnalysis', formClass: ''], [
                 ['widget': 'tabs', attrs: [id : 'efficiency', finalPag: 'sustainability_tab_0', finalPagLabel: 'Próximo'], widgets: efficiencyTabs]
         ]],
         ['widget': 'tab', attrs: [label: 'Avaliação da sustentabilidade'], widgets: [
-                ['widget': 'tabs', attrs: [id: 'sustainability', initialPag: 'efficiency_tab_4', initialPagLabel: 'Anterior'], widgets: sustainabilityTabs]
+                ['widget': 'tabs', attrs: [id: 'sustainability', initialPag: 'efficiency_tab_1', initialPagLabel: 'Anterior'], widgets: sustainabilityTabs]
         ]]
     ]]
 ])

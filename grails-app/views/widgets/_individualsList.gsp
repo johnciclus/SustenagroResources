@@ -5,8 +5,8 @@
         <div class="row">
             <label class="col-sm-8 control-label">${feature.value.label}</label>
             <div class="col-sm-4 text-right">
-                <button id="<%= feature.value.id + '-justify' %>" type="button" class="btn btn-default justify btn-xs"><span class="glyphicon glyphicon-pencil">Justificativa</span></button>
-                <g:render template="/widgets/clearButton" model="[id: feature.value.id, label: 'Apagar', widgetClass: 'btn-xs']"/>
+                <button id="<%= feature.value.id + '-justify' %>" type="button" class="btn btn-default justify btn-xs"><span class="glyphicon glyphicon-pencil"><g:message code="label.justification" /></span></button>
+                <g:render template="/widgets/clearButton" model="[id: feature.value.id, label: g.message(code: 'label.clean'), widgetClass: 'btn-xs']"/>
             </div>
         </div>
         <g:set var="hasValue" value="${values[feature.value.id] != null && values[feature.value.id].value}" />
@@ -41,7 +41,7 @@
             </div>
         </g:if>
         <div class="row hidden">
-            <label for="<%= feature.value.id + '-justification' %>" class="col-sm-4 control-label weight-label">Justificativa</label>
+            <label for="<%= feature.value.id + '-justification' %>" class="col-sm-4 control-label weight-label"><g:message code="label.justification" /></label>
             <div class="col-sm-8 text-right">
                 <g:set var="hasJustification" value="${values[feature.value.id] != null && values[feature.value.id].justification}" />
                 <g:if test="${hasJustification}">
@@ -50,7 +50,7 @@
                 <g:else>
                     <g:set var="text" value="" />
                 </g:else>
-                <g:render template="/widgets/textArea" model="[id: feature.value.id + '-justification', text: text, placeholder: 'Justificativa']"/>
+                <g:render template="/widgets/textArea" model="[id: feature.value.id + '-justification', text: text, placeholder: g.message(code: 'label.justification')]"/>
             </div>
         </div>
     </div>
