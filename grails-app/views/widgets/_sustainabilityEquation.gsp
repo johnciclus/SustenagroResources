@@ -1,11 +1,11 @@
 <div class="formula">
     <p>
-        \[ÍndiceAmbiental = \sum_{i=1}^n (ÍndicadorAmbiental_i * PesoDoÍndicadorAmbiental_i) \]
+        \[<g:message code="formula.environmentalIndex" /> = \sum_{i=1}^n (<g:message code="formula.environmentalIndicator"/>_i * <g:message code="formula.environmentalIndicatorWeight"/>_i) \]
 
-        \[ÍndiceEconômico = \sum_{i=1}^n (ÍndicadorEconômico_i * PesoDoÍndicadorEconômico_i) \]
+        \[<g:message code="formula.economicIndex" /> = \sum_{i=1}^n (<g:message code="formula.economicIndicator"/>_i * <g:message code="formula.economicIndicatorWeight"/>_i) \]
 
-        \[ÍndiceSocial = \sum_{i=1}^n (ÍndicadorSocial_i * PesoDoÍndicadorSocial_i) \]
+        \[<g:message code="formula.socialIndex" /> = \sum_{i=1}^n (<g:message code="formula.socialIndicator"/>_i * <g:message code="formula.socialIndicatorWeight"/>_i) \]
 
-        \[ÍndiceDaSustentabilidade = \sum  \frac{(ÍndiceAmbiental + ÍndiceEconômico + ÍndiceSocial)}{3} \]
+        \[<g:message code="formula.sustainabilityIndex" /> = \sum  \frac{(<g:message code="formula.environmentalIndex" /> + <g:message code="formula.economicIndex" /> + <g:message code="formula.socialIndex" />)}{3} \]
     </p>
 </div>

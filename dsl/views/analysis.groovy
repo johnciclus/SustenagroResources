@@ -1,22 +1,22 @@
 navBarRoute 'username': username, 'userId': userId, 'evalObjId': evalObjId, 'analysisId': analysisId
 
 tabs([id: 'main', activeTab: 'tab_1', pagination: false],
-        [['widget': 'tab', attrs: [label: 'Avaliação'], widgets: [
+        [['widget': 'tab', attrs: [label: message('label.assessment')], widgets: [
                 ['widget': 'form', attrs: [action: '/tool/updateAnalysis', formClass: ''], widgets: [
                         ['widget': 'hiddenInput', attrs: [id: 'analysisId', value: analysisId]],
-                        ['widget': 'tabs', attrs: [id : 'evaluation', pagination: false, submitTopButton: true, submitTopLabel: 'Atualizar'], widgets: [
-                                ['widget': 'tab', attrs: [label: 'Avaliação da eficiência e custo'], widgets: [
-                                        ['widget': 'tabs', attrs: [id : 'efficiency', finalPag: 'sustainability_tab_0', finalPagLabel: 'Próximo'], widgets: efficiencyTabs]
+                        ['widget': 'tabs', attrs: [id : 'evaluation', pagination: false, submitTopButton: true, submitTopLabel: message('label.update')], widgets: [
+                                ['widget': 'tab', attrs: [label: message('label.efficiencyAssessment')], widgets: [
+                                        ['widget': 'tabs', attrs: [id : 'efficiency', finalPag: 'sustainability_tab_0', finalPagLabel: message('default.paginate.next')], widgets: efficiencyTabs]
                                 ]],
-                                ['widget': 'tab', attrs: [label: 'Avaliação da sustentabilidade'], widgets: [
-                                        ['widget': 'tabs', attrs: [id: 'sustainability', initialPag: 'efficiency_tab_4', initialPagLabel: 'Anterior'], widgets: sustainabilityTabs]
+                                ['widget': 'tab', attrs: [label: message('label.sustainabilityAssessment')], widgets: [
+                                        ['widget': 'tabs', attrs: [id: 'sustainability', initialPag: 'efficiency_tab_4', initialPagLabel: message('default.paginate.prev')], widgets: sustainabilityTabs]
                                 ]]
                         ]]
                 ]]
         ]],
-         ['widget': 'tab', attrs: [label: 'Resultados'], widgets: [
+         ['widget': 'tab', attrs: [label: message('label.results')], widgets: [
                  ['widget': 'tabs', attrs: [id : 'results'], widgets: [
-                         ['widget': 'tab', attrs: [label: 'Planilhas da eficiência e custo'], widgets: [
+                         ['widget': 'tab', attrs: [label: message('label.efficiencyAndCostSpreadsheets')], widgets: [
                                  ['widget': 'text',       attrs: [text: '**Avaliação da eficiência**']],
                                  ['widget': 'ln'],
                                  ['widget': 'text',       attrs: [text: '**Eficiência da produção**']],

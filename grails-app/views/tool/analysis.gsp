@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>SustenAgro - Tool - Scenario</title>
+    <title>SustenAgro - Tool - Analysis</title>
     <asset:stylesheet href="bootstrap-table.min.css"/>
     <asset:javascript src="bootstrap-table.min.js"/>
     <asset:javascript src="locale/bootstrap-table-pt-BR.min.js"/>

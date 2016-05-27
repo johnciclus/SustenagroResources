@@ -2,7 +2,7 @@ navBarRoute 'username': username, 'userId': userId, 'evalObjId': evalObjId, 'ana
 
 title 'text': 'Etapas para preenchimento do Software:'
 
-description 'text': '''O emprego do Software SustenAgro para avaliação da sustentabilidade do sistema de produção de cana-de-açúcar prevê as seguintes etapas::
+description 'text': '''O emprego do Software SustenAgro para avaliação da sustentabilidade do sistema de produção de cana-de-açúcar prevê as seguintes etapas:
 
 1. Cadastro ou seleção da unidade produtiva
 2. Caracterização do sistema de produção

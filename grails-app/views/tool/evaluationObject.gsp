@@ -54,9 +54,6 @@
                 if ($('#evaluation_object_id').val() != null) {
                     loadEvaluationObject();
                     loadAnalyses();
-
-                    console.log('Load Evaluation Object');
-                    console.log('Load Analyses');
                 }
 
                 $('#evaluation_object_id').change(function () {

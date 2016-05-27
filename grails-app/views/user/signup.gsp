@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta name="layout" content="${gspLayout ?: 'main'}"/>
-    <title>SustenAgro - New User</title>
+    <title>SustenAgro - Sign Up</title>
     <asset:javascript src="jquery.validate.min.js"/>
     <asset:javascript src="localization/messages_pt_BR.min.js"/>
 </head>

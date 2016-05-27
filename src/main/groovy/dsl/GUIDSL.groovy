@@ -11,18 +11,19 @@ import utils.Uri
  * Created by john on 26/02/16.
  */
 class GUIDSL {
-    private def _shell
-    private def _sandbox
-    private def _script
-    private def _ctx
-    private def _k
-    private def _widgetAttrs
-    private def contanst
-    private def _controller
-    private def _action
+    private _shell
+    private _sandbox
+    private _script
+    private _ctx
+    private _k
+    private _widgetAttrs
+    private contanst
+    private _controller
+    private _action
     private static _md
-    private def viewsMap
-    private def dataTypeToWidget
+    private _msg
+    private viewsMap
+    private dataTypeToWidget
 
     def _props = [:]
 
@@ -31,6 +32,7 @@ class GUIDSL {
         _ctx = applicationContext
         _k = _ctx.getBean('k')
         _md = _ctx.getBean('md')
+        _msg = _ctx.getBean('messageSource')
 
         dataTypeToWidget = [:]
         _widgetAttrs = [:]
@@ -585,6 +587,10 @@ class GUIDSL {
             widgetsList << name.substring(1, name.lastIndexOf('.'))
         }
         return widgetsList
+    }
+
+    def message(String code){
+        _msg.getMessage(code, null, Locale.ENGLISH)
     }
 
     static _toHTML(String txt) {_md.markdownToHtml(txt)}

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>SustenAgro - Tool - Analysis</title>
+    <title>SustenAgro - Tool - Input Features</title>
     <asset:javascript src="jquery.validate.min.js"/>
     <asset:javascript src="localization/messages_pt_BR.min.js"/>
 </head>

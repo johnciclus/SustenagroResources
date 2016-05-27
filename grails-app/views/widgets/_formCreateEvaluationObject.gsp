@@ -4,5 +4,9 @@
             <g:render template="/widgets/formGroup" model="[widgetName: widget.value.widget, model: widget.value.attrs]"/>
         </g:each>
     </g:if>
-    <g:render template="/widgets/formGroup" model="[widgetName: 'submit', widgetClass: 'col-sm-12 text-center', model: [value: submitLabel]]"/>
+    <div class="form-group">
+        <div class="col-sm-12 text-center">
+            <g:render template="/widgets/submit" model="[value: submitLabel]" />
+        </div>
+    </div>
 </form>
