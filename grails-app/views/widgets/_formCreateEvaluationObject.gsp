@@ -6,7 +6,7 @@
     </g:if>
     <div class="form-group">
         <div class="col-sm-12 text-center">
-            <g:render template="/widgets/submit" model="[value: submitLabel]" />
+            <g:render template="/widgets/submit" model="[value: g.message(['code': 'default.form.register'])]" />
         </div>
     </div>
 </form>

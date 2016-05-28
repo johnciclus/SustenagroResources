@@ -94,13 +94,11 @@
                     </sec:ifLoggedIn>
                     <sec:ifNotLoggedIn>
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="/login/auth"><g:message code="default.actions.login"/></a></li>
-                            <li><a href="/user/signup"><g:message code="default.actions.signup"/></a>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                     <g:if test="${session.lang=='pt'}">PT</g:if>
                                     <g:elseif test="${session.lang=='en'}">EN</g:elseif>
-                                    <g:else test="${session.lang=='en'}">PT</g:else>
+                                    <g:else>PT</g:else>
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -108,6 +106,9 @@
                                     <li><a name="pt" class="lang" href="/"><g:message code="default.lang.portuguese" /></a></li>
                                 </ul>
                             </li>
+                            <li class="active"><a href="/login/auth"><g:message code="default.actions.login"/></a></li>
+                            <li><a href="/user/signup"><g:message code="default.actions.signup"/></a>
+
                         </ul>
                     </sec:ifNotLoggedIn>
             </div>

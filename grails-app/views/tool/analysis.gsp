@@ -5,11 +5,19 @@
     <title>SustenAgro - Tool - Analysis</title>
     <asset:stylesheet href="bootstrap-table.min.css"/>
     <asset:javascript src="bootstrap-table.min.js"/>
-    <asset:javascript src="locale/bootstrap-table-pt-BR.min.js"/>
+
     <asset:javascript src="d3.min.js"/>
     <asset:javascript src="md5.min.js"/>
     <asset:javascript src="jquery.validate.min.js"/>
-    <asset:javascript src="localization/messages_pt_BR.min.js"/>
+
+    <g:if test="${!session.lang || session.lang=='pt'}">
+        <asset:javascript src="locale/bootstrap-table-pt-BR.min.js"/>
+        <asset:javascript src="localization/messages_pt_BR.min.js"/>
+    </g:if>
+    <g:else>
+        <asset:javascript src="locale/bootstrap-table-en-US.min.js"/>
+    </g:else>
+
     <asset:javascript src="jspdf/jspdf.min.js"/>
     <asset:javascript src="jspdf/from_html.min.js"/>
     <asset:javascript src="jspdf/from_html.min.js"/>
@@ -31,14 +39,14 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
-        backToMainTab()
+        backToMainTab();
         $('.pager a').click(function(e){
             var id = $(this).attr('href');
             id = id.substring(0, id.lastIndexOf('_tab_'));
             var main_id = $('#main_tabs li.active a').attr('href');
             main_id = main_id.substring(0, main_id.lastIndexOf('_tab_'));
             if(id != main_id){
-                var parent_id = $('.nav-tabs a[href="'+$(this).attr('href')+'"]').parents('.tab-pane').attr('id')
+                var parent_id = $('.nav-tabs a[href="'+$(this).attr('href')+'"]').parents('.tab-pane').attr('id');
                 $('.nav-tabs a[href="'+'#'+parent_id+'"]').tab('show');
             }
             $('.nav-tabs a[href="'+$(this).attr('href')+'"]').tab('show');

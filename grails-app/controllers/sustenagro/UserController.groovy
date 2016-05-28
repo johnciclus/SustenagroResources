@@ -67,12 +67,18 @@ class UserController {
     }
 
     def setLang(){
-        if(params.lang){
+        if(params.lang && (params.lang=='en' || params.lang == 'pt')){
             session['lang'] = params.lang
             k.setLang(session['lang'])
+
+            java.util.Locale.setDefault(new Locale(session['lang']))
+
+            dsl.evaluationObject.reload()
+
             dsl.featureMap.eachWithIndex { key, feature, int i ->
                  feature.reload()
             }
+
         }
         render 'ok'
     }

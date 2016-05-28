@@ -18,29 +18,29 @@ evaluationObject ':ProductionUnit', {
     //type or instance
 
     // Production unit name
-    instance 'ui:hasName', label: "Nome da unidade produtiva ou fazenda", placeholder: "Nome"
+    instance 'ui:hasName', label: ['en': 'Production unit or farm name', 'pt': 'Nome da unidade produtiva ou fazenda'], placeholder: ['en': 'Name', 'pt': "Nome"]
 
     // Agricultural production system
-    instance ':hasAgriculturalProductionSystem', label: "Sistema de produção agrícola", header: "Opções"
-
+    instance ':hasAgriculturalProductionSystem', label: ['en': 'Agricultural production system' , 'pt': "Sistema de produção agrícola"], header: ['en': 'Options', 'pt': "Opções"]
+    
     // Production unit type
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
-    type label: "Tipo da unidade produtiva", header: "Opções"
+    type label: ['en': "Production unit type", 'pt': "Tipo da unidade produtiva"], header: ['en': 'Options', 'pt': "Opções"]
 
     // Origem da cana (própria, fornecedor, arrendamento)
-    instance  ':hasSugarcaneSource', label: "Origem da cana", header: "Opções"
+    instance  ':hasSugarcaneSource', label: ['en': 'Sugarcane source', 'pt': "Origem da cana"], header: ['en': 'Options', 'pt': "Opções"]
 
     // Estado da unidade produtiva
-    instance 'dbp:state', label: "Estado", header: "Estados"
+    instance 'dbp:state', label: ['en': 'State', 'pt': 'Estado'], header: ['en': 'States', 'pt': 'Estados']
 
     // Microrregião produtora
-    instance 'ui:hasMicroregion', label: "Microrregião da unidade produtiva", header: "Opções"
+    instance 'ui:hasMicroregion', label: ['en': 'Production unit microregion', 'pt': "Microrregião da unidade produtiva"], header: ['en': "Options", 'pt': "Opções"]
 
     //Outra microrregião
     //instance ':otherMicroregion', label: "Outra microrregião"
 
     //Municípios envolvidos (localização da sede)
-    instance ':municipalitiesInvolved', label: "Municípios envolvidos (localização da sede)", placeholder: "São Carlos, Jaguariúna, etc"
+    instance ':municipalitiesInvolved', label: ['en': "Municipalities involved (unit location)", 'pt': "Municípios envolvidos (localização da sede)"], placeholder: "São Carlos, Jaguariúna, etc"
 
     // Data de fundação da unidade produção
     //instance ':establishmentDate', label: "Data de fundação da unidade produção"
@@ -49,38 +49,38 @@ evaluationObject ':ProductionUnit', {
     //instance ':linkWithOtherBusinessOrInvestmentGroups', label: "Ligação com outros grupos empresariais ou de investimentos", placeholder: "Descrição"
 
     // Data de início do plantio
-    instance ':harvestYear', label: "Safra (Ano)", placeholder: "yyyy"
+    instance ':harvestYear', label: ['en': 'Harvest (year)', 'pt': "Safra (Ano)"], placeholder: "yyyy"
 
     // Data de início do plantio
-    instance ':beginningOfPlantingDate', label: "Data de início do plantio", placeholder: "dd/mm/yyyy"
+    instance ':beginningOfPlantingDate', label: ['en': "Planting start date", 'pt': "Data de início do plantio"], placeholder: "dd/mm/yyyy"
 
     // Data de término do plantio
-    instance ':finishOfPlantingDate', label: "Data de término do plantio", placeholder: "dd/mm/yyyy"
+    instance ':finishOfPlantingDate', label: ['en': "Planting end date" ,'pt': "Data de término do plantio"], placeholder: "dd/mm/yyyy"
 
     // Data de início da colheita
-    instance ':beginningOfHarvestDate', label: "Data de início da colheita", placeholder: "dd/mm/yyyy"
+    instance ':beginningOfHarvestDate', label: ['en': 'Harvest start date', 'pt': "Data de início da colheita"], placeholder: "dd/mm/yyyy"
 
     // Data de término da colheita
-    instance ':finishOfHarvestDate', label: "Data de término da colheita", placeholder: "dd/mm/yyyy"
+    instance ':finishOfHarvestDate', label: ['en': 'Planting end date', 'pt': "Data de término da colheita"], placeholder: "dd/mm/yyyy"
 
     // Longevidade do canavial (cana de ano, cana de ano e meio);
-    instance ':canavialLongevity', label: "Longevidade do canavial (tempo em anos e meses)", placeholder: "Um ano e meio"
+    instance ':canavialLongevity', label: ['en': "Canavial longevity (time in years and months)", 'pt': "Longevidade do canavial (tempo em anos e meses)"], placeholder: ['en': "One and a half year", 'pt': "Um ano e meio"]
 
     // Projetos de inovação e/ou desenvolvimento (BNDES, Finep)
-    instance ':innovationDevelopmentProjects', label: "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)", placeholder: "Descrição", widget: 'textAreaForm'
+    instance ':innovationDevelopmentProjects', label: ['en': "Innovation/development projects (BNDES, Finep)", 'pt': "Projetos de inovação e/ou desenvolvimento (BNDES, Finep)"], placeholder: ['en': "Description", 'pt': "Descrição"], widget: 'textAreaForm'
 
     //Financiamento (crédito agrícola, custeio de maquinário, BNDES);
-    instance ':financing', label: "Financiamento (crédito agrícola, custeio de maquinário, BNDES)", placeholder: "Descrição", widget: 'textAreaForm'
+    instance ':financing', label: ['en': "Financing (agricultural credit, machinery costing, BNDES)", 'pt': "Financiamento (crédito agrícola, custeio de maquinário, BNDES)"], placeholder: ['en': "Description", 'pt': "Descrição"], widget: 'textAreaForm'
 
     // Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações);
-    instance ':partnershipsForResearchOrImprovementOfTheSystem', label: "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)", widget: 'textAreaForm', placeholder: "Descrição"
+    instance ':partnershipsForResearchOrImprovementOfTheSystem', label: ['en': "Partnerships for research or system enhancement (Name of partnership institution, institution type, public or private, cooperatives or associations)", 'pt': "Parcerias para pesquisa ou aprimoramento do sistema (nome da instituição parceira, tipo da instituição – pública, privada, Cooperativas ou associações)"], widget: 'textAreaForm', placeholder: ['en': "Description", 'pt': "Descrição"]
 
     //Tipo de organização/gestão da usina ou produtor (grupo econômico, convencional, familiar);
 
     //Tipo de estrutura da usina/produtor de cana (Greenfield, tradicional...)
 
     // Disponibilização dos resultados da avaliação: Público | privado
-    instance ':hasAvailabilityOfEvaluationResults', label: "Disponibilização dos resultados da avaliação", header: "Opções"
+    instance ':hasAvailabilityOfEvaluationResults', label: ['en': "Availability of evaluation results", 'pt': "Disponibilização dos resultados da avaliação"], header: ['en': "Options", 'pt': "Opções"]
 
 
     // Valor total investido em tecnologia na fase agrícola (até a fase atual)
@@ -149,8 +149,8 @@ report {
 
     sustainabilityMatrix    x: sustainability,
                             y: efficiency,
-                            label_x: 'Indice da sustentabilidade',
-                            label_y: 'Indice de eficiência',
+                            label_x: ['en': 'Sustainability index', 'pt': 'Indice da sustentabilidade'],
+                            label_y: ['en': 'Efficiency index', 'pt': 'Indice de eficiência'],
                             range_x: [-60,60],
                             range_y: [-70,710],
                             quadrants: [4,3],

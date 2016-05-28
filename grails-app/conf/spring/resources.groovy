@@ -3,10 +3,13 @@ import org.pegdown.PegDownProcessor
 import semantics.Know
 import dsl.DSL
 import dsl.GUIDSL
-import org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext
+import org.springframework.web.servlet.i18n.SessionLocaleResolver
+
 beans = {
-    //ontology(Ontology, 'ontology/SustenAgroRDF.rdf')
-    lang(String, 'pt')
+    localeResolver(SessionLocaleResolver) {
+        defaultLocale = new Locale("pt")
+        java.util.Locale.setDefault(defaultLocale)
+    }
     path(String, '/www/sustenagro/')
     slugify(Slugify)
     md(PegDownProcessor)

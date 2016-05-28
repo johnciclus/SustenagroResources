@@ -590,7 +590,7 @@ class GUIDSL {
     }
 
     def message(String code){
-        _msg.getMessage(code, null, Locale.ENGLISH)
+        _msg.getMessage(code, null, java.util.Locale.getDefault())
     }
 
     static _toHTML(String txt) {_md.markdownToHtml(txt)}

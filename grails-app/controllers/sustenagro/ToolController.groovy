@@ -1,5 +1,6 @@
 package sustenagro
 
+import org.springframework.web.servlet.support.RequestContextUtils
 import semantics.DataReader
 import semantics.Node
 import grails.plugin.springsecurity.annotation.Secured
@@ -31,12 +32,17 @@ class ToolController {
     def springSecurityService
 
     def evaluationObject() {
+        def locale = RequestContextUtils.getLocale(request)
         def username = springSecurityService.principal.username
         def userId = username
         def evalObjId = (params.id)? params.id : null
-        def evaluationObject = dsl.evaluationObject
         def activeTab = 'tab_0'
         def roles = k['inds:'+username].getAttr('hasRole')
+        def evaluationObjectURI = dsl.evaluationObject.getURI()
+        def widgets = dsl.evaluationObject.getWidgets(locale)
+
+        println dsl.evaluationObject.widgets
+        Uri.printTree(widgets)
 
         if(userId && (evalObjId == null || k['inds:'+evalObjId].exist())){
             if(roles.contains(k.toURI('ui:AdminRole'))){
@@ -60,7 +66,8 @@ class ToolController {
             gui.setData('evalObjId', evalObjId)
             gui.setData('analysisId', null)
             gui.setData('activeTab', activeTab)
-            gui.setData('evaluationObject', evaluationObject)
+            gui.setData('evaluationObjectURI', evaluationObjectURI)
+            gui.setData('widgets', widgets)
 
             gui.renderView(actionName)
 
@@ -471,12 +478,12 @@ class ToolController {
             data.push([label: it.objectPropertyLabel.capitalize(), value: it.valueLabel])
         }
 
-        render( template: '/widgets/tableReport', model: [header: [label: 'Propiedade', value: 'Valor'], data: data]);
+        render( template: '/widgets/tableReport', model: [header: [label: g.message(code: 'label.property'), value: g.message(code: 'label.value')], data: data]);
     }
 
     def analysesView(){
         def uri = k.toURI(params.id)
-        def model = gui.widgetAttrs['analyses'].clone()
+        def model = [:]
         model.analyses = k[uri].getLabelAppliedTo()
         model.evaluation_object_id = uri
 
@@ -487,5 +494,4 @@ class ToolController {
         def microregions = k[params['http://dbpedia.org/ontology/state']].getMicroregions()
         render( template: '/widgets/category', model: [id: 'http://purl.org/biodiv/semanticUI#hasMicroregion', data: microregions, header: 'Opções', selectType: 'radio']);
     }
-
 }

@@ -1,4 +1,4 @@
-<g:render template="/widgets/title" model="[text: title]"/>
+<g:render template="/widgets/title" model="[text: g.message(code: 'analyses.title')]"/>
 <form id="analyses_form" action="/tool/selectAnalysis" method="post" class="form-horizontal" >
     <input type="hidden" name="evaluation_object_id" value="${evaluation_object_id}">
     <div class="form-group required">
@@ -25,8 +25,10 @@
             </table>
         </div>
     </div>
-    <div class="form-group col-sm-12 text-center">
-        <input type="submit" class="btn btn-primary" value="<g:message code="analyses.submit" />"/>
+    <div class="form-group">
+        <div class="col-sm-12 text-center">
+            <g:render template="/widgets/submit" model="[value: g.message(['code': 'analyses.submit'])]" />
+        </div>
     </div>
 </form>
 

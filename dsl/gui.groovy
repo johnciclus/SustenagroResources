@@ -27,5 +27,3 @@ widgetAttributes 'createEvaluationObject', submitLabel: "Cadastrar"
 widgetAttributes 'tabs', submitLabel: 'Avaliar', previousLabel: 'Anterior', nextLabel: 'Próximo', pagination: true, submitTopButton: false
 
 widgetAttributes 'form', method: 'post', formClass: 'form-horizontal'
-
-widgetAttributes 'analyses', title: 'Selecionar análise', submitLabel: 'Ver análise'
