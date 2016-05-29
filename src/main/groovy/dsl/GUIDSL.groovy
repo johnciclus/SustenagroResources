@@ -65,7 +65,8 @@ class GUIDSL {
 
         //_script = (DelegatingScript) _shell.parse(new File(filename).text)
         //println new File(_ctx.getBean('path')+filename).toString()
-        _script = (DelegatingScript) _shell.parse(new File(_ctx.getBean('path')+filename).text)
+
+        _script = (DelegatingScript) _shell.parse(_ctx.getResource(filename).file)
         _script.setDelegate(this)
 
         // Run DSL script.
@@ -172,7 +173,7 @@ class GUIDSL {
     }
 
     def listEvaluationObjects(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
-        def defaultAttrs =  _widgetAttrs['listEvaluationObjects']
+        def defaultAttrs =  [:]
         def evaluationObjects = _k['inds:'+attrs.userId].getEvaluationObjectsIdLabel() //_k['ui:EvaluationObject'].getIndividualsIdLabel()
 
         defaultAttrs.each{key, value->
@@ -197,16 +198,10 @@ class GUIDSL {
     }
 
     def createEvaluationObject(Map attrs = [:], ArrayList widgets = [], ArrayList view = viewsMap[_controller][_action]){
-        def defaultAttrs =  _widgetAttrs['createEvaluationObject']
-        def request        = [:]
+        def request         = [:]
 
-        defaultAttrs.each{key, value->
-            if(!attrs.containsKey(key))
-                attrs[key] = value
-        }
-
-        request['widgets']    = [:]
-        attrs['widgets']      = [:]
+        request['widgets']  = [:]
+        attrs['widgets']    = [:]
 
         widgets.each{
             if(it.request) {
@@ -216,7 +211,10 @@ class GUIDSL {
         }
 
         request.widgets.each{ key, arg ->
-            attrs.widgets[key]['attrs']['data'] = _k[arg[1]].getLabelDescription(arg[0].toString())
+            println arg[1]
+            println arg[0]
+            attrs.widgets[key]['attrs']['data'] = _k[arg[1]].getIndividualsLabel(arg[0].toString())
+            println attrs.widgets[key]['attrs']['data']
         }
 
         //Uri.printTree(attrs)
@@ -388,7 +386,7 @@ class GUIDSL {
     }
 
     def navBarRoute(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
-        def attributes = _widgetAttrs['navBarRoute'].clone()
+        def attributes = [:]
         def roles = _k['inds:'+attrs.username].getAttr('hasRole')
         def users = [:]
         def evaluationObjects = [:]
@@ -552,7 +550,7 @@ class GUIDSL {
     def renderView(String name){
         _sandbox.register()
         //        _script = (DelegatingScript) _shell.parse(new File("dsl/views/${name}.groovy").text)
-        _script = (DelegatingScript) _shell.parse(new File(_ctx.getBean('path')+"dsl/views/${name}.groovy").text)
+        _script = (DelegatingScript) _shell.parse(_ctx.getResource("dsl/views/${name}.groovy").file)
         _script.setDelegate(this)
 
         try {

@@ -1,3 +1,4 @@
+package dsl
 //                          Decisioner
 
 // Esta DSL descreve como o aplicativo será gerado. Ele é em inglês pois
@@ -170,11 +171,16 @@ report {
     
 
     sustainabilitySemaphore value: sustainability,
-            label: 'Índice da sustentabilidade geral',
+            label: ['en': 'Index of general sustainability', 'pt': 'Índice da sustentabilidade geral'],
+            legend: [['en': 'Less sustainable', 'pt': 'Menos sustentável'], 
+                     ['en': 'Negative changes', 'pt': 'Alterações negativas'], 
+                     ['en': 'No change', 'pt': 'Sem alteração'], 
+                     ['en': 'Positive changes', 'pt': 'Alterações positivas'], 
+                     ['en': 'More sustainable', 'pt': 'Mais sustentável']],
             range: [-60,60]
 
 
-    text    '**Mapa da microregião**'
+    text    'en': 'Microregion map', 'pt': '**Mapa da microregião**'
 
     map     data.'Microregion'
 }

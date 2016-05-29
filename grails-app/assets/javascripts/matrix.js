@@ -17,7 +17,7 @@ function Matrix(container, parameters){
     var ndy = qds[1];
     var n = (ndx+ndy-1);
     var margin = 40;
-    var colors = []
+    var colors = [];
     var w_rect = (width-(2*margin))/ndx, h_rect = (height-(2*margin))/ndy;
 
     var svg = d3.select(container).append("svg:svg")
@@ -97,9 +97,6 @@ function Matrix(container, parameters){
             .attr("transform", "rotate(-90)")
             .text(formatFloat(ry[1] - (dy * j)));
     }
-
-
-
 
     var rx = (x - rx[0])/(rx[1] - rx[0]);
     var ry = (y - ry[0])/(ry[1] - ry[0]);

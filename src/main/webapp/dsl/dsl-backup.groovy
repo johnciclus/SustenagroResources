@@ -1,3 +1,7 @@
+package dsl
+
+import dsl.views.evaluationObject
+
 //                          Decisioner
 
 // Esta DSL descreve como o aplicativo será gerado. Ele é em inglês pois

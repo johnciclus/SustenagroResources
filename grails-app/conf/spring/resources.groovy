@@ -10,7 +10,7 @@ beans = {
         defaultLocale = new Locale("pt")
         java.util.Locale.setDefault(defaultLocale)
     }
-    path(String, '/www/sustenagro/')
+    path(String, '/www/sustenagro/src/main/webapp/')
     slugify(Slugify)
     md(PegDownProcessor)
     k(Know, 'http://172.17.0.1:9999/blazegraph/namespace/kb/sparql')

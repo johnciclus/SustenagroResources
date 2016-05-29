@@ -10,12 +10,12 @@ function Semaphore(container, parameters){
     var value= params['value'] || 0;
     var label= params['label'] || 'label';
     var range = params['range'] || [-100, 100];
-    var labels = ['Menos sustentável', 'Alterações negativas', 'Sem alteração', 'Alterações positivas', 'Mais sustentável'];
+    var legend = params['legend'] || [];
     var dx = [-100, -60, -20, 20, 60, 100];
     var n = dx.length;
     var x = (width-(2*margin))/2 + margin;
     var y = (semHeight) - 0.5 * margin;
-    var w, h
+    var w, h;
 
     function formatFloat(num){
         return Math.round(num*100)/100;
@@ -148,7 +148,7 @@ function Semaphore(container, parameters){
                 .attr("y", margin + semHeight + 65)
                 .attr("font-size","15px")
                 .attr("text-anchor", "middle")
-                .text(labels[i]);
+                .text(legend[i]);
         }
     }
 

@@ -1,3 +1,5 @@
+package dsl.views
+
 navBarRoute 'username': username, 'userId': userId, 'evalObjId': evalObjId, 'analysisId': analysisId
 
 form([action: '/tool/createAnalysis', formClass: ''], [

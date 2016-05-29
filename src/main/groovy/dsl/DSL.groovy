@@ -54,7 +54,8 @@ class DSL {
         //_script = (DelegatingScript) _shell.parse(new File(filename).text)
         //println _ctx.getBean('path')
         //println new File(_ctx.getBean('path')+filename).toString()
-        _script = (DelegatingScript) _shell.parse(new File(_ctx.getBean('path')+filename).text)
+
+        _script = (DelegatingScript) _shell.parse(_ctx.getResource(filename).file)
         _script.setDelegate(this)
 
         // Run DSL script.
@@ -277,16 +278,21 @@ class DSL {
 
     def methodMissing(String key, attrs){
         //println "DSL methodMissing: "+ key
+        def attrsTmp = attrs.clone()
+        def tmp
         if(attrs.getClass() == Object[]){
             def container = []
             def element = null
+            def locale = Locale.getDefault()
+            def i18nParams = ['label', 'label_x', 'label_y', 'legend']
 
             if(_gui.getWidgetsNames().contains(key)){
-                if(key=='sustainabilityMatrix'){
+                /*if(key=='text'){
                     println key
-                    println attrs.getClass()
+                    println attrs
                     println attrs.size()
-                }
+                    println attrs[0].getClass()
+                }*/
                 if(attrs.size()==1 && attrs[0].getClass() == String){
                     if(_reportView){
                         container = _reportView
@@ -297,14 +303,34 @@ class DSL {
                     }
                 }
                 else if(attrs.size()==1 && attrs[0].getClass() == LinkedHashMap){
-                    if(_reportView && attrs[0].text){
+                    if(_reportView && key == 'text'){
                         container = _reportView
-                        element = ['widget': key, 'attrs': ['text': _toHTML(attrs[0].text)]]
-
+                        if(attrs[0].getClass() == LinkedHashMap){
+                            tmp = attrs[0][locale.language]
+                        }
+                        else{
+                            tmp = attrs[0]
+                        }
+                        element = ['widget': key, 'attrs': ['text': _toHTML(tmp)]]
                     }
                     else{
                         container = _reportView
-                        element = ['widget': key, 'attrs': attrs[0]]
+                        i18nParams.each{ param ->
+                            if(attrsTmp[0][param] && (attrs[0][param].getClass() == LinkedHashMap)){
+                                attrsTmp[0][param] = attrs[0][param][locale.language]
+                            }
+                            else if(attrsTmp[0][param] && (attrs[0][param].getClass() == ArrayList)){
+                                tmp = []
+                                attrs[0][param].each{
+                                    if(it.getClass() == LinkedHashMap)
+                                        tmp.push(it[locale.language])
+                                    else if(it.getClass() == String)
+                                        tmp.push(it)
+                                }
+                                attrsTmp[0][param] = tmp
+                            }
+                        }
+                        element = ['widget': key, 'attrs': attrsTmp[0]]
                     }
                 }
                 else if(attrs.size()==2 && attrs[0].getClass() == LinkedHashMap && attrs[1].getClass() == ArrayList){

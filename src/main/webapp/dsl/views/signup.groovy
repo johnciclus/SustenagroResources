@@ -1,3 +1,5 @@
+package dsl.views
+
 pageHeader text: message('default.greeting.welcome')+'!'
 div text: message('default.form.fill')
 form([id: 'signUpForm', action: '/user/createUser'], [[widget: 'formGroup', attrs: [widgetName: 'textForm', model: [label: message('label.name')+':', placeholder: message('label.name'), required: true, id: 'http://purl.org/biodiv/semanticUI#hasName']]],

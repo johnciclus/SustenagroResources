@@ -1,5 +1,3 @@
-//  dataType "DataTypeID", "widgetName"
-
 dataType "rdfs:Literal",                                    widget: "textForm"
 dataType "owl:real",                                        widget: "numberForm"
 dataType "xsd:int",                                         widget: "numberForm"
@@ -18,12 +16,6 @@ dataType ":AgriculturalProductionSystemCategory",           widget: "categoryFor
 dataType ":AvailabilityOfEvaluationResultsCategory",        widget: "categoryForm"
 dataType "http://dbpedia.org/page/Microregion_(Brazil)",    widget: "categoryForm"
 
-widgetAttributes 'navBarRoute', evalObjTitle: "Unidade produtiva", newEvalObjLabel: "Nova unidade produtiva", analysesTitle: "Análises", newAnalysisLabel: "Nova análise"
-
-widgetAttributes 'listEvaluationObjects', label : "Unidade produtiva", submitLabel: "Novo análise"
-
-widgetAttributes 'createEvaluationObject', submitLabel: "Cadastrar"
-
-widgetAttributes 'tabs', submitLabel: 'Avaliar', previousLabel: 'Anterior', nextLabel: 'Próximo', pagination: true, submitTopButton: false
+widgetAttributes 'tabs', pagination: true, submitTopButton: false
 
 widgetAttributes 'form', method: 'post', formClass: 'form-horizontal'

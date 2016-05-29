@@ -41,9 +41,6 @@ class ToolController {
         def evaluationObjectURI = dsl.evaluationObject.getURI()
         def widgets = dsl.evaluationObject.getWidgets(locale)
 
-        println dsl.evaluationObject.widgets
-        Uri.printTree(widgets)
-
         if(userId && (evalObjId == null || k['inds:'+evalObjId].exist())){
             if(roles.contains(k.toURI('ui:AdminRole'))){
                 if(evalObjId){
@@ -324,6 +321,8 @@ class ToolController {
         def analysisId = params.id
         def uri = analysisId ? k.toURI("inds:"+analysisId) : null
         def evalObjId = k[uri].getAttr('appliedTo')
+
+
 
         if(userId && evalObjId && analysisId) {
             def sustainabilityTabs = []

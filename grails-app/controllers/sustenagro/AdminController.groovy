@@ -18,8 +18,11 @@ class AdminController {
     def path
 
     def index(){
+        def ctx = grailsApplication.mainContext
         def indicators = k[':Indicator'].getIndicators()
         def dimensions = k[':Indicator'].getDimensions()
+        def viewFiles = []
+
         //println path
         /*
         println indicators
@@ -36,20 +39,25 @@ class AdminController {
         //Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#", '')
         //Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#", '')
 
+        def resources = ctx.getResources('views/widgets/')
+
+        println resources.toList()
+
         OutputStream out = new ByteArrayOutputStream()
         //ontology.getManager().saveOntology(ontology.getOntology(), new ManchesterSyntaxDocumentFormat(), out)
         //println new File(path+'dsl/dsl.groovy')
         //println new File(path+'dsl/gui.groovy')
 
-        render(view: actionName, model: [dsl_code: new File(path+'dsl/dsl.groovy').text,
-                                         gui_code: new File(path+'dsl/gui.groovy').text,
-                                         views: new File(path+'dsl/views/analysis.groovy').text,
-                                         ontology: new File(path+'ontology/sustenagro.yaml').text,
+        render(view: actionName, model: [dsl_code: ctx.getResource('dsl/dsl.groovy').file.text,
+                                         gui_code: ctx.getResource('dsl/gui.groovy').file.text,
+                                         views: ctx.getResource('dsl/views/analysis.groovy').file.text,
+                                         ontology: ctx.getResource('ontology/sustenagro.yaml').file.text,
                                          indicators: indicators,
                                          dimensions: dimensions])
     }
 
     def ontology(){
+        def ctx = grailsApplication.mainContext
         def response = [:]
 
         // Just reads YAML
@@ -59,8 +67,10 @@ class AdminController {
         //println params['ontology']
 
         // Save yaml file
-        File yamlFile = new File(path + 'ontology/sustenagro.yaml')
+        File yamlFile = ctx.getResource('ontology/sustenagro.yaml').file
         yamlFile.write(params['ontology'],'utf-8')
+
+
 
         //println yaml.ontology
         // Creating Yaml2Owl

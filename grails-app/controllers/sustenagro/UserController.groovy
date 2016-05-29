@@ -78,7 +78,6 @@ class UserController {
             dsl.featureMap.eachWithIndex { key, feature, int i ->
                  feature.reload()
             }
-
         }
         render 'ok'
     }
