@@ -12,22 +12,23 @@ import utils.Uri
  */
 
 class DSL {
-    private def _ctx
-    private def _k
-    private def _gui
+    private _ctx
+    private _k
+    private _gui
     private static _md
 
-    private def _sandbox
-    private def _script
-    private def _program
-    private def _shell
+    private _sandbox
+    private _script
+    private _program
+    private _shell
 
-    private def _data
-    private def _props = [:]
-    private def _featureMap = [:]
-    private def _scenarioMap = [:]
-    private def _reportView = []
-    private def _evaluationObjectInstance
+    private _data
+    private _msg
+    private _props = [:]
+    private _featureMap = [:]
+    private _scenarioMap = [:]
+    private _reportView = []
+    private _evaluationObjectInstance
 
     DSL(String filename, ApplicationContext applicationContext){
         // Create CompilerConfiguration and assign
@@ -36,6 +37,7 @@ class DSL {
         _k = _ctx.getBean('k')
         _gui = _ctx.getBean('gui')
         _md = _ctx.getBean('md')
+        _msg = _ctx.getBean('messageSource')
 
         def _cc = new CompilerConfiguration()
         _cc.addCompilationCustomizers(new SandboxTransformer())
@@ -52,7 +54,8 @@ class DSL {
         //_script = (DelegatingScript) _shell.parse(new File(filename).text)
         //println _ctx.getBean('path')
         //println new File(_ctx.getBean('path')+filename).toString()
-        _script = (DelegatingScript) _shell.parse(new File(_ctx.getBean('path')+filename).text)
+
+        _script = (DelegatingScript) _shell.parse(_ctx.getResource(filename).file)
         _script.setDelegate(this)
 
         // Run DSL script.
@@ -275,15 +278,20 @@ class DSL {
 
     def methodMissing(String key, attrs){
         //println "DSL methodMissing: "+ key
+        def attrsTmp = attrs.clone()
+        def tmp
         if(attrs.getClass() == Object[]){
             def container = []
             def element = null
+            def locale = Locale.getDefault()
+            def i18nParams = ['label', 'label_x', 'label_y', 'legend']
 
             if(_gui.getWidgetsNames().contains(key)){
-                /*if(key=='sustainabilityMatrix'){
+                /*if(key=='text'){
                     println key
-                    println attrs.getClass()
+                    println attrs
                     println attrs.size()
+                    println attrs[0].getClass()
                 }*/
                 if(attrs.size()==1 && attrs[0].getClass() == String){
                     if(_reportView){
@@ -295,14 +303,34 @@ class DSL {
                     }
                 }
                 else if(attrs.size()==1 && attrs[0].getClass() == LinkedHashMap){
-                    if(_reportView && attrs[0].text){
+                    if(_reportView && key == 'text'){
                         container = _reportView
-                        element = ['widget': key, 'attrs': ['text': _toHTML(attrs[0].text)]]
-
+                        if(attrs[0].getClass() == LinkedHashMap){
+                            tmp = attrs[0][locale.language]
+                        }
+                        else{
+                            tmp = attrs[0]
+                        }
+                        element = ['widget': key, 'attrs': ['text': _toHTML(tmp)]]
                     }
                     else{
                         container = _reportView
-                        element = ['widget': key, 'attrs': attrs[0]]
+                        i18nParams.each{ param ->
+                            if(attrsTmp[0][param] && (attrs[0][param].getClass() == LinkedHashMap)){
+                                attrsTmp[0][param] = attrs[0][param][locale.language]
+                            }
+                            else if(attrsTmp[0][param] && (attrs[0][param].getClass() == ArrayList)){
+                                tmp = []
+                                attrs[0][param].each{
+                                    if(it.getClass() == LinkedHashMap)
+                                        tmp.push(it[locale.language])
+                                    else if(it.getClass() == String)
+                                        tmp.push(it)
+                                }
+                                attrsTmp[0][param] = tmp
+                            }
+                        }
+                        element = ['widget': key, 'attrs': attrsTmp[0]]
                     }
                 }
                 else if(attrs.size()==2 && attrs[0].getClass() == LinkedHashMap && attrs[1].getClass() == ArrayList){
@@ -338,6 +366,10 @@ class DSL {
                _reportView = []
             }
         }
+    }
+
+    def message(String code){
+        _msg.getMessage(code, null, java.util.Locale.getDefault())
     }
 
     static _toHTML(String txt) {_md.markdownToHtml(txt)}

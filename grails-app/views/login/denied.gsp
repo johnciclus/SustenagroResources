@@ -8,9 +8,9 @@
 <body>
 <div class="body">
     <div class="jumbotron">
-        <h2>Acesso negado</h2>
+        <h2><g:message code='springSecurity.denied.title' /></h2>
         <p><g:message code='springSecurity.denied.message' /></p>
-        <p><a class="btn btn-primary btn-lg" href="/login" role="button">Inicie sessão</a></p>
+        <p><a class="btn btn-primary btn-lg" href="/login" role="button"><g:message code='default.actions.login' /></a></p>
     </div>
 </div>
 </body>

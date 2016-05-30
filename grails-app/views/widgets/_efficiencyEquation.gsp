@@ -1,12 +1,12 @@
 <div class="formula">
     <p>
-        \[EficiênciaNoCampo = 0.8 * \sum_{i=1}^n (CaracterísticasDoSistema_i * AlinhamentoAoAmbiente_i) \]
+        \[<g:message code="formula.efficiencyInTheField"/>  = 0.8 * \sum_{i=1}^n (<g:message code="formula.systemFeatures"/>_i * <g:message code="formula.environmentalAligment" />_i) \]
 
-        \[EficiênciaNaIndústria = 0.2 * \sum_{i=1}^n (CaracterísticasIndustriais_i * OtimizaçãoDoProcessamento_i) \]
+        \[<g:message code="formula.efficiencyInTheIndustry"/> = 0.2 * \sum_{i=1}^n (<g:message code="formula.industrialFeatures" />_i * <g:message code="formula.processingOptimization" />_i) \]
 
-        \[EficiênciaDaProdução = \sum_{i=1}^n QualidadeDaCana + \sum_{i=1}^n Logística + \sum_{i=1}^n VariáveisDeMercado + \sum_{i=1}^n Políticas \]
+        \[<g:message code="formula.productionEfficiency"/>  = \sum_{i=1}^n <g:message code="formula.sugarcaneQuality"/> + \sum_{i=1}^n <g:message code="formula.logistic"/> + \sum_{i=1}^n <g:message code="formula.marketVariables"/> + \sum_{i=1}^n <g:message code="formula.policies"/> \]
 
-        \[ÍndiceDeEficiência = EficiênciaDaProdução * \sum (EficiênciaNoCampo + EficiênciaNaIndústria) \]
+        \[<g:message code="formula.efficiencyIndex"/> = EficiênciaDaProdução * \sum (<g:message code="formula.efficiencyInTheField"/> + <g:message code="formula.efficiencyInTheIndustry"/>) \]
 
     </p>
 </div>

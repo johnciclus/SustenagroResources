@@ -62,6 +62,21 @@ class EvaluationObject {
                      attrs: attrs]
     }
 
+    def reload(){
+        /*def widgetsTmp = widgets
+        widgets = []
+
+        println 'widgets'
+        widgets.each{
+            println it
+        }
+
+        println 'widgetsTmp'
+        widgetsTmp.each{
+            println it
+        }*/
+    }
+
     def type(Map attrs = [:], String id='rdfs:subClassOf'){
         instance(attrs, id)
     }
@@ -70,4 +85,32 @@ class EvaluationObject {
         return k.toURI(_id)
     }
 
+    def getWidgets(Locale locale){
+        def widgetsTmp = []
+        def widgetTmp
+        def i18nParams = ['label', 'header', 'placeholder']
+
+        widgets.each{ widget ->
+            widgetTmp = [:]
+            widget.each{ key, value ->
+                if(key != 'attrs')
+                    widgetTmp[key] = value
+                else{
+                    widgetTmp['attrs'] = [:]
+
+                    value.each{
+                        if(i18nParams.contains(it.key) && it.value.getClass() == LinkedHashMap){
+                            widgetTmp['attrs'][it.key] = it.value[locale.language]
+                        }
+                        else {
+                            widgetTmp['attrs'][it.key] = it.value
+                        }
+                    }
+                }
+            }
+            widgetsTmp.push(widgetTmp)
+        }
+
+        return widgetsTmp
+    }
 }

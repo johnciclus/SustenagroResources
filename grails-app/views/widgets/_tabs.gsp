@@ -3,8 +3,13 @@
         <g:each var="tab" in="${tabs}">
             <g:render template="/widgets/tab" model="${tab.value.attrs}" />
         </g:each>
+
         <g:if test="${submitTopButton}">
             <g:render template="/widgets/submitTopButton" model="[label: submitTopLabel]" />
+        </g:if>
+
+        <g:if test="${saveTopButton}">
+            <g:render template="/widgets/saveTopButton" model="[label: saveTopLabel]" />
         </g:if>
     </ul>
 
@@ -17,25 +22,27 @@
                     </g:each>
                 </g:if>
                 <div>
-                    <nav>
-                        <ul class="pager">
-                            <g:if test="${tab.value.attrs.initialPagLabel}">
-                                <li><a href="#<%=tab.value.attrs.initialPag%>"><%=tab.value.attrs.initialPagLabel%></a></li>
-                            </g:if>
-                            <g:if test="${tab.value.attrs.previous}">
-                                <li><a href="#<%=tab.value.attrs.previous%>"><%=tab.value.attrs.previousLabel%></a></li>
-                            </g:if>
-                            <g:if test="${tab.value.attrs.next}">
-                                <li><a href="#<%=tab.value.attrs.next%>"><%=tab.value.attrs.nextLabel%></a></li>
-                            </g:if>
-                            <g:if test="${tab.value.attrs.finalPagLabel}">
-                                <li><a href="#<%=tab.value.attrs.finalPag%>"><%=tab.value.attrs.finalPagLabel%></a></li>
-                            </g:if>
-                            <g:if test="${tab.value.attrs.submitLabel}">
-                                <g:render template="/widgets/submit" model="[value: tab.value.attrs.submitLabel]"/>
-                            </g:if>
-                        </ul>
-                    </nav>
+                    <g:if test="${pagination}">
+                        <nav>
+                            <ul class="pager">
+                                <g:if test="${tab.value.attrs.initialPagLabel}">
+                                    <li><a href="#<%=tab.value.attrs.initialPag%>"><g:message code="default.paginate.prev" /></a></li>
+                                </g:if>
+                                <g:if test="${tab.value.attrs.previous}">
+                                    <li><a href="#<%=tab.value.attrs.previous%>"><g:message code="default.paginate.prev" /></a></li>
+                                </g:if>
+                                <g:if test="${tab.value.attrs.next}">
+                                    <li><a href="#<%=tab.value.attrs.next%>"><g:message code="default.paginate.next" /></a></li>
+                                </g:if>
+                                <g:if test="${tab.value.attrs.finalPagLabel}">
+                                    <li><a href="#<%=tab.value.attrs.finalPag%>"><g:message code="default.paginate.next" /></a></li>
+                                </g:if>
+                                <g:if test="${tab.value.attrs.submitLabel}">
+                                    <g:render template="/widgets/submit" model="[value: tab.value.attrs.submitLabel]"/>
+                                </g:if>
+                            </ul>
+                        </nav>
+                    </g:if>
                 </div>
             </div>
         </g:each>

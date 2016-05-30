@@ -133,11 +133,15 @@ class Node {
     def getMap(String args){
         def sparql = "<$URI> :appliedTo ?evalobj. " +
                      "?evalobj ui:hasMicroregion ?microregion. " +
-                     "?microregion rdfs:label ?label. "+
+                     "optional{ ?microregion rdfs:label ?label. } "+
                      "?microregion <http://dbpedia.org/property/pt/mapa> ?map."
         def result = k.select('distinct '+args).query(sparql)
 
         return (result.size()==1)? result[0] : result
+    }
+
+    def getIndividualsLabel(String property) {
+        k.query("?id $property <$URI>; rdfs:label ?label. FILTER ( ?id != <$URI> )")
     }
 
     def getLabelDescription(String property) {
@@ -229,7 +233,15 @@ class Node {
                 "?id ui:dataValue ?dataValue. "+
                 "FILTER(?category != <http://purl.org/biodiv/semanticUI#Categorical>)"
 
-        k.select('distinct ?category ?id ?label ?dataValue').query(query, "ORDER BY ?dataValue")
+        result = k.select('distinct ?category ?id ?label ?dataValue').query(query, "ORDER BY ?dataValue")
+
+        result.metaClass.capitalizeLabels = {
+            delegate.each{
+                it.label = it.label.capitalize()
+            }
+        }
+
+        result
     }
 
     def getWeightIndividuals(){
@@ -249,7 +261,15 @@ class Node {
                 "?id rdfs:label ?label. "+
                 "?id ui:asNumber ?dataValue. "
 
-        k.select('distinct ?id ?label ?dataValue').query(query, "ORDER BY ?label")
+        result = k.select('distinct ?id ?label ?dataValue').query(query, "ORDER BY ?label")
+
+        result.metaClass.capitalizeLabels = {
+            delegate.each{
+                it.label = it.label.capitalize()
+            }
+        }
+
+        result
     }
 
     def getCollectionIndividualsTypes(){
@@ -913,11 +933,13 @@ class Node {
         def analysisId = k.toURI("inds:"+id)
         String sparql = ''
         String featureId = ''
+        String indsBase = k.toURI('inds:')
+        String domainBase = k.toURI(':')
 
         individuals.each{ individual ->
             individual.value.each{ list ->
                 list.each{ item ->
-                    featureId = individual.key+'-'+item.key+'-'+id
+                    featureId = (individual.key+'-'+item.key+'-'+id).replace(domainBase, indsBase)
                     sparql += "<" + featureId +"> rdf:type <" + individual.key + ">. "
                     sparql += "<" + featureId +"> dc:isPartOf <" + analysisId + ">. "
                     sparql += "<" + analysisId + "> dc:hasPart <" + featureId +">. "
@@ -925,6 +947,8 @@ class Node {
                 }
             }
         }
+
+        println sparql
 
         k.insert(sparql)
     }
@@ -1048,6 +1072,10 @@ class Node {
     def deleteAnalysis(String id){
         def uri = k.toURI('inds:'+id)
         k.delete("?s ?p1 <$uri>. <$uri> ?p2 ?o.")
+    }
+
+    def deleteBaseOntology(){
+        k.delete("?s ?p ?o. filter(!STRSTARTS(STR(?s), 'http://semantic.icmc.usp.br/individuals#') || isBlank(?s) )", "{?s ?p ?o }")
     }
 
     def propertyToList = {ArrayList source, String property ->

@@ -3,11 +3,14 @@ import org.pegdown.PegDownProcessor
 import semantics.Know
 import dsl.DSL
 import dsl.GUIDSL
-import org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext
+import org.springframework.web.servlet.i18n.SessionLocaleResolver
+
 beans = {
-    //ontology(Ontology, 'ontology/SustenAgroRDF.rdf')
-    lang(String, 'pt')
-    path(String, '/www/sustenagro/')
+    localeResolver(SessionLocaleResolver) {
+        defaultLocale = new Locale("pt")
+        java.util.Locale.setDefault(defaultLocale)
+    }
+    path(String, '/www/sustenagro/src/main/webapp/')
     slugify(Slugify)
     md(PegDownProcessor)
     k(Know, 'http://172.17.0.1:9999/blazegraph/namespace/kb/sparql')

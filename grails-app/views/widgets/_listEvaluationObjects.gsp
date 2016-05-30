@@ -1,6 +1,6 @@
 <form id='selectEvaluationObject' action="/tool/selectEvaluationObject" method="post" class="form-horizontal" >
     <div class="form-group required">
-        <label for="evaluation_object_id" class="col-sm-4 control-label">${label}</label>
+        <label for="evaluation_object_id" class="col-sm-4 control-label"><g:message code="label.productionUnit" /></label>
         <div class="col-sm-6">
             <select id="evaluation_object_id" name="evaluation_object_id" class="form-control" required>
                 <g:if test="${!id}">
@@ -12,12 +12,14 @@
             </select>
         </div>
     </div>
-    <g:if test="${id}">
-        <div id="evaluation_object_container">
+    <div id="evaluation_object_container">
 
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12 text-center">
+            <g:render template="/widgets/submit" model="[value: g.message(['code': 'default.form.newAnalisys'])]" />
         </div>
-    </g:if>
-    <g:render template="/widgets/formGroup" model="[widgetName: 'submit', widgetClass: 'col-sm-12 text-center', model: [value: submitLabel]]"/>
+    </div>
 </form>
 
 <div id="analyses_form_container" class="section">

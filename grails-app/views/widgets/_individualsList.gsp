@@ -5,8 +5,8 @@
         <div class="row">
             <label class="col-sm-8 control-label">${feature.value.label}</label>
             <div class="col-sm-4 text-right">
-                <button id="<%= feature.value.id + '-justify' %>" type="button" class="btn btn-default justify btn-xs"><span class="glyphicon glyphicon-pencil">Justificativa</span></button>
-                <g:render template="/widgets/clearButton" model="[id: feature.value.id, label: 'Apagar', widgetClass: 'btn-xs']"/>
+                <button id="<%= feature.value.id + '-justify' %>" type="button" class="btn btn-default justify btn-xs"><span class="glyphicon glyphicon-pencil"><g:message code="label.justification" /></span></button>
+                <g:render template="/widgets/clearButton" model="[id: feature.value.id, label: g.message(code: 'label.clean'), widgetClass: 'btn-xs']"/>
             </div>
         </div>
         <g:set var="hasValue" value="${values[feature.value.id] != null && values[feature.value.id].value}" />
@@ -24,8 +24,24 @@
                 <input type="text" class="form-control" name="${feature.value.id}" value="${values[feature.value.id]}">
             </g:elseif>
         </div>
+        <g:if test="${feature.value.weightIndividuals}">
+            <g:set var="hasWeight" value="${values[feature.value.id] != null && values[feature.value.id].weight}" />
+            <div class="row">
+                <label for="<%= feature.value.id + '-weight' %>" class="col-sm-6 control-label weight-label"><%= feature.value.weightLabel %></label>
+                <div class="col-sm-6 text-right">
+                    <select id="<%= feature.value.id + '-weight' %>" name="<%= feature.value.id + '-weight' %>" class="form-control">
+
+                        <option selected disabled hidden value=''></option>
+
+                        <g:each var="option" in="${feature.value.weightIndividuals}">
+                            <option value="${option.id}" <g:if test="${hasWeight && values[feature.value.id].weight == option.id}"> selected </g:if> >${option.label}</option>
+                        </g:each>
+                    </select>
+                </div>
+            </div>
+        </g:if>
         <div class="row hidden">
-            <label for="<%= feature.value.id + '-justification' %>" class="col-sm-4 control-label weight-label">Justificativa</label>
+            <label for="<%= feature.value.id + '-justification' %>" class="col-sm-4 control-label weight-label"><g:message code="label.justification" /></label>
             <div class="col-sm-8 text-right">
                 <g:set var="hasJustification" value="${values[feature.value.id] != null && values[feature.value.id].justification}" />
                 <g:if test="${hasJustification}">
@@ -34,24 +50,8 @@
                 <g:else>
                     <g:set var="text" value="" />
                 </g:else>
-                <g:render template="/widgets/textArea" model="[id: feature.value.id + '-justification', text: text, placeholder: 'Justificativa']"/>
+                <g:render template="/widgets/textArea" model="[id: feature.value.id + '-justification', text: text, placeholder: g.message(code: 'label.justification')]"/>
             </div>
         </div>
-        <g:if test="${feature.value.weightIndividuals}">
-            <g:set var="hasWeight" value="${values[feature.value.id] != null && values[feature.value.id].weight}" />
-            <div class="row">
-                <label for="<%= feature.value.id + '-weight' %>" class="col-sm-6 control-label weight-label"><%= feature.value.weightLabel %></label>
-                <div class="col-sm-6 text-right">
-                    <select id="<%= feature.value.id + '-weight' %>" name="<%= feature.value.id + '-weight' %>" class="form-control clear">
-                        <g:if test="${hasWeight == false}">
-                            <option selected disabled hidden value=''></option>
-                        </g:if>
-                        <g:each var="option" in="${feature.value.weightIndividuals}">
-                            <option value="${option.id}" <g:if test="${hasWeight && values[feature.value.id].weight == option.id}"> selected </g:if> >${option.label}</option>
-                        </g:each>
-                    </select>
-                </div>
-            </div>
-        </g:if>
     </div>
 </g:each>

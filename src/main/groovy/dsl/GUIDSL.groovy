@@ -11,18 +11,19 @@ import utils.Uri
  * Created by john on 26/02/16.
  */
 class GUIDSL {
-    private def _shell
-    private def _sandbox
-    private def _script
-    private def _ctx
-    private def _k
-    private def _widgetAttrs
-    private def contanst
-    private def _controller
-    private def _action
+    private _shell
+    private _sandbox
+    private _script
+    private _ctx
+    private _k
+    private _widgetAttrs
+    private contanst
+    private _controller
+    private _action
     private static _md
-    private def viewsMap
-    private def dataTypeToWidget
+    private _msg
+    private viewsMap
+    private dataTypeToWidget
 
     def _props = [:]
 
@@ -31,6 +32,7 @@ class GUIDSL {
         _ctx = applicationContext
         _k = _ctx.getBean('k')
         _md = _ctx.getBean('md')
+        _msg = _ctx.getBean('messageSource')
 
         dataTypeToWidget = [:]
         _widgetAttrs = [:]
@@ -43,7 +45,7 @@ class GUIDSL {
         viewsMap['tool'] = [:]
         viewsMap['tool']['index'] = []
         viewsMap['tool']['analysis'] = []
-        viewsMap['tool']['scenario'] = []
+        viewsMap['tool']['inputFeatures'] = []
         viewsMap['user'] = [:]
         viewsMap['user']['signup'] = []
 
@@ -63,7 +65,8 @@ class GUIDSL {
 
         //_script = (DelegatingScript) _shell.parse(new File(filename).text)
         //println new File(_ctx.getBean('path')+filename).toString()
-        _script = (DelegatingScript) _shell.parse(new File(_ctx.getBean('path')+filename).text)
+
+        _script = (DelegatingScript) _shell.parse(_ctx.getResource(filename).file)
         _script.setDelegate(this)
 
         // Run DSL script.
@@ -86,7 +89,7 @@ class GUIDSL {
         viewsMap['tool'] = [:]
         viewsMap['tool']['index'] = []
         viewsMap['tool']['analysis'] = []
-        viewsMap['tool']['scenario'] = []
+        viewsMap['tool']['inputFeatures'] = []
         viewsMap['user'] = [:]
         viewsMap['user']['signup'] = []
 
@@ -170,7 +173,7 @@ class GUIDSL {
     }
 
     def listEvaluationObjects(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
-        def defaultAttrs =  _widgetAttrs['listEvaluationObjects']
+        def defaultAttrs =  [:]
         def evaluationObjects = _k['inds:'+attrs.userId].getEvaluationObjectsIdLabel() //_k['ui:EvaluationObject'].getIndividualsIdLabel()
 
         defaultAttrs.each{key, value->
@@ -195,16 +198,10 @@ class GUIDSL {
     }
 
     def createEvaluationObject(Map attrs = [:], ArrayList widgets = [], ArrayList view = viewsMap[_controller][_action]){
-        def defaultAttrs =  _widgetAttrs['createEvaluationObject']
-        def request        = [:]
+        def request         = [:]
 
-        defaultAttrs.each{key, value->
-            if(!attrs.containsKey(key))
-                attrs[key] = value
-        }
-
-        request['widgets']    = [:]
-        attrs['widgets']      = [:]
+        request['widgets']  = [:]
+        attrs['widgets']    = [:]
 
         widgets.each{
             if(it.request) {
@@ -214,7 +211,10 @@ class GUIDSL {
         }
 
         request.widgets.each{ key, arg ->
-            attrs.widgets[key]['attrs']['data'] = _k[arg[1]].getLabelDescription(arg[0].toString())
+            println arg[1]
+            println arg[0]
+            attrs.widgets[key]['attrs']['data'] = _k[arg[1]].getIndividualsLabel(arg[0].toString())
+            println attrs.widgets[key]['attrs']['data']
         }
 
         //Uri.printTree(attrs)
@@ -280,8 +280,8 @@ class GUIDSL {
         def defaultAttrs = _widgetAttrs['tabs']
         def attrs = [:]
         def tab_prefix = 'tab_'
-        def activeTab = extAttrs.activeTab ? extAttrs.activeTab : tab_prefix+'0'
-        def pre = extAttrs.id ?  extAttrs.id+'_' : ''
+        def activeTab = extAttrs.containsKey('activeTab') ? extAttrs.activeTab : tab_prefix+'0'
+        def pre = extAttrs.containsKey('id') ?  extAttrs.id+'_' : ''
 
         attrs['id'] = pre + 'tabs'
         attrs['tabs'] = [:]
@@ -311,26 +311,28 @@ class GUIDSL {
             }
         }
 
-        attrs['submitTopButton'] = extAttrs['submitTopButton'] ? extAttrs['submitTopButton'] :  defaultAttrs['submitTopButton']
-        attrs['submitTopLabel'] = extAttrs['submitTopLabel'] ? extAttrs['submitTopLabel'] :  defaultAttrs['submitTopLabel']
+        attrs['submitTopButton'] = extAttrs.containsKey('submitTopButton') ? extAttrs['submitTopButton'] :  defaultAttrs['submitTopButton']
+        attrs['submitTopLabel'] = extAttrs.containsKey('submitTopLabel') ? extAttrs['submitTopLabel'] :  defaultAttrs['submitTopLabel']
+        attrs['saveTopButton'] = extAttrs.containsKey('saveTopButton') ? extAttrs['saveTopButton'] :  defaultAttrs['saveTopButton']
+        attrs['saveTopLabel'] = extAttrs.containsKey('saveTopLabel') ? extAttrs['saveTopLabel'] :  defaultAttrs['saveTopLabel']
 
         //Uri.printTree(attrs)
         if(attrs['tabs'][activeTab]) {
             attrs['tabs'][activeTab].attrs['widgetClass'] = 'active'
 
-            def pagination = extAttrs.containsKey('pagination') ? extAttrs.pagination : defaultAttrs.pagination
+            attrs['pagination'] = extAttrs.containsKey('pagination') ? extAttrs['pagination'] : defaultAttrs['pagination']
 
-            if (pagination) {
-                if (extAttrs['initialPag']){
+            if (attrs['pagination']) {
+                if (extAttrs.containsKey('initialPag')){
                     attrs['tabs'][tab_prefix + '0'].attrs['initialPag'] = extAttrs['initialPag']
                     attrs['tabs'][tab_prefix + '0'].attrs['initialPagLabel'] = extAttrs['initialPagLabel']
                 }
-                if (extAttrs['finalPag']){
+                if (extAttrs.containsKey('finalPag')){
                     attrs['tabs'][tab_prefix + (widgets.size() - 1)].attrs['finalPag'] = extAttrs['finalPag']
                     attrs['tabs'][tab_prefix + (widgets.size() - 1)].attrs['finalPagLabel'] = extAttrs['finalPagLabel']
                 }
-                if (extAttrs['submit'])
-                    attrs['tabs'][tab_prefix + (widgets.size() - 1)].attrs['submitLabel'] = extAttrs['submitLabel'] ? extAttrs['submitLabel'] : defaultAttrs['submitLabel']
+                if (extAttrs.containsKey('submit'))
+                    attrs['tabs'][tab_prefix + (widgets.size() - 1)].attrs['submitLabel'] = extAttrs.containsKey('submitLabel') ? extAttrs['submitLabel'] : defaultAttrs['submitLabel']
 
                 attrs['tabs'].eachWithIndex { tab, int i ->
                     if (i > 0) {
@@ -384,7 +386,7 @@ class GUIDSL {
     }
 
     def navBarRoute(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
-        def attributes = _widgetAttrs['navBarRoute'].clone()
+        def attributes = [:]
         def roles = _k['inds:'+attrs.username].getAttr('hasRole')
         def users = [:]
         def evaluationObjects = [:]
@@ -548,7 +550,7 @@ class GUIDSL {
     def renderView(String name){
         _sandbox.register()
         //        _script = (DelegatingScript) _shell.parse(new File("dsl/views/${name}.groovy").text)
-        _script = (DelegatingScript) _shell.parse(new File(_ctx.getBean('path')+"dsl/views/${name}.groovy").text)
+        _script = (DelegatingScript) _shell.parse(_ctx.getResource("dsl/views/${name}.groovy").file)
         _script.setDelegate(this)
 
         try {
@@ -583,6 +585,10 @@ class GUIDSL {
             widgetsList << name.substring(1, name.lastIndexOf('.'))
         }
         return widgetsList
+    }
+
+    def message(String code){
+        _msg.getMessage(code, null, java.util.Locale.getDefault())
     }
 
     static _toHTML(String txt) {_md.markdownToHtml(txt)}
