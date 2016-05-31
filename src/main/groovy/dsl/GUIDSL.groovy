@@ -66,7 +66,7 @@ class GUIDSL {
         //_script = (DelegatingScript) _shell.parse(new File(filename).text)
         //println new File(_ctx.getBean('path')+filename).toString()
 
-        _script = (DelegatingScript) _shell.parse(_ctx.getResource(filename).file)
+        _script = (DelegatingScript) _shell.parse(new File(_ctx.getBean('path')+filename))
         _script.setDelegate(this)
 
         // Run DSL script.
@@ -550,7 +550,7 @@ class GUIDSL {
     def renderView(String name){
         _sandbox.register()
         //        _script = (DelegatingScript) _shell.parse(new File("dsl/views/${name}.groovy").text)
-        _script = (DelegatingScript) _shell.parse(_ctx.getResource("dsl/views/${name}.groovy").file)
+        _script = (DelegatingScript) _shell.parse(new File(_ctx.getBean('path')+"dsl/views/${name}.groovy").file)
         _script.setDelegate(this)
 
         try {
@@ -577,6 +577,7 @@ class GUIDSL {
 
     def getWidgetsNames(){
         def dir = new File(_ctx.getBean('path')+"views/widgets/")
+        //_ctx.getResource(filename).file
         def widgetsList = []
         def name
 

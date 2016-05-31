@@ -11,46 +11,54 @@
 <div class="row">
     <div class="col-md-3 col-sm-3">
         <p class="title">Views</p>
-        <div id="viewsList" class="btn-group-vertical" role="group" aria-label="viewsList">
-            <button type="button" class="btn btn-default">1</button>
-            <button type="button" class="btn btn-default">2</button>
-        </div>
         <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
+            <g:each in="${viewNames}">
+                <a href="#<%=it%>" class="list-group-item viewlink"><%=it.capitalize()%></a>
+            </g:each>
         </ul>
     </div>
 
     <div class="col-md-9 col-sm-9">
-        <pre id="viewsEditor" class="ace_editor editor ace-tm">${views}</pre>
+        <pre id="viewsEditor" class="ace_editor editor ace-tm"></pre>
     </div>
 
     <script type="application/javascript">
-        var viewsEditor = ace.edit("viewsEditor");
-        viewsEditor.setTheme("ace/theme/chrome");
-        viewsEditor.getSession().setMode("ace/mode/groovy");
-        viewsEditor.setOption("showPrintMargin", false);
-        document.getElementById('viewsEditor').style.fontSize='14px';
+        $( document ).ready(function() {
+            var viewsEditor = ace.edit("viewsEditor");
+            viewsEditor.setTheme("ace/theme/chrome");
+            viewsEditor.getSession().setMode("ace/mode/groovy");
+            viewsEditor.setOption("showPrintMargin", false);
+            viewsEditor.$blockScrolling = Infinity;
 
-        $( "#view_form" ).submit(function( event ) {
-            $.post(
-                    $(this).attr('action'),
-                    {'views':  viewsEditor.getValue() },
-                    function( data ) {
-                        var res = $(data);
-                        var status = res.find("entry[key='status']");
-                        if(status.text() =='ok'){
-                            $('#view_form button').removeClass('btn-primary').addClass('btn-success');
-                            setTimeout(function(){
-                                $('#view_form button').removeClass('btn-success').addClass('btn-primary');
-                            }, 1000);
+            document.getElementById('viewsEditor').style.fontSize = '14px';
+
+            $("#view_form").submit(function (event) {
+                $.post(
+                        $(this).attr('action'),
+                        {'views': viewsEditor.getValue()},
+                        function (data) {
+                            var res = $(data);
+                            var status = res.find("entry[key='status']");
+                            if (status.text() == 'ok') {
+                                $('#view_form button').removeClass('btn-primary').addClass('btn-success');
+                                setTimeout(function () {
+                                    $('#view_form button').removeClass('btn-success').addClass('btn-primary');
+                                }, 1000);
+                            }
                         }
+                );
+                event.preventDefault();
+            });
+
+            $('.viewlink').click(function(){
+                $.post( '/admin/getView',
+                    {'id': $(this).attr('href').substring(1)},
+                    function (data) {
+                        viewsEditor.setValue(data, -1);
                     }
-            );
-            event.preventDefault();
+                );
+                event.preventDefault();
+            });
         });
     </script>
 </div>

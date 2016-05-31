@@ -55,7 +55,7 @@ class DSL {
         //println _ctx.getBean('path')
         //println new File(_ctx.getBean('path')+filename).toString()
 
-        _script = (DelegatingScript) _shell.parse(_ctx.getResource(filename).file)
+        _script = (DelegatingScript) _shell.parse(new File(_ctx.getBean('path')+filename))
         _script.setDelegate(this)
 
         // Run DSL script.

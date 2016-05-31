@@ -8,6 +8,7 @@ import grails.plugin.springsecurity.annotation.Secured
 import yaml.Yaml2Owl
 import groovyx.net.http.RESTClient
 
+
 @Secured('ROLE_ADMIN')
 class AdminController {
 
@@ -21,9 +22,8 @@ class AdminController {
         def ctx = grailsApplication.mainContext
         def indicators = k[':Indicator'].getIndicators()
         def dimensions = k[':Indicator'].getDimensions()
-        def viewFiles = []
+        def viewNames = []
 
-        //println path
         /*
         println indicators
         println dimensions
@@ -36,22 +36,23 @@ class AdminController {
                 }
             }
         }*/
-        //Uri.simpleDomain(indicators, "http://bio.icmc.usp.br/sustenagro#", '')
-        //Uri.simpleDomain(dimensions, "http://bio.icmc.usp.br/sustenagro#", '')
 
-        def resources = ctx.getResources('views/widgets/')
+        servletContext.getResourcePaths('/dsl/views/').each{
+            viewNames.push(it.substring(it.lastIndexOf('/')+1, it.indexOf('.groovy')))
+        }
 
-        println resources.toList()
+        println servletContext.getContextPath()
 
         OutputStream out = new ByteArrayOutputStream()
         //ontology.getManager().saveOntology(ontology.getOntology(), new ManchesterSyntaxDocumentFormat(), out)
         //println new File(path+'dsl/dsl.groovy')
         //println new File(path+'dsl/gui.groovy')
 
-        render(view: actionName, model: [dsl_code: ctx.getResource('dsl/dsl.groovy').file.text,
-                                         gui_code: ctx.getResource('dsl/gui.groovy').file.text,
-                                         views: ctx.getResource('dsl/views/analysis.groovy').file.text,
-                                         ontology: ctx.getResource('ontology/sustenagro.yaml').file.text,
+        render(view: actionName, model: [dsl_code: new File(path+'dsl/dsl.groovy').text,
+                                         gui_code: new File(path+'dsl/gui.groovy').text,
+                                         //views: new File(path+'dsl/views/analysis.groovy').text,
+                                         ontology: new File(path+'ontology/sustenagro.yaml').text,
+                                         viewNames: viewNames,
                                          indicators: indicators,
                                          dimensions: dimensions])
     }
@@ -67,7 +68,7 @@ class AdminController {
         //println params['ontology']
 
         // Save yaml file
-        File yamlFile = ctx.getResource('ontology/sustenagro.yaml').file
+        File yamlFile = new File(path+'ontology/sustenagro.yaml')
         yamlFile.write(params['ontology'],'utf-8')
 
 
@@ -205,6 +206,19 @@ class AdminController {
         //def response = gui.reload(file.text)
 
         redirect(action: 'index')
+    }
+
+    def getView(){
+        def ctx = grailsApplication.mainContext
+        def code = null
+
+        if(params.id){
+            def file = ctx.getResource('dsl/views/'+params.id+'.groovy').file
+            if(file.exists()){
+                code = file.text
+            }
+        }
+        render code
     }
 
     def updateIndicator(){

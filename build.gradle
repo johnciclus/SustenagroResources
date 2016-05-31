@@ -81,7 +81,7 @@ dependencies {
     compile 'org.kohsuke:groovy-sandbox:1.10'
 
     //To read YAML to OWL:
-    //compile 'org.codehaus.groovy:groovy-all:2.4.3'
+    compile 'org.codehaus.groovy:groovy-all:2.4.6'
     compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7'
     compile 'net.sourceforge.owlapi:owlapi-distribution:3.4.10'
     //compile 'org.yaml:snakeyaml:1.17'
