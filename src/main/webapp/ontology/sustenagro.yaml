@@ -17,14 +17,14 @@ ontology: http://semantic.icmc.usp.br/sustenagro#
 #includes:
 #  - SemanticUI.yaml
 
-imports:
-  - prefix: ui
-    file: SemanticUI.yaml #http://purl.org/biodiv/semanticUI#
-
-#OWLImports:
+#imports:
 #  - prefix: ui
-#    uri: http://purl.org/biodiv/semanticUI#
-#    file: SemanticUI.rdf
+#    file: SemanticUI.yaml #http://purl.org/biodiv/semanticUI#
+
+OWLImports:
+  - prefix: ui
+    uri: http://purl.org/biodiv/semanticUI#
+    file: SemanticUI.rdf
 
 prefix:
   dbp: http://dbpedia.org/ontology/

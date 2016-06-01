@@ -1,10 +1,11 @@
 <div class="row">
     <div class="col-md-12">
         <form id="view_form" action="/admin/views" method="post" class="form-inline-block pull-right" role="form">
-            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Salvar </button>
+            <input name="view" type="hidden" value="">
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Save </button>
         </form>
         <form id="reset_view_form" action="/admin/viewsReset" method="post" class="form-inline-block pull-right" role="form">
-            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Restaurar </button>
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Restore </button>
         </form>
     </div>
 </div>
@@ -35,7 +36,8 @@
             $("#view_form").submit(function (event) {
                 $.post(
                         $(this).attr('action'),
-                        {'views': viewsEditor.getValue()},
+                        {   'id': $("input[name='view']").attr('value'),
+                            'code': viewsEditor.getValue()},
                         function (data) {
                             var res = $(data);
                             var status = res.find("entry[key='status']");
@@ -51,10 +53,12 @@
             });
 
             $('.viewlink').click(function(){
+                var viewName = $(this).attr('href').substring(1);
                 $.post( '/admin/getView',
-                    {'id': $(this).attr('href').substring(1)},
+                    {'id': viewName},
                     function (data) {
                         viewsEditor.setValue(data, -1);
+                        $("input[name='view']").attr('value', viewName);
                     }
                 );
                 event.preventDefault();

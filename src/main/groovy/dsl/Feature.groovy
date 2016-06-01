@@ -135,7 +135,7 @@ class Feature {
     def getIndividuals(){
         def individuals = [:]
 
-        Uri.printTree(_conditional)
+        //Uri.printTree(_conditional)
 
         _model.subClass.each{ subClassKey, subClass ->
             subClass.subClass.each{

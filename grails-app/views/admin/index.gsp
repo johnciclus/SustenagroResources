@@ -19,7 +19,7 @@
                         <li><a data-toggle="tab" href="#dsl">DSL SustenAgro</a></li>
                         <li><a data-toggle="tab" href="#gui">DSL UI</a></li>
                         <li><a data-toggle="tab" href="#views">Views</a></li>
-                        <li><a data-toggle="tab" href="#localization">Localization</a></li>
+                        <li><a data-toggle="tab" href="#internationalization">Internationalization</a></li>
                     </ul>
                     <div class="btn-group navbar-btn navbar-right">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -46,8 +46,8 @@
                     <div id="views" class="tab-pane fade">
                         <g:render template="views" />
                     </div>
-                    <div id="localization" class="tab-pane fade">
-                        <g:render template="localization" />
+                    <div id="internationalization" class="tab-pane fade">
+                        <g:render template="internationalization" />
 					</div>
                     <div id="widgets" class="tab-pane fade">
 

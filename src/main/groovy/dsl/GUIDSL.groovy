@@ -66,7 +66,7 @@ class GUIDSL {
         //_script = (DelegatingScript) _shell.parse(new File(filename).text)
         //println new File(_ctx.getBean('path')+filename).toString()
 
-        _script = (DelegatingScript) _shell.parse(new File(_ctx.getBean('path')+filename))
+        _script = (DelegatingScript) _shell.parse(_ctx.getResource(filename).file)
         _script.setDelegate(this)
 
         // Run DSL script.
@@ -211,10 +211,10 @@ class GUIDSL {
         }
 
         request.widgets.each{ key, arg ->
-            println arg[1]
-            println arg[0]
+            //println arg[1]
+            //println arg[0]
             attrs.widgets[key]['attrs']['data'] = _k[arg[1]].getIndividualsLabel(arg[0].toString())
-            println attrs.widgets[key]['attrs']['data']
+            //println attrs.widgets[key]['attrs']['data']
         }
 
         //Uri.printTree(attrs)
@@ -550,7 +550,8 @@ class GUIDSL {
     def renderView(String name){
         _sandbox.register()
         //        _script = (DelegatingScript) _shell.parse(new File("dsl/views/${name}.groovy").text)
-        _script = (DelegatingScript) _shell.parse(new File(_ctx.getBean('path')+"dsl/views/${name}.groovy").file)
+
+        _script = (DelegatingScript) _shell.parse(_ctx.getResource("dsl/views/${name}.groovy").file)
         _script.setDelegate(this)
 
         try {
@@ -576,8 +577,11 @@ class GUIDSL {
     }
 
     def getWidgetsNames(){
-        def dir = new File(_ctx.getBean('path')+"views/widgets/")
-        //_ctx.getResource(filename).file
+        def path = _ctx.servletContext.getRealPath("")
+        def dir = new File(path+"views/widgets/")
+
+        //println _ctx.servletContext.getResourcePaths('/views/widgets/')
+
         def widgetsList = []
         def name
 
