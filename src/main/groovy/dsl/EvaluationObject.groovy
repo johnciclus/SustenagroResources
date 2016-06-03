@@ -44,11 +44,11 @@ class EvaluationObject {
 
         widget = (widget)? widget : 'textForm'
 
+        if(!k[uri].isFunctional() && attrs['multipleSelection'])
+            widget = 'multipleCategoryForm'
+
         if(widget == 'categoryForm')
             attrs['selectType'] = (attrs['multipleSelection'])? 'checkbox' : 'radio'
-
-        if(!k[uri].isFunctional())
-            widget = 'multipleCategoryForm'
 
         model << [id: uri,
                   range: range,

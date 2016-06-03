@@ -370,7 +370,9 @@ SugarcaneQuality:
 
 SugarcaneValueInATR:
   is_a: SugarcaneQuality
-  label: [Sugarcane value in ATR/Hectare (Consider the productivity and quality of sugarcane) @en, Valor da cana em ATR/hectare (considera a produtividade e qualidade da cana) @pt]
+  label: 
+    - Sugarcane value in ATR/Hectare (Consider the productivity and quality of sugarcane) @en 
+    - Valor da cana em ATR/hectare (considera a produtividade e qualidade da cana) @pt
   value:
     - label: [Lowest @en, Menor @pt]
       asNumber: -1.0
@@ -393,7 +395,7 @@ PlanningOfHarvestFront:
       asNumber: 0.0
     - label:
       - Appropriate @en
-      - Apropriado @pt
+      - Adequado @pt
       asNumber: 1.0
     - label:
       - Enhanced @en
@@ -423,11 +425,22 @@ MarketVariable:
     - Variável de mercado @pt
     - Market variable @en
 
-AccessToInternalMarket:
+#AccessToInternalMarket:
+#  is_a: MarketVariable
+#  label:
+#    - Access to the internal market (Etanol) @en
+#    - Acesso ao mercado interno (Etanol) @pt
+#  value:
+#    - label: [No @en, Não @pt]
+#      asNumber: 0.0
+#    - label: [Yes @en, Sim @pt]
+#      asNumber: 1.0
+      
+DomesticDemand:
   is_a: MarketVariable
   label:
-    - Access to the internal market (Etanol) @en
-    - Acesso ao mercado interno (Etanol) @pt
+    - Domestic demand has increased over the previous year @en
+    - Demanda doméstica aumentou em relação ao ano anterior @pt
   value:
     - label: [No @en, Não @pt]
       asNumber: 0.0
@@ -445,25 +458,38 @@ AccessToInternationalMarket:
     - label: [Yes @en, Sim @pt]
       asNumber: 2.0
 
-LocalIncomeGeneration:
+
+PositiveGenerationOfFormalEmployment:
   is_a: MarketVariable
   label:
-    - Geração de renda local @pt
-    - Local income generation @en
+    - Positive generation of formal employment (From the previous period) @en
+    - Geração positiva de emprego formal (em relação ao período anterior) @pt
   value:
-    - label: [Yes @en, Sim @pt]
-      asNumber: 2.0
     - label: [No @en, Não @pt]
       asNumber: 0.0
+    - label: [Yes @en, Sim @pt]
+      asNumber: 2.0
+
+
+#LocalIncomeGeneration:
+#  is_a: MarketVariable
+#  label:
+#    - Geração de renda local @pt
+#    - Local income generation @en
+#  value:
+#    - label: [Yes @en, Sim @pt]
+#      asNumber: 2.0
+#    - label: [No @en, Não @pt]
+#      asNumber: 0.0
 
 LocalIncomeGeneration:
   is_a: MarketVariable
   label:
-    - Geração de renda local @pt
-    - Local income generation @en
+    - Aumento no PIB do município onde está localizada a usina. @pt
+    - Increase in the municipality of GDP where is located the plant. @en
   value:
     - label: [Yes @en, Sim @pt]
-      asNumber: 2.0
+      asNumber: 1.0
     - label: [No @en, Não @pt]
       asNumber: 0.0
 
@@ -549,7 +575,7 @@ PublicPoliciesForSector:
 
 AdherenceToAgricultureProgramLowCarbon:
   is_a: PoliticalVariable
-  label: ["Adesão ao Programa de Agricultura de Baixo Carbono • Programa 1: Recuperação de Pastagens Degradadas; • Programa 2: Integração Lavoura-Pecuária-Floresta (iLPF) e Sistemas Agroflorestais (SAFs); • Programa 3: Sistema Plantio Direto (SPD); • Programa 4: Fixação Biológica de Nitrogênio (FBN); • Programa 5: Florestas Plantadas (matas ciliares e recuperação de APP’s); • Programa 6: Tratamento de Dejetos Animais (resíduos da produção); • Programa 7: Adaptação às Mudanças Climáticas. @pt", "Adherence to agriculture program low carbon @en"]
+  label: ["Adesão ao Programa de Agricultura de Baixo Carbono (pelo menos um dos programas) @pt", "Adherence to agriculture program low carbon @en"]
   value:
     - label:
       - Accession @en
@@ -583,9 +609,11 @@ UseOfMoreEfficientInputs:
     - Use of more efficient inputs @en
     - Uso de insumos mais eficientes @pt
   value:
-    - label: [Yes @en, Sim @pt]
+    - label: [Use agriculture of precision @en, Usa agricultura de precisão @pt]
       asNumber: 2.0
-    - label: [No @en, Não @pt]
+    - label: [Follow good practice guide agricultural @en, Segue manual de boas práticas agrícolas @pt]
+      asNumber: 1.0
+    - label: [No use @en, Não usa @pt]
       asNumber: 0.0
 
 
@@ -614,7 +642,7 @@ SugarcanePlanting:
     - Sugarcane planting @en
   value:
     - label: [Uncontrolled seedling @en, Muda não controlada @pt]
-      asNumber: 0.0
+      asNumber: -1.0
     - label: [With healthy seedling @en, Com muda sadia @pt]
       asNumber: 1.0
     - label: [Muda Pré-brotada (MPB) @pt, Pre-budded seedling @en]
@@ -833,7 +861,7 @@ BagasseAndStrawDestination:
   is_a: TechnologicalEfficiencyInTheIndustrial
   label:
     - Bagasse and straw destination for 2nd generation ethanol production @en
-    - Destinação do bagaço e palha para produção de etanol de 2nd geração @pt
+    - "Destinação mais sustentável do bagaço e palha (Por ex. produção de etanol de 2ª geração, produção de energia, etc) @pt"
   value:
     - label: [Yes @en, Sim @pt]
       asNumber: 1.0
@@ -859,12 +887,12 @@ FiltercakeAndAshesDestination:
 RawMaterialDiversificationWithImprovedInputs:
   is_a: TechnologicalEfficiencyInTheIndustrial
   label:
-    - Diversificação da matéria prima com insumos melhorados @pt
-    - Raw material diversification with improved inputs @en
+    - Diversificação da matéria prima @pt
+    - Raw material diversification @en
   value:
     - label:
       - Use of sugarcane / biomass @en
-      - Uso de cana energia / biomassa @pt
+      - Uso de cana energia / biomassa/ sorgo @pt
       asNumber: 1.0
     - label:
       - Uso de cana convencional @pt
@@ -1672,5 +1700,6 @@ InvestmentsInNewTechnologiesAndIndustrialProcessesWhichContributeACleanerAndSust
     - Investimentos em novas tecnologias e processos industriais que favoreçam uma produção mais limpa e sustentável @pt
   relevance: 2.0
   value: YesNo
+
 
 

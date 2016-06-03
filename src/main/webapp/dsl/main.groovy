@@ -115,7 +115,7 @@ feature ':TechnologicalEfficiencyFeature', {
         include ':TechnologicalEfficiencyInTheField'
     }
     conditional ":ProductionUnit", 'http://dbpedia.org/resource/PhysicalPlant', {
-        include ':TechnologicalEfficiencyInTheIndustrial'
+        include ':TechnologicalEfficiencyInTheField', ':TechnologicalEfficiencyInTheIndustrial' 
     }
 }
 

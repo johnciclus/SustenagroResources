@@ -478,7 +478,7 @@ class ToolController {
             data.push([label: it.objectPropertyLabel.capitalize(), value: it.valueLabel])
         }
 
-        render( template: '/widgets/tableReport', model: [header: [label: g.message(code: 'label.property'), value: g.message(code: 'label.value')], data: data]);
+        render( template: '/widgets/tableReport', model: [header: [label: g.message(code: 'property'), value: g.message(code: 'value')], data: data]);
     }
 
     def analysesView(){

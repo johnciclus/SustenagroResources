@@ -7,36 +7,36 @@
     <body>
         <div class="row main">
             <div class="col-sm-5 col-sm-offset-1 left-content">
-                <h5 class="text-primary page-header"><g:message code="home.sustenagroMethod.title" /></h5>
-                <g:message code="home.sustenagroMethod.content" />
+                <h5 class="text-primary page-header"><g:message code="home.sustenagroMethod" /></h5>
+                <g:message code="home.sustenagroMethodContent" />
 
 
-                <h5 class="text-primary page-header"><g:message code="home.sustenagroLogo.title" /></h5>
+                <h5 class="text-primary page-header"><g:message code="home.sustenagroLogo" /></h5>
                 <asset:image src='logo.png' class="img-centered" width="350" />
 
-                <h5 class="text-primary page-header"><g:message code="home.sustenagroGoal.title" /></h5>
-                <g:message code="home.sustenagroGoal.content" />
+                <h5 class="text-primary page-header"><g:message code="home.sustenagroGoal" /></h5>
+                <g:message code="home.sustenagroGoalContent" />
 
                 <asset:image src='sustainability.png' class="img-centered" width="350" />
 
             </div>
             <div class="col-sm-5 right-content">
-                <h5 class="text-primary page-header"><g:message code="home.sustenagroMethodology.title" /></h5>
-                <g:message code="home.sustenagroMethodology.content" />
+                <h5 class="text-primary page-header"><g:message code="home.sustenagroMethodology" /></h5>
+                <g:message code="home.sustenagroMethodologyContent" />
 
                 <asset:image src='comunity.png' class="img-centered" width="350" />
 
-                <h5 class="text-primary page-header"><g:message code="home.sustenagroDevelopment.title" /></h5>
-                <g:message code="home.sustenagroDevelopment.content" />
+                <h5 class="text-primary page-header"><g:message code="home.sustenagroDevelopment" /></h5>
+                <g:message code="home.sustenagroDevelopmentContent" />
 
-                <p><b><g:message code="home.sustenagroMethodInstitutions.title" /></b></p>
-                <g:message code="home.sustenagroMethodInstitutions.content" />
+                <p><b><g:message code="home.sustenagroMethodInstitutions" /></b></p>
+                <g:message code="home.sustenagroMethodInstitutionsContent" />
 
-                <p><b><g:message code="home.sustenagroSoftwareInstitutions.title" /></b></p>
-                <g:message code="home.sustenagroSoftwareInstitutions.content" />
+                <p><b><g:message code="home.sustenagroSoftwareInstitutions" /></b></p>
+                <g:message code="home.sustenagroSoftwareInstitutionsContent" />
 
-                <h5 class="text-primary page-header"><g:message code="home.sustenagroFinancial.title" /></h5>
-                <p><g:message code="home.sustenagroFinancial.content" /></p>
+                <h5 class="text-primary page-header"><g:message code="home.sustenagroFinancial" /></h5>
+                <p><g:message code="home.sustenagroFinancialContent" /></p>
             </div>
         </div>
     </body>

@@ -39,9 +39,10 @@ class AdminController {
 
     def ontology(){
         def ctx = grailsApplication.mainContext
-        def path = ctx.servletContext.getRealPath("")
+        def path = ctx.servletContext.getRealPath("/")
         def response = [:]
 
+        println path
         // Just reads YAML
         Map yaml = (Map) new Yaml().load((String) params['ontology'])
 
@@ -75,7 +76,7 @@ class AdminController {
 
         node.deleteBaseOntology()
 
-        def endPoint = 'http://localhost:9999/blazegraph/namespace/kb/sparql'
+        def endPoint = 'http://127.0.0.1:9999/blazegraph/namespace/kb/sparql'
 
         def rest = new RESTClient(endPoint)
         //rest.delete([:])
@@ -85,7 +86,7 @@ class AdminController {
                 requestContentType: 'application/xml'
         )
 
-        dsl.reload(ctx.getResource('dsl/dsl.groovy').file.text)
+        dsl.reload(ctx.getResource('dsl/main.groovy').file.text)
 
         //def manager = ontology.getManager()
         //OWLOntology ontologyMan = manager.loadOntologyFromOntologyDocument(new StringDocumentSource(params['ontology']))
@@ -137,7 +138,11 @@ class AdminController {
             if(file.exists())
                 file.write(params['code'],'utf-8')
 
-            response.status = 'ok'
+            if(params['id']=='main')
+                response = dsl.reload(file.text)
+            if(params['id']=='gui'){
+                response = gui.reload(file.text)
+            }
         }
 
         render response as XML
@@ -162,8 +167,8 @@ class AdminController {
 
     def dslReset(){
         def ctx = grailsApplication.mainContext
-        def file = ctx.getResource('dsl/dsl.groovy').file
-        file.write(ctx.getResource('dsl/dsl-backup.groovy').file.text,'utf-8')
+        def file = ctx.getResource('dsl/main.groovy').file
+        file.write(ctx.getResource('dsl/main-backup.groovy').file.text,'utf-8')
 
         def response = dsl.reload(file.text)
 

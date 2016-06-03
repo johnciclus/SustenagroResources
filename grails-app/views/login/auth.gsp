@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3 login">
             <div class="page-header">
-                <h1><g:message code="default.greeting.welcome" />!</h1>
+                <h1><g:message code="greeting.welcome" />!</h1>
             </div>
 
             <g:if test='${flash.message}'>
@@ -20,19 +20,19 @@
             </g:if>
 
             <div>
-                <p><g:message code="user.login.enterData" /></p>
+                <p><g:message code="user.enterData" /></p>
             </div>
 
             <form action='/login/authenticate' method='post' id='loginForm' class='form-horizontal'>
                 <div class="form-group required">
-                    <label for="username" class="col-sm-4 control-label"><g:message code="user.login.username" />:</label>
+                    <label for="username" class="col-sm-4 control-label"><g:message code="user.username" />:</label>
                     <div class="col-sm-8">
                         <input type='text' name='username' id='username' class='form-control' required/>
                     </div>
                 </div>
 
                 <div class="form-group required">
-                    <label for='password' class='col-sm-4 control-label'><g:message code="user.login.password" />:</label>
+                    <label for='password' class='col-sm-4 control-label'><g:message code="user.password" />:</label>
                     <div class="col-sm-8">
                         <input type="password" name='password' id='password' class="form-control" required/>
                     </div>
@@ -41,7 +41,7 @@
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8">
                         <label>
-                            <input type="checkbox" name='remember_me' id='remember_me' <g:if test='${hasCookie}'>checked="checked"</g:if>/><g:message code="user.login.remainConnected" />
+                            <input type="checkbox" name='remember_me' id='remember_me' <g:if test='${hasCookie}'>checked="checked"</g:if>/><g:message code="user.remainConnected" />
                         </label>
                     </div>
                 </div>

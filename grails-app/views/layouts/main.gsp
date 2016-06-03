@@ -45,24 +45,24 @@
                 <ul class="nav navbar-nav">
                     <li <g:if test="${controllerName == null}"> class="active" </g:if> >
                         <a href="/">
-                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> <g:message code="default.navbar.presentation" />
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> <g:message code="navbar.presentation" />
                         </a>
                     </li>
                     <li <g:if test="${controllerName == 'tool'}"> class="active" </g:if> >
                         <a href="/tool/evaluationObject">
-                            <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> <g:message code="default.navbar.assessment" />
+                            <span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> <g:message code="navbar.assessment" />
                         </a>
                     </li>
                     <sec:ifAnyGranted roles="ROLE_ADMIN">
                     <li <g:if test="${controllerName == 'admin'}"> class="active" </g:if>>
                         <a target="_blank" href="/admin">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <g:message code="default.navbar.administration" />
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <g:message code="navbar.administration" />
                         </a>
                     </li>
                     </sec:ifAnyGranted>
                     <li <g:if test="${controllerName == 'contact'}"> class="active" </g:if> >
                         <a href="/home/contact">
-                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <g:message code="default.navbar.contact" />
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <g:message code="navbar.contact" />
                         </a>
                     </li>
                 </ul>
@@ -76,8 +76,8 @@
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a name="en" class="lang" href="/"><g:message code="default.lang.english" /></a></li>
-                                    <li><a name="pt" class="lang" href="/"><g:message code="default.lang.portuguese" /></a></li>
+                                    <li><a name="en" class="lang" href="/"><g:message code="lang.english" /></a></li>
+                                    <li><a name="pt" class="lang" href="/"><g:message code="lang.portuguese" /></a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -85,9 +85,9 @@
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <sec:username/> <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/"><g:message code="default.greeting.welcome"/> <sec:username/></a></li>
+                                    <li><a href="/"><g:message code="greeting.welcome"/> <sec:username/></a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a id="logout" href="/"><g:message code="default.actions.exit"/></a></li>
+                                    <li><a id="logout" href="/"><g:message code="actions.exit"/></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -102,12 +102,12 @@
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a name="en" class="lang" href="/"><g:message code="default.lang.english" /></a></li>
-                                    <li><a name="pt" class="lang" href="/"><g:message code="default.lang.portuguese" /></a></li>
+                                    <li><a name="en" class="lang" href="/"><g:message code="lang.english" /></a></li>
+                                    <li><a name="pt" class="lang" href="/"><g:message code="lang.portuguese" /></a></li>
                                 </ul>
                             </li>
-                            <li class="active"><a href="/login/auth"><g:message code="default.actions.login"/></a></li>
-                            <li><a href="/user/signup"><g:message code="default.actions.signup"/></a>
+                            <li class="active"><a href="/login/auth"><g:message code="actions.login"/></a></li>
+                            <li><a href="/user/signup"><g:message code="actions.signup"/></a>
 
                         </ul>
                     </sec:ifNotLoggedIn>

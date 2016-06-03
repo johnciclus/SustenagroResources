@@ -49,6 +49,10 @@ environments:
 
 ---
 ---
+disable:
+    auto:
+        recompile: false
+
 grails:
     profile: web
     codegen:
@@ -56,6 +60,10 @@ grails:
     spring:
         transactionManagement:
             proxies: false
+    gsp:
+        enable:
+            reload: true
+
 info:
     app:
         name: '@info.app.name@'
