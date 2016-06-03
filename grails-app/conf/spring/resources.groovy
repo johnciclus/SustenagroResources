@@ -10,10 +10,9 @@ beans = {
         defaultLocale = new Locale("pt")
         java.util.Locale.setDefault(defaultLocale)
     }
-    //path(String, '/www/sustenagro/src/main/webapp/')
     slugify(Slugify)
     md(PegDownProcessor)
-    k(Know, 'http://172.17.0.1:9999/blazegraph/namespace/kb/sparql')
+    k(Know, 'http://172.26.188.147:9999/blazegraph/namespace/kb/sparql')
     gui(GUIDSL, 'dsl/gui.groovy', grailsApplication.mainContext)
-    dsl(DSL, 'dsl/dsl.groovy', grailsApplication.mainContext)
+    dsl(DSL, 'dsl/main.groovy', grailsApplication.mainContext)
 }

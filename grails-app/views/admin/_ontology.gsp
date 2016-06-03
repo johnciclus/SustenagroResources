@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-md-12">
         <form id="ontology_form" action="/admin/ontology" method="post" class="form-inline-block pull-right" role="form">
-            <button type="submit" class="btn btn-primary" id="save" data-loading-text="<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> <g:message code="default.form.saving" />...">Salvar</button>
+            <button type="submit" class="btn btn-primary" id="save" data-loading-text="<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> <g:message code="default.form.saving" />..."> Save </button>
         </form>
         <form id="reset_ontology_form" action="/admin/ontologyReset" method="post" class="form-inline-block pull-right" role="form">
-            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Restaurar </button>
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Restore </button>
         </form>
     </div>
 </div>

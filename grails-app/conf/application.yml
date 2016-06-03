@@ -66,8 +66,8 @@ spring:
         template:
             check-template-location: false
 
-#server:
-#    port: 80                                             # The port to listen on
+server:
+    port: 8888                                             # The port to listen on
 
 ---
 grails:

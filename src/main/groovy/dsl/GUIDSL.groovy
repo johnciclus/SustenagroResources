@@ -1,7 +1,7 @@
 package dsl
 
-import groovy.io.FileType
 import org.codehaus.groovy.control.CompilerConfiguration
+import org.grails.io.support.PathMatchingResourcePatternResolver
 import org.kohsuke.groovy.sandbox.SandboxTransformer
 import org.springframework.context.ApplicationContext
 import semantics.DataReader
@@ -577,18 +577,16 @@ class GUIDSL {
     }
 
     def getWidgetsNames(){
-        def path = _ctx.servletContext.getRealPath("")
-        def dir = new File(path+"views/widgets/")
-
-        //println _ctx.servletContext.getResourcePaths('/views/widgets/')
-
+        def patternResolver = new PathMatchingResourcePatternResolver()
+        def resources = patternResolver.getResources('widgets/*.gsp')
         def widgetsList = []
         def name
 
-        dir.eachFileRecurse (FileType.FILES) { file ->
-            name = file.name
+        resources.each {
+            name = it.filename
             widgetsList << name.substring(1, name.lastIndexOf('.'))
         }
+
         return widgetsList
     }
 

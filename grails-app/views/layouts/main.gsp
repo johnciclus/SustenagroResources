@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="platform to support decision making in sustainable agriculture">
     <meta name="author" content="John Gararavito Suárez">
-    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <asset:link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
     <title><g:layoutTitle default="SustenAgro"/></title>
 
-    <asset:stylesheet href="normalize.css"/>
-    <asset:stylesheet href="bootstrap-readable.min.css"/>
-    <asset:stylesheet href="style.css"/>
+    <asset:stylesheet src="normalize.css"/>
+    <asset:stylesheet src="bootstrap-readable.min.css"/>
+    <asset:stylesheet src="style.css"/>
     <asset:javascript src="jquery-1.11.1.min.js"/>
     <asset:javascript src="bootstrap.min.js"/>
 

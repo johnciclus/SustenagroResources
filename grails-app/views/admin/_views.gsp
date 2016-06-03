@@ -10,11 +10,11 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-3 col-sm-3">
+    <div id="viewItems" class="col-md-3 col-sm-3">
         <p class="title">Views</p>
         <ul class="list-group">
             <g:each in="${viewNames}">
-                <a href="#<%=it%>" class="list-group-item viewlink"><%=it.capitalize()%></a>
+                <a href="#<%=it%>" class="list-group-item itemlink"><%=it.capitalize()%></a>
             </g:each>
         </ul>
     </div>
@@ -52,7 +52,7 @@
                 event.preventDefault();
             });
 
-            $('.viewlink').click(function(){
+            $('#viewItems .itemlink').click(function(){
                 var viewName = $(this).attr('href').substring(1);
                 $.post( '/admin/getView',
                     {'id': viewName},

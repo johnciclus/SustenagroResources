@@ -1,6 +1,7 @@
 package sustenagro
 
 import grails.converters.*
+import org.grails.io.support.PathMatchingResourcePatternResolver
 import org.yaml.snakeyaml.Yaml
 import semantics.Node
 import utils.Uri
@@ -19,43 +20,21 @@ class AdminController {
 
     def index(){
         def ctx = grailsApplication.mainContext
-        def indicators = k[':Indicator'].getIndicators()
-        def dimensions = k[':Indicator'].getDimensions()
         def viewNames = []
-
-        /*
-        println indicators
-        println dimensions
-
-        dsl.featureMap.each{ key, fea ->
-            fea.model.subClass.each{ featureKey, feature ->
-                feature.subClass.each{ indKey, ind->
-                    println indKey
-                    println ind
-                }
-            }
-        }*/
-        println 'Path'
-        println ctx.getClass()
-        println grailsApplication.getClass()
-        println servletContext.getClass()
-        println grailsApplication.resources
-
-        //println servletContext.getResourcePaths('messages.properties').file
+        def langNames = ['en': 'English', 'pt': 'Português']
+        def dslNames = ['main', 'gui']
 
         servletContext.getResourcePaths('/dsl/views/').each{
             viewNames.push(it.substring(it.lastIndexOf('/')+1, it.indexOf('.groovy')))
         }
 
-        OutputStream out = new ByteArrayOutputStream()
         //ontology.getManager().saveOntology(ontology.getOntology(), new ManchesterSyntaxDocumentFormat(), out)
 
-        render(view: actionName, model: [dsl_code: ctx.getResource('dsl/dsl.groovy').file.text,
-                                         gui_code: ctx.getResource('dsl/gui.groovy').file.text,
-                                         ontology: ctx.getResource('ontology/sustenagro.yaml').file.text,
+        render(view: actionName, model: [ontology: ctx.getResource('ontology/sustenagro.yaml').file.text,
+                                         dslNames: dslNames,
                                          viewNames: viewNames,
-                                         indicators: indicators,
-                                         dimensions: dimensions])
+                                         langNames: langNames
+                                         ])
     }
 
     def ontology(){
@@ -148,16 +127,37 @@ class AdminController {
         render yaml as JSON
     }
 
-    def dsl(){
+    def dsls(){
         def ctx = grailsApplication.mainContext
-        def response = dsl.reload(params['code'])
 
-        if(response.status == 'ok')
-            ctx.getResource('dsl/dsl.groovy').file.write(params['code'],'utf-8')
+        def response = [:]
+        if(params['code'] && params['id']) {
 
-        //println response
+            def file = ctx.getResource('dsl/'+params['id']+'.groovy').file
+            if(file.exists())
+                file.write(params['code'],'utf-8')
+
+            response.status = 'ok'
+        }
 
         render response as XML
+    }
+
+    def dslsReset(){
+
+    }
+
+    def getDsl(){
+        def ctx = grailsApplication.mainContext
+        def code = ''
+
+        if(params.id){
+            def file = ctx.getResource('dsl/'+params.id+'.groovy').file
+            if(file.exists()){
+                code = file.text
+            }
+        }
+        render code
     }
 
     def dslReset(){
@@ -168,16 +168,6 @@ class AdminController {
         def response = dsl.reload(file.text)
 
         redirect(action: 'index')
-    }
-
-    def gui(){
-        def ctx = grailsApplication.mainContext
-        def response  = gui.reload(params['code'])
-
-        if(response.status == 'ok')
-            ctx.getResource('dsl/gui.groovy').file.write(params['code'],'utf-8')
-
-        render response as XML
     }
 
     def guiReset(){
@@ -192,11 +182,10 @@ class AdminController {
 
     def views(){
         def ctx = grailsApplication.mainContext
-        println 'View'
-        println params['id']
 
         def response = [:]
         if(params['code'] && params['id']) {
+
             def file = ctx.getResource('dsl/views/'+params['id']+'.groovy').file
             if(file.exists())
                 file.write(params['code'],'utf-8')
@@ -219,10 +208,46 @@ class AdminController {
 
     def getView(){
         def ctx = grailsApplication.mainContext
-        def code = null
+        def code = ''
 
         if(params.id){
             def file = ctx.getResource('dsl/views/'+params.id+'.groovy').file
+            if(file.exists()){
+                code = file.text
+            }
+        }
+        render code
+    }
+
+    def langs(){
+        def patternResolver = new PathMatchingResourcePatternResolver()
+        def langNames = ['en': 'English', 'pt': 'Português']
+        def files = ['en': 'messages.properties', 'pt': 'messages_pt.properties']
+        def lang = params['id']
+        def response = [:]
+
+        if(params['code'] && langNames.containsKey(lang)) {
+            def file = patternResolver.getResource(files[lang]).file
+            if(file.exists())
+                file.write(params['code'],'utf-8')
+
+            response.status = 'ok'
+        }
+
+        render response as XML
+    }
+
+    def langsReset(){
+
+    }
+
+    def getLang(){
+        def patternResolver = new PathMatchingResourcePatternResolver()
+        def files = ['en': 'messages.properties', 'pt': 'messages_pt.properties']
+        def code = ''
+
+        if(params.id){
+            def file = patternResolver.getResource(files[params.id]).file
             if(file.exists()){
                 code = file.text
             }

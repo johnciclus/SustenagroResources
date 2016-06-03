@@ -17,14 +17,14 @@ ontology: http://semantic.icmc.usp.br/sustenagro#
 #includes:
 #  - SemanticUI.yaml
 
-#imports:
-#  - prefix: ui
-#    file: SemanticUI.yaml #http://purl.org/biodiv/semanticUI#
-
-OWLImports:
+imports:
   - prefix: ui
-    uri: http://purl.org/biodiv/semanticUI#
-    file: SemanticUI.rdf
+    file: SemanticUI.yaml #http://purl.org/biodiv/semanticUI#
+
+#OWLImports:
+#  - prefix: ui
+#    uri: http://purl.org/biodiv/semanticUI#
+#    file: SemanticUI.rdf
 
 prefix:
   dbp: http://dbpedia.org/ontology/
@@ -200,12 +200,12 @@ ProductionEnvironmentAlignmentCategory:
   label:
     - Production environment alignment @en
     - Alinhamento ao ambiente de produção/produtor @pt
-    
+
 SugarcaneProcessingOptimizationCategory:
   is_a: Categorical
   label:
     - Sugarcane processing optimization @en
-    - Otimização do processamento da cana-de-açucar @pt  
+    - Otimização do processamento da cana-de-açucar @pt
 
 # Constantes
 
@@ -280,7 +280,7 @@ NullOptimization:
   type:  SugarcaneProcessingOptimizationCategory
   label: [Nula @pt, Null @en]
   asNumber: 0.0
-      
+
 DirectOptimization:
   type:  SugarcaneProcessingOptimizationCategory
   label: [Direct @en, Direta @pt]
@@ -352,7 +352,7 @@ ProductionEfficiencyFeature:
   label:
     - Production efficiency @en
     - Eficiência da produção @pt
-    
+
 TechnologicalEfficiencyFeature:
   is_a: Variable
   label:
@@ -1101,7 +1101,11 @@ UseOfBurningInAreasWithHigherSlopeOf12:
     - Use of burning in areas with slope higher than 12% @en
     - Uso de queima em áreas com declive acima de 12% @pt
   relevance: 2.0
-  value: YesNo
+  value:
+    - label: [Yes @en, Sim @pt]
+      asNumber: 0.0
+    - label: [No @en, Não @pt]
+      asNumber: 1.0
 
 UseOfBurningInAreasWithLowerSlopeOf12:
   is_a: HarvestAttribute
@@ -1109,7 +1113,11 @@ UseOfBurningInAreasWithLowerSlopeOf12:
     - Uso de queima em áreas com declive inferior a 12% @pt
     - Use of burning in areas with lower slope of 12% @en
   relevance: 2.0
-  value: YesNo
+  value:
+    - label: [Yes @en, Sim @pt]
+      asNumber: -1.0
+    - label: [No @en, Não @pt]
+      asNumber: 1.0
 
 TrafficControl:
   is_a: HarvestAttribute
@@ -1247,8 +1255,8 @@ AdequateStructureForInstallationOrExpansionOfWaterReuse:
 ItOwnOrGrantsForWaterCatchmentAccordingToCurrentRegulations:
   is_a: WaterAttribute
   label:
-    - It own or grants for water catchment according to current regulations @en
-    - Possui ou outorga para captação de água segundo a norma vigente @pt
+    - It own grants for water catchment according to current regulations @en
+    - Possui outorga para captação de água segundo a norma vigente @pt
   relevance: 2.0
   value: YesNo
 
@@ -1425,7 +1433,11 @@ BiofuelInfrastructureAvailable:
     - Infrastructure available for the production of second and third generation biofuels @en
     - Infraestrutura disponível para produção de biocombustíveis de segunda e terceira geração @pt
   relevance: 2.0
-  value: YesNo
+  value:
+    - label: [Yes @en, Sim @pt]
+      asNumber: 1.0
+    - label: [No @en, Não @pt]
+      asNumber: 0.0
 
 UsesOrInvestestInMoreResistantYeast:
   is_a: IndustrialUnityAttribute
