@@ -389,6 +389,22 @@ class AdminController {
         render list as JSON
     }
 
+    def contact(){
+        gui.setView(controllerName, actionName)
+        dsl.clean(controllerName, actionName)
+        gui.renderXML(actionName)
+
+        render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
+    }
+
+    def signup(){
+        gui.setView(controllerName, actionName)
+        dsl.clean(controllerName, actionName)
+        gui.renderXML(actionName)
+
+        render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
+    }
+
     /*
     def getIndicator(String id){
         k.select("distinct ?valuetype ?label ?dimension ?attribute")

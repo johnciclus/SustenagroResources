@@ -1,0 +1,6 @@
+<view>
+    <pageHeader> <message key='contact'/> </pageHeader>
+    <text> <message key='contact.message'/> </text>
+    <text> <message key='contact.email'/> @embrapa.br </text>
+    <img src='/assets/contact.jpg' widgetClass= 'img-centered' width='480' />
+</view>

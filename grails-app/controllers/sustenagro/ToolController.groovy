@@ -56,8 +56,8 @@ class ToolController {
                 activeTab = 'tab_1'
             }
 
-            dsl.clean(controllerName, actionName)
             gui.setView(controllerName, actionName)
+            dsl.clean(controllerName, actionName)
 
             gui.setData('username', username)
             gui.setData('userId', userId)
@@ -163,8 +163,9 @@ class ToolController {
                     sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
             }
 
-            dsl.clean(controllerName, actionName)
             gui.setView(controllerName, actionName)
+            dsl.clean(controllerName, actionName)
+
             gui.setData('username', username)
             gui.setData('userId', userId)
             gui.setData('evalObjId', evalObjId)
@@ -378,8 +379,9 @@ class ToolController {
                     sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
             }
 
-            dsl.clean(controllerName, actionName)
             gui.setView(controllerName, actionName)
+            dsl.clean(controllerName, actionName)
+
 
             /*
             def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
@@ -558,8 +560,9 @@ class ToolController {
                     sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
             }
 
-            dsl.clean(controllerName, 'analysis')
             gui.setView(controllerName, 'analysis')
+            dsl.clean(controllerName, 'analysis')
+
 
             /*
             def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
