@@ -1,7 +1,7 @@
 package dsl
 
-import groovy.io.FileType
 import org.codehaus.groovy.control.CompilerConfiguration
+import org.grails.io.support.PathMatchingResourcePatternResolver
 import org.kohsuke.groovy.sandbox.SandboxTransformer
 import org.springframework.context.ApplicationContext
 import semantics.DataReader
@@ -128,6 +128,8 @@ class GUIDSL {
         return response
     }
 
+
+
     def dataType(Map attrs = [:], String id){
         def k = _ctx.getBean('k')
         dataTypeToWidget[k.toURI(id)] = attrs['widget']
@@ -211,10 +213,10 @@ class GUIDSL {
         }
 
         request.widgets.each{ key, arg ->
-            println arg[1]
-            println arg[0]
+            //println arg[1]
+            //println arg[0]
             attrs.widgets[key]['attrs']['data'] = _k[arg[1]].getIndividualsLabel(arg[0].toString())
-            println attrs.widgets[key]['attrs']['data']
+            //println attrs.widgets[key]['attrs']['data']
         }
 
         //Uri.printTree(attrs)
@@ -223,7 +225,7 @@ class GUIDSL {
     }
 
     def text(Map attrs = [:], ArrayList view = viewsMap[_controller][_action]){
-        attrs.text = _toHTML(attrs['text'])
+        attrs.text = attrs['text'] ? _toHTML(attrs['text']) : ''
         view.push(['widget': 'text', 'attrs': attrs])
     }
 
@@ -545,11 +547,16 @@ class GUIDSL {
     def setView(String controllerName, String actionName){
         this._controller = controllerName
         this._action = actionName
+        if(!viewsMap[_controller])
+            viewsMap[_controller] = [:]
+        if(!viewsMap[_controller][_action])
+            viewsMap[_controller][_action]=[]
     }
 
     def renderView(String name){
         _sandbox.register()
         //        _script = (DelegatingScript) _shell.parse(new File("dsl/views/${name}.groovy").text)
+
         _script = (DelegatingScript) _shell.parse(_ctx.getResource("dsl/views/${name}.groovy").file)
         _script.setDelegate(this)
 
@@ -575,15 +582,70 @@ class GUIDSL {
         }
     }
 
+    def renderXML(String file){
+        def node = new XmlParser().parse(_ctx.getResource('/dsl/views-markup/'+file+'.xml').file)
+        def widgetWithText = ['text', 'pageHeader', 'div']
+        def widgetContainer = ['form']
+        def name
+        def attributes
+        def text
+        def widgets
+        def tmp
+
+        node.children().each{
+            name = it.name()
+            attributes = it.attributes()
+            widgets = []
+            text = ''
+            //println name
+
+            if(widgetWithText.contains(name)){
+                it.value().each{ subNode ->
+                    if(subNode.getClass() == String)
+                        text += subNode
+                    else if(subNode.getClass() == Node && subNode.name() == 'message'){
+                        text += message(subNode.attribute('key'))
+                    }
+                }
+                attributes['text'] = text
+            }
+            if(widgetContainer.contains(name)){
+                it.value().each{ subNode ->
+                    if(subNode.getClass() == Node){
+                        subNode.value().each{ widget ->
+                            tmp = widget.attributes()
+                            tmp.each{ attr ->
+                                if(attr.value.startsWith('message.key=')){
+                                    attr.value = message(attr.value.substring(12))
+                                }
+                            }
+
+                            widgets.add([widget: subNode.name(), attrs: [widgetName: widget.name(), model: tmp]])
+                        }
+                    }
+                }
+            }
+
+            if(widgetContainer.contains(name))
+                this."$name"(attributes, widgets, viewsMap['admin'][file])
+            else
+                this."$name"(attributes, viewsMap['admin'][file])
+
+        }
+        //Uri.printTree(viewsMap['admin'][file])
+    }
+
     def getWidgetsNames(){
-        def dir = new File(_ctx.getBean('path')+"views/widgets/")
+        def patternResolver = new PathMatchingResourcePatternResolver()
+        def resources = patternResolver.getResources('widgets/*.gsp')
         def widgetsList = []
         def name
 
-        dir.eachFileRecurse (FileType.FILES) { file ->
-            name = file.name
+        resources.each {
+            name = it.filename
             widgetsList << name.substring(1, name.lastIndexOf('.'))
         }
+
         return widgetsList
     }
 

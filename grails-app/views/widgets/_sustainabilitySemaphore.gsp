@@ -1,5 +1,5 @@
 <div class="section">
-    <p><strong><g:message code="sustainabilitySemaphore.title" /></strong></p>
+    <p><strong><g:message code="sustainabilitySemaphore" /></strong></p>
     <div id="semaphoreResult">
 
     </div>

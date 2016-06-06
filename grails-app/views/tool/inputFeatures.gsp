@@ -4,7 +4,9 @@
     <meta name="layout" content="main"/>
     <title>SustenAgro - Tool - Input Features</title>
     <asset:javascript src="jquery.validate.min.js"/>
-    <asset:javascript src="localization/messages_pt_BR.min.js"/>
+    <g:if test="${!session.lang || session.lang=='pt'}">
+        <asset:javascript src="localization/messages_pt_BR.min.js"/>
+    </g:if>
 </head>
 <body>
 <div class="row main">

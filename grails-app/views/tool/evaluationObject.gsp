@@ -6,11 +6,19 @@
 		<asset:stylesheet href="bootstrap-table.min.css"/>
         <asset:stylesheet href="bootstrap-datepicker3.min.css"/>
 		<asset:javascript src="bootstrap-table.min.js"/>
-        <asset:javascript src="locale/bootstrap-table-pt-BR.min.js"/>
         <asset:javascript src="bootstrap-datepicker.min.js"/>
         <asset:javascript src="locales/bootstrap-datepicker.pt-BR.min.js"/>
         <asset:javascript src="jquery.validate.min.js"/>
-        <asset:javascript src="localization/messages_pt_BR.min.js"/>
+
+        <g:if test="${!session.lang || session.lang=='pt'}">
+            <asset:javascript src="locale/bootstrap-table-pt-BR.min.js"/>
+            <asset:javascript src="localization/messages_pt_BR.min.js"/>
+        </g:if>
+        <g:else>
+            <asset:javascript src="locale/bootstrap-table-en-US.min.js"/>
+        </g:else>
+
+
         <!--
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>

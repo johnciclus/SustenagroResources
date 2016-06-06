@@ -1,0 +1,41 @@
+<view>
+    <pageHeader> <message key='greeting.welcome'/>! </pageHeader>
+    <div>
+        <message key='default.form.fill'/>
+    </div>
+    <form id='signUpForm' action='/user/createUser'>
+        <formGroup>
+            <textForm label='message.key=name' placeholder='message.key=name' required='true' id='http://purl.org/biodiv/semanticUI#hasName'/>
+        </formGroup>
+        <formGroup>
+            <textForm label='message.key=lastname' placeholder='message.key=lastname' required='true' id='http://purl.org/biodiv/semanticUI#hasSurname'/>
+        </formGroup>
+        <formGroup>
+            <textForm label='message.key=institution' placeholder='message.key=institution' required='false' id='http://purl.org/biodiv/semanticUI#hasOrganization'/>
+        </formGroup>
+        <formGroup>
+            <textForm label='message.key=position' placeholder='message.key=position' required='false' id='http://purl.org/biodiv/semanticUI#hasPosition'/>
+        </formGroup>
+        <formGroup>
+            <textForm label='message.key=telephone' placeholder='message.key=telephone.placeholder' required='false' id='http://purl.org/biodiv/semanticUI#hasPhoneNumber'/>
+        </formGroup>
+        <formGroup>
+            <emailForm label='message.key=email' placeholder='message.key=email.placeholder' required='true' id='http://purl.org/biodiv/semanticUI#hasEmail'/>
+        </formGroup>
+        <formGroup>
+            <textForm label='message.key=user.username' placeholder='message.key=username.placeholder' required='true' id='http://purl.org/biodiv/semanticUI#hasUsername'/>
+        </formGroup>
+        <formGroup>
+            <passwordForm label='message.key=user.password' placeholder='message.key=password.placeholder' required='true' id='http://purl.org/biodiv/semanticUI#hasPassword'/>
+        </formGroup>
+        <formGroup>
+            <passwordForm label='message.key=user.passwordRepeat' placeholder='message.key=passwordRepeat.placeholder' required='true' id='http://purl.org/biodiv/semanticUI#hasPassword-confirm'/>
+        </formGroup>
+        <formGroup>
+            <checkboxForm label='message.key=useterms' required='true' id='http://purl.org/biodiv/semanticUI#hasTermsofuse' value='yes'/>
+        </formGroup>
+        <formGroup>
+            <submit widgetClass='col-sm-12 text-center' value='message.key=default.form.register' />
+        </formGroup>
+    </form>
+</view>

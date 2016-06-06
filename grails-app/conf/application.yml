@@ -49,6 +49,10 @@ environments:
 
 ---
 ---
+disable:
+    auto:
+        recompile: false
+
 grails:
     profile: web
     codegen:
@@ -56,6 +60,10 @@ grails:
     spring:
         transactionManagement:
             proxies: false
+    gsp:
+        enable:
+            reload: true
+
 info:
     app:
         name: '@info.app.name@'
@@ -66,8 +74,8 @@ spring:
         template:
             check-template-location: false
 
-#server:
-#    port: 80                                             # The port to listen on
+server:
+    port: 8888                                             # The port to listen on
 
 ---
 grails:

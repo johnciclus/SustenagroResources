@@ -1,4 +1,3 @@
-package dsl
 //                          Decisioner
 
 // Esta DSL descreve como o aplicativo será gerado. Ele é em inglês pois
@@ -92,7 +91,6 @@ evaluationObject ':ProductionUnit', {
 
     // Valor total previsto para investimento para escoamento da produção
     //instance ':totalValuePlaneedForInvestmentToProductionDrainage', label: "Valor total previsto para investimento para escoamento da produção"
-
 }
 
 
@@ -117,7 +115,7 @@ feature ':TechnologicalEfficiencyFeature', {
         include ':TechnologicalEfficiencyInTheField'
     }
     conditional ":ProductionUnit", 'http://dbpedia.org/resource/PhysicalPlant', {
-        include ':TechnologicalEfficiencyInTheIndustrial'
+        include ':TechnologicalEfficiencyInTheField', ':TechnologicalEfficiencyInTheIndustrial' 
     }
 }
 

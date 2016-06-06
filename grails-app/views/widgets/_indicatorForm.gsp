@@ -38,9 +38,9 @@
                data-sort-order="desc">
             <thead>
             <tr>
-                <th data-field="id" data-sortable="true"><g:message code="label.id"/></th>
-                <th data-field="name" data-sortable="true"><g:message code="label.name"/></th>
-                <th data-field="value" data-sortable="true"><g:message code="label.value"/></th>
+                <th data-field="id" data-sortable="true"><g:message code="id"/></th>
+                <th data-field="name" data-sortable="true"><g:message code="name"/></th>
+                <th data-field="value" data-sortable="true"><g:message code="value"/></th>
             </tr>
             </thead>
             <tbody>

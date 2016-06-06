@@ -5,6 +5,7 @@ import semantics.DataReader
 import semantics.Node
 import grails.plugin.springsecurity.annotation.Secured
 import utils.Uri
+import rendering.*
 
 import java.text.ParsePosition
 import java.text.SimpleDateFormat
@@ -55,8 +56,8 @@ class ToolController {
                 activeTab = 'tab_1'
             }
 
-            dsl.clean(controllerName, actionName)
             gui.setView(controllerName, actionName)
+            dsl.clean(controllerName, actionName)
 
             gui.setData('username', username)
             gui.setData('userId', userId)
@@ -127,7 +128,7 @@ class ToolController {
         def evalObjId = params.id
         def analysisId = evalObjId+"-analysis-"+new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(now)
 
-        println session['lang']
+        //println session['lang']
 
         if (userId && k['inds:' + evalObjId].exist()) {
             if (roles.contains(k.toURI('ui:AdminRole'))) {
@@ -147,8 +148,8 @@ class ToolController {
                 //println key
                 //println feature
                 //Uri.printTree(feature.model)
-                println key
-                println feature
+                //println key
+                //println feature
 
                 widgets = []
                 widgets.push(['widget': 'individualsPanel', attrs: [data: feature.getModel(evalObjId).subClass, values: [:]]])
@@ -162,8 +163,9 @@ class ToolController {
                     sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
             }
 
-            dsl.clean(controllerName, actionName)
             gui.setView(controllerName, actionName)
+            dsl.clean(controllerName, actionName)
+
             gui.setData('username', username)
             gui.setData('userId', userId)
             gui.setData('evalObjId', evalObjId)
@@ -322,8 +324,6 @@ class ToolController {
         def uri = analysisId ? k.toURI("inds:"+analysisId) : null
         def evalObjId = k[uri].getAttr('appliedTo')
 
-
-
         if(userId && evalObjId && analysisId) {
             def sustainabilityTabs = []
             def efficiencyTabs = []
@@ -379,8 +379,9 @@ class ToolController {
                     sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
             }
 
-            dsl.clean(controllerName, actionName)
             gui.setView(controllerName, actionName)
+            dsl.clean(controllerName, actionName)
+
 
             /*
             def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
@@ -439,7 +440,9 @@ class ToolController {
             gui.setData('reportView', dsl.getReportView())
 
             gui.renderView(actionName)
+
             render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
+
         }else{
             response.sendError(404)
         }
@@ -477,7 +480,7 @@ class ToolController {
             data.push([label: it.objectPropertyLabel.capitalize(), value: it.valueLabel])
         }
 
-        render( template: '/widgets/tableReport', model: [header: [label: g.message(code: 'label.property'), value: g.message(code: 'label.value')], data: data]);
+        render( template: '/widgets/tableReport', model: [header: [label: g.message(code: 'property'), value: g.message(code: 'value')], data: data]);
     }
 
     def analysesView(){
@@ -492,5 +495,139 @@ class ToolController {
     def microregionsView(){
         def microregions = k[params['http://dbpedia.org/ontology/state']].getMicroregions()
         render( template: '/widgets/category', model: [id: 'http://purl.org/biodiv/semanticUI#hasMicroregion', data: microregions, header: 'Opções', selectType: 'radio']);
+    }
+
+    def generatePdf(){
+
+        def username = springSecurityService.principal.username
+        def userId = username
+        def analysisId = 'admin-farm-analysis-2016-05-19-11-29-19'
+        def uri = analysisId ? k.toURI("inds:"+analysisId) : null
+        def evalObjId = k[uri].getAttr('appliedTo')
+
+        if(userId && evalObjId && analysisId) {
+            def sustainabilityTabs = []
+            def efficiencyTabs = []
+            def res
+            def values = [:]
+            def roles = k['inds:'+username].getAttr('hasRole')
+
+            evalObjId = evalObjId.substring(evalObjId.lastIndexOf('#') + 1)
+
+            if (roles.contains(k.toURI('ui:AdminRole'))) {
+                if (evalObjId) {
+                    userId = k['inds:' + evalObjId].getAttr('hasOwner')
+                    //println evalObjId
+                    //println userId
+                    userId = userId.substring(userId.lastIndexOf('#') + 1)
+                }
+                if (params.user)
+                    userId = params.user
+            }
+
+
+            def options = k[':SustainabilityCategory'].getIndividualsIdValueLabel()
+            def widgets
+
+            dsl.featureMap.eachWithIndex { key, feature, int i ->
+                //res = k[key].getChildrenIndividuals(uri, '?id ?ind ?valueType ?weightType')
+                res = k[key].getGrandChildrenIndividuals(uri, '?id ?ind ?justification ?valueType ?weightType')
+
+                //println key
+                //Uri.printTree(res)
+
+                res.each {
+                    values[it.id] = [:]
+                    if (it.valueType)
+                        values[it.id].value = it.valueType
+                    if (it.weightType)
+                        values[it.id].weight = it.weightType
+                    if (it.justification)
+                        values[it.id].justification = it.justification
+                }
+
+                //Uri.printTree(values)
+
+                widgets = []
+                widgets.push(['widget': 'individualsPanel', attrs: [data: feature.getModel(evalObjId).subClass, values: values]])
+                if (feature.attrs.extraFeatures) {
+                    widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]])
+                }
+
+                if (feature.getModel(evalObjId).superClass.contains(k.toURI(':Variable')))
+                    efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
+                if (feature.getModel(evalObjId).superClass.contains(k.toURI(':SustainabilityIndicator')))
+                    sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
+            }
+
+            gui.setView(controllerName, 'analysis')
+            dsl.clean(controllerName, 'analysis')
+
+
+            /*
+            def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
+            def technologyTypes = fea.evalObject(k.toURI([params.id]))
+            def name = k[uri].label
+            def report
+
+            dsl.data = new DataReader(k, uri)
+            dsl.assessmentProgram()
+            dsl.viewsMap['tool']['data'] = dsl._analyzesMap['http://purl.org/biodiv/semanticUI#Analysis'].widgets
+
+            //Closure within map for reference it
+
+            if (assessmentID != null) {
+
+               dsl.dimensions.each{ String dim ->
+                   k[dim].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value ?weight').each{
+                       values[it.id] = it.value
+                   }
+               }
+
+               k[':ProductionEfficiencyFeature'].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value').each{
+                   values[it.id] = it.value
+               }
+               k[':TechnologicalEfficiencyFeature'].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value ?weight').each{
+                   values[it.id] = it.value
+                   weights[it.id] = it.weight
+               }
+
+               dsl.data = new DataReader(k, k.toURI(':'+assessmentID))
+               dsl.program()
+               report = dsl.report
+
+               //def page = g.render(template: 'report', model: [report: report])
+               //lack generate the report file
+
+               //def file = new File("reports/${evaluationID}.html")
+               //file.write(page.toString())
+            }
+            */
+
+            if (uri?.trim()) {
+                dsl.setData(new DataReader(k, uri))
+                dsl.runReport()
+            }
+
+            //gui.setData('evaluationObjects', evaluationObjects)
+            gui.setData('username', username)
+            gui.setData('userId', userId)
+            gui.setData('evalObjId', evalObjId)
+            gui.setData('analysisId', analysisId)
+            gui.setData('vars', dsl.getVariables())
+            gui.setData('dataReader', dsl.getData('data'))
+            gui.setData('sustainabilityTabs', sustainabilityTabs)
+            gui.setData('efficiencyTabs', efficiencyTabs)
+            gui.setData('reportView', dsl.getReportView())
+
+            gui.renderView('analysis')
+
+            render(view: 'analysis', model: [inputs: gui.viewsMap[controllerName]['analysis']])
+            //renderPdf(template: 'analysis', model: [inputs: gui.viewsMap[controllerName]['analysis']], filename: 'report')
+
+        }else{
+            response.sendError(404)
+        }
+
     }
 }

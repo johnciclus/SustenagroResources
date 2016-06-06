@@ -88,7 +88,15 @@ class Feature {
                 evalObjTypes = _k[uri].getType()
                 if(evalObjTypes.contains(it.objectType)){
                     if(evalObjTypes.contains(it.isType)){
-                        model['subClass'][it.then.include] = _model['subClass'][it.then.include]
+                        def includes = it.then.include
+                        if(includes.getClass() == ArrayList){
+                            includes.each{ include ->
+                                model['subClass'][include] = _model['subClass'][include]
+                            }
+                        }
+                        else{
+                            model['subClass'][includes] = _model['subClass'][includes]
+                        }
                     }
                 }
             }
@@ -110,6 +118,14 @@ class Feature {
 
     def include(String arg){
         [include: _k.toURI(arg)]
+    }
+
+    def include(String[] args){
+        def includes = []
+        args.each{
+            includes.push(_k.toURI(it))
+        }
+        [include: includes]
     }
 
     def exclude(String arg){
@@ -135,7 +151,7 @@ class Feature {
     def getIndividuals(){
         def individuals = [:]
 
-        Uri.printTree(_conditional)
+        //Uri.printTree(_conditional)
 
         _model.subClass.each{ subClassKey, subClass ->
             subClass.subClass.each{
