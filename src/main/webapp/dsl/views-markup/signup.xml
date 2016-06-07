@@ -34,8 +34,8 @@
         <formGroup>
             <checkboxForm label='message.key=useterms' required='true' id='http://purl.org/biodiv/semanticUI#hasTermsofuse' value='yes'/>
         </formGroup>
-        <formGroup>
-            <submit widgetClass='col-sm-12 text-center' value='message.key=default.form.register' />
+        <formGroup widgetClass='col-sm-12 text-center'>
+            <submit value='message.key=default.form.register' />
         </formGroup>
     </form>
 </view>

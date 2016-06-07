@@ -619,8 +619,7 @@ class GUIDSL {
                                     attr.value = message(attr.value.substring(12))
                                 }
                             }
-
-                            widgets.add([widget: subNode.name(), attrs: [widgetName: widget.name(), model: tmp]])
+                            widgets.add([widget: subNode.name(), attrs: subNode.attributes() + [widgetName: widget.name(), model: tmp]])
                         }
                     }
                 }

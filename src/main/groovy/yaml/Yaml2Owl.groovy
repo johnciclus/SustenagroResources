@@ -588,7 +588,7 @@ class Yaml2Owl {
                         for (String line : template.split('\n')) {
                             //println "line: $line"
                             def elem = line.split(' ')
-                            obj = (elem[1] == 'label') ? parseElem(elem[2], row)+' @pt' : parseElem(elem[2], row)           //obj = parseElem(elem[2], row);  obj =+ (elem[3].starsWith('@')) ?  elem[3] : ''
+                            obj = (elem[1] == 'label' && elem[3].startsWith('@')) ? parseElem(elem[2], row)+elem[3] : parseElem(elem[2], row)           //obj = parseElem(elem[2], row);  obj =+ (elem[3].starsWith('@')) ?  elem[3] : ''
                             makeIndividual(parseElem(elem[0], row), parseElem(elem[1], row), obj)
                         }
                     }
