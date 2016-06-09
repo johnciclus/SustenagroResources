@@ -63,6 +63,9 @@ grails:
     gsp:
         enable:
             reload: true
+    plugin:
+        wkhtmltopdf:
+            binary: "/usr/bin/wkhtmltopdf"
 
 info:
     app:

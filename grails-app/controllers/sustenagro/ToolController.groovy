@@ -31,6 +31,7 @@ class ToolController {
     def k
     def slugify
     def springSecurityService
+    def wkhtmltoxService
 
     def evaluationObject() {
         def locale = RequestContextUtils.getLocale(request)
@@ -441,7 +442,7 @@ class ToolController {
 
             gui.renderView(actionName)
 
-            render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
+            render( view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
 
         }else{
             response.sendError(404)
@@ -497,9 +498,13 @@ class ToolController {
         render( template: '/widgets/category', model: [id: 'http://purl.org/biodiv/semanticUI#hasMicroregion', data: microregions, header: 'Opções', selectType: 'radio']);
     }
 
+    def home(){
+        render(filename: "home.pdf", view: '/home/index')
+    }
+
     def generatePdf(){
 
-        def username = springSecurityService.principal.username
+        def username = 'admin'
         def userId = username
         def analysisId = 'admin-farm-analysis-2016-05-19-11-29-19'
         def uri = analysisId ? k.toURI("inds:"+analysisId) : null
@@ -521,8 +526,6 @@ class ToolController {
                     //println userId
                     userId = userId.substring(userId.lastIndexOf('#') + 1)
                 }
-                if (params.user)
-                    userId = params.user
             }
 
 
@@ -564,46 +567,6 @@ class ToolController {
             dsl.clean(controllerName, 'analysis')
 
 
-            /*
-            def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
-            def technologyTypes = fea.evalObject(k.toURI([params.id]))
-            def name = k[uri].label
-            def report
-
-            dsl.data = new DataReader(k, uri)
-            dsl.assessmentProgram()
-            dsl.viewsMap['tool']['data'] = dsl._analyzesMap['http://purl.org/biodiv/semanticUI#Analysis'].widgets
-
-            //Closure within map for reference it
-
-            if (assessmentID != null) {
-
-               dsl.dimensions.each{ String dim ->
-                   k[dim].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value ?weight').each{
-                       values[it.id] = it.value
-                   }
-               }
-
-               k[':ProductionEfficiencyFeature'].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value').each{
-                   values[it.id] = it.value
-               }
-               k[':TechnologicalEfficiencyFeature'].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value ?weight').each{
-                   values[it.id] = it.value
-                   weights[it.id] = it.weight
-               }
-
-               dsl.data = new DataReader(k, k.toURI(':'+assessmentID))
-               dsl.program()
-               report = dsl.report
-
-               //def page = g.render(template: 'report', model: [report: report])
-               //lack generate the report file
-
-               //def file = new File("reports/${evaluationID}.html")
-               //file.write(page.toString())
-            }
-            */
-
             if (uri?.trim()) {
                 dsl.setData(new DataReader(k, uri))
                 dsl.runReport()
@@ -622,8 +585,8 @@ class ToolController {
 
             gui.renderView('analysis')
 
-            render(view: 'analysis', model: [inputs: gui.viewsMap[controllerName]['analysis']])
-            //renderPdf(template: 'analysis', model: [inputs: gui.viewsMap[controllerName]['analysis']], filename: 'report')
+            render(filename: "test.pdf", view: '/tool/analysis', model: [inputs: gui.viewsMap[controllerName]['analysis']])
+            //render(filename: "test.pdf", view: 'analysis', model: [inputs: gui.viewsMap[controllerName]['analysis']])
 
         }else{
             response.sendError(404)
