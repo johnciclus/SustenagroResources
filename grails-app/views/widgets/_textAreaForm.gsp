@@ -3,5 +3,5 @@
 </div>
 
 <div class="col-sm-8">
-    <g:render template="/widgets/textArea" model="[id: id, placeholder: placeholder]"/>
+    <g:render template="/widgets/textArea" model="[id: id, placeholder: placeholder, text: '']"/>
 </div>

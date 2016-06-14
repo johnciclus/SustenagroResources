@@ -31,7 +31,6 @@ class ToolController {
     def k
     def slugify
     def springSecurityService
-    def wkhtmltoxService
 
     def evaluationObject() {
         def locale = RequestContextUtils.getLocale(request)
@@ -498,23 +497,15 @@ class ToolController {
         render( template: '/widgets/category', model: [id: 'http://purl.org/biodiv/semanticUI#hasMicroregion', data: microregions, header: 'Opções', selectType: 'radio']);
     }
 
-    def home(){
-        render(filename: "home.pdf", view: '/home/index')
-    }
-
-    def generatePdf(){
+    def report(){
 
         def username = 'admin'
         def userId = username
-        def analysisId = 'admin-farm-analysis-2016-05-19-11-29-19'
+        def analysisId = params.id
         def uri = analysisId ? k.toURI("inds:"+analysisId) : null
         def evalObjId = k[uri].getAttr('appliedTo')
 
         if(userId && evalObjId && analysisId) {
-            def sustainabilityTabs = []
-            def efficiencyTabs = []
-            def res
-            def values = [:]
             def roles = k['inds:'+username].getAttr('hasRole')
 
             evalObjId = evalObjId.substring(evalObjId.lastIndexOf('#') + 1)
@@ -528,43 +519,8 @@ class ToolController {
                 }
             }
 
-
-            def options = k[':SustainabilityCategory'].getIndividualsIdValueLabel()
-            def widgets
-
-            dsl.featureMap.eachWithIndex { key, feature, int i ->
-                //res = k[key].getChildrenIndividuals(uri, '?id ?ind ?valueType ?weightType')
-                res = k[key].getGrandChildrenIndividuals(uri, '?id ?ind ?justification ?valueType ?weightType')
-
-                //println key
-                //Uri.printTree(res)
-
-                res.each {
-                    values[it.id] = [:]
-                    if (it.valueType)
-                        values[it.id].value = it.valueType
-                    if (it.weightType)
-                        values[it.id].weight = it.weightType
-                    if (it.justification)
-                        values[it.id].justification = it.justification
-                }
-
-                //Uri.printTree(values)
-
-                widgets = []
-                widgets.push(['widget': 'individualsPanel', attrs: [data: feature.getModel(evalObjId).subClass, values: values]])
-                if (feature.attrs.extraFeatures) {
-                    widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]])
-                }
-
-                if (feature.getModel(evalObjId).superClass.contains(k.toURI(':Variable')))
-                    efficiencyTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
-                if (feature.getModel(evalObjId).superClass.contains(k.toURI(':SustainabilityIndicator')))
-                    sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
-            }
-
-            gui.setView(controllerName, 'analysis')
-            dsl.clean(controllerName, 'analysis')
+            gui.setView(controllerName, actionName)
+            dsl.clean(controllerName, actionName)
 
 
             if (uri?.trim()) {
@@ -573,24 +529,39 @@ class ToolController {
             }
 
             //gui.setData('evaluationObjects', evaluationObjects)
-            gui.setData('username', username)
-            gui.setData('userId', userId)
-            gui.setData('evalObjId', evalObjId)
+            //gui.setData('username', username)
+            //gui.setData('userId', userId)
+            //gui.setData('evalObjId', evalObjId)
             gui.setData('analysisId', analysisId)
             gui.setData('vars', dsl.getVariables())
             gui.setData('dataReader', dsl.getData('data'))
-            gui.setData('sustainabilityTabs', sustainabilityTabs)
-            gui.setData('efficiencyTabs', efficiencyTabs)
             gui.setData('reportView', dsl.getReportView())
 
-            gui.renderView('analysis')
-
-            render(filename: "test.pdf", view: '/tool/analysis', model: [inputs: gui.viewsMap[controllerName]['analysis']])
-            //render(filename: "test.pdf", view: 'analysis', model: [inputs: gui.viewsMap[controllerName]['analysis']])
-
+            gui.renderView('report')
+            println analysisId
+            render(view: '/tool/analysis', model: [inputs: gui.viewsMap[controllerName][actionName], analysisId: analysisId])
         }else{
             response.sendError(404)
         }
 
+    }
+
+    def generatePdf(){
+        def proc
+        def analysisId = params.id
+        def sessionId
+        def path = grailsApplication.mainContext.servletContext.getRealPath("/")
+        request.cookies.each{
+            if(it.name == 'JSESSIONID')
+                sessionId = it.value
+        }
+        def sout = new StringBuilder(), serr = new StringBuilder()
+        def command = "wkhtmltopdf --cookie JSESSIONID ${sessionId} http://localhost:8888/tool/report/${analysisId} ${path}report.pdf"          //xvfb-run --server-args='-screen 0, 1024x768x24'
+        proc = command.execute()       //http://localhost:8888/
+        proc.consumeProcessOutput(sout, serr)
+        proc.waitForProcessOutput()
+        //println "out> $sout err> $serr"
+
+        render(file: new File(path+'report.pdf'), fileName: "report.pdf")
     }
 }

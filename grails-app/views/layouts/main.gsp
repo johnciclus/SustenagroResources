@@ -13,6 +13,7 @@
     <asset:stylesheet src="normalize.css"/>
     <asset:stylesheet src="bootstrap-readable.min.css"/>
     <asset:stylesheet src="style.css"/>
+
     <asset:javascript src="jquery-1.11.1.min.js"/>
     <asset:javascript src="bootstrap.min.js"/>
 

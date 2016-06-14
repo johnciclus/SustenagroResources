@@ -129,6 +129,14 @@
             });
         });
 
+        $('#generate').click(function(){
+            var button = $(this);
+            var url = window.location.href;
+            var analysisId = url.substring(url.lastIndexOf('/')+1,url.length);
+            //button.button('generating');
+            window.open("/tool/generatePdf/"+analysisId);
+        });
+
         function backToMainTab() {
             $('html,body').animate({
                 scrollTop: 180

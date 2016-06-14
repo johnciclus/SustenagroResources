@@ -1,6 +1,6 @@
 navBarRoute 'username': username, 'userId': userId, 'evalObjId': evalObjId, 'analysisId': analysisId
 
-tabs([id: 'main', activeTab: 'tab_1', pagination: false],
+tabs([id: 'main', activeTab: 'tab_1', pagination: false, generateTopButton: true, generateTopLabel: message('default.form.generatePDF')],
         [['widget': 'tab', attrs: [label: message('assessment')], widgets: [
                 ['widget': 'form', attrs: [action: '/tool/updateAnalysis', formClass: ''], widgets: [
                         ['widget': 'hiddenInput', attrs: [id: 'analysisId', value: analysisId]],

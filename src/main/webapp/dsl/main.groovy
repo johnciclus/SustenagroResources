@@ -135,7 +135,7 @@ report {
     technologicalEfficiencyInTheField = 0.8*weightedSum(data.':TechnologicalEfficiencyInTheField')  //.equation({value*weight}))
     technologicalEfficiencyInTheIndustrial = 0.2*weightedSum(data.':TechnologicalEfficiencyInTheIndustrial')
 
-    efficiency = cost_production_efficiency *
+    efficiency = Math.abs(cost_production_efficiency) *
             (technologicalEfficiencyInTheField+technologicalEfficiencyInTheIndustrial)
 
     //economic =      2.0 * analysis.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
@@ -150,8 +150,8 @@ report {
             y: efficiency,
             label_x: ['en': 'Sustainability index', 'pt': 'Indice da sustentabilidade'],
             label_y: ['en': 'Efficiency index', 'pt': 'Indice de eficiência'],
-            range_x: [-60,60],
-            range_y: [-70,710],
+            range_x: [-43,43],
+            range_y: [-160,800],
             quadrants: [4,3],
             recomendations: [   "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ desfavorável ao sistema de produção de cana / sistema de produção de cana na fase inicial de implementação (avaliação de sustentabilidade comprometida) ou com muito baixa sustentabilidade – sistema de produção de cana não recomendado.",
                                 "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ desfavorável ao sistema de produção de cana / sistema de produção de cana com baixa sustentabilidade – recomendam-se ações corretivas.",

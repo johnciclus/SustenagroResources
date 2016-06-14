@@ -66,6 +66,8 @@ grails:
     plugin:
         wkhtmltopdf:
             binary: "/usr/bin/wkhtmltopdf"
+    #assets:
+    #    url: "http://localhost:8888/assets/"
 
 info:
     app:

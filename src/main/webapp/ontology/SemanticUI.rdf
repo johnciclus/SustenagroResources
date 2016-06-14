@@ -526,15 +526,6 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#Scenario -->
-
-    <owl:Class rdf:about="http://purl.org/biodiv/semanticUI#Scenario">
-        <rdfs:label xml:lang="en">Scenario</rdfs:label>
-        <rdfs:label xml:lang="pt">Cenário</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://purl.org/biodiv/semanticUI#User -->
 
     <owl:Class rdf:about="http://purl.org/biodiv/semanticUI#User">

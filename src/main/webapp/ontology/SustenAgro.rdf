@@ -759,15 +759,6 @@
     
 
 
-    <!-- http://purl.org/biodiv/semanticUI#Scenario -->
-
-    <owl:Class rdf:about="http://purl.org/biodiv/semanticUI#Scenario">
-        <rdfs:label xml:lang="en">Scenario</rdfs:label>
-        <rdfs:label xml:lang="pt">Cenário</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://purl.org/biodiv/semanticUI#User -->
 
     <owl:Class rdf:about="http://purl.org/biodiv/semanticUI#User">
@@ -2278,26 +2269,14 @@
         <rdfs:subClassOf rdf:resource="http://purl.org/biodiv/semanticUI#EvaluationObject"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasAvailabilityOfEvaluationResults"/>
+                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/biodiv/semanticUI#hasMicroregion"/>
                 <owl:someValuesFrom rdf:resource="http://dbpedia.org/page/Microregion_(Brazil)"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://dbpedia.org/ontology/state"/>
-                <owl:someValuesFrom rdf:resource="http://dbpedia.org/ontology/State"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasAgriculturalProductionSystem"/>
-                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#harvestYear"/>
-                <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2308,8 +2287,20 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasAvailabilityOfEvaluationResults"/>
-                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#AvailabilityOfEvaluationResultsCategory"/>
+                <owl:onProperty rdf:resource="http://dbpedia.org/ontology/state"/>
+                <owl:someValuesFrom rdf:resource="http://dbpedia.org/ontology/State"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#harvestYear"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://semantic.icmc.usp.br/sustenagro#hasAgriculturalProductionSystem"/>
+                <owl:someValuesFrom rdf:resource="http://semantic.icmc.usp.br/sustenagro#AgriculturalProductionSystemCategory"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>

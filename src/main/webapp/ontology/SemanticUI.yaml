@@ -290,9 +290,6 @@ Microregion:
   is_a: GovernmentalAdministrativeRegion
   label: [Microregião @pt, Microregion @en]
 
-Scenario:
-  label: [Scenario @en, Cenário @pt]
-
 Feature:
   label: [Característica @pt, Feature @en]
 
