@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <form id="ontology_form" action="/admin/ontology" method="post" class="form-inline-block pull-right" role="form">
-            <button type="submit" class="btn btn-primary" id="save" data-loading-text="<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> <g:message code="default.form.saving" />..."> Save </button>
+            <button type="submit" class="btn btn-primary" data-loading-text="<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Saving..."> Save </button>
         </form>
         <form id="reset_ontology_form" action="/admin/ontologyReset" method="post" class="form-inline-block pull-right" role="form">
             <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Restore </button>
@@ -136,17 +136,19 @@
             document.getElementById('ontEditor').style.fontSize='14px';
 
             $( "#ontology_form" ).submit(function( event ) {
-                $('#ontology_form button').removeClass('btn-primary').addClass('btn-warning');
+                //$('#ontology_form button').removeClass('btn-primary').addClass('btn-warning');
+                $('#ontology_form button').button('loading');
                 $.post(
                         $(this).attr('action'),
                         {'ontology':  ontEditor.getValue() },
                         function( data ) {
                             if(data){
-                                function resetButton(){
-                                    $('#ontology_form button').removeClass('btn-success').addClass('btn-primary');
-                                }
+                                $('#ontology_form button').button('reset');
                                 $('#ontology_form button').removeClass('btn-warning').removeClass('btn-primary').addClass('btn-success');
-                                setTimeout(resetButton, 1000);
+
+                                setTimeout(function () {
+                                    $('#ontology_form button').removeClass('btn-success').addClass('btn-primary');
+                                }, 1000);
 
                                 loadTrees();
                             }

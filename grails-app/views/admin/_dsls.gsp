@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <form id="dsl_form" action="/admin/dsls" method="post" class="form-inline-block pull-right" role="form">
             <input name="dsl" type="hidden" value="">
-            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Save </button>
+            <button type="submit" class="btn btn-primary" id="ontology_save" data-loading-text="<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Saving..."> Save </button>
         </form>
         <form id="reset_dsl_form" action="/admin/dslsReset" method="post" class="form-inline-block pull-right" role="form">
             <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Restore </button>
@@ -34,6 +34,7 @@
             document.getElementById('dslsEditor').style.fontSize = '14px';
 
             $("#dsl_form").submit(function (event) {
+                $('#dsl_form button').button('loading');
                 $.post(
                         $(this).attr('action'),
                         {   'id': $("input[name='dsl']").attr('value'),
@@ -42,7 +43,9 @@
                             var res = $(data);
                             var status = res.find("entry[key='status']");
                             if (status.text() == 'ok') {
-                                $('#dsl_form button').removeClass('btn-primary').addClass('btn-success');
+                                $('#dsl_form button').button('reset');
+                                $('#dsl_form button').removeClass('btn-warning').removeClass('btn-primary').addClass('btn-success');
+
                                 setTimeout(function () {
                                     $('#dsl_form button').removeClass('btn-success').addClass('btn-primary');
                                 }, 1000);

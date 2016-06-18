@@ -344,5 +344,5 @@ admin:
   type: User
   label: [admin @en, admin @pt]
   hasUsername: admin
-  hasPassword: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+  hasPassword: 2fff39c46a5818c2ca28975bc4d239a315a0df066ea5f8e923edae84c0397482
   hasRole: [UserRole, AdminRole]

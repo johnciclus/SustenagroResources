@@ -2,8 +2,8 @@
     <div class="col-md-12">
         <form id="lang_form" action="/admin/langs" method="post" class="form-inline-block pull-right" role="form">
             <input name="lang" type="hidden" value="">
-            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Save </button>
-        </form>
+            <button type="submit" class="btn btn-primary" data-loading-text="<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Saving..."> Save </button>
+       </form>
         <form id="reset_lang_form" action="/admin/langsReset" method="post" class="form-inline-block pull-right" role="form">
             <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Restore </button>
         </form>

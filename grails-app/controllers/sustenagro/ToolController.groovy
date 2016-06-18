@@ -556,7 +556,7 @@ class ToolController {
                 sessionId = it.value
         }
         def sout = new StringBuilder(), serr = new StringBuilder()
-        def command = "wkhtmltopdf --cookie JSESSIONID ${sessionId} http://localhost:8888/tool/report/${analysisId} ${path}report.pdf"          //xvfb-run --server-args='-screen 0, 1024x768x24'
+        def command = "wkhtmltopdf.sh --cookie JSESSIONID ${sessionId} http://localhost/tool/report/${analysisId} ${path}report.pdf"          //xvfb-run --server-args='-screen 0, 1024x768x24'
         proc = command.execute()       //http://localhost:8888/
         proc.consumeProcessOutput(sout, serr)
         proc.waitForProcessOutput()

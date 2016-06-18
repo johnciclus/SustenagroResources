@@ -85,7 +85,7 @@ dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.6'
     compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7'
     compile 'net.sourceforge.owlapi:owlapi-distribution:3.4.10'
-    compile 'org.grails.plugins:wkhtmltopdf:1.0.0.RC7'
+    //compile 'org.grails.plugins:wkhtmltopdf:1.0.0.RC7'
     //compile "org.grails.plugins:rendering:2.0.3"
 
     //compile 'org.yaml:snakeyaml:1.17'
