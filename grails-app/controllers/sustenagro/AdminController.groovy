@@ -405,6 +405,14 @@ class AdminController {
         render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
     }
 
+    def evaluationObject(){
+        gui.setView(controllerName, actionName)
+        dsl.clean(controllerName, actionName)
+        gui.renderXML(actionName)
+
+        render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
+
+    }
     /*
     def getIndicator(String id){
         k.select("distinct ?valuetype ?label ?dimension ?attribute")

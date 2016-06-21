@@ -5,7 +5,6 @@
     <title>SustenAgro - Tool - Analysis</title>
     <asset:stylesheet href="bootstrap-table.min.css"/>
     <asset:javascript src="bootstrap-table.min.js"/>
-
     <asset:javascript src="d3.min.js"/>
     <asset:javascript src="md5.min.js"/>
     <asset:javascript src="jquery.validate.min.js"/>
@@ -128,6 +127,14 @@
                     form_group.removeClass(errorClass).addClass(validClass);
                 }
             });
+        });
+
+        $('#generate').click(function(){
+            var button = $(this);
+            var url = window.location.href;
+            var analysisId = url.substring(url.lastIndexOf('/')+1,url.length);
+            //button.button('generating');
+            window.open("/tool/generatePdf/"+analysisId);
         });
 
         function backToMainTab() {

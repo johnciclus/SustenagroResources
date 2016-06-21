@@ -362,7 +362,7 @@ class DSL {
     def clean(String controller, String action){
         if(controller?.trim() && action?.trim()){
             _gui.viewsMap[controller][action] = []
-            if(action == 'analysis'){
+            if(action == 'analysis' || action == 'report' ){
                _reportView = []
             }
         }

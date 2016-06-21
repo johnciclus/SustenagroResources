@@ -46,6 +46,7 @@ class GUIDSL {
         viewsMap['tool']['index'] = []
         viewsMap['tool']['analysis'] = []
         viewsMap['tool']['inputFeatures'] = []
+        viewsMap['tool']['report'] = []
         viewsMap['user'] = [:]
         viewsMap['user']['signup'] = []
 
@@ -90,6 +91,7 @@ class GUIDSL {
         viewsMap['tool']['index'] = []
         viewsMap['tool']['analysis'] = []
         viewsMap['tool']['inputFeatures'] = []
+        viewsMap['tool']['report'] = []
         viewsMap['user'] = [:]
         viewsMap['user']['signup'] = []
 
@@ -317,6 +319,8 @@ class GUIDSL {
         attrs['submitTopLabel'] = extAttrs.containsKey('submitTopLabel') ? extAttrs['submitTopLabel'] :  defaultAttrs['submitTopLabel']
         attrs['saveTopButton'] = extAttrs.containsKey('saveTopButton') ? extAttrs['saveTopButton'] :  defaultAttrs['saveTopButton']
         attrs['saveTopLabel'] = extAttrs.containsKey('saveTopLabel') ? extAttrs['saveTopLabel'] :  defaultAttrs['saveTopLabel']
+        attrs['generateTopButton'] = extAttrs.containsKey('generateTopButton') ? extAttrs['generateTopButton'] :  defaultAttrs['generateTopButton']
+        attrs['generateTopLabel'] = extAttrs.containsKey('generateTopLabel') ? extAttrs['generateTopLabel'] :  defaultAttrs['generateTopLabel']
 
         //Uri.printTree(attrs)
         if(attrs['tabs'][activeTab]) {
@@ -619,8 +623,7 @@ class GUIDSL {
                                     attr.value = message(attr.value.substring(12))
                                 }
                             }
-
-                            widgets.add([widget: subNode.name(), attrs: [widgetName: widget.name(), model: tmp]])
+                            widgets.add([widget: subNode.name(), attrs: subNode.attributes() + [widgetName: widget.name(), model: tmp]])
                         }
                     }
                 }

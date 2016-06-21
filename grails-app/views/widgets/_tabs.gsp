@@ -11,6 +11,10 @@
         <g:if test="${saveTopButton}">
             <g:render template="/widgets/saveTopButton" model="[label: saveTopLabel]" />
         </g:if>
+
+        <g:if test="${generateTopButton}">
+            <g:render template="/widgets/generateTopButton" model="[label: generateTopLabel]" />
+        </g:if>
     </ul>
 
     <div id="<%=id%>_content" class="tab-content">

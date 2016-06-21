@@ -57,13 +57,16 @@ addFrom:
       }
     template: |
       ?state type State
-      ?state label ?label3
+      ?state label ?label3 @pt
+      ?state label ?label3 @en
       ?state isPartOf Brazil
       ?uri1 type Mesoregion
-      ?uri1 label ?label1
+      ?uri1 label ?label1 @pt
+      ?uri1 label ?label1 @en
       ?uri1 state ?state
       ?uri2 type Microregion
-      ?uri2 label ?label2
+      ?uri2 label ?label2 @pt
+      ?uri2 label ?label2 @en
       ?uri2 isPartOf ?uri1
       ?uri2 state ?state
       ?uri2 mapa ?mapa
@@ -286,9 +289,6 @@ Region:
 Microregion:
   is_a: GovernmentalAdministrativeRegion
   label: [Microregião @pt, Microregion @en]
-
-Scenario:
-  label: [Scenario @en, Cenário @pt]
 
 Feature:
   label: [Característica @pt, Feature @en]

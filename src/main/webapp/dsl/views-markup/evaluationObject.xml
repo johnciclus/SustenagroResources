@@ -1,0 +1,5 @@
+<view>
+    <navBarRoute username="username" userId="userId" evalObjId="evalObjId" analysisId="analysisId">  </navBarRoute>
+    <text> <message key='evalObj.title'/> </text>
+    <description> <message key='evalObj.description'/> </description>
+</view>

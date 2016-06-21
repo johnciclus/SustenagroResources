@@ -13,7 +13,7 @@
 // Na ontologia, location definiria as microregiões do IBGE.
 // Se a fazenda ficar em mais de uma micro-região?
 
-// Caracterização dos sistemas produtivos no Centro-Sul 
+// Caracterização dos sistemas produtivos no Centro-Sul
 evaluationObject ':ProductionUnit', {
     //type or instance
 
@@ -22,13 +22,13 @@ evaluationObject ':ProductionUnit', {
 
     // Agricultural production system
     instance ':hasAgriculturalProductionSystem', label: ['en': 'Agricultural production system' , 'pt': "Sistema de produção agrícola"], header: ['en': 'Options', 'pt': "Opções"]
-    
+
     // Production unit type
     // Tipo de organização (Greenfiled, usinas tradicionais, familiares...?).
     type label: ['en': "Production unit type", 'pt': "Tipo da unidade produtiva"], header: ['en': 'Options', 'pt': "Opções"]
 
     // Origem da cana (própria, fornecedor, arrendamento)
-    instance  ':hasSugarcaneSource', label: ['en': 'Sugarcane source', 'pt': "Origem da cana"], header: ['en': 'Options', 'pt': "Opções"]
+    instance  ':hasSugarcaneSource', label: ['en': 'Sugarcane source', 'pt': "Origem da cana"], header: ['en': 'Options', 'pt': "Opções"], multipleSelection: true, required: true
 
     // Estado da unidade produtiva
     instance 'dbp:state', label: ['en': 'State', 'pt': 'Estado'], header: ['en': 'States', 'pt': 'Estados']
@@ -115,7 +115,7 @@ feature ':TechnologicalEfficiencyFeature', {
         include ':TechnologicalEfficiencyInTheField'
     }
     conditional ":ProductionUnit", 'http://dbpedia.org/resource/PhysicalPlant', {
-        include ':TechnologicalEfficiencyInTheField', ':TechnologicalEfficiencyInTheIndustrial' 
+        include ':TechnologicalEfficiencyInTheField', ':TechnologicalEfficiencyInTheIndustrial'
     }
 }
 
@@ -135,7 +135,7 @@ report {
     technologicalEfficiencyInTheField = 0.8*weightedSum(data.':TechnologicalEfficiencyInTheField')  //.equation({value*weight}))
     technologicalEfficiencyInTheIndustrial = 0.2*weightedSum(data.':TechnologicalEfficiencyInTheIndustrial')
 
-    efficiency = cost_production_efficiency *
+    efficiency = Math.abs(cost_production_efficiency) *
             (technologicalEfficiencyInTheField+technologicalEfficiencyInTheIndustrial)
 
     //economic =      2.0 * analysis.'Eficiência operacional da Usina (crescimento vertical da usina, recuperação e avanço)' + 5.1 *
@@ -143,37 +143,37 @@ report {
 
     //social =        3 * analysis.EnergyEfficiencyOfBoilersForCogeneration + 7 *
     //        analysis.OperationalEfficiencyPlant
-    
+
     evaluationObjectInfo()
 
     sustainabilityMatrix    x: sustainability,
-                            y: efficiency,
-                            label_x: ['en': 'Sustainability index', 'pt': 'Indice da sustentabilidade'],
-                            label_y: ['en': 'Efficiency index', 'pt': 'Indice de eficiência'],
-                            range_x: [-60,60],
-                            range_y: [-70,710],
-                            quadrants: [4,3],
-                            recomendations: [   "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ desfavorável ao sistema de produção de cana / sistema de produção de cana na fase inicial de implementação (avaliação de sustentabilidade comprometida) ou com muito baixa sustentabilidade – sistema de produção de cana não recomendado.",
-                                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ desfavorável ao sistema de produção de cana / sistema de produção de cana com baixa sustentabilidade – recomendam-se ações corretivas.",
-                                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ desfavorável ao sistema de produção de cana / Avaliação da sustentabilidade com médio desempenho – recomenda-se acompanhamento com restrições.",
-                                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ desfavorável ao sistema de produção de cana / Avaliação da sustentabilidade com bom desempenho – sistema de produção de cana recomendado.",
-                                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ propícia para o sistema cana / Avaliação da sustentabilidade: sistema de produção de cana na fase inicial de implementação ou com muito baixa sustentabilidade – gerenciamento recomendado com restrições.",
-                                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ propícia para o sistema cana / Avaliação da sustentabilidade: com baixo desempenho - recomenda-se ações corretivas.",
-                                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ propícia para o sistema cana / Avaliação da sustentabilidade: com médio desempenho - monitoramento e gerenciamento recomendado.",
-                                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ propícia para o sistema cana / Avaliação da sustentabilidade: com bom desempenho – sistema de produção de cana recomendado.",
-                                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ favorável para o sistema cana – recomenda-se investimentos no sistema avaliado / Avaliação da sustentabilidade: com muito baixo desempenho – recomenda-se ações corretivas.",
-                                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ favorável para o sistema cana – recomenda-se investimentos no sistema avaliado / Avaliação da sustentabilidade: com baixo desempenho - gerenciamento recomendado.",
-                                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ favorável para o sistema cana – recomenda-se investimentos no sistema avaliado / Avaliação da sustentabilidade: com médio desempenho – monitoramento recomendado.",
-                                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ favorável para o sistema cana – recomenda-se investimentos no sistema avaliado / Avaliação da sustentabilidade: com bom desempenho - sistema de produção de cana fortemente recomendado."]
+            y: efficiency,
+            label_x: ['en': 'Sustainability index', 'pt': 'Indice da sustentabilidade'],
+            label_y: ['en': 'Efficiency index', 'pt': 'Indice de eficiência'],
+            range_x: [-43,43],
+            range_y: [-160,800],
+            quadrants: [4,3],
+            recomendations: [   "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ desfavorável ao sistema de produção de cana / sistema de produção de cana na fase inicial de implementação (avaliação de sustentabilidade comprometida) ou com muito baixa sustentabilidade – sistema de produção de cana não recomendado.",
+                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ desfavorável ao sistema de produção de cana / sistema de produção de cana com baixa sustentabilidade – recomendam-se ações corretivas.",
+                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ desfavorável ao sistema de produção de cana / Avaliação da sustentabilidade com médio desempenho – recomenda-se acompanhamento com restrições.",
+                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ desfavorável ao sistema de produção de cana / Avaliação da sustentabilidade com bom desempenho – sistema de produção de cana recomendado.",
+                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ propícia para o sistema cana / Avaliação da sustentabilidade: sistema de produção de cana na fase inicial de implementação ou com muito baixa sustentabilidade – gerenciamento recomendado com restrições.",
+                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ propícia para o sistema cana / Avaliação da sustentabilidade: com baixo desempenho - recomenda-se ações corretivas.",
+                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ propícia para o sistema cana / Avaliação da sustentabilidade: com médio desempenho - monitoramento e gerenciamento recomendado.",
+                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ propícia para o sistema cana / Avaliação da sustentabilidade: com bom desempenho – sistema de produção de cana recomendado.",
+                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ favorável para o sistema cana – recomenda-se investimentos no sistema avaliado / Avaliação da sustentabilidade: com muito baixo desempenho – recomenda-se ações corretivas.",
+                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ favorável para o sistema cana – recomenda-se investimentos no sistema avaliado / Avaliação da sustentabilidade: com baixo desempenho - gerenciamento recomendado.",
+                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ favorável para o sistema cana – recomenda-se investimentos no sistema avaliado / Avaliação da sustentabilidade: com médio desempenho – monitoramento recomendado.",
+                                "Avaliação da eficiência: balanço da eficiência ‘tecnológica – produção – custo’ favorável para o sistema cana – recomenda-se investimentos no sistema avaliado / Avaliação da sustentabilidade: com bom desempenho - sistema de produção de cana fortemente recomendado."]
 
-    
+
 
     sustainabilitySemaphore value: sustainability,
             label: ['en': 'Index of general sustainability', 'pt': 'Índice da sustentabilidade geral'],
-            legend: [['en': 'Less sustainable', 'pt': 'Menos sustentável'], 
-                     ['en': 'Negative changes', 'pt': 'Alterações negativas'], 
-                     ['en': 'No change', 'pt': 'Sem alteração'], 
-                     ['en': 'Positive changes', 'pt': 'Alterações positivas'], 
+            legend: [['en': 'Less sustainable', 'pt': 'Menos sustentável'],
+                     ['en': 'Negative changes', 'pt': 'Alterações negativas'],
+                     ['en': 'No change', 'pt': 'Sem alteração'],
+                     ['en': 'Positive changes', 'pt': 'Alterações positivas'],
                      ['en': 'More sustainable', 'pt': 'Mais sustentável']],
             range: [-60,60]
 

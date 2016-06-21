@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <form id="view_form" action="/admin/views" method="post" class="form-inline-block pull-right" role="form">
             <input name="view" type="hidden" value="">
-            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Save </button>
+            <button type="submit" class="btn btn-primary" data-loading-text="<span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span> Saving..."> Save </button>
         </form>
         <form id="reset_view_form" action="/admin/viewsReset" method="post" class="form-inline-block pull-right" role="form">
             <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Restore </button>
@@ -34,6 +34,7 @@
             document.getElementById('viewsEditor').style.fontSize = '14px';
 
             $("#view_form").submit(function (event) {
+                $('#view_form button').button('loading');
                 $.post(
                         $(this).attr('action'),
                         {   'id': $("input[name='view']").attr('value'),
@@ -42,10 +43,13 @@
                             var res = $(data);
                             var status = res.find("entry[key='status']");
                             if (status.text() == 'ok') {
-                                $('#view_form button').removeClass('btn-primary').addClass('btn-success');
+                                $('#view_form button').button('reset');
+                                $('#view_form button').removeClass('btn-warning').removeClass('btn-primary').addClass('btn-success');
+
                                 setTimeout(function () {
                                     $('#view_form button').removeClass('btn-success').addClass('btn-primary');
                                 }, 1000);
+
                             }
                         }
                 );

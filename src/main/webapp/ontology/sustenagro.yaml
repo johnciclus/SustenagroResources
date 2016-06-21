@@ -55,7 +55,7 @@ relevance:
 hasSugarcaneSource:
   subPropertyOf: ObjectProperty
   label: [sugarcane source @en, origem da cana @pt]
-  functional: true
+  #functional: true
   range: SugarcaneSourceCategory
 
 hasAvailabilityOfEvaluationResults:
@@ -307,10 +307,10 @@ ProductionUnit:
   hasName: Literal
   harvestYear: Literal
   hasAgriculturalProductionSystem: AgriculturalProductionSystemCategory
-  hasSugarcaneSource: SugarcaneSourceCategory
   state: State
   hasMicroregion: Microregion
   hasAvailabilityOfEvaluationResults: AvailabilityOfEvaluationResultsCategory
+  #hasSugarcaneSource: SugarcaneSourceCategory
 
 PhysicalPlant:
   is_a: ProductionUnit
@@ -370,8 +370,8 @@ SugarcaneQuality:
 
 SugarcaneValueInATR:
   is_a: SugarcaneQuality
-  label: 
-    - Sugarcane value in ATR/Hectare (Consider the productivity and quality of sugarcane) @en 
+  label:
+    - Sugarcane value in ATR/Hectare (Consider the productivity and quality of sugarcane) @en
     - Valor da cana em ATR/hectare (considera a produtividade e qualidade da cana) @pt
   value:
     - label: [Lowest @en, Menor @pt]
@@ -435,7 +435,7 @@ MarketVariable:
 #      asNumber: 0.0
 #    - label: [Yes @en, Sim @pt]
 #      asNumber: 1.0
-      
+
 DomesticDemand:
   is_a: MarketVariable
   label:
@@ -496,7 +496,7 @@ LocalIncomeGeneration:
 PriceQuaranteePolicyAndProductionInTheField :
   is_a: MarketVariable
   label:
-    - Políticas de garantia de preço e de produção no campo (financiamento da safra agrícola) @pt
+    - Políticas de garantia de safra e de produção no campo (financiamento da safra agrícola) @pt
     - Price guarantee policy and production in the field (financing the harvest) @en
   value:
     - label: [Yes @en, Sim @pt]
@@ -524,7 +524,7 @@ ComplianceToStateEnvironmentalProtocols:
 ComplianceWithNationalCommitmentToAdequacyToGoodWorkingConditions:
   is_a: PoliticalVariable
   label:
-    - Atendimento ao compromisso nacional para adequação às boas condições de trabalho @pt
+    - Atendimento ao compromisso nacional para Aperfeiçoar as Condições de trabalho na Cana-de-açúcar @pt
     - Compliance with the national commitment to good working conditions @en
   value:
     - label: [Yes @en, Sim @pt]
@@ -688,7 +688,7 @@ PriceEqualizationPolicy:
   is_a: TechnologicalEfficiencyInTheField
   label:
     - Stable price policy (tanking - price guarantee - warrant) @en
-    - Política de estabilidade preços (tancagem - garantia de preço - warrant) @pt
+    - 'Política de estabilidade preços (tancagem, garantia de preço, warrant) @pt'
   value:
     - label:
       - Favorável (com estoques) @pt
@@ -887,7 +887,7 @@ FiltercakeAndAshesDestination:
 RawMaterialDiversificationWithImprovedInputs:
   is_a: TechnologicalEfficiencyInTheIndustrial
   label:
-    - Diversificação da matéria prima @pt
+    - Diversificação da matéria prima com insumos melhorados @pt
     - Raw material diversification @en
   value:
     - label:
@@ -1112,7 +1112,7 @@ HarvestAttribute:
 HarvestTypeUsed:
   is_a: HarvestAttribute
   label:
-    - Tipo de colheta utilizada (manual ou mecanizada) @pt
+    - Tipo de colheita utilizada (manual ou mecanizada) @pt
     - Harvest type used (manual or mechanized) @en
   relevance: 2.0
   value:
@@ -1465,7 +1465,7 @@ BiofuelInfrastructureAvailable:
     - label: [Yes @en, Sim @pt]
       asNumber: 1.0
     - label: [No @en, Não @pt]
-      asNumber: 0.0
+      asNumber: -1.0
 
 UsesOrInvestestInMoreResistantYeast:
   is_a: IndustrialUnityAttribute
