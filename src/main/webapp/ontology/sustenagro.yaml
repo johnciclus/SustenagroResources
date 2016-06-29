@@ -1017,6 +1017,26 @@ SocialIndicator:
     - Social dimension @en
     - Dimensão social @pt
 
+AgriculturalIndicator:
+  is_a: SustainabilityIndicator
+  relevance: 1.0
+  label:
+    - Agricultural dimension @en
+    - Dimensão agricultural @pt
+
+DeforestationAttribute:
+  is_a: AgriculturalIndicator
+  label:
+    - Atributo desmatamento @pt
+    - Deforestation attribute @en
+    
+DeforestationIndicator:
+  is_a: DeforestationAttribute
+  label:
+    - Indicador desmatamento @pt
+    - Deforestation indicator @en
+  relevance: 2.0
+  value: YesNo
 
 # Descendentes de EnvironmentalIndicator
 

@@ -143,7 +143,6 @@ class ToolController {
             def options = k[':SustainabilityCategory'].getIndividualsIdValueLabel()
             def widgets
 
-
             dsl.featureMap.eachWithIndex { key, feature, int i ->
                 //println key
                 //println feature
