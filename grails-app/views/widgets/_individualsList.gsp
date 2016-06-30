@@ -1,6 +1,9 @@
 <g:each var="feature" in="${subClasses}">
     <g:if test="${feature.value.weightIndividuals}"> <g:set var="colWidth" value="10" /> </g:if>
     <g:else> <g:set var="colWidth" value="12" /> </g:else>
+    <g:set var="hasValue" value="${values[feature.value.id] != null && values[feature.value.id].value}" />
+    <g:set var="hasJustification" value="${values[feature.value.id] != null && values[feature.value.id].justification}" />
+
     <div class="form-group feature">
         <div class="row">
             <label class="col-sm-8 control-label">${feature.value.label}</label>
@@ -9,7 +12,6 @@
                 <g:render template="/widgets/clearButton" model="[id: feature.value.id, label: g.message(code: 'clean'), widgetClass: 'btn-xs']"/>
             </div>
         </div>
-        <g:set var="hasValue" value="${values[feature.value.id] != null && values[feature.value.id].value}" />
         <div class="row">
             <g:if test="${feature.value.valueTypes.contains('http://purl.org/biodiv/semanticUI#Boolean') || feature.value.valueTypes.contains('http://purl.org/biodiv/semanticUI#Categorical')}">
                 <g:each var="option" in="${feature.value.categoryIndividuals}">
@@ -40,10 +42,9 @@
                 </div>
             </div>
         </g:if>
-        <div class="row hidden">
+        <div class='row <g:if test="${!hasJustification}"> hidden </g:if>'>
             <label for="<%= feature.value.id + '-justification' %>" class="col-sm-4 control-label weight-label"><g:message code="justification" /></label>
             <div class="col-sm-8 text-right">
-                <g:set var="hasJustification" value="${values[feature.value.id] != null && values[feature.value.id].justification}" />
                 <g:if test="${hasJustification}">
                     <g:set var="text" value="${values[feature.value.id].justification}" />
                 </g:if>

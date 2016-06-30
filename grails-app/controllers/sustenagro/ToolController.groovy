@@ -4,6 +4,7 @@ import org.springframework.web.servlet.support.RequestContextUtils
 import semantics.DataReader
 import semantics.Node
 import grails.plugin.springsecurity.annotation.Secured
+import org.apache.commons.lang.StringEscapeUtils
 import utils.Uri
 import rendering.*
 
@@ -280,7 +281,8 @@ class ToolController {
             uri = k.toURI(it)
             paramValue = parameters[uri]
             paramWeight = parameters[uri+'-weight']
-            paramJustification = parameters[uri+'-justification']
+            paramJustification = StringEscapeUtils.escapeJava(parameters[uri+'-justification'])
+
             if(paramValue){
                 featureInstances[uri] = k.isURI(paramValue)? ['value': paramValue] : ['value': valueIndividuals[paramValue]]
                 if(paramWeight)
@@ -312,6 +314,8 @@ class ToolController {
                 }
             }
         }
+        println extraFeaturesInstances
+        //println StringEscapeUtils.escapeJava(str)
 
         return extraFeaturesInstances;
     }
@@ -342,7 +346,6 @@ class ToolController {
                 if (params.user)
                     userId = params.user
             }
-
 
             def options = k[':SustainabilityCategory'].getIndividualsIdValueLabel()
             def widgets
