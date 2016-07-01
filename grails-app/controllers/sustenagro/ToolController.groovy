@@ -281,7 +281,11 @@ class ToolController {
             uri = k.toURI(it)
             paramValue = parameters[uri]
             paramWeight = parameters[uri+'-weight']
-            paramJustification = StringEscapeUtils.escapeJava(parameters[uri+'-justification'])
+            paramJustification = escapeString(parameters[uri+'-justification'])
+
+            if(paramJustification){
+                println paramJustification
+            }
 
             if(paramValue){
                 featureInstances[uri] = k.isURI(paramValue)? ['value': paramValue] : ['value': valueIndividuals[paramValue]]
@@ -565,5 +569,12 @@ class ToolController {
         //println "out> $sout err> $serr"
 
         render(file: new File(path+'report.pdf'), fileName: "report.pdf")
+    }
+
+    def escapeString(String text){
+        if(text){
+            text = StringEscapeUtils.escapeJava(text.replaceAll(/"|'/, ""))
+        }
+        return text
     }
 }

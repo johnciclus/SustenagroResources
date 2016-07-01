@@ -1,4 +1,5 @@
 <form id='selectEvaluationObject' action="/tool/selectEvaluationObject" method="post" class="form-horizontal" >
+    <g:render template="/widgets/requireLabel"/>
     <div class="form-group required">
         <label for="evaluation_object_id" class="col-sm-4 control-label"><g:message code="productionUnit" /></label>
         <div class="col-sm-6">
