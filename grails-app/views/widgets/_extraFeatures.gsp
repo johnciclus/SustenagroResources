@@ -23,14 +23,15 @@
                         <g:render template="/widgets/label" model="[id: id+'['+i+'][ui:hasName]', label: (i+1)]"></g:render>
                     </td>
                     <td>
-                        <g:render template="/widgets/textArea" model="[id: id+'['+i+'][ui:hasName]']"> </g:render>
+                        <g:render template="/widgets/textArea" model="[id: id+'['+i+'][ui:hasName]', text: values[i]? values[i].name : null]"> </g:render>
                     </td>
                     <td>
-                        <g:render template="/widgets/textArea" model="[id: id+'['+i+'][:hasJustification]']"> </g:render>
+                        <g:render template="/widgets/textArea" model="[id: id+'['+i+'][:hasJustification]', text: values[i]? values[i].justification : null]"> </g:render>
                     </td>
                     <td>
+                        <g:set var="extraFeatureValue" value="${values[i]? values[i].value : null}"></g:set>
                         <g:each var="option" in="${options}">
-                            <g:render template="/widgets/radioInput" model="[id: id+'['+i+'][ui:value]', value: option.id, label: option.label]" ></g:render>
+                            <g:render template="/widgets/radioInput" model="[id: id+'['+i+'][ui:value]', value: option.id, label: option.label, checked: extraFeatureValue == option.value ]" ></g:render>
                         </g:each>
                     </td>
                 </tr>

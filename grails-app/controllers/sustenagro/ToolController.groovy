@@ -334,7 +334,10 @@ class ToolController {
         if(userId && evalObjId && analysisId) {
             def sustainabilityTabs = []
             def efficiencyTabs = []
+            def id
             def res
+            def extra
+            def extraValues = [:]
             def values = [:]
             def roles = k['inds:'+username].getAttr('hasRole')
 
@@ -354,12 +357,16 @@ class ToolController {
             def options = k[':SustainabilityCategory'].getIndividualsIdValueLabel()
             def widgets
 
+            println options
+
             dsl.featureMap.eachWithIndex { key, feature, int i ->
                 //res = k[key].getChildrenIndividuals(uri, '?id ?ind ?valueType ?weightType')
                 res = k[key].getGrandChildrenIndividuals(uri, '?id ?ind ?justification ?valueType ?weightType')
+                extra = k[key].getChildrenExtraIndividuals(uri, '?ind ?name ?justification ?valueTypeLabel ?value ?relevance')
 
                 //println key
                 //Uri.printTree(res)
+                //Uri.printTree(extra)
 
                 res.each {
                     values[it.id] = [:]
@@ -371,12 +378,24 @@ class ToolController {
                         values[it.id].justification = it.justification
                 }
 
-                //Uri.printTree(values)
+                extraValues = [:]
+
+                extra.each {
+                    id = it.ind.substring(key.size()+2)
+                    id = Integer.parseInt(id.substring(0, id.indexOf('-')))
+                    extraValues[id] = [:]
+                    if (it.name)
+                        extraValues[id].name = it.name
+                    if (it.justification)
+                        extraValues[id].justification = it.justification
+                    if (it.value)
+                        extraValues[id].value = it.value
+                }
 
                 widgets = []
                 widgets.push(['widget': 'individualsPanel', attrs: [data: feature.getModel(evalObjId).subClass, values: values]])
                 if (feature.attrs.extraFeatures) {
-                    widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]])
+                    widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, values: extraValues, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]])
                 }
 
                 if (feature.getModel(evalObjId).superClass.contains(k.toURI(':Variable')))
@@ -384,6 +403,8 @@ class ToolController {
                 if (feature.getModel(evalObjId).superClass.contains(k.toURI(':SustainabilityIndicator')))
                     sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
             }
+
+            Uri.printTree(values)
 
             gui.setView(controllerName, actionName)
             dsl.clean(controllerName, actionName)
