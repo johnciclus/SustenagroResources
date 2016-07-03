@@ -1,5 +1,6 @@
 pageHeader text: message('greeting.welcome')+'!'
 div text: message('default.form.fill')
+requireLabel()
 form([id: 'signUpForm', action: '/user/createUser'], [[widget: 'formGroup', attrs: [widgetName: 'textForm', model: [label: message('name')+':', placeholder: message('name'), required: true, id: 'http://purl.org/biodiv/semanticUI#hasName']]],
                                                       [widget: 'formGroup', attrs: [widgetName: 'textForm', model: [label: message('lastname')+':', placeholder: message('lastname'), required: true, id: 'http://purl.org/biodiv/semanticUI#hasSurname']]],
                                                       [widget: 'formGroup', attrs: [widgetName: 'textForm', model: [label: message('institution')+':', placeholder: message('institution'), required: false, id: 'http://purl.org/biodiv/semanticUI#hasOrganization']]],

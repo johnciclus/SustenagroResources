@@ -34,9 +34,6 @@
 
                 <p><b><g:message code="home.sustenagroSoftwareInstitutions" /></b></p>
                 <g:message code="home.sustenagroSoftwareInstitutionsContent" />
-
-                <h5 class="text-primary page-header"><g:message code="home.sustenagroFinancial" /></h5>
-                <p><g:message code="home.sustenagroFinancialContent" /></p>
             </div>
         </div>
     </body>

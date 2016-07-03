@@ -9,7 +9,6 @@ import grails.plugin.springsecurity.annotation.Secured
 import yaml.Yaml2Owl
 import groovyx.net.http.RESTClient
 
-
 @Secured('ROLE_ADMIN')
 class AdminController {
 
@@ -41,22 +40,33 @@ class AdminController {
         def ctx = grailsApplication.mainContext
         def path = ctx.servletContext.getRealPath("/")
         def response = [:]
+        def valid = true
+        Map yaml
 
-        println path
         // Just reads YAML
-        Map yaml = (Map) new Yaml().load((String) params['ontology'])
+        try {
+            yaml = (Map) new Yaml().load((String) params['ontology'])
+        }
+        catch (Exception e){
+            valid = false
+        }
 
         //println "Ontology"
         //println params['ontology']
 
         // Save yaml file
         File yamlFile = ctx.getResource('ontology/sustenagro.yaml').file
-        yamlFile.write(params['ontology'],'utf-8')
+        yamlFile.write(params['ontology'], 'utf-8')
 
         def onto = new Yaml2Owl((String) yaml.ontology, path+'ontology/')
 
         // Reading Map as ontology
-        onto.readYaml(yaml)
+        try {
+            onto.readYaml(yaml)
+        }
+        catch (Exception e){
+            valid = false
+        }
 
         onto.factory //OwlDataFactory
         onto.manager //OWLOntologyManager
@@ -116,6 +126,9 @@ class AdminController {
     }
 
     def ontologyReset(){
+        def ctx = grailsApplication.mainContext
+        def path = ctx.servletContext.getRealPath("/")
+        def response = [:]
 
     }
 
@@ -411,7 +424,6 @@ class AdminController {
         gui.renderXML(actionName)
 
         render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
-
     }
     /*
     def getIndicator(String id){

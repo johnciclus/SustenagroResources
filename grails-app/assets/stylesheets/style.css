@@ -260,6 +260,10 @@ li.pull-right{
 	color:red;
 }
 
+.required-label{
+	color: #F00;
+}
+
 #toolContent{
 	padding: 20px;
 	background-color: #fff;
