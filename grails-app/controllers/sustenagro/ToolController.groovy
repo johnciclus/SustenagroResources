@@ -154,7 +154,7 @@ class ToolController {
                 widgets = []
                 widgets.push(['widget': 'individualsPanel', attrs: [data: feature.getModel(evalObjId).subClass, values: [:]]])
                 if (feature.attrs.extraFeatures) {
-                    widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]])
+                    widgets.push(['widget': 'extraFeatures', attrs: [id: key, name: feature.name, options: options, values: [:], title: 'Indicadores específicos', header: ['ui:hasName': 'Nome', ':hasJustification': 'Justificativa', 'ui:value': 'Valor']]])
                 }
 
                 if (feature.getModel(evalObjId).superClass.contains(k.toURI(':Variable')))
