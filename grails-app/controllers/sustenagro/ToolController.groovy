@@ -34,6 +34,12 @@ class ToolController {
     def springSecurityService
 
     def evaluationObject() {
+        //println session.getClass()
+        //println "Timeout: ${session.getMaxInactiveInterval()} seconds"
+        //println session.getCreationTime()
+        //println session.getLastAccessedTime()
+        //println session.getLastAccessedTime() - session.getCreationTime()
+
         def locale = RequestContextUtils.getLocale(request)
         def username = springSecurityService.principal.username
         def userId = username
