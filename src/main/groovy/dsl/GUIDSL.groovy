@@ -130,8 +130,6 @@ class GUIDSL {
         return response
     }
 
-
-
     def dataType(Map attrs = [:], String id){
         def k = _ctx.getBean('k')
         dataTypeToWidget[k.toURI(id)] = attrs['widget']

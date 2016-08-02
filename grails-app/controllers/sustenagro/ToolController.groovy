@@ -5,9 +5,7 @@ import semantics.DataReader
 import semantics.Node
 import grails.plugin.springsecurity.annotation.Secured
 import org.apache.commons.lang.StringEscapeUtils
-import utils.Uri
-import rendering.*
-
+import dsl.GUIDSL
 import java.text.ParsePosition
 import java.text.SimpleDateFormat
 
@@ -28,7 +26,7 @@ class ToolController {
                              microregionsView: "POST"
                             ]
     def dsl
-    def gui
+    //def gui
     def k
     def slugify
     def springSecurityService
@@ -48,6 +46,7 @@ class ToolController {
         def roles = k['inds:'+username].getAttr('hasRole')
         def evaluationObjectURI = dsl.evaluationObject.getURI()
         def widgets = dsl.evaluationObject.getWidgets(locale)
+        def _gui = new GUIDSL('dsl/gui.groovy', grailsApplication.mainContext)
 
         if(userId && (evalObjId == null || k['inds:'+evalObjId].exist())){
             if(roles.contains(k.toURI('ui:AdminRole'))){
@@ -63,20 +62,20 @@ class ToolController {
                 activeTab = 'tab_1'
             }
 
-            gui.setView(controllerName, actionName)
+            _gui.setView(controllerName, actionName)
             dsl.clean(controllerName, actionName)
 
-            gui.setData('username', username)
-            gui.setData('userId', userId)
-            gui.setData('evalObjId', evalObjId)
-            gui.setData('analysisId', null)
-            gui.setData('activeTab', activeTab)
-            gui.setData('evaluationObjectURI', evaluationObjectURI)
-            gui.setData('widgets', widgets)
+            _gui.setData('username', username)
+            _gui.setData('userId', userId)
+            _gui.setData('evalObjId', evalObjId)
+            _gui.setData('analysisId', null)
+            _gui.setData('activeTab', activeTab)
+            _gui.setData('evaluationObjectURI', evaluationObjectURI)
+            _gui.setData('widgets', widgets)
 
-            gui.renderView(actionName)
+            _gui.renderView(actionName)
 
-            render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
+            render(view: actionName, model: [inputs: _gui.viewsMap[controllerName][actionName]])
         }else{
             response.sendError(404)
         }
@@ -134,6 +133,7 @@ class ToolController {
         def roles = k['inds:' + username].getAttr('hasRole')
         def evalObjId = params.id
         def analysisId = evalObjId+"-analysis-"+new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(now)
+        def _gui = new GUIDSL('dsl/gui.groovy', grailsApplication.mainContext)
 
         //println session['lang']
 
@@ -169,22 +169,22 @@ class ToolController {
                     sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
             }
 
-            gui.setView(controllerName, actionName)
+            _gui.setView(controllerName, actionName)
             dsl.clean(controllerName, actionName)
 
-            gui.setData('username', username)
-            gui.setData('userId', userId)
-            gui.setData('evalObjId', evalObjId)
-            gui.setData('analysisId', analysisId)
-            gui.setData('uri', uri)
-            gui.setData('efficiencyTabs', efficiencyTabs)
-            gui.setData('sustainabilityTabs', sustainabilityTabs)
-            gui.renderView(actionName)
+            _gui.setData('username', username)
+            _gui.setData('userId', userId)
+            _gui.setData('evalObjId', evalObjId)
+            _gui.setData('analysisId', analysisId)
+            _gui.setData('uri', uri)
+            _gui.setData('efficiencyTabs', efficiencyTabs)
+            _gui.setData('sustainabilityTabs', sustainabilityTabs)
+            _gui.renderView(actionName)
 
             //println "* Index Tree ${gui.viewsMap[controllerName][actionName].size()}*"
             //Uri.printTree(gui.viewsMap[controllerName][actionName])
 
-            render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
+            render(view: actionName, model: [inputs: _gui.viewsMap[controllerName][actionName]])
         }else{
             response.sendError(404)
         }
@@ -196,13 +196,14 @@ class ToolController {
         def input = []
         def evalObjId
         def analysisId = params.analysisId
+        def _gui = new GUIDSL('dsl/gui.groovy', grailsApplication.mainContext)
 
         createAnalysisAndFeatures(params)
 
         evalObjId = k['inds:'+analysisId].getAttr('appliedTo')
         evalObjId = evalObjId.substring(evalObjId.lastIndexOf('#') + 1)
 
-        gui.navBarRoute([username: username, userId: userId, evalObjId: evalObjId, analysisId: analysisId], input)
+        _gui.navBarRoute([username: username, userId: userId, evalObjId: evalObjId, analysisId: analysisId], input)
 
         render( template: '/widgets/navbarRoute', model: input[0].attrs)
     }
@@ -213,6 +214,8 @@ class ToolController {
     }
 
     def createAnalysisAndFeatures(parameters){
+        println "params.analysisId: "+parameters.analysisId
+
         def evalObjURI = k.toURI(parameters.evalObjInstance)
         def analysisId = parameters.analysisId
         def node = new Node(k)
@@ -336,6 +339,7 @@ class ToolController {
         def analysisId = params.id
         def uri = analysisId ? k.toURI("inds:"+analysisId) : null
         def evalObjId = k[uri].getAttr('appliedTo')
+        def _gui = new GUIDSL('dsl/gui.groovy', grailsApplication.mainContext)
 
         if(userId && evalObjId && analysisId) {
             def sustainabilityTabs = []
@@ -363,7 +367,7 @@ class ToolController {
             def options = k[':SustainabilityCategory'].getIndividualsIdValueLabel()
             def widgets
 
-            println options
+            //println options
 
             dsl.featureMap.eachWithIndex { key, feature, int i ->
                 //res = k[key].getChildrenIndividuals(uri, '?id ?ind ?valueType ?weightType')
@@ -410,71 +414,29 @@ class ToolController {
                     sustainabilityTabs.push(['widget': 'tab', attrs: [label: feature.getModel(evalObjId).label], widgets: widgets])
             }
 
-            Uri.printTree(values)
+            //Uri.printTree(values)
+            _gui.setView(controllerName, actionName)
 
-            gui.setView(controllerName, actionName)
             dsl.clean(controllerName, actionName)
-
-
-            /*
-            def fea = dsl.featureMap[k.toURI(':TechnologicalEfficiencyFeature')]
-            def technologyTypes = fea.evalObject(k.toURI([params.id]))
-            def name = k[uri].label
-            def report
-
-            dsl.data = new DataReader(k, uri)
-            dsl.assessmentProgram()
-            dsl.viewsMap['tool']['data'] = dsl._analyzesMap['http://purl.org/biodiv/semanticUI#Analysis'].widgets
-
-            //Closure within map for reference it
-
-            if (assessmentID != null) {
-
-               dsl.dimensions.each{ String dim ->
-                   k[dim].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value ?weight').each{
-                       values[it.id] = it.value
-                   }
-               }
-
-               k[':ProductionEfficiencyFeature'].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value').each{
-                   values[it.id] = it.value
-               }
-               k[':TechnologicalEfficiencyFeature'].getGranchildrenIndividuals(assessmentID, '?id ?subClass ?in ?value ?weight').each{
-                   values[it.id] = it.value
-                   weights[it.id] = it.weight
-               }
-
-               dsl.data = new DataReader(k, k.toURI(':'+assessmentID))
-               dsl.program()
-               report = dsl.report
-
-               //def page = g.render(template: 'report', model: [report: report])
-               //lack generate the report file
-
-               //def file = new File("reports/${evaluationID}.html")
-               //file.write(page.toString())
-            }
-            */
 
             if (uri?.trim()) {
                 dsl.setData(new DataReader(k, uri))
                 dsl.runReport()
             }
-
             //gui.setData('evaluationObjects', evaluationObjects)
-            gui.setData('username', username)
-            gui.setData('userId', userId)
-            gui.setData('evalObjId', evalObjId)
-            gui.setData('analysisId', analysisId)
-            gui.setData('vars', dsl.getVariables())
-            gui.setData('dataReader', dsl.getData('data'))
-            gui.setData('sustainabilityTabs', sustainabilityTabs)
-            gui.setData('efficiencyTabs', efficiencyTabs)
-            gui.setData('reportView', dsl.getReportView())
+            _gui.setData('username', username)
+            _gui.setData('userId', userId)
+            _gui.setData('evalObjId', evalObjId)
+            _gui.setData('analysisId', analysisId)
+            _gui.setData('vars', dsl.getVariables())
+            _gui.setData('dataReader', dsl.getData('data'))
+            _gui.setData('sustainabilityTabs', sustainabilityTabs)
+            _gui.setData('efficiencyTabs', efficiencyTabs)
+            _gui.setData('reportView', dsl.getReportView())
 
-            gui.renderView(actionName)
+            _gui.renderView(actionName)
 
-            render( view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
+            render( view: actionName, model: [inputs: _gui.viewsMap[controllerName][actionName]])
 
         }else{
             response.sendError(404)
@@ -537,6 +499,7 @@ class ToolController {
         def analysisId = params.id
         def uri = analysisId ? k.toURI("inds:"+analysisId) : null
         def evalObjId = k[uri].getAttr('appliedTo')
+        def _gui = new GUIDSL('dsl/gui.groovy', grailsApplication.mainContext)
 
         if(userId && evalObjId && analysisId) {
             def roles = k['inds:'+username].getAttr('hasRole')
@@ -552,9 +515,8 @@ class ToolController {
                 }
             }
 
-            gui.setView(controllerName, actionName)
+            _gui.setView(controllerName, actionName)
             dsl.clean(controllerName, actionName)
-
 
             if (uri?.trim()) {
                 dsl.setData(new DataReader(k, uri))
@@ -565,14 +527,14 @@ class ToolController {
             //gui.setData('username', username)
             //gui.setData('userId', userId)
             //gui.setData('evalObjId', evalObjId)
-            gui.setData('analysisId', analysisId)
-            gui.setData('vars', dsl.getVariables())
-            gui.setData('dataReader', dsl.getData('data'))
-            gui.setData('reportView', dsl.getReportView())
+            _gui.setData('analysisId', analysisId)
+            _gui.setData('vars', dsl.getVariables())
+            _gui.setData('dataReader', dsl.getData('data'))
+            _gui.setData('reportView', dsl.getReportView())
 
-            gui.renderView('report')
-            println analysisId
-            render(view: '/tool/analysis', model: [inputs: gui.viewsMap[controllerName][actionName], analysisId: analysisId])
+            _gui.renderView('report')
+
+            render(view: '/tool/analysis', model: [inputs: _gui.viewsMap[controllerName][actionName], analysisId: analysisId])
         }else{
             response.sendError(404)
         }

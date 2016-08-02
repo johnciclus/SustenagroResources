@@ -948,7 +948,7 @@ class Node {
             }
         }
 
-        println sparql
+        //println sparql
 
         k.insert(sparql)
     }
