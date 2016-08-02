@@ -76,6 +76,7 @@ spring:
 
 server:
     port: 8888                                             # The port to listen on
+    sessionTimeout: -1
 
 ---
 grails:
