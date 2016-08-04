@@ -26,7 +26,6 @@ class ToolController {
                              microregionsView: "POST"
                             ]
     def dsl
-    //def gui
     def k
     def slugify
     def springSecurityService
