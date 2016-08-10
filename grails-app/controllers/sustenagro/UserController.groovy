@@ -1,5 +1,6 @@
 package sustenagro
 
+import dsl.GUIDSL
 import semantics.Node
 
 class UserController {
@@ -9,14 +10,15 @@ class UserController {
                              createUser: "POST"]
     def k
     def dsl
-    def gui
     def springSecurityService
 
     def signup() {
-        gui.setView(controllerName, actionName)
+        def _gui = new GUIDSL('dsl/gui.groovy', grailsApplication.mainContext)
+
+        _gui.setView(controllerName, actionName)
         dsl.clean(controllerName, actionName)
-        gui.renderView(actionName)
-        render(view: actionName, model: [inputs: gui.viewsMap[controllerName][actionName]])
+        _gui.renderView(actionName)
+        render(view: actionName, model: [inputs: _gui.viewsMap[controllerName][actionName]])
     }
 
     def createUser(){
