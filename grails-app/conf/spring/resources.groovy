@@ -12,7 +12,7 @@ beans = {
     }
     slugify(Slugify)
     md(PegDownProcessor)
-    k(Know, 'http://127.0.0.1:9999/blazegraph/namespace/kb/sparql')
+    k(Know, 'http://192.168.154.17:9999/blazegraph/namespace/kb/sparql')
     gui(GUIDSL, 'dsl/gui.groovy', grailsApplication.mainContext)
     dsl(DSL, 'dsl/main.groovy', grailsApplication.mainContext)
 }

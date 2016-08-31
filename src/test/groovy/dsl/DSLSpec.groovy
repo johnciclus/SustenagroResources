@@ -3,14 +3,11 @@ package dsl
 import spock.lang.Shared
 import spock.lang.Specification
 
-/**
- * Created by dilvan on 5/30/15.
- */
 class DSLSpec extends Specification {
-    @Shared def dsl = new DSL('src/test/resources/testDsl.groovy')
+    @Shared def dsl = new DSL('src/main/groovy/dsl/Dsl.groovy')
 
-    def setupSpec() {
-//        //InputStream inp = this.class.getResourceAsStream('test.ntriple')
+    def setup() {
+//        InputStream inp = this.class.getResourceAsStream('test.ntriple')
 //        InputStream inp = new FileInputStream('src/test/resources/test.ntriple')
 //        s.g.loadRDF(inp, 'http://tinkerpop.com#', 'n-triples', null)
 //        s.addDefaultNamespaces()
@@ -21,8 +18,8 @@ class DSLSpec extends Specification {
 //        expect:
 //        dsl.name == 'Avaliação da sustentabilidade em agricultura'
 //        dsl.description == '''
-//O processo de avaliação da sustentabilidade é composto pelas seguintes etapas:
-// '''
+//          O processo de avaliação da sustentabilidade é composto pelas seguintes etapas:
+//        '''
 //    }
 
     def "features"(){

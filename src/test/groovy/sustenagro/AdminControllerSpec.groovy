@@ -10,9 +10,11 @@ import spock.lang.Specification
 class AdminControllerSpec extends Specification {
 
     def setup() {
+
     }
 
     def cleanup() {
+
     }
 
     void "test something"() {
