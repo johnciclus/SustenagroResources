@@ -30,3 +30,5 @@ blazegraph.jar
 *.log.lck
 
 catalog-v001.xml
+
+#.asscache
