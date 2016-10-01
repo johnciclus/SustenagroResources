@@ -1,1 +1,0 @@
-<img src="<%=src%>" class="<%=widgetClass%>" width="<%=width%>">
